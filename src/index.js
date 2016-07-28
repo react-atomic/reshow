@@ -1,6 +1,9 @@
 // React
 export { default as React, Component} from 'react';
 
+// Flux
+export { Container } from 'flux/utils';
+
 // Stores
 export { default as  pageStore } from './stores/pageStore';
 
