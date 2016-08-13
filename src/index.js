@@ -17,5 +17,7 @@ export {
     ajaxDispatch
 } from 'react-organism-ajax';
 
+export let global = {};
+
 // Default
 export {default} from '../ui/organisms/reshow';

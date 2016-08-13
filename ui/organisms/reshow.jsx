@@ -2,18 +2,31 @@ import {
     React,
     Component,
     AjaxPage,
+    Container,
+    pageStore,
+    global,
     dispatch
 } from '../../src/index';
 
 class Reshow extends Component
 {
+    static getStores()
+    {
+        return [pageStore];
+    }
+
+    static calculateState(prevState)
+    {
+        let pageState = pageStore.getState();
+        global.path = pageState.get('themePath');
+        return {
+          themePath: global.path
+        }; 
+    }
+
     constructor(props) {
         super(props);
         this.update(props);
-        this.state = {
-            themePath: props.themePath,
-            popup: null
-        };
     }
 
     componentWillReceiveProps(nextProps)
@@ -37,12 +50,10 @@ class Reshow extends Component
                 baseUrl={this.props.baseUrl}
                 callback={(json)=>{
                     self.update(json);
-                    self.setState({
-                        themePath: json.themePath    
-                    });
                 }}
             />
         );
     }
 }
-export default Reshow;
+const ReshowContainer = Container.create(Reshow);
+export default ReshowContainer;
