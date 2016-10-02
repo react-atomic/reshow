@@ -17,7 +17,7 @@ class Reshow extends Component
 
     static calculateState(prevState)
     {
-        let pageState = pageStore.getState();
+        const pageState = pageStore.getState();
         global.path = pageState.get('themePath');
         return {
           themePath: global.path
