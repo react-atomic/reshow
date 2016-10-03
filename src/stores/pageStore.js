@@ -14,12 +14,20 @@ class PageStore extends ReduceStore
       return PageState;
   }
 
+  updateUrl(url)
+  {
+        history.pushState('','',url);
+  }
+
   reduce (state, action)
   {
+        if (action.url) {
+            this.updateUrl(action.url);
+        }
         switch (action.type)
         {
             case 'config/set':
-               return state.merge(action.params);
+                return state.merge(action.params);
             default:
                 return state;
         }

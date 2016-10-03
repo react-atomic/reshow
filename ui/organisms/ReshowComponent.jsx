@@ -1,6 +1,5 @@
+import React, {Component} from 'react'; 
 import {
-    React,
-    Component,
     global,
     pageStore
 } from '../../src/index';

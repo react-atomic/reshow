@@ -1,6 +1,3 @@
-// React
-export { default as React, Component} from 'react';
-
 // Flux
 export { Container } from 'flux/utils';
 export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
@@ -15,9 +12,11 @@ export { dispatch } from './actions/dispatcher';
 export {
     AjaxPage,
     ajaxDispatch
-} from 'react-organism-ajax';
+} from 'organism-react-ajax';
 
+// Router
 export let global = {};
+export ClientRoute from '../ui/organisms/ClientRoute'; 
 
 // Default
 export {default} from '../ui/organisms/reshow';

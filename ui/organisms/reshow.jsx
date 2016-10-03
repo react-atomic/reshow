@@ -1,6 +1,5 @@
+import React, {Component} from 'react'; 
 import {
-    React,
-    Component,
     AjaxPage,
     Container,
     pageStore,
@@ -41,7 +40,8 @@ class Reshow extends Component
         });
     }
 
-    render(){
+    render()
+    {
         let self = this;
         return (
             <AjaxPage 
@@ -55,5 +55,6 @@ class Reshow extends Component
         );
     }
 }
+export { Reshow };
 const ReshowContainer = Container.create(Reshow);
 export default ReshowContainer;
