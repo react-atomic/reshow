@@ -10,8 +10,8 @@ export { dispatch } from './actions/dispatcher';
 
 // Ajax
 export {
-    AjaxPage,
-    ajaxDispatch
+    AjaxLink as ReLink,
+    AjaxForm as ReForm
 } from 'organism-react-ajax';
 
 // Router
