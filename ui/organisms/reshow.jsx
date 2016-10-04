@@ -43,11 +43,14 @@ class Reshow extends Component
     render()
     {
         let self = this;
+        const props = this.props;
+        const state = this.state;
         return (
             <AjaxPage 
-                themes={this.props.themes}
-                themePath={this.state.themePath}
-                baseUrl={this.props.baseUrl}
+                themes={props.themes}
+                themePath={state.themePath}
+                baseUrl={props.baseUrl}
+                ajax={props.ajax}
                 callback={(json)=>{
                     self.update(json);
                 }}

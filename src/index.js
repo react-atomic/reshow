@@ -10,6 +10,7 @@ export { dispatch } from './actions/dispatcher';
 
 // Ajax
 export {
+    AjaxPage,
     AjaxLink as ReLink,
     AjaxForm as ReForm
 } from 'organism-react-ajax';
