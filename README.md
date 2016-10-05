@@ -8,9 +8,10 @@ Reshow
 
 ## Example Usage
 Demo Url:
-https://dl.dropboxusercontent.com/u/3396570/list/index.html
+http://react-atomic.github.io/react-atomic-ui-doc/
 
-Documentation:
+Code:
+https://github.com/react-atomic/react-atomic-ui-doc/blob/master/ui/pages/index.jsx
 
 ## Dependencies
    * React Ajax
