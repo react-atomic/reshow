@@ -11,7 +11,8 @@ Demo Url:
 http://react-atomic.github.io/react-atomic-ui-doc/
 
 Code:
-https://github.com/react-atomic/react-atomic-ui-doc/blob/master/ui/pages/index.jsx
+   * [Component](https://github.com/react-atomic/react-atomic-ui-doc/blob/master/ui/pages/index.jsx)
+   * [Link](https://github.com/react-atomic/react-atomic-ui-doc/blob/master/ui/organisms/Menu.jsx)
 
 ## Dependencies
    * React Ajax
