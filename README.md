@@ -17,7 +17,7 @@ Code:
 Hightlight:
    * Reshow supoort whole link replace, but github static server only accept hashtag.
    * You could have customlize url parser for complex case such as https://npm.im/routes
-      * Just need pass props.parseUrl
+      * Just need pass props.parseUrl with ClientRoute component
       * https://github.com/react-atomic/reshow/blob/master/ui/organisms/ClientRoute.jsx#L32-L34
 
 
