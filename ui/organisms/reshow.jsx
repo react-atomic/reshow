@@ -50,6 +50,7 @@ class Reshow extends Component
                 themes={props.themes}
                 themePath={state.themePath}
                 baseUrl={props.baseUrl}
+                updateWithUrl={state.updateWithUrl}
                 ajax={props.ajax}
                 callback={(json)=>{
                     self.update(json);

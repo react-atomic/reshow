@@ -4,14 +4,12 @@ import Immutable from 'immutable';
 import {ReduceStore} from 'flux/utils';
 import dispatcher from '../actions/dispatcher';
 
-const PageState = Immutable.Map();
-
 class PageStore extends ReduceStore
 {
 
   getInitialState()
   {
-      return PageState;
+      return Immutable.Map();
   }
 
   updateUrl(url)
