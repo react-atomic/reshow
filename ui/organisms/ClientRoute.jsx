@@ -11,9 +11,6 @@ class ClientRoute extends Reshow
 
     parseUrl(url)
     {
-        if (!url && 'undefined' !== typeof document) {
-            url = document.URL;
-        }
         const separator = (-1 !== url.indexOf('#')) ? '#': '/';
         const params = url.split(separator);
         const last = params.length-1;
@@ -33,23 +30,24 @@ class ClientRoute extends Reshow
         const updateWithUrl = (url) =>
         {
             const state = pageStore.getState();
-            const parseUrl = (state.parseUrl) ?
-                state.parseUrl :
-                self.parseUrl;
+            const stateParseUrl = state.get('parseUrl');
+            const parseUrl = (stateParseUrl) ?
+                stateParseUrl : self.parseUrl;
             const configs = Object.assign(
                 {parseUrl: parseUrl},
                 parseUrl(url)
             );
             self.update(configs);
         };
+        const curUrl = (props.url) ? props.url : document.URL;
         setTimeout(()=>{
             self.setState({
                 updateWithUrl: updateWithUrl
             });
-            updateWithUrl(props.url);
+            updateWithUrl(curUrl);
         });
         window.onpopstate = (e)=> {
-            updateWithUrl(props.url);
+            updateWithUrl(document.URL);
         };
     } 
 }
