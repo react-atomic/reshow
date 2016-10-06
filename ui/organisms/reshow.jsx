@@ -59,6 +59,7 @@ class Reshow extends Component
         );
     }
 }
-export { Reshow };
 const ReshowContainer = Container.create(Reshow);
+
+export { Reshow };
 export default ReshowContainer;

@@ -5,6 +5,10 @@ import pageStore from '../../src/stores/pageStore';
 
 class ClientRoute extends Reshow
 {
+    static defaultProps = {
+        ajax: false
+    }
+
     parseUrl(url)
     {
         if (!url && 'undefined' !== typeof document) {
