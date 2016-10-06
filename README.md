@@ -1,4 +1,4 @@
-Reshow (Flux Simplify Library)
+Reshow (A simplified version of Flux)
 ===============
    * react atomic ui for atom 
    * GIT
