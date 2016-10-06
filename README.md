@@ -1,10 +1,10 @@
-Reshow
+Reshow (Flux Simplify Library)
 ===============
    * react atomic ui for atom 
    * GIT
-      * https://github.com/pmvc/react-atomic-atom 
+      * https://github.com/react-atomic/reshow
    * NPM
-      * https://www.npmjs.com/package/react-atomic-atom 
+      * https://npm.im/reshow
 
 ## Example Usage
 Demo Url:
