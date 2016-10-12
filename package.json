@@ -13,7 +13,7 @@
   "dependencies": {
       "flux": "^2.1.1",
       "immutable": "^3.7.4",
-      "organism-react-ajax": "^0.0.4"
+      "organism-react-ajax": ">=0.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
