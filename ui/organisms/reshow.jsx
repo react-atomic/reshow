@@ -18,8 +18,14 @@ class Reshow extends Component
     {
         const pageState = pageStore.getState();
         global.path = pageState.get('themePath');
+        let update =  pageState.get('updateWithUrl');
+        if (update) {
+            update = update.toJS();
+        }
         return {
-          themePath: global.path
+          themePath: global.path,
+          updateWithUrl: update,
+          baseUrl: pageState.get('baseUrl')
         }; 
     }
 
@@ -47,10 +53,12 @@ class Reshow extends Component
         const state = this.state;
         return (
             <AjaxPage 
-                themes={props.themes}
+                /*State*/
                 themePath={state.themePath}
-                baseUrl={props.baseUrl}
+                baseUrl={state.baseUrl}
                 updateWithUrl={state.updateWithUrl}
+                /*Props*/
+                themes={props.themes}
                 ajax={props.ajax}
                 callback={(json)=>{
                     self.update(json);

@@ -1777,9 +1777,9 @@ once@~1.3.3:
   dependencies:
     wrappy "1"
 
-organism-react-ajax@>=0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.0.5.tgz#7fdea6243f6c1956c2f55093ecd0b21003e7c9a2"
+organism-react-ajax@>=0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.0.6.tgz#1c4ebd350bb83122005fbe8940ac2650a76a7ef5"
   dependencies:
     flux "^2.1.1"
     immutable "^3.7.4"

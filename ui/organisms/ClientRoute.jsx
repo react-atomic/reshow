@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'flux/utils';
 import { Reshow } from '../organisms/reshow';
 import pageStore from '../../src/stores/pageStore';
+import { dispatch } from '../../src/actions/dispatcher';
 
 class ClientRoute extends Reshow
 {
@@ -41,8 +42,11 @@ class ClientRoute extends Reshow
         };
         const curUrl = (props.url) ? props.url : document.URL;
         setTimeout(()=>{
-            self.setState({
-                updateWithUrl: updateWithUrl
+            dispatch({
+                type: 'config/set',
+                params: {
+                    updateWithUrl: updateWithUrl
+                }
             });
             updateWithUrl(curUrl);
         });
