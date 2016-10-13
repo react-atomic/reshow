@@ -1,5 +1,6 @@
 import React from 'react'; 
 import { Container } from 'flux/utils';
+import { ajaxDispatch } from 'organism-react-ajax';
 import { Reshow } from '../organisms/reshow';
 import pageStore from '../../src/stores/pageStore';
 import { dispatch } from '../../src/actions/dispatcher';
@@ -42,7 +43,7 @@ class ClientRoute extends Reshow
         };
         const curUrl = (props.url) ? props.url : document.URL;
         setTimeout(()=>{
-            dispatch({
+            ajaxDispatch({
                 type: 'config/set',
                 params: {
                     updateWithUrl: updateWithUrl
@@ -50,9 +51,6 @@ class ClientRoute extends Reshow
             });
             updateWithUrl(curUrl);
         });
-        window.onpopstate = (e)=> {
-            updateWithUrl(document.URL);
-        };
     } 
 }
 

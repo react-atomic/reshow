@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.0.16",
+  "version": "0.0.18",
   "description": "Flux Reducer Present Library",
   "main": "./build/src/index.js",
   "repository": "react-atomic/reshow",
@@ -13,7 +13,7 @@
   "dependencies": {
     "flux": "^2.1.1",
     "immutable": "^3.7.4",
-    "organism-react-ajax": ">=0.0.6"
+    "organism-react-ajax": ">=0.0.8"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",

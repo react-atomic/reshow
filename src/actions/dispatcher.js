@@ -2,14 +2,14 @@
 
 import {Dispatcher} from 'flux';
 
-const instance = new Dispatcher();
+const dispatchServer = new Dispatcher();
 
 // dispatch server
 // import dispatchServer from 'xxx';
 // const instance = new PageStore(dispatchServer);
-export default instance;
+export default dispatchServer;
 
 // dispatch notify
 // import {dispatch} from 'xxx';
 // dispatch({xxx:xxx});
-export const dispatch = instance.dispatch.bind(instance);
+export const dispatch = dispatchServer.dispatch.bind(dispatchServer);
