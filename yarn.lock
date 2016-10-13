@@ -937,6 +937,10 @@ chokidar@^1.0.0:
   optionalDependencies:
     fsevents "^1.0.0"
 
+classnames@*:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 code-point-at@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.0.1.tgz#1104cd34f9b5b45d3eba88f1babc1924e1ce35fb"
@@ -1070,6 +1074,10 @@ escape-string-regexp@^1.0.2:
 esutils@^2.0.0, esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
+
+exenv@>=1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.1.tgz#75de1c8dee02e952b102aa17f8875973e0df14f9"
 
 expand-brackets@^0.1.4:
   version "0.1.5"
@@ -1366,6 +1374,10 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+hyphenate-style-name@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.0.tgz#7ee1f71c2cdb35214e3c4c723a5075da25bf1b40"
+
 iconv-lite@~0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
@@ -1381,8 +1393,8 @@ indent-string@^2.1.0:
     repeating "^2.0.0"
 
 inflight@^1.0.4:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.5.tgz#db3204cd5a9de2e6cd890b85c6e2f66bcf4f620a"
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
   dependencies:
     once "^1.3.0"
     wrappy "1"
@@ -1754,7 +1766,7 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
-object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4.0.1, object-assign@^4.1.0, object-assign@>=4.0.1:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.0.tgz#7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0"
 
@@ -1777,12 +1789,13 @@ once@~1.3.3:
   dependencies:
     wrappy "1"
 
-organism-react-ajax@>=0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.0.8.tgz#7c25e2024929b79a3aaca274c6603f3e82f8b5f1"
+organism-react-ajax@>=0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.0.10.tgz#801eb2bf81234304840c0de58d74484441c390c3"
   dependencies:
     flux "^2.1.1"
     immutable "^3.7.4"
+    react-atomic-molecule "*"
     superagent "^0.21.0"
 
 os-tmpdir@^1.0.1:
@@ -1889,6 +1902,20 @@ rc@~1.1.0:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
+
+react-atomic-atom@>=0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-0.0.14.tgz#24dd872d0c192ea6de70499c97a85224d0772794"
+
+react-atomic-molecule@*:
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-0.0.41.tgz#5caa341353a7de3899e54870ceb91ffb0a5806fc"
+  dependencies:
+    classnames "*"
+    exenv ">=1.2.0"
+    hyphenate-style-name "1.0.0"
+    object-assign ">=4.0.1"
+    react-atomic-atom ">=0.0.14"
 
 react@^15.0.1:
   version "15.3.2"
