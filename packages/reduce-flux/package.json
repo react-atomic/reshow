@@ -1,6 +1,6 @@
 {
   "name": "reduce-flux",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "facebook flux small package for reduce store only",
   "main": "./build/src/index.js",
   "repository": "react-atomic/reshow",
