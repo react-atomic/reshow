@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { Container } from 'flux/utils';
+import { Container } from 'reduce-flux';
 import { ajaxDispatch } from 'organism-react-ajax';
 import { Reshow } from '../organisms/reshow';
 import pageStore from '../../src/stores/pageStore';

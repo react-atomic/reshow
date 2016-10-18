@@ -1,5 +1,5 @@
 // Flux
-export { Container } from 'flux/utils';
+export { Container } from 'reduce-flux';
 export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
 
 // Stores
