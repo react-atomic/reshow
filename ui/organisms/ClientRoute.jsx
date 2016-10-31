@@ -13,7 +13,7 @@ class ClientRoute extends Reshow
 
     parseUrl(url)
     {
-        const separator = (-1 !== url.indexOf('#')) ? '#': '/';
+        const separator = '/';
         const params = url.split(separator);
         const last = params.length-1;
         if (params[last]) {
