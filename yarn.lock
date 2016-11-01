@@ -1000,7 +1000,7 @@ esutils@^2.0.0, esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
 
-exenv@>=1.2.0:
+exenv@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.1.tgz#75de1c8dee02e952b102aa17f8875973e0df14f9"
 
@@ -1458,8 +1458,8 @@ kind-of@^3.0.2:
     is-buffer "^1.0.2"
 
 lodash@^4.2.0:
-  version "4.16.5"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.5.tgz#77d88feac548009b1a5c4ca7b49ac431ce346ae8"
+  version "4.16.6"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.6.tgz#d22c9ac660288f3843e16ba7d2b5d06cca27d777"
 
 loose-envify@^1.0.0, loose-envify@^1.1.0:
   version "1.3.0"
@@ -1700,19 +1700,19 @@ rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-react-atomic-atom@>=0.0.14:
+react-atomic-atom@*:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-0.0.15.tgz#a389fd60104c650ac4f64febdcc7c4c303d84f4f"
 
 react-atomic-molecule@>=0.0.42:
-  version "0.0.53"
-  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-0.0.53.tgz#603442494776d39aa5dc82c96e8a5bde2efdf48e"
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-0.0.55.tgz#4048bd81b75d819ce9d1e5cee4660be45411b151"
   dependencies:
     classnames "*"
-    exenv ">=1.2.0"
+    exenv "1.2.1"
     hyphenate-style-name "1.0.0"
     object-assign ">=4.0.1"
-    react-atomic-atom ">=0.0.14"
+    react-atomic-atom "*"
 
 react@^15.3.0:
   version "15.3.2"
