@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.0.32",
+  "version": "0.1.2",
   "description": "Flux Reducer Present Library",
   "main": "./build/src/index.js",
   "repository": "react-atomic/reshow",
@@ -11,7 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "organism-react-ajax": ">=0.0.12",
+    "organism-react-ajax": "*",
     "reduce-flux": "*"
   },
   "devDependencies": {

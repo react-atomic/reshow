@@ -1,11 +1,11 @@
 import React, {Component} from 'react'; 
 import {
-    AjaxPage,
-    Container,
-    pageStore,
+    dispatch,
     global,
-    dispatch
+    pageStore,
+    AjaxPage,
 } from '../../src/index';
+import reshow from '../../src/reshow';
 
 class Reshow extends Component
 {
@@ -20,7 +20,7 @@ class Reshow extends Component
         global.path = pageState.get('themePath');
         return {
           themePath: global.path,
-          baseUrl: pageState.get('baseUrl'),
+          baseUrl: pageState.get('baseUrl')
         }; 
     }
 
@@ -43,22 +43,25 @@ class Reshow extends Component
 
     render()
     {
-        let self = this;
+        const self = this;
         const props = this.props;
+        const {themes, ajax} = this.props;
+        const {themePath, baseUrl} = this.state;
         return (
             <AjaxPage 
-                {...this.state}
                 callback={(json)=>{
                     self.update(json);
                 }}
+                /*State*/
+                themePath={themePath}
+                baseUrl={baseUrl}
                 /*Props*/
-                themes={props.themes}
-                ajax={props.ajax}
+                themes={themes}
+                ajax={ajax}
             />
         );
     }
 }
-const ReshowContainer = Container.create(Reshow);
 
 export { Reshow };
-export default ReshowContainer;
+export default reshow(Reshow);

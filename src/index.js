@@ -1,9 +1,6 @@
 // Flux
-export { 
-    ReduceStore,
-    Dispatcher,
-    Container 
-} from 'reduce-flux';
+export { ReduceStore, Dispatcher } from 'reduce-flux';
+export reshow from './reshow';
 export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
 
 // Stores
@@ -24,4 +21,5 @@ export let global = {};
 export ClientRoute from '../ui/organisms/ClientRoute'; 
 
 // Default
-export {default} from '../ui/organisms/reshow';
+export {default} from '../ui/organisms/Reshow';
+

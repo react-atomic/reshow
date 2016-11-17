@@ -1,9 +1,9 @@
 import React from 'react'; 
-import { Container } from 'reduce-flux';
 import { ajaxDispatch } from 'organism-react-ajax';
-import { Reshow } from '../organisms/reshow';
+import { Reshow } from '../organisms/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import { dispatch } from '../../src/actions/dispatcher';
+import reshow from '../../src/reshow';
 
 class ClientRoute extends Reshow
 {
@@ -54,5 +54,4 @@ class ClientRoute extends Reshow
     } 
 }
 
-const ClientRouteContainer = Container.create(ClientRoute);
-export default ClientRouteContainer;
+export default reshow(ClientRoute);
