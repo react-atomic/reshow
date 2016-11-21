@@ -1,0 +1,19 @@
+{
+  "name": "reshow-app",
+  "version": "0.0.9",
+  "description": "Reshow App Files",
+  "repository": "react-atomic/reshow",
+  "keywords": [ ],
+  "author": "Hill <hill@kimo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^5.x",
+    "babel-loader": "^5.x",
+    "webpack": "^1.13.0"
+  },
+  "devDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "npmignore": "*"
+  }
+}

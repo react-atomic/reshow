@@ -16,6 +16,19 @@ class PageStore extends ReduceStore
         history.pushState('','',url);
     }
 
+    getMap = (k)=>
+    {
+        const state = this.getState();
+        let v = state.get(k);
+        if (v && v.toJS) {
+            v = v.toJS();
+        }
+        if (!v) {
+            v = {};
+        }
+        return v;
+    }
+
     reduce (state, action)
     {
         if (action.url) {
