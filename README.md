@@ -24,3 +24,6 @@ Hightlight:
 ## Dependencies
    * React Ajax
    * https://github.com/react-atomic/react-atomic-organism/tree/master/packages/organism-react-ajax
+
+## PHP Template
+   * https://github.com/pmvc-plugin/view_react
