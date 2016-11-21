@@ -1,5 +1,6 @@
-React Atomic Icon Sets
+Reshow app skeleton share files
 ===
-
-## Icons List
-   * http://react-atomic.github.io/react-atomic-ui/#icons
+* GIT
+   * https://github.com/react-atomic/reshow/tree/master/packages/reshow-app 
+* NPM
+   * https://npm.im/reshow-app 
