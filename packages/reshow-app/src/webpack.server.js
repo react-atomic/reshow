@@ -31,7 +31,7 @@ const myWebpack = (root, main='./src/server.js')=>
             path: root + "/assets"
         },
         node: {
-            fs: "empty"
+            fs: "empty",
         },
         resolve: {
             extensions: ['','.js','.jsx']
