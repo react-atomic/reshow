@@ -31,7 +31,7 @@ if (confs.webpackVendor) {
     vendor = vendor.concat(confs.webpackVendor);
 }
 
-const myWebpack = (root, main='./src/client.js')=>
+const myWebpack = (root, main='./build/src/client.js')=>
 {
     return  {
         //devtool: 'sourcemap',

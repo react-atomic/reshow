@@ -20,7 +20,7 @@ if ('production' === ENV) {
     ]);
 }
 
-const myWebpack = (root, main='./src/server.js')=>
+const myWebpack = (root, main='./build/src/server.js')=>
 {
     return {
         entry: {
