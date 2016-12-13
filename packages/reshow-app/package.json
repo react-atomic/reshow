@@ -10,6 +10,7 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.0",
     "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-system-import-transformer": "*",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
@@ -18,7 +19,7 @@
     "react": "^15.0.1"
   },
   "scripts": {
-    "copy": "rm -rf build && BABEL_ENV=build babel src -d build && cp package.json.build ./build/package.json && cp {README.md,.npmignore} ./build/",
+    "copy": "rm -rf build && BABEL_ENV=build babel src -d build && cp package.json.build ./build/package.json && cp {README.md,.npmignore,.babelrc} ./build/",
     "build": "npm run copy && cd build && yarn install",
     "prepublish": "npm run build"
   }

@@ -1,6 +1,6 @@
 'use strict';
 
-import Immutable from 'immutable';
+import {Map} from 'immutable';
 import {ReduceStore} from 'reduce-flux';
 import dispatchServer from '../actions/dispatcher';
 
@@ -8,7 +8,7 @@ class PageStore extends ReduceStore
 {
     getInitialState()
     {
-        return Immutable.Map();
+        return Map();
     }
 
     updateUrl(url)
@@ -16,9 +16,11 @@ class PageStore extends ReduceStore
         history.pushState('','',url);
     }
 
-    getMap = (k)=>
+    getMap = (k, state)=>
     {
-        const state = this.getState();
+        if (!state) {
+            state = this.getState();
+        }
         let v = state.get(k);
         if (v && v.toJS) {
             v = v.toJS();

@@ -19,6 +19,7 @@ export {
 // Router
 export let global = {};
 export ClientRoute from '../ui/organisms/ClientRoute'; 
+export Section from '../ui/organisms/Section';
 
 // Default
 export {default} from '../ui/organisms/Reshow';
