@@ -31,17 +31,23 @@ if (confs.webpackVendor) {
     vendor = vendor.concat(confs.webpackVendor);
 }
 
-const myWebpack = (root, main='./build/src/client.js')=>
+const myWebpack = (root, main=null)=>
 {
+    if (!main) {
+        main = './build/src/client.js';
+    }
+
+    let entry = {
+        main: main,
+        vendor: vendor
+    };
+
     return  {
         //devtool: 'sourcemap',
-        entry: {
-            main: main,
-            vendor: vendor
-        },
+        entry: entry,
         output: {
-            filename: "bundle.js",
-            path: root+ "/assets" ,
+            filename: "[name].bundle.js",
+            path: root+ "/assets",
             publicPath: confs.assetsRoot,
             chunkFilename: "[id].[hash].bundle.js"
         },

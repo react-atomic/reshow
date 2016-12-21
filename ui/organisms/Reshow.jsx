@@ -45,7 +45,7 @@ class Reshow extends Component
     {
         const self = this;
         const props = this.props;
-        const {themes, ajax} = this.props;
+        const {themes, ajax, webSocketUrl} = this.props;
         const {themePath, baseUrl} = this.state;
         return (
             <AjaxPage 
@@ -58,6 +58,7 @@ class Reshow extends Component
                 /*Props*/
                 themes={themes}
                 ajax={ajax}
+                webSocketUrl={webSocketUrl}
             />
         );
     }
