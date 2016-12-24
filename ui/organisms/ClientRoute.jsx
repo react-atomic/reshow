@@ -1,5 +1,8 @@
 import React from 'react'; 
 import { ajaxDispatch } from 'organism-react-ajax';
+import getOffset from 'getoffset';
+import smoothScrollTo from 'smooth-scroll-to';
+
 import { Reshow } from '../organisms/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import { dispatch } from '../../src/actions/dispatcher';
@@ -15,10 +18,18 @@ class ClientRoute extends Reshow
     {
         const separator = '/';
         const params = url.split(separator);
+        const anchor= url.split('#')[1].split(separator)[0];
         const last = params.length-1;
         if (params[last]) {
+            setTimeout(()=>{
+                const dom = document.getElementById(anchor);
+                if (dom) {
+                    const pos = getOffset(dom); 
+                    smoothScrollTo(pos.top);
+                }
+            }, 100);
             return {
-                themePath: params[last]
+                themePath: params[last],
             };
         } else {
             return {};
