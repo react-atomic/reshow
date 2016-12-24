@@ -8,26 +8,33 @@ import pageStore from '../../src/stores/pageStore';
 import { dispatch } from '../../src/actions/dispatcher';
 import reshow from '../../src/reshow';
 
+let goAnchorTimer;
+
 class ClientRoute extends Reshow
 {
     static defaultProps = {
-        ajax: false
+        ajax: false,
+        goAnchorDelay: 1500 
     }
 
-    parseUrl(url)
+    parseUrl(url, goAnchorDelay)
     {
         const separator = '/';
         const params = url.split(separator);
-        const anchor= url.split('#')[1].split(separator)[0];
+        let anchor= url.split('#');
+        if (anchor[1]) {
+            anchor = anchor[1].split(separator)[0];
+        }
         const last = params.length-1;
         if (params[last]) {
-            setTimeout(()=>{
+            clearTimeout(goAnchorTimer);
+            goAnchorTimer = setTimeout(()=>{
                 const dom = document.getElementById(anchor);
                 if (dom) {
                     const pos = getOffset(dom); 
                     smoothScrollTo(pos.top);
                 }
-            }, 100);
+            }, goAnchorDelay);
             return {
                 themePath: params[last],
             };
@@ -44,11 +51,12 @@ class ClientRoute extends Reshow
         {
             const state = pageStore.getState();
             const stateParseUrl = state.get('parseUrl');
+            const goAnchorDelay = state.get('goAnchorDelay');
             const parseUrl = (stateParseUrl) ?
                 stateParseUrl : self.parseUrl;
             const configs = Object.assign(
                 {parseUrl: parseUrl},
-                parseUrl(url)
+                parseUrl(url, goAnchorDelay)
             );
             self.update(configs);
         };
