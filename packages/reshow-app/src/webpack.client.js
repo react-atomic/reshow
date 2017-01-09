@@ -26,7 +26,7 @@ if ('production' === ENV) {
         }),
     ]);
 }
-let vendor = ['react'];
+let vendor = ['react', 'react-dom', 'immutable'];
 if (confs.webpackVendor) {
     vendor = vendor.concat(confs.webpackVendor);
 }
