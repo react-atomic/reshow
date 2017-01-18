@@ -15,7 +15,8 @@ if ('production' === ENV) {
           }
         }),
         new UglifyJsPlugin({
-            compress: { warnings: false}
+            compress: { warnings: false},
+            comments: false
         }),
     ]);
 }
