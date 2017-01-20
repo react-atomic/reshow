@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const ENV = process.env.NODE_ENV;
 let plugins = [
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks:1}),
 ];
 if ('production' === ENV) {
@@ -35,10 +34,10 @@ const myWebpack = (root, main='./build/src/server.js')=>
             fs: "empty",
         },
         resolve: {
-            extensions: ['','.js','.jsx']
+            extensions: ['.js','.jsx']
         },
         resolveLoader: {
-            root: root + '/node_modules'
+            modules: [root + '/node_modules']
         },
         module: {
             loaders: [

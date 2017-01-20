@@ -7,11 +7,10 @@ const json = process.env.CONFIG || '{}';
 const confs = JSON.parse(json);
 
 let plugins = [
-    new webpack.optimize.DedupePlugin(),
-    new CommonsChunkPlugin(
-        /* chunkName= */"vendor", 
-        /* filename= */"vendor.bundle.js"
-    ),
+    new CommonsChunkPlugin({
+        name: 'vendor',
+        filename: 'vendor.bundle.js'
+    }),
 ];
 if ('production' === ENV) {
     plugins = plugins.concat([
@@ -56,13 +55,13 @@ const myWebpack = (root, main=null)=>
             fs: "empty"
         },
         resolve: {
-            extensions: ['','.js','.jsx'],
+            extensions: ['.js','.jsx'],
             alias: {
                 react: root + '/node_modules/react'
             }
         },
         resolveLoader: {
-            root: root + '/node_modules'
+            modules: [root + '/node_modules']
         },
         module: {
             loaders: [
