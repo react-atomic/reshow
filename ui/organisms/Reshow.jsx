@@ -44,7 +44,6 @@ class Reshow extends Component
     render()
     {
         const self = this;
-        const props = this.props;
         const {themes, ajax, webSocketUrl} = this.props;
         const {themePath, baseUrl} = this.state;
         return (
