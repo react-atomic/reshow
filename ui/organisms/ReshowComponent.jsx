@@ -13,7 +13,7 @@ class ReshowComponent extends Component
 
    static get initStates()
    {
-        return ['data', 'I18N'];
+        return ['data', 'I18N', 'I13N'];
    }
 
    static calculateState(prevState)
