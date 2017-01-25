@@ -1,8 +1,12 @@
 import React, {Component} from 'react'; 
+import get from 'get-object-value';
+
 import {
     global,
     pageStore
 } from '../../src/index';
+
+const keys = Object.keys;
 
 class ReshowComponent extends Component
 {
@@ -14,6 +18,13 @@ class ReshowComponent extends Component
    static get initStates()
    {
         return ['data', 'I18N', 'I13N'];
+   }
+
+   static get pathStates()
+   {
+        return {
+            I13N: ['data', 'I13N'] 
+        };
    }
 
    static calculateState(prevState)
@@ -29,6 +40,10 @@ class ReshowComponent extends Component
                 data = data.toJS();
             }
             results[key] = data;
+        });
+        const pathStates = this.pathStates;
+        keys(pathStates).forEach((key)=>{
+            results[key] = get(results, pathStates[key]);
         });
         return results;
    }
