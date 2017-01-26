@@ -41,6 +41,18 @@ class Reshow extends Component
         });
     }
 
+    componentDidMount()
+    {
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical &&
+            canonical.href &&
+            -1 !== canonical.href.indexOf(document.location.hostname)
+           ) 
+        {
+            history.replaceState('', '', canonical.href);
+        }
+    }
+
     render()
     {
         const self = this;
