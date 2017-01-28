@@ -2,6 +2,8 @@
 const webpack = require('webpack');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
+const AggressiveMergingPlugin = webpack.optimize.AggressiveMergingPlugin;
 const ENV = process.env.NODE_ENV;
 const json = process.env.CONFIG || '{}';
 const confs = JSON.parse(json);
@@ -24,6 +26,11 @@ if ('production' === ENV) {
             compress: { warnings: false},
             comments: false
         }),
+        new OccurrenceOrderPlugin(),
+        new AggressiveMergingPlugin({
+            minSizeReduce: 1.5,
+            moveToParents: true
+        })
     ]);
 }
 let vendor = ['react', 'react-dom', 'immutable'];
