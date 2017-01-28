@@ -13,6 +13,7 @@ const Section = (props) =>
     if (!get(configs,[name, 'shouldRender'])) {
         return null;
     }
+    delete configs[name].shouldRender;
     const conf = get(configs, [name]);
     if (children) {
         return React.cloneElement(
