@@ -49,7 +49,8 @@ class Reshow extends Component
             -1 !== canonical.href.indexOf(document.location.hostname)
            ) 
         {
-            history.replaceState('', '', canonical.href);
+            const newUrl = canonical.href+ document.location.search; 
+            history.replaceState('', '', newUrl);
         }
     }
 
