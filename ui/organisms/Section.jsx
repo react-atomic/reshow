@@ -8,7 +8,7 @@ import {
 
 const Section = (props) =>
 {
-    const {name, children, ...others} = props;
+    const {name, children} = props;
     const configs = pageStore.getMap('section');
     if (!get(configs,[name, 'shouldRender'])) {
         return null;
@@ -18,7 +18,10 @@ const Section = (props) =>
     if (children) {
         return React.cloneElement(
             children,
-            conf
+            {
+               ...conf,
+               ...children.props
+            }
         );
     } else {
         return null;
