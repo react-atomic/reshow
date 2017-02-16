@@ -33,10 +33,16 @@ if ('production' === ENV) {
         })
     ]);
 }
+
+/*vendor*/
+const deduplicate = (arr) => {
+    return Array.from(new Set(arr));
+}
 let vendor = ['react', 'react-dom', 'immutable'];
 if (confs.webpackVendor) {
     vendor = vendor.concat(confs.webpackVendor);
 }
+vendor = deduplicate(vendor);
 
 const myWebpack = (root, main=null)=>
 {
