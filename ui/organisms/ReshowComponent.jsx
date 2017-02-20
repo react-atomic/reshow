@@ -17,7 +17,7 @@ class ReshowComponent extends Component
 
    static get initStates()
    {
-        return ['data', 'I18N', 'I13N'];
+        return ['data', 'I18N'];
    }
 
    static get pathStates()
