@@ -80,13 +80,12 @@ const myWebpack = (root, main=null)=>
             loaders: [
                   { 
                     test: /(.js|.jsx)$/, 
-           //         exclude: /node_modules/,
+                    //exclude: /node_modules/,
                     loader: "babel-loader", 
-                    query:{
+                    options:{
                         cacheDirectory:true
                     } 
-                  },
-                  { test: /\.(otf|eot|svg|ttf|woff)/, loader: 'url-loader?limit=8192' }
+                  }
             ]
         },
         plugins: plugins

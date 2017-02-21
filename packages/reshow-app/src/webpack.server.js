@@ -45,7 +45,7 @@ const myWebpack = (root, main='./build/src/server.js')=>
                     test: /(.js|.jsx)$/, 
                     //exclude: /node_modules/,
                     loader: "babel-loader", 
-                    query:{
+                    options:{
                         cacheDirectory:true
                     } 
                   }
