@@ -4,7 +4,8 @@ export reshow from './reshow';
 export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
 
 // Stores
-export { default as  pageStore } from './stores/pageStore';
+export pageStore from './stores/pageStore';
+export realTimeStore from './stores/realTimeStore';
 
 // Dispatch
 export { dispatch } from './actions/dispatcher';

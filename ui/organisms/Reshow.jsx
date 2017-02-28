@@ -1,4 +1,7 @@
 import React, {Component} from 'react'; 
+
+import get from 'get-object-value';
+
 import {
     dispatch,
     global,
@@ -35,10 +38,18 @@ class Reshow extends Component
     }
 
     update(params){
-        dispatch({
-            type: 'config/set',
-            params: params 
-        });
+        const realTimeData = get(params, ['--realTimeData--']);
+        if (realTimeData) {
+            dispatch({
+                type: 'realTime',
+                params: realTimeData 
+            });
+        } else {
+            dispatch({
+                type: 'config/set',
+                params: params 
+            });
+        }
     }
 
     componentDidMount()
