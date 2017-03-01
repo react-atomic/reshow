@@ -42,7 +42,7 @@ class Reshow extends Component
         if (realTimeData) {
             dispatch({
                 type: 'realTime',
-                params: realTimeData 
+                params: params 
             });
         } else {
             dispatch({
