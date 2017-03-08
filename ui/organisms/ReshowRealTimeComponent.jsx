@@ -5,6 +5,8 @@ import ReshowComponent from '../organisms/ReshowComponent';
 import pageStore from '../../src/stores/pageStore';
 import realTimeStore from '../../src/stores/realTimeStore';
 
+const realTimeKey = '--realTimeData--';
+
 class ReshowRealTimeComponent extends ReshowComponent
 {
    static getStores()
@@ -14,19 +16,26 @@ class ReshowRealTimeComponent extends ReshowComponent
    
    static get realTimePath()
    {
-        return ['--realTimeData--'];
+        return [realTimeKey];
    }
 
    static calculateState(prevState)
    {
         const realTimeState = realTimeStore.getState();
-        const data = get(realTimeState, this.realTimePath); 
         let superData = super.calculateState(prevState);
-        if (data) {
-            superData = {
-                ...superData,
-                ...data
-            };
+        if (get(realTimeState, [realTimeKey])) {
+            const data = get(realTimeState, this.realTimePath); 
+            if (data) {
+                superData = {
+                    ...superData,
+                    ...data
+                };
+            } else {
+                superData = {
+                    ...superData,
+                    ...prevState
+                };
+            }
         }
         return superData;
    }
