@@ -27,14 +27,11 @@ class ReshowRealTimeComponent extends ReshowComponent
             const data = get(realTimeState, this.realTimePath); 
             if (data) {
                 superData = {
-                    ...superData,
+                    ...prevState,
                     ...data
                 };
             } else {
-                superData = {
-                    ...superData,
-                    ...prevState
-                };
+                superData = prevState;
             }
         }
         return superData;
