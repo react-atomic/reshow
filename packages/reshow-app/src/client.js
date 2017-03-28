@@ -9,8 +9,12 @@ const client = (app)=>
         let d = document;
         w.ReactDOM=ReactDOM;
         w.app=myApp;
+        let data = {};
+        if ('undefined' !== typeof REACT_DATA) {
+            data = REACT_DATA;
+        }
         ReactDOM.render(
-          new myApp(REACT_DATA),
+          new myApp(data),
           d.getElementById('app')
         );
     });

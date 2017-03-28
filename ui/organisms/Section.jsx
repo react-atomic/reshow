@@ -1,31 +1,31 @@
 import React from 'react'; 
-import { Reshow } from '../organisms/Reshow';
+import ReshowComponent from '../organisms/ReshowComponent';
+import reshow from '../../src/reshow';
 import get from 'get-object-value';
 
-import {
-    pageStore
-} from '../../src/index';
-
-const Section = (props) =>
+class Section extends ReshowComponent
 {
-    const {name, children} = props;
-    const configs = pageStore.getMap('section');
-    if (!get(configs,[name, 'shouldRender'])) {
-        return null;
+    static get initStates()
+    {
+        return ['section'];
     }
-    delete configs[name].shouldRender;
-    const conf = get(configs, [name]);
-    if (children) {
-        return React.cloneElement(
-            children,
-            {
-               ...conf,
-               ...children.props
-            }
-        );
-    } else {
-        return null;
+
+    render()
+    {
+        const {name, children} = this.props;
+        if (!get(this, ['state', 'section', name, 'shouldRender'])) {
+            return null;
+        }
+        const {shouldRender, ...others} = get(this, ['state', 'section', name]);
+        if (children) {
+            return React.cloneElement(
+                children,
+                others
+            );
+        } else {
+            return null;
+        }
     }
 }
 
-export default Section;
+export default reshow(Section);
