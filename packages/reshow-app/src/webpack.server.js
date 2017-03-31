@@ -1,11 +1,17 @@
 'use strict';
-const webpack = require('webpack');
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const ENV = process.env.NODE_ENV;
+import webpack, {optimize} from 'webpack';
+import externals from './webpack.externals';
+
+const {
+    UglifyJsPlugin
+} = optimize;
+const {
+    NODE_ENV
+} = process.env;
 let plugins = [
     new webpack.optimize.LimitChunkCountPlugin({maxChunks:1}),
 ];
-if ('production' === ENV) {
+if ('production' === NODE_ENV) {
     plugins = plugins.concat([
         new webpack.DefinePlugin({
           'process.env':{
@@ -33,6 +39,7 @@ const myWebpack = (root, main='./build/src/server.js')=>
         node: {
             fs: "empty",
         },
+        externals: externals,
         resolve: {
             extensions: ['.js','.jsx']
         },

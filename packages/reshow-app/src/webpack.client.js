@@ -1,12 +1,21 @@
 'use strict';
-const webpack = require('webpack');
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
-const AggressiveMergingPlugin = webpack.optimize.AggressiveMergingPlugin;
-const ENV = process.env.NODE_ENV;
-const json = process.env.CONFIG || '{}';
-const confs = JSON.parse(json);
+import webpack, {optimize} from 'webpack';
+import externals from './webpack.externals';
+
+const {
+    CommonsChunkPlugin,
+    UglifyJsPlugin,
+    OccurrenceOrderPlugin,
+    AggressiveMergingPlugin
+} = optimize;
+const {
+    NODE_ENV,
+    CONFIG
+} = process.env;
+let confs = {};
+if (CONFIG) {
+    confs = JSON.parse(CONFIG);
+}
 
 let plugins = [
     new CommonsChunkPlugin({
@@ -14,7 +23,7 @@ let plugins = [
         filename: 'vendor.bundle.js'
     }),
 ];
-if ('production' === ENV) {
+if ('production' === NODE_ENV) {
     plugins = plugins.concat([
         new webpack.DefinePlugin({
           'process.env':{
@@ -67,6 +76,7 @@ const myWebpack = (root, main=null)=>
         node: {
             fs: "empty"
         },
+        externals: externals,
         resolve: {
             extensions: ['.js','.jsx'],
             alias: {
