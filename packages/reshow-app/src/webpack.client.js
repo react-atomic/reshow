@@ -1,13 +1,13 @@
 'use strict';
-import webpack, {optimize} from 'webpack';
-import externals from './webpack.externals';
+const webpack = require('webpack');
+const externals = require('./webpack.externals');
 
 const {
     CommonsChunkPlugin,
     UglifyJsPlugin,
     OccurrenceOrderPlugin,
     AggressiveMergingPlugin
-} = optimize;
+} = webpack.optimize;
 const {
     NODE_ENV,
     CONFIG
@@ -90,7 +90,7 @@ const myWebpack = (root, main=null)=>
             loaders: [
                   { 
                     test: /(.js|.jsx)$/, 
-                    //exclude: /node_modules/,
+                    exclude: /node_modules/,
                     loader: "babel-loader", 
                     options:{
                         cacheDirectory:true
@@ -102,4 +102,4 @@ const myWebpack = (root, main=null)=>
     };
 };
 
-export default myWebpack;
+module.exports=myWebpack;

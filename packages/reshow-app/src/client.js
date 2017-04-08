@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const React = require('react');
+const ReactDOM = require('react-dom');
 
 const client = (app)=>
 {
@@ -20,4 +20,4 @@ const client = (app)=>
     });
 }
 
-export default client;
+module.exports = client;

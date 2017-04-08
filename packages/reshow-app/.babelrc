@@ -3,11 +3,10 @@
         "build": {
             "presets": [
               "react",
-              "es2015",
+              ["es2015", {"modules": false}],
               "stage-0"
             ],
             "plugins": [
-              "add-module-exports",
               "system-import-transformer",
               "transform-object-assign",
               "transform-react-constant-elements",
@@ -17,11 +16,10 @@
         "production": {
             "presets": [
               "react",
-              "es2015",
+              ["es2015", {"modules": false}],
               "stage-0"
             ],
             "plugins": [
-              "add-module-exports",
               "system-import-transformer",
               "transform-object-assign",
               "transform-react-constant-elements",

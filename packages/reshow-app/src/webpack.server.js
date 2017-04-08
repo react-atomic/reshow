@@ -1,15 +1,16 @@
 'use strict';
-import webpack, {optimize} from 'webpack';
-import externals from './webpack.externals';
+const webpack = require('webpack');
+const externals = require('./webpack.externals');
 
 const {
-    UglifyJsPlugin
-} = optimize;
+    UglifyJsPlugin,
+    LimitChunkCountPlugin
+} = webpack.optimize;
 const {
     NODE_ENV
 } = process.env;
 let plugins = [
-    new webpack.optimize.LimitChunkCountPlugin({maxChunks:1}),
+    new LimitChunkCountPlugin({maxChunks:1}),
 ];
 if ('production' === NODE_ENV) {
     plugins = plugins.concat([
@@ -50,10 +51,10 @@ const myWebpack = (root, main='./build/src/server.js')=>
             loaders: [
                   { 
                     test: /(.js|.jsx)$/, 
-                    //exclude: /node_modules/,
+                    exclude: /node_modules/,
                     loader: "babel-loader", 
                     options:{
-                        cacheDirectory:true
+                        cacheDirectory: true
                     } 
                   }
             ]
@@ -62,4 +63,4 @@ const myWebpack = (root, main='./build/src/server.js')=>
     };
 };
 
-export default myWebpack;
+module.exports=myWebpack;

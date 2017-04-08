@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactServer from 'react-dom/server';
+const React = require('react');
+const ReactServer = require('react-dom/server');
 
 const server = (app)=>
 {
@@ -29,4 +29,4 @@ const server = (app)=>
     };
 };
 
-export default server;
+module.exports = server;
