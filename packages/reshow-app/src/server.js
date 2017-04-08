@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactServer = require('react-dom/server');
+global.d3 = {}; // hack for ignore in d3 in server side
 
 const server = (app)=>
 {
