@@ -50,6 +50,9 @@ class Reshow extends Component
                 params: params 
             });
         }
+        if (params.htmlTitle && 'undefined' !== typeof document) {
+            document.title = params.htmlTitle;
+        }
     }
 
     componentDidMount()
