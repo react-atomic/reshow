@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -9,7 +9,7 @@
   "dependencies": {
     "babel-cli": "^6.x",
     "babel-core": "^6.x",
-    "babel-loader": "^6.x",
+    "babel-loader": "^7.x",
     "babel-plugin-system-import-transformer": "*",
     "babel-plugin-transform-object-assign": "^6.x",
     "babel-plugin-transform-react-constant-elements": "^6.x",
