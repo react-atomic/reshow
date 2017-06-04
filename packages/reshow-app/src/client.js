@@ -1,10 +1,11 @@
+require('setimmediate');
 const React = require('react');
 const ReactDOM = require('react-dom');
 
 const client = (app)=>
 {
     const myApp = React.createFactory(app);
-    setTimeout(()=>{
+    setImmediate(()=>{
         let w = window;        
         let d = document;
         w.ReactDOM=ReactDOM;
