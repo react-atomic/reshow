@@ -58,13 +58,14 @@ class Reshow extends Component
     componentDidMount()
     {
         const canonical = document.querySelector('link[rel="canonical"]');
-        if (canonical &&
-            canonical.href &&
-            -1 !== canonical.href.indexOf(document.location.hostname)
-           ) 
+        if (canonical && canonical.href) 
         {
             const newUrl = canonical.href+ document.location.search; 
-            history.replaceState('', '', newUrl);
+            if (-1 !== canonical.href.indexOf(document.location.hostname)) {
+                history.replaceState('', '', newUrl);
+            } else {
+                location.replace(newUrl);
+            }
         }
     }
 
