@@ -1,4 +1,4 @@
-import React, {Component} from 'react'; 
+import React, {PureComponent} from 'react'; 
 import get from 'get-object-value';
 
 import {
@@ -8,7 +8,7 @@ import {
 
 const keys = Object.keys;
 
-class ReshowComponent extends Component
+class ReshowComponent extends PureComponent
 {
    static getStores()
    {
