@@ -1,4 +1,4 @@
-import React, {Component} from 'react'; 
+import React, {Component} from 'react';
 
 import get from 'get-object-value';
 
@@ -50,8 +50,23 @@ class Reshow extends Component
                 params: params 
             });
         }
-        if (params.htmlTitle && 'undefined' !== typeof document) {
-            document.title = params.htmlTitle;
+        if ('undefined' !== typeof document) {
+            if (params.htmlTitle) {
+                document.title = params.htmlTitle;
+            }
+            if (get(params, ['data', 'canonical'])) {
+                this.updateCanonicalUrl(get(params, ['data', 'canonical']));
+            }
+        }
+    }
+
+    updateCanonicalUrl(url)
+    {
+        const newUrl = url+ document.location.search; 
+        if (-1 !== url.indexOf(document.location.hostname)) {
+            history.replaceState('', '', newUrl);
+        } else {
+            location.replace(newUrl);
         }
     }
 
@@ -60,12 +75,7 @@ class Reshow extends Component
         const canonical = document.querySelector('link[rel="canonical"]');
         if (canonical && canonical.href) 
         {
-            const newUrl = canonical.href+ document.location.search; 
-            if (-1 !== canonical.href.indexOf(document.location.hostname)) {
-                history.replaceState('', '', newUrl);
-            } else {
-                location.replace(newUrl);
-            }
+            this.updateCanonicalUrl(canonical.href);
         }
     }
 

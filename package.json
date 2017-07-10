@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "Flux Reducer Present Library",
   "main": "./build/src/index.js",
   "repository": "react-atomic/reshow",
