@@ -54,14 +54,21 @@ class Reshow extends Component
             if (params.htmlTitle) {
                 document.title = params.htmlTitle;
             }
-            if (get(params, ['data', 'canonical'])) {
-                this.updateCanonicalUrl(get(params, ['data', 'canonical']));
+            const canonical = get(params, ['data', 'canonical']);
+            if (canonical) {
+                this.updateCanonicalUrl(canonical);
             }
         }
     }
 
     updateCanonicalUrl(url)
     {
+        const lStore = get(window, ['localStorage']);
+        if (lStore) {
+            if (lStore.getItem('no-canonical')) {
+                return;
+            }
+        }
         const newUrl = url+ document.location.search; 
         if (-1 !== url.indexOf(document.location.hostname)) {
             history.replaceState('', '', newUrl);
@@ -75,7 +82,17 @@ class Reshow extends Component
         const canonical = document.querySelector('link[rel="canonical"]');
         if (canonical && canonical.href) 
         {
-            this.updateCanonicalUrl(canonical.href);
+            if (-1 !== document.URL.indexOf('--no-canonical')) {
+                const lStore = get(window, ['localStorage']);
+                if (lStore) {
+                    lStore.setItem(
+                        'no-canonical',
+                        1
+                    );
+                }
+            } else {
+                this.updateCanonicalUrl(canonical.href);
+            }
         }
     }
 
