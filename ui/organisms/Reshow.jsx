@@ -52,7 +52,7 @@ class Reshow extends Component
         }
         if ('undefined' !== typeof document) {
             if (params.htmlTitle) {
-                document.title = params.htmlTitle;
+                document.title = get(params, ['htmlTitle', 0], params.htmlTitle);
             }
             const canonical = get(params, ['data', 'canonical']);
             if (canonical) {
