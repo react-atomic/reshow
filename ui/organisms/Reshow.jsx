@@ -10,6 +10,8 @@ import {
 } from '../../src/index';
 import reshow from '../../src/reshow';
 
+const isArray = Array.isArray;
+
 class Reshow extends Component
 {
     static getStores()
@@ -51,8 +53,13 @@ class Reshow extends Component
             });
         }
         if ('undefined' !== typeof document) {
-            if (params.htmlTitle) {
-                document.title = get(params, ['htmlTitle', 0], params.htmlTitle);
+            const htmlTitle = get(params, ['htmlTitle']);
+            if (htmlTitle) {
+                if (isArray(htmlTitle)) {
+                    document.title = get(htmlTitle, [0]);
+                } else {
+                    document.title = htmlTitle;
+                }
             }
             const canonical = get(params, ['data', 'canonical']);
             if (canonical) {
