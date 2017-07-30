@@ -87,19 +87,16 @@ class Reshow extends Component
     componentDidMount()
     {
         const canonical = document.querySelector('link[rel="canonical"]');
-        if (canonical && canonical.href) 
-        {
-            if (-1 !== document.URL.indexOf('--no-canonical')) {
-                const lStore = get(window, ['localStorage']);
-                if (lStore) {
-                    lStore.setItem(
-                        'no-canonical',
-                        1
-                    );
-                }
-            } else {
-                this.updateCanonicalUrl(canonical.href);
+        if (-1 !== document.URL.indexOf('--no-canonical')) {
+            const lStore = get(window, ['localStorage']);
+            if (lStore) {
+                lStore.setItem(
+                    'no-canonical',
+                    1
+                );
             }
+        } else if (canonical && canonical.href) {
+            this.updateCanonicalUrl(canonical.href);
         }
     }
 
