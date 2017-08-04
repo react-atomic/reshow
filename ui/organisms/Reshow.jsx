@@ -25,7 +25,8 @@ class Reshow extends Component
         global.path = pageState.get('themePath');
         return {
           themePath: global.path,
-          baseUrl: pageState.get('baseUrl')
+          baseUrl: pageState.get('baseUrl'),
+          staticVersion: pageState.get('staticVersion')
         }; 
     }
 
@@ -104,7 +105,7 @@ class Reshow extends Component
     {
         const self = this;
         const {themes, ajax, webSocketUrl} = this.props;
-        const {themePath, baseUrl} = this.state;
+        const {themePath, baseUrl, staticVersion} = this.state;
         return (
             <AjaxPage 
                 callback={(json)=>{
@@ -113,6 +114,11 @@ class Reshow extends Component
                 /*State*/
                 themePath={themePath}
                 baseUrl={baseUrl}
+                staticVersion={get(
+                    staticVersion,
+                    [],
+                    ()=>((new Date()).getTime())+''+Math.random()
+                )}
                 /*Props*/
                 themes={themes}
                 ajax={ajax}
