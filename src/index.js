@@ -9,6 +9,9 @@ export realTimeStore from './stores/realTimeStore';
 // Dispatch
 export { dispatch } from './actions/dispatcher';
 
+// Library
+export handleAnchor from './handleAnchor';
+
 // Ajax
 export {
     AjaxPage,

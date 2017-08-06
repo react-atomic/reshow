@@ -8,7 +8,7 @@ Reshow (A simplified version of Flux)
 
 ## Example Usage
 Demo Url:
-http://react-atomic.github.io/react-atomic-ui/
+https://react-atomic-ui.js.org/
 
 Code:
    * [Component](https://github.com/react-atomic/react-atomic-ui/blob/master/ui/pages/index.jsx#L21-L26)
@@ -18,7 +18,10 @@ Hightlight:
    * Reshow supoort whole link replace, but github static server only accept hashtag.
    * You could have customlize url parser for complex case such as https://npm.im/routes
       * Just need pass props.parseUrl with ClientRoute component
-      * https://github.com/react-atomic/reshow/blob/master/ui/organisms/ClientRoute.jsx#L32-L34
+      * https://github.com/react-atomic/reshow/blob/master/ui/organisms/ClientRoute.jsx#L9-L23 
+
+Need a hashtag sample
+   * https://react-atomic-ui.js.org/#/organisms#organism-react-facebook 
 
 
 ## Dependencies
