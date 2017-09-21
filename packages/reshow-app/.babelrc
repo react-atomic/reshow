@@ -27,6 +27,20 @@
               "transform-react-pure-class-to-function",
               "transform-react-remove-prop-types"
             ]
+        },
+        "preact": {
+            "presets": [
+              "react",
+              "env",
+              "stage-0"
+            ],
+            "plugins": [
+              "system-import-transformer",
+              "transform-object-assign",
+              "transform-react-constant-elements",
+              "transform-react-pure-class-to-function",
+              "transform-react-remove-prop-types"
+            ]
         }
     }
 }
