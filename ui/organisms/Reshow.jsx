@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 
 import get from 'get-object-value';
-
+import {AjaxPage} from 'organism-react-ajax';
 import {
     dispatch,
     global,
     pageStore,
-    AjaxPage,
 } from '../../src/index';
 import reshow from '../../src/reshow';
 

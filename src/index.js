@@ -14,7 +14,6 @@ export handleAnchor from './handleAnchor';
 
 // Ajax
 export {
-    AjaxPage,
     AjaxLink as ReLink,
     AjaxForm as ReForm
 } from 'organism-react-ajax';
