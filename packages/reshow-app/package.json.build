@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.21",
+  "version": "0.1.24",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -16,7 +16,7 @@
     "babel-plugin-transform-react-inline-elements": "^6.x",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
-    "babel-preset-es2015": "^6.x",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.x",
     "babel-preset-stage-0": "^6.x",
     "webpack": "*",

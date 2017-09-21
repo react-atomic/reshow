@@ -1,17 +1,23 @@
 'use strict';
 const webpack = require('webpack');
-const externals = require('./webpack.externals');
 
 const {
     UglifyJsPlugin,
     LimitChunkCountPlugin
 } = webpack.optimize;
 const {
-    NODE_ENV
+    NODE_ENV,
+    CONFIG
 } = process.env;
+let confs = {};
+if (CONFIG) {
+    confs = JSON.parse(CONFIG);
+}
+
 let plugins = [
     new LimitChunkCountPlugin({maxChunks:1}),
 ];
+
 if ('production' === NODE_ENV) {
     plugins = plugins.concat([
         new webpack.DefinePlugin({
@@ -40,9 +46,10 @@ const myWebpack = (root, main='./build/src/server.js')=>
         node: {
             fs: "empty",
         },
-        externals: externals,
+        externals: confs.externals,
         resolve: {
-            extensions: ['.js','.jsx']
+            extensions: ['.js','.jsx'],
+            alias: confs.alias
         },
         resolveLoader: {
             modules: [root + '/node_modules']

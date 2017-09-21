@@ -3,7 +3,7 @@
         "build": {
             "presets": [
               "react",
-              ["es2015", {"modules": false}],
+              "env",
               "stage-0"
             ],
             "plugins": [
@@ -16,7 +16,7 @@
         "production": {
             "presets": [
               "react",
-              ["es2015", {"modules": false}],
+              "env",
               "stage-0"
             ],
             "plugins": [

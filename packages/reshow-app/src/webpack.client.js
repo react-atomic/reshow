@@ -1,6 +1,6 @@
 'use strict';
 const webpack = require('webpack');
-const externals = require('./webpack.externals');
+const keys = Object.keys;
 
 const {
     CommonsChunkPlugin,
@@ -64,6 +64,15 @@ const myWebpack = (root, main=null)=>
         vendor: vendor
     };
 
+    let alias = {
+        react: root + '/node_modules/react'
+    };
+    if (confs.alias) {
+        keys(confs.alias).forEach(function(k){
+            alias[k] = confs.alias[k];
+        });
+    }
+
     return  {
         //devtool: 'sourcemap',
         entry: entry,
@@ -76,12 +85,10 @@ const myWebpack = (root, main=null)=>
         node: {
             fs: "empty"
         },
-        externals: externals,
+        externals: confs.externals,
         resolve: {
             extensions: ['.js','.jsx'],
-            alias: {
-                react: root + '/node_modules/react'
-            }
+            alias: alias
         },
         resolveLoader: {
             modules: [root + '/node_modules']
