@@ -2,8 +2,8 @@
     "env": {
         "build": {
             "presets": [
+              ["env", {"modules": false}],
               "react",
-              "env",
               "stage-0"
             ],
             "plugins": [
@@ -13,8 +13,8 @@
         },
         "production": {
             "presets": [
+              ["env", {"modules": false}],
               "react",
-              "env",
               "stage-0"
             ],
             "plugins": [
