@@ -3,6 +3,18 @@ import smoothScrollTo from 'smooth-scroll-to';
 
 let goAnchorTimer;
 
+const goToAnchor = (anchor, goAnchorDelay = 0) =>
+{
+    clearTimeout(goAnchorTimer);
+    goAnchorTimer = setTimeout(()=>{
+        const dom = document.body.querySelector(anchor);
+        if (dom) {
+            const pos = getOffset(dom); 
+            smoothScrollTo(pos.top);
+        }
+    }, goAnchorDelay);
+}
+
 const handleAnchor = (path, goAnchorDelay) =>
 {
     let anchor;
@@ -12,16 +24,10 @@ const handleAnchor = (path, goAnchorDelay) =>
         path = path.substring(0, anchorStart);
     }
     if (anchor) {
-        clearTimeout(goAnchorTimer);
-        goAnchorTimer = setTimeout(()=>{
-            const dom = document.body.querySelector(anchor);
-            if (dom) {
-                const pos = getOffset(dom); 
-                smoothScrollTo(pos.top);
-            }
-        }, goAnchorDelay);
+        goToAnchor(anchor, goAnchorDelay);
     }
     return path;
 };
 
+export {goToAnchor};
 export default handleAnchor;

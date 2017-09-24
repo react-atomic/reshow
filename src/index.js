@@ -10,7 +10,7 @@ export realTimeStore from './stores/realTimeStore';
 export { dispatch } from './actions/dispatcher';
 
 // Library
-export handleAnchor from './handleAnchor';
+export handleAnchor, {goToAnchor} from './handleAnchor';
 
 // Ajax
 export {
