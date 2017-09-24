@@ -9,7 +9,6 @@
   "devDependencies": {
     "babel-cli": "^6.x",
     "babel-core": "^6.x",
-    "babel-plugin-system-import-transformer": "*",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.5.0",
