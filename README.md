@@ -20,7 +20,7 @@ Hightlight:
       * Just need pass props.parseUrl with ClientRoute component
       * https://github.com/react-atomic/reshow/blob/master/ui/organisms/ClientRoute.jsx#L9-L23 
 
-Need a hashtag sample
+Hashtag sample
    * https://react-atomic-ui.js.org/#/organisms#organism-react-facebook 
 
 
