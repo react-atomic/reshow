@@ -112,7 +112,10 @@ const myWebpack = (root, main=null)=>
                     exclude: /node_modules/,
                     loader: "babel-loader", 
                     options:{
-                        cacheDirectory:true
+                        cacheDirectory: true,
+                        plugins: [
+                            'syntax-dynamic-import'
+                        ]
                     } 
                   }
             ]
