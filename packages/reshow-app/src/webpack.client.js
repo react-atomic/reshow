@@ -1,6 +1,8 @@
 'use strict';
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const keys = Object.keys;
+const assign = Object.assign;
 
 const {
     CommonsChunkPlugin,
@@ -10,7 +12,8 @@ const {
 } = webpack.optimize;
 const {
     NODE_ENV,
-    CONFIG
+    CONFIG,
+    BUNDLE
 } = process.env;
 let confs = {};
 if (CONFIG) {
@@ -23,6 +26,15 @@ let plugins = [
         filename: 'vendor.bundle.js'
     }),
 ];
+if (BUNDLE) {
+    let bundle = assign(
+        {analyzerHost: '0.0.0.0'},
+        JSON.parse(BUNDLE)
+    );
+    plugins = plugins.concat([
+        new BundleAnalyzerPlugin(bundle)
+    ]);
+}
 if ('production' === NODE_ENV) {
     plugins = plugins.concat([
         new webpack.DefinePlugin({

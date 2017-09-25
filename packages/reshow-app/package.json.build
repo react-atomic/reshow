@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -19,6 +19,7 @@
     "babel-preset-react": "^6.x",
     "babel-preset-stage-0": "^6.x",
     "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "*",
     "worker-loader": "*"
   },
   "devDependencies": {
