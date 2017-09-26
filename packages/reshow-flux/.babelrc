@@ -1,0 +1,16 @@
+{
+    "env": {
+        "build": {
+            "presets": [
+              "react",
+              "env",
+              "stage-0"
+            ],
+            "plugins": [
+              "add-module-exports",
+              "transform-react-constant-elements",
+              "transform-object-assign"
+            ]
+        }
+    }
+}

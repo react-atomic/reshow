@@ -1,4 +1,5 @@
-Reshow (A simplified version of Flux)
+[![Build Status](https://travis-ci.org/react-atomic/reshow.svg?branch=master)](https://travis-ci.org/react-atomic/reshow) 
+ Reshow (A simplified version of Flux)
 ===============
    * react atomic ui for atom 
    * GIT
