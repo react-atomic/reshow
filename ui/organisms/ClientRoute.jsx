@@ -1,10 +1,10 @@
+require("setimmediate");
 import { ajaxDispatch } from 'organism-react-ajax';
+import {Container} from 'reshow-flux';
 
 import { Reshow } from '../organisms/Reshow';
 import pageStore from '../../src/stores/pageStore';
-import reshow from '../../src/reshow';
 import handleAnchor from '../../src/handleAnchor';
-
 
 const defaultParseUrl = (url, goAnchorDelay)=>
 {
@@ -47,7 +47,7 @@ class ClientRoute extends Reshow
             self.update(configs);
         };
         const curUrl = (props.url) ? props.url : document.URL;
-        setTimeout(()=>{
+        setImmediate(()=>{
             ajaxDispatch({
                 type: 'config/set',
                 params: {
@@ -56,7 +56,7 @@ class ClientRoute extends Reshow
             });
             updateWithUrl(curUrl);
         });
-    } 
+    }
 }
 
-export default reshow(ClientRoute);
+export default Container(ClientRoute);

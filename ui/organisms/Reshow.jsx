@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
-
 import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
+import {Container} from 'reshow-flux';
+
 import {
     dispatch,
     global,
     pageStore,
 } from '../../src/index';
-import reshow from '../../src/reshow';
 
 const isArray = Array.isArray;
+
+let win;
+let doc;
 
 class Reshow extends Component
 {
@@ -52,13 +55,13 @@ class Reshow extends Component
                 params: params 
             });
         }
-        if ('undefined' !== typeof document) {
+        if (doc) {
             const htmlTitle = get(params, ['htmlTitle']);
             if (htmlTitle) {
                 if (isArray(htmlTitle)) {
-                    document.title = get(htmlTitle, [0]);
+                    doc.title = get(htmlTitle, [0]);
                 } else {
-                    document.title = htmlTitle;
+                    doc.title = htmlTitle;
                 }
             }
             const canonical = get(params, ['data', 'canonical']);
@@ -68,27 +71,35 @@ class Reshow extends Component
         }
     }
 
+    getLStore()
+    {
+        return get(win, ['localStorage']);
+    }
+
     updateCanonicalUrl(url)
     {
-        const lStore = get(window, ['localStorage']);
+        const lStore = this.getLStore();
         if (lStore) {
             if (lStore.getItem('no-canonical')) {
                 return;
             }
         }
-        const newUrl = url+ document.location.search; 
-        if (-1 !== url.indexOf(document.location.hostname)) {
+        const loc = doc.location; 
+        const newUrl = url+ loc.search; 
+        if (-1 !== url.indexOf(loc.hostname)) {
             history.replaceState('', '', newUrl);
         } else {
-            location.replace(newUrl);
+            loc.replace(newUrl);
         }
     }
 
     componentDidMount()
     {
-        const canonical = document.querySelector('link[rel="canonical"]');
-        if (-1 !== document.URL.indexOf('--no-canonical')) {
-            const lStore = get(window, ['localStorage']);
+        win = window;
+        doc = document;
+        const canonical = doc.querySelector('link[rel="canonical"]');
+        if (-1 !== doc.URL.indexOf('--no-canonical')) {
+            const lStore = this.getLStore();
             if (lStore) {
                 lStore.setItem(
                     'no-canonical',
@@ -128,4 +139,4 @@ class Reshow extends Component
 }
 
 export { Reshow };
-export default reshow(Reshow);
+export default Container(Reshow);

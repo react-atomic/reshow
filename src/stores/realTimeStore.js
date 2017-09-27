@@ -1,6 +1,6 @@
 'use strict';
 
-import {ReduceStore} from 'reduce-flux';
+import {ReduceStore} from 'reshow-flux';
 import dispatcher from '../actions/dispatcher';
 
 class RealTimeStore extends ReduceStore
@@ -21,5 +21,4 @@ class RealTimeStore extends ReduceStore
     }
 }
 
-const instance = new RealTimeStore(dispatcher);
-export default instance;
+export default new RealTimeStore(dispatcher);

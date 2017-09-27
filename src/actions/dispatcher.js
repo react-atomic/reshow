@@ -1,15 +1,21 @@
 'use strict';
 
-import {Dispatcher} from 'reduce-flux';
+import {Dispatcher} from 'reshow-flux';
 
-const dispatchServer = new Dispatcher();
+const dispatcher = new Dispatcher();
 
-// dispatch server
-// import dispatchServer from 'xxx';
-// const instance = new PageStore(dispatchServer);
-export default dispatchServer;
+/**
+ * Dispatcher
+ *
+ * import dispatchServer from 'xxx';
+ * const instance = new PageStore(dispatchServer);
+ */
+export default dispatcher;
 
-// dispatch notify
-// import {dispatch} from 'xxx';
-// dispatch({xxx:xxx});
-export const dispatch = dispatchServer.dispatch.bind(dispatchServer);
+/**
+ * Dispatch 
+ *
+ * import {dispatch} from 'xxx';
+ * dispatch({xxx:xxx});
+ */
+export const dispatch = dispatcher.dispatch.bind(dispatcher);

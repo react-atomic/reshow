@@ -1,6 +1,5 @@
 // Flux
-export { ReduceStore, Dispatcher } from 'reduce-flux';
-export reshow from './reshow';
+export { ReduceStore, Dispatcher } from 'reshow-flux';
 
 // Stores
 export pageStore from './stores/pageStore';
@@ -8,6 +7,9 @@ export realTimeStore from './stores/realTimeStore';
 
 // Dispatch
 export { dispatch } from './actions/dispatcher';
+
+// Container
+export {Container as reshow} from 'reshow-flux';
 
 // Library
 export handleAnchor, {goToAnchor} from './handleAnchor';

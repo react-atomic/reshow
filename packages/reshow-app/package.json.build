@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.39",
+  "version": "0.1.40",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "npmignore": "*",
-    "react": "^15.x",
-    "react-dom": "^15.x"
+    "react": "^16.x",
+    "react-dom": "^16.x"
   }
 }

@@ -1,7 +1,8 @@
 import React from 'react'; 
-import ReshowComponent from '../organisms/ReshowComponent';
-import reshow from '../../src/reshow';
+import {Container} from 'reshow-flux';
 import get from 'get-object-value';
+
+import ReshowComponent from '../organisms/ReshowComponent';
 
 class Section extends ReshowComponent
 {
@@ -28,4 +29,4 @@ class Section extends ReshowComponent
     }
 }
 
-export default reshow(Section);
+export default Container(Section);

@@ -1,7 +1,7 @@
 'use strict';
 
 import {Map} from 'immutable';
-import {ReduceStore} from 'reduce-flux';
+import {ReduceStore} from 'reshow-flux';
 import dispatcher from '../actions/dispatcher';
 
 class PageStore extends ReduceStore
@@ -45,7 +45,5 @@ class PageStore extends ReduceStore
     }
 }
 
-// Export a singleton instance of the store, could do this some other way if
-// you want to avoid singletons.
-const instance = new PageStore(dispatcher);
-export default instance;
+// Export a singleton instance of the store
+export default new PageStore(dispatcher);
