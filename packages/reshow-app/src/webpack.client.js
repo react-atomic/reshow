@@ -8,7 +8,8 @@ const {
     CommonsChunkPlugin,
     UglifyJsPlugin,
     OccurrenceOrderPlugin,
-    AggressiveMergingPlugin
+    AggressiveMergingPlugin,
+    ModuleConcatenationPlugin
 } = webpack.optimize;
 const {
     NODE_ENV,
@@ -25,6 +26,9 @@ let plugins = [
         name: 'vendor',
         filename: 'vendor.bundle.js'
     }),
+    new webpack.LoaderOptionsPlugin({
+        minimize: true,
+    }),
 ];
 if (BUNDLE) {
     let bundle = assign(
@@ -33,6 +37,10 @@ if (BUNDLE) {
     );
     plugins = plugins.concat([
         new BundleAnalyzerPlugin(bundle)
+    ]);
+} else {
+    plugins = plugins.concat([
+        new ModuleConcatenationPlugin()
     ]);
 }
 if ('production' === NODE_ENV) {
@@ -52,6 +60,17 @@ if ('production' === NODE_ENV) {
             minSizeReduce: 1.5,
             moveToParents: true
         })
+    ]);
+} else {
+    plugins = plugins.concat([
+        new UglifyJsPlugin({
+            compress: { warnings: false},
+            mangle: false,
+            beautify: true,
+            output: {
+                comments: true 
+            },
+        }),
     ]);
 }
 
