@@ -4,32 +4,6 @@ const DEFAULT_OPTIONS = {
 
 const keys = Object.keys;
 
-class Subscriptions
-{
-    _stores = [];
-    _handler = null;
-
-    setStores(stores, handler)
-    {
-        if (this._stores) {
-            this.reset();
-        }
-        stores.forEach(store =>
-            store.addListener(handler)
-        );
-        this._stores = stores;
-        this._handler = handler;
-    }
-
-    reset()
-    {
-        let self = this;
-        self._stores.forEach(store =>
-            store.removeListener(self._handler)
-        );
-    }
-}
-
 const create = (Base, options) =>
 {
     let thisOptions = DEFAULT_OPTIONS;
@@ -50,6 +24,8 @@ const create = (Base, options) =>
     
     class ContainerClass extends Base
     {
+        __stores = [];
+
         __fluxHandler = () =>
         {
             this.setState((prevState, currentProps)=>
@@ -57,14 +33,28 @@ const create = (Base, options) =>
             );
         }
 
+        __setStores = (stores) =>
+        {
+            if (this.__stores) {
+                this.__resetStores();
+            }
+            stores.forEach(store =>
+                store.addListener(this.__fluxHandler)
+            );
+            this.__stores = stores;
+        }
+
+        __resetStores = () =>
+        {
+            this.__stores.forEach(store =>
+                store.removeListener(this.__fluxHandler)
+            );
+        }
+
         constructor(props)
         {
             super(props);
-            this.__subscriptions = new Subscriptions();
-            this.__subscriptions.setStores(
-                getStores(props),
-                this.__fluxHandler
-            );
+            this.__setStores(getStores(props));
             const calculatedState = getState(
                 undefined,
                 props
@@ -83,10 +73,7 @@ const create = (Base, options) =>
                 super.componentWillReceiveProps(nextProps);
             }
             if (thisOptions.withProps) {
-                this.__subscriptions.setStores(
-                    getStores(nextProps),
-                    this.__fluxHandler
-                );
+                this.__setStores(getStores(nextProps));
                 this.setState(prevState => 
                     getState(prevState, nextProps)
                 );
@@ -98,7 +85,7 @@ const create = (Base, options) =>
             if (super.componentWillUnmount) {
                 super.componentWillUnmount();
             }
-            this.__subscriptions.reset();
+            this.__resetStores();
         }
     }
     const componentName = Base.displayName || Base.name;
