@@ -1,7 +1,6 @@
 'use strict';
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const keys = Object.keys;
 const assign = Object.assign;
 
@@ -41,9 +40,17 @@ if (BUNDLE) {
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
             }),
-            new BabelMinifyPlugin(),
             new UglifyJsPlugin({
-                compress: { warnings: false},
+                compress: { 
+                    unused: true,
+                    dead_code: true,
+                    join_vars: false,
+                    pure_funcs: ['__webpack_require__', '__webpack_exports__'],
+                    hoist_funs: true,
+                    collapse_vars: true,
+                    passes:2,
+                    side_effects: true,
+                },
                 mangle: false,
                 beautify: true,
                 output: {
@@ -65,7 +72,6 @@ if ('production' === NODE_ENV) {
         new webpack.LoaderOptionsPlugin({
             minimize: true,
         }),
-        new BabelMinifyPlugin(),
         new UglifyJsPlugin({
             compress: { warnings: false},
             comments: false
