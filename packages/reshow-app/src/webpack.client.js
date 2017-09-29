@@ -124,7 +124,8 @@ const myWebpack = (root, main=null)=>
             chunkFilename: "[id].[hash].bundle.js"
         },
         node: {
-            fs: "empty"
+            fs: "empty",
+            setImmediate: false
         },
         externals: confs.externals,
         resolve: {

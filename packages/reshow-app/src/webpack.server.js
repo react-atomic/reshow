@@ -45,6 +45,7 @@ const myWebpack = (root, main='./build/src/server.js')=>
         },
         node: {
             fs: "empty",
+            setImmediate: false
         },
         externals: confs.externals,
         resolve: {

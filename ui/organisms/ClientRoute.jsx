@@ -1,4 +1,3 @@
-require("setimmediate");
 import { ajaxDispatch } from 'organism-react-ajax';
 import {Container} from 'reshow-flux';
 

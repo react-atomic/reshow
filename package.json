@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -16,7 +16,6 @@
     "immutable": "*",
     "organism-react-ajax": "*",
     "reshow-flux": "*",
-    "setimmediate": "*",
     "smooth-scroll-to": "*"
   },
   "devDependencies": {
