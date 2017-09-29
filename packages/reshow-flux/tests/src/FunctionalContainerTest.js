@@ -7,7 +7,9 @@ import {
     FunctionalContainer 
 } from '../../src/index';
 import {expect} from 'chai';
-import {shallow} from 'enzyme';
+import {shallow, configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
 
 describe('Test Functional Container', ()=>{ 
     class FakeStore extends ReduceStore
@@ -24,6 +26,7 @@ describe('Test Functional Container', ()=>{
     }
     let dispatcher = new Dispatcher();
     let store = new FakeStore(dispatcher); 
+
     it('could register with store', ()=>{
         const FakeComponent = ({aaa}) => 
             <div>{aaa}</div>;
@@ -40,6 +43,7 @@ describe('Test Functional Container', ()=>{
         let vDom = <FakeContainer />;
         const html  = shallow(vDom);
         dispatcher.dispatch({aaa: 'Hello dispatcher!'});
+        html.update();
         expect(html.html()).to.equal('<div>Hello dispatcher!</div>');
     });
 });

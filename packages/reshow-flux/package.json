@@ -26,6 +26,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "chai": "*",
     "enzyme": "*",
+    "enzyme-adapter-react-16": "*",
     "mocha": "*",
     "react": "*",
     "react-dom": "*",

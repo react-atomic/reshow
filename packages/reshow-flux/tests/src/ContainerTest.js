@@ -7,7 +7,11 @@ import {
     Container
 } from '../../src/index';
 import {expect} from 'chai';
-import {shallow} from 'enzyme';
+import {shallow, configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
+
+
 
 describe('Test Container', ()=>{ 
     class FakeStore extends ReduceStore
@@ -81,6 +85,7 @@ describe('Test Container', ()=>{
        const html  = shallow(vDom);
        expect(calculateTimes).to.equal(1);
        dispatcher.dispatch({aaa: 'Hello dispatcher!'});
+       html.update();
        expect(calculateTimes).to.equal(2);
        expect(html.html()).to.equal('<div>Hello dispatcher!</div>');
        html.unmount();
@@ -131,7 +136,7 @@ describe('Test Container', ()=>{
             render()
             {
                 let foo = null;
-                if (this.state) {
+                if (this.state && this.state.foo) {
                     foo = this.state.foo; 
                 }
                 return <FakeContainer foo={foo} />;
@@ -145,6 +150,7 @@ describe('Test Container', ()=>{
        expect(getStoresProps).to.deep.equal({ foo: null });
        expect(calculateStateProps).to.deep.equal({ foo: null });
        changeFoo('bar'); 
+       html.update();
        expect(html.html()).to.equal('<div>bar</div>');
        expect(getStoresProps).to.deep.equal({ foo: 'bar' });
        expect(calculateStateProps).to.deep.equal({ foo: 'bar' });
