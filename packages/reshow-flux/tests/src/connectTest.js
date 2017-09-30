@@ -2,9 +2,9 @@
 
 import React, {Component} from 'react';
 import {
+    connect,
     Dispatcher,
     ReduceStore,
-    Container
 } from '../../src/index';
 import {expect} from 'chai';
 import {shallow, configure} from 'enzyme';
@@ -13,7 +13,7 @@ configure({ adapter: new Adapter() });
 
 
 
-describe('Test Container', ()=>{ 
+describe('Test Connect', ()=>{ 
     class FakeStore extends ReduceStore
     {
         getInitialState()
@@ -50,8 +50,8 @@ describe('Test Container', ()=>{
                 return <div>{this.state.foo}</div>;
             }
        }
-       let FakeContainer = Container(FakeComponent); 
-       let vDom = <FakeContainer />;
+       let FakeConnected = connect(FakeComponent); 
+       let vDom = <FakeConnected />;
        const actual = shallow(vDom).html();
        expect(actual).to.equal('<div>bar</div>');
     });
@@ -78,9 +78,9 @@ describe('Test Container', ()=>{
                 return <div>{this.state.aaa}</div>;
             }
        }
-       const FakeContainer = Container(FakeComponent); 
+       const FakeConnected = connect(FakeComponent); 
        expect(calculateTimes).to.equal(0);
-       const vDom = <FakeContainer />;
+       const vDom = <FakeConnected />;
        expect(calculateTimes).to.equal(0);
        const html  = shallow(vDom);
        expect(calculateTimes).to.equal(1);
@@ -116,7 +116,7 @@ describe('Test Container', ()=>{
                 return <div>{this.state.foo}</div>;
             }
        }
-       const FakeContainer = Container(
+       const FakeConnected = connect(
             FakeComponent,
             {
                 withProps: true
@@ -139,7 +139,7 @@ describe('Test Container', ()=>{
                 if (this.state && this.state.foo) {
                     foo = this.state.foo; 
                 }
-                return <FakeContainer foo={foo} />;
+                return <FakeConnected foo={foo} />;
             }
        }
        const vDom = <Parent />;

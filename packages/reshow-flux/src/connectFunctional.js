@@ -1,13 +1,13 @@
 import {PureComponent} from 'react';
-import create from './Container';
+import connect from './connect';
 
-const createFunctional = (
+const connectFunctional = (
     viewFn,
     getStores,
     calculateState,
     options
 ) => {
-    class FunctionalContainer extends PureComponent
+    class FunctionalConnected extends PureComponent
     {
         static getStores(props)
         {
@@ -25,8 +25,11 @@ const createFunctional = (
         }
     }
 
-    const viewFnName = viewFn.displayName || viewFn.name || 'FunctionalContainer';
-    FunctionalContainer.displayName = viewFnName;
-    return create(FunctionalContainer, options);
+    const viewFnName = 
+        viewFn.displayName ||
+        viewFn.name ||
+        'FunctionalConnected';
+    FunctionalConnected.displayName = viewFnName;
+    return connect(FunctionalConnected, options);
 }
-export default createFunctional;
+export default connectFunctional;

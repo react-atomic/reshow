@@ -2,16 +2,16 @@
 
 import React from 'react';
 import {
+    connectFunctional, 
     Dispatcher,
-    ReduceStore,
-    FunctionalContainer 
+    ReduceStore
 } from '../../src/index';
 import {expect} from 'chai';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-describe('Test Functional Container', ()=>{ 
+describe('Test Connect Functional', ()=>{ 
     class FakeStore extends ReduceStore
     {
         getInitialState()
@@ -35,12 +35,12 @@ describe('Test Functional Container', ()=>{
             const state = store.getState();
             return {aaa:state.aaa};
         };
-        let FakeContainer = FunctionalContainer(
+        let FakeConnected = connectFunctional(
             FakeComponent,
             fakeGetStores,
             fakeCalculateState
         ); 
-        let vDom = <FakeContainer />;
+        let vDom = <FakeConnected />;
         const html  = shallow(vDom);
         dispatcher.dispatch({aaa: 'Hello dispatcher!'});
         html.update();

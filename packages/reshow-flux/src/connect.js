@@ -4,7 +4,7 @@ const DEFAULT_OPTIONS = {
 
 const keys = Object.keys;
 
-const create = (Base, options) =>
+const connect = (Base, options) =>
 {
     let thisOptions = DEFAULT_OPTIONS;
     if (options) {
@@ -22,7 +22,7 @@ const create = (Base, options) =>
         return Base.getStores(props);
     };
     
-    class ContainerClass extends Base
+    class ConnectedClass extends Base
     {
         __stores = [];
 
@@ -89,8 +89,8 @@ const create = (Base, options) =>
         }
     }
     const componentName = Base.displayName || Base.name;
-    ContainerClass.displayName = 'FluxContainer(' + componentName + ')';
-    return ContainerClass;
+    ConnectedClass.displayName = 'FluxConnected(' + componentName + ')';
+    return ConnectedClass;
 }
 
-export default create;
+export default connect;
