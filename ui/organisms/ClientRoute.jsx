@@ -1,7 +1,6 @@
 import { ajaxDispatch } from 'organism-react-ajax';
-import {Container} from 'reshow-flux';
 
-import { Reshow } from '../organisms/Reshow';
+import Reshow from '../organisms/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import handleAnchor from '../../src/handleAnchor';
 
@@ -58,4 +57,4 @@ class ClientRoute extends Reshow
     }
 }
 
-export default Container(ClientRoute);
+export default ClientRoute;

@@ -1,5 +1,4 @@
 import React from 'react'; 
-import {Container} from 'reshow-flux';
 import get from 'get-object-value';
 
 import ReshowComponent from '../organisms/ReshowComponent';
@@ -29,4 +28,4 @@ class Section extends ReshowComponent
     }
 }
 
-export default Container(Section);
+export default Section;

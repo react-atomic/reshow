@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'; 
 import get from 'get-object-value';
+import {connect} from 'reshow-flux';
 
 import {
     global,
@@ -49,4 +50,4 @@ class ReshowComponent extends PureComponent
    }
 }
 
-export default ReshowComponent;
+export default connect(ReshowComponent);

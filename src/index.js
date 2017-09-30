@@ -1,15 +1,13 @@
 // Flux
-export { ReduceStore, Dispatcher } from 'reshow-flux';
+// Connect A.K.A Facebook's flux Container.create
+export { ReduceStore, Dispatcher, connect as reshow } from 'reshow-flux';
 
 // Stores
 export pageStore from './stores/pageStore';
 export realTimeStore from './stores/realTimeStore';
 
 // Dispatch
-export { dispatch } from './actions/dispatcher';
-
-// Container
-export {Container as reshow} from 'reshow-flux';
+export { dispatch } from './dispatcher';
 
 // Library
 export handleAnchor, {goToAnchor} from './handleAnchor';

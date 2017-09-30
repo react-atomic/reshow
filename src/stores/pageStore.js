@@ -2,7 +2,7 @@
 
 import {Map} from 'immutable';
 import {ReduceStore} from 'reshow-flux';
-import dispatcher from '../actions/dispatcher';
+import dispatcher from '../dispatcher';
 
 class PageStore extends ReduceStore
 {
@@ -14,21 +14,6 @@ class PageStore extends ReduceStore
     updateUrl(url)
     {
         history.pushState('','',url);
-    }
-
-    getMap = (k, state)=>
-    {
-        if (!state) {
-            state = this.getState();
-        }
-        let v = state.get(k);
-        if (v && v.toJS) {
-            v = v.toJS();
-        }
-        if (!v) {
-            v = {};
-        }
-        return v;
     }
 
     reduce (state, action)

@@ -1,7 +1,7 @@
 'use strict';
 
 import {ReduceStore} from 'reshow-flux';
-import dispatcher from '../actions/dispatcher';
+import dispatcher from '../dispatcher';
 
 class RealTimeStore extends ReduceStore
 {

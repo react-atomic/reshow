@@ -45,7 +45,6 @@ if (BUNDLE) {
                     unused: true,
                     dead_code: true,
                     join_vars: false,
-                    pure_funcs: ['__webpack_require__', '__webpack_exports__'],
                     hoist_funs: true,
                     collapse_vars: true,
                     passes:2,

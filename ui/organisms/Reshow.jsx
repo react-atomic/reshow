@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
-import {Container} from 'reshow-flux';
+import {connect} from 'reshow-flux';
 
 import {
     dispatch,
@@ -138,5 +138,4 @@ class Reshow extends Component
     }
 }
 
-export { Reshow };
-export default Container(Reshow);
+export default connect(Reshow);

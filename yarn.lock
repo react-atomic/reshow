@@ -1857,8 +1857,8 @@ request@2.81.0:
     uuid "^3.0.0"
 
 reshow-flux@*:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.0.2.tgz#56e014f38a0a0cc9c77ed745179caeefb8fa47e9"
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.0.6.tgz#c67dd38e3104b0ac20f232f3fa1787cf275d7474"
   dependencies:
     mitt "*"
 
