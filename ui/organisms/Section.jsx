@@ -28,4 +28,6 @@ class Section extends ReshowComponent
     }
 }
 
+Section.displayName = 'FluxConnected(Section)';
+
 export default Section;

@@ -1618,8 +1618,8 @@ once@^1.3.0, once@^1.3.3:
     wrappy "1"
 
 organism-react-ajax@*:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.1.1.tgz#fbc8b97d387352b1b999abc7654623b42cf3f032"
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.1.2.tgz#31410649cd8c54ac966141fd6b76935d9d77782e"
   dependencies:
     get-object-value "*"
     immutable "*"
@@ -1857,8 +1857,8 @@ request@2.81.0:
     uuid "^3.0.0"
 
 reshow-flux@*:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.0.6.tgz#c67dd38e3104b0ac20f232f3fa1787cf275d7474"
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.0.9.tgz#59677718450f202f922b16c522d1d5ca8d9b8064"
   dependencies:
     mitt "*"
 

@@ -12,14 +12,14 @@ const connect = (Base, options) =>
             thisOptions[key] = options[key]
         );
     }
-    const getState = (state, maybeProps) => {
+    const getState = (self, state, maybeProps) => {
         const props = thisOptions.withProps ? maybeProps : undefined;
-        return Base.calculateState(state, props);
+        return self.calculateState(state, props);
     };
 
-    const getStores = (maybeProps) => {
+    const getStores = (self, maybeProps) => {
         const props = thisOptions.withProps ? maybeProps : undefined;
-        return Base.getStores(props);
+        return self.getStores(props);
     };
     
     class ConnectedClass extends Base
@@ -28,8 +28,9 @@ const connect = (Base, options) =>
 
         __fluxHandler = () =>
         {
+            const con = this.constructor;
             this.setState((prevState, currentProps)=>
-                getState(prevState, currentProps) 
+                getState(con, prevState, currentProps) 
             );
         }
 
@@ -54,8 +55,10 @@ const connect = (Base, options) =>
         constructor(props)
         {
             super(props);
-            this.__setStores(getStores(props));
+            const con = this.constructor;
+            this.__setStores(getStores(con, props));
             const calculatedState = getState(
+                con,
                 undefined,
                 props
             );
@@ -72,10 +75,11 @@ const connect = (Base, options) =>
             if (super.componentWillReceiveProps) {
                 super.componentWillReceiveProps(nextProps);
             }
+            const con = this.constructor;
             if (thisOptions.withProps) {
-                this.__setStores(getStores(nextProps));
+                this.__setStores(getStores(con, nextProps));
                 this.setState(prevState => 
-                    getState(prevState, nextProps)
+                    getState(con, prevState, nextProps)
                 );
             }
         }
