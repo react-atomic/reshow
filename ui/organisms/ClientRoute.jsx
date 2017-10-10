@@ -33,16 +33,10 @@ class ClientRoute extends Reshow
         const props = this.props;
         const updateWithUrl = (url) =>
         {
-            const state = pageStore.getState();
-            const stateParseUrl = state.get('parseUrl');
-            const goAnchorDelay = state.get('goAnchorDelay');
-            const parseUrl = (stateParseUrl) ? stateParseUrl : defaultParseUrl;
-            const parseUrlConfigs = parseUrl(url, goAnchorDelay);
-            const configs = {
-                parseUrl: parseUrl,
-                ...parseUrlConfigs
-            };
-            self.update(configs);
+            const {parseUrl, goAnchorDelay} = props;
+            const thisParseUrlFunc = (parseUrl) ? parseUrl : defaultParseUrl;
+            const parseUrlConfigs = thisParseUrlFunc(url, goAnchorDelay);
+            self.update(parseUrlConfigs);
         };
         const curUrl = (props.url) ? props.url : document.URL;
         setImmediate(()=>{
