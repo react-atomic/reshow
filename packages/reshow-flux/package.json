@@ -28,9 +28,9 @@
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
     "mocha": "*",
+    "react-test-renderer": "*",
     "react": "*",
-    "react-dom": "*",
-    "react-test-renderer": "*"
+    "react-dom": "*"
   },
   "scripts": {
     "build:cjs": "BABEL_ENV=build babel src -d build/src",

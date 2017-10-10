@@ -13,6 +13,7 @@ const isArray = Array.isArray;
 
 let win;
 let doc;
+let isInit;
 
 class Reshow extends Component
 {
@@ -34,7 +35,14 @@ class Reshow extends Component
 
     constructor(props) {
         super(props);
-        this.update(props);
+        if (isInit) {
+            console.warn('The best practice is avoid multi Reshow Component.');
+            this.stop = true;
+        } else {
+            this.update(props);
+            this.stop = false;
+            isInit = 1;
+        }
     }
 
     componentWillReceiveProps(nextProps)
@@ -113,6 +121,9 @@ class Reshow extends Component
 
     render()
     {
+        if (this.stop) {
+            return null;
+        }
         const self = this;
         const {themes, ajax, webSocketUrl} = this.props;
         const {themePath, baseUrl, staticVersion} = this.state;

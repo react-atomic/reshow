@@ -24,6 +24,8 @@ class PageStore extends ReduceStore
         switch (action.type) {
             case 'config/set':
                 return state.merge(action.params);
+            case 'config/reset':
+                return Map(action.params);
             default:
                 return state;
         }
