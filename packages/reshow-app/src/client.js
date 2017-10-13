@@ -1,24 +1,38 @@
 require('setimmediate');
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const client = (app)=>
+const render = (oApp, dom)=>
 {
-    const myApp = React.createFactory(app);
+    let r;
+    if (dom.innerHTML && ReactDOM.hydrate) {
+        r = ReactDOM.hydrate;
+    } else {
+        r = ReactDOM.render;
+    }
+    r(
+      oApp,
+      dom 
+    );
+}
+
+const client = (rawApp)=>
+{
+    const app = React.createFactory(rawApp);
     setImmediate(()=>{
-        let w = window;        
-        let d = document;
+        const w = window;        
+        const d = document;
         w.ReactDOM=ReactDOM;
-        w.app=myApp;
+        w.Reshow = { render, app };
         let data = {};
         if ('undefined' !== typeof REACT_DATA) {
             data = REACT_DATA;
         }
-        ReactDOM.render(
-          new myApp(data),
+        render(
+          new app(data),
           d.getElementById('app')
         );
     });
 }
 
-module.exports = client;
+export default client;
