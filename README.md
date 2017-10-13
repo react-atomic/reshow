@@ -24,6 +24,9 @@ Hightlight:
 Hashtag sample
    * https://react-atomic-ui.js.org/#/organisms#organism-react-facebook 
 
+## How to call parent calculateState and getStores by extends ReshowComponent 
+   * super.constructor.calculateState
+   * super.constructor.getStores
 
 ## Dependencies
    * React Ajax

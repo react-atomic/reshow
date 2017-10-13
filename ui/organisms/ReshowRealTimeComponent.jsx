@@ -22,7 +22,7 @@ class ReshowRealTimeComponent extends ReshowComponent
    static calculateState(prevState)
    {
         const realTimeState = realTimeStore.getState();
-        let superData = super.calculateState(prevState);
+        let superData = super.constructor.calculateState(prevState);
         if (get(realTimeState, [realTimeKey])) {
             const data = get(realTimeState, this.realTimePath); 
             if (data) {
