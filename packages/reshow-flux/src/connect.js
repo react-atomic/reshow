@@ -1,3 +1,5 @@
+import dedup from 'array.dedup';
+
 const DEFAULT_OPTIONS = {
     withProps: false
 };
@@ -39,6 +41,7 @@ const connect = (Base, options) =>
             if (this.__stores) {
                 this.__resetStores();
             }
+            stores = dedup(stores);
             stores.forEach(store =>
                 store.addListener(this.__fluxHandler)
             );
