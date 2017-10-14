@@ -52,17 +52,14 @@ class Reshow extends Component
 
     update(params){
         const realTimeData = get(params, ['--realTimeData--']);
+        const reset = get(params, ['--reset--']);
+        let type;
         if (realTimeData) {
-            dispatch({
-                type: 'realTime',
-                params: params 
-            });
+            type = 'realTime';
         } else {
-            dispatch({
-                type: 'config/set',
-                params: params 
-            });
+            type = 'config/'+ ((reset) ? 're' : '')+ 'set';
         }
+        dispatch({ type, params });
         if (doc) {
             const htmlTitle = get(params, ['htmlTitle']);
             if (htmlTitle) {
@@ -129,9 +126,7 @@ class Reshow extends Component
         const {themePath, baseUrl, staticVersion} = this.state;
         return (
             <AjaxPage 
-                callback={(json)=>{
-                    self.update(json);
-                }}
+                callback={(json)=>self.update(json)}
                 /*State*/
                 themePath={themePath}
                 baseUrl={baseUrl}

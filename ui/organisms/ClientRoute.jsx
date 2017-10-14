@@ -29,6 +29,7 @@ class ClientRoute extends Reshow
 
     componentDidMount()
     {
+        super.componentDidMount();
         const self = this;
         const props = this.props;
         const updateWithUrl = (url) =>
