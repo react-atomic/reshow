@@ -2,8 +2,8 @@
     "env": {
         "build": {
             "presets": [
-              "react",
               "env",
+              "react",
               "stage-0"
             ],
             "plugins": [

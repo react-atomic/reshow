@@ -14,7 +14,13 @@
         },
         "es": {
             "presets": [
-              ["env", {"modules": false}],
+              [
+                  "env", 
+                  {
+                        "loose": true, 
+                        "modules": false
+                  },
+              ],
               "react",
               "stage-0"
             ],

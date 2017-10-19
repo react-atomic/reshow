@@ -9,12 +9,11 @@
   "devDependencies": {
     "babel-cli": "^6.x",
     "babel-core": "^6.x",
-    "babel-plugin-syntax-dynamic-import": "*",
-    "babel-plugin-transform-react-constant-elements": "^6.9.1",
+    "babel-plugin-transform-react-constant-elements": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0"
+    "babel-preset-env": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-0": "*"
   },
   "scripts": {
     "copy": "rm -rf build && BABEL_ENV=build babel src -d build && cp package.json.build ./build/package.json && cp {README.md,.npmignore,.babelrc} ./build/",

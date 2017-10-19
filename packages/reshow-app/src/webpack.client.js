@@ -27,6 +27,12 @@ let plugins = [
         filename: 'vendor.bundle.js'
     }),
 ];
+let babelLoaderOption = {
+    cacheDirectory: true,
+    plugins: [
+        'syntax-dynamic-import'
+    ]
+};
 if (BUNDLE) {
     let bundle = assign(
         {analyzerHost: '0.0.0.0'},
@@ -60,6 +66,7 @@ if (BUNDLE) {
     }
 }
 if ('production' === NODE_ENV) {
+    babelLoaderOption.env = 'production';
     plugins = plugins.concat([
         new webpack.DefinePlugin({
           'process.env':{
@@ -140,12 +147,7 @@ const myWebpack = (root, main=null)=>
                     test: /(.js|.jsx)$/, 
                     exclude: /node_modules/,
                     loader: "babel-loader", 
-                    options:{
-                        cacheDirectory: true,
-                        plugins: [
-                            'syntax-dynamic-import'
-                        ]
-                    } 
+                    options: babelLoaderOption
                   }
             ]
         },

@@ -2,7 +2,11 @@
     "env": {
         "build": {
             "presets": [
-              ["env", {"loose": true, "modules": false}],
+              ["env", {
+                "loose": true, 
+                "modules": false,
+                "targets": ["last 2 versions", "ie >= 8"]
+              }],
               "react",
               "stage-0"
             ],
@@ -14,7 +18,11 @@
         },
         "production": {
             "presets": [
-              ["env", {"loose": true, "modules": false}],
+              ["env", {
+                "loose": true, 
+                "modules": false,
+                "targets": ["last 2 versions", "ie >= 8"]
+              }],
               "react",
               "stage-0"
             ],

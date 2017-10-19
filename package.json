@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.2.15",
+  "version": "0.2.21",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -25,7 +25,7 @@
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-plugin-transform-react-pure-class-to-function": "*",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "*",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "react": "^16.x"
