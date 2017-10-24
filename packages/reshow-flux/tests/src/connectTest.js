@@ -32,6 +32,8 @@ describe('Test Connect', ()=>{
         dispatcher = new Dispatcher();
         store = new FakeStore(dispatcher); 
     });
+
+
     it('could register with store', ()=>{
        class FakeComponent extends Component
        {
@@ -56,7 +58,7 @@ describe('Test Connect', ()=>{
        expect(actual).to.equal('<div>bar</div>');
     });
 
-    
+ 
     it('could work with dispatcher', ()=>{
        let calculateTimes = 0;
        class FakeComponent extends Component
@@ -93,7 +95,8 @@ describe('Test Connect', ()=>{
        expect(calculateTimes).to.equal(2);
     });
 
-    it('could work with props', ()=>{
+
+    it('could work withProps', ()=>{
        let getStoresProps = null;
        let calculateStateProps = null;
        class FakeComponent extends Component
@@ -150,5 +153,83 @@ describe('Test Connect', ()=>{
        expect(html.html()).to.equal('<div>bar</div>');
        expect(getStoresProps).to.deep.equal({ foo: 'bar' });
        expect(calculateStateProps).to.deep.equal({ foo: 'bar' });
+    });
+
+
+    it('could work withConstructor equal true', ()=>{
+       class FakeComponent extends Component
+       {
+            didMount = false;
+            static getStores()
+            {
+                return [store];
+            }
+
+            static calculateState(prevState)
+            {
+                return {foo:'bar'};
+            }
+
+            componentDidMount()
+            {   
+                this.didMount=true;
+            }
+
+            render()
+            {
+                return <div>{this.state.foo}</div>;
+            }
+       }
+       let FakeConnected = connect(
+            FakeComponent,
+            {
+                withConstructor: true
+            }
+       );
+       let vDom = <FakeConnected />;
+       const html  = shallow(vDom, {
+        disableLifecycleMethods: true
+       });
+       const instance = html.instance();
+       expect(instance.didMount).to.equal(false);
+       expect(instance.__stores).to.have.lengthOf(1);
+    });
+
+
+    it('could work withConstructor equal false', ()=>{
+       class FakeComponent extends Component
+       {
+            didMount = false;
+            static getStores()
+            {
+                return [store];
+            }
+
+            static calculateState(prevState)
+            {
+                return {foo:'bar'};
+            }
+
+            componentDidMount()
+            {   
+                this.didMount=true;
+            }
+
+            render()
+            {
+                return <div>{this.state.foo}</div>;
+            }
+       }
+       let FakeConnected = connect(
+            FakeComponent,
+            {
+                withConstructor: false 
+            }
+       );
+       let vDom = <FakeConnected />;
+       const html  = shallow(vDom);
+       const instance = html.instance();
+       expect(instance.didMount).to.equal(true);
+       expect(instance.__stores).to.have.lengthOf(1);
     });
 });

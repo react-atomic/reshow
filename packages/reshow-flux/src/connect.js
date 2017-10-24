@@ -1,7 +1,8 @@
 import dedup from 'array.dedup';
 
 const DEFAULT_OPTIONS = {
-    withProps: false
+    withProps: false,
+    withConstructor: false
 };
 
 const keys = Object.keys;
@@ -14,6 +15,7 @@ const connect = (Base, options) =>
             thisOptions[key] = options[key]
         );
     }
+
     const getState = (self, prevState, maybeProps) => {
         const props = thisOptions.withProps ? maybeProps : undefined;
         return self.calculateState(prevState, props);
@@ -59,6 +61,12 @@ const connect = (Base, options) =>
         {
             super(props);
             const con = this.constructor;
+            if (thisOptions.withConstructor) {
+                this.__setStores(getStores(
+                    con,
+                    this.props
+                ));
+            }
             const calculatedState = getState(
                 con,
                 undefined,
@@ -77,8 +85,12 @@ const connect = (Base, options) =>
             if (super.componentDidMount) {
                 super.componentDidMount();
             }
-            const con = this.constructor;
-            this.__setStores(getStores(con, this.props));
+            if (!thisOptions.withConstructor) {
+                this.__setStores(getStores(
+                    this.constructor,
+                    this.props
+                ));
+            }
         }
 
         componentWillReceiveProps(nextProps)
