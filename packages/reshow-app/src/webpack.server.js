@@ -33,12 +33,15 @@ if ('production' === NODE_ENV) {
     ]);
 }
 
-const myWebpack = (root, main='./build/src/server.js')=>
+const myWebpack = (root, entry)=>
 {
+    if (!entry) {
+        entry = {
+            node: './build/src/server.js'
+        };
+    }
     return {
-        entry: {
-           node: main,
-        },
+        entry,
         output: {
             filename: "[name].bundle.js",
             path: root + "/assets"

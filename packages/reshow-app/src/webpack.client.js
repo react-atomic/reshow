@@ -100,14 +100,14 @@ if (confs.webpackVendor) {
 }
 vendor = deduplicate(vendor);
 
-const myWebpack = (root, main=null)=>
+const myWebpack = (root, main)=>
 {
     if (!main) {
-        main = './build/src/client.js';
+        main = { main: './build/src/client.js' };
     }
 
     let entry = {
-        main: main,
+        ...main,
         vendor: vendor
     };
 
@@ -122,7 +122,7 @@ const myWebpack = (root, main=null)=>
 
     return  {
         //devtool: 'sourcemap',
-        entry: entry,
+        entry,
         output: {
             filename: "[name].bundle.js",
             path: root+ "/assets",
