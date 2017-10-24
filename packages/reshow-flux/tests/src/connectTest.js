@@ -7,7 +7,7 @@ import {
     ReduceStore,
 } from '../../src/index';
 import {expect} from 'chai';
-import {shallow, configure} from 'enzyme';
+import {shallow, mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
@@ -143,14 +143,10 @@ describe('Test Connect', ()=>{
             }
        }
        const vDom = <Parent />;
-       const html  = shallow(vDom);
-       expect(getStoresProps).to.equal(null);
-       expect(calculateStateProps).to.equal(null);
-       let actual = html.html();
+       const html  = mount(vDom);
        expect(getStoresProps).to.deep.equal({ foo: null });
        expect(calculateStateProps).to.deep.equal({ foo: null });
        changeFoo('bar'); 
-       html.update();
        expect(html.html()).to.equal('<div>bar</div>');
        expect(getStoresProps).to.deep.equal({ foo: 'bar' });
        expect(calculateStateProps).to.deep.equal({ foo: 'bar' });

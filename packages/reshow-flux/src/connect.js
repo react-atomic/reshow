@@ -14,9 +14,9 @@ const connect = (Base, options) =>
             thisOptions[key] = options[key]
         );
     }
-    const getState = (self, state, maybeProps) => {
+    const getState = (self, prevState, maybeProps) => {
         const props = thisOptions.withProps ? maybeProps : undefined;
-        return self.calculateState(state, props);
+        return self.calculateState(prevState, props);
     };
 
     const getStores = (self, maybeProps) => {
@@ -59,7 +59,6 @@ const connect = (Base, options) =>
         {
             super(props);
             const con = this.constructor;
-            this.__setStores(getStores(con, props));
             const calculatedState = getState(
                 con,
                 undefined,
@@ -71,6 +70,15 @@ const connect = (Base, options) =>
             keys(calculatedState).forEach(key => 
                 this.state[key] = calculatedState[key]
             );
+        }
+
+        componentDidMount()
+        {
+            if (super.componentDidMount) {
+                super.componentDidMount();
+            }
+            const con = this.constructor;
+            this.__setStores(getStores(con, this.props));
         }
 
         componentWillReceiveProps(nextProps)

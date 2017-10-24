@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "The smallest react flux and Fast 3kb Flux alternative",
   "main": "./build/src/index.js",
   "module": "./build/es/index.js",
@@ -28,6 +28,8 @@
     "chai": "*",
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
+    "jsdom": "*",
+    "jsdom-global": "*",
     "mocha": "*",
     "react": "*",
     "react-dom": "*",
@@ -39,7 +41,7 @@
     "build": "rm -rf build && npm run build:cjs && npm run build:es",
     "prepublish": "npm run build",
     "buildTest": "BABEL_ENV=build babel tests -d build/tests",
-    "test": "npm run build && npm run buildTest && mocha 'build/tests/**/*.js'"
+    "test": "npm run build && npm run buildTest && mocha 'build/tests/**/*.js' -r jsdom-global/register"
   },
   "files": [
     "build",
