@@ -3,14 +3,14 @@
 export { ReduceStore, Dispatcher, connect as reshow } from 'reshow-flux';
 
 // Stores
-export pageStore from './stores/pageStore';
-export realTimeStore from './stores/realTimeStore';
+export { default as pageStore } from './stores/pageStore';
+export { default as realTimeStore } from './stores/realTimeStore';
 
 // Dispatch
-export { dispatch } from './dispatcher';
+export { default as dispatcher, dispatch } from './dispatcher';
 
 // Library
-export handleAnchor, {goToAnchor} from './handleAnchor';
+export { default as handleAnchor, goToAnchor } from './handleAnchor';
 
 // Ajax
 export {
@@ -20,10 +20,10 @@ export {
 
 // Router
 export let global = {};
-export ClientRoute from '../ui/organisms/ClientRoute'; 
-export Section from '../ui/organisms/Section';
+export { default as ClientRoute } from '../ui/organisms/ClientRoute'; 
+export { default as Section } from '../ui/organisms/Section';
 
 // Component 
-export ReshowComponent from '../ui/organisms/ReshowComponent';
-export ReshowRealTimeComponent from '../ui/organisms/ReshowRealTimeComponent';
-export {default} from '../ui/organisms/Reshow';
+export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
+export { default as ReshowRealTimeComponent } from '../ui/organisms/ReshowRealTimeComponent';
+export { default } from '../ui/organisms/Reshow';

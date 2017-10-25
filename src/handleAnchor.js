@@ -3,8 +3,9 @@ import smoothScrollTo from 'smooth-scroll-to';
 
 let goAnchorTimer;
 
-const goToAnchor = (anchor, goAnchorDelay = 0) =>
+const goToAnchor = (anchor, goAnchorDelay) =>
 {
+    if (!goAnchorDelay) { goAnchorDelay = 0; }
     clearTimeout(goAnchorTimer);
     goAnchorTimer = setTimeout(()=>{
         const dom = document.body.querySelector(anchor);
