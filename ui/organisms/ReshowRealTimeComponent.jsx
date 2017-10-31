@@ -21,10 +21,16 @@ class ReshowRealTimeComponent extends ReshowComponent
 
    static calculateState(prevState)
    {
+        let superData;
+        if (super.constructor.calculateState) {
+            superData = super.constructor.calculateState(prevState);
+        } else {
+            superData = super.calculateState(prevState);
+        }
+
         const realTimeState = realTimeStore.getState();
-        let superData = super.constructor.calculateState(prevState);
         if (get(realTimeState, [realTimeKey])) {
-            const data = get(realTimeState, this.realTimePath); 
+            const data = get(realTimeState, this.realTimePath);
             if (data) {
                 superData = {
                     ...prevState,
@@ -38,4 +44,5 @@ class ReshowRealTimeComponent extends ReshowComponent
    }
 }
 
+ReshowRealTimeComponent.displayName = 'FluxConnected(ReshowRealTimeComponent)';
 export default ReshowRealTimeComponent;
