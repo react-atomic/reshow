@@ -25,14 +25,13 @@ Hightlight:
       * https://github.com/react-atomic/reshow/blob/master/ui/organisms/ClientRoute.jsx#L9-L23 
 
 ## Extend from ReshowComponent or ReshowRealTimeComponent
-if your class overwrite following function you need call parent by yourself.
+if your class overwrite following functions you need call parent by yourself.
    * componentDidMount
       * super.componentDidMount();
    * componentWillReceiveProps(nextProps)
       * super.componentWillReceiveProps(nextProps);
    * componentWillUnmount
       * super.componentWillUnmount();
-
 
 ## How to call static parent function (calculateState and getStores) by extends ReshowComponent
    * https://github.com/react-atomic/reshow/wiki/call-parent-static-function
