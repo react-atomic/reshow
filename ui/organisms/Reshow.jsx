@@ -90,7 +90,7 @@ class Reshow extends Component
             }
         }
         const loc = doc.location; 
-        const newUrl = url+ loc.search; 
+        const newUrl = url+ loc.search+ loc.hash;
         if (-1 !== url.indexOf(loc.hostname)) {
             history.replaceState('', '', newUrl);
         } else {
