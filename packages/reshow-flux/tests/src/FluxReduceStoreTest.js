@@ -18,11 +18,20 @@ describe('Test Store', ()=>{
     }
 
     it('could register with dispatcher', ()=>{
-        let dispatcher = new Dispatcher();
-        let store = new FakeStore(dispatcher); 
-        let action = {aaa:'bbb'};
+        const dispatcher = new Dispatcher();
+        const store = new FakeStore(dispatcher); 
+        const action = {aaa:'bbb'};
         dispatcher.dispatch(action);
-        let state = store.getState();
+        const state = store.getState();
         expect(state).to.equal(action);
+    });
+
+
+    it('dispatch with empty', ()=>{
+        const dispatcher = new Dispatcher();
+        const store = new FakeStore(dispatcher); 
+        dispatcher.dispatch();
+        const state = store.getState();
+        expect(state).to.be.empty;
     });
 });

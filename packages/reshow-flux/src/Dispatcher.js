@@ -6,6 +6,9 @@ class Dispatcher {
   }
 
   dispatch(payload) {
+    if (!payload) {
+        payload = {};
+    }
     this.callbacks.forEach(c => c(payload));
   }
 }
