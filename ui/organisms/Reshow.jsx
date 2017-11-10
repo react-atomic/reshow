@@ -83,9 +83,12 @@ class Reshow extends Component
 
     updateCanonicalUrl(url)
     {
+        if (this.props.disableCanonical) {
+            return;
+        }
         const lStore = this.getLStore();
         if (lStore) {
-            if (lStore.getItem('no-canonical')) {
+            if (lStore.getItem('disableCanonical')) {
                 return;
             }
         }
@@ -103,11 +106,11 @@ class Reshow extends Component
         win = window;
         doc = document;
         const canonical = doc.querySelector('link[rel="canonical"]');
-        if (-1 !== doc.URL.indexOf('--no-canonical')) {
+        if (-1 !== doc.URL.indexOf('--disableCanonical')) {
             const lStore = this.getLStore();
             if (lStore) {
                 lStore.setItem(
-                    'no-canonical',
+                    'disableCanonical',
                     1
                 );
             }
