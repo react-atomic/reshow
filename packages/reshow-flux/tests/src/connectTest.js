@@ -232,4 +232,28 @@ describe('Test Connect', ()=>{
        expect(instance.didMount).to.equal(true);
        expect(instance.__stores).to.have.lengthOf(1);
     });
+
+    it('could work with empty calculateState', ()=>{
+       class FakeComponent extends Component
+       {
+            static getStores()
+            {
+                return [store];
+            }
+
+            static calculateState(prevState)
+            {
+            }
+
+            render()
+            {
+                return <div>{this.state.foo}</div>;
+            }
+       }
+       const FakeConnected = connect(FakeComponent);
+       let vDom = <FakeConnected />;
+       const html  = shallow(vDom);
+       const state = html.state();
+       expect(state).to.be.empty;
+    });
 });

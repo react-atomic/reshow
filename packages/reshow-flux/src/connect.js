@@ -75,9 +75,11 @@ const connect = (Base, options) =>
             if (!this.state) {
                 this.state = {};
             }
-            keys(calculatedState).forEach(key => 
-                this.state[key] = calculatedState[key]
-            );
+            if (calculatedState) {
+                keys(calculatedState).forEach(key =>
+                    this.state[key] = calculatedState[key]
+                );
+            }
         }
 
         componentDidMount()
