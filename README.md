@@ -25,7 +25,7 @@ Hightlight:
       * https://github.com/react-atomic/reshow/blob/master/ui/organisms/ClientRoute.jsx#L9-L23 
 
 ## Extend from ReshowComponent or ReshowRealTimeComponent
-### If your class overwrited with following functions you need call parent by yourself.
+### *!!Important!!* If your class overwrited with following functions you need call parent by yourself.
    * componentDidMount
       * super.componentDidMount();
    * componentWillReceiveProps(nextProps)
