@@ -111,7 +111,7 @@ const myWebpack = (root, main)=>
         vendor: vendor
     };
 
-    let alias = {
+    const alias = {
         react: root + '/node_modules/react'
     };
     if (confs.alias) {
@@ -121,7 +121,7 @@ const myWebpack = (root, main)=>
     }
 
     return  {
-        //devtool: 'sourcemap',
+        devtool: 'nosources-source-map',
         entry,
         output: {
             filename: "[name].bundle.js",
@@ -136,7 +136,7 @@ const myWebpack = (root, main)=>
         externals: confs.externals,
         resolve: {
             extensions: ['.js','.jsx'],
-            alias: alias
+            alias
         },
         resolveLoader: {
             modules: [root + '/node_modules']
@@ -151,7 +151,7 @@ const myWebpack = (root, main)=>
                   }
             ]
         },
-        plugins: plugins
+        plugins
     };
 };
 
