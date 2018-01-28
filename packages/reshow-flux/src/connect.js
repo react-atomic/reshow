@@ -16,15 +16,11 @@ const connect = (Base, options) =>
         );
     }
 
-    const getState = (self, prevState, maybeProps) => {
-        const props = thisOptions.withProps ? maybeProps : undefined;
-        return self.calculateState(prevState, props);
-    };
+    const getProps = (props) => thisOptions.withProps ? props : undefined;
 
-    const getStores = (self, maybeProps) => {
-        const props = thisOptions.withProps ? maybeProps : undefined;
-        return self.getStores(props);
-    };
+    const getState = (self, prevState, maybeProps) => self.calculateState( prevState, getProps(maybeProps));
+
+    const getStores = (self, maybeProps) => self.getStores(getProps(maybeProps));
     
     class ConnectedClass extends Base
     {
