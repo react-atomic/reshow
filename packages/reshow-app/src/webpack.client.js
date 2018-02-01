@@ -21,6 +21,7 @@ if (CONFIG) {
     confs = JSON.parse(CONFIG);
 }
 
+let devtool = 'cheap-source-map';
 let plugins = [
     new CommonsChunkPlugin({
         name: 'vendor',
@@ -66,6 +67,7 @@ if (BUNDLE) {
     }
 }
 if ('production' === NODE_ENV) {
+    devtool = false;
     babelLoaderOption.env = 'production';
     plugins = plugins.concat([
         new webpack.DefinePlugin({
@@ -121,7 +123,7 @@ const myWebpack = (root, main)=>
     }
 
     return  {
-        devtool: 'nosources-source-map',
+        devtool,
         entry,
         output: {
             filename: "[name].bundle.js",
