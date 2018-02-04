@@ -11,11 +11,19 @@ class MittStore
       console.error('You should override reduce() function.');
   }
 
-  getInitialState = () => Map();
+  __emitChange = () => this.__changed = true;
 
   getState = () => this._state;
 
-  areEqual = (one, two) => one === two;
+  getInitialState()
+  {
+    return Map();
+  }
+
+  areEqual(one, two)
+  {
+      return one === two;
+  }
 
   constructor(dispatcher)
   {
@@ -41,7 +49,7 @@ class MittStore
       return v;
   }
 
-  __invokeOnDispatch(action)
+  __invokeOnDispatch = action =>
   {
       this.__changed = false;
       const startingState = this._state;
@@ -68,10 +76,6 @@ class MittStore
       this.mitt.off(CHANGE_EVENT, listener);
   }
 
-  __emitChange()
-  {
-      this.__changed = true;
-  }
 }
 
 export default MittStore;
