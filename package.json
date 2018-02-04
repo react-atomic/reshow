@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -13,7 +13,6 @@
   "license": "MIT",
   "dependencies": {
     "getoffset": "*",
-    "immutable": "*",
     "organism-react-ajax": "*",
     "reshow-flux": "*",
     "smooth-scroll-to": "*"

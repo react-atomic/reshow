@@ -1,18 +1,21 @@
 import mitt from "mitt";
+import {Map} from 'immutable';
 
 const CHANGE_EVENT = 'change';
 
-class MittStore {
-
-  getInitialState()
-  {
-      console.error('You should override getInitialState() function.');
-  }
+class MittStore
+{
 
   reduce()
   {
       console.error('You should override reduce() function.');
   }
+
+  getInitialState = () => Map();
+
+  getState = () => this._state;
+
+  areEqual = (one, two) => one === two;
 
   constructor(dispatcher)
   {
@@ -21,11 +24,6 @@ class MittStore {
         this.__invokeOnDispatch(payload);
     });
     this._state = this.getInitialState();
-  }
-
-  getState()
-  {
-      return this._state;
   }
 
   getMap = (k, state)=>
@@ -41,11 +39,6 @@ class MittStore {
           v = {};
       }
       return v;
-  }
-
-  areEqual(one, two)
-  {
-    return one === two;
   }
 
   __invokeOnDispatch(action)

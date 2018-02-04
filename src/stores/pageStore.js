@@ -1,31 +1,22 @@
 'use strict';
 
-import {Map} from 'immutable';
 import {ReduceStore} from 'reshow-flux';
 import dispatcher from '../dispatcher';
 
+const updateUrl = url => history.pushState('','',url);
+
 class PageStore extends ReduceStore
 {
-    getInitialState()
-    {
-        return Map();
-    }
-
-    updateUrl(url)
-    {
-        history.pushState('','',url);
-    }
-
     reduce (state, action)
     {
         if (action.url) {
-            this.updateUrl(action.url);
+            updateUrl(action.url);
         }
         switch (action.type) {
             case 'config/set':
                 return state.merge(action.params);
             case 'config/reset':
-                return Map(action.params);
+                return state.clear().merge(action.params);
             default:
                 return state;
         }
