@@ -11,10 +11,6 @@
 Demo Url:
 https://react-atomic-ui.js.org/
 
-Code:
-   * [Component](https://github.com/react-atomic/react-atomic-ui/blob/master/ui/pages/index.jsx#L21-L26)
-   * [Link](https://github.com/react-atomic/react-atomic-ui/blob/master/ui/organisms/Menu.jsx#L14-L16)
-
 Hashtag sample
    * https://react-atomic-ui.js.org/#/organisms#organism-react-facebook 
 
