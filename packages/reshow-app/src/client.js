@@ -22,7 +22,6 @@ const client = (rawApp)=>
     setImmediate(()=>{
         const w = window;        
         const d = document;
-        w.ReactDOM=ReactDOM;
         w.Reshow = { render, app };
         let data = {};
         if ('undefined' !== typeof REACT_DATA) {
