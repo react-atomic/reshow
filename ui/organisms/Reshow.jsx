@@ -133,11 +133,7 @@ class Reshow extends Component
                 /*State*/
                 themePath={themePath}
                 baseUrl={baseUrl}
-                staticVersion={get(
-                    staticVersion,
-                    [],
-                    ()=>((new Date()).getTime())+''+Math.random()
-                )}
+                staticVersion={staticVersion} /* Keep pure value, let user don't assin etra value for emtpy. */
                 /*Props*/
                 themes={themes}
                 ajax={ajax}
