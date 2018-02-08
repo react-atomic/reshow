@@ -28,6 +28,9 @@ const connect = (Base, options) =>
 
         __fluxHandler = () =>
         {
+            if (!this.__stores) {
+                return;
+            }
             const con = this.constructor;
             this.setState((prevState, currentProps)=>
                 getState(con, prevState, currentProps) 
@@ -51,6 +54,7 @@ const connect = (Base, options) =>
             this.__stores.forEach(store =>
                 store.removeListener(this.__fluxHandler)
             );
+            this.__stores = null;
         }
 
         constructor(props)
