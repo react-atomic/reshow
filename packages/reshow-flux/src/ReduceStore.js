@@ -11,10 +11,6 @@ class MittStore
       console.error('You should override reduce() function.');
   }
 
-  __emitChange = () => this.__changed = true;
-
-  getState = () => this._state;
-
   getInitialState()
   {
     return Map();
@@ -27,12 +23,16 @@ class MittStore
 
   constructor(dispatcher)
   {
-    this.mitt = new mitt();
     dispatcher.register((payload) => {
         this.__invokeOnDispatch(payload);
     });
-    this._state = this.getInitialState();
   }
+
+  /* Following not extendable */
+
+  __emitChange = () => this.__changed = true;
+  _state = this.getInitialState();
+  getState = () => this._state;
 
   getMap = (k, state)=>
   {
@@ -66,15 +66,10 @@ class MittStore
       }
   }
 
-  addListener(listener)
-  {
-      this.mitt.on(CHANGE_EVENT, listener);
-  }
-
-  removeListener(listener)
-  {
-      this.mitt.off(CHANGE_EVENT, listener);
-  }
+  // mitt event 
+  mitt = new mitt();
+  addListener = listener => this.mitt.on(CHANGE_EVENT, listener);
+  removeListener = listener => this.mitt.off(CHANGE_EVENT, listener);
 
 }
 
