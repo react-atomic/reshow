@@ -2,16 +2,17 @@ import React from 'react';
 import get from 'get-object-value';
 
 import ReshowComponent from '../organisms/ReshowComponent';
+import getChildren from '../../src/getChildren';
 import pageStore from '../../src/stores/pageStore';
 import realTimeStore from '../../src/stores/realTimeStore';
 
 const realTimeKey = '--realTimeData--';
 
-class ReshowRealTimeComponent extends ReshowComponent
+class RealTimeReturn extends ReshowComponent
 {
-   static getStores()
+   static getStores(props)
    {
-       return [pageStore, realTimeStore];
+       return props.stores || [pageStore, realTimeStore];
    }
    
    static get realTimePath()
@@ -19,18 +20,19 @@ class ReshowRealTimeComponent extends ReshowComponent
         return [realTimeKey];
    }
 
-   static calculateState(prevState)
+   static calculateState(prevState, props)
    {
         let superData;
         if (super.constructor.calculateState) {
-            superData = super.constructor.calculateState(prevState);
+            superData = super.constructor.calculateState(prevState, props);
         } else {
-            superData = super.calculateState(prevState);
+            superData = super.calculateState(prevState, props);
         }
 
         const realTimeState = realTimeStore.getState();
         if (get(realTimeState, [realTimeKey])) {
-            const data = get(realTimeState, this.realTimePath);
+            const realTimePath = props.realTimePath || this.realTimePath;
+            const data = get(realTimeState, realTimePath);
             if (data) {
                 superData = {
                     ...prevState,
@@ -42,7 +44,15 @@ class ReshowRealTimeComponent extends ReshowComponent
         }
         return superData;
    }
+
+    render()
+    {
+       return getChildren(
+        this.props.children,
+        this.state
+       );
+    }
 }
 
-ReshowRealTimeComponent.displayName = 'FluxConnected(ReshowRealTimeComponent)';
-export default ReshowRealTimeComponent;
+RealTimeReturn.displayName = 'FluxConnected(RealTimeReturn)';
+export default RealTimeReturn;

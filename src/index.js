@@ -21,9 +21,10 @@ export {
 // Router
 export let global = {};
 export { default as ClientRoute } from '../ui/organisms/ClientRoute'; 
-export { default as Section } from '../ui/organisms/Section';
 
 // Component 
 export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
-export { default as ReshowRealTimeComponent } from '../ui/organisms/ReshowRealTimeComponent';
+export { default as Return } from '../ui/organisms/Return';
+export { default as RealTimeReturn } from '../ui/organisms/RealTimeReturn';
+export { default as Section } from '../ui/organisms/Section';
 export { default } from '../ui/organisms/Reshow';

@@ -51,6 +51,9 @@ const connect = (Base, options) =>
 
         __resetStores = () =>
         {
+            if (!this.__stores) {
+                return;
+            }
             this.__stores.forEach(store =>
                 store.removeListener(this.__fluxHandler)
             );

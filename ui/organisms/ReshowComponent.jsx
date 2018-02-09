@@ -11,9 +11,9 @@ const keys = Object.keys;
 
 class ReshowComponent extends PureComponent
 {
-   static getStores()
+   static getStores(props)
    {
-       return [pageStore];
+       return props.stores || [pageStore];
    }
 
    static get initStates()
@@ -28,26 +28,31 @@ class ReshowComponent extends PureComponent
         };
    }
 
-   static calculateState(prevState)
+   static calculateState(prevState, props)
    {
         const pageState = pageStore.getState();
         if (global.path !== pageState.get('themePath')) {
             return prevState;
         }
-        let results = {};
-        this.initStates.forEach((key)=>{
-            let data = pageState.get(key);
+        const results = {};
+        const initStates = props.initStates || this.initStates;
+        initStates.forEach((key)=>{
+            const data = pageState.get(key);
             if (data && data.toJS) {
-                data = data.toJS();
+                results[key] = data.toJS();
+            } else {
+                results[key] = data;
             }
-            results[key] = data;
         });
-        const pathStates = this.pathStates;
-        keys(pathStates).forEach((key)=>{
-            results[key] = get(results, pathStates[key]);
-        });
+        const pathStates = props.pathStates || this.pathStates;
+        keys(pathStates).forEach( key =>
+            results[key] = get(results, pathStates[key])
+        );
         return results;
    }
 }
 
-export default connect(ReshowComponent);
+export default connect(
+    ReshowComponent,
+    {withProps:true}
+);

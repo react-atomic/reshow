@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
 import {connect} from 'reshow-flux';
@@ -15,7 +15,7 @@ let win;
 let doc;
 let isInit;
 
-class Reshow extends Component
+class Reshow extends PureComponent
 {
     static getStores()
     {

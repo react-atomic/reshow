@@ -3,6 +3,7 @@
 import {ReduceStore} from 'reshow-flux';
 import dispatcher from '../dispatcher';
 
+const keys = Object.keys;
 const updateUrl = url => history.pushState('','',url);
 
 class PageStore extends ReduceStore
@@ -18,7 +19,11 @@ class PageStore extends ReduceStore
             case 'config/reset':
                 return state.clear().merge(action.params);
             default:
-                return state;
+                if (keys(action)) {
+                    return state.merge(action);
+                } else {
+                    return state;
+                }
         }
     }
 }

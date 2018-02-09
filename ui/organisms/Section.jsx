@@ -1,7 +1,8 @@
-import React from 'react'; 
+import React, {cloneElement} from 'react'; 
 import get from 'get-object-value';
 
 import ReshowComponent from '../organisms/ReshowComponent';
+import getChildren from '../../src/getChildren';
 
 class Section extends ReshowComponent
 {
@@ -17,14 +18,7 @@ class Section extends ReshowComponent
             return null;
         }
         const {shouldRender, ...others} = get(this, ['state', 'section', name]);
-        if (children) {
-            return React.cloneElement(
-                children,
-                others
-            );
-        } else {
-            return null;
-        }
+        return getChildren(children, others);
     }
 }
 
