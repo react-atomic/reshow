@@ -13,4 +13,5 @@ class Return extends ReshowComponent
     }
 }
 
+Return.displayName = 'FluxConnected(Return)';
 export default Return;
