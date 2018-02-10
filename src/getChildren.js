@@ -1,4 +1,4 @@
-import {isValidElement} from 'react'; 
+import {isValidElement, cloneElement} from 'react'; 
 
 const getChildren = (children, props) =>
 {
