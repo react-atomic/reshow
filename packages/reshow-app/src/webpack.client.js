@@ -1,6 +1,7 @@
 'use strict';
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleTracker = require('./webpackBundleTracker');
 const keys = Object.keys;
 const assign = Object.assign;
 
@@ -104,14 +105,18 @@ vendor = deduplicate(vendor);
 
 const myWebpack = (root, main)=>
 {
+    const path = root+ "/assets";
     if (!main) {
         main = { main: './build/src/client.js' };
     }
 
     let entry = {
         ...main,
-        vendor: vendor
+        vendor
     };
+    plugins = plugins.concat([
+        new BundleTracker({path, filename: './stats.json'})
+    ]);
 
     const alias = {
         react: root + '/node_modules/react'
@@ -127,7 +132,7 @@ const myWebpack = (root, main)=>
         entry,
         output: {
             filename: "[name].bundle.js",
-            path: root+ "/assets",
+            path,
             publicPath: confs.assetsRoot,
             chunkFilename: "[id].[hash].bundle.js"
         },
