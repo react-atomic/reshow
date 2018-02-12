@@ -10,14 +10,13 @@ const realTimeKey = '--realTimeData--';
 
 class RealTimeReturn extends ReshowComponent
 {
+   static defaultProps = {
+        realTimePath: [realTimeKey]
+   };
+
    static getStores(props)
    {
        return props.stores || [pageStore, realTimeStore];
-   }
-   
-   static get realTimePath()
-   {
-        return [realTimeKey];
    }
 
    static calculateState(prevState, props)
@@ -31,8 +30,7 @@ class RealTimeReturn extends ReshowComponent
 
         const realTimeState = realTimeStore.getState();
         if (get(realTimeState, [realTimeKey])) {
-            const realTimePath = props.realTimePath || this.realTimePath;
-            const data = get(realTimeState, realTimePath);
+            const data = get(realTimeState, get(props, ['realTimePath']));
             if (data) {
                 superData = {
                     ...prevState,
