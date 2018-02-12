@@ -14,10 +14,10 @@ class Section extends ReshowComponent
     render()
     {
         const {name, children} = this.props;
-        if (!get(this, ['state', 'section', name, 'shouldRender'])) {
+        const {shouldRender, ...others} = get(this, ['state', 'section', name], {});
+        if (!shouldRender) {
             return null;
         }
-        const {shouldRender, ...others} = get(this, ['state', 'section', name]);
         return getChildren(children, others);
     }
 }
