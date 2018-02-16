@@ -55,8 +55,11 @@ Plugin.prototype.apply = function(compiler) {
       }
 
       var chunks = {};
-      stats.compilation.chunks.map(function(chunk){
-        var files = chunk.files.map(function(file){
+      stats.compilation.chunks.map(chunk => {
+        if (!chunk.name) {
+            return;
+        }
+        var files = chunk.files.map(file => {
           var F = {name: file};
           if (compiler.options.output.publicPath) {
             F.publicPath= compiler.options.output.publicPath+ file+ '?'+ stats.hash;
