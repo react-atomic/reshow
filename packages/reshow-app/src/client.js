@@ -3,20 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const render = (oApp, dom)=>
-{
-    let r;
-    if (dom.innerHTML && ReactDOM.hydrate) {
-        r = ReactDOM.hydrate;
-    } else {
-        r = ReactDOM.render;
-    }
-    r(
-      oApp,
-      dom 
-    );
-}
+    ((dom.innerHTML && ReactDOM.hydrate) ?
+        ReactDOM.hydrate :
+        ReactDOM.render)(oApp, dom)
 
-const client = (rawApp)=>
+const client = rawApp =>
 {
     const app = React.createFactory(rawApp);
     setImmediate(()=>{
