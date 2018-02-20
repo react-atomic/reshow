@@ -11,21 +11,16 @@ const keys = Object.keys;
 
 class ReshowComponent extends PureComponent
 {
+   static defaultProps = {
+        initStates: ['data', 'I18N'],
+        pathStates: {
+            I13N: ['data', 'I13N']
+        },
+   };
+
    static getStores(props)
    {
        return props.stores || [pageStore];
-   }
-
-   static get initStates()
-   {
-        return ['data', 'I18N'];
-   }
-
-   static get pathStates()
-   {
-        return {
-            I13N: ['data', 'I13N'] 
-        };
    }
 
    static calculateState(prevState, props)
@@ -35,8 +30,8 @@ class ReshowComponent extends PureComponent
             return prevState;
         }
         const results = {};
-        const initStates = props.initStates || this.initStates;
-        initStates.forEach((key)=>{
+        const initStates = props.initStates;
+        get(initStates, null, []).forEach((key)=>{
             const data = pageState.get(key);
             if (data && data.toJS) {
                 results[key] = data.toJS();
@@ -44,8 +39,8 @@ class ReshowComponent extends PureComponent
                 results[key] = data;
             }
         });
-        const pathStates = props.pathStates || this.pathStates;
-        keys(pathStates).forEach( key =>
+        const pathStates = props.pathStates;
+        keys(get(pathStates, null, {})).forEach( key =>
             results[key] = get(results, pathStates[key])
         );
         return results;

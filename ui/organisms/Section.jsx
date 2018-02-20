@@ -6,10 +6,9 @@ import getChildren from '../../src/getChildren';
 
 class Section extends ReshowComponent
 {
-    static get initStates()
-    {
-        return ['section'];
-    }
+   static defaultProps = {
+        initStates: ['section'],
+   };
 
     render()
     {

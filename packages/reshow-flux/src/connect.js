@@ -18,7 +18,7 @@ const connect = (Base, options) =>
 
     const getProps = (props) => thisOptions.withProps ? props : undefined;
 
-    const getState = (self, prevState, maybeProps) => self.calculateState( prevState, getProps(maybeProps));
+    const getState = (self, prevState, maybeProps) => self.calculateState( prevState, getProps(maybeProps) );
 
     const getStores = (self, maybeProps) => self.getStores(getProps(maybeProps));
     
@@ -64,6 +64,10 @@ const connect = (Base, options) =>
         {
             super(props);
             const con = this.constructor;
+            if (!con.calculateState) {
+                con.calculateState = Base.calculateState;
+                con.getStores = Base.getStores;
+            }
             if (thisOptions.withConstructor) {
                 this.__setStores(getStores(
                     con,
