@@ -9,14 +9,16 @@ import {
 
 const keys = Object.keys;
 
+const initProps = {
+    initStates: ['data', 'I18N'],
+    pathStates: {
+        I13N: ['data', 'I13N']
+    },
+};
+
 class ReshowComponent extends PureComponent
 {
-   static defaultProps = {
-        initStates: ['data', 'I18N'],
-        pathStates: {
-            I13N: ['data', 'I13N']
-        },
-   };
+   static defaultProps = initProps;
 
    static getStores(props)
    {
@@ -51,3 +53,4 @@ export default connect(
     ReshowComponent,
     {withProps:true}
 );
+export {initProps};

@@ -1,7 +1,7 @@
 import React from 'react'; 
 import get from 'get-object-value';
 
-import ReshowComponent from '../organisms/ReshowComponent';
+import ReshowComponent, {initProps} from '../organisms/ReshowComponent';
 import getChildren from '../../src/getChildren';
 import pageStore from '../../src/stores/pageStore';
 import realTimeStore from '../../src/stores/realTimeStore';
@@ -11,6 +11,7 @@ const realTimeKey = '--realTimeData--';
 class RealTimeReturn extends ReshowComponent
 {
    static defaultProps = {
+        ...initProps,
         realTimePath: [realTimeKey]
    };
 
