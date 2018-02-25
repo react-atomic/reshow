@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.81",
+  "version": "0.1.82",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -24,7 +24,7 @@
     "webpack": "^3.0.0",
     "uglifyjs-webpack-plugin": "^1.0.0-beta",
     "webpack-bundle-analyzer": "*",
-    "worker-loader": "*"
+    "reshow-worker": "*"
   },
   "devDependencies": {
     "npmignore": "*",

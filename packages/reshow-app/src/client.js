@@ -1,6 +1,7 @@
 require('setimmediate');
 import React from 'react';
 import ReactDOM from 'react-dom';
+import initWorker from 'reshow-worker';
 
 const render = (oApp, dom)=>
     ((dom.innerHTML && ReactDOM.hydrate) ?
@@ -11,6 +12,7 @@ const client = rawApp =>
 {
     const app = React.createFactory(rawApp);
     setImmediate(()=>{
+        initWorker();
         const w = window;        
         const d = document;
         w.Reshow = { render, app };

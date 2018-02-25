@@ -17,8 +17,8 @@
     "mitt": "*"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.0",
+    "babel-cli": "^6.x",
+    "babel-core": "^6.x",
     "babel-plugin-add-module-exports": "*",
     "babel-plugin-transform-object-assign": "*",
     "babel-plugin-transform-react-constant-elements": "*",
