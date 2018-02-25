@@ -12,7 +12,6 @@ const client = rawApp =>
 {
     const app = React.createFactory(rawApp);
     setImmediate(()=>{
-        initWorker();
         const w = window;        
         const d = document;
         w.Reshow = { render, app };
@@ -24,6 +23,7 @@ const client = rawApp =>
           new app(data),
           d.getElementById('app')
         );
+        initWorker();
     });
 }
 
