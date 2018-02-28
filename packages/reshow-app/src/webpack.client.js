@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const BundleTracker = require('./webpackBundleTracker');
 const keys = Object.keys;
-const assign = Object.assign;
 
 const {
     CommonsChunkPlugin,
@@ -35,63 +34,6 @@ let babelLoaderOption = {
         'syntax-dynamic-import'
     ]
 };
-if (BUNDLE) {
-    let bundle = assign(
-        {analyzerHost: '0.0.0.0'},
-        JSON.parse(BUNDLE)
-    );
-    plugins = plugins.concat([
-        new BundleAnalyzerPlugin(bundle),
-    ]);
-    if ('production' !== NODE_ENV) {
-        plugins = plugins.concat([
-            new webpack.LoaderOptionsPlugin({
-                minimize: true,
-            }),
-            new UglifyJsPlugin({
-                compress: { 
-                    unused: true,
-                    dead_code: true,
-                    join_vars: false,
-                    hoist_funs: true,
-                    collapse_vars: true,
-                    passes:2,
-                    side_effects: true,
-                },
-                mangle: false,
-                beautify: true,
-                output: {
-                    comments: true 
-                },
-            }),
-        ]);
-    }
-}
-if ('production' === NODE_ENV) {
-    devtool = false;
-    babelLoaderOption.env = 'production';
-    plugins = plugins.concat([
-        new webpack.DefinePlugin({
-          'process.env':{
-            'NODE_ENV': JSON.stringify('production'),
-            '__DEVTOOLS__': false
-          }
-        }),
-        new ModuleConcatenationPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-        }),
-        new UglifyJsPlugin({
-            compress: { warnings: false},
-            comments: false
-        }),
-        new OccurrenceOrderPlugin(),
-        new AggressiveMergingPlugin({
-            minSizeReduce: 1.5,
-            moveToParents: true
-        })
-    ]);
-}
 
 /*vendor*/
 const deduplicate = (arr) => {
@@ -103,8 +45,70 @@ if (confs.webpackVendor) {
 }
 vendor = deduplicate(vendor);
 
-const myWebpack = (root, main)=>
+const myWebpack = (root, main, lazyConfs)=>
 {
+    confs = {...confs, ...lazyConfs};
+    if (BUNDLE) {
+        let bundle = {
+            analyzerHost: '0.0.0.0',
+            ...JSON.parse(BUNDLE)
+        };
+        plugins = plugins.concat([
+            new BundleAnalyzerPlugin(bundle),
+        ]);
+        if ('production' !== NODE_ENV) {
+            plugins = plugins.concat([
+                new webpack.LoaderOptionsPlugin({
+                    minimize: true,
+                }),
+                new UglifyJsPlugin({
+                    compress: { 
+                        unused: true,
+                        dead_code: true,
+                        join_vars: false,
+                        hoist_funs: true,
+                        collapse_vars: true,
+                        passes:2,
+                        side_effects: true,
+                    },
+                    mangle: false,
+                    beautify: true,
+                    output: {
+                        comments: true 
+                    },
+                }),
+            ]);
+        }
+    }
+    if ('production' === NODE_ENV) {
+        devtool = false;
+        babelLoaderOption.env = 'production';
+        plugins = plugins.concat([
+            new webpack.DefinePlugin({
+              'process.env':{
+                'NODE_ENV': JSON.stringify('production'),
+                '__DEVTOOLS__': false
+              }
+            }),
+            new ModuleConcatenationPlugin(),
+            new webpack.LoaderOptionsPlugin({
+                minimize: true,
+            }),
+            new UglifyJsPlugin({
+                compress: {
+                    unused: true,
+                    dead_code: true,
+                    warnings: false
+                },
+                comments: false
+            }),
+            new OccurrenceOrderPlugin(),
+            new AggressiveMergingPlugin({
+                minSizeReduce: 1.5,
+                moveToParents: true
+            })
+        ]);
+    }
     const path = root+ "/assets";
     if (!main) {
         main = { main: './build/src/client.js' };

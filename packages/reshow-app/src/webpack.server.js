@@ -3,6 +3,8 @@ const webpack = require('webpack');
 
 const {
     UglifyJsPlugin,
+    OccurrenceOrderPlugin,
+    ModuleConcatenationPlugin,
     LimitChunkCountPlugin
 } = webpack.optimize;
 const {
@@ -17,24 +19,41 @@ if (CONFIG) {
 let plugins = [
     new LimitChunkCountPlugin({maxChunks:1}),
 ];
+let babelLoaderOption = {
+    cacheDirectory: true,
+    plugins: [
+        'syntax-dynamic-import'
+    ]
+};
 
-if ('production' === NODE_ENV) {
-    plugins = plugins.concat([
-        new webpack.DefinePlugin({
-          'process.env':{
-            'NODE_ENV': JSON.stringify('production'),
-            '__DEVTOOLS__': false
-          }
-        }),
-        new UglifyJsPlugin({
-            compress: { warnings: false},
-            comments: false
-        }),
-    ]);
-}
 
-const myWebpack = (root, entry)=>
+const myWebpack = (root, entry, lazyConfs)=>
 {
+    confs = {...confs, ...lazyConfs};
+    if ('production' === NODE_ENV) {
+        babelLoaderOption.env = 'production';
+        plugins = plugins.concat([
+            new webpack.DefinePlugin({
+              'process.env':{
+                'NODE_ENV': JSON.stringify('production'),
+                '__DEVTOOLS__': false
+              }
+            }),
+            new ModuleConcatenationPlugin(),
+            new webpack.LoaderOptionsPlugin({
+                minimize: true,
+            }),
+            new UglifyJsPlugin({
+                compress: {
+                    unused: true,
+                    dead_code: true,
+                    warnings: false
+                },
+                comments: false
+            }),
+            new OccurrenceOrderPlugin(),
+        ]);
+    }
     if (!entry) {
         entry = {
             node: './build/src/server.js'
@@ -64,12 +83,7 @@ const myWebpack = (root, entry)=>
                     test: /(.js|.jsx)$/, 
                     exclude: /node_modules/,
                     loader: "babel-loader", 
-                    options:{
-                        cacheDirectory: true,
-                        plugins: [
-                            'syntax-dynamic-import'
-                        ]
-                    } 
+                    options: babelLoaderOption 
                   }
             ]
         },
