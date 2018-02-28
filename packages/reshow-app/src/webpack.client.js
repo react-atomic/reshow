@@ -1,7 +1,17 @@
 'use strict';
-const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const BundleTracker = require('./webpackBundleTracker');
+import webpack from 'webpack';
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import BundleTracker from './webpackBundleTracker'; 
+import ora from 'ora';
+const spinner = ora({text:'Trust me, it will finish soon.', spinner: 'line'}).start();
+
+let spinnerTime = setTimeout(()=>{
+    spinner.text = 'If you don\'t trust me, trust yourself.';
+    spinnerTime = setTimeout(()=>{
+        spinner.text = 'If you don\'t trust yourself, Just wait until you see the finished.';
+    }, 10000);
+}, 10000);
+
 const keys = Object.keys;
 
 const {
@@ -37,6 +47,7 @@ let babelLoaderOption = {
 
 /* Default uglifyJs options */
 const uglifyJsOptions = {
+    cache: true,
     parallel: true, 
     compress: { 
         unused: true,
@@ -123,7 +134,14 @@ const myWebpack = (root, main, lazyConfs)=>
         vendor
     };
     plugins = plugins.concat([
-        new BundleTracker({path, filename: './stats.json'})
+        new BundleTracker({
+            path,
+            filename: './stats.json',
+            callback: ()=>{
+                clearTimeout(spinnerTime);
+                spinner.stop();    
+            }
+        })
     ]);
 
     const alias = {
@@ -135,7 +153,7 @@ const myWebpack = (root, main, lazyConfs)=>
         });
     }
 
-    return  {
+    return {
         devtool,
         entry,
         output: {

@@ -4,7 +4,7 @@
             "presets": [
               ["env", {
                 "loose": true, 
-                "modules": false,
+                "modules": 'commonjs',
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
               "react",

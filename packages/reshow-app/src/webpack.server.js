@@ -44,6 +44,7 @@ const myWebpack = (root, entry, lazyConfs)=>
                 minimize: true,
             }),
             new UglifyJsPlugin({
+                cache: true,
                 parallel: true, 
                 compress: {
                     unused: true,

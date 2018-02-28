@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.88",
+  "version": "0.1.96",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -21,9 +21,10 @@
     "deep-extend": "^0.4.1",
     "mkdirp": "^0.5.1",
     "strip-ansi": "^2.0.1",
+    "uglifyjs-webpack-plugin": "^1.x",
     "webpack": "^3.0.0",
-    "uglifyjs-webpack-plugin": "^1.0.0-beta",
     "webpack-bundle-analyzer": "*",
+    "ora": "2.0.0",
     "reshow-worker": "*"
   },
   "devDependencies": {

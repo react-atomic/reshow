@@ -5,7 +5,7 @@ var mkdirp = require('mkdirp');
 var extend = require('deep-extend');
 
 var assets = {};
-var DEFAULT_OUTPUT_FILENAME = 'webpack-stats.json';
+var DEFAULT_OUTPUT_FILENAME = './stats.json';
 var DEFAULT_LOG_TIME = false;
 
 
@@ -79,6 +79,10 @@ Plugin.prototype.apply = function(compiler) {
       }
 
       self.writeOutput(compiler, output);
+      const callback = self.options.callback;
+      if ('function' === typeof callback) {
+        callback();
+      }
     });
 };
 
