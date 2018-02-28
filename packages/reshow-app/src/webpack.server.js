@@ -44,12 +44,16 @@ const myWebpack = (root, entry, lazyConfs)=>
                 minimize: true,
             }),
             new UglifyJsPlugin({
+                parallel: true, 
                 compress: {
                     unused: true,
                     dead_code: true,
                     warnings: false
                 },
-                comments: false
+                output: {
+                    comments: false,
+                    beautify: false,
+                },
             }),
             new OccurrenceOrderPlugin(),
         ]);

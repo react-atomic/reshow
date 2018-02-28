@@ -35,6 +35,26 @@ let babelLoaderOption = {
     ]
 };
 
+/* Default uglifyJs options */
+const uglifyJsOptions = {
+    parallel: true, 
+    compress: { 
+        unused: true,
+        dead_code: true,
+        join_vars: false,
+        hoist_funs: true,
+        collapse_vars: true,
+        passes:2,
+        side_effects: true,
+        warnings: false,
+    },
+    mangle: false,
+    output: {
+        comments: true,
+        beautify: true,
+    },
+};
+
 /*vendor*/
 const deduplicate = (arr) => {
     return Array.from(new Set(arr));
@@ -61,22 +81,7 @@ const myWebpack = (root, main, lazyConfs)=>
                 new webpack.LoaderOptionsPlugin({
                     minimize: true,
                 }),
-                new UglifyJsPlugin({
-                    compress: { 
-                        unused: true,
-                        dead_code: true,
-                        join_vars: false,
-                        hoist_funs: true,
-                        collapse_vars: true,
-                        passes:2,
-                        side_effects: true,
-                    },
-                    mangle: false,
-                    beautify: true,
-                    output: {
-                        comments: true 
-                    },
-                }),
+                new UglifyJsPlugin(uglifyJsOptions),
             ]);
         }
     }
@@ -95,12 +100,11 @@ const myWebpack = (root, main, lazyConfs)=>
                 minimize: true,
             }),
             new UglifyJsPlugin({
-                compress: {
-                    unused: true,
-                    dead_code: true,
-                    warnings: false
+                ...uglifyJsOptions,
+                output: {
+                    comments: false,
+                    beautify: false,
                 },
-                comments: false
             }),
             new OccurrenceOrderPlugin(),
             new AggressiveMergingPlugin({
