@@ -1,5 +1,6 @@
 'use strict';
 import webpack from 'webpack';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import BundleTracker from './webpackBundleTracker'; 
 import ora from 'ora';
@@ -9,14 +10,13 @@ let spinnerTime = setTimeout(()=>{
     spinner.text = 'If you don\'t trust me, trust yourself.';
     spinnerTime = setTimeout(()=>{
         spinner.text = 'If you don\'t trust yourself, Just wait until you see the finished.';
-    }, 10000);
-}, 10000);
+    }, 5000);
+}, 5000);
 
 const keys = Object.keys;
 
 const {
     CommonsChunkPlugin,
-    UglifyJsPlugin,
     OccurrenceOrderPlugin,
     AggressiveMergingPlugin,
     ModuleConcatenationPlugin
@@ -49,21 +49,23 @@ let babelLoaderOption = {
 const uglifyJsOptions = {
     cache: true,
     parallel: true, 
-    compress: { 
-        unused: true,
-        dead_code: true,
-        join_vars: false,
-        hoist_funs: true,
-        collapse_vars: true,
-        passes:2,
-        side_effects: true,
-        warnings: false,
-    },
-    mangle: false,
-    output: {
-        comments: true,
-        beautify: true,
-    },
+    uglifyOptions: {
+        compress: { 
+            unused: true,
+            dead_code: true,
+            join_vars: false,
+            hoist_funs: true,
+            collapse_vars: true,
+            passes:2,
+            side_effects: true,
+            warnings: false,
+        },
+        mangle: false,
+        output: {
+            comments: true,
+            beautify: true,
+        },
+    }
 };
 
 /*vendor*/
@@ -112,10 +114,13 @@ const myWebpack = (root, main, lazyConfs)=>
             }),
             new UglifyJsPlugin({
                 ...uglifyJsOptions,
-                output: {
-                    comments: false,
-                    beautify: false,
-                },
+                uglifyOptions: {
+                    ...uglifyJsOptions.uglifyOptions,
+                    output: {
+                        comments: false,
+                        beautify: false,
+                    },
+                }
             }),
             new OccurrenceOrderPlugin(),
             new AggressiveMergingPlugin({

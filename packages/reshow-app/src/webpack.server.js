@@ -1,8 +1,8 @@
 'use strict';
-const webpack = require('webpack');
+import webpack from 'webpack';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 const {
-    UglifyJsPlugin,
     OccurrenceOrderPlugin,
     ModuleConcatenationPlugin,
     LimitChunkCountPlugin
@@ -26,6 +26,28 @@ let babelLoaderOption = {
     ]
 };
 
+/* Default uglifyJs options */
+const uglifyJsOptions = {
+    cache: true,
+    parallel: true, 
+    uglifyOptions: {
+        compress: { 
+            unused: true,
+            dead_code: true,
+            join_vars: false,
+            hoist_funs: true,
+            collapse_vars: true,
+            passes:2,
+            side_effects: true,
+            warnings: false,
+        },
+        mangle: false,
+        output: {
+            comments: false,
+            beautify: false,
+        },
+    }
+};
 
 const myWebpack = (root, entry, lazyConfs)=>
 {
@@ -43,19 +65,7 @@ const myWebpack = (root, entry, lazyConfs)=>
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
             }),
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true, 
-                compress: {
-                    unused: true,
-                    dead_code: true,
-                    warnings: false
-                },
-                output: {
-                    comments: false,
-                    beautify: false,
-                },
-            }),
+            new UglifyJsPlugin(uglifyJsOptions),
             new OccurrenceOrderPlugin(),
         ]);
     }
