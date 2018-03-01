@@ -21,8 +21,8 @@
     "deep-extend": "^0.4.1",
     "mkdirp": "^0.5.1",
     "strip-ansi": "^2.0.1",
-    "uglifyjs-webpack-plugin": "^1.x",
-    "webpack": "^3.0.0",
+    "webpack": "^4.x",
+    "webpack-cli": "*",
     "webpack-bundle-analyzer": "*",
     "ora": "2.0.0",
     "reshow-worker": "*"
