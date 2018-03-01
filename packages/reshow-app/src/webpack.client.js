@@ -15,8 +15,6 @@ let spinnerTime = setTimeout(()=>{
 const keys = Object.keys;
 
 const {
-    CommonsChunkPlugin,
-    UglifyJsPlugin,
     OccurrenceOrderPlugin,
     AggressiveMergingPlugin,
     ModuleConcatenationPlugin
@@ -32,18 +30,14 @@ if (CONFIG) {
 }
 
 let devtool = 'cheap-source-map';
-let plugins = [
-    new CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'vendor.bundle.js'
-    }),
-];
+let plugins = [];
 let babelLoaderOption = {
     cacheDirectory: true,
     plugins: [
         'syntax-dynamic-import'
     ]
 };
+let mode = 'development';
 
 /* Default uglifyJs options */
 const uglifyJsOptions = {
@@ -92,11 +86,11 @@ const myWebpack = (root, main, lazyConfs)=>
                 new webpack.LoaderOptionsPlugin({
                     minimize: true,
                 }),
-                new UglifyJsPlugin(uglifyJsOptions),
             ]);
         }
     }
     if ('production' === NODE_ENV) {
+        mode='production';
         devtool = false;
         babelLoaderOption.env = 'production';
         plugins = plugins.concat([
@@ -109,13 +103,6 @@ const myWebpack = (root, main, lazyConfs)=>
             new ModuleConcatenationPlugin(),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
-            }),
-            new UglifyJsPlugin({
-                ...uglifyJsOptions,
-                output: {
-                    comments: false,
-                    beautify: false,
-                },
             }),
             new OccurrenceOrderPlugin(),
             new AggressiveMergingPlugin({
@@ -130,8 +117,7 @@ const myWebpack = (root, main, lazyConfs)=>
     }
 
     let entry = {
-        ...main,
-        vendor
+        ...main
     };
     plugins = plugins.concat([
         new BundleTracker({
@@ -154,13 +140,34 @@ const myWebpack = (root, main, lazyConfs)=>
     }
 
     return {
+        mode,
         devtool,
         entry,
+	optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                            chunks: "initial",
+                            minChunks: 2,
+                            maxInitialRequests: 5, // The default limit is too small to showcase the effect
+                            minSize: 0 // This is example is too small to create commons chunks
+                    },
+                    vendor: {
+                            test: /node_modules/,
+                            chunks: "initial",
+                            name: "vendor",
+                            priority: 10,
+                            enforce: true
+                    }
+                }
+            },
+            occurrenceOrder: true
+	},
         output: {
             filename: "[name].bundle.js",
             path,
             publicPath: confs.assetsRoot,
-            chunkFilename: "[id].[hash].bundle.js"
+//            chunkFilename: "[id].[hash].bundle.js"
         },
         node: {
             fs: "empty",
@@ -175,7 +182,7 @@ const myWebpack = (root, main, lazyConfs)=>
             modules: [root + '/node_modules']
         },
         module: {
-            loaders: [
+            rules: [
                   { 
                     test: /(.js|.jsx)$/, 
                     exclude: /node_modules/,
