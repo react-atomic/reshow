@@ -1,6 +1,6 @@
 {
   "name": "reshow-worker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Reshow Worker for ajax",
   "main": "./build/index.js",
   "repository": "react-atomic/reshow",
@@ -10,6 +10,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "organism-react-ajax": "*",
     "worker-loader": "*"
   },
   "devDependencies": {
