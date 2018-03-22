@@ -22,21 +22,25 @@ Plugin.prototype.apply = function(compiler) {
     var self = this;
 
     compiler.plugin('compilation', function(compilation, callback) {
-      compilation.plugin('failed-module', function(fail){
-        var output = {
-          status: 'error',
-          error: fail.error.name || 'unknown-error'
-        };
-        if (fail.error.module !== undefined) {
-          output.file = fail.error.module.userRequest;
-        }
-        if (fail.error.error !== undefined) {
-          output.message = stripAnsi(fail.error.error.codeFrame);
-        } else {
-          output.message = '';
-        }
-        self.writeOutput(compiler, output);
-      });
+        compilation.plugin('failed-module', function(fail){
+            var output = {
+              status: 'error',
+              error: fail.error.name || 'unknown-error'
+            };
+            if (fail.error.module !== undefined) {
+              output.file = fail.error.module.userRequest;
+            }
+            if (fail.error.error !== undefined) {
+              output.message = stripAnsi(fail.error.error.codeFrame);
+            } else {
+              output.message = '';
+            }
+            self.writeOutput(compiler, output);
+            const callback = self.options.callback;
+            if ('function' === typeof callback) {
+                callback();
+            }
+        });
     });
 
     compiler.plugin('compile', function(factory, callback) {
