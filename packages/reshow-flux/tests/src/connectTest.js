@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React, {Component, StrictMode} from 'react';
 import {
     connect,
     Dispatcher,
@@ -155,6 +155,74 @@ describe('Test Connect', ()=>{
        expect(calculateStateProps).to.deep.equal({ foo: 'bar' });
     });
 
+    it('could work with getDerivedStateFromProps override', ()=>{
+       class FakeComponent extends Component
+       {
+            static getStores(props)
+            {
+                return [store];
+            }
+
+            static calculateState(prevState, props)
+            {
+                const state = store.getState();
+                return props;
+            }
+
+            static getDerivedStateFromProps(nextProps, prevState)
+            {   
+                const keys = Object.keys;
+                return {
+                    kProps: keys(nextProps),
+                    kState: keys(prevState)
+                };
+            }
+
+            render()
+            {
+                return <div>{this.state.foo}</div>;
+            }
+       }
+       const FakeConnected = connect(
+            FakeComponent,
+            {
+                withProps: true
+            }
+       ); 
+       let change1;
+       let change2;
+       let child1;
+       let child2;
+       class Parent extends Component
+       {
+            constructor(props) 
+            {
+                super(props);
+                change1 = v => this.setState({child1: v});
+                change2 = v => this.setState({child2: v});
+                
+                this.state = {};
+            }
+
+            render()
+            {
+                return (
+                    <div>
+                        <FakeConnected {...this.state.child1} ref={el=>child1=el} />
+                        <FakeConnected {...this.state.child2} ref={el=>child2=el} />
+                    </div>
+                );
+            }
+       }
+       const vDom = <Parent />;
+       const html  = mount(vDom);
+       expect(child1.state).to.deep.equal({ kProps: [], kState: [] });
+       expect(child2.state).to.deep.equal({ kProps: [], kState: [] });
+       change1({foo:'bar'});
+       expect(child1.state).to.deep.equal({ kProps: [ 'foo' ], kState: [ 'kProps', 'kState' ], foo: 'bar' });
+       change2({bar:'foo'});
+       expect(child2.state).to.deep.equal({ kProps: [ 'bar' ], kState: [ 'kProps', 'kState' ], bar: 'foo' });
+    });
 
     it('could work withConstructor equal true', ()=>{
        class FakeComponent extends Component
