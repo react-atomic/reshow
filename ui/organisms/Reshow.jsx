@@ -33,23 +33,6 @@ class Reshow extends PureComponent
         }; 
     }
 
-    constructor(props) {
-        super(props);
-        if (isInit) {
-            console.warn('The best practice is avoid multi Reshow Component.');
-            this.stop = true;
-        } else {
-            this.update(props);
-            this.stop = false;
-            isInit = 1;
-        }
-    }
-
-    componentWillReceiveProps(nextProps)
-    {
-        this.update(nextProps);
-    }
-
     update(params){
         const realTimeData = get(params, ['--realTimeData--']);
         const reset = get(params, ['--reset--']);
@@ -98,6 +81,18 @@ class Reshow extends PureComponent
             history.replaceState('', '', newUrl);
         } else {
             loc.replace(newUrl);
+        }
+    }
+
+    constructor(props) {
+        super(props);
+        if (isInit) {
+            console.warn('The best practice is avoid multi Reshow Component.');
+            this.stop = true;
+        } else {
+            this.update(props);
+            this.stop = false;
+            isInit = 1;
         }
     }
 
