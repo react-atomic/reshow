@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.98",
+  "version": "0.1.99",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -25,6 +25,7 @@
     "webpack": "^3.0.0",
     "webpack-bundle-analyzer": "*",
     "ora": "2.0.0",
+    "organism-react-ajax": "*",
     "reshow-worker": "*"
   },
   "devDependencies": {
