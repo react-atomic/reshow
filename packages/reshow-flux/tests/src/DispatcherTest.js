@@ -13,8 +13,12 @@ describe('Test Dispatcher', ()=>{
         expect(dispatcher.callbacks.length).to.equal(1);
         expect(result).to.equal(undefined);
     });
-    it('could dispatch', ()=>{
+    it('could support hash dispatch', ()=>{
+        dispatcher.dispatch({foo:'bar'}); 
+        expect(result).to.deep.equal({foo:'bar'});
+    });
+    it('could support text dispatch', ()=>{
         dispatcher.dispatch('xxx'); 
-        expect(result).to.equal('xxx');
+        expect(result).to.deep.equal({type:'xxx'});
     });
 });

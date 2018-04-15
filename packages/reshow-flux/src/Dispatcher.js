@@ -9,6 +9,9 @@ class Dispatcher {
     if (!payload) {
         payload = {};
     }
+    if ('string' === typeof payload) {
+        payload = {type: payload};
+    }
     this.callbacks.forEach(c => c(payload));
   }
 }
