@@ -117,7 +117,7 @@ class Reshow extends PureComponent
         if (this.stop) {
             return null;
         }
-        const {themes, ajax, webSocketUrl} = this.props;
+        const {themes, defaultThemePath, ajax, webSocketUrl} = this.props;
         const {themePath, baseUrl, staticVersion} = this.state;
         return (
             <AjaxPage 
@@ -128,6 +128,7 @@ class Reshow extends PureComponent
                 staticVersion={staticVersion} /* Keep pure value, let user don't assin etra value for emtpy. */
                 /*Props*/
                 themes={themes}
+                defaultThemePath={defaultThemePath}
                 ajax={ajax}
                 webSocketUrl={webSocketUrl}
             />
