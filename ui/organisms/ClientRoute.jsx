@@ -4,19 +4,21 @@ import Reshow, {update} from '../organisms/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import handleAnchor from '../../src/handleAnchor';
 
-const defaultParseUrl = (url, goAnchorDelay)=>
+const defaultParseUrl = url => handleAnchor => goAnchorDelay =>
 {
     const separator = '/';
     const params = url.split(separator);
     const last = params.length-1;
     let lastPath = params[last];
     if (lastPath) {
-        lastPath = handleAnchor(lastPath, goAnchorDelay);
+        lastPath = handleAnchor(lastPath)(goAnchorDelay);
         return {
             themePath: lastPath,
         };
     } else {
-        return {};
+        return {
+            themePath: null
+        };
     }
 };
 
@@ -36,7 +38,7 @@ class ClientRoute extends Reshow
         {
             const {parseUrl, goAnchorDelay} = props;
             const thisParseUrlFunc = (parseUrl) ? parseUrl : defaultParseUrl;
-            const parseUrlConfigs = thisParseUrlFunc(url, goAnchorDelay);
+            const parseUrlConfigs = thisParseUrlFunc(url)(handleAnchor)(goAnchorDelay);
             update(parseUrlConfigs);
         };
         const curUrl = (props.url) ? props.url : document.URL;
