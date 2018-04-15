@@ -21,7 +21,7 @@ const connect = (Base, options) =>
     const getState = (self, prevState, maybeProps) => self.calculateState( prevState, getProps(maybeProps) );
 
     const getStores = (self, maybeProps) => self.getStores(getProps(maybeProps));
-    
+
     class ConnectedClass extends Base
     {
         __stores = [];
@@ -65,8 +65,8 @@ const connect = (Base, options) =>
             super(props);
             const con = this.constructor;
             if (!con.calculateState) {
-                con.calculateState = Base.calculateState;
-                con.getStores = Base.getStores;
+                con.calculateState = super.calculateState;
+                con.getStores = super.getStores;
             }
             if (thisOptions.withConstructor) {
                 this.__setStores(getStores(
@@ -74,17 +74,17 @@ const connect = (Base, options) =>
                     this.props
                 ));
             }
+            if (!this.state) {
+                this.state = {};
+            }
             const calculatedState = getState(
                 con,
                 undefined,
                 props
             );
-            if (!this.state) {
-                this.state = {};
-            }
             if (calculatedState) {
-                keys(calculatedState).forEach(key =>
-                    this.state[key] = calculatedState[key]
+                keys(calculatedState).forEach (
+                    key => this.state[key] = calculatedState[key]
                 );
             }
         }
@@ -102,18 +102,30 @@ const connect = (Base, options) =>
             }
         }
 
-        componentWillReceiveProps(nextProps)
+        componentDidUpdate(prevProps, prevState)
         {
-            if (super.componentWillReceiveProps) {
-                super.componentWillReceiveProps(nextProps);
+            if (super.componentDidUpdate) {
+                super.componentDidUpdate(prevProps, prevState);
             }
-            const con = this.constructor;
+            this.__setStores(getStores(
+                this.constructor,
+                this.props
+            ));
+        }
+
+        static getDerivedStateFromProps(nextProps, prevState)
+        {
+            let thisStates = null;
+            if (super.getDerivedStateFromProps) {
+                thisStates = super.getDerivedStateFromProps(nextProps, prevState);
+            }
             if (thisOptions.withProps) {
-                this.__setStores(getStores(con, nextProps));
-                this.setState(prevState => 
-                    getState(con, prevState, nextProps)
-                );
+                thisStates = {
+                    ...thisStates,
+                    ...getState(ConnectedClass, prevState, nextProps)
+                };
             }
+            return thisStates;
         }
 
         componentWillUnmount()

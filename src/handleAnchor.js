@@ -3,7 +3,7 @@ import smoothScrollTo from 'smooth-scroll-to';
 
 let goAnchorTimer;
 
-const goToAnchor = (anchor, goAnchorDelay) =>
+const goToAnchor = anchor => goAnchorDelay =>
 {
     if (!goAnchorDelay) { goAnchorDelay = 0; }
     clearTimeout(goAnchorTimer);
@@ -16,7 +16,7 @@ const goToAnchor = (anchor, goAnchorDelay) =>
     }, goAnchorDelay);
 }
 
-const handleAnchor = (path, goAnchorDelay) =>
+const handleAnchor = path => goAnchorDelay =>
 {
     let anchor;
     const anchorStart = path.indexOf('#');
@@ -25,7 +25,7 @@ const handleAnchor = (path, goAnchorDelay) =>
         path = path.substring(0, anchorStart);
     }
     if (anchor) {
-        goToAnchor(anchor, goAnchorDelay);
+        goToAnchor(anchor)(goAnchorDelay);
     }
     return path;
 };

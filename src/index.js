@@ -19,7 +19,7 @@ export {
 } from 'organism-react-ajax';
 
 // Router
-export let global = {};
+export const global = {};
 export { default as ClientRoute } from '../ui/organisms/ClientRoute'; 
 
 // Component 
@@ -27,4 +27,4 @@ export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
 export { default as Return } from '../ui/organisms/Return';
 export { default as RealTimeReturn } from '../ui/organisms/RealTimeReturn';
 export { default as Section } from '../ui/organisms/Section';
-export { default } from '../ui/organisms/Reshow';
+export { default, update } from '../ui/organisms/Reshow';

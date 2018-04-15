@@ -15,6 +15,55 @@ let win;
 let doc;
 let isInit;
 
+const getLStore = () => get(win, ['localStorage']);
+
+const updateCanonicalUrl = (url, props) =>
+{
+    if (get(props, ['disableCanonical'])) {
+        return;
+    }
+    const lStore = getLStore();
+    if (lStore) {
+        if (lStore.getItem('disableCanonical')) {
+            return;
+        }
+    }
+    const loc = doc.location; 
+    const newUrl = url+ loc.search+ loc.hash;
+    if (-1 !== url.indexOf(loc.hostname)) {
+        history.replaceState('', '', newUrl);
+    } else {
+        loc.replace(newUrl);
+    }
+};
+
+const update = params => 
+{
+    const realTimeData = get(params, ['--realTimeData--']);
+    const reset = get(params, ['--reset--']);
+    let type;
+    if (realTimeData) {
+        type = 'realTime';
+    } else {
+        type = 'config/'+ ((reset) ? 're' : '')+ 'set';
+    }
+    dispatch({ type, params });
+    if (doc) {
+        const htmlTitle = get(params, ['htmlTitle']);
+        if (htmlTitle) {
+            if (isArray(htmlTitle)) {
+                doc.title = get(htmlTitle, [0]);
+            } else {
+                doc.title = htmlTitle;
+            }
+        }
+        const canonical = get(params, ['data', 'canonical']);
+        if (canonical) {
+            updateCanonicalUrl(canonical, params);
+        }
+    }
+};
+
 class Reshow extends PureComponent
 {
     static getStores()
@@ -39,65 +88,9 @@ class Reshow extends PureComponent
             console.warn('The best practice is avoid multi Reshow Component.');
             this.stop = true;
         } else {
-            this.update(props);
+            update(props);
             this.stop = false;
             isInit = 1;
-        }
-    }
-
-    componentWillReceiveProps(nextProps)
-    {
-        this.update(nextProps);
-    }
-
-    update(params){
-        const realTimeData = get(params, ['--realTimeData--']);
-        const reset = get(params, ['--reset--']);
-        let type;
-        if (realTimeData) {
-            type = 'realTime';
-        } else {
-            type = 'config/'+ ((reset) ? 're' : '')+ 'set';
-        }
-        dispatch({ type, params });
-        if (doc) {
-            const htmlTitle = get(params, ['htmlTitle']);
-            if (htmlTitle) {
-                if (isArray(htmlTitle)) {
-                    doc.title = get(htmlTitle, [0]);
-                } else {
-                    doc.title = htmlTitle;
-                }
-            }
-            const canonical = get(params, ['data', 'canonical']);
-            if (canonical) {
-                this.updateCanonicalUrl(canonical);
-            }
-        }
-    }
-
-    getLStore()
-    {
-        return get(win, ['localStorage']);
-    }
-
-    updateCanonicalUrl(url)
-    {
-        if (this.props.disableCanonical) {
-            return;
-        }
-        const lStore = this.getLStore();
-        if (lStore) {
-            if (lStore.getItem('disableCanonical')) {
-                return;
-            }
-        }
-        const loc = doc.location; 
-        const newUrl = url+ loc.search+ loc.hash;
-        if (-1 !== url.indexOf(loc.hostname)) {
-            history.replaceState('', '', newUrl);
-        } else {
-            loc.replace(newUrl);
         }
     }
 
@@ -107,7 +100,7 @@ class Reshow extends PureComponent
         doc = document;
         const canonical = doc.querySelector('link[rel="canonical"]');
         if (-1 !== doc.URL.indexOf('--disableCanonical')) {
-            const lStore = this.getLStore();
+            const lStore = getLStore();
             if (lStore) {
                 lStore.setItem(
                     'disableCanonical',
@@ -115,7 +108,7 @@ class Reshow extends PureComponent
                 );
             }
         } else if (canonical && canonical.href) {
-            this.updateCanonicalUrl(canonical.href);
+            updateCanonicalUrl(canonical.href, this.props);
         }
     }
 
@@ -124,18 +117,18 @@ class Reshow extends PureComponent
         if (this.stop) {
             return null;
         }
-        const self = this;
-        const {themes, ajax, webSocketUrl} = this.props;
+        const {themes, defaultThemePath, ajax, webSocketUrl} = this.props;
         const {themePath, baseUrl, staticVersion} = this.state;
         return (
             <AjaxPage 
-                callback={(json)=>self.update(json)}
+                callback={ json => update(json) }
                 /*State*/
                 themePath={themePath}
                 baseUrl={baseUrl}
                 staticVersion={staticVersion} /* Keep pure value, let user don't assin etra value for emtpy. */
                 /*Props*/
                 themes={themes}
+                defaultThemePath={defaultThemePath}
                 ajax={ajax}
                 webSocketUrl={webSocketUrl}
             />
@@ -144,3 +137,4 @@ class Reshow extends PureComponent
 }
 
 export default connect(Reshow);
+export {update};
