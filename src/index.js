@@ -19,7 +19,7 @@ export {
 } from 'organism-react-ajax';
 
 // Router
-export let global = {};
+export const global = {};
 export { default as ClientRoute } from '../ui/organisms/ClientRoute'; 
 
 // Component 
