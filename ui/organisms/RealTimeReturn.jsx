@@ -5,6 +5,7 @@ import ReshowComponent, {initProps} from '../organisms/ReshowComponent';
 import getChildren from '../../src/getChildren';
 import pageStore from '../../src/stores/pageStore';
 import realTimeStore from '../../src/stores/realTimeStore';
+import {connect} from 'reshow-flux';
 
 const realTimeKey = '--realTimeData--';
 
@@ -30,8 +31,9 @@ class RealTimeReturn extends ReshowComponent
         }
 
         const realTimeState = realTimeStore.getState();
-        if (get(realTimeState, [realTimeKey])) {
-            const data = get(realTimeState, get(props, ['realTimePath']));
+        if (realTimeState) {
+            const path = get(props, ['realTimePath']);
+            const data = get(realTimeState, path);
             if (data) {
                 superData = {
                     ...prevState,
@@ -44,14 +46,23 @@ class RealTimeReturn extends ReshowComponent
         return superData;
    }
 
-    render()
-    {
+   render()
+   {
        return getChildren(
-        this.props.children,
-        this.state
-       );
-    }
+           this.props.children,
+           this.state
+        );
+   }
 }
 
-RealTimeReturn.displayName = 'FluxConnected(RealTimeReturn)';
-export default RealTimeReturn;
+/**
+ * Explain why RealTimeReturn need re-connect.
+ *
+ * Because RealTimeReturn has override calculateState,
+ * If trigger from flux getDerivedStateFromProps,
+ * it will not call RealTimeReturn calculateState.
+ */
+export default connect(
+    RealTimeReturn,
+    {withProps:true}
+);
