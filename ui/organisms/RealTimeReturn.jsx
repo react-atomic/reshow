@@ -1,58 +1,52 @@
-import React from 'react'; 
+import React, {PureComponent} from 'react'; 
 import get from 'get-object-value';
-
-import ReshowComponent, {initProps} from '../organisms/ReshowComponent';
-import getChildren from '../../src/getChildren';
-import pageStore from '../../src/stores/pageStore';
-import realTimeStore from '../../src/stores/realTimeStore';
 import {connect} from 'reshow-flux';
+
+import {initProps} from '../organisms/ReshowComponent';
+import Return from '../organisms/Return';
+import getChildren from '../../src/getChildren';
+import realTimeStore from '../../src/stores/realTimeStore';
 
 const realTimeKey = '--realTimeData--';
 
-class RealTimeReturn extends ReshowComponent
+class RealTimeReturn extends PureComponent
 {
-   static defaultProps = {
-        ...initProps,
-        realTimePath: [realTimeKey]
-   };
+  static defaultProps = {
+      ...initProps,
+      realTimePath: [realTimeKey]
+  };
 
-   static getStores(props)
-   {
-       return props.stores || [pageStore, realTimeStore];
-   }
+  static getStores(props)
+  {
+      return props.stores || [realTimeStore];
+  }
 
-   static calculateState(prevState, props)
-   {
-        let superData;
-        if (super.constructor.calculateState) {
-            superData = super.constructor.calculateState(prevState, props);
-        } else {
-            superData = super.calculateState(prevState, props);
+  static calculateState(prevState, props)
+  {
+       const realTimeState = realTimeStore.getState();
+       const path = get(props, ['realTimePath']);
+       const data = get(realTimeState, path);
+       if (data) {
+           return data;
+       } else {
+           return prevState;
+       }
+  }
+
+  render()
+  {
+    const {children, realTimePath, ...props} = this.props;
+    return (
+      <Return {...props}>
+        {pageState =>
+            getChildren(
+              children,
+              {...pageState, ...this.state}
+            )
         }
-
-        const realTimeState = realTimeStore.getState();
-        if (realTimeState) {
-            const path = get(props, ['realTimePath']);
-            const data = get(realTimeState, path);
-            if (data) {
-                superData = {
-                    ...prevState,
-                    ...data
-                };
-            } else {
-                superData = prevState;
-            }
-        }
-        return superData;
-   }
-
-   render()
-   {
-       return getChildren(
-           this.props.children,
-           this.state
-        );
-   }
+      </Return>
+    ); 
+  }
 }
 
 /**
