@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
 import {connect} from 'reshow-flux';
+import {localStorage as lStore} from 'get-storage';
 
 import {
     dispatch,
@@ -11,22 +12,13 @@ import {
 
 const isArray = Array.isArray;
 
-let win;
 let doc;
 let isInit;
 
-const getLStore = () => get(win, ['localStorage']);
-
 const updateCanonicalUrl = (url, props) =>
 {
-    if (get(props, ['disableCanonical'])) {
+    if ( get(props, ['disableCanonical'], () => lStore('disableCanonical')() )) {
         return;
-    }
-    const lStore = getLStore();
-    if (lStore) {
-        if (lStore.getItem('disableCanonical')) {
-            return;
-        }
     }
     const loc = doc.location; 
     const newUrl = url+ loc.search+ loc.hash;
@@ -96,17 +88,10 @@ class Reshow extends PureComponent
 
     componentDidMount()
     {
-        win = window;
         doc = document;
         const canonical = doc.querySelector('link[rel="canonical"]');
         if (-1 !== doc.URL.indexOf('--disableCanonical')) {
-            const lStore = getLStore();
-            if (lStore) {
-                lStore.setItem(
-                    'disableCanonical',
-                    1
-                );
-            }
+            lStore('disableCanonical')(1);
         } else if (canonical && canonical.href) {
             updateCanonicalUrl(canonical.href, this.props);
         }
