@@ -27,7 +27,13 @@ class ReshowComponent extends PureComponent
 
    static calculateState(prevState, props)
    {
-        const pageState = pageStore.getState();
+        /**
+         * Why not support multi stores?
+         * Because multi stores need handle complex data merge.
+         * If that case need create custom calculateState functoin.
+         */
+        const thisStore = this.getStores(props)[0];
+        const pageState = thisStore.getState();
         if (global.path !== pageState.get('themePath')) {
             return prevState;
         }

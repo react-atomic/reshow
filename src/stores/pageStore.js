@@ -18,6 +18,8 @@ class PageStore extends ReduceStore
                 return state.merge(action.params);
             case 'config/reset':
                 return state.clear().merge(action.params);
+            case 'realTime':
+                return state;
             default:
                 if (keys(action)) {
                     return state.merge(action);
