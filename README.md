@@ -8,9 +8,10 @@
       * https://npm.im/reshow
 
 ## Example Usage
-Demo Url:
+* Demo Url:
 https://react-atomic-ui.js.org/
-
+* How to use router?
+https://github.com/react-atomic/reshow/wiki/Router-possible-solution
 
 
 ## PHP Template
