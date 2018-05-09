@@ -30,7 +30,6 @@ class MittStore
 
   /* Following not extendable */
 
-  __emitChange = () => this.__changed = true;
   _state = this.getInitialState();
   getState = () => this._state;
 
@@ -51,7 +50,7 @@ class MittStore
 
   __invokeOnDispatch = action =>
   {
-      this.__changed = false;
+      let __changed = false;
       const startingState = this._state;
       const endingState = this.reduce(startingState, action);
       if (endingState === undefined) {
@@ -59,9 +58,9 @@ class MittStore
       }
       if (!this.areEqual(startingState, endingState)) {
         this._state = endingState;
-        this.__emitChange();
+        __changed = true;
       }
-      if (this.__changed) {
+      if (__changed) {
         this.mitt.emit(CHANGE_EVENT);
       }
   }
