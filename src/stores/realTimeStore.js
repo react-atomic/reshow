@@ -5,11 +5,6 @@ import dispatcher from '../dispatcher';
 
 class RealTimeStore extends ReduceStore
 {
-    getInitialState()
-    {
-        return [];
-    }
-
     reduce (state, action)
     {
         switch (action.type) {
