@@ -13,7 +13,8 @@ class RealTimeReturn extends PureComponent
 {
   static defaultProps = {
       ...initProps,
-      realTimePath: [realTimeKey]
+      realTimePath: [realTimeKey],
+      realTimeUrl: null
   };
 
   static getStores(props)
@@ -24,9 +25,11 @@ class RealTimeReturn extends PureComponent
   static calculateState(prevState, props)
   {
        const realTimeState = realTimeStore.getState();
-       const path = get(props, ['realTimePath']);
+       const {path, url} = props;
        const data = get(realTimeState, path);
-       if (data) {
+       const wsUrl = get(realTimeState, ['--realTimeUrl--']);
+       if (data && (!url || url === wsUrl)) {
+           data['--ws-url--'] = url;
            return data;
        } else {
            return prevState;
