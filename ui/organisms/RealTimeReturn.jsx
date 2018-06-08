@@ -29,7 +29,7 @@ class RealTimeReturn extends PureComponent
        const data = get(realTimeState, path);
        const wsUrl = get(realTimeState, ['--realTimeUrl--']);
        if (data && (!url || url === wsUrl)) {
-           data['--ws-url--'] = url;
+           data['--ws-url--'] = wsUrl;
            return data;
        } else {
            return prevState;
