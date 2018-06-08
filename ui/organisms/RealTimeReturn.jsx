@@ -25,7 +25,7 @@ class RealTimeReturn extends PureComponent
   static calculateState(prevState, props)
   {
        const realTimeState = realTimeStore.getState();
-       const {path, url} = props;
+       const {realTimePath: path, realTimeUrl: url} = props;
        const data = get(realTimeState, path);
        const wsUrl = get(realTimeState, ['--realTimeUrl--']);
        if (data && (!url || url === wsUrl)) {
