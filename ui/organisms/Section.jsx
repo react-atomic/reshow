@@ -7,16 +7,18 @@ import getChildren from '../../src/getChildren';
 class Section extends ReshowComponent
 {
    static defaultProps = {
-        initStates: ['section'],
+        initStates: ['section', 'I18N'],
    };
 
     render()
     {
         const {name, children} = this.props;
-        const {shouldRender, ...others} = get(this, ['state', 'section', name], {});
+        const {section, I18N} = this.state;
+        const {shouldRender, ...others} = get(section, [name], {});
         if (!shouldRender) {
-            return null;
+            return null
         }
+        others.I18N = I18N
         return getChildren(children, others);
     }
 }
