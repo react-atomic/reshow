@@ -1,17 +1,17 @@
 import jsdom from 'jsdom-global'
+jsdom(null, {url: 'http://localhost'})
 
-import React, {PureComponent} from 'react';
-jsdom(null, {url: 'http://localhost'});
+import React, {PureComponent} from 'react'
 import urlStore from './../../../cjs/src/stores/urlStore'
 import {
     UrlReturn,
     urlDispatch
-} from './../../../cjs/src/index';
+} from './../../../cjs/src/index'
 
-import {expect} from 'chai';
-import {shallow, mount, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
+import {expect} from 'chai'
+import {shallow, mount, configure} from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
 
 
 
