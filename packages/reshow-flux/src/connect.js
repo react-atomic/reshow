@@ -74,10 +74,12 @@ const connect = (Base, options) =>
                     props
                 ));
             }
+
+            if (!this.state) {
+                this.state = {};
+            }
+
             if (!thisOptions.withProps) {
-                if (!this.state) {
-                    this.state = {};
-                }
                 const calculatedState = getState(
                     con,
                     undefined,

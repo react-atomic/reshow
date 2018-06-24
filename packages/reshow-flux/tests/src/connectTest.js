@@ -63,7 +63,6 @@ describe('Test Connect', ()=>{
        let calculateTimes = 0;
        class FakeComponent extends Component
        {
-            state = {}
             static getStores()
             {
                 return [store];
@@ -159,7 +158,6 @@ describe('Test Connect', ()=>{
     it('could work with getDerivedStateFromProps override', ()=>{
        class FakeComponent extends Component
        {
-            state = {}
             static getStores(props)
             {
                 return [store];
