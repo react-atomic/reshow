@@ -8,6 +8,7 @@ export { default as realTimeStore } from './stores/realTimeStore';
 
 // Dispatch
 export { default as dispatcher, dispatch } from './dispatcher';
+export { urlDispatch } from './urlDispatcher'
 
 // Library
 export { default as handleAnchor, goToAnchor } from './handleAnchor';
@@ -26,5 +27,6 @@ export { default as ClientRoute } from '../ui/organisms/ClientRoute';
 export { default as ReshowComponent } from '../ui/organisms/ReshowComponent';
 export { default as Return } from '../ui/organisms/Return';
 export { default as RealTimeReturn } from '../ui/organisms/RealTimeReturn';
+export { default as UrlReturn } from '../ui/organisms/UrlReturn';
 export { default as Section } from '../ui/organisms/Section';
 export { default, update } from '../ui/organisms/Reshow';

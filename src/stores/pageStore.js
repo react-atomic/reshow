@@ -1,18 +1,12 @@
-'use strict';
-
 import {ReduceStore} from 'reshow-flux';
 import dispatcher from '../dispatcher';
 
 const keys = Object.keys;
-const updateUrl = url => history.pushState('','',url);
 
 class PageStore extends ReduceStore
 {
     reduce (state, action)
     {
-        if (action.url) {
-            updateUrl(action.url);
-        }
         switch (action.type) {
             case 'config/set':
                 return state.merge(action.params);
