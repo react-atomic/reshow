@@ -71,21 +71,23 @@ const connect = (Base, options) =>
             if (thisOptions.withConstructor) {
                 this.__setStores(getStores(
                     con,
-                    this.props
+                    props
                 ));
             }
-            if (!this.state) {
-                this.state = {};
-            }
-            const calculatedState = getState(
-                con,
-                undefined,
-                props
-            );
-            if (calculatedState) {
-                keys(calculatedState).forEach (
-                    key => this.state[key] = calculatedState[key]
+            if (!thisOptions.withProps) {
+                if (!this.state) {
+                    this.state = {};
+                }
+                const calculatedState = getState(
+                    con,
+                    undefined,
+                    props
                 );
+                if (calculatedState) {
+                    keys(calculatedState).forEach (
+                        key => this.state[key] = calculatedState[key]
+                    );
+                }
             }
         }
 
