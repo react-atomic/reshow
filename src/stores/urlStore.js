@@ -53,7 +53,7 @@ class UrlStore extends ReduceStore
     {
         window.addEventListener("popstate", () => {
             const doc = document
-            urlDispatch({type: 'url', params: doc.URL}) 
+            urlDispatch({type: 'url', url: doc.URL}) 
         }, true);
     }
 
@@ -66,7 +66,10 @@ class UrlStore extends ReduceStore
         let url;
         switch(action.type) {
             case 'url':
-                url = action.params
+                url = get(action, ['url'])
+                if (!url) {
+                    console.error('Not assign url', action)
+                }
                 break
             case 'query':
                 url = doc.URL

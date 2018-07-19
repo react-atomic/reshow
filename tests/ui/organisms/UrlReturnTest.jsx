@@ -42,7 +42,7 @@ describe('Test Url Return', ()=>{
    it('test get pathname', ()=>{
        const vDom = <FakeComponent urlKey=":pathname" />;
        const uFake  = mount(vDom).instance();
-       urlDispatch({type: 'url', params: 'http://localhost/aaa'});
+       urlDispatch({type: 'url',  url: 'http://localhost/aaa' });
        expect(uFake.el.props[':pathname']).to.deep.equal(['', 'aaa']);
    })
 
