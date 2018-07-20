@@ -8,6 +8,7 @@ import getChildren from '../../src/getChildren';
 import realTimeStore from '../../src/stores/realTimeStore';
 
 const realTimeKey = '--realTimeData--';
+const keys = Object.keys
 
 class RealTimeReturn extends PureComponent
 {
@@ -32,7 +33,11 @@ class RealTimeReturn extends PureComponent
            data['--ws-url--'] = wsUrl;
            return data;
        } else {
-           return prevState;
+           // Reset for when reconnection to new websocket server
+           // will not send duplicate data to client
+           const reset = {}
+           keys(prevState).forEach(key=>reset[key]=null)
+           return reset
        }
   }
 
