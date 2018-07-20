@@ -23,8 +23,9 @@ describe('Test RealTimeReturn', ()=>{
        {
             render()
             {
+                const {realTimeReset} = this.props
                 return (
-                <RealTimeReturn realTimePath={['r']}>
+                <RealTimeReturn realTimeReset={realTimeReset} realTimePath={['r']}>
                     <TestEl ref={el=>this.el=el}/>
                 </RealTimeReturn>
                 );
@@ -38,8 +39,18 @@ describe('Test RealTimeReturn', ()=>{
        dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
        expect(uFake.el.props.data).to.equal('bar');
     });
+
     it('dispatch realtime first', ()=>{
        const vDom = <FakeComponent />;
+       const uFake  = mount(vDom).instance();
+       dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
+       expect(uFake.el.props.data).to.equal('bar');
+       dispatch({data:'foo'});
+       expect(uFake.el.props.data).to.equal('bar');
+    });
+
+    it('test realtime reset', ()=>{
+       const vDom = <FakeComponent realTimeReset={true} />;
        const uFake  = mount(vDom).instance();
        dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
        expect(uFake.el.props.data).to.equal('bar');

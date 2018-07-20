@@ -15,7 +15,8 @@ class RealTimeReturn extends PureComponent
   static defaultProps = {
       ...initProps,
       realTimePath: [realTimeKey],
-      realTimeUrl: null
+      realTimeUrl: null,
+      realTimeReset: false,
   };
 
   static getStores(props)
@@ -26,18 +27,20 @@ class RealTimeReturn extends PureComponent
   static calculateState(prevState, props)
   {
        const realTimeState = realTimeStore.getState();
-       const {realTimePath: path, realTimeUrl: url} = props;
+       const {realTimePath: path, realTimeUrl: url, realTimeReset} = props;
        const data = get(realTimeState, path);
        const wsUrl = get(realTimeState, ['--realTimeUrl--']);
        if (data && (!url || url === wsUrl)) {
            data['--ws-url--'] = wsUrl;
            return data;
        } else {
-           // Reset for when reconnection to new websocket server
-           // will not send duplicate data to client
-           const reset = {}
-           keys(prevState).forEach(key=>reset[key]=null)
-           return reset
+           if (realTimeReset) {
+               // Reset for when reconnection to new websocket server
+               // will not send duplicate data to client
+               const reset = {}
+               keys(prevState).forEach(key=>reset[key]=null)
+               return reset
+           }
        }
   }
 
