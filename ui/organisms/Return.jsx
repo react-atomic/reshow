@@ -6,7 +6,7 @@ class Return extends ReshowComponent
 {
     render()
     {
-        const {children, initStates, pathStates, ...props} = this.props
+        const {children, immutable, initStates, pathStates, ...props} = this.props
         return getChildren(
             children,
             {

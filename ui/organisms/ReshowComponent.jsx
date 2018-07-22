@@ -14,6 +14,7 @@ const initProps = {
     pathStates: {
         I13N: ['data', 'I13N']
     },
+    immutable: false
 };
 
 class ReshowComponent extends PureComponent
@@ -39,24 +40,38 @@ class ReshowComponent extends PureComponent
             return prevState
         }
         const results = {};
-        const {initStates, pathStates} = props
+        const {initStates, pathStates, immutable} = props
+        const thisImmutable = immutable || pageState.get('--immutable--')
         get(initStates, null, []).forEach( key => {
             const data = pageState.get(key);
-            if (data && data.toJS) {
+            if (!thisImmutable && data && data.toJS) {
                 results[key] = data.toJS();
             } else {
                 results[key] = data;
             }
-        });
-        keys(get(pathStates, null, {})).forEach( key =>
-            results[key] = get(results, pathStates[key])
-        );
-        return results;
+        })
+        keys(get(pathStates, null, {})).forEach( key => {
+            const path = get(pathStates, [key], [])
+            if (path > 1) {
+                const data = get(results, path[0])
+                if (data && data.toJS) {
+                    results[key] = get(data.toJS(), path.slice(1))
+                    return
+                } else {
+                    results[key] = get(data, path.slice(1))
+                    return
+                }
+            } else {
+                results[key] = get(results, path)
+                return
+            }
+        })
+        return results
    }
 }
 
 export default connect(
     ReshowComponent,
     {withProps:true}
-);
-export {initProps};
+)
+export {initProps}
