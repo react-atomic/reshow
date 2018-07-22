@@ -8,17 +8,34 @@ class Section extends ReshowComponent
 {
    static defaultProps = {
         initStates: ['section', 'I18N'],
+        immutable: false,
    };
 
     render()
     {
-        const {name, children, initStates, ...otherProps} = this.props;
-        const {section, I18N} = this.state;
-        const {shouldRender, ...others} = get(section, [name], {});
-        if (!shouldRender) {
+        const {immutable: propsImmutable, name, children, initStates, ...otherProps} = this.props;
+        const {immutable, section, I18N} = this.state;
+        if (!section) {
             return null
         }
-        const allParams = {...others, ...otherProps, I18N}
+        let allParams
+        if (immutable) {
+            const thisSection = section.get(name)
+            const shouldRender = thisSection.get('shouldRender')
+            if (!shouldRender) {
+                return null
+            }
+            allParams = {...otherProps, I18N}
+            thisSection.delete('shouldRender').keySeq().forEach(key => {
+                allParams[key] = thisSection.get(key)
+            })
+        } else {
+            const {shouldRender, ...others} = get(section, [name], {});
+            if (!shouldRender) {
+                return null
+            }
+            allParams = {...others, ...otherProps, I18N}
+        }
         return getChildren(children, allParams)
     }
 }

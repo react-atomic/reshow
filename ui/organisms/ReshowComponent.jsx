@@ -1,6 +1,7 @@
-import React, {PureComponent} from 'react'; 
-import get from 'get-object-value';
-import {connect} from 'reshow-flux';
+import React, {PureComponent} from 'react'
+import get from 'get-object-value'
+import {connect} from 'reshow-flux'
+import {Map} from 'immutable'
 
 import {
     global,
@@ -39,33 +40,25 @@ class ReshowComponent extends PureComponent
         if (thisThemePath && global.path !== thisThemePath) {
             return prevState
         }
-        const results = {};
-        const {initStates, pathStates, immutable} = props
-        const thisImmutable = immutable || pageState.get('--immutable--')
+        const {initStates, pathStates, immutable: propsImmutable} = props
+        const immutable = propsImmutable || pageState.get('--immutable--')
+        const results = {}
+        if (immutable) {
+            results.immutable = immutable
+        }
         get(initStates, null, []).forEach( key => {
             const data = pageState.get(key);
-            if (!thisImmutable && data && data.toJS) {
+            if (!immutable && data && data.toJS) {
                 results[key] = data.toJS();
             } else {
                 results[key] = data;
             }
         })
-        keys(get(pathStates, null, {})).forEach( key => {
-            const path = get(pathStates, [key], [])
-            if (path > 1) {
-                const data = get(results, path[0])
-                if (data && data.toJS) {
-                    results[key] = get(data.toJS(), path.slice(1))
-                    return
-                } else {
-                    results[key] = get(data, path.slice(1))
-                    return
-                }
-            } else {
-                results[key] = get(results, path)
-                return
-            }
-        })
+        keys(get(pathStates, null, {})).forEach(
+            key => results[key] = immutable ?
+                get(results, [pathStates[key][0]], Map()).getIn(pathStates[key].slice(1)) : 
+                get(results, pathStates[key])
+        )
         return results
    }
 }

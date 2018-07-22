@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {Map} from 'immutable';
 import {
-    Return,
+    Section,
     dispatch
 } from './../../../cjs/src/index';
 
@@ -9,7 +9,6 @@ import {expect} from 'chai';
 import {shallow, mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
-
 
 describe('Test Return', ()=>{ 
 
@@ -27,38 +26,44 @@ describe('Test Return', ()=>{
         {
             const {immutable} = this.props
             return (
-            <Return immutable={immutable}>
+            <Section name="test" immutable={immutable}>
                 <TestEl ref={el=>this.el=el}/>
-            </Return>
+            </Section>
             );
         }
    }
 
    beforeEach(() => dispatch('config/reset'))
 
-   it('test immuteable', ()=>{
+   it('Section with immutable', () => {
        const vDom = <FakeComponent immutable={true}/>;
        const uFake  = mount(vDom).instance();
-       dispatch({data: {foo:'bar', I13N: {aaa: 'bbb'}}})
-       expect(Map.isMap(uFake.el.props.data)).to.be.true;
-       expect(Map.isMap(uFake.el.props.I13N)).to.be.true;
+       dispatch({
+        section: {
+            test: {
+                shouldRender: true,
+                aaa: {bbb: 'ccc'}
+            }
+        },
+        I18N: { ddd: 'fff'}
+       })
+       expect(Map.isMap(uFake.el.props.aaa)).to.be.true
+       expect(Map.isMap(uFake.el.props.I18N)).to.be.true
    })
 
-   it('test immuteable with global config', ()=>{
+   it('Section without immutable', () => {
        const vDom = <FakeComponent />;
        const uFake  = mount(vDom).instance();
        dispatch({
-        data: {foo:'bar'},
-        '--immutable--': true
+        section: {
+            test: {
+                shouldRender: true,
+                aaa: {bbb: 'ccc'}
+            }
+        },
+        I18N: { ddd: 'fff'}
        })
-       expect(Map.isMap(uFake.el.props.data)).to.be.true;
-   })
-
-
-   it('test not immuteable', ()=>{
-       const vDom = <FakeComponent />;
-       const uFake  = mount(vDom).instance();
-       dispatch({data: {foo:'bar'}})
-       expect(Map.isMap(uFake.el.props.data)).to.be.false;
+       expect(Map.isMap(uFake.el.props.aaa)).to.be.false
+       expect(Map.isMap(uFake.el.props.I18N)).to.be.false
    })
 })
