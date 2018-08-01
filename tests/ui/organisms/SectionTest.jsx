@@ -10,7 +10,7 @@ import {shallow, mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-describe('Test Return', ()=>{ 
+describe('Test Section', ()=>{ 
 
    class TestEl extends PureComponent 
    {
@@ -22,11 +22,15 @@ describe('Test Return', ()=>{
 
    class FakeComponent extends PureComponent 
    {
+        static defaultProps = {
+            name: 'test'
+        }
+
         render()
         {
-            const {immutable} = this.props
+            const {immutable, name} = this.props
             return (
-            <Section name="test" immutable={immutable}>
+            <Section name={name} immutable={immutable}>
                 <TestEl ref={el=>this.el=el}/>
             </Section>
             );
@@ -65,5 +69,23 @@ describe('Test Return', ()=>{
        })
        expect(Map.isMap(uFake.el.props.aaa)).to.be.false
        expect(Map.isMap(uFake.el.props.I18N)).to.be.false
+   })
+
+   it('Section is not existed without immutable', () => {
+       const vDom = <FakeComponent name="xxx" />;
+       const uFake  = mount(vDom).instance();
+       dispatch({
+        section: null,
+       })
+       expect('undefined' === typeof uFake.el).to.be.true
+   })
+
+   it('Section is not existed with immutable', () => {
+       const vDom = <FakeComponent name="xxx" immutable={true} />;
+       const uFake  = mount(vDom).instance();
+       dispatch({
+        section: null,
+       })
+       expect('undefined' === typeof uFake.el).to.be.true
    })
 })

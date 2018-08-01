@@ -21,6 +21,9 @@ class Section extends ReshowComponent
         let allParams
         if (immutable) {
             const thisSection = section.get(name)
+            if (!thisSection) {
+                return null
+            }
             const shouldRender = thisSection.get('shouldRender')
             if (!shouldRender) {
                 return null
