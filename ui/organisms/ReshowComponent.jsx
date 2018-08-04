@@ -41,7 +41,7 @@ class ReshowComponent extends PureComponent
             return prevState
         }
         const {initStates, pathStates, immutable: propsImmutable} = props
-        const immutable = propsImmutable || pageState.get('--immutable--')
+        const immutable = propsImmutable || pageState.get('immutable')
         const results = {}
         if (immutable) {
             results.immutable = immutable

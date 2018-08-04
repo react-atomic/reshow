@@ -49,7 +49,7 @@ describe('Test Return', ()=>{
        const uFake  = mount(vDom).instance();
        dispatch({
         data: {foo:'bar'},
-        '--immutable--': true
+        immutable: true
        })
        expect(Map.isMap(uFake.el.props.data)).to.be.true;
    })
