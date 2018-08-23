@@ -18,17 +18,18 @@ const goToAnchor = anchor => goAnchorDelay =>
 
 const handleAnchor = path => goAnchorDelay =>
 {
-    let anchor;
-    const anchorStart = path.indexOf('#');
+    let anchor
+    const hashStart = path.indexOf('#')
+    const anchorStart = -1 !== hashStart ? hashStart : path.indexOf('%23')
     if (-1 !== anchorStart) {
-        anchor = path.substring(anchorStart);
-        path = path.substring(0, anchorStart);
+        anchor = path.substring(anchorStart)
+        path = path.substring(0, anchorStart)
     }
     if (anchor) {
-        goToAnchor(anchor)(goAnchorDelay);
+        goToAnchor(anchor)(goAnchorDelay)
     }
-    return path;
+    return path
 };
 
-export {goToAnchor};
-export default handleAnchor;
+export {goToAnchor}
+export default handleAnchor
