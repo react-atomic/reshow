@@ -6,20 +6,18 @@ import handleAnchor from '../../src/handleAnchor';
 
 const defaultParseUrl = url => handleAnchor => goAnchorDelay =>
 {
-    const separator = '/';
-    const params = url.split(separator);
-    const last = params.length-1;
-    let lastPath = params[last];
-    if (lastPath) {
-        lastPath = handleAnchor(lastPath)(goAnchorDelay);
-        return {
-            themePath: lastPath,
-        };
-    } else {
-        return {
-            themePath: null
-        };
+    const separator = '/'
+    const params = url.split(separator)
+    const last = params.length-1
+    const lastPath = params[last]
+    const next = {
+        pvid: url,
+        themePath: null
     }
+    if (lastPath) {
+        next.themePath = handleAnchor(lastPath)(goAnchorDelay)
+    }
+    return next
 };
 
 class ClientRoute extends Reshow
@@ -34,7 +32,7 @@ class ClientRoute extends Reshow
         super.componentDidMount();
         const self = this;
         const props = this.props;
-        const updateWithUrl = (url) =>
+        const updateWithUrl = url =>
         {
             const {parseUrl, goAnchorDelay} = props;
             const thisParseUrlFunc = (parseUrl) ? parseUrl : defaultParseUrl;
