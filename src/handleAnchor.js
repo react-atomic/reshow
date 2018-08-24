@@ -3,6 +3,8 @@ import smoothScrollTo from 'smooth-scroll-to';
 
 let goAnchorTimer;
 
+const urlDecode = s => decodeURIComponent(s)
+
 const goToAnchor = anchor => goAnchorDelay =>
 {
     if (!goAnchorDelay) { goAnchorDelay = 0; }
@@ -22,7 +24,7 @@ const handleAnchor = path => goAnchorDelay =>
     const hashStart = path.indexOf('#')
     const anchorStart = -1 !== hashStart ? hashStart : path.indexOf('%23')
     if (-1 !== anchorStart) {
-        anchor = path.substring(anchorStart)
+        anchor = urlDecode(path.substring(anchorStart))
         path = path.substring(0, anchorStart)
     }
     if (anchor) {
