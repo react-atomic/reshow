@@ -12,7 +12,7 @@ export default dispatcher;
 /**
  * Dispatch 
  *
- * import {urlDispatch} from 'reshow';
- * urlDispatch({xxx:yyy});
+ * import {storageDispatch} from 'reshow';
+ * storageDispatch({xxx:yyy});
  */
-export const urlDispatch = dispatcher.dispatch.bind(dispatcher);
+export const storageDispatch = dispatcher.dispatch.bind(dispatcher);

@@ -1,7 +1,7 @@
 import {ReduceStore} from 'reshow-flux'
-import urlDispatcher, {urlDispatch} from '../urlDispatcher';
+import urlDispatcher, {urlDispatch} from '../urlDispatcher'
 import get from 'get-object-value'
-import setUrl, {getUrl} from 'seturl';
+import setUrl, {getUrl} from 'seturl'
 
 const keys = Object.keys
 
