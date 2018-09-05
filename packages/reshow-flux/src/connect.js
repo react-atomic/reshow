@@ -124,10 +124,15 @@ const connect = (Base, options) =>
                 thisStates = super.getDerivedStateFromProps(nextProps, prevState);
             }
             if (thisOptions.withProps) {
+                const calState = getState(
+                    ConnectedClass,
+                    {...prevState, ...thisStates},
+                    nextProps
+                )
                 thisStates = {
-                    ...thisStates,
-                    ...getState(ConnectedClass, prevState, nextProps)
-                };
+                  ...thisStates,
+                  ...calState
+                }
             }
             return thisStates;
         }
