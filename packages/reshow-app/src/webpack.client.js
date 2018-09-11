@@ -89,6 +89,7 @@ const myWebpack = (root, main, lazyConfs)=>
             plugins = plugins.concat([
                 new webpack.LoaderOptionsPlugin({
                     minimize: true,
+                    debug: false
                 }),
                 new UglifyJsPlugin(uglifyJsOptions),
             ]);
