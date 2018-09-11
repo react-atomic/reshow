@@ -1,0 +1,11 @@
+{
+  "name": "reshow-runtime",
+  "version": "0.0.1",
+  "description": "Babel runtime alternative",
+  "repository": "react-atomic/reshow",
+  "keywords": [
+    "babel"
+  ],
+  "author": "Hill <hill@kimo.com>",
+  "license": "MIT"
+}

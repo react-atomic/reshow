@@ -1,0 +1,21 @@
+{
+  "repository": "react-atomic/reshow",
+  "keywords": [
+    "flux"
+  ],
+  "author": "Hill <hill@kimo.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-core": "^6.7.5",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-transform-react-constant-elements": "^6.9.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.5.0"
+  },
+  "scripts": {
+    "copy": "rm -rf build && BABEL_ENV=build babel src -d build && cp package.json.build ./build/package.json && cp README.md ./build/",
+    "build": "npm run copy && cd build && yarn install",
+    "prepublishOnly": "npm run build"
+  }
+}
