@@ -32,12 +32,7 @@ if (CONFIG) {
 }
 
 let devtool = 'cheap-source-map';
-let plugins = [
-    new CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'vendor.bundle.js'
-    }),
-];
+let plugins = []
 let babelLoaderOption = {
     cacheDirectory: true,
     plugins: [
@@ -135,10 +130,16 @@ const myWebpack = (root, main, lazyConfs)=>
         main = { main: './build/src/client.js' };
     }
 
-    let entry = {
-        ...main,
-        vendor
-    };
+    const entry = main
+    if (vendor && vendor.length) {
+      entry.vendor = vendor
+      plugins = plugins.concat([
+        new CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.bundle.js'
+        }),
+      ])
+    }
     plugins = plugins.concat([
         new BundleTracker({
             path,
