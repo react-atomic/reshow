@@ -1,6 +1,6 @@
 import mitt from 'mitt';
 
-const CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'chg';
 
 class Store {
   reduce() {
@@ -11,7 +11,7 @@ class Store {
     console.error('Not override getInitialState().');
   }
 
-  areEqual(one, two) {
+  equals(one, two) {
     return one === two;
   }
 
@@ -28,9 +28,9 @@ class Store {
     const startingState = this._state;
     const endingState = this.reduce(startingState, action);
     if (endingState === undefined) {
-      console.error('returned undefined from reduce(...)');
+      console.error('reduce() return undefined.');
     }
-    if (!this.areEqual(startingState, endingState)) {
+    if (!this.equals(startingState, endingState)) {
       this._state = endingState;
       this.mitt.emit(CHANGE_EVENT);
     }
