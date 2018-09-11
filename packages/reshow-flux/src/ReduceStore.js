@@ -1,38 +1,14 @@
-import mitt from "mitt";
 import {Map} from 'immutable';
+import {Store} from 'reshow-flux-base';
 
-const CHANGE_EVENT = 'change';
-
-class MittStore
+class ReduceStore extends Store
 {
-
-  reduce()
-  {
-      console.error('You should override reduce() function.');
-  }
-
   getInitialState()
   {
     return Map();
   }
 
-  areEqual(one, two)
-  {
-      return one === two;
-  }
-
-  constructor(dispatcher)
-  {
-    dispatcher.register((payload) => {
-        this.__invokeOnDispatch(payload);
-    });
-  }
-
   /* Following not extendable */
-
-  _state = this.getInitialState();
-  getState = () => this._state;
-
   getMap = (k, state)=>
   {
       if (!state) {
@@ -47,29 +23,6 @@ class MittStore
       }
       return v;
   }
-
-  __invokeOnDispatch = action =>
-  {
-      let __changed = false;
-      const startingState = this._state;
-      const endingState = this.reduce(startingState, action);
-      if (endingState === undefined) {
-        console.error('returned undefined from reduce(...)');
-      }
-      if (!this.areEqual(startingState, endingState)) {
-        this._state = endingState;
-        __changed = true;
-      }
-      if (__changed) {
-        this.mitt.emit(CHANGE_EVENT);
-      }
-  }
-
-  // mitt event 
-  mitt = new mitt();
-  addListener = listener => this.mitt.on(CHANGE_EVENT, listener);
-  removeListener = listener => this.mitt.off(CHANGE_EVENT, listener);
-
 }
 
-export default MittStore;
+export default ReduceStore;

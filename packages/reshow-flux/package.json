@@ -14,7 +14,7 @@
   "dependencies": {
     "array.dedup": "*",
     "immutable": "*",
-    "mitt": "*"
+    "reshow-flux-base": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.x",
