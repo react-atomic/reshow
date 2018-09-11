@@ -2,13 +2,13 @@ import mitt from 'mitt';
 
 const CHANGE_EVENT = 'change';
 
-class BaseReduceStore {
+class Store {
   reduce() {
-    console.error('You should override reduce() function.');
+    console.error('Not override reduce().');
   }
 
   getInitialState() {
-    console.error('You should override getInitialState() function.');
+    console.error('Not override getInitialState().');
   }
 
   areEqual(one, two) {
@@ -42,4 +42,4 @@ class BaseReduceStore {
   removeListener = listener => this.mitt.off(CHANGE_EVENT, listener);
 }
 
-export default BaseReduceStore;
+export default Store;

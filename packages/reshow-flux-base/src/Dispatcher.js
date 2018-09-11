@@ -1,22 +1,22 @@
 class Dispatcher {
-  callbacks = []
+  callbacks = [];
 
   register(callback) {
-    this.callbacks.push(callback)
+    this.callbacks.push(callback);
   }
 
   dispatch(payload, params) {
     if (!payload) {
-        payload = {}
+      payload = {};
     }
     if ('string' === typeof payload) {
-        payload = {type: payload, params}
-        if (!params) {
-            delete payload.params
-        }
+      payload = {type: payload, params};
+      if (!params) {
+        delete payload.params;
+      }
     }
-    this.callbacks.forEach(c => c(payload))
+    this.callbacks.forEach(c => c(payload));
   }
 }
 
-export default Dispatcher
+export default Dispatcher;

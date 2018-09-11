@@ -1,2 +1,2 @@
-export {default as BaseReduceStore} from './BaseReduceStore';
+export {default as Store} from './Store';
 export {default as Dispatcher} from './Dispatcher';

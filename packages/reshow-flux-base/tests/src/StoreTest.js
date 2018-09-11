@@ -1,10 +1,10 @@
 'use strict';
 
-import {Dispatcher, BaseReduceStore} from '../../src/index';
+import {Dispatcher, Store} from '../../src/index';
 import {expect} from 'chai';
 
 describe('Test Store', ()=>{ 
-    class FakeStore extends BaseReduceStore
+    class FakeStore extends Store
     {
         getInitialState()
         {
