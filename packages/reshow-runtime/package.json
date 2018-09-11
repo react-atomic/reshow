@@ -14,8 +14,11 @@
     "babel-preset-stage-0": "^6.5.0"
   },
   "scripts": {
-    "copy": "rm -rf build && BABEL_ENV=build babel src -d build && cp package.json.build ./build/package.json && cp README.md ./build/",
-    "build": "npm run copy && cd build && yarn install",
+    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "copy": "cp package.json.build ./build/package.json && cp README.md ./build/",
+    "build:cjs": "BABEL_ENV=build babel src -d build",
+    "build:es": "BABEL_ENV=es babel src -d build/es",
+    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn install",
     "prepublishOnly": "npm run build"
   }
 }

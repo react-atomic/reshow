@@ -2,11 +2,12 @@
     "env": {
         "build": {
             "presets": [
-              ["env", {"modules": false}],
+              ["env"],
               "react",
               "stage-0"
             ],
             "plugins": [
+              "add-module-exports",
               "transform-object-assign",
               "transform-react-pure-class-to-function",
               "transform-react-constant-elements",
