@@ -1,13 +1,12 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/src/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
   "keywords": [
-    "react",
-    "reactjs"
+    "flux"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
@@ -19,20 +18,12 @@
     "babel-core": "^6.x",
     "babel-plugin-add-module-exports": "*",
     "babel-plugin-transform-object-assign": "*",
-    "babel-plugin-transform-react-constant-elements": "*",
-    "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-preset-env": "*",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-0": "*",
     "chai": "*",
-    "enzyme": "*",
-    "enzyme-adapter-react-16": "*",
     "jsdom": "*",
     "jsdom-global": "*",
-    "mocha": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-test-renderer": "*"
+    "mocha": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
