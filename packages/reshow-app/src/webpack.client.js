@@ -37,7 +37,8 @@ let babelLoaderOption = {
     cacheDirectory: true,
     plugins: [
         'syntax-dynamic-import'
-    ]
+    ],
+    presets: [['env', { modules: false }], 'stage-0'],
 };
 
 /* Default uglifyJs options */

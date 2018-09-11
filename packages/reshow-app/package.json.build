@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.1.103",
+  "version": "0.2.0",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -10,7 +10,6 @@
     "babel-cli": "^6.x",
     "babel-core": "^6.x",
     "babel-loader": "^7.x",
-    "babel-runtime": "*",
     "babel-plugin-transform-runtime": "*",
     "babel-plugin-transform-object-assign": "*",
     "babel-plugin-transform-react-constant-elements": "*",
@@ -28,7 +27,8 @@
     "webpack-bundle-analyzer": "*",
     "ora": "2.0.0",
     "organism-react-ajax": "*",
-    "reshow-worker": "*"
+    "reshow-worker": "*",
+    "reshow-runtime": "*"
   },
   "devDependencies": {
     "npmignore": "*",
