@@ -4,23 +4,7 @@
             "presets": [
               ["env", {
                 "loose": true, 
-                "modules": false,
-                "targets": ["last 2 versions", "ie >= 8"]
-              }],
-              "react",
-              "stage-0"
-            ],
-            "plugins": [
-              "transform-object-assign",
-              "transform-react-constant-elements",
-              ["transform-react-remove-prop-types", {"mode": "wrap"}]
-            ]
-        },
-        "production": {
-            "presets": [
-              ["env", {
-                "loose": true, 
-                "modules": false,
+                "modules": "commonjs",
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
               "react",
@@ -32,6 +16,6 @@
               "transform-react-pure-class-to-function",
               ["transform-react-remove-prop-types", {"mode": "wrap"}]
             ]
-        }
+        },
     }
 }
