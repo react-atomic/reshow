@@ -69,10 +69,11 @@ const uglifyJsOptions = {
 };
 
 /*vendor*/
-const deduplicate = (arr) => {
-    return Array.from(new Set(arr));
-}
+const deduplicate = arr => Array.from(new Set(arr))
 let vendor = ['react', 'react-dom', 'immutable'];
+if (confs.resetVendor) {
+    vendor = confs.resetVendor
+}
 if (confs.webpackVendor) {
     vendor = vendor.concat(confs.webpackVendor);
 }
