@@ -2937,8 +2937,8 @@ reshow-flux@*:
     reshow-flux-base "*"
 
 reshow-runtime@*:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.0.7.tgz#cb6e46d3e67fe56e7ce19ad31c85ed20bc0e3728"
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.0.10.tgz#baf013f5d910b7a647b02c5e5eef7b9854d6092c"
 
 resolve-url@^0.2.1:
   version "0.2.1"
