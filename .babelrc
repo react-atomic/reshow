@@ -8,6 +8,12 @@
             ],
             "plugins": [
               "add-module-exports",
+              ["transform-runtime", {
+                "moduleName": "reshow-runtime",
+                "polyfill": false,
+                "regenerator": false
+                }
+              ],
               "transform-react-constant-elements",
               "transform-object-assign"
             ]
@@ -25,6 +31,12 @@
               "stage-0"
             ],
             "plugins": [
+              ["transform-runtime", {
+                "moduleName": "reshow-runtime/es",
+                "polyfill": false,
+                "regenerator": false
+                }
+              ],
               "transform-object-assign",
               "transform-react-pure-class-to-function",
               "transform-react-constant-elements"

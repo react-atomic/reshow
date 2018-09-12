@@ -16,12 +16,6 @@
   },
   "devDependencies": {
     "babel-cli": "^6.x",
-    "babel-core": "^6.x",
-    "babel-plugin-add-module-exports": "*",
-    "babel-plugin-transform-object-assign": "*",
-    "babel-plugin-transform-runtime": "*",
-    "babel-preset-env": "*",
-    "babel-preset-stage-0": "*",
     "chai": "*",
     "jsdom": "*",
     "jsdom-global": "*",
