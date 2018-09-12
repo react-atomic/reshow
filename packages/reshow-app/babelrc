@@ -14,7 +14,12 @@
               "transform-object-assign",
               "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {"moduleName": "reshow-runtime/es"}],
+              ["transform-runtime", {
+                "moduleName": "reshow-runtime/es",
+                "polyfill": false,
+                "regenerator": false
+                }
+              ],
               ["transform-react-remove-prop-types", {"mode": "wrap"}]
             ]
         },
@@ -32,7 +37,12 @@
               "transform-object-assign",
               "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {"moduleName": "reshow-runtime/es"}],
+              ["transform-runtime", {
+                "moduleName": "reshow-runtime/es",
+                "polyfill": false,
+                "regenerator": false
+                }
+              ],
               ["transform-react-remove-prop-types", {"mode": "wrap"}]
             ]
         }
