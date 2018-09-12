@@ -14,7 +14,9 @@
   "dependencies": {
     "get-storage": "*",
     "getoffset": "*",
+    "memoize-one": "*",
     "organism-react-ajax": "*",
+    "organism-react-popup": "*",
     "reshow-flux": "*",
     "seturl": "*",
     "smooth-scroll-to": "*"

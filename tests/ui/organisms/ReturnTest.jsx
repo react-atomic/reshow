@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {Map} from 'immutable';
 import {
     Return,
     dispatch
@@ -23,12 +22,19 @@ describe('Test Return', ()=>{
 
    class FakeComponent extends PureComponent 
    {
+        state = {}
+
+        setNew(k, v)
+        {
+          this.setState({[k]:v})
+        }
+        
         render()
         {
             const {immutable} = this.props
             return (
             <Return immutable={immutable}>
-                <TestEl ref={el=>this.el=el}/>
+                <TestEl ref={el=>this.el=el} {...this.state}/>
             </Return>
             );
         }
@@ -36,29 +42,30 @@ describe('Test Return', ()=>{
 
    beforeEach(() => dispatch('config/reset'))
 
-   it('test immuteable', ()=>{
-       const vDom = <FakeComponent immutable={true}/>;
+   it('assign props', ()=>{
+       const vDom = <FakeComponent />;
        const uFake  = mount(vDom).instance();
        dispatch({data: {foo:'bar', I13N: {aaa: 'bbb'}}})
-       expect(Map.isMap(uFake.el.props.data)).to.be.true;
-       expect(Map.isMap(uFake.el.props.I13N)).to.be.true;
+       expect(uFake.el.props.data).to.deep.equal({foo:'bar', I13N: {aaa: 'bbb'}})
+       expect(uFake.el.props.I13N).to.deep.equal({aaa:'bbb'})
    })
 
-   it('test immuteable with global config', ()=>{
-       const vDom = <FakeComponent />;
+   it('test Immutable path state', ()=>{
+       const vDom = <FakeComponent immutable />;
        const uFake  = mount(vDom).instance();
        dispatch({
-        data: {foo:'bar'},
-        immutable: true
+        data: {foo:'bar', I13N: {a: 'b'}}
        })
-       expect(Map.isMap(uFake.el.props.data)).to.be.true;
+       const firstData = uFake.el.props.data
+       const firstI13N = uFake.el.props.I13N
+       uFake.setNew('bar', 'bbb')
+       const secondData = uFake.el.props.data
+       const secondI13N = uFake.el.props.I13N
+       expect(firstData===secondData).to.be.true
+       expect(firstI13N===secondI13N).to.be.true
+       expect(firstData.toJS()).to.deep.equal({foo:'bar', I13N: {a: 'b'}})
+       expect(firstI13N.toJS()).to.deep.equal({a: 'b'})
    })
 
 
-   it('test not immuteable', ()=>{
-       const vDom = <FakeComponent />;
-       const uFake  = mount(vDom).instance();
-       dispatch({data: {foo:'bar'}})
-       expect(Map.isMap(uFake.el.props.data)).to.be.false;
-   })
 })

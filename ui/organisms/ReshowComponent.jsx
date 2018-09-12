@@ -4,11 +4,16 @@ import {connect} from 'reshow-flux'
 import {Map} from 'immutable'
 
 import {
+    toJS,
     global,
     pageStore
 } from '../../src/index';
 
 const keys = Object.keys;
+const isArray = Array.isArray
+
+const getImmutable = immutable => data =>
+  (!immutable) ? toJS(data) : data
 
 const initProps = {
     initStates: ['data', 'I18N'],
@@ -46,18 +51,30 @@ class ReshowComponent extends PureComponent
         if (immutable) {
             results.immutable = immutable
         }
-        get(initStates, null, []).forEach( key => {
-            const data = pageState.get(key);
-            if (!immutable && data && data.toJS) {
-                results[key] = data.toJS();
-            } else {
-                results[key] = data;
-            }
-        })
+
+        const toImmutable = getImmutable(immutable)
+
+        if (isArray(initStates)) {
+          initStates.forEach( key => {
+              const data = pageState.get(key);
+              results[key] = toImmutable(data)
+          })
+        } else if (initStates) {
+          keys(initStates).forEach(
+            key => {
+              const data = pageState.get(key)
+              const newKey = (initStates[key]) ? initStates[key] : key
+              results[newKey] = toImmutable(data)
+          })
+        }
+
         keys(get(pathStates, null, {})).forEach(
-            key => results[key] = immutable ?
-                get(results, [pathStates[key][0]], Map()).getIn(pathStates[key].slice(1)) : 
-                get(results, pathStates[key])
+            key => {
+                const thisPath = pathStates[key]
+                results[key] = immutable ?
+                get(results, [thisPath[0]], () => Map()).getIn(thisPath.slice(1)) : 
+                get(results, thisPath)
+            }
         )
         return results
    }

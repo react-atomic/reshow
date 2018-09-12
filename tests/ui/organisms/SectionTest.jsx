@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {Map} from 'immutable';
 import {
     Section,
     dispatch
@@ -39,23 +38,7 @@ describe('Test Section', ()=>{
 
    beforeEach(() => dispatch('config/reset'))
 
-   it('Section with immutable', () => {
-       const vDom = <FakeComponent immutable={true}/>;
-       const uFake  = mount(vDom).instance();
-       dispatch({
-        section: {
-            test: {
-                shouldRender: true,
-                aaa: {bbb: 'ccc'}
-            }
-        },
-        I18N: { ddd: 'fff'}
-       })
-       expect(Map.isMap(uFake.el.props.aaa)).to.be.true
-       expect(Map.isMap(uFake.el.props.I18N)).to.be.true
-   })
-
-   it('Section without immutable', () => {
+   it('Section is existed', () => {
        const vDom = <FakeComponent />;
        const uFake  = mount(vDom).instance();
        dispatch({
@@ -67,11 +50,11 @@ describe('Test Section', ()=>{
         },
         I18N: { ddd: 'fff'}
        })
-       expect(Map.isMap(uFake.el.props.aaa)).to.be.false
-       expect(Map.isMap(uFake.el.props.I18N)).to.be.false
+       expect(uFake.el.props.aaa).to.deep.equal({bbb: 'ccc'})
+       expect(uFake.el.props.I18N).to.deep.equal({ddd: 'fff'})
    })
 
-   it('Section is not existed without immutable', () => {
+   it('Section is not existed', () => {
        const vDom = <FakeComponent name="xxx" />;
        const uFake  = mount(vDom).instance();
        dispatch({
@@ -80,8 +63,24 @@ describe('Test Section', ()=>{
        expect('undefined' === typeof uFake.el).to.be.true
    })
 
+   it('Section is existed with immutable', () => {
+       const vDom = <FakeComponent immutable />;
+       const uFake  = mount(vDom).instance();
+       dispatch({
+        section: {
+            test: {
+                shouldRender: true,
+                aaa: {bbb: 'ccc'}
+            }
+        },
+        I18N: { ddd: 'fff'}
+       })
+       expect(uFake.el.props.aaa.toJS()).to.deep.equal({bbb: 'ccc'})
+       expect(uFake.el.props.I18N.toJS()).to.deep.equal({ddd: 'fff'})
+   })
+
    it('Section is not existed with immutable', () => {
-       const vDom = <FakeComponent name="xxx" immutable={true} />;
+       const vDom = <FakeComponent name="xxx" immutable />;
        const uFake  = mount(vDom).instance();
        dispatch({
         section: null,
