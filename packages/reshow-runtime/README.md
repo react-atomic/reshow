@@ -13,4 +13,6 @@ babel runtime alternative
      * absoluteRuntime 
 * Babel source code
   * https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-runtime/src/index.js
+* Babel mandarin
+  * https://www.babeljs.cn/docs/plugins/transform-runtime/
 
