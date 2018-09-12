@@ -14,7 +14,7 @@
     "babel-preset-stage-0": "^6.5.0"
   },
   "scripts": {
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build/",
     "build:cjs": "BABEL_ENV=build babel src -d build",
     "build:es": "BABEL_ENV=es babel src -d build/es",

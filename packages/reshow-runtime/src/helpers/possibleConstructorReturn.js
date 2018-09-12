@@ -1,4 +1,4 @@
-import checkType from './getTypeOf'
+import typeIs from '../getTypeOf'
 
 function _possibleConstructorReturn(self, call) {
   if (!self) {
@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) {
       "this hasn't been initialised - super() hasn't been called",
     );
   }
-  const isObject = 'object' === checkType(call)
+  const isObject = 'object' === typeIs(call)
   return call && (isObject || typeof call === 'function')
     ? call
     : self;
