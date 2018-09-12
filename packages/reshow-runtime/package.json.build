@@ -1,12 +1,21 @@
 {
   "name": "reshow-runtime",
-  "version": "0.0.6",
-  "modules.root": "es",
+  "version": "0.0.7",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
   "keywords": [
     "babel"
   ],
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "*",
+    "jsdom": "*",
+    "jsdom-global": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha 'tests/**/*.js' -r jsdom-global/register",
+    "prepublishOnly": "npm run test"
+  }
 }

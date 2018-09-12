@@ -11,14 +11,19 @@
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.5.0"
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "*",
+    "jsdom": "*",
+    "jsdom-global": "*",
+    "mocha": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build/",
     "build:cjs": "BABEL_ENV=build babel src -d build",
     "build:es": "BABEL_ENV=es babel src -d build/es",
-    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn install",
-    "prepublishOnly": "npm run build"
+    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && npm run build:test && cd build && yarn install",
+    "build:test": "BABEL_ENV=build babel tests -d build/tests",
+    "test": "npm run build && mocha 'build/tests/**/*.js' -r jsdom-global/register"
   }
 }
