@@ -20,7 +20,7 @@
               "stage-0"
             ],
             "plugins": [
-              ["transform-runtime", {"moduleName": "reshow-runtime"}],
+              ["transform-runtime", {"moduleName": "reshow-runtime/es"}],
               "transform-object-assign",
               "transform-react-pure-class-to-function",
               "transform-react-constant-elements"
