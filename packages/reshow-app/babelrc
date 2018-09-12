@@ -14,7 +14,7 @@
               "transform-object-assign",
               "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {"moduleName": "reshow-runtime"}],
+              ["transform-runtime", {"moduleName": "reshow-runtime/es"}],
               ["transform-react-remove-prop-types", {"mode": "wrap"}]
             ]
         },
@@ -32,7 +32,7 @@
               "transform-object-assign",
               "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {"moduleName": "reshow-runtime"}],
+              ["transform-runtime", {"moduleName": "reshow-runtime/es"}],
               ["transform-react-remove-prop-types", {"mode": "wrap"}]
             ]
         }
