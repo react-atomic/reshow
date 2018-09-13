@@ -17,11 +17,10 @@ class Store {
 
   constructor(dispatcher) {
     dispatcher.register(action => this.__invokeOnDispatch(action));
+    this._state = this.getInitialState();
   }
 
   /* Following not extendable */
-
-  _state = this.getInitialState();
   getState = () => this._state;
 
   __invokeOnDispatch = action => {
