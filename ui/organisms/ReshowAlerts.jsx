@@ -3,17 +3,22 @@ import {AlertsNotifier} from 'organism-react-popup'
 
 import Return from '../organisms/Return'
 import messageStore from '../../src/stores/messageStore'
+import {dispatch} from '../../src/index'
 
 class ReshowAlerts extends PureComponent
 {
+  handleDismiss = (item, e) =>
+  {
+    dispatch('alert/del', {
+      id: item.id
+    }) 
+  }
+
   render()
   {
     return (
       <Return stores={[messageStore]} initStates={['alerts']}>
-      {({alerts})=>{
-        console.log(alerts)
-        return <AlertsNotifier alerts={[]}/>
-      }}
+        <AlertsNotifier onDismiss={this.handleDismiss}/>
       </Return>
     )
   }
