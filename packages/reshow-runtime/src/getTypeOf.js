@@ -1,12 +1,19 @@
+const types = '|number|string|boolean|object|function|undefined|';
+
 const getTypeOf = (val, name) => {
   if (Number.isNaN(val)) {
     return 'NaN';
   }
   try {
-    if (!name) {
-      name = Object.getPrototypeOf(val).constructor.name.toLowerCase();
+    const type = Object.getPrototypeOf(val).constructor.name.toLowerCase();
+    if (-1 === types.indexOf(type)) {
+      if (!name) {
+        name = type;
+      }
+      return name;
+    } else {
+      return type;
     }
-    return name
   } catch (ex) {
     return Object.prototype.toString
       .call(val)
