@@ -1,8 +1,8 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Pure flux dispatch mechanism",
-  "main": "./build/src/index.js",
+  "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
   "keywords": [
@@ -24,7 +24,7 @@
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "build:cjs": "BABEL_ENV=build babel src -d build/src",
+    "build:cjs": "BABEL_ENV=build babel src -d build/cjs",
     "build:es": "BABEL_ENV=es babel src -d build/es",
     "prepublishOnly": "npm run test && npm run build",
     "build:test": "BABEL_ENV=build babel tests -d build/tests",

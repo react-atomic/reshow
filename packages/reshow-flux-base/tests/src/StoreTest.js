@@ -1,6 +1,6 @@
 'use strict';
 
-import {Dispatcher, Store} from '../../src/index';
+import {Dispatcher, Store} from '../../cjs/index';
 import {expect} from 'chai';
 
 describe('Test Store', ()=>{ 
