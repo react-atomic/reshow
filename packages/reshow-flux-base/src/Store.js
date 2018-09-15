@@ -31,14 +31,16 @@ class Store {
     }
     if (!this.equals(startingState, endingState)) {
       this._state = endingState;
-      this.mitt.emit(CHANGE_EVENT);
+      this.emit(CHANGE_EVENT);
     }
   };
 
   // mitt event
   mitt = new mitt();
-  addListener = listener => this.mitt.on(CHANGE_EVENT, listener);
-  removeListener = listener => this.mitt.off(CHANGE_EVENT, listener);
+  emit = e => this.mitt.emit(e);
+  addListener = (listener, e) => this.mitt.on(e ? e : CHANGE_EVENT, listener);
+  removeListener = (listener, e) =>
+    this.mitt.off(e ? e : CHANGE_EVENT, listener);
 }
 
 export default Store;
