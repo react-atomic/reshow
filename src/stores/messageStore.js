@@ -1,93 +1,86 @@
 import {ReduceStore} from 'reshow-flux';
 import {Map, List} from 'immutable';
-import get from 'get-object-value'
+import get from 'get-object-value';
 
 import dispatcher, {dispatch} from '../dispatcher';
 
-let alertCount = 0
-const isArray = Array.isArray
+let alertCount = 0;
+const isArray = Array.isArray;
 
 const toMessage = message => {
   if (-1 !== 'string|number'.indexOf(typeof message)) {
-    message = {message}
+    message = {message};
   }
   if (!message.id) {
-    message.id = 'm-'+alertCount 
-    alertCount++
+    message.id = 'm-' + alertCount;
+    alertCount++;
   }
-  return message
-}
+  return message;
+};
 
 const getMessage = action => {
-  let message = get(action, ['params', 'message'])
-  return toMessage(message)
-}
+  let message = get(action, ['params', 'message']);
+  return toMessage(message);
+};
 
 class MessageStore extends ReduceStore {
-  
-  getInitialState()
-  {
-   return Map({
-    alerts: List()
-   }) 
+  getInitialState() {
+    return Map({
+      alerts: List(),
+    });
   }
 
-  dialogStart(state, action)
-  {
-    const params = get(action, ['params'])
-    const {dialog, dialogProps, dialogTo} = params
-    const next = {dialog} 
+  dialogStart(state, action) {
+    const params = get(action, ['params']);
+    const {dialog, dialogProps, dialogTo} = params;
+    const next = {dialog};
     if (dialogProps) {
-      next.dialogProps = dialogProps
+      next.dialogProps = dialogProps;
     }
     if (dialogTo) {
-      next.dialogTo = dialogTo
+      next.dialogTo = dialogTo;
     }
-    return state.merge(next)
+    return state.merge(next);
   }
 
-  dialogEnd(state, action)
-  {
-    let dialogTo = state.get('dialogTo')
+  dialogEnd(state, action) {
+    let dialogTo = state.get('dialogTo');
     if (!dialogTo) {
-      dialogTo = 'dialogReturn'
+      dialogTo = 'dialogReturn';
     }
-    const value = get(action, ['params', 'item', 'props', 'value'])
+    const value = get(action, ['params', 'item', 'props', 'value']);
     dispatch({
-      [dialogTo]: value
-    })
-    return state.delete('dialog').delete('dialogProps')
+      [dialogTo]: value,
+    });
+    return state.delete('dialog').delete('dialogProps');
   }
 
-  alertReset(state, action)
-  {
-    let alerts = get(action, ['params', 'alerts'])
+  alertReset(state, action) {
+    let alerts = get(action, ['params', 'alerts']);
     if (!isArray(alerts)) {
-      alerts = List()
+      alerts = List();
     } else {
-      alerts = List(alerts.map(a => toMessage(a)))
+      alerts = List(alerts.map(a => toMessage(a)));
     }
-    return state.set('alerts', alerts)
+    return state.set('alerts', alerts);
   }
 
-  alertDel(state, action)
-  {
-    const id = get(action, ['params', 'id'])
-    const alerts = state.get('alerts').filter(
-      item=>(item.id !== id) ? true : false
-    )
-    return state.set('alerts', alerts)
+  alertDel(state, action) {
+    const id = get(action, ['params', 'id']);
+    const alerts = state
+      .get('alerts')
+      .filter(item => (item.id !== id ? true : false));
+    return state.set('alerts', alerts);
   }
 
-  alertAdd(state, action)
-  {
-    const alerts = state.get('alerts')
-    const message = getMessage(action)
-    const alertProps = get(action, ['params', 'alertProps'])
+  alertAdd(state, action) {
+    const alerts = state.get('alerts');
+    const message = getMessage(action);
+    const alertProps = get(action, ['params', 'alertProps']);
     if (alertProps) {
-      state = state.set('alertProps', alertProps)
+      state = state.set('alertProps', alertProps);
     }
-    return state.set('alerts', alerts.push(message))
+    return state.set('alerts', alerts.push(message));
   }
 
   reduce(state, action) {

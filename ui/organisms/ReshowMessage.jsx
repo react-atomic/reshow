@@ -14,9 +14,14 @@ class Body extends PureComponent {
   };
 
   handleClick = (e, item) => {
-    dispatch('dialog/end', {
-      item,
-    });
+    setTimeout(()=>{
+      const {dialog} = this.props;
+      if (dialog) {
+        dispatch('dialog/end', {
+          item,
+        });
+      }
+    })
   };
 
   render() {
@@ -25,7 +30,10 @@ class Body extends PureComponent {
     if (dialog) {
       thisDialog = (
         <DisplayPopupEl>
-          <Dialog {...dialogProps} onClick={this.handleClick}>
+          <Dialog
+            {...dialogProps}
+            onClick={this.handleClick}
+            closeCallback={this.handleClick}>
             {dialog}
           </Dialog>
         </DisplayPopupEl>
