@@ -15,14 +15,23 @@ abbrev@1:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
 acorn-globals@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-4.1.0.tgz#ab716025dbe17c54d3ef81d32ece2b2d99fe2538"
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-4.3.0.tgz#e3b6f8da3c1552a95ae627571f7dd6923bb54103"
   dependencies:
-    acorn "^5.0.0"
+    acorn "^6.0.1"
+    acorn-walk "^6.0.1"
 
-acorn@^5.0.0, acorn@^5.7.1:
+acorn-walk@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-6.0.1.tgz#c7827bdbb8e21aa97b609adfa225400d9ae348ba"
+
+acorn@^5.7.1:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
+
+acorn@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.0.1.tgz#66e6147e1027704479dc6d9b20d884c572db3cc1"
 
 ajv@^5.3.0:
   version "5.5.2"
@@ -1066,8 +1075,8 @@ chokidar@^2.0.4:
     fsevents "^1.2.2"
 
 chownr@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.1.tgz#54726b8b8fff4df053c42187e801fb4412df1494"
 
 class-lib@*:
   version "0.0.12"
@@ -2575,8 +2584,8 @@ organism-react-animate@*:
     react-transition-group "^2.x"
 
 organism-react-popup@*:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.5.1.tgz#66961a39001bf78c311a0f0116981260706b24de"
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.5.6.tgz#cdd3fbe8dbc26aaa67bfdc0764cc894f74b43fcd"
   dependencies:
     array.merge "*"
     get-object-value "*"
@@ -2740,13 +2749,14 @@ react-atomic-atom@*:
   resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-1.0.18.tgz#2f6508427ace11615c20dd272d3df6accbea2a77"
 
 react-atomic-molecule@*:
-  version "1.3.55"
-  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-1.3.55.tgz#2fbaa2dbd8ddbd7f71d797f2ec9a880f19bd3589"
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-1.4.4.tgz#c2db383f23fd47d6b37d7f8e2d4834970cc19f65"
   dependencies:
     class-lib "*"
     get-object-value "*"
     hyphenate-style-name "*"
     react-atomic-atom "*"
+    reshow-runtime "*"
     ucfirst "*"
 
 react-dom@^16.x:
@@ -2922,19 +2932,20 @@ request@^2.88.0:
     uuid "^3.3.2"
 
 reshow-flux-base@*:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.0.9.tgz#d1b1a83658bd8163b72484021a97f5aa3ea25c74"
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.0.11.tgz#cab8e1485fd79bea2ac1d5a777a352b6aee0fb64"
   dependencies:
     mitt "*"
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.2.6.tgz#630c669048fde8c90cad94d3c32bcc0d2449d46e"
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.2.7.tgz#672f1e547ce3b4298bf61fdd2418ad69ac78f9d0"
   dependencies:
     array.dedup "*"
     immutable "*"
     reshow-flux-base "*"
+    reshow-runtime "*"
 
 reshow-runtime@*:
   version "0.0.11"
@@ -3361,8 +3372,8 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.4:
     iconv-lite "0.4.23"
 
 whatwg-mimetype@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/whatwg-mimetype/-/whatwg-mimetype-2.1.0.tgz#f0f21d76cbba72362eb609dbed2a30cd17fcc7d4"
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/whatwg-mimetype/-/whatwg-mimetype-2.2.0.tgz#a3d58ef10b76009b042d03e25591ece89b88d171"
 
 whatwg-url@^7.0.0:
   version "7.0.0"

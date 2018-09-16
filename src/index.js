@@ -26,7 +26,7 @@ export const global = {};
 export {default as ClientRoute} from '../ui/organisms/ClientRoute';
 
 // Message Component
-export {default as ReshowAlerts} from '../ui/organisms/ReshowAlerts';
+export {default as ReshowMessage} from '../ui/organisms/ReshowMessage';
 
 // Component
 export {default as ReshowComponent} from '../ui/organisms/ReshowComponent';

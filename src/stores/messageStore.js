@@ -2,8 +2,7 @@ import {ReduceStore} from 'reshow-flux';
 import {Map, List} from 'immutable';
 import get from 'get-object-value'
 
-import dispatcher from '../dispatcher';
-import toJS from '../toJS'
+import dispatcher, {dispatch} from '../dispatcher';
 
 let alertCount = 0
 const isArray = Array.isArray
@@ -35,12 +34,29 @@ class MessageStore extends ReduceStore {
 
   dialogStart(state, action)
   {
-    return state
+    const params = get(action, ['params'])
+    const {dialog, dialogProps, dialogTo} = params
+    const next = {dialog} 
+    if (dialogProps) {
+      next.dialogProps = dialogProps
+    }
+    if (dialogTo) {
+      next.dialogTo = dialogTo
+    }
+    return state.merge(next)
   }
 
   dialogEnd(state, action)
   {
-    return state
+    let dialogTo = state.get('dialogTo')
+    if (!dialogTo) {
+      dialogTo = 'dialogReturn'
+    }
+    const value = get(action, ['params', 'item', 'props', 'value'])
+    dispatch({
+      [dialogTo]: value
+    })
+    return state.delete('dialog').delete('dialogProps')
   }
 
   alertReset(state, action)
@@ -67,6 +83,10 @@ class MessageStore extends ReduceStore {
   {
     const alerts = state.get('alerts')
     const message = getMessage(action)
+    const alertProps = get(action, ['params', 'alertProps'])
+    if (alertProps) {
+      state = state.set('alertProps', alertProps)
+    }
     return state.set('alerts', alerts.push(message))
   }
 
