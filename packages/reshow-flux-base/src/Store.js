@@ -1,6 +1,6 @@
 import mitt from 'mitt';
 
-const CHANGE_EVENT = 'chg';
+const CHANGE = 'chg';
 
 class Store {
   reduce() {
@@ -23,6 +23,8 @@ class Store {
   /* Following not extendable */
   getState = () => this._state;
 
+  nextEmits = [];
+
   __invokeOnDispatch = action => {
     const startingState = this._state;
     const endingState = this.reduce(startingState, action);
@@ -31,16 +33,18 @@ class Store {
     }
     if (!this.equals(startingState, endingState)) {
       this._state = endingState;
-      this.emit(CHANGE_EVENT);
+      this.emit(CHANGE);
     }
+    this.nextEmits.forEach(emit => this.emit(CHANGE));
+    this.nextEmits = [];
   };
 
   // mitt event
   mitt = new mitt();
   emit = e => this.mitt.emit(e);
-  addListener = (listener, e) => this.mitt.on(e ? e : CHANGE_EVENT, listener);
-  removeListener = (listener, e) =>
-    this.mitt.off(e ? e : CHANGE_EVENT, listener);
+  addListener = (listener, e) => this.mitt.on(e, listener);
+  removeListener = (listener, e) => this.mitt.off(e, listener);
 }
 
 export default Store;
+export {CHANGE};

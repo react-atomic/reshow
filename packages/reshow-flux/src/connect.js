@@ -1,4 +1,5 @@
 import dedup from 'array.dedup';
+import {CHANGE} from 'reshow-flux-base';
 
 const DEFAULT_OPTIONS = {
   withProps: false,
@@ -23,8 +24,9 @@ const connect = (Base, options) => {
   class ConnectedClass extends Base {
     __stores = [];
 
-    __fluxHandler = () => {
+    __handleChange = () => {
       if (!this.__stores) {
+        // avoid race condition
         return;
       }
       const con = this.constructor;
@@ -38,7 +40,7 @@ const connect = (Base, options) => {
         this.__resetStores();
       }
       stores = dedup(stores);
-      stores.forEach(store => store.addListener(this.__fluxHandler));
+      stores.forEach(store => store.addListener(this.__handleChange, CHANGE));
       this.__stores = stores;
     };
 
@@ -46,7 +48,9 @@ const connect = (Base, options) => {
       if (!this.__stores) {
         return;
       }
-      this.__stores.forEach(store => store.removeListener(this.__fluxHandler));
+      this.__stores.forEach(store =>
+        store.removeListener(this.__handleChange, CHANGE),
+      );
       this.__stores = null;
     };
 

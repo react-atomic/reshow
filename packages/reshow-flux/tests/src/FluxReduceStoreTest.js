@@ -1,6 +1,6 @@
 'use strict';
 
-import {Dispatcher, ReduceStore} from '../../src/index';
+import {Dispatcher, ReduceStore} from '../../cjs/index';
 import {expect} from 'chai';
 
 describe('Test Store', ()=>{ 

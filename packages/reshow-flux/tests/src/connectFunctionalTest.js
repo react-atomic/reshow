@@ -5,7 +5,7 @@ import {
     connectFunctional, 
     Dispatcher,
     ReduceStore
-} from '../../src/index';
+} from '../../cjs/index';
 import {expect} from 'chai';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
