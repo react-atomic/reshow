@@ -4,6 +4,7 @@ import {expect} from 'chai';
 
 describe('Test typeof', ()=>{ 
   class FOO {}
+  class t {}
   it('test typeIs', ()=>{
       expect(typeIs(Symbol())).to.equal('symbol')
       expect(typeIs({})).to.equal('object')
@@ -20,6 +21,7 @@ describe('Test typeof', ()=>{
       expect(symbolTypeOf).to.equal('symbol')
       expect(objectTypeOf).to.equal('object')
       expect(helperTypeof(new FOO())).to.equal('object')
+      expect(helperTypeof(new t())).to.equal('object')
       expect(helperTypeof(1)).to.equal('number')
       expect(helperTypeof('1')).to.equal('string')
       expect(helperTypeof(true)).to.equal('boolean')
