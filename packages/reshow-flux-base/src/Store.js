@@ -35,7 +35,7 @@ class Store {
       this._state = endingState;
       this.emit(CHANGE);
     }
-    this.nextEmits.forEach(emit => this.emit(CHANGE));
+    this.nextEmits.forEach(emit => this.emit(emit));
     this.nextEmits = [];
   };
 
