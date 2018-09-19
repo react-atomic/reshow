@@ -19,7 +19,7 @@
     "clean": "find ./build -name '*.*' | xargs rm -rf",
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build && cp .npmignore ./build && cp babelrc ./build/.babelrc",
     "build:babel": "BABEL_ENV=build babel src -d build",
-    "build": "npm run clean && npm run build:babel && npm run copy && cd build && yarn install",
+    "build": "npm run clean && npm run build:babel && npm run copy && cd build && yarn && npm i --package-lock-only",
     "prepublish": "npm run build"
   }
 }

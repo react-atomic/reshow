@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -28,7 +28,7 @@
     "organism-react-ajax": "*",
     "reshow-worker": "*",
     "reshow-runtime": "*",
-    "http-server": "0.2.1"
+    "local-web-server": "2.6.0"
   },
   "devDependencies": {
     "npmignore": "*",
