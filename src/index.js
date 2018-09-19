@@ -29,9 +29,11 @@ export {default as ClientRoute} from '../ui/organisms/ClientRoute';
 export {default as ReshowMessage} from '../ui/organisms/ReshowMessage';
 
 // Component
-export {default as ReshowComponent} from '../ui/organisms/ReshowComponent';
 export {default as Return} from '../ui/organisms/Return';
 export {default as RealTimeReturn} from '../ui/organisms/RealTimeReturn';
 export {default as UrlReturn} from '../ui/organisms/UrlReturn';
 export {default as Section} from '../ui/organisms/Section';
-export {default, update} from '../ui/organisms/Reshow';
+
+// Base Component
+export {default as ReshowComponent} from '../ui/molecules/ReshowComponent';
+export {default, update} from '../ui/molecules/Reshow';

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReshowComponent from '../organisms/ReshowComponent';
+import ReshowComponent from '../molecules/ReshowComponent';
 import getChildren from '../../src/getChildren';
 
 class Return extends ReshowComponent

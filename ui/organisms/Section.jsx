@@ -1,7 +1,7 @@
 import React from 'react'; 
 import get from 'get-object-value';
 
-import ReshowComponent from '../organisms/ReshowComponent';
+import ReshowComponent from '../molecules/ReshowComponent';
 import getChildren from '../../src/getChildren';
 
 class Section extends ReshowComponent

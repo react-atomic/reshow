@@ -1,6 +1,6 @@
 import { ajaxDispatch } from 'organism-react-ajax';
 
-import Reshow, {update} from '../organisms/Reshow';
+import Reshow, {update} from '../molecules/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import handleAnchor from '../../src/handleAnchor';
 

@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import get from 'get-object-value';
 import {connect} from 'reshow-flux';
 
-import {initProps} from '../organisms/ReshowComponent';
+import {initProps} from '../molecules/ReshowComponent';
 import Return from '../organisms/Return';
 import getChildren from '../../src/getChildren';
 import realTimeStore from '../../src/stores/realTimeStore';
