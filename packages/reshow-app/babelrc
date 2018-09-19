@@ -1,5 +1,26 @@
 {
     "env": {
+        "test": {
+            "presets": [
+              ["env", {
+                "loose": true, 
+                "targets": ["last 2 versions", "ie >= 8"]
+              }],
+              "react",
+              "stage-0"
+            ],
+            "plugins": [
+              "transform-object-assign",
+              "transform-react-constant-elements",
+              "transform-react-pure-class-to-function",
+              ["transform-runtime", {
+                "moduleName": "reshow-runtime",
+                "polyfill": false,
+                "regenerator": false
+                }
+              ]
+            ]
+        },
         "build": {
             "presets": [
               ["env", {
