@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -19,7 +19,6 @@
     "babel-preset-env": "*",
     "babel-preset-react": "*",
     "babel-preset-stage-0": "*",
-    "deep-extend": "^0.4.1",
     "mkdirp": "^0.5.1",
     "strip-ansi": "^2.0.1",
     "uglifyjs-webpack-plugin": "^1.x",
@@ -29,7 +28,7 @@
     "organism-react-ajax": "*",
     "reshow-worker": "*",
     "reshow-runtime": "*",
-    "simplehttpserver": "0.2.1"
+    "http-server": "0.2.1"
   },
   "devDependencies": {
     "npmignore": "*",
