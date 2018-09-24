@@ -5,7 +5,7 @@ class Dispatcher {
     this.callbacks.push(callback);
   }
 
-  dispatch(payload, params) {
+  dispatch = (payload, params) => {
     if (!payload) {
       payload = {};
     }
@@ -16,7 +16,7 @@ class Dispatcher {
       }
     }
     this.callbacks.forEach(c => c(payload));
-  }
+  };
 }
 
 export default Dispatcher;
