@@ -35,8 +35,9 @@ class Store {
       this._state = endingState;
       this.emit(CHANGE);
     }
-    this.nextEmits.forEach(emit => this.emit(emit));
+    const next = this.nextEmits.slice(0);
     this.nextEmits = [];
+    next.forEach(emit => this.emit(emit));
   };
 
   // mitt event
