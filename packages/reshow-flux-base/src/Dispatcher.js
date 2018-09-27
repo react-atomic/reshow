@@ -1,9 +1,7 @@
 class Dispatcher {
-  callbacks = [];
+  cbs = [];
 
-  register(callback) {
-    this.callbacks.push(callback);
-  }
+  register = cb => this.cbs.push(cb);
 
   dispatch = (payload, params) => {
     if (!payload) {
@@ -15,7 +13,7 @@ class Dispatcher {
         delete payload.params;
       }
     }
-    this.callbacks.forEach(c => c(payload));
+    this.cbs.forEach(c => c(payload));
   };
 }
 

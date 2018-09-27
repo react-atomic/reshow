@@ -10,7 +10,7 @@ describe('Test Dispatcher', ()=>{
         dispatcher.register((action)=>{
            result = action; 
         }); 
-        expect(dispatcher.callbacks.length).to.equal(1);
+        expect(dispatcher.cbs.length).to.equal(1);
         expect(result).to.equal(undefined);
     });
     it('could support hash dispatch', ()=>{

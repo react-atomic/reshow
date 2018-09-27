@@ -16,7 +16,7 @@ class Store {
   }
 
   constructor(dispatcher) {
-    dispatcher.register(action => this.__invokeOnDispatch(action));
+    dispatcher.register(this.__invokeOnDispatch);
     this._state = this.getInitialState();
   }
 
