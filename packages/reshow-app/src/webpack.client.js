@@ -177,7 +177,7 @@ const myWebpack = (root, main, lazyConfs)=>
         },
         externals: confs.externals,
         resolve: {
-            extensions: ['.js','.jsx'],
+            extensions: ['.mjs', '.js','.jsx'],
             alias
         },
         resolveLoader: {
