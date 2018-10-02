@@ -6,9 +6,6 @@ const types = '|number|string|boolean|object|function|undefined|';
  */
 
 const getTypeOf = (val, name) => {
-  if (Number.isNaN(val)) {
-    return 'NaN';
-  }
   try {
     const type = Object.getPrototypeOf(val).constructor.name.toLowerCase();
     if (-1 === types.indexOf('|'+type+'|')) {

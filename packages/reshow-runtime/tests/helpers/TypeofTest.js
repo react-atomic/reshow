@@ -9,9 +9,6 @@ describe('Test typeof', ()=>{
       expect(typeIs(Symbol())).to.equal('symbol')
       expect(typeIs({})).to.equal('object')
       expect(typeIs(()=>{})).to.equal('function')
-      expect(typeIs(Number('1'))).to.equal('number')
-      expect(typeIs(Number('100f'))).to.equal('NaN')
-      expect(typeof(Number('100f'))).to.equal('number')
       expect(typeIs(new FOO())).to.equal('foo')
   })
   it('test helper typeof', ()=>{
