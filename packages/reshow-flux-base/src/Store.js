@@ -17,7 +17,13 @@ class Store {
 
   constructor(dispatcher) {
     dispatcher.register(this.__invokeOnDispatch);
-    this.reset();
+    this._state = this.reset();
+  }
+
+  reset() {
+    this.mitt = new mitt();
+    this.nextEmits = [];
+    return this.getInitialState();
   }
 
   /* Following not extendable */
@@ -36,12 +42,6 @@ class Store {
     const next = this.nextEmits.slice(0);
     this.nextEmits = [];
     next.forEach(emit => this.emit(emit));
-  };
-
-  reset = () => {
-    this._state = this.getInitialState();
-    this.mitt = new mitt();
-    this.nextEmits = [];
   };
 
   // mitt event
