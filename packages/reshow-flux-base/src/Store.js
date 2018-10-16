@@ -17,13 +17,11 @@ class Store {
 
   constructor(dispatcher) {
     dispatcher.register(this.__invokeOnDispatch);
-    this._state = this.getInitialState();
+    this.reset();
   }
 
   /* Following not extendable */
   getState = () => this._state;
-
-  nextEmits = [];
 
   __invokeOnDispatch = action => {
     const startingState = this._state;
@@ -40,8 +38,13 @@ class Store {
     next.forEach(emit => this.emit(emit));
   };
 
+  reset = () => {
+    this._state = this.getInitialState();
+    this.mitt = new mitt();
+    this.nextEmits = [];
+  };
+
   // mitt event
-  mitt = new mitt();
   emit = e => this.mitt.emit(e);
   addListener = (listener, e) => this.mitt.on(e, listener);
   removeListener = (listener, e) => this.mitt.off(e, listener);
