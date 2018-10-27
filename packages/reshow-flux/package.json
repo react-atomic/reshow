@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "The smallest react flux and Fast 3kb Flux alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -12,13 +12,13 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "*",
     "array.dedup": "*",
     "immutable": "*",
-    "reshow-flux-base": "*",
-    "reshow-runtime": "*"
+    "reshow-flux-base": "*"
   },
   "devDependencies": {
-    "babel-cli": "^6.x",
+    "@babel/cli": "^7.x",
     "chai": "*",
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
@@ -32,10 +32,10 @@
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "build:cjs": "BABEL_ENV=build babel src -d build/cjs",
-    "build:es": "BABEL_ENV=es babel src -d build/es",
+    "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
+    "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
+    "build:test": "BABEL_ENV=build babel tests -d build/tests --root-mode upward",
     "prepublishOnly": "npm run test && npm run build",
-    "build:test": "BABEL_ENV=build babel tests -d build/tests",
     "test": "npm run build && npm run build:test && mocha 'build/tests/**/*.js' -r jsdom-global/register"
   },
   "files": [

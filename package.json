@@ -1,17 +1,15 @@
 {
   "name": "reshow",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
-  "keywords": [
-    "react",
-    "reactjs"
-  ],
+  "keywords": ["react", "reactjs"],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "*",
     "get-storage": "*",
     "getoffset": "*",
     "memoize-one": "*",
@@ -22,16 +20,17 @@
     "smooth-scroll-to": "*"
   },
   "devDependencies": {
-    "babel-cli": "^6.x",
-    "babel-core": "^6.x",
-    "babel-plugin-add-module-exports": "*",
-    "babel-plugin-transform-object-assign": "*",
-    "babel-plugin-transform-react-constant-elements": "*",
+    "@babel/cli": "^7.x",
+    "@babel/core": "^7.x",
+    "@babel/plugin-transform-runtime": "*",
+    "@babel/plugin-syntax-dynamic-import": "*",
+    "@babel/plugin-transform-object-assign": "*",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/plugin-proposal-object-rest-spread": "*",
+    "@babel/plugin-transform-react-constant-elements": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
-    "babel-plugin-transform-runtime": "*",
-    "babel-preset-env": "*",
-    "babel-preset-react": "*",
-    "babel-preset-stage-0": "*",
     "chai": "*",
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
@@ -51,9 +50,5 @@
     "test": "npm run build && npm run build:test && mocha 'build/tests/**/*.js' -r jsdom-global/register",
     "prepublishOnly": "npm run test && npm run build"
   },
-  "files": [
-    "build",
-    "package.json",
-    "README.md"
-  ]
+  "files": ["build", "package.json", "README.md"]
 }
