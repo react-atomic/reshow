@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -11,7 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "*",
+    "reshow-runtime": "*",
     "mitt": "*"
   },
   "devDependencies": {

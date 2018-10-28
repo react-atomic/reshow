@@ -15,12 +15,6 @@ module.exports = function(api) {
         plugins: [
           'add-module-exports',
           'transform-react-pure-class-to-function',
-          [
-            'reshow-transform-runtime',
-            {
-              regenerator: false,
-            },
-          ],
           '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-transform-react-constant-elements',
           '@babel/plugin-transform-object-assign',
@@ -41,13 +35,6 @@ module.exports = function(api) {
         ],
         plugins: [
           'transform-react-pure-class-to-function',
-          [
-            'reshow-transform-runtime',
-            {
-              regenerator: false,
-              useESModules: true,
-            },
-          ],
           '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-transform-object-assign',
           '@babel/plugin-transform-react-constant-elements',

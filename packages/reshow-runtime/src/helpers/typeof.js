@@ -1,4 +1,4 @@
-import typeIs from '../getTypeOf';
+import typeIs from './getTypeOf';
 
 const _typeof =
   typeof Symbol === 'function' && typeIs(Symbol.iterator) === 'symbol'

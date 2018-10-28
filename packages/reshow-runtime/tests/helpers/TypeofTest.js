@@ -1,4 +1,4 @@
-import typeIs from '../../getTypeOf';
+import typeIs from '../../helpers/getTypeOf';
 import helperTypeof from '../../helpers/typeof';
 import {expect} from 'chai';
 
