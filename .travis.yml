@@ -3,6 +3,5 @@ node_js:
   - 8
 env:
   - TEST_DIR=packages/reshow-flux
-  - TEST_DIR=packages/reshow-runtime
   - TEST_DIR=./
 script: cd $TEST_DIR && yarn install && npm test
