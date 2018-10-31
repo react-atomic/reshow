@@ -10,7 +10,7 @@
             ],
             "plugins": [
               "transform-react-pure-class-to-function",
-              ["@babel/plugin-transform-runtime", {
+              ["reshow-transform-runtime", {
                 "regenerator": false
                 }
               ],
@@ -33,7 +33,7 @@
             "plugins": [
               "transform-react-pure-class-to-function",
               ["transform-react-remove-prop-types", {"mode": "wrap"}],
-              ["@babel/plugin-transform-runtime", {
+              ["reshow-transform-runtime", {
                 "regenerator": false,
                 "useESModules": true
                 }
@@ -57,7 +57,7 @@
             "plugins": [
               "transform-react-pure-class-to-function",
               ["transform-react-remove-prop-types", {"mode": "wrap"}],
-              ["@babel/plugin-transform-runtime", {
+              ["reshow-transform-runtime", {
                 "regenerator": false,
                 "useESModules": true
                 }
