@@ -1,6 +1,6 @@
 {
   "name": "reshow-worker",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Reshow Worker for ajax",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",

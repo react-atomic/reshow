@@ -25,7 +25,7 @@ class Body extends PureComponent {
   };
 
   render() {
-    const {alerts, dialog, dialogProps} = this.props;
+    const {alerts, alertProps, dialog, dialogProps} = this.props;
     let thisDialog = null;
     if (dialog) {
       thisDialog = (
@@ -42,7 +42,7 @@ class Body extends PureComponent {
     return (
       <SemanticUI>
         {thisDialog}
-        <AlertsNotifier onDismiss={this.handleDismiss} alerts={alerts} />
+        <AlertsNotifier {...alertProps} onDismiss={this.handleDismiss} alerts={alerts} />
       </SemanticUI>
     );
   }

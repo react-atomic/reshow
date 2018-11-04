@@ -14,7 +14,9 @@ module.exports = function(api) {
         ],
         plugins: [
           'add-module-exports',
+          'dynamic-import-node',
           'transform-react-pure-class-to-function',
+          ['transform-react-remove-prop-types', {mode: 'wrap'}],
           [
             'reshow-transform-runtime',
             {
@@ -41,6 +43,7 @@ module.exports = function(api) {
         ],
         plugins: [
           'transform-react-pure-class-to-function',
+          ['transform-react-remove-prop-types', {mode: 'wrap'}],
           [
             'reshow-transform-runtime',
             {

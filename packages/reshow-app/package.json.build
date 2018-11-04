@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -20,6 +20,7 @@
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
+    "es6-promise": "4.2.5",
     "mkdirp": "0.5.1",
     "strip-ansi": "^2.0.1",
     "uglifyjs-webpack-plugin": "^1.x",
