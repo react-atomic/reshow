@@ -2,11 +2,11 @@
     "env": {
         "test": {
             "presets": [
-              ["@babel/env", {
+              ["@babel/preset-env", {
                 "loose": true, 
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
-              "@babel/react"
+              "@babel/preset-react"
             ],
             "plugins": [
               "transform-react-pure-class-to-function",
@@ -23,12 +23,12 @@
         },
         "build": {
             "presets": [
-              ["@babel/env", {
+              ["@babel/preset-env", {
                 "loose": true, 
                 "modules": false,
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
-              "@babel/react"
+              "@babel/preset-react"
             ],
             "plugins": [
               "transform-react-pure-class-to-function",
@@ -47,12 +47,12 @@
         },
         "production": {
             "presets": [
-              ["@babel/env", {
+              ["@babel/preset-env", {
                 "loose": true, 
                 "modules": false,
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
-              "@babel/react"
+              "@babel/preset-react"
             ],
             "plugins": [
               "transform-react-pure-class-to-function",
