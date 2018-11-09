@@ -1,8 +1,9 @@
 {
   "name": "reshow-worker",
-  "version": "0.0.3",
+  "version": "0.1.2",
   "description": "Reshow Worker for ajax",
-  "main": "./build/index.js",
+  "main": "./build/cjs/index.js",
+  "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
   "keywords": [
     "reactjs"
@@ -15,13 +16,14 @@
     "worker-loader": "*"
   },
   "devDependencies": {
-    "babel-cli": "^6.x"
+    "@babel/cli": "^7.x"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build:es": "BABEL_ENV=es babel src -d build",
-    "build": "npm run clean && npm run build:es",
-    "prepublish": "npm run build"
+    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
+    "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "files": [
     "build",

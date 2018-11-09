@@ -1,9 +1,8 @@
 {
-  "name": "reshow-flux",
-  "version": "0.3.1",
-  "description": "The smallest react flux and Fast 3kb Flux alternative",
+  "name": "babel-plugin-reshow-transform-runtime",
+  "version": "0.0.2",
+  "description": "Custom path for babel7 transform-runtime",
   "main": "./build/cjs/index.js",
-  "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
   "keywords": [
     "react",
@@ -12,30 +11,28 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "array.dedup": "*",
-    "immutable": "*",
-    "reshow-flux-base": "*",
-    "reshow-runtime": "*"
+    "semver": "5.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
+    "@babel/core": "^7.x",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/plugin-proposal-object-rest-spread": "*",
+    "@babel/plugin-syntax-dynamic-import": "*",
+    "@babel/plugin-transform-object-assign": "*",
+    "babel-plugin-add-module-exports": "*",
     "chai": "*",
     "enzyme": "*",
-    "enzyme-adapter-react-16": "*",
     "jsdom": "*",
     "jsdom-global": "*",
-    "mocha": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-test-renderer": "*"
+    "mocha": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "build": "npm run clean && npm run build:cjs",
     "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
-    "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
     "build:test": "BABEL_ENV=build babel tests -d build/tests --root-mode upward",
-    "prepublishOnly": "npm run test && npm run build",
+    "prepublishOnly": "npm run build",
     "test": "npm run build && npm run build:test && mocha 'build/tests/**/*.js' -r jsdom-global/register"
   },
   "files": [

@@ -36,9 +36,9 @@ let plugins = []
 let babelLoaderOption = {
     cacheDirectory: true,
     plugins: [
-        'syntax-dynamic-import'
+        '@babel/plugin-syntax-dynamic-import'
     ],
-    presets: [['env', { modules: false }], 'stage-0'],
+    presets: [['@babel/env', { modules: false }]],
 };
 
 /* Default uglifyJs options */
@@ -97,7 +97,7 @@ const myWebpack = (root, main, lazyConfs)=>
     }
     if ('production' === NODE_ENV) {
         devtool = false;
-        babelLoaderOption.env = 'production';
+        babelLoaderOption.envName = 'production';
         plugins = plugins.concat([
             new webpack.DefinePlugin({
               'process.env':{

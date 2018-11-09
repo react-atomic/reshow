@@ -6,12 +6,15 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-core": "^6.7.5",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-plugin-transform-react-constant-elements": "^6.9.1",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.5.0",
+    "@babel/cli": "^7.x",
+    "@babel/core": "^7.x",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/plugin-proposal-object-rest-spread": "*",
+    "@babel/plugin-syntax-dynamic-import": "*",
+    "@babel/plugin-transform-object-assign": "*",
+    "@babel/preset-env": "*",
+    "babel-plugin-add-module-exports": "*",
+    "babel-plugin-reshow-transform-runtime": "*",
     "chai": "*",
     "jsdom": "*",
     "jsdom-global": "*",
@@ -22,8 +25,8 @@
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build/",
     "build:cjs": "BABEL_ENV=build babel src -d build",
     "build:es": "BABEL_ENV=es babel src -d build/es",
-    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && npm run build:test && cd build && yarn install",
     "build:test": "BABEL_ENV=build babel tests -d build/tests",
+    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && npm run build:test && cd build && yarn install",
     "test": "npm run build && mocha 'build/tests/**/*.js' -r jsdom-global/register"
   }
 }

@@ -1,4 +1,4 @@
-import typeIs from '../getTypeOf'
+import typeIs from './getTypeOf'
 
 function _possibleConstructorReturn(self, call) {
   if (!self) {

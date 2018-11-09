@@ -22,7 +22,7 @@ let plugins = [
 let babelLoaderOption = {
     cacheDirectory: true,
     plugins: [
-        'syntax-dynamic-import'
+        '@babel/plugin-syntax-dynamic-import'
     ]
 };
 
@@ -53,7 +53,7 @@ const myWebpack = (root, entry, lazyConfs)=>
 {
     confs = {...confs, ...lazyConfs};
     if ('production' === NODE_ENV) {
-        babelLoaderOption.env = 'production';
+        babelLoaderOption.envName = 'production';
         plugins = plugins.concat([
             new webpack.DefinePlugin({
               'process.env':{

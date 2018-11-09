@@ -2,69 +2,71 @@
     "env": {
         "test": {
             "presets": [
-              ["env", {
+              ["@babel/preset-env", {
                 "loose": true, 
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
-              "react",
-              "stage-0"
+              "@babel/preset-react"
             ],
             "plugins": [
-              "transform-object-assign",
-              "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {
-                "moduleName": "reshow-runtime",
-                "polyfill": false,
+              ["reshow-transform-runtime", {
                 "regenerator": false
                 }
-              ]
+              ],
+              "@babel/plugin-syntax-dynamic-import",
+              "@babel/plugin-transform-object-assign",
+              "@babel/plugin-proposal-class-properties",
+              "@babel/plugin-proposal-object-rest-spread",
+              "@babel/plugin-transform-react-constant-elements"
             ]
         },
         "build": {
             "presets": [
-              ["env", {
+              ["@babel/preset-env", {
                 "loose": true, 
                 "modules": false,
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
-              "react",
-              "stage-0"
+              "@babel/preset-react"
             ],
             "plugins": [
-              "transform-object-assign",
-              "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {
-                "moduleName": "reshow-runtime/es",
-                "polyfill": false,
-                "regenerator": false
+              ["transform-react-remove-prop-types", {"mode": "wrap"}],
+              ["reshow-transform-runtime", {
+                "regenerator": false,
+                "useESModules": true
                 }
               ],
-              ["transform-react-remove-prop-types", {"mode": "wrap"}]
+              "@babel/plugin-syntax-dynamic-import",
+              "@babel/plugin-transform-object-assign",
+              "@babel/plugin-proposal-class-properties",
+              "@babel/plugin-proposal-object-rest-spread",
+              "@babel/plugin-transform-react-constant-elements"
             ]
         },
         "production": {
             "presets": [
-              ["env", {
+              ["@babel/preset-env", {
                 "loose": true, 
                 "modules": false,
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
-              "react",
-              "stage-0"
+              "@babel/preset-react"
             ],
             "plugins": [
-              "transform-object-assign",
-              "transform-react-constant-elements",
               "transform-react-pure-class-to-function",
-              ["transform-runtime", {
-                "moduleName": "reshow-runtime/es",
-                "polyfill": false,
-                "regenerator": false
+              ["transform-react-remove-prop-types", {"mode": "wrap"}],
+              ["reshow-transform-runtime", {
+                "regenerator": false,
+                "useESModules": true
                 }
               ],
-              ["transform-react-remove-prop-types", {"mode": "wrap"}]
+              "@babel/plugin-syntax-dynamic-import",
+              "@babel/plugin-transform-object-assign",
+              "@babel/plugin-proposal-class-properties",
+              "@babel/plugin-proposal-object-rest-spread",
+              "@babel/plugin-transform-react-constant-elements"
             ]
         }
     }
