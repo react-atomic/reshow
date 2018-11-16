@@ -1,11 +1,5 @@
-import memoize from 'memoize-one'
+import memoize from 'memoize-one';
+import {toJS as tojs} from 'get-object-value';
 
-const toJS =  data => {
-  if (data && data.toJS) {
-    return data.toJS()
-  } else {
-    return data
-  }
-}
-
-export default memoize(toJS)
+const toJS = data => tojs(data);
+export default memoize(toJS);
