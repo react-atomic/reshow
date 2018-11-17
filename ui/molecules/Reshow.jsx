@@ -100,9 +100,8 @@ class Reshow extends PureComponent {
         /*State*/
         themePath={themePath || defaultThemePath}
         baseUrl={baseUrl}
-        staticVersion={
-          staticVersion
-        } /* Keep pure value, let user don't assin etra value for emtpy. */
+        /* Keep staticVersion, let user can't assign emtpy value. */
+        staticVersion={staticVersion}
         /*Props*/
         themes={themes}
         ajax={ajax}
