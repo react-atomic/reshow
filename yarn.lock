@@ -890,8 +890,8 @@ cache-base@^1.0.1:
     unset-value "^1.0.0"
 
 caniuse-lite@^1.0.30000899:
-  version "1.0.30000907"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000907.tgz#0b9899bde53fb1c30e214fb12402361e02ff5c42"
+  version "1.0.30000909"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000909.tgz#697e8f447ca5f758e7c6cef39ec429ce18b908d3"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -1475,8 +1475,8 @@ get-func-name@^2.0.0:
   resolved "https://registry.yarnpkg.com/get-func-name/-/get-func-name-2.0.0.tgz#ead774abee72e20409433a066366023dd6887a41"
 
 get-object-value@*:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.1.0.tgz#330bab0f6a51f691a46e2a508171019da8edb40c"
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.1.1.tgz#9bf3bda2302ce71c4faf0c05bdf63055779e876a"
 
 get-random-id@*:
   version "0.0.0"
@@ -2689,8 +2689,8 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.3.1.tgz#e90109bf4231458288a2553e19fcd3e9282c3867"
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.3.2.tgz#268914a77a985e552fdb60f9ba6539f32d4e6f01"
   dependencies:
     array.dedup "*"
     immutable "*"
@@ -3179,8 +3179,8 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 ws@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.0.tgz#119a9dbf92c54e190ec18d10e871d55c95cf9373"
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.2.tgz#3cc7462e98792f0ac679424148903ded3b9c3ad8"
   dependencies:
     async-limiter "~1.0.0"
 

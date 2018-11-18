@@ -224,11 +224,8 @@ describe('Test Connect', () => {
     }
     let FakeConnected = connect(
       FakeComponent,
-      {
-        withConstructor: true,
-      },
     );
-    let vDom = <FakeConnected />;
+    let vDom = <FakeConnected withConstructor />;
     const html = shallow(vDom, {
       disableLifecycleMethods: true,
     });
@@ -257,10 +254,7 @@ describe('Test Connect', () => {
       }
     }
     let FakeConnected = connect(
-      FakeComponent,
-      {
-        withConstructor: false,
-      },
+      FakeComponent
     );
     let vDom = <FakeConnected />;
     const html = shallow(vDom);

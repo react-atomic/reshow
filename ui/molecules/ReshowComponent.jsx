@@ -32,7 +32,8 @@ class ReshowComponent extends PureComponent {
      * If that case need create custom calculateState functoin.
      */
     const thisStore = this.getStores(props)[0];
-    const pageState = thisStore.getState();
+    const pageState = pageStore.getState();
+    const storeState = thisStore.getState();
     const thisThemePath = pageState.get('themePath');
     if (thisThemePath && global.path !== thisThemePath) {
       return prevState;
@@ -48,12 +49,12 @@ class ReshowComponent extends PureComponent {
 
     if (isArray(initStates)) {
       initStates.forEach(key => {
-        const data = pageState.get(key);
+        const data = storeState.get(key);
         results[key] = toImmutable(data);
       });
     } else if (initStates) {
       keys(initStates).forEach(key => {
-        const data = pageState.get(key);
+        const data = storeState.get(key);
         const newKey = initStates[key] ? initStates[key] : key;
         results[newKey] = toImmutable(data);
       });

@@ -3,7 +3,6 @@ import {CHANGE} from 'reshow-flux-base';
 
 const DEFAULT_OPTIONS = {
   withProps: false,
-  withConstructor: false,
 };
 
 const keys = Object.keys;
@@ -61,7 +60,7 @@ const connect = (Base, options) => {
         con.calculateState = super.calculateState;
         con.getStores = super.getStores;
       }
-      if (thisOptions.withConstructor) {
+      if (props.withConstructor) {
         this.__setStores(getStores(con, props));
       }
 
@@ -83,7 +82,7 @@ const connect = (Base, options) => {
       if (super.componentDidMount) {
         super.componentDidMount();
       }
-      if (!thisOptions.withConstructor) {
+      if (this.props && !this.props.withConstructor) {
         this.__setStores(getStores(this.constructor, this.props));
       }
     }
@@ -92,7 +91,9 @@ const connect = (Base, options) => {
       if (super.componentDidUpdate) {
         super.componentDidUpdate(prevProps, prevState);
       }
-      this.__setStores(getStores(this.constructor, this.props));
+      if (thisOptions.withProps) {
+        this.__setStores(getStores(this.constructor, this.props));
+      }
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
