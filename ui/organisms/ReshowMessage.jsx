@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, memo} from 'react';
 import {AlertsNotifier, Dialog, DisplayPopupEl} from 'organism-react-popup';
 import {SemanticUI} from 'react-atomic-molecule';
 
@@ -28,7 +28,13 @@ class Body extends PureComponent {
   };
 
   render() {
-    const {alerts, alertProps, dialog, dialogProps} = this.props;
+    const {
+      alerts,
+      alertProps,
+      defaultAlertProps,
+      dialog,
+      dialogProps,
+    } = this.props;
     let thisDialog = null;
     if (dialog) {
       thisDialog = (
@@ -46,6 +52,7 @@ class Body extends PureComponent {
       <SemanticUI>
         {thisDialog}
         <AlertsNotifier
+          {...defaultAlertProps}
           {...alertProps}
           onDismiss={this.handleDismiss}
           alerts={toJS(alerts)}
@@ -55,12 +62,12 @@ class Body extends PureComponent {
   }
 }
 
-const ReshowMessage = props => (
+const ReshowMessage = memo(props => (
   <Return
     stores={[messageStore]}
     initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
     <Body {...props} />
   </Return>
-);
+));
 
 export default ReshowMessage;

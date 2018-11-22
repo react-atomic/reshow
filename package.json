@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
