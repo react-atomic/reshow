@@ -3,7 +3,10 @@ import {AlertsNotifier, Dialog, DisplayPopupEl} from 'organism-react-popup';
 import {SemanticUI} from 'react-atomic-molecule';
 
 import Return from '../organisms/Return';
+
+// src
 import messageStore from '../../src/stores/messageStore';
+import toJS from '../../src/toJS';
 import {dispatch} from '../../src/index';
 
 class Body extends PureComponent {
@@ -14,14 +17,14 @@ class Body extends PureComponent {
   };
 
   handleClick = (e, item) => {
-    setTimeout(()=>{
+    setTimeout(() => {
       const {dialog} = this.props;
       if (dialog) {
         dispatch('dialog/end', {
           item,
         });
       }
-    })
+    });
   };
 
   render() {
@@ -31,10 +34,10 @@ class Body extends PureComponent {
       thisDialog = (
         <DisplayPopupEl>
           <Dialog
-            {...dialogProps}
+            {...toJS(dialogProps)}
             onClick={this.handleClick}
             closeCallback={this.handleClick}>
-            {dialog}
+            {toJS(dialog)}
           </Dialog>
         </DisplayPopupEl>
       );
@@ -42,7 +45,11 @@ class Body extends PureComponent {
     return (
       <SemanticUI>
         {thisDialog}
-        <AlertsNotifier {...alertProps} onDismiss={this.handleDismiss} alerts={alerts} />
+        <AlertsNotifier
+          {...alertProps}
+          onDismiss={this.handleDismiss}
+          alerts={toJS(alerts)}
+        />
       </SemanticUI>
     );
   }
@@ -51,7 +58,7 @@ class Body extends PureComponent {
 const ReshowMessage = props => (
   <Return
     stores={[messageStore]}
-    initStates={['alerts', 'dialog', 'dialogProps']}>
+    initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
     <Body {...props} />
   </Return>
 );

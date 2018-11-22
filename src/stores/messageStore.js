@@ -18,10 +18,7 @@ const toMessage = message => {
   return message;
 };
 
-const getMessage = action => {
-  let message = get(action, ['params', 'message']);
-  return toMessage(message);
-};
+const getMessage = action => toMessage(get(action, ['params', 'message']));
 
 class MessageStore extends ReduceStore {
   getInitialState() {

@@ -1,5 +1,3 @@
-'use strict';
-
 import {Dispatcher} from 'reshow-flux';
 
 const dispatcher = new Dispatcher();
@@ -15,4 +13,4 @@ export default dispatcher;
  * import {storageDispatch} from 'reshow';
  * storageDispatch({xxx:yyy});
  */
-export const storageDispatch = dispatcher.dispatch.bind(dispatcher);
+export const storageDispatch = dispatcher.dispatch;
