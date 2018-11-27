@@ -18,7 +18,8 @@
     "chai": "*",
     "jsdom": "*",
     "jsdom-global": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "sinon": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
