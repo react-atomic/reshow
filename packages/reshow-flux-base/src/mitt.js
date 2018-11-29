@@ -5,14 +5,12 @@ const mitt = () => {
   return {
     on: (t, handler) => all(t).push(handler),
 
-    off: (t, handler) => {
-      all(t).splice(all(t).indexOf(handler) >>> 0, 1);
-    },
+    off: (t, handler) => all(t).splice(all(t).indexOf(handler) >>> 0, 1),
 
-    emit: (t, params) => {
-      all(t)
-        .slice()
-        .forEach(handler => handler(params));
+    emit: (t, state) => {
+      for (let a = all(t), i = 0, j = a.length; i < j; i++) {
+        a[i](state);
+      }
     },
   };
 };
