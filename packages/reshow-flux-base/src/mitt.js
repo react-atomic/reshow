@@ -12,7 +12,7 @@ const mitt = () => {
     emit: (t, params) => {
       all(t)
         .slice()
-        .map(handler => handler(params));
+        .forEach(handler => handler(params));
     },
   };
 };
