@@ -5,12 +5,12 @@ module.exports = function(api) {
       build: {
         presets: [
           [
-            '@babel/env',
+            '@babel/preset-env',
             {
               targets: ['last 2 versions', 'ie >= 8'],
             },
           ],
-          '@babel/react',
+          '@babel/preset-react',
         ],
         plugins: [
           'add-module-exports',
@@ -33,13 +33,13 @@ module.exports = function(api) {
       es: {
         presets: [
           [
-            '@babel/env',
+            '@babel/preset-env',
             {
               modules: false,
               targets: ['last 2 versions', 'ie >= 8'],
             },
           ],
-          '@babel/react',
+          '@babel/preset-react',
         ],
         plugins: [
           'transform-react-pure-class-to-function',
