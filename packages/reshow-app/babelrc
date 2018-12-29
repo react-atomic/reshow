@@ -9,6 +9,8 @@
               "@babel/preset-react"
             ],
             "plugins": [
+              "add-module-exports",
+              "dynamic-import-node",
               "transform-react-pure-class-to-function",
               ["reshow-transform-runtime", {
                 "regenerator": false
