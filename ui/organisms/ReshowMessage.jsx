@@ -62,12 +62,15 @@ class Body extends PureComponent {
   }
 }
 
-const ReshowMessage = memo(props => (
-  <Return
-    stores={[messageStore]}
-    initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
-    <Body {...props} />
-  </Return>
-));
+const ReshowMessage = memo(props => {
+  return (
+    <Return
+      stores={[messageStore]}
+      initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
+      <Body {...props} />
+    </Return>
+  );
+});
+ReshowMessage.displayName = 'ReshowMessage';
 
 export default ReshowMessage;

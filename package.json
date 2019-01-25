@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.8.10",
+  "version": "0.8.11",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -12,6 +12,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "array.merge": "*",
     "get-storage": "*",
     "getoffset": "*",
     "memoize-one": "*",

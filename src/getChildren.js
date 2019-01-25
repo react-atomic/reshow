@@ -1,4 +1,5 @@
 import {isValidElement, cloneElement} from 'react'; 
+import {removeEmpty} from 'array.merge';
 
 const getChildren = (children, props) =>
 {
@@ -7,7 +8,7 @@ const getChildren = (children, props) =>
         if (isValidElement(children)) {
             result = cloneElement(
                 children,
-                props
+                removeEmpty(props, true)
             );
         } else if (typeof children === 'function') {
             result = children(props);
