@@ -11,7 +11,6 @@ export {default as messageStore} from './stores/messageStore';
 
 // Dispatch
 export {default as dispatcher, dispatch} from './dispatcher';
-export {urlDispatch} from './urlDispatcher';
 export {storageDispatch} from './storageDispatcher';
 
 // Library
@@ -19,7 +18,7 @@ export {default as handleAnchor, goToAnchor} from './handleAnchor';
 export {default as toJS} from './toJS';
 
 // Ajax
-export {AjaxLink as ReLink, AjaxForm as ReForm} from 'organism-react-ajax';
+export {AjaxLink as ReLink, AjaxForm as ReForm, urlDispatch} from 'organism-react-ajax';
 
 // Router
 export const global = {};
