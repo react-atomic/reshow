@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import initWorker from 'reshow-worker';
 import {ajaxDispatch} from 'organism-react-ajax';
+import {win, doc} from 'win-doc';
 
 const render = (oApp, dom)=>
     ((dom.innerHTML && ReactDOM.hydrate) ?
@@ -12,22 +13,26 @@ const render = (oApp, dom)=>
 
 const update = props => ajaxDispatch({type: 'callback', json: props});
 
-const client = rawApp =>
+let bInitWorker = false;
+
+const client = (rawApp, id) =>
 {
     const app = React.createFactory(rawApp);
     setImmediate(()=>{
-        const w = window;        
-        const d = document;
-        w.Reshow = { render, app, update };
+        win().Reshow = { render, app, update };
         let data = {};
         if ('undefined' !== typeof REACT_DATA) {
             data = REACT_DATA;
         }
+        const appId = id || 'app';
         render(
           new app(data),
-          d.getElementById('app')
+          doc().getElementById(appId)
         );
-        initWorker();
+        if (!bInitWorker) {
+          initWorker();
+          bInitWorker = true;
+        }
     });
 }
 
