@@ -16,7 +16,7 @@ const update = props => ajaxDispatch({type: 'callback', json: props});
 
 let bInitWorker = false;
 
-const client = (rawApp, id) => {
+const client = (rawApp, selector) => {
   const app = React.createFactory(rawApp);
   setImmediate(() => {
     win().Reshow = {render, app, update};
@@ -24,8 +24,8 @@ const client = (rawApp, id) => {
     if ('undefined' !== typeof REACT_DATA) {
       data = REACT_DATA;
     }
-    const appId = id || 'app';
-    const attachDom = doc().getElementById(appId);
+    const appSelector = selector || '#app';
+    const attachDom = doc().querySelector(appSelector);
     if (attachDom) {
       render(new app(data), attachDom);
     }
