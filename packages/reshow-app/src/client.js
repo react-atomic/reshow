@@ -6,34 +6,34 @@ import initWorker from 'reshow-worker';
 import {ajaxDispatch} from 'organism-react-ajax';
 import {win, doc} from 'win-doc';
 
-const render = (oApp, dom)=>
-    ((dom.innerHTML && ReactDOM.hydrate) ?
-        ReactDOM.hydrate :
-        ReactDOM.render)(oApp, dom)
+const render = (oApp, dom) =>
+  (dom.innerHTML && ReactDOM.hydrate ? ReactDOM.hydrate : ReactDOM.render)(
+    oApp,
+    dom,
+  );
 
 const update = props => ajaxDispatch({type: 'callback', json: props});
 
 let bInitWorker = false;
 
-const client = (rawApp, id) =>
-{
-    const app = React.createFactory(rawApp);
-    setImmediate(()=>{
-        win().Reshow = { render, app, update };
-        let data = {};
-        if ('undefined' !== typeof REACT_DATA) {
-            data = REACT_DATA;
-        }
-        const appId = id || 'app';
-        render(
-          new app(data),
-          doc().getElementById(appId)
-        );
-        if (!bInitWorker) {
-          initWorker();
-          bInitWorker = true;
-        }
-    });
-}
+const client = (rawApp, id) => {
+  const app = React.createFactory(rawApp);
+  setImmediate(() => {
+    win().Reshow = {render, app, update};
+    let data = {};
+    if ('undefined' !== typeof REACT_DATA) {
+      data = REACT_DATA;
+    }
+    const appId = id || 'app';
+    const attachDom = doc().getElementById(appId);
+    if (attachDom) {
+      render(new app(data), attachDom);
+    }
+    if (!bInitWorker) {
+      initWorker();
+      bInitWorker = true;
+    }
+  });
+};
 
 export default client;
