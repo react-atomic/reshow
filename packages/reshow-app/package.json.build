@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.7.13",
+  "version": "0.7.14",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -31,7 +31,7 @@
     "jsdom-global": "*",
     "local-web-server": "2.6.0",
     "mkdirp": "0.5.1",
-    "mocha": "*",
+    "mocha": "^5.x",
     "ora": "2.0.0",
     "organism-react-ajax": "*",
     "react-test-renderer": "*",
