@@ -37,3 +37,4 @@ const client = (rawApp, selector) => {
 };
 
 export default client;
+export {render};
