@@ -1,15 +1,11 @@
-import typeIs from './getTypeOf'
+import {OBJECT, FUNCTION} from 'reshow-constant';
+import typeIs from './getTypeOf';
+import refError from './refError';
 
-function _possibleConstructorReturn(self, call) {
+export default function _possibleConstructorReturn(self, call) {
   if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
+    throw refError();
   }
-  const isObject = 'object' === typeIs(call)
-  return call && (isObject || typeof call === 'function')
-    ? call
-    : self;
+  const isObject = OBJECT === typeIs(call);
+  return call && (isObject || typeof call === FUNCTION) ? call : self;
 }
-
-export default _possibleConstructorReturn
