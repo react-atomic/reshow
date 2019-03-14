@@ -5,7 +5,7 @@
    * GIT
       * https://github.com/react-atomic/reshow
    * NPM
-      * https://npm.im/reshow
+      * https://www.npmjs.com/package/reshow
 
 ## Reshow new context api in codesandbox
 * https://codesandbox.io/s/kw61lwzlwv
