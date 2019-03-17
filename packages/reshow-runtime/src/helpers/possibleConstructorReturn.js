@@ -7,5 +7,5 @@ export default function _possibleConstructorReturn(self, call) {
     throw refError();
   }
   const isObject = OBJECT === typeIs(call);
-  return call && (isObject || typeof call === FUNCTION) ? call : self;
+  return call && (isObject || typeIs(call) === FUNCTION) ? call : self;
 }
