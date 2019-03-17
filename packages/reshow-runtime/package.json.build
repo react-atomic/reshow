@@ -1,6 +1,6 @@
 {
   "name": "reshow-runtime",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
   "keywords": [
@@ -8,6 +8,9 @@
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
+  "dependencies": {
+    "reshow-constant": "*"
+  },
   "devDependencies": {
     "chai": "*",
     "jsdom": "*",

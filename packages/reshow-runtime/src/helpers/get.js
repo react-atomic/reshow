@@ -1,5 +1,7 @@
 const get = (object, property, receiver) => {
-  if (object === null) object = Function.prototype;
+  if (object === null) {
+    object = Function.prototype;
+  }
   var desc = Object.getOwnPropertyDescriptor(object, property);
   if (desc === undefined) {
     var parent = Object.getPrototypeOf(object);
@@ -17,6 +19,6 @@ const get = (object, property, receiver) => {
     }
     return getter.call(receiver);
   }
-}
+};
 
-export default get
+export default get;
