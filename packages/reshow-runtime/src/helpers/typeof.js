@@ -1,16 +1,6 @@
 import typeIs from './getTypeOf';
+import {SYMBOL, OBJECT} from 'reshow-constant';
 
-const _typeof =
-  typeof Symbol === 'function' && typeIs(Symbol.iterator) === 'symbol'
-    ? obj => {
-        return 'symbol' === typeIs(obj) ? 'symbol' : typeIs(obj, 'object');
-      }
-    : obj =>
-        obj &&
-        typeof Symbol === 'function' &&
-        obj.constructor === Symbol &&
-        obj !== Symbol.prototype
-          ? 'symbol'
-          : typeIs(obj, 'object');
+const _typeof = o => SYMBOL === typeIs(o) ? SYMBOL : typeIs(o, OBJECT);
 
 export default _typeof;

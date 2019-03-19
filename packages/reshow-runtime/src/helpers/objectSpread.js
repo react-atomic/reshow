@@ -1,10 +1,13 @@
-import defineProperty from "./defineProperty";
+import defineProperty from './defineProperty';
+import typeIs from './getTypeOf';
+import {FUNCTION} from 'reshow-constant';
+
 export default function _objectSpread(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
     var ownKeys = Object.keys(source);
 
-    if (typeof Object.getOwnPropertySymbols === 'function') {
+    if (typeIs(Object.getOwnPropertySymbols) === FUNCTION) {
       ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
         return Object.getOwnPropertyDescriptor(source, sym).enumerable;
       }));

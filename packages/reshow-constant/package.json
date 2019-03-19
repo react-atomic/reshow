@@ -1,6 +1,6 @@
 {
   "name": "reshow-constant",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Constant for better performance",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
