@@ -3,19 +3,19 @@ import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
 import {connect} from 'reshow-flux';
 import {localStorage as lStore} from 'get-storage';
+import {doc} from 'win-doc'; 
 
 import {dispatch, global, pageStore} from '../../src/index';
 
 const isArray = Array.isArray;
 
-let doc;
 let isInit;
 
 const updateCanonicalUrl = (url, props) => {
   if (get(props, ['disableCanonical'], () => lStore('disableCanonical')())) {
     return;
   }
-  const loc = doc.location;
+  const loc = doc().location;
   const newUrl = url + loc.search + loc.hash;
   if (-1 !== url.indexOf(loc.hostname)) {
     history.replaceState('', '', newUrl);
@@ -34,13 +34,14 @@ const update = params => {
     type = 'config/' + (reset ? 're' : '') + 'set';
   }
   dispatch({type, params});
-  if (doc) {
+  const oDoc = doc();
+  if (oDoc) {
     const htmlTitle = get(params, ['htmlTitle']);
     if (htmlTitle) {
       if (isArray(htmlTitle)) {
-        doc.title = get(htmlTitle, [0]);
+        oDoc.title = get(htmlTitle, [0]);
       } else {
-        doc.title = htmlTitle;
+        oDoc.title = htmlTitle;
       }
     }
     const canonical = get(params, ['data', 'canonical']);
@@ -78,9 +79,8 @@ class Reshow extends PureComponent {
   }
 
   componentDidMount() {
-    doc = document;
-    const canonical = doc.querySelector('link[rel="canonical"]');
-    if (-1 !== doc.URL.indexOf('--disableCanonical')) {
+    const canonical = doc().querySelector('link[rel="canonical"]');
+    if (-1 !== doc().URL.indexOf('--disableCanonical')) {
       lStore('disableCanonical')(1);
     } else if (canonical && canonical.href) {
       updateCanonicalUrl(canonical.href, this.props);
