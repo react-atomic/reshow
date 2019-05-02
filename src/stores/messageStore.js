@@ -1,6 +1,7 @@
 import {ReduceStore} from 'reshow-flux';
 import {Map, List} from 'immutable';
 import get from 'get-object-value';
+import callfunc from 'call-func';
 
 import dispatcher, {dispatch} from '../dispatcher';
 
@@ -21,6 +22,8 @@ const toMessage = message => {
 const getMessage = action => toMessage(get(action, ['params', 'message']));
 
 class MessageStore extends ReduceStore {
+  dialogCallback = null;
+
   getInitialState() {
     return Map({
       alerts: List(),
@@ -29,13 +32,16 @@ class MessageStore extends ReduceStore {
 
   dialogStart(state, action) {
     const params = get(action, ['params']);
-    const {dialog, dialogProps, dialogTo} = params;
+    const {dialog, dialogProps, dialogTo, callback} = params;
     const next = {dialog};
     if (dialogProps) {
       next.dialogProps = dialogProps;
     }
     if (dialogTo) {
       next.dialogTo = dialogTo;
+    }
+    if (callback) {
+      this.dialogCallback = callback;
     }
     return state.merge(next);
   }
@@ -49,7 +55,12 @@ class MessageStore extends ReduceStore {
     dispatch({
       [dialogTo]: value,
     });
-    return state.delete('dialog').delete('dialogProps');
+    callfunc(this.dialogCallback, [value]);
+    this.dialogCallback = null;
+    return state
+      .delete('dialog')
+      .delete('dialogProps')
+      .delete('dialogTo');
   }
 
   alertReset(state, action) {

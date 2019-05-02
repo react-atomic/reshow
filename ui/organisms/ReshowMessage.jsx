@@ -42,7 +42,7 @@ class Body extends PureComponent {
           <Dialog
             {...toJS(dialogProps)}
             onClick={this.handleClick}
-            closeCallback={this.handleClick}>
+            onClose={this.handleClick}>
             {toJS(dialog)}
           </Dialog>
         </DisplayPopupEl>
