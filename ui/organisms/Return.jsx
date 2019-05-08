@@ -11,11 +11,12 @@ class Return extends ReshowComponent {
       pathStates,
       stores,
       withConstructor,
-      ...props
+      ...otherProps
     } = this.props;
+    const {immutable: stateImmutable, ...otherState} = this.state;
     return getChildren(children, {
-      ...props,
-      ...this.state,
+      ...otherProps,
+      ...otherState,
     });
   }
 }
