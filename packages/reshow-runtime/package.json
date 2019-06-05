@@ -26,8 +26,7 @@
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build/",
     "build:cjs": "BABEL_ENV=build babel src -d build",
     "build:es": "BABEL_ENV=es babel src -d build/es",
-    "build:test": "BABEL_ENV=build babel tests -d build/tests",
-    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && npm run build:test && cd build && yarn install",
-    "test": "npm run build && mocha 'build/tests/**/*.js' -r jsdom-global/register"
+    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn install",
+    "test": "npm run build && mocha 'build/helpers/**/__tests__/*.js' -r jsdom-global/register"
   }
 }

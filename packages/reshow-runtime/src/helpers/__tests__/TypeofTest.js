@@ -1,5 +1,5 @@
-import typeIs from '../../helpers/getTypeOf';
-import helperTypeof from '../../helpers/typeof';
+import typeIs from '../getTypeOf';
+import helperTypeof from '../typeof';
 import {expect} from 'chai';
 
 describe('Test typeof', () => {
