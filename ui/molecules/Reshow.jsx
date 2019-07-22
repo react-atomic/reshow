@@ -96,7 +96,7 @@ class Reshow extends PureComponent {
 
     return (
       <AjaxPage
-        callback={json => update(json)}
+        callback={update}
         /*State*/
         themePath={themePath || defaultThemePath}
         baseUrl={baseUrl}
