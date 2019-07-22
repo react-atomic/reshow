@@ -35,7 +35,7 @@ const update = params => {
   }
   dispatch({type, params});
   const oDoc = doc();
-  if (oDoc) {
+  if (oDoc.URL) {
     const htmlTitle = get(params, ['htmlTitle']);
     if (htmlTitle) {
       if (isArray(htmlTitle)) {

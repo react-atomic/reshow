@@ -3293,9 +3293,9 @@ react-atomic-atom@*:
     reshow-runtime "*"
 
 react-atomic-molecule@*:
-  version "1.5.10"
-  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-1.5.10.tgz#fa86cdd47531a165ac2a1034b854d6c1b3d37de2"
-  integrity sha512-yAlKbDhEt2oTvxdSs6Kv+eepmFKkrpxAEIRJjRFKkIQCzNKCTgHzZH64g1rV92e0jZ10gpJPPgFQ72DeEo/30Q==
+  version "1.5.11"
+  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-1.5.11.tgz#0de2785f051eb3d7892ffdf849413568964fba08"
+  integrity sha512-/zrm6rnwsDZ6LlIescay0izxvyYf9GlG/lTZTQNWuynnz9OzLLiVL5KGzdz3aIvGApoc0zRgqjsggSS7DUlpBQ==
   dependencies:
     class-lib "*"
     get-object-value "*"
