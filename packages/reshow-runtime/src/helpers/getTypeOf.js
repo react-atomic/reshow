@@ -1,4 +1,14 @@
-const types = '|number|string|boolean|object|function|undefined|';
+import {STRING, OBJECT, FUNCTION, UNDEFINED} from 'reshow-constant';
+const types =
+  '|number|boolean|' +
+  STRING +
+  '|' +
+  OBJECT +
+  '|' +
+  FUNCTION +
+  '|' +
+  UNDEFINED +
+  '|';
 
 /**
  * Do not use this.
