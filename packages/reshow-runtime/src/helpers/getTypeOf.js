@@ -16,17 +16,23 @@ const toBase = (type, name) => {
   }
 };
 
+const getTypeIs = (val, name) => {
+  const type = Object.prototype.toString
+    .call(val)
+    .replace(/^\[object\s(.*)\]$/, '$1')
+    .toLowerCase();
+  return toBase(type, name);
+};
+
 const getTypeOf = (val, name) => {
-  let type;
+  if (null == val) {
+    return getTypeIs(val, name);
+  }
   try {
-    type = Object.getPrototypeOf(val).constructor.name.toLowerCase();
+    const type = Object.getPrototypeOf(val).constructor.name.toLowerCase();
     return toBase(type, name);
   } catch (ex) {
-    type = Object.prototype.toString
-      .call(val)
-      .replace(/^\[object\s(.*)\]$/, '$1')
-      .toLowerCase();
-    return toBase(type, name);
+    return getTypeIs(val, name);
   }
 };
 

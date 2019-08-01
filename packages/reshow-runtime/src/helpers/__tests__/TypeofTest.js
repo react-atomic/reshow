@@ -12,11 +12,12 @@ describe('Test typeof', () => {
     expect(typeIs({})).to.equal('object');
     expect(typeIs(() => {})).to.equal('function');
     expect(typeIs(new FOO())).to.equal('foo');
+    expect(typeIs(undefined)).to.equal('undefined');
+    expect(typeIs(null)).to.equal('null');
   });
 
   it('test helper typeof', () => {
-    const symbolTypeOf = helperTypeof(symbol1);
-    expect(symbolTypeOf).to.equal('symbol');
+    expect(helperTypeof(symbol1)).to.equal('symbol');
     expect(helperTypeof({})).to.equal('object');
     expect(helperTypeof(new FOO())).to.equal('object');
     expect(helperTypeof(new t())).to.equal('object');
@@ -25,6 +26,7 @@ describe('Test typeof', () => {
     expect(helperTypeof(true)).to.equal('boolean');
     expect(helperTypeof(() => {})).to.equal('function');
     expect(helperTypeof(undefined)).to.equal('undefined');
+    expect(helperTypeof(null)).to.equal('object');
   });
 
   it('test typeof array', () => {
