@@ -19,9 +19,9 @@
               "@babel/plugin-proposal-export-default-from",
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-transform-object-assign",
+              "@babel/plugin-transform-react-constant-elements",
               "@babel/plugin-proposal-class-properties",
-              "@babel/plugin-proposal-object-rest-spread",
-              "@babel/plugin-transform-react-constant-elements"
+              "@babel/plugin-proposal-object-rest-spread"
             ]
         },
         "build": {
@@ -44,9 +44,9 @@
               "@babel/plugin-proposal-export-default-from",
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-transform-object-assign",
+              "@babel/plugin-transform-react-constant-elements",
               "@babel/plugin-proposal-class-properties",
-              "@babel/plugin-proposal-object-rest-spread",
-              "@babel/plugin-transform-react-constant-elements"
+              "@babel/plugin-proposal-object-rest-spread"
             ]
         },
         "production": {
@@ -69,9 +69,9 @@
               "@babel/plugin-proposal-export-default-from",
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-transform-object-assign",
+              "@babel/plugin-transform-react-constant-elements",
               "@babel/plugin-proposal-class-properties",
-              "@babel/plugin-proposal-object-rest-spread",
-              "@babel/plugin-transform-react-constant-elements"
+              "@babel/plugin-proposal-object-rest-spread"
             ]
         }
     }
