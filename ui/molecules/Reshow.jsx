@@ -2,7 +2,8 @@ import React, {PureComponent} from 'react';
 import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
 import {connect} from 'reshow-flux';
-import {doc} from 'win-doc'; 
+import {doc} from 'win-doc';
+import {sessionStorage as sStore} from 'get-storage';
 
 import updateCanonicalUrl from '../../src/updateCanonicalUrl';
 import {dispatch, global, pageStore} from '../../src/index';
@@ -61,6 +62,16 @@ class Reshow extends PureComponent {
       update(props);
       this.stop = false;
       isInit = 1;
+    }
+  }
+
+  componentDidMount() {
+    // Server site version also need update Canonical
+    const canonical = doc().querySelector('link[rel="canonical"]');
+    if (-1 !== doc().URL.indexOf('--disableCanonical')) {
+      sStore('disableCanonical')(1);
+    } else if (canonical && canonical.href) {
+      updateCanonicalUrl(canonical.href, this.props);
     }
   }
 
