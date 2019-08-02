@@ -10,6 +10,6 @@ const _defineProperty = (obj, key, value) => {
     obj[key] = value;
   }
   return obj;
-}
+};
 
-export default _defineProperty
+export default _defineProperty;

@@ -1,6 +1,6 @@
 'use strict';
 
-import {Dispatcher, Store} from '../../cjs/index';
+import {Dispatcher, Store} from '../index';
 import {expect} from 'chai';
 import sinon from 'sinon';
 

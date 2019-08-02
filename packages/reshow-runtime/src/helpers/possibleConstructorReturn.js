@@ -1,5 +1,5 @@
 import {OBJECT, FUNCTION} from 'reshow-constant';
-import typeIs from './getTypeOf';
+import typeIs from './typeof';
 import refError from './refError';
 
 export default function _possibleConstructorReturn(self, call) {

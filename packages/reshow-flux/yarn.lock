@@ -2392,16 +2392,16 @@ reshow-constant@*:
   integrity sha512-PRwvxfln60W897Z8puaZhWhY4wrP6Mb+c8Wu+9n1yBgn+//6GP8AhW/xMdsy+MyM2HcTJ8d1iTmvr/G4Pm2NyA==
 
 reshow-flux-base@*:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.1.5.tgz#1c9080d3f26d11b2aad3078ca639176970482b30"
-  integrity sha512-fpvAs6aeFph7EHpE6WJk2pS2fGQw3pUi6x8/baTDFSe4/q9TTl3eWM26zhLjSgTIFirB9BbwfS8EZPvpn0tSgw==
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.1.6.tgz#58d673d65f2f3f9708983f0288d5ebad2034f107"
+  integrity sha512-C/r13bClHjPS16Cx4NeoLWK8pjb+Y3yIWaTf93hm241ybLh4RzBodhI0VmCk4L9abL7kkTsjmxvNfo9C6ArinQ==
   dependencies:
     reshow-runtime "*"
 
 reshow-runtime@*:
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.1.15.tgz#212b76fbff4ca14f5afdb8345cf5654dceaf4a44"
-  integrity sha512-ABBnooOnQ34UixjBVQ/ua9TWM1sc74t+RoAvIEShj83sQN0Y4hnJjKwBOH+nzrvGTl+48OVN5OMXhpJ+UvGOqg==
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.1.16.tgz#ff561c3f508f207932e333ece79e9e9ed3e775d8"
+  integrity sha512-KdeGa5Err7WWejkMwqdwP+yLS+x4n5F3pdgcCE3T1WTMLeiDw6tXi3YnMpGTyZd/4SJgGiq9zY1YxSe3e3KG+g==
   dependencies:
     reshow-constant "*"
 

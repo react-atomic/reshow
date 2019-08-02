@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {Component, StrictMode} from 'react';
-import {connect, Dispatcher, ReduceStore} from '../../cjs/index';
+import {connect, Dispatcher, ReduceStore} from '../index';
 import {expect} from 'chai';
 import {shallow, mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

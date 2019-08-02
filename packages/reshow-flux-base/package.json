@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -24,9 +24,8 @@
     "build": "npm run clean && npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
-    "build:test": "BABEL_ENV=build babel tests -d build/tests --root-mode upward",
-    "prepublishOnly": "npm run test && npm run build",
-    "test": "npm run build && npm run build:test && mocha 'build/tests/**/*.js'"
+    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "files": [
     "build",

@@ -26,8 +26,11 @@ class Store {
     return this.getInitialState();
   }
 
+  getState() {
+    return this._state;
+  }
+
   /* Following not extendable */
-  getState = () => this._state;
 
   __invokeOnDispatch = action => {
     const startingState = this._state;
