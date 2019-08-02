@@ -3,7 +3,7 @@ jsdom(null, {url: 'http://localhost'});
 
 import React, {PureComponent} from 'react';
 import {urlStore} from 'organism-react-ajax';
-import {UrlReturn, urlDispatch} from './../../../cjs/src/index';
+import {UrlReturn, urlDispatch} from '../../../src/index';
 
 import {expect} from 'chai';
 import {shallow, mount, configure} from 'enzyme';

@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {Map} from 'immutable';
 
-import toJS from '../../cjs/src/toJS';
+import toJS from '../toJS';
 
 describe('Test toJS with object', () => {
   it('without set', () => {

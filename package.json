@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.10.2",
+  "version": "0.11.1",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -55,7 +55,7 @@
     "build:es": "BABEL_ENV=es babel src -d build/es/src && BABEL_ENV=es babel ui -d build/es/ui",
     "build:test": "BABEL_ENV=build babel tests -d build/tests",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "test": "npm run build && npm run build:test && mocha 'build/tests/**/*.js' -r jsdom-global/register",
+    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
     "prepublishOnly": "npm run test && npm run build"
   },
   "files": [

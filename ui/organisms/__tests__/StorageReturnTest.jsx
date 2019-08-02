@@ -5,7 +5,7 @@ import {
     localStorageStore,
     sessionStorageStore,
     storageDispatch
-} from './../../../cjs/src/index'
+} from '../../../src/index'
 
 import {expect} from 'chai'
 import {shallow, mount, configure} from 'enzyme'

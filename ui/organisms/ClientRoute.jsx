@@ -1,9 +1,11 @@
 import {ajaxDispatch} from 'organism-react-ajax';
 import {doc} from 'win-doc';
+import {localStorage as lStore} from 'get-storage';
 
 import Reshow, {update} from '../molecules/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import handleAnchor from '../../src/handleAnchor';
+import updateCanonicalUrl from '../../src/updateCanonicalUrl';
 
 const defaultParseUrl = url => handleAnchor => goAnchorDelay => {
   const separator = '/';
@@ -27,8 +29,13 @@ class ClientRoute extends Reshow {
   };
 
   componentDidMount() {
-    super.componentDidMount();
     const props = this.props;
+    const canonical = doc().querySelector('link[rel="canonical"]');
+    if (-1 !== doc().URL.indexOf('--disableCanonical')) {
+      lStore('disableCanonical')(1);
+    } else if (canonical && canonical.href) {
+      updateCanonicalUrl(canonical.href, this.props);
+    }
     const updateWithUrl = url => {
       const {parseUrl, goAnchorDelay} = props;
       const thisParseUrlFunc = parseUrl ? parseUrl : defaultParseUrl;
