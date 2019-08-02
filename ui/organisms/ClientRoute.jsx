@@ -31,13 +31,14 @@ class ClientRoute extends Reshow {
   componentDidMount() {
     const props = this.props;
     const canonical = doc().querySelector('link[rel="canonical"]');
-    if (-1 !== doc().URL.indexOf('--disableCanonical')) {
+    const curUrl = props.url || doc().URL;
+    if (-1 !== curUrl.indexOf('--disableCanonical')) {
       lStore('disableCanonical')(1);
     } else if (canonical && canonical.href) {
-      updateCanonicalUrl(canonical.href, this.props);
+      updateCanonicalUrl(canonical.href, props);
     }
     const updateWithUrl = url => {
-      const {parseUrl, goAnchorDelay} = props;
+      const {parseUrl, goAnchorDelay} = this.props;
       const thisParseUrlFunc = parseUrl ? parseUrl : defaultParseUrl;
       const parseUrlConfigs = thisParseUrlFunc(url)(handleAnchor)(
         goAnchorDelay,
@@ -45,7 +46,6 @@ class ClientRoute extends Reshow {
       update(parseUrlConfigs);
       return parseUrlConfigs;
     };
-    const curUrl = props.url || doc().URL;
     const {themePath} = updateWithUrl(curUrl);
     this.setState({themePath});
     setImmediate(() => {
