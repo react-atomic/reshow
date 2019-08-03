@@ -1530,9 +1530,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.191:
-  version "1.3.211"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.211.tgz#0c39d17316bf342d1971fed68e754fa1775918f7"
-  integrity sha512-GZAiK3oHrs0K+LwH+HD+bdjZ17v40oQQdXbbd3dgrwgbENvazrGpcuIADSAREWnxzo9gADB1evuizrbXsnoU2Q==
+  version "1.3.212"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.212.tgz#15d81ba96edb8ae6f937cde0fdb18c1c3c2bfec5"
+  integrity sha512-H8z5Smi1s1u1zGegEBfbxUAzrxyk1JoRHHHrlNGfhxv3sTb+p/Jz7JDvrR4196Q/Ip8r4+XwWcLvKrUjFKoJAg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -3035,9 +3035,9 @@ optionator@^0.8.1:
     wordwrap "~1.0.0"
 
 organism-react-ajax@*:
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.7.6.tgz#d07904b749e57ca80b04079ad69b73ad33f8c675"
-  integrity sha512-4VDhFkbBgaDD3HlN1OqZ0Dz8WKS3UmKYs6lADIh2LoFriD6yYKzXlwamObrCb6CK7DtgTjXoNlpUiYqOg+GJnA==
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.7.7.tgz#5e2c8e0eedf0ca28bd821140ba72ecdb1a5b05af"
+  integrity sha512-3g6j16hG+EnNjLldHzArT4RXREgLgpTLclIvjh0ditoEywkqn+inuIBa+sJLzNwHomPKXc5wzocFxXe2pAHd8A==
   dependencies:
     es6-promise "4.2.5"
     get-object-value "*"

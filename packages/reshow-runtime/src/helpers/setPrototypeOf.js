@@ -1,13 +1,19 @@
+/**
+ * !! Important !! if update this file, need take care ie10 inherit
+ */
+
 import _defaults from './defaults';
 const setProtoOf = (obj, proto) => {
   obj.__proto__ = proto;
   return obj;
 };
 
-export default function _setPrototypeOf(o, p) {
+const setDefaults = (o, p) => setProtoOf(_defaults(o, p), p);
+
+export default function _setPrototypeOf(o, p, force) {
   _setPrototypeOf =
     Object.setPrototypeOf ||
-    ({__proto__: []} instanceof Array ? setProtoOf : (o, p) => {_defaults(o, p); setProtoOf(o, p); });
+    ({__proto__: []} instanceof Array && !force ? setProtoOf : setDefaults);
 
   return _setPrototypeOf(o, p);
 }

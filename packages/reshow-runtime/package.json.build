@@ -1,6 +1,6 @@
 {
   "name": "reshow-runtime",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
   "keywords": [
