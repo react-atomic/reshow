@@ -8,6 +8,7 @@ export {default as realTimeStore} from './stores/realTimeStore';
 export {default as localStorageStore} from './stores/localStorageStore';
 export {default as sessionStorageStore} from './stores/sessionStorageStore';
 export {default as messageStore} from './stores/messageStore';
+export {global} from './stores/global';
 
 // Dispatch
 export {default as dispatcher, dispatch} from './dispatcher';
@@ -21,7 +22,6 @@ export {default as toJS} from './toJS';
 export {AjaxLink as ReLink, AjaxForm as ReForm, urlDispatch} from 'organism-react-ajax';
 
 // Router
-export const global = {};
 export {default as ClientRoute} from '../ui/organisms/ClientRoute';
 
 // Message Component
