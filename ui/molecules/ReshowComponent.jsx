@@ -3,7 +3,9 @@ import get from 'get-object-value';
 import {connect} from 'reshow-flux';
 import {Map} from 'immutable';
 
-import {toJS, global, pageStore} from '../../src/index';
+import toJS from '../../src/toJS';
+import {globalStore} from '../../src/stores/globalStore';
+import pageStore from '../../src/stores/pageStore';
 
 const keys = Object.keys;
 const isArray = Array.isArray;
@@ -35,7 +37,7 @@ class ReshowComponent extends PureComponent {
     const pageState = pageStore.getState();
     const storeState = thisStore.getState();
     const thisThemePath = pageState.get('themePath');
-    if (thisThemePath && global.path !== thisThemePath) {
+    if (thisThemePath && globalStore.path !== thisThemePath) {
       return prevState;
     }
     const {initStates, pathStates, immutable: propsImmutable} = props;

@@ -8,7 +8,6 @@ export {default as realTimeStore} from './stores/realTimeStore';
 export {default as localStorageStore} from './stores/localStorageStore';
 export {default as sessionStorageStore} from './stores/sessionStorageStore';
 export {default as messageStore} from './stores/messageStore';
-export {global} from './stores/global';
 
 // Dispatch
 export {default as dispatcher, dispatch} from './dispatcher';

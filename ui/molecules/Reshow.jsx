@@ -8,7 +8,7 @@ import updateCanonicalUrl, {
   initCanonicalUrl,
 } from '../../src/updateCanonicalUrl';
 import {dispatch} from '../../src/dispatcher';
-import {global} from '../../src/stores/global';
+import {globalStore} from '../../src/stores/globalStore';
 import pageStore from '../../src/stores/pageStore';
 
 const isArray = Array.isArray;
@@ -48,9 +48,9 @@ class Reshow extends PureComponent {
 
   static calculateState(prevState) {
     const pageState = pageStore.getState();
-    global.path = pageStore.getThemePath();
+    globalStore.path = pageStore.getThemePath();
     return {
-      themePath: global.path,
+      themePath: globalStore.path,
       baseUrl: pageState.get('baseUrl'),
       staticVersion: pageState.get('staticVersion'),
     };
