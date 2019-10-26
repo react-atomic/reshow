@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react'; 
 import get from 'get-object-value';
 import {connect} from 'reshow-flux';
+import {build} from 'react-atomic-molecule';
 
 import {initProps} from '../molecules/ReshowComponent';
 import Return from '../organisms/Return';
-import getChildren from '../../src/getChildren';
 import realTimeStore from '../../src/stores/realTimeStore';
 
 const realTimeKey = '--realTimeData--';
@@ -50,8 +50,7 @@ class RealTimeReturn extends PureComponent
     return (
       <Return {...props}>
         {pageState =>
-            getChildren(
-              children,
+            build(children)(
               {...pageState, ...this.state}
             )
         }

@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.11.6",
+  "version": "0.12.0",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -12,13 +12,13 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "array.merge": "*",
     "call-func": "*",
     "get-storage": "*",
     "getoffset": "*",
     "memoize-one": "*",
     "organism-react-ajax": "*",
     "organism-react-popup": "*",
+    "react-atomic-molecule": "*",
     "reshow-flux": "*",
     "reshow-runtime": "*",
     "seturl": "*",

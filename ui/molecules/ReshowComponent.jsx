@@ -62,10 +62,16 @@ class ReshowComponent extends PureComponent {
       });
     }
 
+    const getMapIn = (map, path) => {
+      if (map && map.getIn) {
+        return map.getIn(path);
+      }
+    };
+
     keys(get(pathStates, null, {})).forEach(key => {
       const thisPath = pathStates[key];
       results[key] = immutable
-        ? get(results, [thisPath[0]], () => Map()).getIn(thisPath.slice(1))
+        ? getMapIn(get(results, [thisPath[0]], () => Map()), thisPath.slice(1))
         : get(results, thisPath);
     });
     return results;

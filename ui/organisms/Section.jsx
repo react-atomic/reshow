@@ -1,8 +1,8 @@
 import React from 'react';
 import get from 'get-object-value';
+import {build} from 'react-atomic-molecule';
 
 import ReshowComponent from '../molecules/ReshowComponent';
-import getChildren from '../../src/getChildren';
 
 class Section extends ReshowComponent {
   static defaultProps = {
@@ -46,7 +46,7 @@ class Section extends ReshowComponent {
       }
       allParams = {...others, ...otherProps, I18N};
     }
-    return getChildren(children, allParams);
+    return build(children)(allParams);
   }
 }
 

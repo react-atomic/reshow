@@ -1,6 +1,6 @@
 import React from 'react';
+import {build} from 'react-atomic-molecule';
 import ReshowComponent from '../molecules/ReshowComponent';
-import getChildren from '../../src/getChildren';
 
 class Return extends ReshowComponent {
   render() {
@@ -14,7 +14,7 @@ class Return extends ReshowComponent {
       ...otherProps
     } = this.props;
     const {immutable: stateImmutable, ...otherState} = this.state;
-    return getChildren(children, {
+    return build(children)({
       ...otherProps,
       ...otherState,
     });
