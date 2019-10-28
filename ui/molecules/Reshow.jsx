@@ -3,6 +3,7 @@ import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
 import {connect} from 'reshow-flux';
 import {doc} from 'win-doc';
+import callfunc from 'call-func';
 
 import updateCanonicalUrl, {
   initCanonicalUrl,
@@ -73,11 +74,20 @@ class Reshow extends PureComponent {
     initCanonicalUrl(this.props);
   }
 
+  componentDidCatch(error, info) {
+    const {onError} = this.props;
+    if (onError) {
+      callfunc(onError, [error, info]);
+    } else {
+      console.error([error, info]);
+    }
+  }
+
   render() {
     if (this.stop) {
       return null;
     }
-    const {themes, defaultThemePath, ajax, webSocketUrl} = this.props;
+    const {onError, themes, defaultThemePath, ajax, webSocketUrl} = this.props;
     const {themePath, baseUrl, staticVersion} = this.state;
 
     return (
