@@ -57,6 +57,10 @@ class Reshow extends PureComponent {
     };
   }
 
+  static getDerivedStateFromError(error) {
+    return {hasError: true};
+  }
+
   constructor(props) {
     super(props);
     if (isInit) {
