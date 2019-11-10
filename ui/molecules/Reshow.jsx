@@ -65,10 +65,10 @@ class Reshow extends PureComponent {
     super(props);
     if (isInit) {
       console.warn('The best practice is avoid multi Reshow Component.');
-      this.stop = true;
+      this.state = {hasError: true};
     } else {
       update(props);
-      this.stop = false;
+      this.state = {hasError: false};
       isInit = 1;
     }
   }
@@ -85,14 +85,15 @@ class Reshow extends PureComponent {
     } else {
       console.error([error, info]);
     }
+    this.setState({hasError: true});
   }
 
   render() {
-    if (this.stop) {
+    const {hasError, themePath, baseUrl, staticVersion} = this.state;
+    if (hasError) {
       return null;
     }
     const {onError, themes, defaultThemePath, ajax, webSocketUrl} = this.props;
-    const {themePath, baseUrl, staticVersion} = this.state;
 
     return (
       <AjaxPage
