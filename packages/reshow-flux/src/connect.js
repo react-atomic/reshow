@@ -1,24 +1,16 @@
 import dedup from 'array.dedup';
 import {CHANGE} from 'reshow-flux-base';
 
-const DEFAULT_OPTIONS = {
-  withProps: false,
-};
-
+const DEFAULT_OPTIONS = {withProps: false};
 const keys = Object.keys;
+const getProps = (props, opt) => (opt.withProps ? props : undefined);
+const getState = (self, prevState, maybeProps, opt) =>
+  self.calculateState(prevState, getProps(maybeProps, opt));
+const getStores = (self, maybeProps, opt) =>
+  self.getStores(getProps(maybeProps, opt));
 
 const connect = (Base, options) => {
-  let thisOptions = DEFAULT_OPTIONS;
-  if (options) {
-    keys(options).forEach(key => (thisOptions[key] = options[key]));
-  }
-
-  const getProps = props => (thisOptions.withProps ? props : undefined);
-
-  const getState = (self, prevState, maybeProps) =>
-    self.calculateState(prevState, getProps(maybeProps));
-
-  const getStores = (self, maybeProps) => self.getStores(getProps(maybeProps));
+  const thisOptions = {...DEFAULT_OPTIONS, ...(options || {})};
 
   class ConnectedClass extends Base {
     __stores = [];
@@ -30,7 +22,7 @@ const connect = (Base, options) => {
       }
       const con = this.constructor;
       this.setState((prevState, currentProps) =>
-        getState(con, prevState, currentProps),
+        getState(con, prevState, currentProps, thisOptions),
       );
     };
 
@@ -61,7 +53,7 @@ const connect = (Base, options) => {
         con.getStores = super.getStores;
       }
       if (props.withConstructor) {
-        this.__setStores(getStores(con, props));
+        this.__setStores(getStores(con, props, thisOptions));
       }
 
       if (!this.state) {
@@ -69,7 +61,7 @@ const connect = (Base, options) => {
       }
 
       if (!thisOptions.withProps) {
-        const calculatedState = getState(con, undefined, props);
+        const calculatedState = getState(con, undefined, props, thisOptions);
         if (calculatedState) {
           keys(calculatedState).forEach(
             key => (this.state[key] = calculatedState[key]),
@@ -83,7 +75,7 @@ const connect = (Base, options) => {
         super.componentDidMount();
       }
       if (this.props && !this.props.withConstructor) {
-        this.__setStores(getStores(this.constructor, this.props));
+        this.__setStores(getStores(this.constructor, this.props, thisOptions));
       }
     }
 
@@ -92,7 +84,7 @@ const connect = (Base, options) => {
         super.componentDidUpdate(prevProps, prevState);
       }
       if (thisOptions.withProps) {
-        this.__setStores(getStores(this.constructor, this.props));
+        this.__setStores(getStores(this.constructor, this.props, thisOptions));
       }
     }
 
@@ -106,6 +98,7 @@ const connect = (Base, options) => {
           ConnectedClass,
           {...prevState, ...thisStates},
           nextProps,
+          thisOptions,
         );
         thisStates = {
           ...thisStates,

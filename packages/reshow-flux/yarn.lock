@@ -1018,6 +1018,14 @@ get-func-name@^2.0.0:
   resolved "https://registry.yarnpkg.com/get-func-name/-/get-func-name-2.0.0.tgz#ead774abee72e20409433a066366023dd6887a41"
   integrity sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=
 
+get-object-value@*:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.1.4.tgz#dfa4687be33ebc98a5fbf36079ab26bb96e3042d"
+  integrity sha512-fpBdzSUoxFPo0HFsZoStYln5WfH3nMvX9ZooiZrZKb9El+dzTzU4r7hi3uhCaDGsoZopCIDDdL2qfP8N2L1jig==
+  dependencies:
+    reshow-constant "*"
+    reshow-runtime "*"
+
 get-stream@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-4.1.0.tgz#c1b255575f3dc21d59bfc79cd3d2b46b1c3a54b5"
