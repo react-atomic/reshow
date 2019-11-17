@@ -9,7 +9,7 @@
 
 ## Reshow new context api in codesandbox
 * https://codesandbox.io/s/kw61lwzlwv
-* [<img width="429" alt="reshow-new-context-api" src="https://user-images.githubusercontent.com/1877738/69008910-d9a7a180-098a-11ea-8793-6cbad1b17b8b.png">](https://codesandbox.io/s/kw61lwzlwv)
+[<img width="429" alt="reshow-new-context-api" src="https://user-images.githubusercontent.com/1877738/69008910-d9a7a180-098a-11ea-8793-6cbad1b17b8b.png">](https://codesandbox.io/s/kw61lwzlwv)
 
 ## Example Usage
 * Demo Url:
