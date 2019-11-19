@@ -1,6 +1,6 @@
 import React, {PureComponent, memo} from 'react';
 import {AlertsNotifier, Dialog, DisplayPopupEl} from 'organism-react-popup';
-import {SemanticUI} from 'react-atomic-molecule';
+import {build, SemanticUI} from 'react-atomic-molecule';
 
 import Return from '../organisms/Return';
 
@@ -10,6 +10,11 @@ import toJS from '../../src/toJS';
 import {dispatch} from '../../src/index';
 
 class Body extends PureComponent {
+  static defaultProps = {
+    dialogComponent: Dialog,
+    alertComponent: AlertsNotifier,
+  };
+
   handleDismiss = item => {
     dispatch('alert/del', {
       id: item.id,
@@ -32,45 +37,47 @@ class Body extends PureComponent {
       alerts,
       alertProps,
       defaultAlertProps,
+      alertComponent,
       dialog,
       dialogProps,
+      dialogComponent,
     } = this.props;
     let thisDialog = null;
     if (dialog) {
       thisDialog = (
         <DisplayPopupEl>
-          <Dialog
-            {...toJS(dialogProps)}
-            onClick={this.handleClick}
-            onClose={this.handleClick}>
-            {toJS(dialog)}
-          </Dialog>
+          {build(dialogComponent)(
+            {
+              ...toJS(dialogProps),
+              onClick: this.handleClick,
+              onClose: this.handleClick,
+            },
+            toJS(dialog),
+          )}
         </DisplayPopupEl>
       );
     }
     return (
       <SemanticUI>
         {thisDialog}
-        <AlertsNotifier
-          {...defaultAlertProps}
-          {...alertProps}
-          onDismiss={this.handleDismiss}
-          alerts={toJS(alerts)}
-        />
+        {build(alertComponent)({
+          ...defaultAlertProps,
+          ...alertProps,
+          onDismiss: this.handleDismiss,
+          alerts: toJS(alerts),
+        })}
       </SemanticUI>
     );
   }
 }
 
-const ReshowMessage = memo(props => {
-  return (
-    <Return
-      stores={[messageStore]}
-      initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
-      <Body {...props} />
-    </Return>
-  );
-});
+const ReshowMessage = memo(props => (
+  <Return
+    stores={[messageStore]}
+    initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
+    <Body {...props} />
+  </Return>
+));
 ReshowMessage.displayName = 'ReshowMessage';
 
 export default ReshowMessage;
