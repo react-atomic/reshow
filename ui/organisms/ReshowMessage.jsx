@@ -34,9 +34,10 @@ class Body extends PureComponent {
 
   render() {
     const {
+      defaultAlertProps,
+      defaultDialogProps,
       alerts,
       alertProps,
-      defaultAlertProps,
       alertComponent,
       dialog,
       dialogProps,
@@ -48,6 +49,7 @@ class Body extends PureComponent {
         <DisplayPopupEl>
           {build(dialogComponent)(
             {
+              ...defaultDialogProps,
               ...toJS(dialogProps),
               onClick: this.handleClick,
               onClose: this.handleClick,
@@ -62,7 +64,7 @@ class Body extends PureComponent {
         {thisDialog}
         {build(alertComponent)({
           ...defaultAlertProps,
-          ...alertProps,
+          ...toJS(alertProps),
           onDismiss: this.handleDismiss,
           alerts: toJS(alerts),
         })}
