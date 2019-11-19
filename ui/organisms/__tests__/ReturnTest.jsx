@@ -57,8 +57,18 @@ describe('Test Return', () => {
     expect(firstI13N.toJS()).to.deep.equal({a: 'b'});
   });
 
+  it('test path state should clean', () => {
+    const vDom = <FakeComponent immutable />;
+    const uFake = mount(vDom).instance();
+    const vDom1 = <FakeComponent />;
+    const uFake1 = mount(vDom1).instance();
+    dispatch({data: ''});
+    expect(uFake.el.props.I13N).to.undefined;
+    expect(uFake1.el.props.I13N).to.undefined;
+  });
+
   it('test child with function', () => {
-    let i = 0
+    let i = 0;
     const vDom = (
       <Return>
         {props => {
