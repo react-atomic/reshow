@@ -2,8 +2,10 @@
 import webpack from 'webpack';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
-import BundleTracker from './webpackBundleTracker';
+import dedup from 'array.dedup';
 import ora from 'ora';
+import BundleTracker from './webpackBundleTracker';
+
 const spinner = ora({
   text: 'Trust me, it will finish soon.',
   spinner: 'line',
@@ -63,7 +65,6 @@ const uglifyJsOptions = {
 };
 
 /*vendor*/
-const deduplicate = arr => Array.from(new Set(arr));
 let vendor = ['react', 'react-dom', 'immutable'];
 if (confs.resetVendor) {
   vendor = confs.resetVendor;
@@ -71,7 +72,7 @@ if (confs.resetVendor) {
 if (confs.webpackVendor) {
   vendor = vendor.concat(confs.webpackVendor);
 }
-vendor = deduplicate(vendor);
+vendor = dedup(vendor);
 
 const myWebpack = (root, main, lazyConfs) => {
   confs = {...confs, ...lazyConfs};
@@ -128,7 +129,7 @@ const myWebpack = (root, main, lazyConfs) => {
   }
 
   const entry = main;
-  if (vendor && vendor.length) {
+  if (!confs.disableVendor && vendor && vendor.length) {
     entry.vendor = vendor;
     plugins = plugins.concat([
       new CommonsChunkPlugin({
