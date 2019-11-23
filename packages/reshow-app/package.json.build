@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -40,7 +40,7 @@
     "reshow-constant": "*",
     "sinon": "*",
     "strip-ansi": "^2.0.1",
-    "uglifyjs-webpack-plugin": "^1.x",
+    "webpack-parallel-uglify-plugin": "^1.x",
     "webpack": "^3.0.0",
     "win-doc": "*",
     "webpack-bundle-analyzer": "^3.3.2"

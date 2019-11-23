@@ -1,10 +1,10 @@
 'use strict';
 import webpack from 'webpack';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import dedup from 'array.dedup';
 import ora from 'ora';
 import BundleTracker from './webpackBundleTracker';
+import {getProdUglify, getUglify} from './uglify';
 
 const spinner = ora({
   text: 'Trust me, it will finish soon.',
@@ -41,28 +41,6 @@ let babelLoaderOption = {
   presets: [['@babel/env', {modules: false}]],
 };
 
-/* Default uglifyJs options */
-const uglifyJsOptions = {
-  cache: true,
-  parallel: true,
-  uglifyOptions: {
-    compress: {
-      unused: true,
-      dead_code: true,
-      join_vars: false,
-      hoist_funs: true,
-      collapse_vars: true,
-      passes: 2,
-      side_effects: true,
-      warnings: false,
-    },
-    mangle: false,
-    output: {
-      comments: true,
-      beautify: true,
-    },
-  },
-};
 
 /*vendor*/
 let vendor = ['react', 'react-dom', 'immutable'];
@@ -87,7 +65,7 @@ const myWebpack = (root, main, lazyConfs) => {
         new webpack.LoaderOptionsPlugin({
           minimize: true,
         }),
-        new UglifyJsPlugin(uglifyJsOptions),
+        getUglify(),
       ]);
     }
   }
@@ -106,16 +84,7 @@ const myWebpack = (root, main, lazyConfs) => {
         minimize: true,
         debug: false,
       }),
-      new UglifyJsPlugin({
-        ...uglifyJsOptions,
-        uglifyOptions: {
-          ...uglifyJsOptions.uglifyOptions,
-          output: {
-            comments: false,
-            beautify: false,
-          },
-        },
-      }),
+      getProdUglify(), 
       new OccurrenceOrderPlugin(),
       new AggressiveMergingPlugin({
         minSizeReduce: 1.5,
