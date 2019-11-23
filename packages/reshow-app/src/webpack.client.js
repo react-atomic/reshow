@@ -61,6 +61,7 @@ const uglifyJsOptions = {
       comments: true,
       beautify: true,
     },
+    keep_fnames: true,
   },
 };
 
@@ -166,6 +167,7 @@ const myWebpack = (root, main, lazyConfs) => {
       path,
       publicPath: confs.assetsRoot,
       chunkFilename: '[id].[hash].bundle.js',
+      ...confs.output,
     },
     node: {
       fs: 'empty',
