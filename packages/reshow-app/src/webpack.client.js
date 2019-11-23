@@ -61,7 +61,6 @@ const uglifyJsOptions = {
       comments: true,
       beautify: true,
     },
-    keep_fnames: true,
   },
 };
 
