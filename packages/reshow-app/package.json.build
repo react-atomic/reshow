@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.8.8",
+  "version": "0.9.0",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -20,6 +20,7 @@
     "babel-loader": "^8.x",
     "babel-plugin-add-module-exports": "*",
     "babel-plugin-dynamic-import-node": "*",
+    "babel-plugin-object-to-json-parse": "0.0.8",
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
@@ -35,15 +36,15 @@
     "ora": "2.0.0",
     "organism-react-ajax": "*",
     "react-test-renderer": "*",
+    "reshow-constant": "*",
     "reshow-runtime": "*",
     "reshow-worker": "*",
-    "reshow-constant": "*",
     "sinon": "*",
     "strip-ansi": "^2.0.1",
-    "webpack-parallel-uglify-plugin": "^1.x",
     "webpack": "^3.0.0",
-    "win-doc": "*",
-    "webpack-bundle-analyzer": "^3.3.2"
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-parallel-uglify-plugin": "^1.x",
+    "win-doc": "*"
   },
   "devDependencies": {
     "npmignore": "*",
