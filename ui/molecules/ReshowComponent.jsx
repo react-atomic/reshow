@@ -24,7 +24,7 @@ class ReshowComponent extends PureComponent {
   static defaultProps = initProps;
 
   static getStores(props) {
-    return (props || {}).stores || [pageStore];
+    return props.stores || [pageStore];
   }
 
   static calculateState(prevState, props) {

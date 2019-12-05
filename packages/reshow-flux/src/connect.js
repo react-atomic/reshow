@@ -3,7 +3,7 @@ import {CHANGE} from 'reshow-flux-base';
 
 const DEFAULT_OPTIONS = {withProps: false};
 const keys = Object.keys;
-const getProps = (props, opt) => (opt.withProps ? props : undefined);
+const getProps = (props, opt) => (opt.withProps && props ? props : {});
 const getState = (self, prevState, maybeProps, opt) =>
   self.calculateState(prevState, getProps(maybeProps, opt));
 const getStores = (self, maybeProps, opt) =>
