@@ -41,7 +41,6 @@ let babelLoaderOption = {
   presets: [['@babel/env', {modules: false}]],
 };
 
-
 /*vendor*/
 let vendor = ['react', 'react-dom', 'immutable'];
 if (confs.resetVendor) {
@@ -84,7 +83,7 @@ const myWebpack = (root, main, lazyConfs) => {
         minimize: true,
         debug: false,
       }),
-      getProdUglify(), 
+      getProdUglify(),
       new OccurrenceOrderPlugin(),
       new AggressiveMergingPlugin({
         minSizeReduce: 1.5,
@@ -120,12 +119,9 @@ const myWebpack = (root, main, lazyConfs) => {
 
   const alias = {
     react: root + '/node_modules/react',
+    '@babel/runtime': root + '/node_modules/reshow-runtime/es',
+    ...confs.alias,
   };
-  if (confs.alias) {
-    keys(confs.alias).forEach(function(k) {
-      alias[k] = confs.alias[k];
-    });
-  }
 
   return {
     devtool,

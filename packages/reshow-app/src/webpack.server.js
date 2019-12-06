@@ -1,6 +1,5 @@
-'use strict';
 import webpack from 'webpack';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import {getProdUglify} from './uglify';
 
 const {
   OccurrenceOrderPlugin,
@@ -19,29 +18,6 @@ let babelLoaderOption = {
   plugins: ['@babel/plugin-syntax-dynamic-import'],
 };
 
-/* Default uglifyJs options */
-const uglifyJsOptions = {
-  cache: true,
-  parallel: true,
-  uglifyOptions: {
-    compress: {
-      unused: true,
-      dead_code: true,
-      join_vars: false,
-      hoist_funs: true,
-      collapse_vars: true,
-      passes: 2,
-      side_effects: true,
-      warnings: false,
-    },
-    mangle: false,
-    output: {
-      comments: false,
-      beautify: false,
-    },
-  },
-};
-
 const myWebpack = (root, entry, lazyConfs) => {
   confs = {...confs, ...lazyConfs};
   if ('production' === NODE_ENV) {
@@ -57,7 +33,7 @@ const myWebpack = (root, entry, lazyConfs) => {
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),
-      new UglifyJsPlugin(uglifyJsOptions),
+      getProdUglify(),
       new OccurrenceOrderPlugin(),
     ]);
   }
@@ -66,6 +42,11 @@ const myWebpack = (root, entry, lazyConfs) => {
       node: './build/src/server.js',
     };
   }
+  const alias = {
+    react: root + '/node_modules/react',
+    '@babel/runtime': root + '/node_modules/reshow-runtime/es',
+    ...confs.alias,
+  };
   return {
     entry,
     output: {
@@ -81,7 +62,7 @@ const myWebpack = (root, entry, lazyConfs) => {
     externals: confs.externals,
     resolve: {
       extensions: ['.mjs', '.js', '.jsx'],
-      alias: confs.alias,
+      alias,
     },
     resolveLoader: {
       modules: [root + '/node_modules'],
