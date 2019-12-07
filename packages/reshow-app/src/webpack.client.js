@@ -3,8 +3,10 @@ import webpack from 'webpack';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import dedup from 'array.dedup';
 import ora from 'ora';
+
 import BundleTracker from './webpackBundleTracker';
 import {getProdUglify, getUglify} from './uglify';
+import reshowRuntimeAlias from './reshowRuntimeAlias';
 
 const spinner = ora({
   text: 'Trust me, it will finish soon.',
@@ -119,7 +121,7 @@ const myWebpack = (root, main, lazyConfs) => {
 
   const alias = {
     react: root + '/node_modules/react',
-    '@babel/runtime': root + '/node_modules/reshow-runtime/es',
+    ...reshowRuntimeAlias(root),
     ...confs.alias,
   };
 

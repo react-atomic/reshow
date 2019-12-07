@@ -1,5 +1,7 @@
 import webpack from 'webpack';
+import moduleAlias from 'module-alias';
 import {getProdUglify} from './uglify';
+import reshowRuntimeAlias from './reshowRuntimeAlias';
 
 const {
   OccurrenceOrderPlugin,
@@ -43,10 +45,10 @@ const myWebpack = (root, entry, lazyConfs) => {
     };
   }
   const alias = {
-    react: root + '/node_modules/react',
-    '@babel/runtime': root + '/node_modules/reshow-runtime/es',
+    ...reshowRuntimeAlias(root),
     ...confs.alias,
   };
+  moduleAlias.addAliases(alias);
   return {
     entry,
     output: {
@@ -62,7 +64,6 @@ const myWebpack = (root, entry, lazyConfs) => {
     externals: confs.externals,
     resolve: {
       extensions: ['.mjs', '.js', '.jsx'],
-      alias,
     },
     resolveLoader: {
       modules: [root + '/node_modules'],
