@@ -49,6 +49,7 @@ module.exports = function(api) {
             {
               regenerator: false,
               useESModules: true,
+              version: "7.5.0",
             },
           ],
           '@babel/plugin-syntax-dynamic-import',

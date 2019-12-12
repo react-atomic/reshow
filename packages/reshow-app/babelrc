@@ -40,7 +40,8 @@
               ["transform-react-remove-prop-types", {"mode": "wrap"}],
               ["reshow-transform-runtime", {
                 "regenerator": false,
-                "useESModules": true
+                "useESModules": true,
+                "version": "7.5.0"
                 }
               ],
               "@babel/plugin-proposal-export-default-from",
@@ -66,7 +67,8 @@
               ["transform-react-remove-prop-types", {"mode": "wrap"}],
               ["reshow-transform-runtime", {
                 "regenerator": false,
-                "useESModules": true
+                "useESModules": true,
+                "version": "7.5.0"
                 }
               ],
               "@babel/plugin-proposal-export-default-from",
