@@ -17,6 +17,7 @@
                 "regenerator": false
                 }
               ],
+              "@babel/plugin-proposal-optional-chaining",
               "@babel/plugin-proposal-export-default-from",
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-transform-object-assign",
@@ -44,6 +45,7 @@
                 "version": "7.5.0"
                 }
               ],
+              "@babel/plugin-proposal-optional-chaining",
               "@babel/plugin-proposal-export-default-from",
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-transform-object-assign",
@@ -71,6 +73,7 @@
                 "version": "7.5.0"
                 }
               ],
+              "@babel/plugin-proposal-optional-chaining",
               "@babel/plugin-proposal-export-default-from",
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-transform-object-assign",
