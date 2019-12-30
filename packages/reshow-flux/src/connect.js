@@ -31,7 +31,7 @@ const connect = (Base, options) => {
         this.__resetStores();
       }
       stores = dedup(stores);
-      stores.forEach(store => store.addListener(this.__handleChange, CHANGE));
+      (stores || []).forEach(store => store.addListener(this.__handleChange, CHANGE));
       this.__stores = stores;
     };
 

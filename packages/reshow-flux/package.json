@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "The smallest react flux and Fast 3kb Flux alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
