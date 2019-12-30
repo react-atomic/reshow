@@ -89,4 +89,8 @@ describe('Test Return', () => {
     });
     wrap.unmount();
   });
+
+  it('test store not defined', () => {
+    expect(()=>mount(<Return />)).to.throw();
+  });
 });

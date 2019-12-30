@@ -1,6 +1,6 @@
 {
   "name": "reshow-return",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -19,10 +19,14 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
+    "enzyme": "*",
+    "enzyme-adapter-react-16": "*",
+    "jsdom": "*",
+    "jsdom-global": "*",
     "chai": "*",
     "mocha": "*",
     "reshow": "*",
-    "sinon": "*"
+    "react-test-renderer": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

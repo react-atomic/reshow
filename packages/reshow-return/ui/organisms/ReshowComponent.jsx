@@ -33,7 +33,10 @@ class ReshowComponent extends PureComponent {
      * Because multi stores need handle complex data merge.
      * If that case need create custom calculateState functoin.
      */
-    const thisStore = this.getStores(props)[0];
+    const thisStore = (this.getStores(props) || [])[0];
+    if (!thisStore) {
+      throw 'Store not found, Please check getStores function.';
+    }
     const storeState = thisStore.getState();
     const thisThemePath = storeState.get('themePath');
     const globalStore = this.getGlobalStore();
