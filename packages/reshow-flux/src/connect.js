@@ -50,8 +50,12 @@ const connect = (Base, options) => {
       const con = this.constructor;
       if (!con.calculateState) {
         con.calculateState = super.calculateState;
+      }
+      if (!con.getStores) {
         con.getStores = super.getStores;
       }
+      con.calculateState.bind(con)
+      con.getStores.bind(con)
       if (props.withConstructor) {
         this.__setStores(getStores(con, props, thisOptions));
       }
