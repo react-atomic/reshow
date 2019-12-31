@@ -1,12 +1,15 @@
 import React, {PureComponent} from 'react';
 import get from 'get-object-value';
 import {connect} from 'reshow-flux';
+import callfunc from 'call-func';
 
 import toJS from '../../src/toJS';
 
 const keys = Object.keys;
 const isArray = Array.isArray;
 const getImmutable = immutable => data => (!immutable ? toJS(data) : data);
+const storeLocator = props => props.stores;
+const globalStoreLocator = props => null;
 
 const initProps = {
   initStates: ['data', 'I18N'],
@@ -14,17 +17,15 @@ const initProps = {
     I13N: ['data', 'I13N'],
   },
   immutable: false,
+  storeLocator,
+  globalStoreLocator,
 };
 
 class ReshowComponent extends PureComponent {
   static defaultProps = initProps;
 
   static getStores(props) {
-    return props.stores;
-  }
-
-  static getGlobalStore() {
-    return null;
+    return callfunc(props.storeLocator, [props]);
   }
 
   static calculateState(prevState, props) {
@@ -37,13 +38,13 @@ class ReshowComponent extends PureComponent {
     if (!thisStore) {
       throw 'Store not found, Please check getStores function.';
     }
+    const {initStates, pathStates, globalStoreLocator, immutable: propsImmutable} = props;
     const storeState = thisStore.getState();
     const thisThemePath = storeState.get('themePath');
-    const globalStore = this.getGlobalStore();
+    const globalStore = globalStoreLocator(props);
     if (thisThemePath && globalStore && globalStore.path !== thisThemePath) {
       return prevState;
     }
-    const {initStates, pathStates, immutable: propsImmutable} = props;
     const immutable = propsImmutable || storeState.get('immutable');
     const results = {};
     if (immutable) {

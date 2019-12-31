@@ -10,6 +10,8 @@ class Return extends ReshowComponent {
       initStates,
       pathStates,
       stores,
+      storeLocator,
+      globalStoreLocator,
       withConstructor,
       ...otherProps
     } = this.props;
