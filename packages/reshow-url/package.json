@@ -11,6 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "organism-react-ajax": "*",
     "reshow": "*",
     "reshow-return": "*",
     "reshow-runtime": "*"

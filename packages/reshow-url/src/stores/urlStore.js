@@ -3,6 +3,7 @@ import urlDispatcher, {urlDispatch} from '../urlDispatcher';
 import get from 'get-object-value';
 import setUrl, {getUrl, unsetUrl} from 'seturl';
 import {win, doc} from 'win-doc';
+import {ajaxDispatch} from 'organism-react-ajax';
 
 const keys = Object.keys;
 
@@ -53,7 +54,10 @@ class UrlStore extends ReduceStore {
     if (win && win.document) {
       win.addEventListener(
         'popstate',
-        () => urlDispatch({type: 'url', url: doc().URL}),
+        () => {
+          urlDispatch({type: 'url', url: doc().URL});
+          ajaxDispatch('updateWithUrl');
+        },
         true,
       );
     }
