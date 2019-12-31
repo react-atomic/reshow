@@ -1,12 +1,10 @@
 import React from 'react';
-import Return from 'reshow-return';
+import Return, {initProps} from 'reshow-return';
 import urlStore from '../../src/stores/urlStore';
 
 class UrlReturn extends Return {
   static defaultProps = {
-    stores: [urlStore],
-    initStates: [],
-    pathStates: {},
+    stores: [urlStore]
   };
 }
 

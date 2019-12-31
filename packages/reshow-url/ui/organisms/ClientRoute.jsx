@@ -1,8 +1,7 @@
 import {ajaxDispatch} from 'organism-react-ajax';
 import {doc} from 'win-doc';
 
-import Reshow, {update} from '../molecules/Reshow';
-import pageStore from '../../src/stores/pageStore';
+import Reshow, {pageStore, update} from 'reshow';
 import handleAnchor from '../../src/handleAnchor';
 
 const defaultOnUrlChange = url => handleAnchor => goAnchorDelay => {

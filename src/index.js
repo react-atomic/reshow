@@ -13,9 +13,6 @@ export {default as messageStore} from './stores/messageStore';
 export {default as dispatcher, dispatch} from './dispatcher';
 export {storageDispatch} from './storageDispatcher';
 
-// Library
-export {default as handleAnchor, goToAnchor} from './handleAnchor';
-export {toJS} from 'reshow-return';
 
 // Ajax
 export {AjaxLink as ReLink, AjaxForm as ReForm} from 'organism-react-ajax';

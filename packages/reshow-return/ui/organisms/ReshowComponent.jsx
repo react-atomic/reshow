@@ -25,7 +25,7 @@ class ReshowComponent extends PureComponent {
   static defaultProps = initProps;
 
   static getStores(props) {
-    return callfunc(props.storeLocator, [props]);
+    return callfunc(props.storeLocator || storeLocator, [props]);
   }
 
   static calculateState(prevState, props) {
@@ -41,7 +41,7 @@ class ReshowComponent extends PureComponent {
     const {initStates, pathStates, globalStoreLocator, immutable: propsImmutable} = props;
     const storeState = thisStore.getState();
     const thisThemePath = storeState.get('themePath');
-    const globalStore = globalStoreLocator(props);
+    const globalStore = callfunc(globalStoreLocator, [props]);
     if (thisThemePath && globalStore && globalStore.path !== thisThemePath) {
       return prevState;
     }

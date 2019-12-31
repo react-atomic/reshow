@@ -53,9 +53,7 @@ class UrlStore extends ReduceStore {
     if (win && win.document) {
       win.addEventListener(
         'popstate',
-        () => {
-          urlDispatch({type: 'url', url: doc().URL});
-        }
+        () => urlDispatch({type: 'url', url: doc().URL}),
         true,
       );
     }

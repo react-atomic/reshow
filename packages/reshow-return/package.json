@@ -1,6 +1,6 @@
 {
   "name": "reshow-return",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -11,6 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "call-func": "*",
     "get-object-value": "*",
     "memoize-one": "*",
     "react-atomic-molecule": "*",
@@ -19,14 +20,14 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
+    "chai": "*",
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
     "jsdom": "*",
     "jsdom-global": "*",
-    "chai": "*",
     "mocha": "*",
-    "reshow": "*",
-    "react-test-renderer": "*"
+    "react-test-renderer": "*",
+    "reshow": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
