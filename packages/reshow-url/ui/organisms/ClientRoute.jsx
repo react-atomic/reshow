@@ -5,7 +5,7 @@ import Reshow, {update} from '../molecules/Reshow';
 import pageStore from '../../src/stores/pageStore';
 import handleAnchor from '../../src/handleAnchor';
 
-const defaultParseUrl = url => handleAnchor => goAnchorDelay => {
+const defaultOnUrlChange = url => handleAnchor => goAnchorDelay => {
   const separator = '/';
   const params = url.split(separator);
   const last = params.length - 1;
@@ -30,23 +30,18 @@ class ClientRoute extends Reshow {
     super.componentDidMount();
     const props = this.props;
     const curUrl = props.url || doc().URL;
-    const updateWithUrl = url => {
-      const {parseUrl, goAnchorDelay} = this.props;
-      const thisParseUrlFunc = parseUrl ? parseUrl : defaultParseUrl;
-      const parseUrlConfigs = thisParseUrlFunc(url)(handleAnchor)(
+    const handleUrlChange = url => {
+      const {onUrlChange, goAnchorDelay} = this.props;
+      const thisUrlChangeFunc = onUrlChange ? onUrlChange : defaultOnUrlChange;
+      const urlChangeStates = thisUrlChangeFunc(url)(handleAnchor)(
         goAnchorDelay,
       );
-      update(parseUrlConfigs);
-      return parseUrlConfigs;
+      return urlChangeStates;
     };
-    const {themePath} = updateWithUrl(curUrl);
-    this.setState({themePath});
-    setImmediate(() => {
-      ajaxDispatch({
-        type: 'config/set',
-        params: {updateWithUrl},
-      });
-    });
+    update(handleUrlChange(curUrl)); //reset themePath
+    setImmediate(() => 
+      ajaxDispatch('config/set', { onUrlChange })
+    );
   }
 }
 

@@ -1,0 +1,35 @@
+{
+  "name": "reshow-url",
+  "version": "0.0.0",
+  "description": "reshow url util",
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.js",
+  "repository": "react-atomic/reshow",
+  "keywords": [
+    "flux"
+  ],
+  "author": "Hill <hill@kimo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "reshow-runtime": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.x",
+    "chai": "*",
+    "mocha": "*",
+    "sinon": "*"
+  },
+  "scripts": {
+    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
+    "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
+    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
+    "prepublishOnly": "npm run test"
+  },
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
+}

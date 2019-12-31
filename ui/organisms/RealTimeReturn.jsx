@@ -3,8 +3,7 @@ import get from 'get-object-value';
 import {connect} from 'reshow-flux';
 import {build} from 'react-atomic-molecule';
 
-import {initProps} from '../molecules/ReshowComponent';
-import Return from '../organisms/Return';
+import {initProps, Return} from '../molecules/ReshowComponent';
 import realTimeStore from '../../src/stores/realTimeStore';
 
 const REAL_TIME_KEY = '--realTimeData--';

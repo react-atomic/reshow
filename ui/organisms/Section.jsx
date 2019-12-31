@@ -2,12 +2,14 @@ import React from 'react';
 import get from 'get-object-value';
 import {build} from 'react-atomic-molecule';
 
-import ReshowComponent from '../molecules/ReshowComponent';
+import ReshowComponent, {initProps} from '../molecules/ReshowComponent';
+
+const {pathStates, ...otherInitProps} = initProps;
 
 class Section extends ReshowComponent {
   static defaultProps = {
+    ...otherInitProps,
     initStates: ['section', 'I18N'],
-    immutable: false,
   };
 
   render() {

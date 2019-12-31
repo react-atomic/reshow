@@ -1,12 +1,12 @@
 import React, {PureComponent, memo} from 'react';
 import {AlertsNotifier, Dialog, DisplayPopupEl} from 'organism-react-popup';
 import {build, SemanticUI} from 'react-atomic-molecule';
+import {toJS} from 'reshow-return';
 
-import Return from '../organisms/Return';
+import {Return} from '../molecules/ReshowComponent';
 
 // src
 import messageStore from '../../src/stores/messageStore';
-import toJS from '../../src/toJS';
 import {dispatch} from '../../src/index';
 
 class Body extends PureComponent {

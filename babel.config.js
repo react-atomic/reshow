@@ -22,6 +22,7 @@ module.exports = function(api) {
             'reshow-transform-runtime',
             {
               regenerator: false,
+              version: "7.5.0",
             },
           ],
           '@babel/plugin-proposal-optional-chaining',

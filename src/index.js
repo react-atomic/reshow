@@ -15,23 +15,19 @@ export {storageDispatch} from './storageDispatcher';
 
 // Library
 export {default as handleAnchor, goToAnchor} from './handleAnchor';
-export {default as toJS} from './toJS';
+export {toJS} from 'reshow-return';
 
 // Ajax
-export {AjaxLink as ReLink, AjaxForm as ReForm, urlDispatch} from 'organism-react-ajax';
+export {AjaxLink as ReLink, AjaxForm as ReForm} from 'organism-react-ajax';
 
-// Router
-export {default as ClientRoute} from '../ui/organisms/ClientRoute';
 
 // Message Component
 export {default as ReshowMessage} from '../ui/organisms/ReshowMessage';
 
 // Component
-export {default as Return} from '../ui/organisms/Return';
+export {Return} from '../ui/molecules/ReshowComponent';
 export {default as RealTimeReturn} from '../ui/organisms/RealTimeReturn';
-export {default as UrlReturn} from '../ui/organisms/UrlReturn';
 export {default as Section} from '../ui/organisms/Section';
 
 // Base Component
-export {default as ReshowComponent} from '../ui/molecules/ReshowComponent';
 export {default, update} from '../ui/molecules/Reshow';
