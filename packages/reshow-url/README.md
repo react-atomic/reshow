@@ -1,8 +1,8 @@
-Reshow Flux Base
+Reshow Url 
 ===============
 
 * GIT
-   * https://github.com/react-atomic/reshow/tree/master/packages/reshow-flux-base
+   * https://github.com/react-atomic/reshow/tree/master/packages/reshow-url
 * NPM
-   * https://www.npmjs.com/package/reshow-flux-base
+   * https://www.npmjs.com/package/reshow-url
 
