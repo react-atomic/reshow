@@ -1,5 +1,4 @@
 import jsdom from 'jsdom-global';
-jsdom(null, {url: 'http://localhost'});
 
 import React, {PureComponent} from 'react';
 import {urlStore, UrlReturn, urlDispatch} from '../../../src/index';
@@ -10,6 +9,7 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 
 describe('Test Url Return', () => {
+  before(()=>jsdom(null, {url: 'http://localhost'}))
   class TestEl extends PureComponent {
     show = 0;
     render() {
