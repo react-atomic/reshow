@@ -56,7 +56,7 @@ class UrlStore extends ReduceStore {
         'popstate',
         () => {
           urlDispatch({type: 'url', url: doc().URL});
-          ajaxDispatch('updateWithUrl');
+          ajaxDispatch('urlChange');
         },
         true,
       );
