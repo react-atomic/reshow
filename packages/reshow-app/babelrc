@@ -14,7 +14,8 @@
               "dynamic-import-node",
               "transform-react-pure-class-to-function",
               ["reshow-transform-runtime", {
-                "regenerator": false
+                "regenerator": false,
+                "version": "7.5.0"
                 }
               ],
               "@babel/plugin-proposal-optional-chaining",

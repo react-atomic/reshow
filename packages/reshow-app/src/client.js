@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import initWorker from 'reshow-worker';
 import {ajaxDispatch} from 'organism-react-ajax';
+import {urlStore} from 'reshow-url';
 import {win, doc} from 'win-doc';
 
 const render = (oApp, dom) =>
@@ -12,7 +13,7 @@ const render = (oApp, dom) =>
     dom,
   );
 
-const update = props => ajaxDispatch({type: 'callback', json: props});
+const update = json => ajaxDispatch('callback', {json});
 
 let bInitWorker = false;
 
