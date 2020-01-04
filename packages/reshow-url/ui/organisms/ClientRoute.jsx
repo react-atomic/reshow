@@ -29,8 +29,8 @@ class ClientRoute extends Reshow {
     super.componentDidMount();
     const props = this.props;
     const curUrl = props.url || doc().URL;
+    const {onUrlChange, goAnchorDelay} = this.props;
     const handleUrlChange = url => {
-      const {onUrlChange, goAnchorDelay} = this.props;
       const thisUrlChangeFunc = onUrlChange ? onUrlChange : defaultOnUrlChange;
       const urlChangeStates = thisUrlChangeFunc(url)(handleAnchor)(
         goAnchorDelay,
