@@ -1,6 +1,6 @@
 import React from 'react';
 import {build} from 'react-atomic-molecule';
-import ReshowComponent from '../organisms/ReshowComponent';
+import ReshowComponent from '../organisms/ReshowComponentConnected';
 
 class Return extends ReshowComponent {
   render() {

@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import get from 'get-object-value';
-import {connect} from 'reshow-flux';
 import callfunc from 'call-func';
 
 import toJS from '../../src/toJS';
@@ -78,8 +77,5 @@ class ReshowComponent extends PureComponent {
   }
 }
 
-export default connect(
-  ReshowComponent,
-  {withProps: true},
-);
+export default ReshowComponent;
 export {initProps};
