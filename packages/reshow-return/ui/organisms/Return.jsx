@@ -1,7 +1,8 @@
 import React from 'react';
 import {build} from 'react-atomic-molecule';
-import returnOptions from '../../src/ReturnOptions';
 import {connectHook} from 'reshow-flux';
+
+import returnOptions from '../../src/ReturnOptions';
 
 const Return = ({
   children,
