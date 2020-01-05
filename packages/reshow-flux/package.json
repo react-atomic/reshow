@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.6.0",
+  "version": "0.6.4",
   "description": "The smallest react flux and Fast 3kb Flux alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -16,6 +16,7 @@
     "get-object-value": "*",
     "immutable": "*",
     "reshow-flux-base": "*",
+    "reshow-build": "*",
     "reshow-runtime": "*"
   },
   "devDependencies": {

@@ -1,27 +1,23 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {build} from 'react-atomic-molecule';
-import ReshowComponent from '../organisms/ReshowComponentConnected';
+import returnOptions from '../../src/ReturnOptions';
+import {connectHook} from 'reshow-flux';
 
-class Return extends ReshowComponent {
-  render() {
-    const {
-      children,
-      immutable,
-      initStates,
-      pathStates,
-      stores,
-      storeLocator,
-      globalStoreLocator,
-      withConstructor,
-      ...otherProps
-    } = this.props;
-    const {immutable: stateImmutable, ...otherState} = this.state;
-    return build(children)({
-      ...otherProps,
-      ...otherState,
-    });
-  }
-}
+const Return = props => {
+  const {
+    children,
+    immutable,
+    initStates,
+    pathStates,
+    stores,
+    storeLocator,
+    globalStoreLocator,
+    withConstructor,
+    ...otherProps
+  } = props;
+  return useMemo(() => build(children)(otherProps), [children, otherProps]);
+};
 
-Return.displayName = 'FluxConnected(Return)';
-export default Return;
+Return.displayName = 'Return';
+export default connectHook(Return, returnOptions);
+export {Return};

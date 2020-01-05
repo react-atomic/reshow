@@ -1,5 +1,3 @@
-'use strict';
-
 import React, {Component, StrictMode} from 'react';
 import {connect, Dispatcher, ReduceStore} from '../index';
 import {expect} from 'chai';
