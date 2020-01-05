@@ -12,7 +12,6 @@ const Return = ({
   stores,
   storeLocator,
   globalStoreLocator,
-  withConstructor,
   ...props
 }) => build(children)(props);
 
