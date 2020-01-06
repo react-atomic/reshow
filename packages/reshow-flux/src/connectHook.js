@@ -21,7 +21,7 @@ const connectHook = (Base, options) => {
           stores.forEach(store => store.removeListener(handleChange, CHANGE));
         };
       }
-    }, []);
+    }, [props]);
     return useMemo(() => build(Base)({...props, ...data}), [props, data]);
   };
   const componentName = Base.displayName || Base.name;
