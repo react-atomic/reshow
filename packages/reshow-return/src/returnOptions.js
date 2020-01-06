@@ -8,6 +8,20 @@ const isArray = Array.isArray;
 const getImmutable = immutable => data => (!immutable ? toJS(data) : data);
 const storeLocator = props => props.stores;
 const globalStoreLocator = props => null;
+const getMapIn = (map, path) =>
+  map && map.getIn ? map.getIn(path) : undefined;
+const reset = (props, more) => {
+  [
+    'immutable',
+    'initStates',
+    'pathStates',
+    'stores',
+    'storeLocator',
+    'globalStoreLocator',
+    ...(more || [])
+  ].forEach(key => delete props[key]);
+  return props;
+};
 
 const defaultProps = {
   initStates: ['data', 'I18N'],
@@ -65,9 +79,6 @@ const calculateState = (prevState, props) => {
     });
   }
 
-  const getMapIn = (map, path) =>
-    map && map.getIn ? map.getIn(path) : undefined;
-
   keys(pathStates || {}).forEach(key => {
     const thisPath = pathStates[key];
     results[key] = immutable
@@ -81,6 +92,7 @@ const options = {
   defaultProps,
   getStores,
   calculateState,
+  reset
 };
 
 export default options;
