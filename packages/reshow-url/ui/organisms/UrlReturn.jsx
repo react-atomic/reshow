@@ -1,12 +1,21 @@
 import React from 'react';
-import Return, {initProps} from 'reshow-return';
+import build from 'reshow-build';
+import {returnOptions} from 'reshow-return';
+import {connectHook} from 'reshow-flux';
+
 import urlStore from '../../src/stores/urlStore';
 
-class UrlReturn extends Return {
-  static defaultProps = {
-    stores: [urlStore]
-  };
-}
+const myReturnOptions = {
+  ...returnOptions,
+  defaultProps: {
+    ...returnOptions.defaultProps,
+    stores: [urlStore],
+  },
+};
 
-UrlReturn.displayName = 'FluxConnected(UrlReturn)';
-export default UrlReturn;
+const UrlReturn = ({children, ...props}) =>
+  build(children)(returnOptions.reset(props));
+
+UrlReturn.displayName = 'UrlReturn';
+
+export default connectHook(UrlReturn, myReturnOptions);
