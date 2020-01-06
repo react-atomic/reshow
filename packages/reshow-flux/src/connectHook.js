@@ -44,7 +44,7 @@ const connectHook = (Base, options) => {
       return () => {
         resetStores(state);
       };
-    }, [data]);
+    });
     return useMemo(() => build(Base)({...props, ...data}), [props, data]);
   };
   const componentName = Base.displayName || Base.name;

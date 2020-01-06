@@ -1,30 +1,32 @@
 import React from 'react';
 import get from 'get-object-value';
 import {build} from 'react-atomic-molecule';
+import {connectHook} from 'reshow-flux';
 
-import ReshowComponent, {initProps} from '../molecules/ReshowComponent';
+import {returnOptions} from '../molecules/ReshowComponent';
 
-const {pathStates, ...otherInitProps} = initProps;
+const {pathStates, ...otherDefaultProps} = returnOptions.defaultProps;
 
-class Section extends ReshowComponent {
-  static defaultProps = {
-    ...otherInitProps,
+const myReturnOptions = {
+  ...returnOptions,
+  defaultProps: {
+    ...otherDefaultProps,
     initStates: ['section', 'I18N'],
-  };
+  }
+}
 
-  render() {
+const Section = props => {
     const {
-      immutable: propsImmutable,
       name,
+      section,
+      immutable,
       children,
-      initStates,
       ...otherProps
-    } = this.props;
-    const {immutable, section, I18N} = this.state;
+    } = props;
     if (!section) {
       return null;
     }
-    let allParams;
+    let allParams = myReturnOptions.reset(otherProps);
     if (immutable) {
       const thisSection = section.get(name);
       if (!thisSection) {
@@ -34,7 +36,6 @@ class Section extends ReshowComponent {
       if (!shouldRender) {
         return null;
       }
-      allParams = {...otherProps, I18N};
       thisSection
         .delete('shouldRender')
         .keySeq()
@@ -46,12 +47,11 @@ class Section extends ReshowComponent {
       if (!shouldRender) {
         return null;
       }
-      allParams = {...others, ...otherProps, I18N};
+      allParams = {...others, ...allParams};
     }
     return build(children)(allParams);
-  }
-}
+};
 
-Section.displayName = 'FluxConnected(Section)';
+Section.displayName = 'Section';
 
-export default Section;
+export default connectHook(Section, myReturnOptions);

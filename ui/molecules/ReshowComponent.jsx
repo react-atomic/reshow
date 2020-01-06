@@ -1,21 +1,20 @@
-import Return, {initProps, ReshowComponent} from 'reshow-return';
+import {returnOptions, Return} from 'reshow-return';
+import {connectHook} from 'reshow-flux';
 import pageStore from '../../src/stores/pageStore';
 import {globalStore} from '../../src/stores/globalStore';
+
 const storeLocator = props => props.stores || [pageStore];
 const globalStoreLocator = props => globalStore;
 
-const myInitProps = {
-  ...initProps,
-  storeLocator,
-  globalStoreLocator,
-};
-
-class MyReturn extends Return {
-  static defaultProps = myInitProps;
+const myReturnOptions = {
+  ...returnOptions,
+  defaultProps: {
+    ...returnOptions.defaultProps,
+    storeLocator,
+    globalStoreLocator
+  }
 }
 
-class MyReshowComponent extends ReshowComponent {
-  static defaultProps = myInitProps;
-}
+const MyReturn = connectHook(Return, myReturnOptions);
 
-export {myInitProps as initProps, MyReturn as Return, MyReshowComponent as default};
+export {myReturnOptions as returnOptions, MyReturn as Return};
