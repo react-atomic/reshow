@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.2",
+  "version": "0.13.0-beta.3",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -25,6 +25,7 @@
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
+    "reshow": "^0.13.0-beta",
     "chai": "*",
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
