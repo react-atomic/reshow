@@ -4,8 +4,7 @@ import dedup from 'array.dedup';
 import {CHANGE} from 'reshow-flux-base';
 
 const connectHook = (Base, options) => {
-  const {calculateState, defaultProps, getStores} = options || {};
-  const arrState = {};
+  const {getStores, calculateState, defaultProps} = options || {};
   const Connected = props => {
     const [data, setData] = useState(() => calculateState({}, props));
     useEffect(() => {
