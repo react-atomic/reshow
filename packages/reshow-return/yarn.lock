@@ -2613,9 +2613,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.6.6.tgz#389b4511a300bc775f7303c83874f7a8b2759275"
-  integrity sha512-/P3a5VRgZDa2i6H9Ye1+C8bYmK0zjWibkQWAlAhYgRJdjJ//hd3y+ijKMZSa1bhdKAWMck1swltKxP3U7PFi/A==
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.6.9.tgz#215a1fed54d834b5bbf3aee24f3b44d76ac20498"
+  integrity sha512-fACIbCZ/+O3Uuyn64199tycANWgQoHxLEsUUabm2lnfP+tYqK3T/GnrgVWP/YebYgJryZX7MIs+1NWbXHnbp0g==
   dependencies:
     array.dedup "*"
     get-object-value "*"
