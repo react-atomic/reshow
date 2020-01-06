@@ -1,4 +1,4 @@
-import {useMemo, useState, useReducer, useLayoutEffect} from 'react';
+import {useMemo, useState, useReducer, useEffect} from 'react';
 import build from 'reshow-build';
 import callfunc from 'call-func';
 import dedup from 'array.dedup';
@@ -35,14 +35,16 @@ const connectHook = (Base, options) => {
   const arrState = {};
   const Connected = props => {
     const [state, dispatch] = useReducer(reducer);
-    const [data, setData] = useState(calculateState({}, props));
-    useLayoutEffect(() => {
-      const handleChange = () => setData(calculateState(data, props));
+    const [data, setData] = useState(()=>calculateState({}, props));
+    useEffect(() => {
+      const handleChange = () => {
+        setData(prevState => calculateState(prevState, props));
+      };
       setStores(state, getStores(props), handleChange, dispatch);
       return () => {
         resetStores(state);
       };
-    });
+    }, [data]);
     return useMemo(() => build(Base)({...props, ...data}), [props, data]);
   };
   const componentName = Base.displayName || Base.name;
