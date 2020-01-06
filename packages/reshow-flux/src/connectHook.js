@@ -1,6 +1,5 @@
 import {useMemo, useState, useEffect} from 'react';
 import build from 'reshow-build';
-import callfunc from 'call-func';
 import dedup from 'array.dedup';
 import {CHANGE} from 'reshow-flux-base';
 
