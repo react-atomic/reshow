@@ -35,10 +35,13 @@ const connectHook = (Base, options) => {
   const arrState = {};
   const Connected = props => {
     const [state, dispatch] = useReducer(reducer);
-    const [data, setData] = useState(()=>calculateState({}, props));
+    const [data, setData] = useState(() => calculateState({}, props));
     useEffect(() => {
       const handleChange = () => {
-        setData(prevState => calculateState(prevState, props));
+        setData(prevState => ({
+          ...prevState,
+          ...calculateState(prevState, props),
+        }));
       };
       setStores(state, getStores(props), handleChange, dispatch);
       return () => {

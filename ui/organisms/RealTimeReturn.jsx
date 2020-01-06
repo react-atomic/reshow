@@ -27,8 +27,6 @@ const calculateState = (prevState, props) => {
       const reset = {};
       keys(prevState).forEach(key => (reset[key] = null));
       return reset;
-    } else {
-      return prevState;
     }
   }
 };
