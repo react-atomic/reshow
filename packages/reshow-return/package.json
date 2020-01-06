@@ -1,6 +1,6 @@
 {
   "name": "reshow-return",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -14,7 +14,7 @@
     "call-func": "*",
     "get-object-value": "*",
     "memoize-one": "*",
-    "react-atomic-molecule": "*",
+    "reshow-build": "*",
     "reshow-flux": "*",
     "reshow-runtime": "*"
   },

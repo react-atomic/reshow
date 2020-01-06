@@ -1,5 +1,5 @@
 import React from 'react';
-import {build} from 'react-atomic-molecule';
+import build from 'reshow-build';
 import {connectHook} from 'reshow-flux';
 
 import returnOptions from '../../src/returnOptions';
