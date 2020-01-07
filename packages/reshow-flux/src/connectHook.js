@@ -9,13 +9,13 @@ const connectHook = (Base, options) => {
     const [data, setData] = useState(() => calculateState({}, props));
     useEffect(() => {
       const stores = dedup(getStores(props)) || [];
-      const handleChange = () => {
-        setData(prevState => ({
-          ...prevState,
-          ...calculateState(prevState, props),
-        }));
-      };
       if (stores && stores.length) {
+        const handleChange = () => {
+          setData(prevState => ({
+            ...prevState,
+            ...calculateState(prevState, props),
+          }));
+        };
         stores.forEach(store => store.addListener(handleChange, CHANGE));
         return () => {
           stores.forEach(store => store.removeListener(handleChange, CHANGE));

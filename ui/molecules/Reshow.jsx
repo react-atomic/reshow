@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
 import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
-import {connect} from 'reshow-flux';
 import {doc} from 'win-doc';
 import callfunc from 'call-func';
+import {Return} from '../molecules/ReshowComponent';
 
 import updateCanonicalUrl, {
   initCanonicalUrl,
@@ -18,13 +18,10 @@ let isInit;
 const update = params => {
   const realTimeData = get(params, ['--realTimeData--']);
   const reset = get(params, ['--reset--']);
-  let type;
-  if (realTimeData) {
-    type = 'realTime';
-  } else {
-    type = 'config/' + (reset ? 're' : '') + 'set';
-  }
-  dispatch({type, params});
+  const type = realTimeData
+    ? 'realTime'
+    : 'config/' + (reset ? 're' : '') + 'set';
+  dispatch(type, params);
   const oDoc = doc();
   if (oDoc.URL) {
     const htmlTitle = get(params, ['htmlTitle']);
@@ -43,20 +40,6 @@ const update = params => {
 };
 
 class Reshow extends PureComponent {
-  static getStores() {
-    return [pageStore];
-  }
-
-  static calculateState(prevState) {
-    const pageState = pageStore.getState();
-    globalStore.path = pageStore.getThemePath();
-    return {
-      themePath: globalStore.path,
-      baseUrl: pageState.get('baseUrl'),
-      staticVersion: pageState.get('staticVersion'),
-    };
-  }
-
   static getDerivedStateFromError(error) {
     return {hasError: true};
   }
@@ -89,28 +72,29 @@ class Reshow extends PureComponent {
   }
 
   render() {
-    const {hasError, themePath, baseUrl, staticVersion} = this.state;
+    const {hasError} = this.state;
     if (hasError) {
       return null;
     }
-    const {onError, themes, defaultThemePath, ajax, webSocketUrl} = this.props;
+    const {onError, themes, ajax, webSocketUrl} = this.props;
+
+    globalStore.path = pageStore.getThemePath();
 
     return (
-      <AjaxPage
-        callback={update}
-        /*State*/
-        themePath={themePath || defaultThemePath}
-        baseUrl={baseUrl}
-        /* Keep staticVersion, let user can't assign emtpy value. */
-        staticVersion={staticVersion}
-        /*Props*/
-        themes={themes}
-        ajax={ajax}
-        webSocketUrl={webSocketUrl}
-      />
+      <Return initStates={['baseUrl', 'staticVersion']}>
+        <AjaxPage
+          callback={update}
+          /*State*/
+          themePath={globalStore.path}
+          /*Props*/
+          themes={themes}
+          ajax={ajax}
+          webSocketUrl={webSocketUrl}
+        />
+      </Return>
     );
   }
 }
 
-export default connect(Reshow);
+export default Reshow;
 export {update};
