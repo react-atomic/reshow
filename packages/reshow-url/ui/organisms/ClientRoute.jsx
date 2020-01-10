@@ -1,8 +1,8 @@
-import {ajaxDispatch} from 'organism-react-ajax';
-import {doc} from 'win-doc';
-
 import Reshow, {pageStore, update} from 'reshow';
+import {doc} from 'win-doc';
+import {ajaxDispatch} from 'organism-react-ajax';
 import handleAnchor from '../../src/handleAnchor';
+import urlStore from '../../src/stores/urlStore';
 
 const defaultOnUrlChange = url => handleAnchor => goAnchorDelay => {
   const separator = '/';
@@ -35,12 +35,12 @@ class ClientRoute extends Reshow {
       const urlChangeStates = thisUrlChangeFunc(url)(handleAnchor)(
         goAnchorDelay,
       );
+      setImmediate(() => update(urlChangeStates)); //reset themePath
       return urlChangeStates;
     };
-    update(handleUrlChange(curUrl)); //reset themePath
-    setImmediate(() => 
-      ajaxDispatch('config/set', { onUrlChange })
-    );
+
+    handleUrlChange(curUrl);
+    ajaxDispatch('config/set', {onUrlChange: handleUrlChange});
   }
 }
 

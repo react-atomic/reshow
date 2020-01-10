@@ -6,13 +6,16 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 
 let uGlobal = jsdom(null, {url: 'http://localhost'});
-import {AjaxPage} from 'organism-react-ajax';
+import { AjaxPage, ajaxDispatch} from 'organism-react-ajax';
 import urlStore from '../stores/urlStore';
 
 describe('Test Handle New Url', () => {
+  let wrap;
   after(() => {
     uGlobal();
     jsdom();
+    wrap.unmount();
+    ajaxDispatch('config/set', {onUrlChange: null});
   });
   class FakeComponent extends PureComponent {
     render() {
@@ -34,7 +37,8 @@ describe('Test Handle New Url', () => {
       done();
     };
     const vDom = <FakeComponent onUrlChange={myUpdate} />;
-    const uFake = mount(vDom).instance();
+    wrap = mount(vDom);
+    const uFake = wrap.instance();
     window.history.pushState(null, 'title', 'http://localhost/bbb');
     window.history.pushState(null, 'title', 'http://localhost/ccc');
     setTimeout(() => window.history.back());

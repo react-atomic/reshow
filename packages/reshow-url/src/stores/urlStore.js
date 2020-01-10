@@ -9,6 +9,8 @@ const keys = Object.keys;
 
 const updateUrl = url => history.pushState && history.pushState('', '', url);
 
+const urlChange = 'urlChange';
+
 class URL {
   loc = {};
   constructor(loc) {
@@ -50,16 +52,27 @@ class UrlStore extends ReduceStore {
     return new URL({});
   }
 
+  urlChange = () => {
+    urlDispatch({type: 'url', url: doc().URL});
+    ajaxDispatch('urlChange');
+  }
+
+  onUrlChange(cb) {
+    this.addListener(cb, urlChange);
+  }
+
+  offUrlChange(cb) {
+    this.removeListener(cb, urlChange);
+  }
+
   registerEvent(win) {
     if (win && win.addEventListener) {
       win.addEventListener(
         'popstate',
-        () => {
-          urlDispatch({type: 'url', url: doc().URL});
-          ajaxDispatch('urlChange');
-        },
+        () => this.emit(urlChange),
         true,
       );
+      this.onUrlChange(this.urlChange);
       ajaxStore.urlDispatch = urlDispatch;
     }
   }
