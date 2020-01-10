@@ -3,8 +3,9 @@ import get from 'get-object-value';
 import {AjaxPage} from 'organism-react-ajax';
 import {doc} from 'win-doc';
 import callfunc from 'call-func';
-import {Return} from '../molecules/ReshowComponent';
+import {toJS} from 'reshow-return';
 
+import {Return} from '../molecules/ReshowComponent';
 import updateCanonicalUrl, {
   initCanonicalUrl,
 } from '../../src/updateCanonicalUrl';
@@ -21,7 +22,7 @@ const update = params => {
   const type = realTimeData
     ? 'realTime'
     : 'config/' + (reset ? 're' : '') + 'set';
-  dispatch(type, params);
+  dispatch(type, toJS(params));
   const oDoc = doc();
   if (oDoc.URL) {
     const htmlTitle = get(params, ['htmlTitle']);
@@ -78,19 +79,24 @@ class Reshow extends PureComponent {
     }
     const {onError, themes, ajax, webSocketUrl} = this.props;
 
-    globalStore.path = pageStore.getThemePath();
-
     return (
-      <Return initStates={['baseUrl', 'staticVersion']}>
-        <AjaxPage
-          callback={update}
-          /*State*/
-          themePath={globalStore.path}
-          /*Props*/
-          themes={themes}
-          ajax={ajax}
-          webSocketUrl={webSocketUrl}
-        />
+      <Return initStates={['baseUrl', 'staticVersion', 'themePath']}>
+        {({baseUrl, staticVersion, themePath}) => {
+          globalStore.path = pageStore.getThemePath();
+          return (
+            <AjaxPage
+              callback={update}
+              /*State*/
+              baseUrl={baseUrl}
+              staticVersion={staticVersion}
+              themePath={globalStore.path}
+              /*Props*/
+              themes={themes}
+              ajax={ajax}
+              webSocketUrl={webSocketUrl}
+            />
+          );
+        }}
       </Return>
     );
   }
