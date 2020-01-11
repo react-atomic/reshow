@@ -1599,9 +1599,9 @@ organism-react-ajax@*:
     win-doc "*"
 
 organism-react-ajax@^0.13.0-beta:
-  version "0.13.0-beta.0"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.13.0-beta.0.tgz#13994f984ed5573089a90a086bd3a27af9e8a869"
-  integrity sha512-S++FUoijwa5BG612XBNhwws1qUK6QqXnXp0zpJqAFdQedXGHQMRZLt0CWrkwHjypCK1U2RCDFE0KN6DskN4pQA==
+  version "0.13.0-beta.2"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.13.0-beta.2.tgz#5ae2dcd3e6f5ff5970e7ce23d6ffa6dad469925c"
+  integrity sha512-KcVyhsiBHATnY2CGLvLieWJN43SR/vmI+r6v9pVL67Dp0ysfsoPzUEHMauRJ4M5Gq/Pew98fMHWwXP8lansL7w==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"

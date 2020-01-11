@@ -53,6 +53,7 @@ class UrlStore extends ReduceStore {
   }
 
   urlChange = () => {
+    this.nextEmits.push(urlChange);
     urlDispatch({type: 'url', url: doc().URL});
     ajaxDispatch('urlChange');
   }
@@ -69,10 +70,9 @@ class UrlStore extends ReduceStore {
     if (win && win.addEventListener) {
       win.addEventListener(
         'popstate',
-        () => this.emit(urlChange),
+        this.urlChange,
         true,
       );
-      this.onUrlChange(this.urlChange);
       ajaxStore.urlDispatch = urlDispatch;
     }
   }
