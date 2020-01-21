@@ -17,6 +17,7 @@ const connectHook = (Base, options) => {
           }));
         };
         stores.forEach(store => store.addListener(handleChange, CHANGE));
+        handleChange();
         return () => {
           stores.forEach(store => store.removeListener(handleChange, CHANGE));
         };
