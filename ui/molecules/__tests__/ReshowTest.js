@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() });
 
 describe('Test Reshow Component', ()=>{ 
   it('Reshow simple test', ()=>{
-    const wrapper = shallow(<Reshow themes={{hello: <div>Hello World!</div>}} themePath="hello" />);
+    const wrapper = mount(<Reshow themes={{hello: <div>Hello World!</div>}} themePath="hello" />);
     expect(wrapper.html()).to.equal('<div>Hello World!</div>');
   });
 });

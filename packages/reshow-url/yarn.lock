@@ -3,9 +3,9 @@
 
 
 "@babel/cli@^7.x":
-  version "7.7.7"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.7.7.tgz#56849acbf81d1a970dd3d1b3097c8ebf5da3f534"
-  integrity sha512-XQw5KyCZyu/M8/0rYiZyuwbgIQNzOrJzs9dDLX+MieSgBwTLvTj4QVbLmxJACAIvQIDT7PtyHN2sC48EOWTgaA==
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.8.3.tgz#121beb7c273e0521eb2feeb3883a2b7435d12328"
+  integrity sha512-K2UXPZCKMv7KwWy9Bl4sa6+jTNP7JyDiHKzoOiUUygaEDbC60vaargZDnO9oFMvlq8pIKOOyUUgeMYrsaN9djA==
   dependencies:
     commander "^4.0.1"
     convert-source-map "^1.1.0"
@@ -33,7 +33,7 @@
     "@sinonjs/commons" "^1"
     "@sinonjs/samsam" "^4.2.0"
 
-"@sinonjs/samsam@^4.2.0", "@sinonjs/samsam@^4.2.1":
+"@sinonjs/samsam@^4.2.0", "@sinonjs/samsam@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-4.2.2.tgz#0f6cb40e467865306d8a20a97543a94005204e23"
   integrity sha512-z9o4LZUzSD9Hl22zV38aXNykgFeVj8acqfFabCY6FY83n/6s/XwNJyYYldz6/9lBJanpno9h+oL6HTISkviweA==
@@ -522,10 +522,10 @@ diff@3.5.0:
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
 
-diff@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
-  integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
+diff@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
+  integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
 easing-lib@*:
   version "0.0.4"
@@ -538,9 +538,9 @@ emoji-regex@^7.0.1:
   integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
 
 es-abstract@^1.17.0-next.1:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.17.0.tgz#f42a517d0036a5591dbb2c463591dc8bb50309b1"
-  integrity sha512-yYkE07YF+6SIBmg1MsJ9dlub5L48Ek7X0qz+c/CPCHS9EBXfESorzng4cJQjJW5/pB6vDF41u7F8vUhLVDqIug==
+  version "1.17.4"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.17.4.tgz#e3aedf19706b20e7c2594c35fc0d57605a79e184"
+  integrity sha512-Ae3um/gb8F0mui/jPL+QiqmglkUsaQf7FwBEHYIFkztkneosu9imhqHpBzQ3h1vit8t5iQ74t6PEVvphBZiuiQ==
   dependencies:
     es-to-primitive "^1.2.1"
     function-bind "^1.1.1"
@@ -774,9 +774,9 @@ get-scroll-info@*:
     win-doc "*"
 
 get-storage@*:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/get-storage/-/get-storage-0.1.5.tgz#6a30c5453bf287d32cf98796f75f6391e3453160"
-  integrity sha512-fM1LOFvdxzYibpVQ6Hhd5SfYQ9ih5fjpbOnpOpwVm91xFJMHwHLZzowVUSKv2uzPbfhJhArYDDFHe/u4idwWFA==
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/get-storage/-/get-storage-0.1.6.tgz#4be56683434b9910535d74134e492a8488d99a0c"
+  integrity sha512-nxxzcspfCcJ6Lt9uwpjsRBIw0FKDcNAdgRd0Utbl7PUWg3GEencSwYJF+J0UDdgPu73QPPSXmAC4qGyyytkfrg==
   dependencies:
     get-object-value "*"
     reshow-constant "*"
@@ -1193,9 +1193,9 @@ kind-of@^5.0.0:
   integrity sha512-NGEErnH6F2vUuXDh+OlbcKW7/wOcfdRHaZ7VWtqCztfHri/++YKmP51OdWeGPuqCOba6kk2OTe5d02VmTB80Pw==
 
 kind-of@^6.0.0, kind-of@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
-  integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
+  integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -1599,9 +1599,9 @@ organism-react-ajax@*:
     win-doc "*"
 
 organism-react-ajax@^0.13.0-beta:
-  version "0.13.0-beta.2"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.13.0-beta.2.tgz#5ae2dcd3e6f5ff5970e7ce23d6ffa6dad469925c"
-  integrity sha512-KcVyhsiBHATnY2CGLvLieWJN43SR/vmI+r6v9pVL67Dp0ysfsoPzUEHMauRJ4M5Gq/Pew98fMHWwXP8lansL7w==
+  version "0.13.0-beta.4"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.13.0-beta.4.tgz#2589893ba2bbbd82c6fea5062017f4e605bae1de"
+  integrity sha512-NntlBjKQsMhuqCLyq3j5pZ7Ls36mCSl8MHPxYPTeDC754q/1U36yA97CMDLzXIdbg3734TVvRehnxcc5euMKZg==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"
@@ -1609,6 +1609,7 @@ organism-react-ajax@^0.13.0-beta:
     get-random-id "*"
     immutable "*"
     non-worker "*"
+    reshow-build "*"
     reshow-flux "*"
     reshow-runtime "*"
     set-object-value "*"
@@ -1619,18 +1620,19 @@ organism-react-ajax@^0.13.0-beta:
     win-doc "*"
 
 organism-react-animate@*:
-  version "0.2.19"
-  resolved "https://registry.yarnpkg.com/organism-react-animate/-/organism-react-animate-0.2.19.tgz#2da5a3351cc89b5dd6df159389736cc9e6118e68"
-  integrity sha512-LENeO6VjhS7mVMzDCnvoCuolgykhKzrK7AZvACeldOgPkiKYaCNtdXwAXWNibRTXlMUhvuRiUhUBrLVAYSsBIA==
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/organism-react-animate/-/organism-react-animate-0.3.6.tgz#160d348449a6f4d222d89a309d263600c59f4e06"
+  integrity sha512-UExOOBcJPiUoo7msPvehISu8T9ovWgOENGId/hqWlPxehKsn4gbDGLrlLBLg0/aTcI5UCRR42ohcbPm21Ii22A==
   dependencies:
+    call-func "*"
     get-object-value "*"
     keyframe-css "*"
     react-atomic-molecule "*"
 
 organism-react-popup@*:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.7.4.tgz#7d14298dea0e6296dac009d0ee546c4d6c0c53c2"
-  integrity sha512-tmHCCcdF3WnTzQvk2+1WIBi5KXYR1eKS7m+Ds3D68EgNeoBo8XJH/I331E4Wu4tzhSdEtzmPBRJAjYn5E+vrUQ==
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.8.1.tgz#7cf5cc737fbfe14044f002575cc7f832355f9046"
+  integrity sha512-Wa4cemdTKQ2HBOSU89uGUegeWf46fWu1IuocEtHbl7b5zi0DSDDXMyIJvb8ONxPEehpfFICPDjX+XmIE9NeRCg==
   dependencies:
     array.merge "*"
     call-func "*"
@@ -1870,18 +1872,6 @@ reshow-flux@*:
     reshow-flux-base "*"
     reshow-runtime "*"
 
-reshow-return@*:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.1.2.tgz#809832719c0c19ed78de5ca19d6f734832757073"
-  integrity sha512-EXbKJQcImvCy7GEuwBjIOZTYTwro3dK4+LRqmB95uwbEW1N2ieZMSppySEzMfzVXR1JwXc5jI9PQguGOI/nAIw==
-  dependencies:
-    call-func "*"
-    get-object-value "*"
-    memoize-one "*"
-    reshow-build "*"
-    reshow-flux "*"
-    reshow-runtime "*"
-
 reshow-runtime@*:
   version "0.1.19"
   resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.1.19.tgz#3ebe6285f2d42dbd8c838e423f784d98c5727bda"
@@ -2002,14 +1992,14 @@ signal-exit@^3.0.0:
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
 sinon@*:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-8.0.4.tgz#eb13242fa50bf876c54e88bdc96f281a0dd08a53"
-  integrity sha512-cFsmgmvsgFb87e7SV7IcekogITlHX2KmlplyI9Pda0FH1Z8Ms/kWbpLs25Idp0m6ZJ3HEEjhaYYXbcTtWWUn4w==
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-8.1.0.tgz#30f82371ac6e7d4dccb77fa1525f5ea748c636ff"
+  integrity sha512-6/05TR+8QhEgTbyMWaConm8iPL609Eno7SqToPq63wC/jS/6NMEI4NxqtzlLkk3r/KcZT9xPXQodH0oJ917Hbg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
     "@sinonjs/formatio" "^4.0.1"
-    "@sinonjs/samsam" "^4.2.1"
-    diff "^4.0.1"
+    "@sinonjs/samsam" "^4.2.2"
+    diff "^4.0.2"
     lolex "^5.1.2"
     nise "^3.0.1"
     supports-color "^7.1.0"
@@ -2231,9 +2221,9 @@ to-object-path@^0.3.0:
     kind-of "^3.0.2"
 
 to-percent-js@*:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/to-percent-js/-/to-percent-js-0.1.1.tgz#30ca4d3822b4de152ade77d1774120de28efac68"
-  integrity sha512-k/vnJHjwMdZsEwjfXDKtardFoOgYeP6o+SNTvjXTbQr3aFLk6dhw2J/KKMseKrSjKYmQKrga2vm9p9Jq5lspiA==
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/to-percent-js/-/to-percent-js-0.2.0.tgz#4c6af69f1e4888e96b2a042206b653a7681a31ab"
+  integrity sha512-yZ9E67ZbtsTLb7xUreQY41nOQ5sSLwvajgxdybDehC8AJb5zbVWiZ9M/KTZeeawyj6J+BMvb9WUNsR8dKIx+Mw==
   dependencies:
     reshow-runtime "*"
 

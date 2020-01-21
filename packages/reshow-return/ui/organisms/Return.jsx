@@ -4,9 +4,9 @@ import {connectHook} from 'reshow-flux';
 
 import returnOptions from '../../src/returnOptions';
 
-const Return = ({children, ...props}) =>
+const ReturnComponent = ({children, ...props}) =>
   build(children)(returnOptions.reset(props));
 
-Return.displayName = 'Return';
-export default connectHook(Return, returnOptions);
-export {Return};
+ReturnComponent.displayName = 'Return';
+export default connectHook(ReturnComponent, returnOptions);
+export {ReturnComponent};

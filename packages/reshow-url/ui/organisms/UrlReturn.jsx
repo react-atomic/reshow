@@ -1,21 +1,10 @@
 import React from 'react';
-import build from 'reshow-build';
-import {returnOptions} from 'reshow-return';
-import {connectHook} from 'reshow-flux';
+import {Return} from 'reshow';
 
 import urlStore from '../../src/stores/urlStore';
 
-const myReturnOptions = {
-  ...returnOptions,
-  defaultProps: {
-    ...returnOptions.defaultProps,
-    stores: [urlStore],
-  },
-};
-
-const UrlReturn = ({children, ...props}) =>
-  build(children)(returnOptions.reset(props));
-
+const UrlReturn = props => <Return {...props} stores={[urlStore]} /> 
 UrlReturn.displayName = 'UrlReturn';
 
-export default connectHook(UrlReturn, myReturnOptions);
+export default UrlReturn;
+

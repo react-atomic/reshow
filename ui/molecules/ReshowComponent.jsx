@@ -1,4 +1,4 @@
-import {returnOptions, Return} from 'reshow-return';
+import {returnOptions, ReturnComponent} from 'reshow-return';
 import {connectHook} from 'reshow-flux';
 import pageStore from '../../src/stores/pageStore';
 import {globalStore} from '../../src/stores/globalStore';
@@ -15,6 +15,6 @@ const myReturnOptions = {
   }
 }
 
-const MyReturn = connectHook(Return, myReturnOptions);
+const MyReturn = connectHook(ReturnComponent, myReturnOptions);
 
 export {myReturnOptions as returnOptions, MyReturn as Return};
