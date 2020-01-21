@@ -1,6 +1,6 @@
 {
   "name": "reshow-worker",
-  "version": "0.1.2",
+  "version": "0.13.0-beta.0",
   "description": "Reshow Worker for ajax",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -11,19 +11,26 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "win-doc": "*",
     "get-object-value": "*",
-    "organism-react-ajax": "*",
+    "organism-react-ajax": "^0.13.0-beta",
     "worker-loader": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.x"
+    "@babel/cli": "^7.x",
+    "chai": "*",
+    "mocha": "*",
+    "sinon": "*",
+    "jsdom": "*",
+    "jsdom-global": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
-    "prepublishOnly": "npm run test && npm run build"
+    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
+    "prepublishOnly": "npm run test"
   },
   "files": [
     "build",
