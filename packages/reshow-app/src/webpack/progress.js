@@ -9,11 +9,11 @@ const defaultTips = [
 const init = ({confs}) => {
   const tips = confs.tips || defaultTips;
   const spinner = ora({
-    text: tips.pop(),
+    text: tips.shift(),
     spinner: 'line',
   }).start();
   var spinnTimer = setInterval(()=>{
-    spinner.text = tips.pop();
+    spinner.text = tips.shift();
     if (!tips.length) {
       clearInterval(spinnTimer);
     }

@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.10",
+  "version": "0.13.0-beta.11",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -51,7 +51,7 @@
     "webpack-cli": "*",
     "webpack-stats-plugin": "*",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-parallel-uglify-plugin": "^1.x",
+    "terser-webpack-plugin": "*",
     "win-doc": "*"
   },
   "devDependencies": {
