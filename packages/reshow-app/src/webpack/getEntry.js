@@ -1,15 +1,21 @@
 import getVendor from './getVendor';
 
-const getEntry = ({main, confs}) => {
+const getEntry = ({main, confs, server}) => {
   let entry;
   if (!main) {
-    entry = {main: './build/src/client.js'};
+    if (server) {
+      entry = {main: './build/src/server.js'};
+    } else {
+      entry = {main: './build/src/client.js'};
+    }
   } else {
     entry = main;
   }
-  const vendor = getVendor(confs);
-  if (vendor) {
-    entry.vendor = vendor;
+  if (!server) { 
+    const vendor = getVendor(confs);
+    if (vendor) {
+      entry.vendor = vendor;
+    }
   }
   return entry;
 }

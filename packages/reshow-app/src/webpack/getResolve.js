@@ -1,6 +1,6 @@
 import reshowRuntimeAlias from './reshowRuntimeAlias';
 
-const getResolve = ({confs, root}) => {
+const getResolve = ({confs, root, moduleAlias}) => {
   const alias = {
     react: root + '/node_modules/react',
     'react-dom': root + '/node_modules/react-dom',
@@ -9,6 +9,9 @@ const getResolve = ({confs, root}) => {
     ...reshowRuntimeAlias(root),
     ...confs.alias,
   };
+  if (moduleAlias) {
+    moduleAlias.addAliases(alias);
+  }
   return {
     extensions: ['.mjs', '.js', '.jsx'],
     alias,

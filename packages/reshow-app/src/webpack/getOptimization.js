@@ -2,7 +2,7 @@ import {getVendorConfig} from './getVendor';
 import getTerser from './getTerser'; 
 import {PRODUCTION} from './const';
 
-const getOptimization = ({mode}) => {
+const getOptimization = ({mode, server}) => {
   const cacheGroups = {
     commons: {
       chunks: 'initial',
@@ -13,11 +13,11 @@ const getOptimization = ({mode}) => {
     vendor: getVendorConfig(),
   };
   const results = {
-    splitChunks: {
-      cacheGroups
-    },
     occurrenceOrder: true
   };
+  if (!server) {
+    results.splitChunks = {cacheGroups};
+  }
   if (PRODUCTION === mode) {
     results.minimize = true;
     results.minimizer = [getTerser()];
