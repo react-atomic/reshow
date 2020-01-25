@@ -14,8 +14,14 @@ const getModule = ({mode}) => {
       {
         test: /(.js|.jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: babelLoaderOption,
+        use: [
+          'thread-loader',
+          'cache-loader',
+          {
+            loader: 'babel-loader',
+            options: babelLoaderOption,
+          }
+        ],
       },
     ],
   };
