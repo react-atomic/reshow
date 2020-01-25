@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.6",
+  "version": "0.13.0-beta.9",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -45,14 +45,14 @@
     "reshow-worker": "^0.13.0-beta",
     "sinon": "*",
     "strip-ansi": "^2.0.1",
-    "webpack": "^3.0.0",
+    "webpack": "^4.x",
+    "webpack-cli": "*",
+    "webpack-stats-plugin": "*",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-parallel-uglify-plugin": "^1.x",
     "win-doc": "*"
   },
   "devDependencies": {
-    "npmignore": "*",
-    "react": "^16.x",
-    "react-dom": "^16.x"
+    "npmignore": "*"
   }
 }
