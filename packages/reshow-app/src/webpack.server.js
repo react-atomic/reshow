@@ -1,85 +1,38 @@
 import webpack from 'webpack';
 import moduleAlias from 'module-alias';
-import {getProdUglify} from './uglify';
-import reshowRuntimeAlias from './reshowRuntimeAlias';
+import getResolve, {getResolveLoader, getNode} from './webpack/getResolve';
+import getEntry from './webpack/getEntry';
+import getOptimization from './webpack/getOptimization';
+import getModule from './webpack/getModule';
+import getPlugins from './webpack/getPlugins';
+import getOutput from './webpack/getOutput';
+import {DEVELOPMENT, PRODUCTION} from './webpack/const';
+import progress from './webpack/progress';
 
-const {
-  OccurrenceOrderPlugin,
-  ModuleConcatenationPlugin,
-  LimitChunkCountPlugin,
-} = webpack.optimize;
-const {NODE_ENV, CONFIG} = process.env;
-let confs = {};
-if (CONFIG) {
-  confs = JSON.parse(CONFIG);
-}
+const {NODE_ENV, CONFIG, BUNDLE} = process.env;
+let confs = CONFIG ? JSON.parse(CONFIG) : {};
 
-let plugins = [new LimitChunkCountPlugin({maxChunks: 1})];
-let babelLoaderOption = {
-  cacheDirectory: true,
-  plugins: ['@babel/plugin-syntax-dynamic-import'],
-};
-
-const myWebpack = (root, entry, lazyConfs) => {
+const myWebpack = (root, main, lazyConfs) => {
   confs = {...confs, ...lazyConfs};
-  if ('production' === NODE_ENV) {
-    babelLoaderOption.envName = 'production';
-    plugins = plugins.concat([
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production'),
-          __DEVTOOLS__: false,
-        },
-      }),
-      new ModuleConcatenationPlugin(),
-      new webpack.LoaderOptionsPlugin({
-        minimize: true,
-      }),
-      getProdUglify(),
-      new OccurrenceOrderPlugin(),
-    ]);
+  const stop = progress({confs});
+  const path = root + '/assets';
+  let mode = DEVELOPMENT;
+  if (PRODUCTION === NODE_ENV) {
+    mode = PRODUCTION;
   }
-  if (!entry) {
-    entry = {
-      node: './build/src/server.js',
-    };
-  }
-  const alias = {
-    ...reshowRuntimeAlias(root),
-    ...confs.alias,
-  };
-  moduleAlias.addAliases(alias);
-  return {
-    entry,
-    output: {
-      filename: '[name].bundle.js',
-      path: root + '/assets',
-    },
-    node: {
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      setImmediate: false,
-    },
+  const result = {
+    mode,
+    entry: getEntry({main, confs, server}),
+    output: getOutput({path, confs}),
+    optimization: getOptimization({mode, server}),
+    plugins: getPlugins({path, stop, mode, BUNDLE, server}),
+    module: getModule({mode}),
+    resolve: getResolve({confs, root, moduleAlias}),
+    resolveLoader: getResolveLoader({root}),
+    node: getNode(),
     externals: confs.externals,
-    resolve: {
-      extensions: ['.mjs', '.js', '.jsx'],
-    },
-    resolveLoader: {
-      modules: [root + '/node_modules'],
-    },
-    module: {
-      loaders: [
-        {
-          test: /(.js|.jsx)$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-          options: babelLoaderOption,
-        },
-      ],
-    },
-    plugins: plugins,
   };
+  return result;
 };
 
 module.exports = myWebpack;

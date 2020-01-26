@@ -1,166 +1,44 @@
-'use strict';
 import webpack from 'webpack';
-import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
-import dedup from 'array.dedup';
-import ora from 'ora';
+import getResolve, {getResolveLoader, getNode} from './webpack/getResolve';
+import getEntry from './webpack/getEntry';
+import getOptimization from './webpack/getOptimization';
+import getModule from './webpack/getModule';
+import getPlugins from './webpack/getPlugins';
+import getOutput from './webpack/getOutput';
+import getDevServer from './webpack/getDevServer';
+import {DEVELOPMENT, PRODUCTION} from './webpack/const';
+import progress from './webpack/progress';
 
-import BundleTracker from './webpackBundleTracker';
-import {getProdUglify, getUglify} from './uglify';
-import reshowRuntimeAlias from './reshowRuntimeAlias';
-
-const spinner = ora({
-  text: 'Trust me, it will finish soon.',
-  spinner: 'line',
-}).start();
-
-let spinnerTime = setTimeout(() => {
-  spinner.text = "If you don't trust me, trust yourself.";
-  spinnerTime = setTimeout(() => {
-    spinner.text =
-      "If you don't trust yourself, Just wait until you see the finished.";
-  }, 5000);
-}, 5000);
-
-const keys = Object.keys;
-
-const {
-  CommonsChunkPlugin,
-  OccurrenceOrderPlugin,
-  AggressiveMergingPlugin,
-  ModuleConcatenationPlugin,
-} = webpack.optimize;
-const {NODE_ENV, CONFIG, BUNDLE} = process.env;
-let confs = {};
-if (CONFIG) {
-  confs = JSON.parse(CONFIG);
-}
-
-let devtool = 'cheap-source-map';
-let plugins = [];
-let babelLoaderOption = {
-  cacheDirectory: true,
-  plugins: ['@babel/plugin-syntax-dynamic-import'],
-  presets: [['@babel/env', {modules: false}]],
-};
-
-/*vendor*/
-let vendor = ['react', 'react-dom', 'immutable'];
-if (confs.resetVendor) {
-  vendor = confs.resetVendor;
-}
-if (confs.webpackVendor) {
-  vendor = vendor.concat(confs.webpackVendor);
-}
-vendor = dedup(vendor);
+const {NODE_ENV, CONFIG, BUNDLE, HOT_UPDATE} = process.env;
+let confs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
   confs = {...confs, ...lazyConfs};
-  if (BUNDLE) {
-    let bundle = {
-      analyzerHost: '0.0.0.0',
-      ...JSON.parse(BUNDLE),
-    };
-    plugins = plugins.concat([new BundleAnalyzerPlugin(bundle)]);
-    if ('production' !== NODE_ENV) {
-      plugins = plugins.concat([
-        new webpack.LoaderOptionsPlugin({
-          minimize: true,
-        }),
-        getUglify(),
-      ]);
-    }
-  }
-  if ('production' === NODE_ENV) {
-    devtool = false;
-    babelLoaderOption.envName = 'production';
-    plugins = plugins.concat([
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production'),
-          __DEVTOOLS__: false,
-        },
-      }),
-      new ModuleConcatenationPlugin(),
-      new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false,
-      }),
-      getProdUglify(),
-      new OccurrenceOrderPlugin(),
-      new AggressiveMergingPlugin({
-        minSizeReduce: 1.5,
-        moveToParents: true,
-      }),
-    ]);
-  }
+  const stop = progress({confs});
   const path = root + '/assets';
-  if (!main) {
-    main = {main: './build/src/client.js'};
+  let mode = DEVELOPMENT;
+  let devtool = 'cheap-source-map';
+  if (PRODUCTION === NODE_ENV) {
+    mode = PRODUCTION;
+    devtool = false;
   }
-
-  const entry = main;
-  if (!confs.disableVendor && vendor && vendor.length) {
-    entry.vendor = vendor;
-    plugins = plugins.concat([
-      new CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'vendor.bundle.js',
-      }),
-    ]);
-  }
-  plugins = plugins.concat([
-    new BundleTracker({
-      path,
-      filename: './stats.json',
-      callback: () => {
-        clearTimeout(spinnerTime);
-        spinner.stop();
-      },
-    }),
-  ]);
-
-  const alias = {
-    react: root + '/node_modules/react',
-    ...reshowRuntimeAlias(root),
-    ...confs.alias,
-  };
-
-  return {
+  const result = {
+    mode,
     devtool,
-    entry,
-    output: {
-      filename: '[name].bundle.js',
-      path,
-      publicPath: confs.assetsRoot,
-      chunkFilename: '[id].[hash].bundle.js',
-      ...confs.output,
-    },
-    node: {
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      setImmediate: false,
-    },
+    entry: getEntry({main, confs}),
+    output: getOutput({path, confs}),
+    optimization: getOptimization({mode}),
+    plugins: getPlugins({path, stop, mode, BUNDLE, HOT_UPDATE}),
+    module: getModule({mode, HOT_UPDATE}),
+    resolve: getResolve({confs, root}),
+    resolveLoader: getResolveLoader({root}),
+    node: getNode(),
     externals: confs.externals,
-    resolve: {
-      extensions: ['.mjs', '.js', '.jsx'],
-      alias,
-    },
-    resolveLoader: {
-      modules: [root + '/node_modules'],
-    },
-    module: {
-      loaders: [
-        {
-          test: /(.js|.jsx)$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-          options: babelLoaderOption,
-        },
-      ],
-    },
-    plugins,
   };
+  if (HOT_UPDATE) {
+    result.devServer = getDevServer({confs, path});
+  }
+  return result;
 };
 
 module.exports = myWebpack;

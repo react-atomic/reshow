@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.6",
+  "version": "0.13.0-beta.19",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -19,6 +19,8 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "babel-loader": "^8.x",
+    "thread-loader": "*",
+    "cache-loader": "*",
     "babel-plugin-add-module-exports": "*",
     "babel-plugin-dynamic-import-node": "*",
     "babel-plugin-object-to-json-parse": "0.0.8",
@@ -36,23 +38,28 @@
     "mocha": "^5.x",
     "module-alias": "*",
     "ora": "2.0.0",
+    "chalk": "3.0.0",
     "organism-react-ajax": "^0.13.0-beta",
     "react-test-renderer": "*",
+    "react-refresh": "*",
     "reshow": "^0.13.0-beta",
     "reshow-constant": "*",
     "reshow-runtime": "*",
     "reshow-url": "*",
     "reshow-worker": "^0.13.0-beta",
     "sinon": "*",
-    "strip-ansi": "^2.0.1",
-    "webpack": "^3.0.0",
+    "ansi-html": "0.0.7",
+    "html-entities": "1.2.1",
+    "error-stack-parser": "2.0.6",
+    "webpack": "^4.x",
+    "webpack-cli": "*",
+    "webpack-stats-plugin": "*",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-parallel-uglify-plugin": "^1.x",
+    "webpack-dev-server": "*",
+    "terser-webpack-plugin": "*",
     "win-doc": "*"
   },
   "devDependencies": {
-    "npmignore": "*",
-    "react": "^16.x",
-    "react-dom": "^16.x"
+    "npmignore": "*"
   }
 }
