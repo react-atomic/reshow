@@ -215,7 +215,7 @@ function shouldInvalidateReactRefreshBoundary(prevModule, nextModule) {
   return false;
 }
 
-module.exports = Object.freeze({
+export default Object.freeze({
   createHotDisposeCallback,
   createHotErrorHandler,
   enqueueUpdate: createDebounceUpdate(),

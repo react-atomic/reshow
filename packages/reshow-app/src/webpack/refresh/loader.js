@@ -1,6 +1,7 @@
-const { Template } = require('webpack');
-const { refreshUtils } = require('./runtime/globals');
-const RefreshModuleRuntime = require('./runtime/RefreshModuleRuntime');
+import {Template} from 'webpack';
+import {refreshUtils} from './runtime/globals';
+import RefreshModuleRuntime from './runtime/RefreshModuleRuntime';
+
 const RefreshModuleRuntimeString = Template.getFunctionContent(RefreshModuleRuntime)
   .trim()
   .replace(/^ {2}/gm, '')
@@ -19,7 +20,7 @@ const reactModule = /['"]react['"]/;
  * @property {function(Error | null, string | Buffer, *?, *?): void} callback Sends loader results to Webpack.
  * @returns {string} The injected module source code.
  */
-function RefreshHotLoader(source, inputSourceMap) {
+const RefreshHotLoader = (source, inputSourceMap) => {
   // Use callback to allow source maps to pass through
   this.callback(
     null,
@@ -29,4 +30,4 @@ function RefreshHotLoader(source, inputSourceMap) {
   );
 }
 
-module.exports = RefreshHotLoader;
+export default RefreshHotLoader;

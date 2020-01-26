@@ -2,7 +2,6 @@ import path from 'path';
 import webpack from 'webpack';
 import {createRefreshTemplate, injectRefreshEntry} from './helpers';
 import {refreshUtils} from './runtime/globals';
-import get from 'get-object-value';
 
 /**
  * @typedef {Object} ReactRefreshPluginOptions
