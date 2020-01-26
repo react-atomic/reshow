@@ -9,13 +9,16 @@ const getResolve = ({confs, root, moduleAlias}) => {
     ...reshowRuntimeAlias(root),
     ...confs.alias,
   };
+
+  const results = {
+    extensions: ['.mjs', '.js', '.jsx'],
+  };
   if (moduleAlias) {
     moduleAlias.addAliases(alias);
+  } else {
+    results.alias = alias;
   }
-  return {
-    extensions: ['.mjs', '.js', '.jsx'],
-    alias,
-  };
+  return results;
 };
 
 const getResolveLoader = ({root}) => ({
