@@ -4,7 +4,7 @@ const getDevServer = ({confs, path}) => {
     publicPath: confs.assetsRoot,
     writeToDisk: true,
     liveReload: false,
-    hot: true
+    hot: true,
   };
 }
 
