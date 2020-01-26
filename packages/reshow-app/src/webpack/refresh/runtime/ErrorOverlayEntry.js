@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 /* global __resourceQuery */
 
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+import formatWebpackMessages from './formatWebpackMessages'; 
 const ErrorOverlay = require('../overlay');
 const createSocket = require('./createSocket');
 const {

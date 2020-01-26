@@ -1,4 +1,4 @@
-const debounce = require('lodash.debounce');
+import memoize from 'memoize-one';
 const RuntimeErrorFooter = require('./components/RuntimeErrorFooter');
 const RuntimeErrorHeader = require('./components/RuntimeErrorHeader');
 const CompileErrorContainer = require('./containers/CompileErrorContainer');
@@ -301,7 +301,7 @@ function showRuntimeErrors(errors) {
  * @param {Error[]} errors
  * @returns {void}
  */
-const debouncedShowRuntimeErrors = debounce(showRuntimeErrors, 30);
+const debouncedShowRuntimeErrors = memoize(showRuntimeErrors);
 
 /**
  * Detects if an error is a Webpack compilation error.
