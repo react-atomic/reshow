@@ -5,10 +5,13 @@ import getBundleAnalyzerPlugin from './getBundleAnalyzerPlugin';
 import FinishPlugin from './FinishPlugin';
 import {PRODUCTION} from './const';
 
-const {AggressiveMergingPlugin} = webpack.optimize;
+const {AggressiveMergingPlugin, LimitChunkCountPlugin} = webpack.optimize;
 
-const getPlugins = ({path, stop, mode, BUNDLE, HOT_UPDATE}) => {
+const getPlugins = ({path, stop, mode, BUNDLE, HOT_UPDATE, server}) => {
   const plugins = [getStatsJson()];
+  if (server) {
+    plugins.push(new LimitChunkCountPlugin({maxChunks: 1}));
+  }
   if (BUNDLE) {
     plugins.push(getBundleAnalyzerPlugin({BUNDLE}));
   }
@@ -23,7 +26,7 @@ const getPlugins = ({path, stop, mode, BUNDLE, HOT_UPDATE}) => {
   if (HOT_UPDATE) {
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
-      new Refresh({disableRefreshCheck: true})
+      new Refresh({disableRefreshCheck: true}),
     );
   }
   if (stop) {
