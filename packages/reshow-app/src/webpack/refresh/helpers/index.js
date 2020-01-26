@@ -1,7 +1,2 @@
-const createRefreshTemplate = require('./createRefreshTemplate');
-const injectRefreshEntry = require('./injectRefreshEntry');
-
-module.exports = {
-  createRefreshTemplate,
-  injectRefreshEntry,
-};
+export {default as createRefreshTemplate} from './createRefreshTemplate';
+export {default as injectRefreshEntry} from './injectRefreshEntry';

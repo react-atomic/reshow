@@ -2,13 +2,12 @@
 // eslint-disable-next-line no-unused-vars
 /* global __resourceQuery */
 
-import formatWebpackMessages from './formatWebpackMessages'; 
-const ErrorOverlay = require('../overlay');
-const createSocket = require('./createSocket');
-const {
-  error: registerErrorHandler,
-  unhandledRejection: registerUnhandledRejectionHandler,
-} = require('./errorEventHandlers');
+import formatWebpackMessages from './formatWebpackMessages';
+import ErrorOverlay from '../overlay';
+import {
+  error as registerErrorHandler,
+  unhandledRejection as registerUnhandledRejectionHandler,
+} from './errorEventHandlers';
 
 // Setup error states
 let isHotReload = false;
@@ -74,14 +73,15 @@ function compileMessageHandler(message) {
   }
 }
 
-// Registers handlers for compile errors
-createSocket(compileMessageHandler);
 // Registers handlers for runtime errors
 registerErrorHandler(function handleError(error) {
   hasRuntimeErrors = true;
   ErrorOverlay.handleRuntimeError(error);
 });
-registerUnhandledRejectionHandler(function handleUnhandledPromiseRejection(error) {
+
+registerUnhandledRejectionHandler(function handleUnhandledPromiseRejection(
+  error,
+) {
   hasRuntimeErrors = true;
   ErrorOverlay.handleRuntimeError(error);
 });

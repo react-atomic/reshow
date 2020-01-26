@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.17",
+  "version": "0.13.0-beta.18",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -51,7 +51,6 @@
     "ansi-html": "0.0.7",
     "html-entities": "1.2.1",
     "error-stack-parser": "2.0.6",
-    "sockjs-client": "1.4.0",
     "webpack": "^4.x",
     "webpack-cli": "*",
     "webpack-stats-plugin": "*",

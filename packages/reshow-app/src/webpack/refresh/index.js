@@ -1,7 +1,8 @@
-const path = require('path');
-const webpack = require('webpack');
-const { createRefreshTemplate, injectRefreshEntry } = require('./helpers');
-const { refreshUtils } = require('./runtime/globals');
+import path from 'path';
+import webpack from 'webpack';
+import {createRefreshTemplate, injectRefreshEntry} from './helpers';
+import {refreshUtils} from './runtime/globals';
+import get from 'get-object-value';
 
 /**
  * @typedef {Object} ReactRefreshPluginOptions
@@ -168,5 +169,4 @@ class ReactRefreshPlugin {
   }
 }
 
-module.exports.ReactRefreshPlugin = ReactRefreshPlugin;
-module.exports = ReactRefreshPlugin;
+export default ReactRefreshPlugin;

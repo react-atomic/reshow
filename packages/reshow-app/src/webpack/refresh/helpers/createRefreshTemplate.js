@@ -1,4 +1,4 @@
-const { Template } = require('webpack');
+import {Template} from 'webpack';
 
 /**
  * Code to run before each module, sets up react-refresh.
@@ -47,4 +47,4 @@ function createRefreshTemplate(source, chunk) {
   ]);
 }
 
-module.exports = createRefreshTemplate;
+export default createRefreshTemplate;

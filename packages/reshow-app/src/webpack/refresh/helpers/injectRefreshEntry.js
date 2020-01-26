@@ -45,4 +45,4 @@ const injectRefreshEntry = originalEntry => {
   throw new Error('Failed to parse the Webpack `entry` object!');
 };
 
-module.exports = injectRefreshEntry;
+export default injectRefreshEntry;
