@@ -5,6 +5,7 @@ import getOptimization from './webpack/getOptimization';
 import getModule from './webpack/getModule';
 import getPlugins from './webpack/getPlugins';
 import getOutput from './webpack/getOutput';
+import getDevServer from './webpack/getDevServer';
 import {DEVELOPMENT, PRODUCTION} from './webpack/const';
 import progress from './webpack/progress';
 
@@ -34,6 +35,9 @@ const myWebpack = (root, main, lazyConfs) => {
     node: getNode(),
     externals: confs.externals,
   };
+  if (PRODUCTION !== mode) {
+    result.devServer = getDevServer({confs, path});
+  }
   return result;
 };
 

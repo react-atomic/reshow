@@ -5,8 +5,8 @@ killBy(){
 }
 
 killWatch(){
-    killBy babel 
-    killBy webpack 
+    DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+    killBy ${DIR}/node_modules/.bin/babel 
 }
 
 watch(){

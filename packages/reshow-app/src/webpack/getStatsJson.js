@@ -8,7 +8,6 @@ const getStatsJson = () => {
   return new StatsWriterPlugin({
     filename: 'stats.json',
     transform(data, opts) {
-      console.log({data});
       const files = get(data, ['assetsByChunkName']);
       const {hash, outputOptions} = get(opts, ['compiler'], {});
       const publicPath = outputOptions?.publicPath;

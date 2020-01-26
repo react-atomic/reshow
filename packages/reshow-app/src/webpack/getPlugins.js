@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import Refresh from './refresh';
 import getStatsJson from './getStatsJson';
 import getBundleAnalyzerPlugin from './getBundleAnalyzerPlugin';
 import FinishPlugin from './FinishPlugin';
@@ -17,6 +18,11 @@ const getPlugins = ({path, stop, mode, BUNDLE}) => {
         minSizeReduce: 2,
         moveToParents: true,
       }),
+    );
+  } else {
+    plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new Refresh({disableRefreshCheck: true})
     );
   }
   if (stop) {

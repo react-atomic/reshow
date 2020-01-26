@@ -13,7 +13,6 @@ class FinishPlugin {
     compiler.hooks.done.tap('Hello World Plugin', (
       stats /* stats is passed as argument when done hook is tapped.  */,
     ) => {
-      console.log('Hello World!');
       this.stop();
     });
   }

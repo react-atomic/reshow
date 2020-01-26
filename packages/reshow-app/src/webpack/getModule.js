@@ -8,6 +8,8 @@ const getModule = ({mode}) => {
   };
   if (mode === PRODUCTION) {
     babelLoaderOption.envName = PRODUCTION;
+  } else {
+    babelLoaderOption.plugins.push('react-refresh/babel');
   }
   return {
     rules: [
