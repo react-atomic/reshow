@@ -9,7 +9,7 @@ import getDevServer from './webpack/getDevServer';
 import {DEVELOPMENT, PRODUCTION} from './webpack/const';
 import progress from './webpack/progress';
 
-const {NODE_ENV, CONFIG, BUNDLE} = process.env;
+const {NODE_ENV, CONFIG, BUNDLE, HOT_UPDATE} = process.env;
 let confs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
@@ -28,14 +28,14 @@ const myWebpack = (root, main, lazyConfs) => {
     entry: getEntry({main, confs}),
     output: getOutput({path, confs}),
     optimization: getOptimization({mode}),
-    plugins: getPlugins({path, stop, mode, BUNDLE}),
-    module: getModule({mode}),
+    plugins: getPlugins({path, stop, mode, BUNDLE, HOT_UPDATE}),
+    module: getModule({mode, HOT_UPDATE}),
     resolve: getResolve({confs, root}),
     resolveLoader: getResolveLoader({root}),
     node: getNode(),
     externals: confs.externals,
   };
-  if (PRODUCTION !== mode) {
+  if (HOT_UPDATE) {
     result.devServer = getDevServer({confs, path});
   }
   return result;

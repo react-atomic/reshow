@@ -7,7 +7,7 @@ import {PRODUCTION} from './const';
 
 const {AggressiveMergingPlugin} = webpack.optimize;
 
-const getPlugins = ({path, stop, mode, BUNDLE}) => {
+const getPlugins = ({path, stop, mode, BUNDLE, HOT_UPDATE}) => {
   const plugins = [getStatsJson()];
   if (BUNDLE) {
     plugins.push(getBundleAnalyzerPlugin({BUNDLE}));
@@ -19,7 +19,8 @@ const getPlugins = ({path, stop, mode, BUNDLE}) => {
         moveToParents: true,
       }),
     );
-  } else {
+  }
+  if (HOT_UPDATE) {
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new Refresh({disableRefreshCheck: true})

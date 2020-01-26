@@ -1,6 +1,6 @@
 import {PRODUCTION} from './const';
 
-const getModule = ({mode}) => {
+const getModule = ({mode, HOT_UPDATE}) => {
   const babelLoaderOption = {
     cacheDirectory: true,
     plugins: ['@babel/plugin-syntax-dynamic-import'],
@@ -8,7 +8,8 @@ const getModule = ({mode}) => {
   };
   if (mode === PRODUCTION) {
     babelLoaderOption.envName = PRODUCTION;
-  } else {
+  }
+  if (HOT_UPDATE) {
     babelLoaderOption.plugins.push('react-refresh/babel');
   }
   return {
