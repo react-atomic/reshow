@@ -9,11 +9,12 @@ import getOutput from './webpack/getOutput';
 import {DEVELOPMENT, PRODUCTION} from './webpack/const';
 import progress from './webpack/progress';
 
-const {NODE_ENV, CONFIG, BUNDLE} = process.env;
+const {NODE_ENV, CONFIG} = process.env;
 let confs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
   confs = {...confs, ...lazyConfs};
+  const server = true;
   const stop = progress({confs});
   const path = root + '/assets';
   let mode = DEVELOPMENT;
@@ -25,7 +26,7 @@ const myWebpack = (root, main, lazyConfs) => {
     entry: getEntry({main, confs, server}),
     output: getOutput({path, confs}),
     optimization: getOptimization({mode, server}),
-    plugins: getPlugins({path, stop, mode, BUNDLE, server}),
+    plugins: getPlugins({path, stop, mode, server}),
     module: getModule({mode}),
     resolve: getResolve({confs, root, moduleAlias}),
     resolveLoader: getResolveLoader({root}),
