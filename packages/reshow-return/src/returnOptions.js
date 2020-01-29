@@ -24,10 +24,8 @@ const reset = (props, more) => {
 };
 
 const defaultProps = {
-  initStates: ['data', 'I18N'],
-  pathStates: {
-    I13N: ['data', 'I13N'],
-  },
+  initStates: [],
+  pathStates: {},
   immutable: false,
   storeLocator,
   globalStoreLocator,

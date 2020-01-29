@@ -3,7 +3,8 @@ import {pageStore, dispatch} from 'reshow';
 
 import Return from '../Return';
 
-import {expect} from 'chai';
+import chai, {expect} from 'chai';
+
 import {shallow, mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
@@ -25,7 +26,11 @@ describe('Test Return', () => {
     render() {
       const {immutable} = this.props;
       return (
-        <Return stores={[pageStore]} immutable={immutable}>
+        <Return
+          stores={[pageStore]}
+          immutable={immutable}
+          initStates={['data', 'I18N']}
+          pathStates={{I13N: ['data', 'I13N']}}>
           <TestEl ref={el => (this.el = el)} {...this.state} />
         </Return>
       );
@@ -72,7 +77,7 @@ describe('Test Return', () => {
   it('test child with function', () => {
     let i = 0;
     const vDom = (
-      <Return stores={[pageStore]}>
+      <Return stores={[pageStore]} initStates={['data']}>
         {props => {
           if (i) {
             expect(props).to.deep.equal({data: 'foo'});
@@ -91,6 +96,6 @@ describe('Test Return', () => {
   });
 
   it('test store not defined', () => {
-    expect(()=>mount(<Return />)).to.throw();
+    expect(() => mount(<Return />)).to.throw();
   });
 });
