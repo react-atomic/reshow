@@ -44,6 +44,12 @@ const Section = props => {
     }
     allParams = {...others, ...allParams};
   }
+  const noName = (children.every) ?
+    children.every(child => !get(child, ['props', 'name'])) :
+    !get(children, ['props', 'name']);
+  if (!noName) {
+    delete(allParams['name']);
+  }
   return build(children)(allParams);
 };
 
