@@ -28,7 +28,7 @@ const connectHook = (Base, options) => {
           }
         };
         stores.forEach(store => store.addListener(handleChange, CHANGE));
-        if (!data || !data.__init__ || data.props !== props) {
+        if (!data.__init__ || data.props !== props) {
           handleChange();
         }
         return () => {
@@ -37,7 +37,7 @@ const connectHook = (Base, options) => {
         };
       }
     }, [props]);
-    return useMemo(() => build(Base)(data.state), [props, data]);
+    return useMemo(() => build(Base)(data.state), [data.state]);
   };
   const componentName = displayName || Base.displayName || Base.name;
   Connected.displayName = 'HookConnected(' + componentName + ')';
