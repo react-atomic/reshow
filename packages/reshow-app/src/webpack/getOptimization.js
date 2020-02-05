@@ -1,8 +1,8 @@
-import {getVendorConfig} from './getVendor'; 
-import getTerser from './getTerser'; 
+import {getVendorSplitConfig} from './getVendor';
+import getTerser from './getTerser';
 import {PRODUCTION} from './const';
 
-const getOptimization = ({mode, server}) => {
+const getOptimization = ({mode, server, confs}) => {
   const cacheGroups = {
     commons: {
       chunks: 'initial',
@@ -10,10 +10,12 @@ const getOptimization = ({mode, server}) => {
       maxInitialRequests: 5, // The default limit is too small to showcase the effect
       minSize: 0, // This is example is too small to create commons chunks
     },
-    vendor: getVendorConfig(),
   };
+  if (!confs.disableVendor && !server) {
+    cacheGroups.vendor = getVendorSplitConfig();
+  }
   const results = {
-    occurrenceOrder: true
+    occurrenceOrder: true,
   };
   if (!server) {
     results.splitChunks = {cacheGroups};

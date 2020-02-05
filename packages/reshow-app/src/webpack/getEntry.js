@@ -1,5 +1,3 @@
-import getVendor from './getVendor';
-
 const getEntry = ({main, confs, server}) => {
   let entry;
   if (!main) {
@@ -10,12 +8,6 @@ const getEntry = ({main, confs, server}) => {
     }
   } else {
     entry = main;
-  }
-  if (!server) { 
-    const vendor = getVendor(confs);
-    if (vendor) {
-      entry.vendor = vendor;
-    }
   }
   return entry;
 }

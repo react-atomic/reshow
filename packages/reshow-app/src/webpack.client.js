@@ -27,7 +27,7 @@ const myWebpack = (root, main, lazyConfs) => {
     devtool,
     entry: getEntry({main, confs}),
     output: getOutput({path, confs}),
-    optimization: getOptimization({mode}),
+    optimization: getOptimization({mode, confs}),
     plugins: getPlugins({path, stop, mode, BUNDLE, HOT_UPDATE}),
     module: getModule({mode, HOT_UPDATE}),
     resolve: getResolve({confs, root}),

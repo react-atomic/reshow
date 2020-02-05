@@ -1,25 +1,6 @@
-import dedup from 'array.dedup';
-
-const defaultVendor = ['react', 'react-dom', 'immutable'];
-
-const getVendor = confs => {
-  let vendor = defaultVendor.slice(0);
-  if (confs.resetVendor) {
-    vendor = confs.resetVendor;
-  }
-  if (confs.webpackVendor) {
-    vendor = vendor.concat(confs.webpackVendor);
-  }
-  vendor = dedup(vendor);
-  if (confs.disableVendor || !vendor || !vendor.length) {
-    return null;
-  } else {
-    return vendor;
-  }
-};
-
-const getVendorConfig = () => ({
+const getVendorSplitConfig = () => ({
   test: /node_modules/,
+  // https://webpack.js.org/plugins/split-chunks-plugin/#splitchunkschunks
   chunks: 'initial',
   name: 'vendor',
   filename: '[name].bundle.js',
@@ -27,5 +8,4 @@ const getVendorConfig = () => ({
   enforce: true,
 });
 
-export default getVendor;
-export {getVendorConfig};
+export {getVendorSplitConfig};
