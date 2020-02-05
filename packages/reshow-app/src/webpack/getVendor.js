@@ -11,7 +11,7 @@ const getVendor = confs => {
     vendor = vendor.concat(confs.webpackVendor);
   }
   vendor = dedup(vendor);
-  if (!confs.disableVendor && vendor && vendor.length) {
+  if (confs.disableVendor || !vendor || !vendor.length) {
     return null;
   } else {
     return vendor;
