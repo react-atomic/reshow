@@ -7,10 +7,14 @@ import {PRODUCTION} from './const';
 
 const {AggressiveMergingPlugin, LimitChunkCountPlugin} = webpack.optimize;
 
-const getPlugins = ({path, stop, mode, BUNDLE, HOT_UPDATE, server}) => {
+const getPlugins = ({path, stop, mode, confs, BUNDLE, HOT_UPDATE, server}) => {
   const plugins = [getStatsJson()];
+  let maxChunks = confs.maxChunks;
   if (server) {
-    plugins.push(new LimitChunkCountPlugin({maxChunks: 1}));
+    maxChunks = 1;
+  }
+  if (maxChunks != null) {
+    plugins.push(new LimitChunkCountPlugin({maxChunks}));
   }
   if (BUNDLE) {
     plugins.push(getBundleAnalyzerPlugin({BUNDLE}));

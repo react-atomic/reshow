@@ -12,11 +12,11 @@ const getModule = ({mode, HOT_UPDATE}) => {
   if (HOT_UPDATE) {
     babelLoaderOption.plugins.push('react-refresh/babel');
   }
-  return {
+  const module = {
     rules: [
       {
         test: /(.js|.jsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/],
         use: [
           'thread-loader',
           'cache-loader',
@@ -27,7 +27,8 @@ const getModule = ({mode, HOT_UPDATE}) => {
         ],
       },
     ],
-  };
+  }
+  return module;
 };
 
 export default getModule;

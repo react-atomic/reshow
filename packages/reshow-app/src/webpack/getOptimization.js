@@ -11,13 +11,13 @@ const getOptimization = ({mode, server, confs}) => {
       minSize: 0, // This is example is too small to create commons chunks
     },
   };
-  if (!confs.disableVendor && !server) {
+  if (!confs.disableVendor) {
     cacheGroups.vendor = getVendorSplitConfig();
   }
   const results = {
     occurrenceOrder: true,
   };
-  if (!server) {
+  if (!server && 1 !== confs.maxChunks) {
     results.splitChunks = {cacheGroups};
   }
   if (PRODUCTION === mode) {
