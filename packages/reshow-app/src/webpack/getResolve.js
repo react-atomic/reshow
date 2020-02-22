@@ -6,6 +6,7 @@ const getResolve = ({confs, root, moduleAlias}) => {
     'react-dom': root + '/node_modules/react-dom',
     reshow: root + '/node_modules/reshow',
     'organism-react-ajax': root + '/node_modules/organism-react-ajax',
+    'organism-react-popup': root + '/node_modules/organism-react-popup',
     ...reshowRuntimeAlias(root),
     ...confs.alias,
   };
@@ -29,7 +30,7 @@ const getNode = () => ({
   fs: 'empty',
   net: 'empty',
   tls: 'empty',
-})
+});
 
 export default getResolve;
 export {getResolveLoader, getNode};
