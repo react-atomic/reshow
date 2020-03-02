@@ -20,9 +20,11 @@ describe('Test Connect hook for more test', () => {
     }
   }
   let dispatcher;
+  let dispatch;
   let store;
   beforeEach(() => {
     dispatcher = new Dispatcher();
+    dispatch = dispatcher.dispatch;
     store = new FakeStore(dispatcher);
   });
 
@@ -46,7 +48,7 @@ describe('Test Connect hook for more test', () => {
     expect(wrap.html()).to.equal('<div>bar</div>');
   });
 
-  it('could work with dispatcher', () => {
+  it('could work with dispatcher', done => {
     let calculateTimes = 0;
     const FakeComponent = ({aaa}) => <div>{aaa}</div>;
     const FakeConnected = connectHook(FakeComponent, {
@@ -62,13 +64,16 @@ describe('Test Connect hook for more test', () => {
     expect(calculateTimes).to.equal(0);
     const html = mount(vDom);
     expect(calculateTimes).to.equal(2); //init and handlchange
-    dispatcher.dispatch({aaa: 'Hello dispatcher!'});
-    html.update();
-    expect(calculateTimes).to.equal(3);
-    expect(html.html()).to.equal('<div>Hello dispatcher!</div>');
-    html.unmount();
-    dispatcher.dispatch({aaa: 'Hello Unmount!'});
-    expect(calculateTimes).to.equal(3);
+    dispatch({aaa: 'Hello dispatcher!'});
+    setTimeout(() => {
+      html.update();
+      expect(calculateTimes).to.equal(3);
+      expect(html.html()).to.equal('<div>Hello dispatcher!</div>');
+      html.unmount();
+      dispatch({aaa: 'Hello Unmount!'});
+      expect(calculateTimes).to.equal(3);
+      done();
+    });
   });
 
   it('could work withProps', done => {
@@ -119,14 +124,13 @@ describe('Test Connect hook for more test', () => {
     });
   });
 
-
   it('could work with empty calculateState', () => {
     const FakeComponent = ({foo}) => <div>{foo}</div>;
     const FakeConnected = connectHook(FakeComponent, {
-      calculateState: (prevState, props) => { },
+      calculateState: (prevState, props) => {},
       getStores: props => [store],
     });
-    let vDom = <FakeConnected aaa='bbb' />;
+    let vDom = <FakeConnected aaa="bbb" />;
     const wrap = mount(vDom);
     const props = wrap.props();
     expect(props).to.deep.equal({aaa: 'bbb'});

@@ -27,7 +27,7 @@ describe('Test Connect Hook', () => {
     store = new FakeStore(dispatcher);
   });
 
-  it('basic test', () => {
+  it('basic test', done => {
     const Foo = props => {
       return <div className={props.foo} />;
     };
@@ -42,8 +42,13 @@ describe('Test Connect Hook', () => {
     expect(wrap.html()).to.equal('<div></div>');
     const a = {foo: '111'};
     dispatch(a);
-    expect(wrap.html()).to.equal('<div class="111"></div>');
-    dispatch({foo: '222'});
-    expect(wrap.html()).to.equal('<div class="222"></div>');
+    setTimeout(() => {
+      expect(wrap.html()).to.equal('<div class="111"></div>');
+      dispatch({foo: '222'});
+      setTimeout(() => {
+        expect(wrap.html()).to.equal('<div class="222"></div>');
+        done();
+      });
+    });
   });
 });

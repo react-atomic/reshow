@@ -27,7 +27,8 @@ const connectHook = (Base, options) => {
             }));
           }
         };
-        stores.forEach(store => store.addListener(handleChange, CHANGE));
+        const handleChangeEvent = () => setTimeout(() => handleChange());
+        stores.forEach(store => store.addListener(handleChangeEvent, CHANGE));
         if (!data.__init__ || data.props !== props) {
           handleChange();
         }
