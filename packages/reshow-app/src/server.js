@@ -1,9 +1,10 @@
 const React = require('react');
 const ReactServer = require('react-dom/server');
+
+const build = require('reshow-build');
 global.d3 = {}; // hack for ignore in d3 in server side
 
 const server = app => {
-  const myApp = React.createFactory(app);
   return ({process, fs, JSON, Buffer}) => {
     process.env.node_env = 'production';
     const fd = process.stdin.fd;
@@ -16,7 +17,7 @@ const server = app => {
       temp = fs.readSync(fd, buffer, 0, bSize);
     }
     const myJson = JSON.parse(context);
-    const result = ReactServer.renderToString(myApp(myJson));
+    const result = ReactServer.renderToString(build(app)(myJson));
     const len = result.length;
     process.stdout.write('<!--start-->');
     let last = 0;

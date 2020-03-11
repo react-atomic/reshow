@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.28",
+  "version": "0.13.0-beta.29",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -43,6 +43,7 @@
     "react-test-renderer": "*",
     "react-refresh": "*",
     "reshow": "^0.13.0-beta",
+    "reshow-build": "*",
     "reshow-constant": "*",
     "reshow-runtime": "*",
     "reshow-url": "*",

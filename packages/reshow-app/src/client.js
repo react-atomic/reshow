@@ -6,6 +6,7 @@ import initWorker from 'reshow-worker';
 import {ajaxDispatch} from 'organism-react-ajax';
 import {urlStore} from 'reshow-url';
 import {win, doc} from 'win-doc';
+import build from 'reshow-build';
 
 const render = (oApp, dom) =>
   (dom.innerHTML && ReactDOM.hydrate ? ReactDOM.hydrate : ReactDOM.render)(
@@ -18,7 +19,7 @@ const update = json => ajaxDispatch('callback', {json});
 let bInitWorker = false;
 
 const client = (rawApp, selector) => {
-  const app = React.createFactory(rawApp);
+  const app = build(rawApp);
   setImmediate(() => {
     win().Reshow = {render, app, update};
     let data = {};
@@ -28,7 +29,7 @@ const client = (rawApp, selector) => {
     const appSelector = selector || '#app';
     const attachDom = doc().querySelector(appSelector);
     if (attachDom) {
-      render(new app(data), attachDom);
+      render(app(data), attachDom);
     }
     if (!bInitWorker) {
       initWorker();
