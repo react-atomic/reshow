@@ -10,9 +10,9 @@
             ],
             "plugins": [
               "add-module-exports",
-              "object-to-json-parse",
               "dynamic-import-node",
               "transform-react-pure-class-to-function",
+              "reshow-object-to-json-parse",
               ["reshow-transform-runtime", {
                 "regenerator": false,
                 "version": "7.5.0"
@@ -37,9 +37,9 @@
               "@babel/preset-react"
             ],
             "plugins": [
-              "object-to-json-parse",
               "transform-react-pure-class-to-function",
               ["transform-react-remove-prop-types", {"mode": "wrap"}],
+              "reshow-object-to-json-parse",
               ["reshow-transform-runtime", {
                 "regenerator": false,
                 "useESModules": true,
@@ -65,9 +65,9 @@
               "@babel/preset-react"
             ],
             "plugins": [
-              "object-to-json-parse",
               "transform-react-pure-class-to-function",
               ["transform-react-remove-prop-types", {"mode": "wrap"}],
+              "reshow-object-to-json-parse",
               ["reshow-transform-runtime", {
                 "regenerator": false,
                 "useESModules": true,
