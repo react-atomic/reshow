@@ -9,11 +9,14 @@ import {PopupPool} from 'organism-react-popup';
 import ReshowMessage from '../ReshowMessage';
 import {dispatch} from '../../../src/index';
 
-describe('Test ReshowMessage', () => {
-  it('simple test', () => {
+describe('Test ReshowMessage', done => {
+  it('simple test', done => {
     const vDom = <ReshowMessage />;
-    const wrap = shallow(vDom);
-    expect(wrap.html()).to.have.string('div');
+    const wrap = mount(vDom);
+    setTimeout(() => {
+      expect(wrap.html()).to.have.string('div');
+      done();
+    });
   });
 
   it('test', done => {
@@ -27,7 +30,7 @@ describe('Test ReshowMessage', () => {
     dispatch('dialog/start', {
       dialog: 'how are u',
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       expect(wrap.html()).to.have.string('dialog');
       done();
     }, 100);
