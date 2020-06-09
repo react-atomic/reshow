@@ -87,7 +87,7 @@ class UrlStore extends ReduceStore {
     const {type, params} = action || {};
     switch (type) {
       case 'url':
-        url = get(action, ['url']);
+        url = get(action, ['url'], ()=>get(params, ['url']));
         if (!url) {
           console.error('Not assign url', action);
         }

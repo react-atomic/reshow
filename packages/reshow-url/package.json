@@ -1,6 +1,6 @@
 {
   "name": "reshow-url",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "reshow url util",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -27,7 +27,8 @@
     "build:cjs": "BABEL_ENV=build babel src -d build/cjs/src --root-mode upward && BABEL_ENV=build babel ui -d build/cjs/ui --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es/src --root-mode upward && BABEL_ENV=es babel ui -d build/es/ui --root-mode upward",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
+    "mocha": "mocha -r jsdom-global/register 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
   "files": [
