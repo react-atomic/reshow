@@ -27,33 +27,48 @@ describe('Test RealTimeReturn', () => {
   afterEach(() => {
     uWrap.unmount();
   });
-  it('dispatch pageStore first', () => {
+  it('dispatch pageStore first', done => {
     const vDom = <FakeComponent />;
     uWrap = mount(vDom);
     const uFake = uWrap.instance();
     dispatch({data: 'foo'});
-    expect(uFake.el.props.data).to.equal('foo');
-    dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
-    expect(uFake.el.props.data).to.equal('bar');
+    setTimeout(() => {
+      expect(uFake.el.props.data).to.equal('foo');
+      dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
+      setTimeout(() => {
+        expect(uFake.el.props.data).to.equal('bar');
+        done();
+      }, 200);
+    });
   });
 
-  it('dispatch realtime first', () => {
+  it('dispatch realtime first', done => {
     const vDom = <FakeComponent />;
     uWrap = mount(vDom);
     const uFake = uWrap.instance();
     dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
-    expect(uFake.el.props.data).to.equal('bar');
-    dispatch({data: 'foo'});
-    expect(uFake.el.props.data).to.equal('bar');
+    setTimeout(() => {
+      expect(uFake.el.props.data).to.equal('bar');
+      dispatch({data: 'foo'});
+      setTimeout(() => {
+        expect(uFake.el.props.data).to.equal('bar');
+        done();
+      });
+    });
   });
 
-  it('test realtime reset', () => {
+  it('test realtime reset', done => {
     const vDom = <FakeComponent realTimeReset={true} />;
     uWrap = mount(vDom);
     const uFake = uWrap.instance();
     dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
-    expect(uFake.el.props.data).to.equal('bar');
-    dispatch({data: 'foo'});
-    expect(uFake.el.props.data).to.be.null;
+    setTimeout(() => {
+      expect(uFake.el.props.data).to.equal('bar');
+      dispatch({data: 'foo'});
+      setTimeout(() => {
+        expect(uFake.el).to.be.null;
+        done();
+      }, 200);
+    }, 100);
   });
 });

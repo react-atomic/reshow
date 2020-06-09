@@ -1,4 +1,5 @@
 import 'setimmediate';
+import 'array.polyfill';
 import 'es6-promise/auto'; // for webpack promise fixed
 import React from 'react';
 import ReactDOM from 'react-dom';
