@@ -1,9 +1,9 @@
 const defineProperties = (target, props) => {
-  for (var i = 0; i < props.length; i++) {
+  for (var i = 0, j = props.length; i < j; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
-    if ('value' in descriptor) descriptor.writable = true;
+    if ("value" in descriptor) descriptor.writable = true;
     Object.defineProperty(target, descriptor.key, descriptor);
   }
 };
