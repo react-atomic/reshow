@@ -72,7 +72,7 @@ const calculateState = (prevState, props) => {
   } else if (initStates) {
     keys(initStates).forEach(key => {
       const data = storeState.get(key);
-      const newKey = initStates[key] ? initStates[key] : key;
+      const newKey = null != initStates[key] ? initStates[key] : key;
       results[newKey] = toImmutable(data);
     });
   }
