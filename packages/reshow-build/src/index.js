@@ -1,6 +1,6 @@
-import {isValidElement, cloneElement, createElement, Children} from 'react';
-import {FUNCTION} from 'reshow-constant';
-import {removeEmpty} from 'array.merge';
+import { isValidElement, cloneElement, createElement, Children } from "react";
+import { FUNCTION } from "reshow-constant";
+import { removeEmpty } from "array.merge";
 
 const buildFunc = (component, props, child) => {
   // anonymous function will call directly
@@ -11,7 +11,7 @@ const buildFunc = (component, props, child) => {
       }
       return component(props);
     } catch (e) {
-      if (e.name === 'TypeError') {
+      if (e.name === "TypeError") {
         return buildReact(component, props, child);
       } else {
         throw e;
@@ -29,13 +29,19 @@ const buildReact = (component, props, child) => {
   }
   return (isValidElement(component) ? cloneElement : createElement).apply(
     null,
-    params,
+    params
   );
 };
 
-const build = component => (props, child) => {
+const build = (component, wrap) => (props, child) => {
   if (!component) {
     return null;
+  }
+  if (wrap) {
+    if (FUNCTION !== typeof component && !isValidElement(component)) {
+      child = component;
+      component = wrap;
+    }
   }
 
   props = removeEmpty(props, true);
@@ -44,7 +50,10 @@ const build = component => (props, child) => {
     (isValidElement(comp) ? buildReact : buildFunc)(comp, props, child);
 
   return component.map
-    ? Children.map(component.map(comp => run(comp)), c => c)
+    ? Children.map(
+        component.map(comp => run(comp)),
+        c => c
+      )
     : run(component);
 };
 

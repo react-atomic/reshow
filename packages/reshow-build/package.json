@@ -1,6 +1,6 @@
 {
   "name": "reshow-build",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple util help u build or create component from react instance or function",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
