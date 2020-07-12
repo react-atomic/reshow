@@ -8,12 +8,6 @@ configure({ adapter: new Adapter() });
 import build from "../index";
 
 describe("Test build", () => {
-  it("test function", () => {
-    const func = props => {
-      expect(props.foo).to.equal("bar");
-    };
-    build(func)({ foo: "bar" });
-  });
 
   it("test function with error", () => {
     const run = () => {
@@ -49,6 +43,28 @@ describe("Test build", () => {
     const vDom = build(func)({ foo: "bar3" });
     const html = shallow(vDom).html();
     expect(html).to.equal("<div>bar3</div>");
+  });
+
+  it("test with func and child", () => {
+    const result = build(props => props)({ foo: "bar" }, "hello child");
+    expect(result.children).to.equal("hello child");
+    expect(result.foo).to.equal("bar");
+  });
+
+  it("test with anonymous func and child", () => {
+    const child = [<div id="1" key="0" />, <div id="2" key="1" />];
+    const buildDom = build(({ children }) => <div id="root">{children}</div>)(
+      {},
+      child
+    );
+    const html = shallow(<div>{buildDom}</div>).html();
+    const stateFunc = ({ children }) => <div id="root">{children}</div>;
+    const stateFuncBuildDom = build(stateFunc)({}, child);
+    const stateFuncHtml = shallow(<div>{stateFuncBuildDom}</div>).html();
+    const expected =
+      '<div><div id="root"><div id="1"></div><div id="2"></div></div></div>';
+    expect(html).to.equal(expected);
+    expect(stateFuncHtml).to.equal(expected);
   });
 
   it("test with component", () => {
@@ -87,28 +103,6 @@ describe("Test build", () => {
       <FakeComponent id="foo" comp={<div>foo</div>} />
     ).html();
     expect(html).to.equal('<div id="foo">bar</div>');
-  });
-
-  it("test with func and child", () => {
-    const result = build(props => props)({ foo: "bar" }, "hello child");
-    expect(result.children).to.equal("hello child");
-    expect(result.foo).to.equal("bar");
-  });
-
-  it("test with anonymous func and child", () => {
-    const child = [<div id="1" key="0" />, <div id="2" key="1" />];
-    const buildDom = build(({ children }) => <div id="root">{children}</div>)(
-      {},
-      child
-    );
-    const html = shallow(<div>{buildDom}</div>).html();
-    const stateFunc = ({ children }) => <div id="root">{children}</div>;
-    const stateFuncBuildDom = build(stateFunc)({}, child);
-    const stateFuncHtml = shallow(<div>{stateFuncBuildDom}</div>).html();
-    const expected =
-      '<div><div id="root"><div id="1"></div><div id="2"></div></div></div>';
-    expect(html).to.equal(expected);
-    expect(stateFuncHtml).to.equal(expected);
   });
 
   it("test with class and child", () => {
@@ -199,7 +193,7 @@ describe("Test build", () => {
 
   it("test build with wrap", () => {
     const FakeDom = () => {
-      return build("test", <div />)();
+      return build("test", {wrap: <div />})();
     };
     const wrap = shallow(<FakeDom />);
     expect(wrap.html()).to.equal("<div>test</div>");
