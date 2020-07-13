@@ -1,14 +1,24 @@
-import {useMemo, useState, useEffect} from 'react';
-import build from 'reshow-build';
-import dedup from 'array.dedup';
-import {CHANGE} from 'reshow-flux-base';
+import { useMemo, useState, useEffect } from "react";
+import build from "reshow-build";
+import dedup from "array.dedup";
+import { CHANGE } from "reshow-flux-base";
+
+const keys = Object.keys;
+
+const cleanKeys = (props, state) => {
+  if (state) {
+    keys(props || {}).forEach(key => delete state[key]);
+    return state;
+  }
+};
 
 const connectHook = (Base, options) => {
-  const {getStores, calculateState, defaultProps, displayName} = options || {};
+  const { getStores, calculateState, defaultProps, displayName } =
+    options || {};
   const Connected = props => {
     const [data, setData] = useState(() => ({
       state: calculateState({}, props),
-      props,
+      props
     }));
     useEffect(() => {
       const stores = dedup(getStores(props)) || [];
@@ -20,10 +30,10 @@ const connectHook = (Base, options) => {
               __init__: true,
               props,
               state: {
-                ...prev.state,
+                ...cleanKeys(prev.props, prev.state),
                 ...props,
-                ...calculateState(prev.state, props),
-              },
+                ...calculateState(prev.state, props)
+              }
             }));
           }
         };
@@ -41,7 +51,7 @@ const connectHook = (Base, options) => {
     return useMemo(() => build(Base)(data.state), [data.state]);
   };
   const componentName = displayName || Base.displayName || Base.name;
-  Connected.displayName = 'HookConnected(' + componentName + ')';
+  Connected.displayName = "HookConnected(" + componentName + ")";
   if (defaultProps) {
     Connected.defaultProps = defaultProps;
   }
