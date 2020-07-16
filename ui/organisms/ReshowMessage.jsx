@@ -1,32 +1,35 @@
-import React, {PureComponent, memo} from 'react';
-import {AlertsNotifier, Dialog, DisplayPopupEl} from 'organism-react-popup';
-import {build, SemanticUI} from 'react-atomic-molecule';
-import {toJS} from 'reshow-return';
+import React, { PureComponent, memo } from "react";
+import { AlertsNotifier, Dialog, DisplayPopupEl } from "organism-react-popup";
+import { build, SemanticUI } from "react-atomic-molecule";
+import { toJS } from "reshow-return";
 
-import {Return} from '../molecules/ReshowComponent';
+import { Return } from "../molecules/ReshowComponent";
 
 // src
-import messageStore from '../../src/stores/messageStore';
-import {dispatch} from '../../src/index';
+import messageStore from "../../src/stores/messageStore";
+import { dispatch } from "../../src/index";
 
 class Body extends PureComponent {
   static defaultProps = {
     dialogComponent: Dialog,
-    alertComponent: AlertsNotifier,
+    alertComponent: AlertsNotifier
   };
 
-  handleDismiss = item => {
-    dispatch('alert/del', {
-      id: item.id,
-    });
+  handleDismiss = e => {
+    const id = e?.data?.id;
+    if (id) {
+      dispatch("alert/del", {
+        id
+      });
+    }
   };
 
   handleClick = (e, item) => {
     setTimeout(() => {
-      const {dialog} = this.props;
+      const { dialog } = this.props;
       if (dialog) {
-        dispatch('dialog/end', {
-          item,
+        dispatch("dialog/end", {
+          item
         });
       }
     });
@@ -41,7 +44,7 @@ class Body extends PureComponent {
       alertComponent,
       dialog,
       dialogProps,
-      dialogComponent,
+      dialogComponent
     } = this.props;
     let thisDialog = null;
     if (dialog) {
@@ -52,9 +55,9 @@ class Body extends PureComponent {
               ...defaultDialogProps,
               ...toJS(dialogProps),
               onClick: this.handleClick,
-              onClose: this.handleClick,
+              onClose: this.handleClick
             },
-            toJS(dialog),
+            toJS(dialog)
           )}
         </DisplayPopupEl>
       );
@@ -66,7 +69,7 @@ class Body extends PureComponent {
           ...defaultAlertProps,
           ...toJS(alertProps),
           onDismiss: this.handleDismiss,
-          alerts: toJS(alerts),
+          alerts: toJS(alerts)
         })}
       </SemanticUI>
     );
@@ -76,10 +79,11 @@ class Body extends PureComponent {
 const ReshowMessage = memo(props => (
   <Return
     stores={[messageStore]}
-    initStates={['alerts', 'alertProps', 'dialog', 'dialogProps']}>
+    initStates={["alerts", "alertProps", "dialog", "dialogProps"]}
+  >
     <Body {...props} />
   </Return>
 ));
-ReshowMessage.displayName = 'ReshowMessage';
+ReshowMessage.displayName = "ReshowMessage";
 
 export default ReshowMessage;

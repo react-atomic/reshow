@@ -7,6 +7,7 @@ import dispatcher, {dispatch} from '../dispatcher';
 
 let alertCount = 0;
 const isArray = Array.isArray;
+const keys = Object.keys;
 
 const toMessage = message => {
   if (-1 !== 'string|number'.indexOf(typeof message)) {
@@ -23,11 +24,10 @@ const getMessage = action => toMessage(get(action, ['params', 'message']));
 
 class MessageStore extends ReduceStore {
   dialogCallback = null;
+  alertMap = {};
 
-  getInitialState() {
-    return Map({
-      alerts: List(),
-    });
+  getAlertList() {
+    return keys(this.alertMap).map(key => this.alertMap[key]);
   }
 
   dialogStart(state, action) {
@@ -65,20 +65,20 @@ class MessageStore extends ReduceStore {
 
   alertReset(state, action) {
     let alerts = get(action, ['params', 'alerts']);
-    if (!isArray(alerts)) {
-      alerts = List();
-    } else {
-      alerts = List(alerts.map(a => toMessage(a)));
+    this.alertMap = {};
+    if (isArray(alerts)) {
+      alerts.map(a => {
+        const message = toMessage(a)
+        this.alertMap[message.id] = message;
+      });
     }
-    return state.set('alerts', alerts);
+    return state.set('alerts', this.getAlertList());
   }
 
   alertDel(state, action) {
     const id = get(action, ['params', 'id']);
-    const alerts = state
-      .get('alerts')
-      .filter(item => (item.id !== id ? true : false));
-    return state.set('alerts', alerts);
+    delete this.alertMap[id];
+    return state.set('alerts', this.getAlertList());
   }
 
   alertAdd(state, action) {
@@ -88,7 +88,8 @@ class MessageStore extends ReduceStore {
     if (alertProps) {
       state = state.set('alertProps', alertProps);
     }
-    return state.set('alerts', alerts.push(message));
+    this.alertMap[message.id] = message;
+    return state.set('alerts', this.getAlertList());
   }
 
   reduce(state, action) {
