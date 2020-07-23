@@ -53,7 +53,7 @@ describe('Test RealTimeReturn', () => {
       setTimeout(() => {
         expect(uFake.el.props.data).to.equal('bar');
         done();
-      });
+      })
     });
   });
 
@@ -66,7 +66,7 @@ describe('Test RealTimeReturn', () => {
       expect(uFake.el.props.data).to.equal('bar');
       dispatch({data: 'foo'});
       setTimeout(() => {
-        expect(uFake.el).to.be.null;
+        expect(uFake.el.props.data).to.be.null;
         done();
       }, 200);
     }, 100);
