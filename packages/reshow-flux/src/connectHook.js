@@ -1,3 +1,4 @@
+import 'setimmediate';
 import { useMemo, useState, useEffect } from "react";
 import build from "reshow-build";
 import dedup from "array.dedup";
@@ -37,7 +38,7 @@ const connectHook = (Base, options) => {
             }));
           }
         };
-        const handleChangeEvent = () => setTimeout(() => handleChange());
+        const handleChangeEvent = () => setImmediate(() => handleChange());
         stores.forEach(store => store.addListener(handleChangeEvent, CHANGE));
         if (!data.__init__ || data.props !== props) {
           handleChange();

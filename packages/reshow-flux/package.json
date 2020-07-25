@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "The smallest react flux and Fast 3kb Flux alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -12,6 +12,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "setimmediate": "*",
     "array.dedup": "*",
     "get-object-value": "*",
     "immutable": "*",
