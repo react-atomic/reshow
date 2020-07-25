@@ -49,8 +49,9 @@ class Reshow extends PureComponent {
     return this.resetGlobalPath();
   }
 
-  resetGlobalPath() {
-    globalStore.path = pageStore.getThemePath();
+  resetGlobalPath(path) {
+    path = path ?? pageStore.getThemePath();
+    globalStore.path = path;
     return globalStore.path;
   }
 

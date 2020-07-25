@@ -1,7 +1,7 @@
-import get from 'get-object-value';
-import callfunc from 'call-func';
+import get from "get-object-value";
+import callfunc from "call-func";
 
-import toJS from './toJS';
+import toJS from "./toJS";
 
 const keys = Object.keys;
 const isArray = Array.isArray;
@@ -12,12 +12,12 @@ const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 const reset = (props, more) => {
   [
-    'immutable',
-    'initStates',
-    'pathStates',
-    'stores',
-    'storeLocator',
-    'globalStoreLocator',
+    "immutable",
+    "initStates",
+    "pathStates",
+    "stores",
+    "storeLocator",
+    "globalStoreLocator",
     ...(more || [])
   ].forEach(key => delete props[key]);
   return props;
@@ -28,7 +28,7 @@ const defaultProps = {
   pathStates: {},
   immutable: false,
   storeLocator,
-  globalStoreLocator,
+  globalStoreLocator
 };
 
 const getStores = props =>
@@ -42,21 +42,26 @@ const calculateState = (prevState, props) => {
    */
   const thisStore = (getStores(props) || [])[0];
   if (!thisStore) {
-    throw new Error('Store not found, Please check getStores function.');
+    throw new Error("Store not found, Please check getStores function.");
   }
   const {
     initStates,
     pathStates,
     globalStoreLocator,
-    immutable: propsImmutable,
+    immutable: propsImmutable
   } = props;
   const storeState = thisStore.getState();
-  const thisThemePath = storeState.get('themePath');
+  const thisThemePath = storeState.get("themePath");
   const globalStore = callfunc(globalStoreLocator, [props]);
-  if (thisThemePath && globalStore && globalStore.path !== thisThemePath) {
+  if (
+    thisThemePath &&
+    globalStore &&
+    globalStore.path &&
+    globalStore.path !== thisThemePath
+  ) {
     return prevState;
   }
-  const immutable = propsImmutable || storeState.get('immutable');
+  const immutable = propsImmutable || storeState.get("immutable");
   const results = {};
   if (immutable) {
     results.immutable = immutable;
