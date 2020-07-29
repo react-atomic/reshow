@@ -1,32 +1,40 @@
-import ora from 'ora';
+import ora from "ora";
 
 const defaultTips = [
-  'Trust me, it will finish soon.',
+  "Trust me, it will finish soon.",
   "If you don't trust me, trust yourself.",
-  "If you don't trust yourself, Just wait until you see the finished.",
+  "If you don't trust yourself, Just wait until you see the finished."
 ];
 
-let spinner = global.spinner;
-global.spinner = spinner;
-let spinnTimer = global.spinnTimer;
-global.spinnTimer = spinnTimer;
-
-const init = ({confs}) => {
+const init = ({ confs }) => {
   const tips = confs.tips?.slice(0) || defaultTips.slice(0);
+  let spinner;
+  let spinnTimer;
+  let secTimer;
+  let curTip = tips.shift();
+  let curSec = 0;
 
   if (!spinner) {
     spinner = ora({
-      text: tips.shift(),
-      spinner: 'line',
+      text: curTip,
+      spinner: "line"
     }).start();
   }
 
   if (!spinnTimer) {
     spinnTimer = setInterval(() => {
-      if (!tips.length) {
-        spinner.text = tips.shift();
+      if (tips.length) {
+        curTip = tips.shift();
+        spinner.text = `${curTip} [${curSec}]`;
       }
-    }, 7000);
+    }, confs.interval || 5000);
+  }
+
+  if (!secTimer) {
+    secTimer = setInterval(() => {
+      curSec++;
+      spinner.text = `${curTip} [${curSec}]`;
+    }, 1000);
   }
 
   return () => {
@@ -34,9 +42,13 @@ const init = ({confs}) => {
       clearInterval(spinnTimer);
       spinnTimer = null;
     }
+    if (secTimer) {
+      clearInterval(secTimer);
+      secTimer = null;
+    }
     if (spinner) {
       setTimeout(() => {
-        spinner.succeed('Build finished.');
+        spinner.succeed("Build finished.");
         spinner = null;
       });
     }
