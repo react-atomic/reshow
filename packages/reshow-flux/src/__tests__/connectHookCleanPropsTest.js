@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-
+import React, { Component, StrictMode } from "react";
 import { expect } from "chai";
 import { shallow, mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
@@ -8,7 +7,7 @@ configure({ adapter: new Adapter() });
 import connectHook from "../connectHook";
 import { Dispatcher, ReduceStore } from "../index";
 
-describe("Test Connect Hook", () => {
+describe("Connect Hook (clean Props)", () => {
   class FakeStore extends ReduceStore {
     getInitialState() {
       return {};
@@ -26,30 +25,33 @@ describe("Test Connect Hook", () => {
     dispatch = dispatcher.dispatch;
     store = new FakeStore(dispatcher);
   });
-
-  it("basic test", done => {
-    const Foo = props => {
-      return <div className={props.foo} />;
-    };
-    const stores = [store];
+  it("test clean props", (done) => {
+    const Foo = (props) => <div {...props} />;
     const FooHook = connectHook(Foo, {
       calculateState: (prevState, props) => {
         return store.getState();
       },
-      getStores: props => stores
+      getStores: (props) => [store],
     });
-    const wrap = mount(<FooHook />);
-    expect(wrap.html()).to.equal("<div></div>");
-    const a = { foo: "111" };
-    dispatch(a);
+    class Bar extends Component {
+      state = {
+        p: null,
+      };
+      render() {
+        return <FooHook {...this.state.p} />;
+      }
+    }
+    const wrap = mount(<Bar />);
+    wrap.setState({ p: { foo: "a", bar: "b" } });
+    wrap.update();
     setTimeout(() => {
-      expect(wrap.html()).to.equal('<div class="111"></div>');
-      dispatch({ foo: "222" });
+      expect(wrap.html()).to.equal('<div foo="a" bar="b"></div>');
+      wrap.setState({ p: { bar: "c" } });
       setTimeout(() => {
-        expect(wrap.html()).to.equal('<div class="222"></div>');
+        expect(wrap.html()).to.equal('<div bar="c"></div>');
         done();
-      }, 50);
-    }, 50);
+        wrap.unmount();
+      });
+    });
   });
-
 });

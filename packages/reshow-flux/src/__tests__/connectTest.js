@@ -1,11 +1,11 @@
-import React, {Component, StrictMode} from 'react';
-import {connect, Dispatcher, ReduceStore} from '../index';
-import {expect} from 'chai';
-import {shallow, mount, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({adapter: new Adapter()});
+import React, { Component, StrictMode } from "react";
+import { connect, Dispatcher, ReduceStore } from "../index";
+import { expect } from "chai";
+import { shallow, mount, configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+configure({ adapter: new Adapter() });
 
-describe('Test Connect', () => {
+describe("Test Connect", () => {
   class FakeStore extends ReduceStore {
     getInitialState() {
       return [];
@@ -22,14 +22,14 @@ describe('Test Connect', () => {
     store = new FakeStore(dispatcher);
   });
 
-  it('could register with store', () => {
+  it("could register with store", () => {
     class FakeComponent extends Component {
       static getStores() {
         return [store];
       }
 
       static calculateState(prevState) {
-        return {foo: 'bar'};
+        return { foo: "bar" };
       }
 
       render() {
@@ -39,10 +39,10 @@ describe('Test Connect', () => {
     let FakeConnected = connect(FakeComponent);
     let vDom = <FakeConnected />;
     const actual = shallow(vDom).html();
-    expect(actual).to.equal('<div>bar</div>');
+    expect(actual).to.equal("<div>bar</div>");
   });
 
-  it('could work with dispatcher', () => {
+  it("could work with dispatcher", (done) => {
     let calculateTimes = 0;
     class FakeComponent extends Component {
       static getStores() {
@@ -52,7 +52,7 @@ describe('Test Connect', () => {
       static calculateState(prevState) {
         const state = store.getState();
         calculateTimes++;
-        return {aaa: state.aaa};
+        return { aaa: state.aaa };
       }
 
       render() {
@@ -65,16 +65,21 @@ describe('Test Connect', () => {
     expect(calculateTimes).to.equal(0);
     const html = shallow(vDom);
     expect(calculateTimes).to.equal(1);
-    dispatcher.dispatch({aaa: 'Hello dispatcher!'});
-    html.update();
-    expect(calculateTimes).to.equal(2);
-    expect(html.html()).to.equal('<div>Hello dispatcher!</div>');
-    html.unmount();
-    dispatcher.dispatch({aaa: 'Hello Unmount!'});
-    expect(calculateTimes).to.equal(2);
+    dispatcher.dispatch({ aaa: "Hello dispatcher!" });
+    setTimeout(() => {
+      html.update();
+      expect(calculateTimes).to.equal(2);
+      expect(html.html()).to.equal("<div>Hello dispatcher!</div>");
+      html.unmount();
+      dispatcher.dispatch({ aaa: "Hello Unmount!" });
+      setTimeout(() => {
+        expect(calculateTimes).to.equal(2);
+        done();
+      }, 50);
+    }, 50);
   });
 
-  it('could work withProps', () => {
+  it("could work withProps", () => {
     let getStoresProps = null;
     let calculateStateProps = null;
     class FakeComponent extends Component {
@@ -86,25 +91,22 @@ describe('Test Connect', () => {
       static calculateState(prevState, props) {
         calculateStateProps = props;
         const state = store.getState();
-        return {foo: props.foo};
+        return { foo: props.foo };
       }
 
       render() {
         return <div>{this.state.foo}</div>;
       }
     }
-    const FakeConnected = connect(
-      FakeComponent,
-      {
-        withProps: true,
-      },
-    );
+    const FakeConnected = connect(FakeComponent, {
+      withProps: true,
+    });
     let changeFoo;
     class Parent extends Component {
       constructor(props) {
         super(props);
-        changeFoo = v => {
-          this.setState({foo: v});
+        changeFoo = (v) => {
+          this.setState({ foo: v });
         };
       }
 
@@ -118,15 +120,15 @@ describe('Test Connect', () => {
     }
     const vDom = <Parent />;
     const html = mount(vDom);
-    expect(getStoresProps).to.deep.equal({foo: null});
-    expect(calculateStateProps).to.deep.equal({foo: null});
-    changeFoo('bar');
-    expect(html.html()).to.equal('<div>bar</div>');
-    expect(getStoresProps).to.deep.equal({foo: 'bar'});
-    expect(calculateStateProps).to.deep.equal({foo: 'bar'});
+    expect(getStoresProps).to.deep.equal({ foo: null });
+    expect(calculateStateProps).to.deep.equal({ foo: null });
+    changeFoo("bar");
+    expect(html.html()).to.equal("<div>bar</div>");
+    expect(getStoresProps).to.deep.equal({ foo: "bar" });
+    expect(calculateStateProps).to.deep.equal({ foo: "bar" });
   });
 
-  it('could work with getDerivedStateFromProps override', () => {
+  it("could work with getDerivedStateFromProps override", () => {
     class FakeComponent extends Component {
       static getStores(props) {
         return [store];
@@ -136,8 +138,8 @@ describe('Test Connect', () => {
         const state = store.getState();
         return {
           ...props,
-          testMerge: prevState.testMerge+1
-        }
+          testMerge: prevState.testMerge + 1,
+        };
       }
 
       static getDerivedStateFromProps(nextProps, prevState) {
@@ -153,12 +155,9 @@ describe('Test Connect', () => {
         return <div>{this.state.foo}</div>;
       }
     }
-    const FakeConnected = connect(
-      FakeComponent,
-      {
-        withProps: true,
-      },
-    );
+    const FakeConnected = connect(FakeComponent, {
+      withProps: true,
+    });
     let change1;
     let change2;
     let child1;
@@ -166,8 +165,8 @@ describe('Test Connect', () => {
     class Parent extends Component {
       constructor(props) {
         super(props);
-        change1 = v => this.setState({child1: v});
-        change2 = v => this.setState({child2: v});
+        change1 = (v) => this.setState({ child1: v });
+        change2 = (v) => this.setState({ child2: v });
 
         this.state = {};
       }
@@ -175,33 +174,41 @@ describe('Test Connect', () => {
       render() {
         return (
           <div>
-            <FakeConnected {...this.state.child1} ref={el => (child1 = el)} />
-            <FakeConnected {...this.state.child2} ref={el => (child2 = el)} />
+            <FakeConnected {...this.state.child1} ref={(el) => (child1 = el)} />
+            <FakeConnected {...this.state.child2} ref={(el) => (child2 = el)} />
           </div>
         );
       }
     }
     const vDom = <Parent />;
     const html = mount(vDom);
-    expect(child1.state).to.deep.equal({kProps: [], kState: [], testMerge: 1});
-    expect(child2.state).to.deep.equal({kProps: [], kState: [], testMerge: 1});
-    change1({foo: 'bar'});
     expect(child1.state).to.deep.equal({
-      kProps: ['foo'],
-      kState: ['testMerge', 'kProps', 'kState',],
-      foo: 'bar',
+      kProps: [],
+      kState: [],
+      testMerge: 1,
+    });
+    expect(child2.state).to.deep.equal({
+      kProps: [],
+      kState: [],
+      testMerge: 1,
+    });
+    change1({ foo: "bar" });
+    expect(child1.state).to.deep.equal({
+      kProps: ["foo"],
+      kState: ["testMerge", "kProps", "kState"],
+      foo: "bar",
       testMerge: 2,
     });
-    change2({bar: 'foo'});
+    change2({ bar: "foo" });
     expect(child2.state).to.deep.equal({
-      kProps: ['bar'],
-      kState: ['testMerge', 'kProps', 'kState'],
-      bar: 'foo',
+      kProps: ["bar"],
+      kState: ["testMerge", "kProps", "kState"],
+      bar: "foo",
       testMerge: 3,
     });
   });
 
-  it('could work withConstructor equal true', () => {
+  it("could work withConstructor equal true", () => {
     class FakeComponent extends Component {
       didMount = false;
       static getStores() {
@@ -209,7 +216,7 @@ describe('Test Connect', () => {
       }
 
       static calculateState(prevState) {
-        return {foo: 'bar'};
+        return { foo: "bar" };
       }
 
       componentDidMount() {
@@ -220,9 +227,7 @@ describe('Test Connect', () => {
         return <div>{this.state.foo}</div>;
       }
     }
-    let FakeConnected = connect(
-      FakeComponent,
-    );
+    let FakeConnected = connect(FakeComponent);
     let vDom = <FakeConnected withConstructor />;
     const html = shallow(vDom, {
       disableLifecycleMethods: true,
@@ -232,7 +237,7 @@ describe('Test Connect', () => {
     expect(instance.__stores).to.have.lengthOf(1);
   });
 
-  it('could work withConstructor equal false', () => {
+  it("could work withConstructor equal false", () => {
     class FakeComponent extends Component {
       didMount = false;
       static getStores() {
@@ -240,7 +245,7 @@ describe('Test Connect', () => {
       }
 
       static calculateState(prevState) {
-        return {foo: 'bar'};
+        return { foo: "bar" };
       }
 
       componentDidMount() {
@@ -251,9 +256,7 @@ describe('Test Connect', () => {
         return <div>{this.state.foo}</div>;
       }
     }
-    let FakeConnected = connect(
-      FakeComponent
-    );
+    let FakeConnected = connect(FakeComponent);
     let vDom = <FakeConnected />;
     const html = shallow(vDom);
     const instance = html.instance();
@@ -261,7 +264,7 @@ describe('Test Connect', () => {
     expect(instance.__stores).to.have.lengthOf(1);
   });
 
-  it('could work with empty calculateState', () => {
+  it("could work with empty calculateState", () => {
     class FakeComponent extends Component {
       static getStores() {
         return [store];
