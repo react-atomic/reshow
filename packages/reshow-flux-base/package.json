@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -11,7 +11,9 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "reshow-runtime": "*"
+    "reshow-runtime": "*",
+    "reshow-constant": "*",
+    "setimmediate": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
@@ -24,7 +26,8 @@
     "build": "npm run clean && npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=build babel src -d build/cjs --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
-    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
+    "mocha": "mocha -r jsdom-global/register 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test && npm run build"
   },
   "files": [

@@ -1,20 +1,19 @@
-class Dispatcher {
-  cbs = [];
+import "setimmediate";
+import { STRING } from "reshow-constant";
 
-  register = cb => this.cbs.push(cb);
+const Dispatcher = () => {
+  const cbs = [];
+  const register = (cb) => cbs.push(cb);
 
-  dispatch = (payload, params) => {
-    if (!payload) {
-      payload = {};
+  const dispatch = (payload, params) => {
+    payload = payload || {};
+    if (STRING === typeof payload) {
+      payload = { type: payload, params };
+      !params && delete payload.params;
     }
-    if ('string' === typeof payload) {
-      payload = {type: payload, params};
-      if (!params) {
-        delete payload.params;
-      }
-    }
-    this.cbs.forEach(c => c(payload));
+    setImmediate(() => cbs.forEach((c) => c(payload)));
   };
-}
+  return { register, dispatch };
+};
 
 export default Dispatcher;
