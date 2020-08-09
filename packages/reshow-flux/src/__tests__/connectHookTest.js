@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 
 import { expect } from "chai";
 import { shallow, mount, configure } from "enzyme";
@@ -27,16 +27,15 @@ describe("Test Connect Hook", () => {
     store = new FakeStore(dispatcher);
   });
 
-  it("basic test", done => {
-    const Foo = props => {
+  it("basic test", (done) => {
+    const Foo = (props) => {
       return <div className={props.foo} />;
     };
-    const stores = [store];
     const FooHook = connectHook(Foo, {
       calculateState: (prevState, props) => {
         return store.getState();
       },
-      getStores: props => stores
+      getStores: (props) => [store],
     });
     const wrap = mount(<FooHook />);
     expect(wrap.html()).to.equal("<div></div>");
@@ -52,4 +51,32 @@ describe("Test Connect Hook", () => {
     }, 50);
   });
 
+  it("test update mulit hook", (done) => {
+    const Foo = (props) => {
+      return <div className={props.foo} />;
+    };
+    const FooHook = connectHook(Foo, {
+      calculateState: (prevState, props) => {
+        return store.getState();
+      },
+      getStores: (props) => [store],
+    });
+    const VDom = props => {
+      useEffect(()=>{
+        dispatch({foo: 'bar'});
+      });
+
+      return (
+        <>
+          <FooHook />
+          <FooHook />
+        </>
+      );
+    }
+    const wrap = mount(<VDom />);
+    setTimeout(()=>{
+      expect(wrap.html()).to.equal('<div class="bar"></div><div class="bar"></div>');
+      done();
+    });
+  });
 });
