@@ -7,25 +7,36 @@ const Dispatcher = () => {
   const cbs = [];
   const register = (cb) => cbs.push(cb);
 
-  const dispatch = (payload, params, callback) => {
+  const dispatch = (payload, params, asyncCallback) => {
     payload = payload || {};
     if (STRING === typeof payload) {
       payload = { type: payload, params };
       !params && delete payload.params;
     }
-    if (isRunning) {
-      setImmediate(() => {
+
+    const run = (bReset) => {
+      const trigger = () => {
         cbs.forEach((c) => c(payload));
-        callfunc(callback, [isRunning]);
-      });
+        if (bReset) {
+          isRunning = false;
+        }
+      };
+      if (false === asyncCallback) {
+        trigger();
+      } else {
+        setImmediate(() => {
+          trigger();
+          callfunc(asyncCallback, [isRunning]);
+        });
+      }
+    };
+
+    if (isRunning) {
+      run();
       console.warn("Should avoid nested dispath");
     } else {
       isRunning = true;
-      setImmediate(() => {
-        cbs.forEach((c) => c(payload));
-        isRunning = false;
-        callfunc(callback, [isRunning]);
-      });
+      run(true);
     }
   };
   return { register, dispatch };
