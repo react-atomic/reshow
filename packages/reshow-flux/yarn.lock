@@ -330,6 +330,13 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
+call-func@*:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.0.4.tgz#3c70ae685575be63eeb085ba0cd7f8d93cbb89a4"
+  integrity sha512-r2Q9o9pCplNi3jsmNizZDno10ESQ7YqFLrWb0ENH3y5W/wDdls4Aq7jzPt7Gf7zQqsTqvo0hfL/CEi4nrDXpMg==
+  dependencies:
+    reshow-constant "*"
+
 camelcase@^5.0.0, camelcase@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
@@ -1506,9 +1513,9 @@ jsdom-global@*:
   integrity sha1-a9KZwTsMRiay2iwDk81DhdYGrLk=
 
 jsdom@*:
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-16.3.0.tgz#75690b7dac36c67be49c336dcd7219bbbed0810c"
-  integrity sha512-zggeX5UuEknpdZzv15+MS1dPYG0J/TftiiNunOeNxSl3qr8Z6cIlQpN0IdJa44z9aFxZRIVqRncvEhQ7X5DtZg==
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-16.4.0.tgz#36005bde2d136f73eee1a830c6d45e55408edddb"
+  integrity sha512-lYMm3wYdgPhrl7pDcRmvzPhhrGVBeVhPIqeHjzeiHN3DFmD1RBpbExbi8vU7BJdH8VAZYovR8DMt0PNNDM7k8w==
   dependencies:
     abab "^2.0.3"
     acorn "^7.1.1"
@@ -2261,10 +2268,11 @@ reshow-constant@*:
   integrity sha512-PRwvxfln60W897Z8puaZhWhY4wrP6Mb+c8Wu+9n1yBgn+//6GP8AhW/xMdsy+MyM2HcTJ8d1iTmvr/G4Pm2NyA==
 
 reshow-flux-base@*:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.2.0.tgz#ad2319d612ae6d261f10352a0c760cad91680e63"
-  integrity sha512-nUNXzuu0Ttd8/bBcXkAcZEAjeG73K7U9xIamei01EONEfNKqEWonzbxAXw+VHYBMDT66az4LyOoLqdQ7hJeT7A==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.2.1.tgz#6cae8c858cf637b61508c3d47352b2948070c121"
+  integrity sha512-0EiVFtNMoD3YZPRfUyVHFFQ0Wm5YT2WAypJbY7Nfl9Begeafb3pnXTZeGgbYBA69tqvHEwcScNA3/QHq7Djjrw==
   dependencies:
+    call-func "*"
     reshow-constant "*"
     reshow-runtime "*"
     setimmediate "*"

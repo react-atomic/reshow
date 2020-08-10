@@ -77,6 +77,6 @@ describe("Test Connect Hook", () => {
     setTimeout(()=>{
       expect(wrap.html()).to.equal('<div class="bar"></div><div class="bar"></div>');
       done();
-    });
+    }, 50);
   });
 });

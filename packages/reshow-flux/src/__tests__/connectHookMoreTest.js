@@ -73,7 +73,7 @@ describe('Test Connect hook for more test', () => {
       dispatch({aaa: 'Hello Unmount!'});
       expect(calculateTimes).to.equal(3);
       done();
-    });
+    }, 50);
   });
 
   it('could work withProps', done => {
