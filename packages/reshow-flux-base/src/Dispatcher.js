@@ -20,12 +20,10 @@ const Dispatcher = () => {
           console.warn("Should avoid nested dispath");
         }
         cbs.forEach((c) => c(payload));
+        callfunc(asyncCallback, [isRunning]);
       };
       if (bAsync) {
-        setImmediate(() => {
-          trigger();
-          callfunc(asyncCallback, [isRunning]);
-        });
+        setImmediate(() => trigger());
       } else {
         trigger();
       }
