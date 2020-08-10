@@ -14,29 +14,29 @@ const Dispatcher = () => {
       !params && delete payload.params;
     }
 
-    const run = (bReset) => {
+    const run = (bAsync, warning) => {
       const trigger = () => {
-        cbs.forEach((c) => c(payload));
-        if (bReset) {
-          isRunning = false;
+        if (isRunning && warning) {
+          console.warn("Should avoid nested dispath");
         }
+        cbs.forEach((c) => c(payload));
       };
-      if (false === asyncCallback) {
-        trigger();
-      } else {
+      if (bAsync) {
         setImmediate(() => {
           trigger();
           callfunc(asyncCallback, [isRunning]);
         });
+      } else {
+        trigger();
       }
     };
 
     if (isRunning) {
-      run();
-      console.warn("Should avoid nested dispath");
+      run(false !== asyncCallback, true);
     } else {
       isRunning = true;
-      run(true);
+      run(false);
+      isRunning = false;
     }
   };
   return { register, dispatch };
