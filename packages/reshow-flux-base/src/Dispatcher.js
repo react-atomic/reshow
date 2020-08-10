@@ -16,11 +16,11 @@ const Dispatcher = () => {
 
     const run = (bAsync, warning) => {
       const trigger = () => {
-        if (isRunning && warning) {
-          console.warn("Should avoid nested dispath");
-        }
         cbs.forEach((c) => c(payload));
         callfunc(asyncCallback, [isRunning]);
+        if (warning && (isRunning || dispatch.warning)) {
+          console.warn("Should avoid nested dispath");
+        }
       };
       if (bAsync) {
         setImmediate(() => trigger());
