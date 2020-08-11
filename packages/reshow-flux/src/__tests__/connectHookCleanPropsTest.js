@@ -51,7 +51,7 @@ describe("Connect Hook (clean Props)", () => {
         expect(wrap.html()).to.equal('<div bar="c"></div>');
         done();
         wrap.unmount();
-      });
-    });
+      }, 50);
+    }, 50);
   });
 });

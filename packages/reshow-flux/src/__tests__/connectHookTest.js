@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 
 import { expect } from "chai";
 import { shallow, mount, configure } from "enzyme";
@@ -51,9 +51,19 @@ describe("Test Connect Hook", () => {
     }, 50);
   });
 
-  it("test update mulit hook", (done) => {
+  it("test Warnings for some updates during render", (done) => {
+    /**
+     * https://fb.me/setstate-in-render
+     * https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render
+     */
+    let init = 0;
     const Foo = (props) => {
-      return <div className={props.foo} />;
+      if (init <= 1) {
+        dispatch.warning = true;
+        dispatch({ foo: "bar" });
+      }
+      init++;
+      return <div className={props.foo}></div>;
     };
     const FooHook = connectHook(Foo, {
       calculateState: (prevState, props) => {
@@ -61,21 +71,19 @@ describe("Test Connect Hook", () => {
       },
       getStores: (props) => [store],
     });
-    const VDom = props => {
-      useEffect(()=>{
-        dispatch({foo: 'bar'});
-      });
-
-      return (
-        <>
-          <FooHook />
-          <FooHook />
-        </>
-      );
+    class VDom extends Component {
+      componentDidCatch(error, errorInfo) {
+        console.log({error, errorInfo});
+      }
+      render() {
+        return <FooHook />;
+      }
     }
     const wrap = mount(<VDom />);
-    setTimeout(()=>{
-      expect(wrap.html()).to.equal('<div class="bar"></div><div class="bar"></div>');
+    setTimeout(() => {
+      expect(wrap.html()).to.equal(
+        '<div class="bar"></div>'
+      );
       done();
     }, 50);
   });

@@ -1,3 +1,4 @@
+import "setimmediate";
 import { useMemo, useState, useEffect, useRef } from "react";
 import build from "reshow-build";
 import dedup from "array.dedup";
@@ -27,17 +28,19 @@ const connectHook = (Base, options) => {
       const stores = dedup(getStores(props)) || [];
       if (stores && stores.length) {
         const handleChange = () => {
-          if (_mount.current) {
-            setData((prev) => ({
-              __init__: true,
-              props,
-              state: {
-                ...cleanKeys(prev.props, prev.state),
-                ...props,
-                ...calculateState(prev.state, props),
-              },
-            }));
-          }
+          setImmediate(() => {
+            if (_mount.current) {
+              setData((prev) => ({
+                __init__: true,
+                props,
+                state: {
+                  ...cleanKeys(prev.props, prev.state),
+                  ...props,
+                  ...calculateState(prev.state, props),
+                },
+              }));
+            }
+          });
         };
         if (!data.__init__ || data.props !== props) {
           handleChange();
