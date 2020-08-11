@@ -1,14 +1,15 @@
-import mitt from './mitt';
+import "setimmediate";
+import mitt from "./mitt";
 
-const CHANGE = 'chg';
+const CHANGE = "chg";
 
 class Store {
   reduce() {
-    console.error('Not override reduce().');
+    console.error("Not override reduce().");
   }
 
   getInitialState() {
-    console.error('Not override getInitialState().');
+    console.error("Not override getInitialState().");
   }
 
   equals(one, two) {
@@ -32,11 +33,11 @@ class Store {
 
   /* Following not extendable */
 
-  __invokeOnDispatch = action => {
+  __invokeOnDispatch = (action) => {
     const startingState = this._state;
     const endingState = this.reduce(startingState, action);
     if (endingState === undefined) {
-      console.error('reduce() return undefined.');
+      console.error("reduce() return undefined.");
     }
     if (!this.equals(startingState, endingState)) {
       this._state = endingState;
@@ -44,14 +45,16 @@ class Store {
     }
     const next = this.nextEmits.slice(0);
     this.nextEmits = [];
-    next.forEach(emit => this.emit(emit));
+    if (next.length) {
+      setImmediate(() => next.forEach((emit) => this.emit(emit)));
+    }
   };
 
   // mitt event
-  emit = e => this.mitt.emit(e);
+  emit = (e) => this.mitt.emit(e);
   addListener = (listener, e) => this.mitt.on(e, listener);
   removeListener = (listener, e) => this.mitt.off(e, listener);
 }
 
 export default Store;
-export {CHANGE};
+export { CHANGE };

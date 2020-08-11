@@ -18,8 +18,10 @@ const Dispatcher = () => {
       const trigger = () => {
         cbs.forEach((c) => c(payload));
         callfunc(asyncCallback, [isRunning]);
-        if (warning && (isRunning || dispatch.warning)) {
-          console.warn("Should avoid nested dispath");
+        if (warning && (isRunning || dispatch.debug)) {
+          console.warn("Should avoid nested dispath", { bAsync });
+        } else if (dispatch.debug) {
+          console.warn("DEBUG:: [Normal dispatch]", { bAsync });
         }
       };
       if (bAsync) {
