@@ -34,9 +34,13 @@ const Dispatcher = () => {
     if (isRunning) {
       run(false !== asyncCallback, true);
     } else {
-      isRunning = true;
-      run(false);
-      isRunning = false;
+      try {
+        isRunning = true;
+        run(false);
+        isRunning = false;
+      } catch (ex) {
+        isRunning = false;
+      }
     }
   };
   return { register, dispatch };
