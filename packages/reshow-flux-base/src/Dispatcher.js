@@ -40,6 +40,7 @@ const Dispatcher = () => {
         isRunning = false;
       } catch (ex) {
         isRunning = false;
+        throw ex;
       }
     }
   };
