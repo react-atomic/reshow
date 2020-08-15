@@ -21,6 +21,8 @@ const myWebpack = (root, main, lazyConfs) => {
   if (PRODUCTION === NODE_ENV) {
     mode = PRODUCTION;
     devtool = false;
+  } else {
+    confs.bustMode = null;
   }
   const result = {
     mode,
