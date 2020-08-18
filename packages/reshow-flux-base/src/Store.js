@@ -24,6 +24,7 @@ class Store {
   reset() {
     this.mitt = new mitt();
     this.nextEmits = [];
+    this.nextAsync = false;
     return this.getInitialState();
   }
 
@@ -46,7 +47,13 @@ class Store {
     const next = this.nextEmits.slice(0);
     this.nextEmits = [];
     if (next.length) {
-      setImmediate(() => next.forEach((emit) => this.emit(emit)));
+      const nextRun = () => next.forEach((emit) => this.emit(emit));
+      if (this.nextAsync) {
+        this.nextAsync = false;
+        setImmediate(nextRun);
+      } else {
+        nextRun();
+      }
     }
   };
 
