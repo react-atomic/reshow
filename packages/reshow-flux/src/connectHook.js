@@ -28,26 +28,27 @@ const connectHook = (Base, options) => {
       const stores = dedup(getStores(props)) || [];
       if (stores && stores.length) {
         const handleChange = () => {
-          setImmediate(() => {
-            if (_mount.current) {
-              setData((prev) => ({
-                __init__: true,
-                props,
-                state: {
-                  ...cleanKeys(prev.props, prev.state),
-                  ...props,
-                  ...calculateState(prev.state, props),
-                },
-              }));
-            }
-          });
+          if (_mount.current) {
+            setData((prev) => ({
+              __init__: true,
+              props,
+              state: {
+                ...cleanKeys(prev.props, prev.state),
+                ...props,
+                ...calculateState(prev.state, props),
+              },
+            }));
+          }
         };
+        const asyncHandleChange = () => setImmediate(handleChange);
         if (!data.__init__ || data.props !== props) {
           handleChange();
         }
-        stores.forEach((store) => store.addListener(handleChange, CHANGE));
+        stores.forEach((store) => store.addListener(asyncHandleChange, CHANGE));
         return () => {
-          stores.forEach((store) => store.removeListener(handleChange, CHANGE));
+          stores.forEach((store) =>
+            store.removeListener(asyncHandleChange, CHANGE)
+          );
         };
       }
     }, [props]);
