@@ -59,7 +59,7 @@ class Store {
   };
 
   // mitt event
-  emit = (e) => this.mitt.emit(e);
+  emit = (e, payload) => this.mitt.emit(e, payload);
   addListener = (listener, e) => this.mitt.on(e, listener);
   removeListener = (listener, e) => this.mitt.off(e, listener);
 }
