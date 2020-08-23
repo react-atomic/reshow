@@ -46,7 +46,7 @@ class Store {
     if (this.nextEmits.length) {
       const nextRun = () => {
         while (this.nextEmits.length) {
-          this.emit(this.nextEmits.shift());
+          this.emit(this.nextEmits.shift(), { state: endingState, action });
         }
       };
       if (this.nextAsync) {
