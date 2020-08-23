@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -13,8 +13,7 @@
   "dependencies": {
     "call-func": "*",
     "reshow-runtime": "*",
-    "reshow-constant": "*",
-    "setimmediate": "*"
+    "reshow-constant": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",

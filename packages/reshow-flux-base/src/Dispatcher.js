@@ -1,4 +1,3 @@
-import "setimmediate";
 import { STRING } from "reshow-constant";
 import callfunc from "call-func";
 
@@ -25,7 +24,7 @@ const Dispatcher = () => {
         }
       };
       if (bAsync) {
-        setImmediate(() => trigger());
+        setTimeout(trigger);
       } else {
         trigger();
       }

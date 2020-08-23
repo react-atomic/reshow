@@ -1,4 +1,3 @@
-import "setimmediate";
 import mitt from "./mitt";
 
 const CHANGE = "chg";
@@ -52,7 +51,7 @@ class Store {
       };
       if (this.nextAsync) {
         this.nextAsync = false;
-        setImmediate(nextRun);
+        setTimeout(nextRun);
       } else {
         nextRun();
       }
