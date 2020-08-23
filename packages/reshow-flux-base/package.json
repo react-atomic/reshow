@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",

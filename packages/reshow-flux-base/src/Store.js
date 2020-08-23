@@ -44,10 +44,12 @@ class Store {
       this._state = endingState;
       this.emit(CHANGE);
     }
-    const next = this.nextEmits.slice(0);
-    this.nextEmits = [];
-    if (next.length) {
-      const nextRun = () => next.forEach((emit) => this.emit(emit));
+    if (this.nextEmits.length) {
+      const nextRun = () => {
+        while (this.nextEmits.length) {
+          this.emit(this.nextEmits.shift());
+        }
+      };
       if (this.nextAsync) {
         this.nextAsync = false;
         setImmediate(nextRun);
