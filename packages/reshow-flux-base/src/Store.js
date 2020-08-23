@@ -45,8 +45,13 @@ class Store {
     }
     if (this.nextEmits.length) {
       const nextRun = () => {
+        const dedup = {};
         while (this.nextEmits.length) {
-          this.emit(this.nextEmits.shift(), { state: endingState, action });
+          const emitType = this.nextEmits.shift();
+          if (!dedup[emitType]) {
+            dedup[emitType] = true;
+            this.emit(emitType, { state: endingState, action });
+          }
         }
       };
       if (this.nextAsync) {
