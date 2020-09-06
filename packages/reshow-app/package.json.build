@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.36",
+  "version": "0.13.0-beta.37",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -16,6 +16,7 @@
     "@babel/plugin-syntax-dynamic-import": "*",
     "@babel/plugin-transform-object-assign": "*",
     "@babel/plugin-transform-react-constant-elements": "*",
+    "@babel/plugin-transform-spread": "*",
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "ansi-html": "0.0.7",
