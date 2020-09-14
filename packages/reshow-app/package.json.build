@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.38",
+  "version": "0.13.0-beta.39",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -44,6 +44,7 @@
     "nyc": "*",
     "ora": "2.0.0",
     "organism-react-ajax": "^0.13.0-beta",
+    "path": "*",
     "prettier": "*",
     "prettier-eslint": "*",
     "prettier-eslint-cli": "*",

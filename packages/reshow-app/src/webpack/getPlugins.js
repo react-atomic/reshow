@@ -8,6 +8,8 @@ import { PRODUCTION } from "./const";
 
 const { AggressiveMergingPlugin, LimitChunkCountPlugin } = webpack.optimize;
 
+const assetsStore = { data: null };
+
 const getPlugins = ({
   path,
   stop,
@@ -17,7 +19,10 @@ const getPlugins = ({
   HOT_UPDATE,
   server,
 }) => {
-  const plugins = [getStatsJson(), new NginxPushPlugin(confs)];
+  const plugins = [
+    getStatsJson({ assetsStore }),
+    new NginxPushPlugin(confs, assetsStore),
+  ];
   let maxChunks = confs.maxChunks;
   if (server) {
     maxChunks = 1;
