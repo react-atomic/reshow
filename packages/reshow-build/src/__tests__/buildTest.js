@@ -191,11 +191,4 @@ describe("Test build", () => {
     );
   });
 
-  it("test build with wrap", () => {
-    const FakeDom = () => {
-      return build("test", {wrap: <div />})();
-    };
-    const wrap = shallow(<FakeDom />);
-    expect(wrap.html()).to.equal("<div>test</div>");
-  });
 });
