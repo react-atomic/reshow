@@ -1,20 +1,21 @@
-import {ReduceStore} from 'reshow-flux';
-import urlDispatcher, {urlDispatch} from '../urlDispatcher';
-import get from 'get-object-value';
-import setUrl, {getUrl, unsetUrl} from 'seturl';
-import {win, doc} from 'win-doc';
-import {ajaxDispatch, ajaxStore} from 'organism-react-ajax';
+import { ReduceStore } from "reshow-flux";
+import urlDispatcher, { urlDispatch } from "../urlDispatcher";
+import get from "get-object-value";
+import setUrl, { getUrl, unsetUrl } from "seturl";
+import { win, doc } from "win-doc";
+import { ajaxDispatch, ajaxStore } from "organism-react-ajax";
+import arrayDedup from "array.dedup";
 
 const keys = Object.keys;
 
-const updateUrl = url => history.pushState && history.pushState('', '', url);
+const updateUrl = (url) => history.pushState && history.pushState("", "", url);
 
-const urlChange = 'urlChange';
+const urlChange = "urlChange";
 
 class URL {
   loc = {};
   constructor(loc) {
-    this.loc = {...loc};
+    this.loc = { ...loc };
   }
 
   getHref(loc) {
@@ -23,11 +24,11 @@ class URL {
 
   get(key) {
     let value;
-    if (0 === key.indexOf(':')) {
+    if (0 === key.indexOf(":")) {
       const cookKey = key.substr(1);
       value = get(this.loc, [key.substr(1)]);
-      if ('pathname' === cookKey) {
-        value = value.split('/');
+      if ("pathname" === cookKey) {
+        value = value.split("/");
       }
     } else {
       const href = this.getHref();
@@ -42,10 +43,12 @@ class URL {
 class UrlStore extends ReduceStore {
   getInitialState() {
     let loc = {};
+    this.group = null;
+    this.groupUrlKeys = null;
     setTimeout(() => {
       const oDoc = doc();
       if (oDoc.URL) {
-        urlDispatch({type: 'url', url: oDoc.URL});
+        urlDispatch({ type: "url", url: oDoc.URL });
         this.registerEvent(win());
       }
     });
@@ -54,9 +57,9 @@ class UrlStore extends ReduceStore {
 
   urlChange = () => {
     this.nextEmits.push(urlChange);
-    urlDispatch({type: 'url', url: doc().URL});
-    ajaxDispatch('urlChange');
-  }
+    urlDispatch({ type: "url", url: doc().URL });
+    ajaxDispatch("urlChange");
+  };
 
   onUrlChange(cb) {
     this.addListener(cb, urlChange);
@@ -68,11 +71,7 @@ class UrlStore extends ReduceStore {
 
   registerEvent(win) {
     if (win && win.addEventListener) {
-      win.addEventListener(
-        'popstate',
-        this.urlChange,
-        true,
-      );
+      win.addEventListener("popstate", this.urlChange, true);
       ajaxStore.urlDispatch = urlDispatch;
     }
   }
@@ -84,17 +83,28 @@ class UrlStore extends ReduceStore {
     }
     let url;
     let urlV;
-    const {type, params} = action || {};
+    const { type, params, group } = action || {};
     switch (type) {
-      case 'url':
-        url = get(action, ['url'], ()=>get(params, ['url']));
+      case "url":
+        url = get(action, ["url"], () => get(params, ["url"]));
         if (!url) {
-          console.error('Not assign url', action);
+          console.error("Not assign url", action);
         }
         break;
-      case 'query':
+      case "query":
         url = oDoc.URL;
-        keys(get(params, null, [])).forEach(key => {
+        const urlKeys = keys(params || []);
+        if (this.group !== group && this.groupUrlKeys) {
+          this.groupUrlKeys.forEach((key) => {
+            url = unsetUrl(key, url);
+          });
+        }
+        if (group) {
+          this.groupUrlKeys =
+            this.group === group ? arrayDedup(this.groupUrlKeys.concat(urlKeys)) : urlKeys;
+        }
+        this.group = group;
+        urlKeys.forEach((key) => {
           urlV = get(params, [key]);
           url = urlV != null ? setUrl(key, urlV, url) : unsetUrl(key, url);
         });

@@ -1,6 +1,6 @@
 {
   "name": "reshow-url",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "reshow url util",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -11,6 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "array.dedup": "*",
     "organism-react-ajax": "^0.13.0-beta",
     "reshow-flux": "*",
     "reshow-runtime": "*"
