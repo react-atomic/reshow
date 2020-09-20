@@ -6,6 +6,9 @@ const Dispatcher = () => {
   const cbs = [];
   const register = (cb) => cbs.push(cb);
 
+  /**
+   * Set asyncCallback to false for dispatch run as sync
+   */
   const dispatch = (payload, params, asyncCallback) => {
     payload = payload || {};
     if (STRING === typeof payload) {
@@ -43,6 +46,7 @@ const Dispatcher = () => {
       }
     }
   };
+  dispatch.debug = true;
   return { register, dispatch };
 };
 
