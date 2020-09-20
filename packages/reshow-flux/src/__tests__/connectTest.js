@@ -185,24 +185,32 @@ describe("Test Connect", () => {
     expect(child1.state).to.deep.equal({
       kProps: [],
       kState: [],
+      prevProps: {},
       testMerge: 1,
     });
     expect(child2.state).to.deep.equal({
       kProps: [],
       kState: [],
+      prevProps: {},
       testMerge: 1,
     });
     change1({ foo: "bar" });
     expect(child1.state).to.deep.equal({
       kProps: ["foo"],
-      kState: ["testMerge", "kProps", "kState"],
+      kState: ["testMerge", "kProps", "kState", "prevProps"],
+      prevProps: {
+        foo: "bar",
+      },
       foo: "bar",
       testMerge: 2,
     });
     change2({ bar: "foo" });
     expect(child2.state).to.deep.equal({
       kProps: ["bar"],
-      kState: ["testMerge", "kProps", "kState"],
+      kState: ["testMerge", "kProps", "kState", "prevProps"],
+      prevProps: {
+        bar: "foo",
+      },
       bar: "foo",
       testMerge: 3,
     });

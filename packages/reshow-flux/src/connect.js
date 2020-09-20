@@ -97,7 +97,7 @@ const connect = (Base, options) => {
       if (super.getDerivedStateFromProps) {
         thisStates = super.getDerivedStateFromProps(nextProps, prevState);
       }
-      if (thisOptions.withProps) {
+      if (thisOptions.withProps && prevState.prevProps !== nextProps) {
         const calState = getState(
           ConnectedClass,
           {...prevState, ...thisStates},
@@ -107,6 +107,7 @@ const connect = (Base, options) => {
         thisStates = {
           ...thisStates,
           ...calState,
+          prevProps: nextProps
         };
       }
       return thisStates;
