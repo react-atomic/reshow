@@ -79,7 +79,7 @@ describe("Test Connect", () => {
     }, 50);
   });
 
-  it("could work withProps", () => {
+  it("could work withProps", (done) => {
     let getStoresProps = null;
     let calculateStateProps = null;
     class FakeComponent extends Component {
@@ -124,8 +124,11 @@ describe("Test Connect", () => {
     expect(calculateStateProps).to.deep.equal({ foo: null });
     changeFoo("bar");
     expect(html.html()).to.equal("<div>bar</div>");
-    expect(getStoresProps).to.deep.equal({ foo: "bar" });
     expect(calculateStateProps).to.deep.equal({ foo: "bar" });
+    setTimeout(()=>{
+    expect(getStoresProps).to.deep.equal({ foo: "bar" });
+    done();
+    }, 100);
   });
 
   it("could work with getDerivedStateFromProps override", () => {
@@ -185,32 +188,24 @@ describe("Test Connect", () => {
     expect(child1.state).to.deep.equal({
       kProps: [],
       kState: [],
-      prevProps: {},
       testMerge: 1,
     });
     expect(child2.state).to.deep.equal({
       kProps: [],
       kState: [],
-      prevProps: {},
       testMerge: 1,
     });
     change1({ foo: "bar" });
     expect(child1.state).to.deep.equal({
       kProps: ["foo"],
-      kState: ["testMerge", "kProps", "kState", "prevProps"],
-      prevProps: {
-        foo: "bar",
-      },
+      kState: ["testMerge", "kProps", "kState"],
       foo: "bar",
       testMerge: 2,
     });
     change2({ bar: "foo" });
     expect(child2.state).to.deep.equal({
       kProps: ["bar"],
-      kState: ["testMerge", "kProps", "kState", "prevProps"],
-      prevProps: {
-        bar: "foo",
-      },
+      kState: ["testMerge", "kProps", "kState"],
       bar: "foo",
       testMerge: 3,
     });

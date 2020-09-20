@@ -1,7 +1,7 @@
-import dedup from 'array.dedup';
-import {CHANGE} from 'reshow-flux-base';
+import dedup from "array.dedup";
+import { CHANGE } from "reshow-flux-base";
 
-const DEFAULT_OPTIONS = {withProps: false};
+const DEFAULT_OPTIONS = { withProps: false };
 const keys = Object.keys;
 const getProps = (props, opt) => (opt.withProps && props ? props : {});
 const getState = (self, prevState, maybeProps, opt) =>
@@ -10,7 +10,7 @@ const getStores = (self, maybeProps, opt) =>
   self.getStores(getProps(maybeProps, opt));
 
 const connect = (Base, options) => {
-  const thisOptions = {...DEFAULT_OPTIONS, ...(options || {})};
+  const thisOptions = { ...DEFAULT_OPTIONS, ...(options || {}) };
 
   class ConnectedClass extends Base {
     __stores = [];
@@ -21,17 +21,19 @@ const connect = (Base, options) => {
         return;
       }
       const con = this.constructor;
-      this.setState((prevState, currentProps) =>
-        getState(con, prevState, currentProps, thisOptions),
-      );
+      this.setState((prevState, currentProps) => {
+        return getState(con, prevState, currentProps, thisOptions);
+      });
     };
 
-    __setStores = stores => {
+    __setStores = (stores) => {
       if (this.__stores) {
         this.__resetStores();
       }
       stores = dedup(stores);
-      (stores || []).forEach(store => store.addListener(this.__handleChange, CHANGE));
+      (stores || []).forEach((store) =>
+        store.addListener(this.__handleChange, CHANGE)
+      );
       this.__stores = stores;
     };
 
@@ -39,11 +41,32 @@ const connect = (Base, options) => {
       if (!this.__stores) {
         return;
       }
-      this.__stores.forEach(store =>
-        store.removeListener(this.__handleChange, CHANGE),
+      this.__stores.forEach((store) =>
+        store.removeListener(this.__handleChange, CHANGE)
       );
       this.__stores = null;
     };
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+      let thisStates = null;
+      if (super.getDerivedStateFromProps) {
+        thisStates = super.getDerivedStateFromProps(nextProps, prevState);
+      }
+      if (thisOptions.withProps) {
+        // when connect withProps optins, it possible call calculateState severaltimes
+        const calState = getState(
+          ConnectedClass,
+          { ...prevState, ...thisStates },
+          nextProps,
+          thisOptions
+        );
+        thisStates = {
+          ...thisStates,
+          ...calState,
+        };
+      }
+      return thisStates;
+    }
 
     constructor(props) {
       super(props);
@@ -54,8 +77,8 @@ const connect = (Base, options) => {
       if (!con.getStores) {
         con.getStores = super.getStores;
       }
-      con.calculateState.bind(con)
-      con.getStores.bind(con)
+      con.calculateState.bind(con);
+      con.getStores.bind(con);
       if (props.withConstructor) {
         this.__setStores(getStores(con, props, thisOptions));
       }
@@ -68,7 +91,7 @@ const connect = (Base, options) => {
         const calculatedState = getState(con, undefined, props, thisOptions);
         if (calculatedState) {
           keys(calculatedState).forEach(
-            key => (this.state[key] = calculatedState[key]),
+            (key) => (this.state[key] = calculatedState[key])
           );
         }
       }
@@ -88,29 +111,15 @@ const connect = (Base, options) => {
         super.componentDidUpdate(prevProps, prevState);
       }
       if (thisOptions.withProps) {
-        this.__setStores(getStores(this.constructor, this.props, thisOptions));
-      }
-    }
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-      let thisStates = null;
-      if (super.getDerivedStateFromProps) {
-        thisStates = super.getDerivedStateFromProps(nextProps, prevState);
-      }
-      if (thisOptions.withProps && prevState.prevProps !== nextProps) {
-        const calState = getState(
-          ConnectedClass,
-          {...prevState, ...thisStates},
-          nextProps,
-          thisOptions,
+        // avoid effect async dispatch
+        setTimeout(
+          () =>
+            this.__setStores(
+              getStores(this.constructor, this.props, thisOptions)
+            ),
+          100
         );
-        thisStates = {
-          ...thisStates,
-          ...calState,
-          prevProps: nextProps
-        };
       }
-      return thisStates;
     }
 
     componentWillUnmount() {
@@ -121,7 +130,7 @@ const connect = (Base, options) => {
     }
   }
   const componentName = Base.displayName || Base.name;
-  ConnectedClass.displayName = 'FluxConnected(' + componentName + ')';
+  ConnectedClass.displayName = "FluxConnected(" + componentName + ")";
   return ConnectedClass;
 };
 
