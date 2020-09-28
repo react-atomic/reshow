@@ -46,7 +46,6 @@ const Dispatcher = () => {
       }
     }
   };
-  dispatch.debug = true;
   return { register, dispatch };
 };
 
