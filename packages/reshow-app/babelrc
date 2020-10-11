@@ -3,6 +3,7 @@
         "test": {
             "presets": [
               ["@babel/preset-env", {
+                "useBuiltIns": "usage",
                 "loose": true, 
                 "targets": ["last 2 versions", "ie >= 8"]
               }],
