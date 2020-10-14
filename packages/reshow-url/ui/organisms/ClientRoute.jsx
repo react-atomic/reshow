@@ -1,18 +1,17 @@
-import Reshow, { pageStore, update } from "reshow";
-import { doc } from "win-doc";
+import Reshow from "reshow";
 import { ajaxDispatch } from "organism-react-ajax";
 
 import handleAnchor from "../../src/handleAnchor";
 import urlStore from "../../src/stores/urlStore";
 
-const defaultOnUrlChange = url => handleAnchor => goAnchorDelay => {
+const defaultOnUrlChange = (url) => (handleAnchor) => (goAnchorDelay) => {
   const separator = "/";
   const params = url.split(separator);
   const last = params.length - 1;
   const lastPath = params[last];
   const next = {
     pvid: url,
-    themePath: null
+    themePath: null,
   };
   if (lastPath) {
     next.themePath = handleAnchor(lastPath)(goAnchorDelay);
@@ -23,7 +22,7 @@ const defaultOnUrlChange = url => handleAnchor => goAnchorDelay => {
 class ClientRoute extends Reshow {
   static defaultProps = {
     ajax: false,
-    goAnchorDelay: 1500
+    goAnchorDelay: 1500,
   };
 
   getPath() {
@@ -45,7 +44,7 @@ class ClientRoute extends Reshow {
     super.componentDidMount();
 
     ajaxDispatch("config/set", {
-      onUrlChange: this.getUrlChangeState.bind(this)
+      onUrlChange: this.getUrlChangeState.bind(this),
     });
   }
 }
