@@ -33,6 +33,7 @@ describe('Test RealTimeReturn', () => {
     const uFake = uWrap.instance();
     dispatch({data: 'foo'});
     setTimeout(() => {
+      uWrap.update();
       expect(uFake.el.props.data).to.equal('foo');
       dispatch({type: 'realTime', params: {r: {data: 'bar'}}});
       setTimeout(() => {

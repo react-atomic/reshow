@@ -7,7 +7,7 @@ import { toJS } from "reshow-return";
 
 import { Return } from "../molecules/ReshowComponent";
 import updateCanonicalUrl, {
-  initCanonicalUrl
+  initCanonicalUrl,
 } from "../../src/updateCanonicalUrl";
 import { dispatch } from "../../src/dispatcher";
 import { globalStore } from "../../src/stores/globalStore";
@@ -16,7 +16,7 @@ import pageStore from "../../src/stores/pageStore";
 const isArray = Array.isArray;
 let isInit;
 
-const update = params => {
+const update = (params) => {
   const realTimeData = get(params, ["--realTimeData--"]);
   const reset = get(params, ["--reset--"]);
   const type = realTimeData
@@ -50,7 +50,11 @@ class Reshow extends PureComponent {
   }
 
   resetGlobalPath(path) {
-    path = path ?? pageStore.getThemePath();
+    if (path) {
+      setTimeout(() => dispatch({ themePath: path }));
+    } else {
+      path = pageStore.getThemePath();
+    }
     globalStore.path = path;
     return globalStore.path;
   }

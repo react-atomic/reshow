@@ -1,5 +1,6 @@
 import Reshow from "reshow";
 import { ajaxDispatch } from "organism-react-ajax";
+import { doc } from "win-doc";
 
 import handleAnchor from "../../src/handleAnchor";
 import urlStore from "../../src/stores/urlStore";
