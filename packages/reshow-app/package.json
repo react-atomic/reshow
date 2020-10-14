@@ -10,7 +10,7 @@
     "@babel/cli": "^7.x"
   },
   "scripts": {
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "clean": "find ./build/* \\( ! -path \"*node_modules*\" \\) | xargs rm -rf",
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build && cp .npmignore ./build && cp babelrc ./build/.babelrc",
     "build:src": "BABEL_ENV=build babel src -d build --root-mode upward",
     "build:client": "BABEL_ENV=es babel src/client.js -d build --root-mode upward",

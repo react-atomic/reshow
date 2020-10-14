@@ -1,10 +1,13 @@
 import ora from "ora";
+import fs from "fs";
 
 const defaultTips = [
   "Trust me, it will finish soon.",
   "If you don't trust me, trust yourself.",
-  "If you don't trust yourself, Just wait until you see the finished."
+  "If you don't trust yourself, Just wait until you see the finished.",
 ];
+
+fs.writeFile("webpack.pid", process.pid, () => {});
 
 const init = ({ confs }) => {
   const tips = confs.tips?.slice(0) || defaultTips.slice(0);
@@ -17,7 +20,7 @@ const init = ({ confs }) => {
   if (!spinner) {
     spinner = ora({
       text: curTip,
-      spinner: "line"
+      spinner: "line",
     }).start();
   }
 
