@@ -38,7 +38,7 @@ describe('Test Storage Return', () => {
     storageDispatch('local', {data: uString});
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal(uString);
-    });
+    }, 100);
   });
 
   it('test get session storage', done => {
