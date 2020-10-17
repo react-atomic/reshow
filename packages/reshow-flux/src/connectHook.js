@@ -1,5 +1,5 @@
 import "setimmediate";
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import build from "reshow-build";
 import dedup from "array.dedup";
 import { CHANGE } from "reshow-flux-base";
@@ -55,7 +55,7 @@ const connectHook = (Base, options) => {
 
     useEffect(() => () => (_mount.current = false), []);
 
-    return useMemo(() => build(Base)(data.state), [data.state]);
+    return build(Base)(data.state);
   };
   const componentName = displayName || Base.displayName || Base.name;
   Connected.displayName = "HookConnected(" + componentName + ")";
