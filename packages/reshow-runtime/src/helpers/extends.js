@@ -1,6 +1,6 @@
 var _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1, j = arguments.length; i < j; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -12,4 +12,4 @@ var _extends =
     return target;
   };
 
-export default _extends
+export default _extends;

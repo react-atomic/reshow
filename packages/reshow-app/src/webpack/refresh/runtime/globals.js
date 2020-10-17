@@ -1,2 +1,2 @@
-const refreshUtils = '__react_refresh_utils__';
-export {refreshUtils};
+const refreshUtils = "__react_refresh_utils__";
+export { refreshUtils };

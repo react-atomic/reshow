@@ -9,13 +9,13 @@ export default function _objectSpread2(target) {
 
       if (typeIs(Object.getOwnPropertySymbols) === FUNCTION) {
         ownKeys = ownKeys.concat(
-          Object.getOwnPropertySymbols(source).filter(function(sym) {
+          Object.getOwnPropertySymbols(source).filter(function (sym) {
             return Object.getOwnPropertyDescriptor(source, sym).enumerable;
           })
         );
       }
 
-      ownKeys.forEach(function(key) {
+      ownKeys.forEach(function (key) {
         defineProperty(target, key, source[key]);
       });
     } else {

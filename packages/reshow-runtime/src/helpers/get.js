@@ -10,7 +10,7 @@ const get = (object, property, receiver) => {
     } else {
       return get(parent, property, receiver);
     }
-  } else if ('value' in desc) {
+  } else if ("value" in desc) {
     return desc.value;
   } else {
     var getter = desc.get;

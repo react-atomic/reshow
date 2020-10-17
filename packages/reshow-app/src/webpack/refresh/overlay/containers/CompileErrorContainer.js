@@ -1,6 +1,6 @@
-const CompileErrorTrace = require('../components/CompileErrorTrace');
-const PageHeader = require('../components/PageHeader');
-const Spacer = require('../components/Spacer');
+const CompileErrorTrace = require("../components/CompileErrorTrace");
+const PageHeader = require("../components/PageHeader");
+const Spacer = require("../components/Spacer");
 
 /**
  * @typedef {Object} CompileErrorContainerProps
@@ -16,10 +16,10 @@ const Spacer = require('../components/Spacer');
  */
 function CompileErrorContainer(document, root, props) {
   PageHeader(document, root, {
-    title: 'Failed to compile.',
+    title: "Failed to compile.",
   });
   CompileErrorTrace(document, root, { errorMessage: props.errorMessage });
-  Spacer(document, root, { space: '1rem' });
+  Spacer(document, root, { space: "1rem" });
 }
 
 module.exports = CompileErrorContainer;

@@ -1,14 +1,14 @@
-import {STRING, OBJECT, FUNCTION, UNDEFINED} from 'reshow-constant';
+import { STRING, OBJECT, FUNCTION, UNDEFINED } from "reshow-constant";
 const types =
-  '|number|boolean|' +
+  "|number|boolean|" +
   STRING +
-  '|' +
+  "|" +
   OBJECT +
-  '|' +
+  "|" +
   FUNCTION +
-  '|' +
+  "|" +
   UNDEFINED +
-  '|';
+  "|";
 
 /**
  * Do not use this.
@@ -16,7 +16,7 @@ const types =
  */
 
 const toBase = (type, name) => {
-  if (-1 === types.indexOf('|' + type + '|')) {
+  if (-1 === types.indexOf("|" + type + "|")) {
     if (!name) {
       name = type;
     }
@@ -29,7 +29,7 @@ const toBase = (type, name) => {
 const getTypeIs = (val, name) => {
   const type = Object.prototype.toString
     .call(val)
-    .replace(/^\[object\s(.*)\]$/, '$1')
+    .replace(/^\[object\s(.*)\]$/, "$1")
     .toLowerCase();
   return toBase(type, name);
 };

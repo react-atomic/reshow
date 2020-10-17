@@ -6,7 +6,7 @@ const getVendorSplitConfig = ({ confs }) => ({
   filename:
     confs.bustMode === "name" ? "[name].[hash].bundle.js" : "[name].bundle.js",
   priority: 10,
-  enforce: true
+  enforce: true,
 });
 
 export { getVendorSplitConfig };

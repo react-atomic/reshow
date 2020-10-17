@@ -6,18 +6,18 @@
  * @param {WebpackEntry} [originalEntry] A Webpack entry object.
  * @returns {WebpackEntry} An injected entry object.
  */
-const injectRefreshEntry = originalEntry => {
+const injectRefreshEntry = (originalEntry) => {
   const entryInjects = [
     // React-refresh runtime
-    require.resolve('../runtime/ReactRefreshEntry'),
+    require.resolve("../runtime/ReactRefreshEntry"),
     // Error overlay runtime
-    require.resolve('../runtime/ErrorOverlayEntry'),
+    require.resolve("../runtime/ErrorOverlayEntry"),
     // React-refresh Babel transform detection
-    require.resolve('../runtime/BabelDetectComponent'),
+    require.resolve("../runtime/BabelDetectComponent"),
   ];
 
   // Single string entry point
-  if (typeof originalEntry === 'string') {
+  if (typeof originalEntry === "string") {
     return [...entryInjects, originalEntry];
   }
   // Single array entry point
@@ -25,7 +25,7 @@ const injectRefreshEntry = originalEntry => {
     return [...entryInjects, ...originalEntry];
   }
   // Multiple entry points
-  if (typeof originalEntry === 'object') {
+  if (typeof originalEntry === "object") {
     return Object.entries(originalEntry).reduce(
       (acc, [curKey, curEntry]) => ({
         ...acc,
@@ -35,14 +35,14 @@ const injectRefreshEntry = originalEntry => {
     );
   }
   // Dynamic entry points
-  if (typeof originalEntry === 'function') {
+  if (typeof originalEntry === "function") {
     return (...args) =>
-      Promise.resolve(originalEntry(...args)).then(resolvedEntry =>
+      Promise.resolve(originalEntry(...args)).then((resolvedEntry) =>
         injectRefreshEntry(resolvedEntry)
       );
   }
 
-  throw new Error('Failed to parse the Webpack `entry` object!');
+  throw new Error("Failed to parse the Webpack `entry` object!");
 };
 
 export default injectRefreshEntry;

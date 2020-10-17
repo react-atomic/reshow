@@ -1,4 +1,4 @@
-const DEVELOPMENT = 'development';
-const PRODUCTION = 'production';
+const DEVELOPMENT = "development";
+const PRODUCTION = "production";
 
-export {DEVELOPMENT, PRODUCTION};
+export { DEVELOPMENT, PRODUCTION };

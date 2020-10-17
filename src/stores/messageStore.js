@@ -1,39 +1,39 @@
-import {ReduceStore} from 'reshow-flux';
-import {Map, List} from 'immutable';
-import get from 'get-object-value';
-import callfunc from 'call-func';
+import { ReduceStore } from "reshow-flux";
+import { Map, List } from "immutable";
+import get from "get-object-value";
+import callfunc from "call-func";
 
-import dispatcher, {dispatch} from '../dispatcher';
+import dispatcher, { dispatch } from "../dispatcher";
 
 let alertCount = 0;
 const isArray = Array.isArray;
 const keys = Object.keys;
 
-const toMessage = message => {
-  if (-1 !== 'string|number'.indexOf(typeof message)) {
-    message = {message};
+const toMessage = (message) => {
+  if (-1 !== "string|number".indexOf(typeof message)) {
+    message = { message };
   }
   if (!message.id) {
-    message.id = 'm-' + alertCount;
+    message.id = "m-" + alertCount;
     alertCount++;
   }
   return message;
 };
 
-const getMessage = action => toMessage(get(action, ['params', 'message']));
+const getMessage = (action) => toMessage(get(action, ["params", "message"]));
 
 class MessageStore extends ReduceStore {
   dialogCallback = null;
   alertMap = {};
 
   getAlertList() {
-    return keys(this.alertMap).map(key => this.alertMap[key]);
+    return keys(this.alertMap).map((key) => this.alertMap[key]);
   }
 
   dialogStart(state, action) {
-    const params = get(action, ['params']);
-    const {dialog, dialogProps, dialogTo, callback} = params;
-    const next = {dialog};
+    const params = get(action, ["params"]);
+    const { dialog, dialogProps, dialogTo, callback } = params;
+    const next = { dialog };
     if (dialogProps) {
       next.dialogProps = dialogProps;
     }
@@ -47,62 +47,59 @@ class MessageStore extends ReduceStore {
   }
 
   dialogEnd(state, action) {
-    let dialogTo = state.get('dialogTo');
+    let dialogTo = state.get("dialogTo");
     if (!dialogTo) {
-      dialogTo = 'dialogReturn';
+      dialogTo = "dialogReturn";
     }
-    const value = get(action, ['params', 'item', 'props', 'value']);
+    const value = get(action, ["params", "item", "props", "value"]);
     dispatch({
       [dialogTo]: value,
     });
     callfunc(this.dialogCallback, [value]);
     this.dialogCallback = null;
-    return state
-      .delete('dialog')
-      .delete('dialogProps')
-      .delete('dialogTo');
+    return state.delete("dialog").delete("dialogProps").delete("dialogTo");
   }
 
   alertReset(state, action) {
-    let alerts = get(action, ['params', 'alerts']);
+    let alerts = get(action, ["params", "alerts"]);
     this.alertMap = {};
     if (isArray(alerts)) {
-      alerts.map(a => {
-        const message = toMessage(a)
+      alerts.map((a) => {
+        const message = toMessage(a);
         this.alertMap[message.id] = message;
       });
     }
-    return state.set('alerts', this.getAlertList());
+    return state.set("alerts", this.getAlertList());
   }
 
   alertDel(state, action) {
-    const id = get(action, ['params', 'id']);
+    const id = get(action, ["params", "id"]);
     delete this.alertMap[id];
-    return state.set('alerts', this.getAlertList());
+    return state.set("alerts", this.getAlertList());
   }
 
   alertAdd(state, action) {
-    const alerts = state.get('alerts');
+    const alerts = state.get("alerts");
     const message = getMessage(action);
-    const alertProps = get(action, ['params', 'alertProps']);
+    const alertProps = get(action, ["params", "alertProps"]);
     if (alertProps) {
-      state = state.set('alertProps', alertProps);
+      state = state.set("alertProps", alertProps);
     }
     this.alertMap[message.id] = message;
-    return state.set('alerts', this.getAlertList());
+    return state.set("alerts", this.getAlertList());
   }
 
   reduce(state, action) {
     switch (action.type) {
-      case 'dialog/start':
+      case "dialog/start":
         return this.dialogStart(state, action);
-      case 'dialog/end':
+      case "dialog/end":
         return this.dialogEnd(state, action);
-      case 'alert/reset':
+      case "alert/reset":
         return this.alertReset(state, action);
-      case 'alert/del':
+      case "alert/del":
         return this.alertDel(state, action);
-      case 'alert/add':
+      case "alert/add":
         return this.alertAdd(state, action);
       default:
         return state;

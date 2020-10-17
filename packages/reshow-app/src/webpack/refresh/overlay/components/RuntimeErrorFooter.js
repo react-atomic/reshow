@@ -1,5 +1,5 @@
-const theme = require('../theme');
-const Spacer = require('./Spacer');
+const theme = require("../theme");
+const Spacer = require("./Spacer");
 
 /**
  * @typedef {Object} RuntimeErrorFooterProps
@@ -18,32 +18,32 @@ const Spacer = require('./Spacer');
  * @returns {void}
  */
 function RuntimeErrorFooter(document, root, props) {
-  const footer = document.createElement('div');
-  footer.style.backgroundColor = '#' + theme.dimgrey;
-  footer.style.bottom = '0';
-  footer.style.boxShadow = '0 -1px 4px rgba(0, 0, 0, 0.3)';
-  footer.style.height = '2.5rem';
-  footer.style.left = '0';
-  footer.style.lineHeight = '2.5rem';
-  footer.style.position = 'fixed';
-  footer.style.textAlign = 'center';
-  footer.style.width = '100vw';
-  footer.style.zIndex = '2';
+  const footer = document.createElement("div");
+  footer.style.backgroundColor = "#" + theme.dimgrey;
+  footer.style.bottom = "0";
+  footer.style.boxShadow = "0 -1px 4px rgba(0, 0, 0, 0.3)";
+  footer.style.height = "2.5rem";
+  footer.style.left = "0";
+  footer.style.lineHeight = "2.5rem";
+  footer.style.position = "fixed";
+  footer.style.textAlign = "center";
+  footer.style.width = "100vw";
+  footer.style.zIndex = "2";
 
   const BUTTON_CONFIGS = {
     prev: {
-      id: 'prev',
-      label: '◀&ensp;Prev',
+      id: "prev",
+      label: "◀&ensp;Prev",
       onClick: props.onClickPrevButton,
     },
     close: {
-      id: 'close',
-      label: '×&ensp;Close',
+      id: "close",
+      label: "×&ensp;Close",
       onClick: props.onClickCloseButton,
     },
     next: {
-      id: 'next',
-      label: 'Next&ensp;▶',
+      id: "next",
+      label: "Next&ensp;▶",
       onClick: props.onClickNextButton,
     },
   };
@@ -58,19 +58,19 @@ function RuntimeErrorFooter(document, root, props) {
   for (let i = 0; i < buttons.length; i += 1) {
     const buttonConfig = buttons[i];
 
-    const button = document.createElement('button');
+    const button = document.createElement("button");
     button.id = buttonConfig.id;
     button.innerHTML = buttonConfig.label;
     button.tabIndex = 1;
-    button.style.backgroundColor = '#' + theme.dimgrey;
-    button.style.border = 'none';
-    button.style.color = '#' + theme.white;
-    button.style.cursor = 'pointer';
-    button.style.fontSize = 'inherit';
-    button.style.height = '100%';
-    button.style.padding = '0.5rem 0.75rem';
-    button.style.width = (100 / buttons.length).toString(10) + '%';
-    button.addEventListener('click', buttonConfig.onClick);
+    button.style.backgroundColor = "#" + theme.dimgrey;
+    button.style.border = "none";
+    button.style.color = "#" + theme.white;
+    button.style.cursor = "pointer";
+    button.style.fontSize = "inherit";
+    button.style.height = "100%";
+    button.style.padding = "0.5rem 0.75rem";
+    button.style.width = (100 / buttons.length).toString(10) + "%";
+    button.addEventListener("click", buttonConfig.onClick);
 
     if (buttonConfig.id === props.initialFocus) {
       initialFocusButton = button;
@@ -81,7 +81,7 @@ function RuntimeErrorFooter(document, root, props) {
 
   root.appendChild(footer);
 
-  Spacer(document, root, { space: '2.5rem' });
+  Spacer(document, root, { space: "2.5rem" });
 
   if (initialFocusButton) {
     initialFocusButton.focus();

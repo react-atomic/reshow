@@ -1,4 +1,4 @@
-import {Dispatcher} from 'reshow-flux';
+import { Dispatcher } from "reshow-flux";
 
 const dispatcher = new Dispatcher();
 
@@ -8,7 +8,7 @@ const dispatcher = new Dispatcher();
 export default dispatcher;
 
 /**
- * Dispatch 
+ * Dispatch
  *
  * import {storageDispatch} from 'reshow';
  * storageDispatch({xxx:yyy});

@@ -1,4 +1,4 @@
-import TerserPlugin from 'terser-webpack-plugin';
+import TerserPlugin from "terser-webpack-plugin";
 
 /**
  * https://github.com/terser/terser#compress-options

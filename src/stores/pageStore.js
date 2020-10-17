@@ -1,25 +1,25 @@
-import {ReduceStore} from 'reshow-flux';
-import dispatcher from '../dispatcher';
+import { ReduceStore } from "reshow-flux";
+import dispatcher from "../dispatcher";
 
 const keys = Object.keys;
 
 class PageStore extends ReduceStore {
   getThemePath() {
     const state = this.getState();
-    let themePath = state.get('themePath');
+    let themePath = state.get("themePath");
     if (!themePath) {
-      themePath = state.get('defaultThemePath');
+      themePath = state.get("defaultThemePath");
     }
     return themePath;
   }
 
   reduce(state, action) {
     switch (action.type) {
-      case 'config/set':
+      case "config/set":
         return state.merge(action.params);
-      case 'config/reset':
+      case "config/reset":
         return state.clear().merge(action.params);
-      case 'realTime':
+      case "realTime":
         return state;
       default:
         if (keys(action)) {

@@ -6,7 +6,7 @@ const getOutput = ({ path, confs }) => {
         : "[name].bundle.js",
     path,
     publicPath: confs.assetsRoot,
-    chunkFilename: "[id].[hash].bundle.js"
+    chunkFilename: "[id].[hash].bundle.js",
   };
 };
 

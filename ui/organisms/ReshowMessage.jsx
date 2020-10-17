@@ -12,14 +12,14 @@ import { dispatch } from "../../src/index";
 class Body extends PureComponent {
   static defaultProps = {
     dialogComponent: Dialog,
-    alertComponent: AlertsNotifier
+    alertComponent: AlertsNotifier,
   };
 
-  handleDismiss = e => {
+  handleDismiss = (e) => {
     const id = e?.data?.id;
     if (id) {
       dispatch("alert/del", {
-        id
+        id,
       });
     }
   };
@@ -29,7 +29,7 @@ class Body extends PureComponent {
       const { dialog } = this.props;
       if (dialog) {
         dispatch("dialog/end", {
-          item
+          item,
         });
       }
     });
@@ -44,7 +44,7 @@ class Body extends PureComponent {
       alertComponent,
       dialog,
       dialogProps,
-      dialogComponent
+      dialogComponent,
     } = this.props;
     let thisDialog = null;
     if (dialog) {
@@ -55,7 +55,7 @@ class Body extends PureComponent {
               ...defaultDialogProps,
               ...toJS(dialogProps),
               onClick: this.handleClick,
-              onClose: this.handleClick
+              onClose: this.handleClick,
             },
             toJS(dialog)
           )}
@@ -69,14 +69,14 @@ class Body extends PureComponent {
           ...defaultAlertProps,
           ...toJS(alertProps),
           onDismiss: this.handleDismiss,
-          alerts: toJS(alerts)
+          alerts: toJS(alerts),
         })}
       </SemanticUI>
     );
   }
 }
 
-const ReshowMessage = memo(props => (
+const ReshowMessage = memo((props) => (
   <Return
     stores={[messageStore]}
     initStates={["alerts", "alertProps", "dialog", "dialogProps"]}

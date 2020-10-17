@@ -1,12 +1,12 @@
-import {returnOptions, ReturnComponent} from 'reshow-return';
-import {connectHook} from 'reshow-flux';
-import pageStore from '../../src/stores/pageStore';
-import {globalStore} from '../../src/stores/globalStore';
+import { returnOptions, ReturnComponent } from "reshow-return";
+import { connectHook } from "reshow-flux";
+import pageStore from "../../src/stores/pageStore";
+import { globalStore } from "../../src/stores/globalStore";
 
-const storeLocator = props => props.stores || [pageStore];
-const globalStoreLocator = props => globalStore;
-const initStates = ['data', 'I18N'];
-const pathStates = {I13N: ['data', 'I13N']};
+const storeLocator = (props) => props.stores || [pageStore];
+const globalStoreLocator = (props) => globalStore;
+const initStates = ["data", "I18N"];
+const pathStates = { I13N: ["data", "I13N"] };
 
 const myReturnOptions = {
   ...returnOptions,
@@ -15,10 +15,10 @@ const myReturnOptions = {
     initStates,
     pathStates,
     storeLocator,
-    globalStoreLocator
-  }
-}
+    globalStoreLocator,
+  },
+};
 
 const MyReturn = connectHook(ReturnComponent, myReturnOptions);
 
-export {myReturnOptions as returnOptions, MyReturn as Return};
+export { myReturnOptions as returnOptions, MyReturn as Return };

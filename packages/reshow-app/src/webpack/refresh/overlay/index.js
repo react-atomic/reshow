@@ -1,10 +1,10 @@
-import memoize from 'memoize-one';
-const RuntimeErrorFooter = require('./components/RuntimeErrorFooter');
-const RuntimeErrorHeader = require('./components/RuntimeErrorHeader');
-const CompileErrorContainer = require('./containers/CompileErrorContainer');
-const RuntimeErrorContainer = require('./containers/RuntimeErrorContainer');
-const theme = require('./theme');
-const removeAllChildren = require('./utils/removeAllChildren');
+import memoize from "memoize-one";
+const RuntimeErrorFooter = require("./components/RuntimeErrorFooter");
+const RuntimeErrorHeader = require("./components/RuntimeErrorHeader");
+const CompileErrorContainer = require("./containers/CompileErrorContainer");
+const RuntimeErrorContainer = require("./containers/RuntimeErrorContainer");
+const theme = require("./theme");
+const removeAllChildren = require("./utils/removeAllChildren");
 
 /**
  * @callback RenderFn
@@ -38,7 +38,7 @@ let scheduledRenderFn = null;
  * The latest error message from Webpack compilation.
  * @type {string}
  */
-let currentCompileErrorMessage = '';
+let currentCompileErrorMessage = "";
 /**
  * Index of the error currently shown by the overlay.
  * @type {number}
@@ -69,20 +69,20 @@ let currentMode = null;
  * @returns {HTMLIFrameElement}
  */
 function IframeRoot(document, root, props) {
-  const iframe = document.createElement('iframe');
-  iframe.id = 'react-refresh-overlay';
-  iframe.src = 'about:blank';
+  const iframe = document.createElement("iframe");
+  iframe.id = "react-refresh-overlay";
+  iframe.src = "about:blank";
 
-  iframe.style.border = 'none';
-  iframe.style.height = '100vh';
-  iframe.style.left = '0';
-  iframe.style.position = 'fixed';
-  iframe.style.top = '0';
-  iframe.style.width = '100vw';
-  iframe.style.zIndex = '2147483647';
-  iframe.addEventListener('load', function onLoad() {
+  iframe.style.border = "none";
+  iframe.style.height = "100vh";
+  iframe.style.left = "0";
+  iframe.style.position = "fixed";
+  iframe.style.top = "0";
+  iframe.style.width = "100vw";
+  iframe.style.zIndex = "2147483647";
+  iframe.addEventListener("load", function onLoad() {
     // Reset margin of iframe body
-    iframe.contentDocument.body.style.margin = '0';
+    iframe.contentDocument.body.style.margin = "0";
     props.onIframeLoad();
   });
 
@@ -98,31 +98,31 @@ function IframeRoot(document, root, props) {
  * @returns {HTMLDivElement}
  */
 function OverlayRoot(document, root) {
-  const div = document.createElement('div');
-  div.id = 'react-refresh-overlay-error';
+  const div = document.createElement("div");
+  div.id = "react-refresh-overlay-error";
 
   // Style the contents container
-  div.style.backgroundColor = '#' + theme.grey;
-  div.style.boxSizing = 'border-box';
-  div.style.color = '#' + theme.white;
+  div.style.backgroundColor = "#" + theme.grey;
+  div.style.boxSizing = "border-box";
+  div.style.color = "#" + theme.white;
   div.style.fontFamily = [
-    '-apple-system',
-    'BlinkMacSystemFont',
+    "-apple-system",
+    "BlinkMacSystemFont",
     '"Segoe UI"',
     '"Helvetica Neue"',
-    'Helvetica',
-    'Arial',
-    'sans-serif',
+    "Helvetica",
+    "Arial",
+    "sans-serif",
     '"Apple Color Emoji"',
     '"Segoe UI Emoji"',
-    'Segoe UI Symbol',
-  ].join(', ');
-  div.style.fontSize = '0.875rem';
-  div.style.height = '100vh';
-  div.style.lineHeight = '1.3';
-  div.style.overflow = 'auto';
-  div.style.padding = '1rem 1.5rem 0';
-  div.style.width = '100vw';
+    "Segoe UI Symbol",
+  ].join(", ");
+  div.style.fontSize = "0.875rem";
+  div.style.height = "100vh";
+  div.style.lineHeight = "1.3";
+  div.style.overflow = "auto";
+  div.style.padding = "1rem 1.5rem 0";
+  div.style.width = "100vw";
 
   root.appendChild(div);
   return div;
@@ -170,23 +170,23 @@ function ensureRootExists(renderFn) {
  * @returns {void}
  */
 function render() {
-  ensureRootExists(function() {
+  ensureRootExists(function () {
     const currentFocus = rootDocument.activeElement;
     let currentFocusId;
-    if (currentFocus.localName === 'button' && currentFocus.id) {
+    if (currentFocus.localName === "button" && currentFocus.id) {
       currentFocusId = currentFocus.id;
     }
 
     removeAllChildren(root);
 
     if (currentCompileErrorMessage) {
-      currentMode = 'compileError';
+      currentMode = "compileError";
 
       CompileErrorContainer(rootDocument, root, {
         errorMessage: currentCompileErrorMessage,
       });
     } else if (currentRuntimeErrors.length) {
-      currentMode = 'runtimeError';
+      currentMode = "runtimeError";
 
       RuntimeErrorHeader(rootDocument, root, {
         currentErrorIndex: currentRuntimeErrorIndex,
@@ -237,11 +237,11 @@ function cleanup() {
  * @returns {void}
  */
 function clearCompileError() {
-  if (!root || currentMode !== 'compileError') {
+  if (!root || currentMode !== "compileError") {
     return;
   }
 
-  currentCompileErrorMessage = '';
+  currentCompileErrorMessage = "";
   currentMode = null;
   cleanup();
 }
@@ -252,14 +252,14 @@ function clearCompileError() {
  * @returns {void}
  */
 function clearRuntimeErrors(dismissOverlay) {
-  if (!root || currentMode !== 'runtimeError') {
+  if (!root || currentMode !== "runtimeError") {
     return;
   }
 
   currentRuntimeErrorIndex = 0;
   currentRuntimeErrors = [];
 
-  if (typeof dismissOverlay === 'undefined' || dismissOverlay) {
+  if (typeof dismissOverlay === "undefined" || dismissOverlay) {
     currentMode = null;
     cleanup();
   }
@@ -319,7 +319,11 @@ function isWebpackCompileError(error) {
  * @returns {void}
  */
 function handleRuntimeError(error) {
-  if (error && !isWebpackCompileError(error) && currentRuntimeErrors.indexOf(error) === -1) {
+  if (
+    error &&
+    !isWebpackCompileError(error) &&
+    currentRuntimeErrors.indexOf(error) === -1
+  ) {
     currentRuntimeErrors = currentRuntimeErrors.concat(error);
   }
   debouncedShowRuntimeErrors(currentRuntimeErrors);

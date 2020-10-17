@@ -73,7 +73,7 @@ describe("Test Connect Hook", () => {
     });
     class VDom extends Component {
       componentDidCatch(error, errorInfo) {
-        console.log({error, errorInfo});
+        console.log({ error, errorInfo });
       }
       render() {
         return <FooHook />;
@@ -81,9 +81,7 @@ describe("Test Connect Hook", () => {
     }
     const wrap = mount(<VDom />);
     setTimeout(() => {
-      expect(wrap.html()).to.equal(
-        '<div class="bar"></div>'
-      );
+      expect(wrap.html()).to.equal('<div class="bar"></div>');
       done();
     }, 50);
   });

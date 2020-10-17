@@ -27,16 +27,18 @@ describe("Test wrap", () => {
     expect(wrap.html()).to.equal('<div data-foo="bar">after-func-call</div>');
   });
 
-
   it("test wrap after function call and unset props", () => {
     const FakeDom = () => {
-      return build((props) => {
-        delete props["data-foo"];
-        return "after-func-call";
-      }, {
-        wrap: "div",
-        doCallFunction: true,
-      })({ "data-foo": "foo", "data-bar": "bar" });
+      return build(
+        (props) => {
+          delete props["data-foo"];
+          return "after-func-call";
+        },
+        {
+          wrap: "div",
+          doCallFunction: true,
+        }
+      )({ "data-foo": "foo", "data-bar": "bar" });
     };
     const wrap = shallow(<FakeDom />);
     expect(wrap.html()).to.equal('<div data-bar="bar">after-func-call</div>');

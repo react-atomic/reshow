@@ -1,26 +1,26 @@
-import path from 'path';
-import resolve from 'resolve';
-import {declare} from '@babel/helper-plugin-utils';
-import {addDefault, isModule} from '@babel/helper-module-imports';
-import {types as t} from '@babel/core';
+import path from "path";
+import resolve from "resolve";
+import { declare } from "@babel/helper-plugin-utils";
+import { addDefault, isModule } from "@babel/helper-module-imports";
+import { types as t } from "@babel/core";
 
-import getDefinitions from './definitions';
+import getDefinitions from "./definitions";
 
 function resolveAbsoluteRuntime(moduleName, dirname) {
   try {
     return path.dirname(
-      resolve.sync(`${moduleName}/package.json`, {basedir: dirname}),
+      resolve.sync(`${moduleName}/package.json`, { basedir: dirname })
     );
   } catch (err) {
-    if (err.code !== 'MODULE_NOT_FOUND') throw err;
+    if (err.code !== "MODULE_NOT_FOUND") throw err;
 
     throw Object.assign(
       new Error(`Failed to resolve "${moduleName}" relative to "${dirname}"`),
       {
-        code: 'BABEL_RUNTIME_NOT_FOUND',
+        code: "BABEL_RUNTIME_NOT_FOUND",
         runtime: moduleName,
         dirname,
-      },
+      }
     );
   }
 }
@@ -37,107 +37,107 @@ export default declare((api, options, dirname) => {
     helpers: useRuntimeHelpers = true,
     regenerator: useRuntimeRegenerator = true,
     useESModules = false,
-    version: runtimeVersion = '7.0.0-beta.0',
+    version: runtimeVersion = "7.0.0-beta.0",
     absoluteRuntime = false,
   } = options;
 
   const definitions = getDefinitions(runtimeVersion);
 
-  if (typeof useRuntimeRegenerator !== 'boolean') {
+  if (typeof useRuntimeRegenerator !== "boolean") {
     throw new Error(
-      "The 'regenerator' option must be undefined, or a boolean.",
+      "The 'regenerator' option must be undefined, or a boolean."
     );
   }
-  if (typeof useRuntimeHelpers !== 'boolean') {
+  if (typeof useRuntimeHelpers !== "boolean") {
     throw new Error("The 'helpers' option must be undefined, or a boolean.");
   }
-  if (typeof useESModules !== 'boolean' && useESModules !== 'auto') {
+  if (typeof useESModules !== "boolean" && useESModules !== "auto") {
     throw new Error(
-      "The 'useESModules' option must be undefined, or a boolean, or 'auto'.",
+      "The 'useESModules' option must be undefined, or a boolean, or 'auto'."
     );
   }
   if (
-    typeof absoluteRuntime !== 'boolean' &&
-    typeof absoluteRuntime !== 'string'
+    typeof absoluteRuntime !== "boolean" &&
+    typeof absoluteRuntime !== "string"
   ) {
     throw new Error(
-      "The 'absoluteRuntime' option must be undefined, a boolean, or a string.",
+      "The 'absoluteRuntime' option must be undefined, a boolean, or a string."
     );
   }
   if (
     corejsVersion !== false &&
-    (typeof corejsVersion !== 'number' || corejsVersion !== 2) &&
-    (typeof corejsVersion !== 'string' || corejsVersion !== '2')
+    (typeof corejsVersion !== "number" || corejsVersion !== 2) &&
+    (typeof corejsVersion !== "string" || corejsVersion !== "2")
   ) {
     throw new Error(
       `The 'corejs' option must be undefined, false, 2 or '2', ` +
-        `but got ${JSON.stringify(corejsVersion)}.`,
+        `but got ${JSON.stringify(corejsVersion)}.`
     );
   }
-  if (typeof runtimeVersion !== 'string') {
+  if (typeof runtimeVersion !== "string") {
     throw new Error(`The 'version' option must be a version string.`);
   }
 
   function has(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);
   }
-  if (has(options, 'useBuiltIns')) {
+  if (has(options, "useBuiltIns")) {
     if (options.useBuiltIns) {
       throw new Error(
         "The 'useBuiltIns' option has been removed. The @babel/runtime " +
-          'module now uses builtins by default.',
+          "module now uses builtins by default."
       );
     } else {
       throw new Error(
         "The 'useBuiltIns' option has been removed. Use the 'corejs'" +
-          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime.",
+          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime."
       );
     }
   }
-  if (has(options, 'polyfill')) {
+  if (has(options, "polyfill")) {
     if (options.polyfill === false) {
       throw new Error(
         "The 'polyfill' option has been removed. The @babel/runtime " +
-          'module now skips polyfilling by default.',
+          "module now skips polyfilling by default."
       );
     } else {
       throw new Error(
         "The 'polyfill' option has been removed. Use the 'corejs'" +
-          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime.",
+          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime."
       );
     }
   }
-  if (has(options, 'moduleName')) {
+  if (has(options, "moduleName")) {
     throw new Error(
       "The 'moduleName' option has been removed. @babel/transform-runtime " +
-        'no longer supports arbitrary runtimes. If you were using this to ' +
+        "no longer supports arbitrary runtimes. If you were using this to " +
         "set an absolute path for Babel's standard runtimes, please use the " +
-        "'absoluteRuntime' option.",
+        "'absoluteRuntime' option."
     );
   }
 
   const esModules =
-    useESModules === 'auto' ? api.caller(supportsStaticESM) : useESModules;
+    useESModules === "auto" ? api.caller(supportsStaticESM) : useESModules;
 
-  const injectCoreJS2 = `${corejsVersion}` === '2';
+  const injectCoreJS2 = `${corejsVersion}` === "2";
   const moduleName = injectCoreJS2
-    ? '@babel/runtime-corejs2'
-    : 'reshow-runtime';
+    ? "@babel/runtime-corejs2"
+    : "reshow-runtime";
 
-  const HEADER_HELPERS = ['interopRequireWildcard', 'interopRequireDefault'];
+  const HEADER_HELPERS = ["interopRequireWildcard", "interopRequireDefault"];
 
   let modulePath = moduleName;
   if (absoluteRuntime !== false) {
     modulePath = resolveAbsoluteRuntime(
       moduleName,
-      path.resolve(dirname, absoluteRuntime === true ? '.' : absoluteRuntime),
+      path.resolve(dirname, absoluteRuntime === true ? "." : absoluteRuntime)
     );
   }
 
   return {
     pre(file) {
       if (useRuntimeHelpers) {
-        file.set('helperGenerator', name => {
+        file.set("helperGenerator", (name) => {
           // If the helper didn't exist yet at the version given, we bail
           // out and let Babel either insert it directly, or throw an error
           // so that plugins can handle that case properly.
@@ -157,14 +157,14 @@ export default declare((api, options, dirname) => {
             isInteropHelper && !isModule(file.path) ? 4 : undefined;
 
           const helpersDir =
-            esModules && file.path.node.sourceType === 'module'
-              ? 'es/helpers'
-              : 'helpers';
+            esModules && file.path.node.sourceType === "module"
+              ? "es/helpers"
+              : "helpers";
 
           return this.addDefaultImport(
             `${modulePath}/${helpersDir}/${name}`,
             name,
-            blockHoist,
+            blockHoist
           );
         });
       }
@@ -176,14 +176,14 @@ export default declare((api, options, dirname) => {
         // file, we can't reused the cached helper name after things have been
         // transformed because it has almost certainly been renamed.
         const cacheKey = isModule(file.path);
-        const key = `${source}:${nameHint}:${cacheKey || ''}`;
+        const key = `${source}:${nameHint}:${cacheKey || ""}`;
 
         let cached = cache.get(key);
         if (cached) {
           cached = t.cloneNode(cached);
         } else {
           cached = addDefault(file.path, source, {
-            importedInterop: 'uncompiled',
+            importedInterop: "uncompiled",
             nameHint,
             blockHoist,
           });
@@ -196,13 +196,13 @@ export default declare((api, options, dirname) => {
 
     visitor: {
       ReferencedIdentifier(path) {
-        const {node, parent, scope} = path;
-        if (node.name === 'regeneratorRuntime' && useRuntimeRegenerator) {
+        const { node, parent, scope } = path;
+        if (node.name === "regeneratorRuntime" && useRuntimeRegenerator) {
           path.replaceWith(
             this.addDefaultImport(
               `${modulePath}/regenerator`,
-              'regeneratorRuntime',
-            ),
+              "regeneratorRuntime"
+            )
           );
           return;
         }
@@ -217,8 +217,8 @@ export default declare((api, options, dirname) => {
         path.replaceWith(
           this.addDefaultImport(
             `${modulePath}/core-js/${definitions.builtins[node.name]}`,
-            node.name,
-          ),
+            node.name
+          )
         );
       },
 
@@ -232,7 +232,7 @@ export default declare((api, options, dirname) => {
         const callee = path.node.callee;
         if (!t.isMemberExpression(callee)) return;
         if (!callee.computed) return;
-        if (!path.get('callee.property').matchesPattern('Symbol.iterator')) {
+        if (!path.get("callee.property").matchesPattern("Symbol.iterator")) {
           return;
         }
 
@@ -240,10 +240,10 @@ export default declare((api, options, dirname) => {
           t.callExpression(
             this.addDefaultImport(
               `${modulePath}/core-js/get-iterator`,
-              'getIterator',
+              "getIterator"
             ),
-            [callee.object],
-          ),
+            [callee.object]
+          )
         );
       },
 
@@ -251,17 +251,17 @@ export default declare((api, options, dirname) => {
       BinaryExpression(path) {
         if (!injectCoreJS2) return;
 
-        if (path.node.operator !== 'in') return;
-        if (!path.get('left').matchesPattern('Symbol.iterator')) return;
+        if (path.node.operator !== "in") return;
+        if (!path.get("left").matchesPattern("Symbol.iterator")) return;
 
         path.replaceWith(
           t.callExpression(
             this.addDefaultImport(
               `${modulePath}/core-js/is-iterable`,
-              'isIterable',
+              "isIterable"
             ),
-            [path.node.right],
-          ),
+            [path.node.right]
+          )
         );
       },
 
@@ -271,7 +271,7 @@ export default declare((api, options, dirname) => {
           if (!injectCoreJS2) return;
           if (!path.isReferenced()) return;
 
-          const {node} = path;
+          const { node } = path;
           const obj = node.object;
           const prop = node.property;
 
@@ -287,8 +287,8 @@ export default declare((api, options, dirname) => {
 
           // special case Object.defineProperty to not use core-js when using string keys
           if (
-            obj.name === 'Object' &&
-            prop.name === 'defineProperty' &&
+            obj.name === "Object" &&
+            prop.name === "defineProperty" &&
             path.parentPath.isCallExpression()
           ) {
             const call = path.parentPath.node;
@@ -300,8 +300,8 @@ export default declare((api, options, dirname) => {
           path.replaceWith(
             this.addDefaultImport(
               `${modulePath}/core-js/${methods[prop.name]}`,
-              `${obj.name}$${prop.name}`,
-            ),
+              `${obj.name}$${prop.name}`
+            )
           );
         },
 
@@ -309,7 +309,7 @@ export default declare((api, options, dirname) => {
           if (!injectCoreJS2) return;
           if (!path.isReferenced()) return;
 
-          const {node} = path;
+          const { node } = path;
           const obj = node.object;
 
           if (!has(definitions.builtins, obj.name)) return;
@@ -319,11 +319,11 @@ export default declare((api, options, dirname) => {
             t.memberExpression(
               this.addDefaultImport(
                 `${modulePath}/core-js/${definitions.builtins[obj.name]}`,
-                obj.name,
+                obj.name
               ),
               node.property,
-              node.computed,
-            ),
+              node.computed
+            )
           );
         },
       },

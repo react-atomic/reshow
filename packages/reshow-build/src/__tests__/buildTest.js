@@ -8,10 +8,9 @@ configure({ adapter: new Adapter() });
 import build from "../index";
 
 describe("Test build", () => {
-
   it("test function with error", () => {
     const run = () => {
-      build(props => {
+      build((props) => {
         expect(props.foo).to.equal("bar111");
       })({ foo: "bar" });
     };
@@ -19,12 +18,12 @@ describe("Test build", () => {
   });
 
   it("test function with return", () => {
-    const a = build(props => props.foo)({ foo: "barbar" });
+    const a = build((props) => props.foo)({ foo: "barbar" });
     expect(a).to.equal("barbar");
   });
 
   it("test with stateless function return", () => {
-    const func = props => <div {...props} />;
+    const func = (props) => <div {...props} />;
     const a = build(func)({ foo: "barbar" });
     // will return react instance
     expect(a.props.foo).to.equal("barbar");
@@ -37,7 +36,7 @@ describe("Test build", () => {
         return <div>{this.props.foo}</div>;
       }
     }
-    const func = props => {
+    const func = (props) => {
       return <FakeComponent {...props} />;
     };
     const vDom = build(func)({ foo: "bar3" });
@@ -46,7 +45,7 @@ describe("Test build", () => {
   });
 
   it("test with func and child", () => {
-    const result = build(props => props)({ foo: "bar" }, "hello child");
+    const result = build((props) => props)({ foo: "bar" }, "hello child");
     expect(result.children).to.equal("hello child");
     expect(result.foo).to.equal("bar");
   });
@@ -68,14 +67,14 @@ describe("Test build", () => {
   });
 
   it("test with component", () => {
-    const FakeComponent = props => <div>{props.foo}</div>;
+    const FakeComponent = (props) => <div>{props.foo}</div>;
     const vDom = build(FakeComponent)({ foo: "bar" });
     const html = shallow(vDom).html();
     expect(html).to.equal("<div>bar</div>");
   });
 
   it("test with instance", () => {
-    const FakeComponent = props => <div>{props.foo}</div>;
+    const FakeComponent = (props) => <div>{props.foo}</div>;
     const vDom = <FakeComponent />;
     const html = shallow(build(vDom)({ foo: "bar1" })).html();
     expect(html).to.equal("<div>bar1</div>");
@@ -144,7 +143,7 @@ describe("Test build", () => {
         <div>
           {build(children)({
             foo: <div>{"foo"}</div>,
-            bar: <div>{"bar"}</div>
+            bar: <div>{"bar"}</div>,
           })}
         </div>
       );
@@ -170,7 +169,7 @@ describe("Test build", () => {
         <div>
           {build(children)({
             foo: <div>{"foo"}</div>,
-            bar: <div>{"bar"}</div>
+            bar: <div>{"bar"}</div>,
           })}
         </div>
       );
@@ -190,5 +189,4 @@ describe("Test build", () => {
       '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
     );
   });
-
 });

@@ -6,6 +6,6 @@ const objectWithoutProperties = (obj, keys) => {
     target[i] = obj[i];
   }
   return target;
-}
+};
 
-export default objectWithoutProperties
+export default objectWithoutProperties;

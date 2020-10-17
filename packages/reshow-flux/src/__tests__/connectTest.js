@@ -125,9 +125,9 @@ describe("Test Connect", () => {
     changeFoo("bar");
     expect(html.html()).to.equal("<div>bar</div>");
     expect(calculateStateProps).to.deep.equal({ foo: "bar" });
-    setTimeout(()=>{
-    expect(getStoresProps).to.deep.equal({ foo: "bar" });
-    done();
+    setTimeout(() => {
+      expect(getStoresProps).to.deep.equal({ foo: "bar" });
+      done();
     }, 100);
   });
 

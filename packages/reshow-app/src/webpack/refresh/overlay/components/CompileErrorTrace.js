@@ -1,7 +1,7 @@
-const ansiHTML = require('ansi-html');
-const { Html5Entities } = require('html-entities');
-const theme = require('../theme');
-const formatFilename = require('../utils/formatFilename');
+const ansiHTML = require("ansi-html");
+const { Html5Entities } = require("html-entities");
+const theme = require("../theme");
+const formatFilename = require("../utils/formatFilename");
 
 ansiHTML.setColors(theme);
 
@@ -20,16 +20,16 @@ const entities = new Html5Entities();
  * @returns {void}
  */
 function CompileErrorTrace(document, root, props) {
-  const errorParts = props.errorMessage.split('\n');
+  const errorParts = props.errorMessage.split("\n");
   const errorMessage = errorParts
     .splice(1, 1)[0]
     // Strip filename from the error message
-    .replace(/^(.*:)\s.*:(\s.*)$/, '$1$2');
+    .replace(/^(.*:)\s.*:(\s.*)$/, "$1$2");
   errorParts[0] = formatFilename(errorParts[0]);
   errorParts.unshift(errorMessage);
 
-  const stackContainer = document.createElement('pre');
-  stackContainer.innerHTML = ansiHTML(entities.encode(errorParts.join('\n')));
+  const stackContainer = document.createElement("pre");
+  stackContainer.innerHTML = ansiHTML(entities.encode(errorParts.join("\n")));
   stackContainer.style.fontFamily = [
     '"Operator Mono SSm"',
     '"Operator Mono"',
@@ -38,13 +38,13 @@ function CompileErrorTrace(document, root, props) {
     '"FiraCode-Retina"',
     '"Andale Mono"',
     '"Lucida Console"',
-    'Menlo',
-    'Consolas',
-    'Monaco',
-    'monospace',
-  ].join(', ');
-  stackContainer.style.margin = '0';
-  stackContainer.style.whiteSpace = 'pre-wrap';
+    "Menlo",
+    "Consolas",
+    "Monaco",
+    "monospace",
+  ].join(", ");
+  stackContainer.style.margin = "0";
+  stackContainer.style.whiteSpace = "pre-wrap";
 
   root.appendChild(stackContainer);
 }

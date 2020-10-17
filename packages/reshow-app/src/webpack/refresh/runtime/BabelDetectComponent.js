@@ -3,7 +3,7 @@
  * @return {string} The component's name.
  */
 function BabelDetectComponent() {
-  return 'BabelDetectComponent';
+  return "BabelDetectComponent";
 }
 
 // Call the function to prevent tree-shaking

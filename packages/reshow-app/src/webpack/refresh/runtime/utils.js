@@ -1,5 +1,5 @@
-const Refresh = require('react-refresh/runtime');
-const ErrorOverlay = require('../overlay');
+const Refresh = require("react-refresh/runtime");
+const ErrorOverlay = require("../overlay");
 
 /**
  * Extracts exports from a webpack module object.
@@ -20,13 +20,13 @@ function getReactRefreshBoundarySignature(moduleExports) {
   const signature = [];
   signature.push(Refresh.getFamilyByType(moduleExports));
 
-  if (moduleExports == null || typeof moduleExports !== 'object') {
+  if (moduleExports == null || typeof moduleExports !== "object") {
     // Exit if we can't iterate over exports.
     return signature;
   }
 
   for (const key in moduleExports) {
-    if (key === '__esModule') {
+    if (key === "__esModule") {
       continue;
     }
 
@@ -106,7 +106,7 @@ function createDebounceUpdate() {
    */
   function enqueueUpdate() {
     if (refreshTimeout === undefined) {
-      refreshTimeout = setTimeout(function() {
+      refreshTimeout = setTimeout(function () {
         refreshTimeout = undefined;
         Refresh.performReactRefresh();
         ErrorOverlay.clearRuntimeErrors();
@@ -130,7 +130,11 @@ function isReactRefreshBoundary(module) {
   if (Refresh.isLikelyComponentType(moduleExports)) {
     return true;
   }
-  if (moduleExports === undefined || moduleExports === null || typeof moduleExports !== 'object') {
+  if (
+    moduleExports === undefined ||
+    moduleExports === null ||
+    typeof moduleExports !== "object"
+  ) {
     // Exit if we can't iterate over exports.
     return false;
   }
@@ -141,7 +145,7 @@ function isReactRefreshBoundary(module) {
     hasExports = true;
 
     // This is the ES Module indicator flag set by Webpack
-    if (key === '__esModule') {
+    if (key === "__esModule") {
       continue;
     }
 
@@ -171,23 +175,27 @@ function registerExportsForReactRefresh(module) {
 
   if (Refresh.isLikelyComponentType(moduleExports)) {
     // Register module.exports if it is likely a component
-    Refresh.register(moduleExports, moduleId + ' %exports%');
+    Refresh.register(moduleExports, moduleId + " %exports%");
   }
 
-  if (moduleExports === undefined || moduleExports === null || typeof moduleExports !== 'object') {
+  if (
+    moduleExports === undefined ||
+    moduleExports === null ||
+    typeof moduleExports !== "object"
+  ) {
     // Exit if we can't iterate over the exports.
     return;
   }
 
   for (const key in moduleExports) {
     // Skip registering the Webpack ES Module indicator
-    if (key === '__esModule') {
+    if (key === "__esModule") {
       continue;
     }
 
     const exportValue = moduleExports[key];
     if (Refresh.isLikelyComponentType(exportValue)) {
-      const typeID = moduleId + ' %exports% ' + key;
+      const typeID = moduleId + " %exports% " + key;
       Refresh.register(exportValue, typeID);
     }
   }
@@ -199,8 +207,12 @@ function registerExportsForReactRefresh(module) {
  * This implementation is based on the one in [Metro](https://github.com/facebook/metro/blob/907d6af22ac6ebe58572be418e9253a90665ecbd/packages/metro/src/lib/polyfills/require.js#L776-L792).
  */
 function shouldInvalidateReactRefreshBoundary(prevModule, nextModule) {
-  const prevSignature = getReactRefreshBoundarySignature(getModuleExports(prevModule));
-  const nextSignature = getReactRefreshBoundarySignature(getModuleExports(nextModule));
+  const prevSignature = getReactRefreshBoundarySignature(
+    getModuleExports(prevModule)
+  );
+  const nextSignature = getReactRefreshBoundarySignature(
+    getModuleExports(nextModule)
+  );
 
   if (prevSignature.length !== nextSignature.length) {
     return true;

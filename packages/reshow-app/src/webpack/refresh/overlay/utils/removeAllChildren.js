@@ -8,7 +8,7 @@ function removeAllChildren(element, skip) {
   /** @type Node[] */
   const childList = Array.prototype.slice.call(
     element.childNodes,
-    typeof skip !== 'undefined' ? skip : 0
+    typeof skip !== "undefined" ? skip : 0
   );
 
   for (let i = 0; i < childList.length; i += 1) {

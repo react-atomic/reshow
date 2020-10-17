@@ -2,12 +2,12 @@
 // eslint-disable-next-line no-unused-vars
 /* global __resourceQuery */
 
-import formatWebpackMessages from './formatWebpackMessages';
-import ErrorOverlay from '../overlay';
+import formatWebpackMessages from "./formatWebpackMessages";
+import ErrorOverlay from "../overlay";
 import {
   error as registerErrorHandler,
   unhandledRejection as registerUnhandledRejectionHandler,
-} from './errorEventHandlers';
+} from "./errorEventHandlers";
 
 // Setup error states
 let isHotReload = false;
@@ -62,10 +62,10 @@ function handleCompileErrors(errors) {
  */
 function compileMessageHandler(message) {
   switch (message.type) {
-    case 'ok':
+    case "ok":
       handleCompileSuccess();
       break;
-    case 'errors':
+    case "errors":
       handleCompileErrors(message.data);
       break;
     default:
@@ -80,7 +80,7 @@ registerErrorHandler(function handleError(error) {
 });
 
 registerUnhandledRejectionHandler(function handleUnhandledPromiseRejection(
-  error,
+  error
 ) {
   hasRuntimeErrors = true;
   ErrorOverlay.handleRuntimeError(error);

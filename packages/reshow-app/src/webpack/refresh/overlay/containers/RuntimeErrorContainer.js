@@ -1,6 +1,6 @@
-const PageHeader = require('../components/PageHeader');
-const RuntimeErrorStack = require('../components/RuntimeErrorStack');
-const Spacer = require('../components/Spacer');
+const PageHeader = require("../components/PageHeader");
+const RuntimeErrorStack = require("../components/RuntimeErrorStack");
+const Spacer = require("../components/Spacer");
 
 /**
  * @typedef {Object} RuntimeErrorContainerProps
@@ -18,12 +18,12 @@ function RuntimeErrorContainer(document, root, props) {
   PageHeader(document, root, {
     message: props.currentError.message,
     title: props.currentError.name,
-    topOffset: '2.5rem',
+    topOffset: "2.5rem",
   });
   RuntimeErrorStack(document, root, {
     error: props.currentError,
   });
-  Spacer(document, root, { space: '1rem' });
+  Spacer(document, root, { space: "1rem" });
 }
 
 module.exports = RuntimeErrorContainer;

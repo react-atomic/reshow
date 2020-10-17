@@ -1,8 +1,8 @@
-import {ReduceStore} from 'reshow-flux';
-import get from 'get-object-value';
-import {localStorage, Storage} from 'get-storage';
+import { ReduceStore } from "reshow-flux";
+import get from "get-object-value";
+import { localStorage, Storage } from "get-storage";
 
-import storageDispatcher from '../storageDispatcher';
+import storageDispatcher from "../storageDispatcher";
 
 class LocalStorageStore extends ReduceStore {
   getInitialState() {
@@ -10,13 +10,13 @@ class LocalStorageStore extends ReduceStore {
   }
 
   updateStorage(state, action) {
-    const params = get(action, ['params']);
+    const params = get(action, ["params"]);
     return state.merge(params);
   }
 
   reduce(state, action) {
     switch (action.type) {
-      case 'local':
+      case "local":
         return this.updateStorage(state, action);
       default:
         return state;
@@ -26,4 +26,4 @@ class LocalStorageStore extends ReduceStore {
 
 export default new LocalStorageStore(storageDispatcher);
 
-export {LocalStorageStore};
+export { LocalStorageStore };

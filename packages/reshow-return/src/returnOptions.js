@@ -5,9 +5,9 @@ import toJS from "./toJS";
 
 const keys = Object.keys;
 const isArray = Array.isArray;
-const getImmutable = immutable => data => (!immutable ? toJS(data) : data);
-const storeLocator = props => props.stores;
-const globalStoreLocator = props => null;
+const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
+const storeLocator = (props) => props.stores;
+const globalStoreLocator = (props) => null;
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 const reset = (props, more) => {
@@ -18,8 +18,8 @@ const reset = (props, more) => {
     "stores",
     "storeLocator",
     "globalStoreLocator",
-    ...(more || [])
-  ].forEach(key => delete props[key]);
+    ...(more || []),
+  ].forEach((key) => delete props[key]);
   return props;
 };
 
@@ -28,10 +28,10 @@ const defaultProps = {
   pathStates: {},
   immutable: false,
   storeLocator,
-  globalStoreLocator
+  globalStoreLocator,
 };
 
-const getStores = props =>
+const getStores = (props) =>
   callfunc(props.storeLocator || storeLocator, [props]);
 
 const calculateState = (prevState, props) => {
@@ -48,7 +48,7 @@ const calculateState = (prevState, props) => {
     initStates,
     pathStates,
     globalStoreLocator,
-    immutable: propsImmutable
+    immutable: propsImmutable,
   } = props;
   const storeState = thisStore.getState();
   const thisThemePath = storeState.get("themePath");
@@ -70,19 +70,19 @@ const calculateState = (prevState, props) => {
   const toImmutable = getImmutable(immutable);
 
   if (isArray(initStates)) {
-    initStates.forEach(key => {
+    initStates.forEach((key) => {
       const data = storeState.get(key);
       results[key] = toImmutable(data);
     });
   } else if (initStates) {
-    keys(initStates).forEach(key => {
+    keys(initStates).forEach((key) => {
       const data = storeState.get(key);
       const newKey = null != initStates[key] ? initStates[key] : key;
       results[newKey] = toImmutable(data);
     });
   }
 
-  keys(pathStates || {}).forEach(key => {
+  keys(pathStates || {}).forEach((key) => {
     const thisPath = pathStates[key];
     results[key] = immutable
       ? getMapIn(get(results, [thisPath[0]]), thisPath.slice(1))
@@ -95,7 +95,7 @@ const options = {
   defaultProps,
   getStores,
   calculateState,
-  reset
+  reset,
 };
 
 export default options;

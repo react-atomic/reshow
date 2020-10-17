@@ -24,7 +24,7 @@
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
     "copy": "cp package.json.build ./build/package.json && cp README.md ./build/",
-    "build:cjs": "BABEL_ENV=build babel src -d build",
+    "build:cjs": "BABEL_ENV=cjs babel src -d build",
     "build:es": "BABEL_ENV=es babel src -d build/es",
     "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn install",
     "test": "npm run build && mocha 'build/helpers/**/__tests__/*.js' -r jsdom-global/register"

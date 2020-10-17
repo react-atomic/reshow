@@ -36,7 +36,7 @@ function createErrorHandler(callback) {
 function createRejectionHandler(callback) {
   return function rejectionHandler(event) {
     if (!event || !event.reason) {
-      return callback(new Error('Unknown'));
+      return callback(new Error("Unknown"));
     }
     if (event.reason instanceof Error) {
       return callback(event.reason);
@@ -90,8 +90,10 @@ function createWindowEventHandler(eventType, createHandler) {
   return register;
 }
 
+const error = createWindowEventHandler("error", createErrorHandler);
+const unhandledRejection = createWindowEventHandler(
+  "unhandledrejection",
+  createRejectionHandler
+);
 
-const error = createWindowEventHandler('error', createErrorHandler);
-const unhandledRejection = createWindowEventHandler('unhandledrejection', createRejectionHandler);
-
-export {error, unhandledRejection};
+export { error, unhandledRejection };

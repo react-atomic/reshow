@@ -1,4 +1,4 @@
-import ParallelUglifyPlugin from 'webpack-parallel-uglify-plugin';
+import ParallelUglifyPlugin from "webpack-parallel-uglify-plugin";
 
 /* Default uglifyJs options */
 const uglifyJsOptions = {
@@ -36,4 +36,4 @@ const getProdUglify = () =>
 
 const getUglify = () => new ParallelUglifyPlugin(uglifyJsOptions);
 
-export {getProdUglify, getUglify};
+export { getProdUglify, getUglify };

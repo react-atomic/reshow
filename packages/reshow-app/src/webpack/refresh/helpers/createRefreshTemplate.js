@@ -1,4 +1,4 @@
-import {Template} from 'webpack';
+import { Template } from "webpack";
 
 /**
  * Code to run before each module, sets up react-refresh.
@@ -31,11 +31,11 @@ const afterModule = `
  * @returns {string} A refresh-wrapped module.
  */
 function createRefreshTemplate(source, chunk) {
-  const lines = source.split('\n');
+  const lines = source.split("\n");
 
   // Webpack generates this line whenever the mainTemplate is called
-  const moduleInitializationLineNumber = lines.findIndex(line =>
-    line.startsWith('modules[moduleId].call')
+  const moduleInitializationLineNumber = lines.findIndex((line) =>
+    line.startsWith("modules[moduleId].call")
   );
 
   return Template.asString([

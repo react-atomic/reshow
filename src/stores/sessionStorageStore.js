@@ -1,7 +1,7 @@
-import {sessionStorage, Storage} from 'get-storage';
+import { sessionStorage, Storage } from "get-storage";
 
-import {LocalStorageStore} from './localStorageStore';
-import storageDispatcher from '../storageDispatcher';
+import { LocalStorageStore } from "./localStorageStore";
+import storageDispatcher from "../storageDispatcher";
 
 class SessionStorageStore extends LocalStorageStore {
   getInitialState() {
@@ -10,7 +10,7 @@ class SessionStorageStore extends LocalStorageStore {
 
   reduce(state, action) {
     switch (action.type) {
-      case 'session':
+      case "session":
         return this.updateStorage(state, action);
       default:
         return state;

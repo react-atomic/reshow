@@ -2,9 +2,9 @@ import {
   shallow as enzymeShallow,
   mount as enzymeMount,
   configure,
-} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({adapter: new Adapter()});
+} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+configure({ adapter: new Adapter() });
 
 let mountWrapper;
 let mountOption;
@@ -34,7 +34,7 @@ const thisMount = (wrapper, keepOption) => (node, options) => {
 const mount = thisMount(mountWrapper, mountOption);
 
 // https://github.com/enzymejs/enzyme/blob/master/docs/api/shallow.md
-const thisShallow = wrapper => (node, options) => {
+const thisShallow = (wrapper) => (node, options) => {
   clean(wrapper);
   wrapper = enzymeShallow(node, options);
   return wrapper;
@@ -47,4 +47,4 @@ const cleanIt = () => {
   clean(shallowWrapper);
 };
 
-export {shallow, mount, cleanIt};
+export { shallow, mount, cleanIt };

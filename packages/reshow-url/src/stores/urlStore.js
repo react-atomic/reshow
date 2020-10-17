@@ -101,7 +101,9 @@ class UrlStore extends ReduceStore {
         }
         if (group) {
           this.groupUrlKeys =
-            this.group === group ? arrayDedup(this.groupUrlKeys.concat(urlKeys)) : urlKeys;
+            this.group === group
+              ? arrayDedup(this.groupUrlKeys.concat(urlKeys))
+              : urlKeys;
         }
         this.group = group;
         urlKeys.forEach((key) => {

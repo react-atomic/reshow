@@ -13,7 +13,7 @@ function formatFilename(filename) {
   // Strip everything before the first directory for source files
   const sourceMatch = /\/.*?([^./]+[/|\\].*)$/.exec(filename);
   if (sourceMatch && sourceMatch[1]) {
-    return sourceMatch[1].replace(/\?$/, '');
+    return sourceMatch[1].replace(/\?$/, "");
   }
 
   // Unknown filename type, use it as is
