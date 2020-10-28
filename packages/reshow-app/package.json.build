@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.44",
+  "version": "0.13.0-beta.46",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -29,6 +29,7 @@
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
+    "core-js": "3",
     "cache-loader": "*",
     "chai": "*",
     "chalk": "^2.x",
