@@ -78,14 +78,15 @@ class NginxPushPlugin {
         // write assets to nginx
         .then((assets) => this.getNginxConf(assets))
         .then((conf) => {
-          if (compilation.emitAsset) {
-            compilation.emitAsset(this.options.filename, conf);
-          } else {
-            // Replace the compilation result with the evaluated conf code
-            compilation.assets[this.options.filename] = {
+          const sourcePayload = {
               source: () => conf,
               size: () => conf.length,
-            };
+          };
+          if (compilation.emitAsset) {
+            compilation.emitAsset(this.options.filename, sourcePayload);
+          } else {
+            // Replace the compilation result with the evaluated conf code
+            compilation.assets[this.options.filename] = sourcePayload;
           }
         })
         .catch((err) => {
