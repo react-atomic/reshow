@@ -3,7 +3,7 @@ import getTerser from "./getTerser";
 import { PRODUCTION } from "./const";
 
 const getOptimization = ({ mode, server, confs }) => {
-  const cacheGroups = { };
+  const cacheGroups = {};
   if (!confs.disableVendor) {
     cacheGroups.vendor = getVendorSplitConfig({ confs });
   }

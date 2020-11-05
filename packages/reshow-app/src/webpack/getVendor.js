@@ -11,7 +11,6 @@ const getVendorSplitConfig = ({ confs }) => ({
   priority: 10,
   enforce: true,
   reuseExistingChunk: true,
-  minChunks: 2,
 });
 
 export { getVendorSplitConfig };
