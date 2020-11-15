@@ -1,8 +1,14 @@
 import TerserPlugin from "terser-webpack-plugin";
 
 /**
- * https://github.com/terser/terser#compress-options
+ * Doc
  * https://github.com/webpack-contrib/terser-webpack-plugin
+ *
+ * terserOptions
+ * https://github.com/terser/terser#minify-options
+ *
+ * terserOptions - compress
+ * https://github.com/terser/terser#compress-options
  */
 
 const getTerser = () => {
@@ -14,7 +20,9 @@ const getTerser = () => {
       ecma: 5,
       warnings: false,
       parse: {},
-      compress: {},
+      compress: {
+        passes: 2
+      },
       mangle: true,
       module: false,
       output: {
@@ -22,6 +30,7 @@ const getTerser = () => {
       },
       toplevel: true,
       nameCache: null,
+      keep_fnames: true,
       ie8: true,
       safari10: true,
     },
