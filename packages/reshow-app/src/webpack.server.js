@@ -13,10 +13,10 @@ const { NODE_ENV, CONFIG } = process.env;
 let confs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
-  confs = { ...confs, ...lazyConfs };
+  confs = { ...{ assetsRoot: "/assets" }, ...confs, ...lazyConfs };
   const server = true;
   const stop = progress({ confs });
-  const path = root + "/assets";
+  const path = root + confs.assetsFolder;
   let mode = DEVELOPMENT;
   if (PRODUCTION === NODE_ENV) {
     mode = PRODUCTION;

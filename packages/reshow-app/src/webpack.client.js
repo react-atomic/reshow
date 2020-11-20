@@ -13,9 +13,9 @@ const { NODE_ENV, CONFIG, BUNDLE, HOT_UPDATE } = process.env;
 let confs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
-  confs = { ...confs, ...lazyConfs };
+  confs = { ...{ assetsRoot: "/assets" }, ...confs, ...lazyConfs };
   const stop = progress({ confs });
-  const path = root + "/assets";
+  const path = root + confs.assetsFolder;
   let mode = DEVELOPMENT;
   let devtool = "cheap-source-map";
   if (PRODUCTION === NODE_ENV) {

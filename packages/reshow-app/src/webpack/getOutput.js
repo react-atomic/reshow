@@ -7,6 +7,7 @@ const getOutput = ({ path, confs }) => {
     path,
     publicPath: confs.assetsRoot,
     chunkFilename: "[id].[hash].bundle.js",
+    hotUpdateChunkFilename: "[id].[hash].hot.js",
   };
 };
 
