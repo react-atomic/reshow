@@ -7,7 +7,7 @@ const defaultTips = [
   "If you don't trust yourself, Just wait until you see the finished.",
 ];
 
-fs.writeFile("webpack.pid", process.pid, () => {});
+fs.writeFile("webpack.pid", process.pid+"", () => {});
 
 const init = ({ confs }) => {
   const tips = confs.tips?.slice(0) || defaultTips.slice(0);
