@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-reshow-transform-runtime",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Custom path for babel7 transform-runtime",
   "main": "./build/cjs/index.js",
   "repository": "react-atomic/reshow",
@@ -11,6 +11,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "resolve": "1.19.0",
     "semver": "5.6.0"
   },
   "devDependencies": {
