@@ -16,7 +16,7 @@
               "transform-react-pure-class-to-function",
               "reshow-object-to-json-parse",
               ["reshow-transform-runtime", {
-                "regenerator": false,
+                "regenerator": true,
                 "version": "7.5.0"
                 }
               ],

@@ -1,14 +1,13 @@
 {
   "name": "reshow-runtime",
-  "version": "0.2.2",
+  "version": "0.3.1",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
-  "keywords": [
-    "babel"
-  ],
+  "keywords": ["babel"],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "regenerator-runtime": "^0.13.4",
     "reshow-constant": "*"
   },
   "devDependencies": {
