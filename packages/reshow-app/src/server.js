@@ -1,6 +1,6 @@
-const React = require("react");
-const ReactServer = require("react-dom/server");
-const build = require("reshow-build");
+import React from "react";
+import ReactServer from "react-dom/server";
+import build from "reshow-build";
 global.d3 = {}; // hack for ignore in d3 in server side
 
 const server = (app) => {
@@ -27,4 +27,4 @@ const server = (app) => {
   };
 };
 
-module.exports = server;
+export default server;

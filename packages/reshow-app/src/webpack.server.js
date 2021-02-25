@@ -24,7 +24,7 @@ const myWebpack = (root, main, lazyConfs) => {
   const result = {
     mode,
     entry: getEntry({ main, confs, server }),
-    output: getOutput({ path, confs }),
+    output: getOutput({ path, confs, server }),
     optimization: getOptimization({ mode, confs, server }),
     plugins: getPlugins({ path, stop, mode, confs, server }),
     module: getModule({ mode }),
