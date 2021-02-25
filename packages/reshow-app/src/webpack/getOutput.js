@@ -6,11 +6,12 @@ const getOutput = ({path, confs, server}) => {
         : '[name].bundle.js',
     path,
     publicPath: confs.assetsRoot,
-    chunkFilename: '[id].[hash].bundle.js',
-    hotUpdateChunkFilename: '[id].[hash].hot.js',
   };
   if (server) {
     output.globalObject = 'this';
+  } else {
+    output.chunkFilename = '[id].[hash].bundle.js';
+    output.hotUpdateChunkFilename = '[id].[hash].hot.js';
   }
   return output;
 };
