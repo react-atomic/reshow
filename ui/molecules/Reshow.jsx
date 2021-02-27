@@ -53,7 +53,7 @@ class Reshow extends PureComponent {
     if (path) {
       setTimeout(() => dispatch({ themePath: path }));
     } else {
-      path = pageStore.getThemePath();
+      path = pageStore.getThemePath() || this.props.themePath;
     }
     globalStore.path = path;
     return globalStore.path;
