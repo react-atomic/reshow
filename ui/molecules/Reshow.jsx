@@ -100,14 +100,27 @@ class Reshow extends PureComponent {
     if (hasError) {
       return null;
     }
-    const { fallback, themes, ajax, webSocketUrl } = this.props;
+    const {
+      baseUrl,
+      staticVersion,
+      fallback,
+      themes,
+      ajax,
+      webSocketUrl,
+    } = this.props;
 
     return (
-      <Return initStates={["baseUrl", "staticVersion", "themePath"]}>
-        {() => (
+      <Return
+        baseUrl={baseUrl}
+        staticVersion={staticVersion}
+        initStates={["baseUrl", "staticVersion"]}
+      >
+        {(data) => (
           <AjaxPage
             callback={update}
             /*State*/
+            baseUrl={data.baseUrl}
+            staticVersion={data.staticVersion}
             themePath={this.getPath()}
             /*Props*/
             fallback={fallback}
