@@ -18,8 +18,8 @@ const connectHook = (Base, options) => {
     options || {};
   const Connected = (props) => {
     const [data, setData] = useState(() => ({
-      state: calculateState({}, props),
       props,
+      state: { ...props, ...calculateState({}, props) },
     }));
 
     const _mount = useRef(true);
