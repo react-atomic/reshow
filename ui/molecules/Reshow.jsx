@@ -41,6 +41,10 @@ const update = (params) => {
 };
 
 class Reshow extends PureComponent {
+  static defaultProps = {
+    fallback: "div",
+  };
+
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
@@ -96,7 +100,7 @@ class Reshow extends PureComponent {
     if (hasError) {
       return null;
     }
-    const { onError, themes, ajax, webSocketUrl } = this.props;
+    const { fallback, themes, ajax, webSocketUrl } = this.props;
 
     return (
       <Return initStates={["baseUrl", "staticVersion", "themePath"]}>
@@ -106,6 +110,7 @@ class Reshow extends PureComponent {
             /*State*/
             themePath={this.getPath()}
             /*Props*/
+            fallback={fallback}
             themes={themes}
             ajax={ajax}
             webSocketUrl={webSocketUrl}
