@@ -1350,14 +1350,6 @@ babel-plugin-dynamic-import-node@*, babel-plugin-dynamic-import-node@^2.3.3:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-object-to-json-parse@*:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-object-to-json-parse/-/babel-plugin-object-to-json-parse-0.2.1.tgz#c03aaa2808e83d05dd2488cf957660d2c261ad51"
-  integrity sha512-dxDar/rzwC18D7MWUdiTIZ6HQ0v5anvqa0FxLw+X+QxsKvgUBNPm3Hq1R1gr5WZOU6P1PYPnRhm9cXDNqwjbUA==
-  dependencies:
-    "@babel/core" "^7.7.7"
-    "@babel/types" "^7.7.4"
-
 babel-plugin-polyfill-corejs2@^0.1.4:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.1.5.tgz#8fc4779965311393594a1b9ad3adefab3860c8fe"
@@ -1381,6 +1373,14 @@ babel-plugin-polyfill-regenerator@^0.1.2:
   integrity sha512-hRjTJQiOYt/wBKEc+8V8p9OJ9799blAJcuKzn1JXh3pApHoWl1Emxh2BHc6MC7Qt6bbr3uDpNxaYQnATLIudEg==
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.1.2"
+
+babel-plugin-reshow-object-to-json-parse@*:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/babel-plugin-reshow-object-to-json-parse/-/babel-plugin-reshow-object-to-json-parse-0.0.9.tgz#1f2f8ceacf5f52e7643d2dacfb50a0b4d25b09cc"
+  integrity sha512-7txZhMzgidD2x1hctpsnlfwg2hPTT4iTRJoAdnkIufoVBH0DjQFSK6HdtfYrJisBmAinq2r8JKqQYcdSLzw0+Q==
+  dependencies:
+    "@babel/core" "^7.7.7"
+    "@babel/types" "^7.7.4"
 
 babel-plugin-reshow-transform-runtime@*:
   version "0.0.5"

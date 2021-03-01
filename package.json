@@ -1,14 +1,11 @@
 {
   "name": "reshow",
-  "version": "0.13.0-beta.19",
+  "version": "0.13.0-beta.20",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
-  "keywords": [
-    "react",
-    "reactjs"
-  ],
+  "keywords": ["react", "reactjs"],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -38,7 +35,7 @@
     "@babel/preset-react": "*",
     "babel-plugin-add-module-exports": "*",
     "babel-plugin-dynamic-import-node": "*",
-    "babel-plugin-object-to-json-parse": "*",
+    "babel-plugin-reshow-object-to-json-parse": "*",
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
@@ -69,9 +66,5 @@
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",
     "prepublishOnly": "npm run test"
   },
-  "files": [
-    "build",
-    "package.json",
-    "README.md"
-  ]
+  "files": ["build", "package.json", "README.md"]
 }
