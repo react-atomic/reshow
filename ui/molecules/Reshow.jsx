@@ -50,19 +50,26 @@ class Reshow extends PureComponent {
   }
 
   getPath() {
-    return this.resetGlobalPath();
+    const {themePath, defaultThemePath} = this.props;
+    return this.resetGlobalPath() || themePath || defaultThemePath;
   }
 
+  /**
+   * @see globalStore https://github.com/react-atomic/reshow/blob/master/src/stores/globalStore.js
+   */
   resetGlobalPath(path) {
     if (path) {
       setTimeout(() => dispatch({ themePath: path }));
     } else {
-      path = pageStore.getThemePath() || this.props.themePath;
+      path = pageStore.getThemePath();
     }
     globalStore.path = path;
     return globalStore.path;
   }
 
+  /**
+   * @see globalStore https://github.com/react-atomic/reshow/blob/master/src/stores/globalStore.js
+   */
   getGlobalPath() {
     return globalStore.path;
   }

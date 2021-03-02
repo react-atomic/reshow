@@ -116,7 +116,7 @@ describe('Test Section', () => {
     setTimeout(() => {
       expect(wrap.el.getAttribute('name')).to.equal('test');
       done();
-    });
+    }, 10);
   });
 
   it('not pass name if child already have name', done => {
@@ -173,6 +173,6 @@ describe('Test Section', () => {
       expect(uObj.el1.getAttribute('name')).to.be.null;
       expect(uObj.el2.getAttribute('name')).to.equal('test2');
       done();
-    });
+    }, 10);
   });
 });
