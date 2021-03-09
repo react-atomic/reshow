@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.13.0-beta.63",
+  "version": "0.13.0-beta.64",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "keywords": [],
@@ -38,7 +38,7 @@
     "error-stack-parser": "2.0.6",
     "es6-promise": "4.2.5",
     "html-entities": "1.2.1",
-    "jsdom": "*",
+    "jsdom": "16.4.0",
     "jsdom-global": "*",
     "local-web-server": "2.6.0",
     "mocha": "^5.x",
