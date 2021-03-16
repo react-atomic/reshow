@@ -77,7 +77,7 @@ describe('Test Section', () => {
       expect(uFake.el.props.aaa.toJS()).to.deep.equal({bbb: 'ccc'});
       expect(uFake.el.props.I18N.toJS()).to.deep.equal({ddd: 'fff'});
       done();
-    });
+    }, 100);
   });
 
   it('Section is not existed with immutable', done => {

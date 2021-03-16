@@ -1,11 +1,14 @@
 {
   "name": "reshow",
-  "version": "0.13.0-beta.21",
+  "version": "0.14.0",
   "description": "Flux Reducer Present Library",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
-  "keywords": ["react", "reactjs"],
+  "keywords": [
+    "react",
+    "reactjs"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -13,7 +16,7 @@
     "get-storage": "*",
     "getoffset": "*",
     "memoize-one": "*",
-    "organism-react-ajax": "^0.13.0-beta",
+    "organism-react-ajax": "*",
     "organism-react-popup": "*",
     "react-atomic-molecule": "*",
     "reshow-flux": "*",
@@ -67,5 +70,9 @@
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
 }

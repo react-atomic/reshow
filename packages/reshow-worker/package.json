@@ -1,6 +1,6 @@
 {
   "name": "reshow-worker",
-  "version": "0.13.0-beta.0",
+  "version": "0.14.0",
   "description": "Reshow Worker for ajax",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -11,25 +11,27 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "win-doc": "*",
     "get-object-value": "*",
-    "organism-react-ajax": "^0.13.0-beta",
+    "organism-react-ajax": "*",
+    "win-doc": "*",
     "worker-loader": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
     "chai": "*",
-    "mocha": "*",
-    "sinon": "*",
     "jsdom": "*",
-    "jsdom-global": "*"
+    "jsdom-global": "*",
+    "mocha": "*",
+    "sinon": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
-    "test": "npm run build && mocha 'build/cjs/**/__tests__/*.js' -r jsdom-global/register",
+    "mochaFor": "mocha -r jsdom-global/register",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
   "files": [
