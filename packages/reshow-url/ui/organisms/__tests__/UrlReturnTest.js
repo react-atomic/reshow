@@ -38,18 +38,24 @@ describe("Test Url Return", () => {
       );
     }
   }
-  it("test get pathname", () => {
+  it("test get pathname", (done) => {
     const vDom = <FakeComponent urlKey=":pathname" />;
     const uFake = mount(vDom).instance();
     urlDispatch({ type: "url", url: "http://localhost/aaa" });
-    expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
+    setTimeout(() => {
+      expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
+      done();
+    }, 100);
   });
 
-  it("test get query", () => {
+  it("test get query", (done) => {
     const vDom = <FakeComponent urlKey="foo" />;
     const uFake = mount(vDom).instance();
     urlDispatch({ type: "query", params: { foo: "bar" } });
-    expect(uFake.el.props["foo"]).to.equal("bar");
+    setTimeout(() => {
+      expect(uFake.el.props["foo"]).to.equal("bar");
+      done();
+    }, 100);
   });
 
   it("test trigger by history", (done) => {

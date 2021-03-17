@@ -1253,9 +1253,9 @@ once@^1.3.0:
     wrappy "1"
 
 organism-react-ajax@*:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.0.tgz#4feb5646c5b178a3f941301e5c4a358bb8f3a4e1"
-  integrity sha512-/4+t2qI1FwTCrE8a3LFRO/S09fI48LLi1+Ul6yiHmPmfHFhwIRcnB7xZZWug3+raszTMLMGa7zZlKjDXXpOQOQ==
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.1.tgz#ffc59a4a0b0ac6da5f37546bc78c682cd436d9e6"
+  integrity sha512-tdFJT5stecAp8EwsfTaMzMWNuZSggFWE6YUHDJIjwXT/KYjQZ7RScgBEKZsNDcv1xEdaaOPLhAzpI+aRCx59JA==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"
@@ -1537,9 +1537,9 @@ reshow-runtime@*:
     reshow-constant "*"
 
 reshow@*:
-  version "0.12.11"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.12.11.tgz#785073f0b91fa53e82dd7a6df4d2b4a130942403"
-  integrity sha512-dxxAMSDfPLXLDjo/yi5NQzzzl8DsAr3DhBLBmQM1L38mtQOhAUMmGLNeYiJEVp03v/Y0qG8PnyvTIrqRUpPEIQ==
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.14.0.tgz#b6d4e57c23d1ab686ae7d969c28421686df8e5b9"
+  integrity sha512-UOreukYZ1B+9cPz1PQCu29A472l735Xva3/CkmeG+Fb5wPqZek3ZmZciAF7ybtwNELPq7GBJqOgqrDALEERwvg==
   dependencies:
     call-func "*"
     get-storage "*"
@@ -1549,6 +1549,7 @@ reshow@*:
     organism-react-popup "*"
     react-atomic-molecule "*"
     reshow-flux "*"
+    reshow-return "*"
     reshow-runtime "*"
     seturl "*"
     smooth-scroll-to "*"

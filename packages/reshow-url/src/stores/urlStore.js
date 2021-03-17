@@ -8,6 +8,12 @@ import arrayDedup from "array.dedup";
 
 const keys = Object.keys;
 
+/**
+ * Calling history.pushState() or history.replaceState() won't trigger a popstate event.
+ * The popstate event is only triggered by performing a browser action, such as clicking on the back button 
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
+ */
 const updateUrl = (url) => history.pushState && history.pushState("", "", url);
 
 const urlChange = "urlChange";
@@ -55,10 +61,10 @@ class UrlStore extends ReduceStore {
     return new URL({});
   }
 
-  urlChange = () => {
+  handleUrlChange = () => {
     this.nextEmits.push(urlChange);
     urlDispatch({ type: "url", url: doc().URL });
-    ajaxDispatch("urlChange");
+    ajaxDispatch(urlChange);
   };
 
   onUrlChange(cb) {
@@ -69,9 +75,9 @@ class UrlStore extends ReduceStore {
     this.removeListener(cb, urlChange);
   }
 
-  registerEvent(win) {
-    if (win && win.addEventListener) {
-      win.addEventListener("popstate", this.urlChange, true);
+  registerEvent(oWin) {
+    if (oWin && oWin.addEventListener) {
+      oWin.addEventListener("popstate", this.handleUrlChange, true);
       ajaxStore.urlDispatch = urlDispatch;
     }
   }
