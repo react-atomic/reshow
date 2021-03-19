@@ -50,21 +50,24 @@ class Reshow extends PureComponent {
   }
 
   getPath() {
-    const {themePath, defaultThemePath} = this.props;
-    return this.resetGlobalPath() || themePath || defaultThemePath;
+    return this.props.themePath;
   }
 
   /**
    * @see globalStore https://github.com/react-atomic/reshow/blob/master/src/stores/globalStore.js
    */
   resetGlobalPath(path) {
-    if (path) {
-      setTimeout(() => dispatch({ themePath: path }));
-    } else {
-      path = pageStore.getThemePath();
+    const { themes, defaultThemePath, themePath } = this.props;
+    if (!themes[path]) {
+      path = defaultThemePath || themePath;
     }
-    globalStore.path = path;
-    return globalStore.path;
+    
+    if (!themes[path]) {
+      throw "Can not get default theme.";
+    } else {
+      globalStore.path = path;
+      return globalStore.path;
+    }
   }
 
   /**
@@ -128,7 +131,7 @@ class Reshow extends PureComponent {
             /*State*/
             baseUrl={data.baseUrl}
             staticVersion={data.staticVersion}
-            themePath={this.getPath()}
+            themePath={this.resetGlobalPath(this.getPath())}
             /*Props*/
             fallback={fallback}
             themes={themes}
