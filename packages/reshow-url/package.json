@@ -1,7 +1,7 @@
 {
   "name": "reshow-url",
   "version": "0.14.2",
-  "description": "reshow url util",
+  "description": "reshow url util (Web / Browser)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
