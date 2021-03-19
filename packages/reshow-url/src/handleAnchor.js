@@ -30,7 +30,11 @@ const handleAnchor = (path) => (goAnchorDelay) => {
   if (anchor) {
     goToAnchor(anchor)(goAnchorDelay);
   }
-  return path;
+  if (-1 !== path.indexOf("?")) {
+    return path.split("?")[0];
+  } else {
+    return path;
+  }
 };
 
 export { goToAnchor };
