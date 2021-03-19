@@ -2057,9 +2057,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.649:
-  version "1.3.692"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.692.tgz#4d00479055a7282cdd1b19caec09ed7779529640"
-  integrity sha512-Ix+zDUAXWZuUzqKdhkgN5dP7ZM+IwMG4yAGFGDLpGJP/3vNEEwuHG1LIhtXUfW0FFV0j38t5PUv2n/3MFSRviQ==
+  version "1.3.693"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.693.tgz#5089c506a925c31f93fcb173a003a22e341115dd"
+  integrity sha512-vUdsE8yyeu30RecppQtI+XTz2++LWLVEIYmzeCaCRLSdtKZ2eXqdJcrs85KwLiPOPVc6PELgWyXBsfqIvzGZag==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -3930,9 +3930,9 @@ optionator@^0.9.1:
     word-wrap "^1.2.3"
 
 organism-react-ajax@*:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.3.tgz#0c1ced54e548db6b352f0e05ff32029500297a54"
-  integrity sha512-hrjEwaI+4OB5LJ8pkYWYt7Ex8U6Uy48aKnc/Y4eK3XdCkh7KqY/JXxikCXvD5llPZycQcDt2+Cj6dcUMqzhzgw==
+  version "0.14.4"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.4.tgz#6ffbdf28233a0ec331428a5345e92b6260ad3320"
+  integrity sha512-oTniB+QM6nYH+Tl+hl0nwZvhvGepKkO02EfgAwitMRiqDM4Np3eCVrUtvJzEzdJh6WAPCh7fpuu7OECE4RlLZQ==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"
