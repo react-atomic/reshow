@@ -15,13 +15,12 @@ describe("Test Handle New Url", () => {
     uGlobal();
     jsdom();
     wrap.unmount();
-    ajaxDispatch("config/set", { onUrlChange: null });
+    ajaxDispatch({ onUrlChange: null });
   });
   class FakeComponent extends PureComponent {
     render() {
       return (
         <AjaxPage
-          ref={(el) => (this.page = el)}
           win={window}
           onUrlChange={this.props.onUrlChange}
           themes={{ fake: <div /> }}

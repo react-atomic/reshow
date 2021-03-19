@@ -27,13 +27,7 @@ class ClientRoute extends Reshow {
   };
 
   getPath() {
-    let nextThemePath = this.getUrlChangeState(this.props.url || doc().URL)?.themePath;
-    if (!nextThemePath) {
-      nextThemePath = this.resetGlobalPath();
-    } else {
-      this.resetGlobalPath(nextThemePath);
-    }
-    return nextThemePath;
+    return this.getUrlChangeState(this.props.url || doc().URL)?.themePath;
   }
 
   getUrlChangeState(url) {
