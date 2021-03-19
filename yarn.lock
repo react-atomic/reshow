@@ -3930,9 +3930,9 @@ optionator@^0.9.1:
     word-wrap "^1.2.3"
 
 organism-react-ajax@*:
-  version "0.14.4"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.4.tgz#6ffbdf28233a0ec331428a5345e92b6260ad3320"
-  integrity sha512-oTniB+QM6nYH+Tl+hl0nwZvhvGepKkO02EfgAwitMRiqDM4Np3eCVrUtvJzEzdJh6WAPCh7fpuu7OECE4RlLZQ==
+  version "0.14.5"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.5.tgz#25867cec57d037347fd9800d7aec35ec2ef4292e"
+  integrity sha512-LWFrINeOWHHv67InxH50z3ESRDyyhMFIfXBalDj6VRXwxy9KVSrU4vmptiREKS514eyz36H4xhIZpVAxs/h2XQ==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"

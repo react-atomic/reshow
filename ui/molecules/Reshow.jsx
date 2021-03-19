@@ -49,25 +49,22 @@ class Reshow extends PureComponent {
     return { hasError: true };
   }
 
-  getPath() {
-    return this.props.themePath;
+  getPath(stateThemePath) {
+    return stateThemePath || this.props.themePath;
   }
 
   /**
    * @see globalStore https://github.com/react-atomic/reshow/blob/master/src/stores/globalStore.js
    */
   resetGlobalPath(path) {
-    const { themes, defaultThemePath, themePath } = this.props;
+    const { themes, defaultThemePath } = this.props;
     if (!themes[path]) {
-      path = defaultThemePath || themePath;
+      path = defaultThemePath;
     }
-    
-    if (!themes[path]) {
-      throw "Can not get default theme.";
-    } else {
+    if (themes[path]) {
       globalStore.path = path;
-      return globalStore.path;
     }
+    return globalStore.path;
   }
 
   /**
@@ -123,7 +120,7 @@ class Reshow extends PureComponent {
       <Return
         baseUrl={baseUrl}
         staticVersion={staticVersion}
-        initStates={["baseUrl", "staticVersion"]}
+        initStates={["baseUrl", "staticVersion", "webSocketUrl", "themePath"]}
       >
         {(data) => (
           <AjaxPage
@@ -131,12 +128,12 @@ class Reshow extends PureComponent {
             /*State*/
             baseUrl={data.baseUrl}
             staticVersion={data.staticVersion}
-            themePath={this.resetGlobalPath(this.getPath())}
+            themePath={this.resetGlobalPath(this.getPath(data.themePath))}
+            webSocketUrl={data.webSocketUrl}
             /*Props*/
             fallback={fallback}
             themes={themes}
             ajax={ajax}
-            webSocketUrl={webSocketUrl}
           />
         )}
       </Return>
