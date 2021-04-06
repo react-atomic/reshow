@@ -57,9 +57,9 @@ class Reshow extends PureComponent {
    * @see globalStore https://github.com/react-atomic/reshow/blob/master/src/stores/globalStore.js
    */
   resetGlobalPath(path) {
-    const { themes, defaultThemePath } = this.props;
+    const { themes, defaultThemePath, themePath } = this.props;
     if (!themes[path]) {
-      path = defaultThemePath;
+      path = defaultThemePath || themePath;
     }
     if (themes[path]) {
       globalStore.path = path;
