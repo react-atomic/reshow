@@ -5,7 +5,7 @@ const getOutput = ({path, confs, server}) => {
         ? '[name].[hash].bundle.js'
         : '[name].bundle.js',
     path,
-    publicPath: confs.assetsRoot,
+    publicPath: confs.assetsRoot || '',
   };
   if (server) {
     output.globalObject = 'this';
