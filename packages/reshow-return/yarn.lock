@@ -2598,9 +2598,9 @@ set-blocking@^2.0.0:
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
 
 set-object-value@*:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/set-object-value/-/set-object-value-0.0.5.tgz#e48aacc968eaaa9f64bd76e446e7e4cc774f0249"
-  integrity sha512-f4fnuaiGPERs2ezeN2Z7EsYN8Zzo5R9JbaXh9fGWSdl1Aoe2MxgxklWPRQa/frPk4eE0hA5A2yS/z/X8h+YgsA==
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/set-object-value/-/set-object-value-0.0.6.tgz#df25db0b4fef495f31e726930f07526ae8951a40"
+  integrity sha512-VHyhNbcNcbOKm+1PhQi/+FGzRKMSE5kjmg1IAmgc1jvwAyAQgoYjmT58AuiZKgY8wOjSi9bWrjc7KEEAFUrdig==
 
 set-value@^2.0.0, set-value@^2.0.1:
   version "2.0.1"
