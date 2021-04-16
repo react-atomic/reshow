@@ -19,13 +19,15 @@ const getPlugins = ({
   HOT_UPDATE,
   server,
 }) => {
-  const plugins = [
-    getStatsJson({ assetsStore }),
-    new NginxPushPlugin(confs, assetsStore),
-  ];
+  const plugins = [];
   let maxChunks = confs.maxChunks;
   if (server) {
     maxChunks = 1;
+  } else {
+    plugins.push(
+      getStatsJson({ assetsStore }),
+      new NginxPushPlugin(confs, assetsStore)
+    ); 
   }
   if (maxChunks != null) {
     plugins.push(new LimitChunkCountPlugin({ maxChunks }));

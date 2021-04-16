@@ -29,11 +29,15 @@ const updateCanonicalUrl = (url, props) => {
   if (!url) {
     return;
   }
-  const newUrl = url + loc.search + loc.hash;
+  const newUrl = (url) => url + loc.search + loc.hash;
   if (-1 !== url.indexOf(loc.hostname)) {
-    history.replaceState && history.replaceState("", "", newUrl);
+    if (0 !== url.indexOf(loc.protocol)) {
+      const urlArr = url.split(":");
+      url = loc.protocol + urlArr[1];
+    }
+    history.replaceState && history.replaceState("", "", newUrl(url));
   } else {
-    loc.replace(newUrl);
+    loc.replace(newUrl(url));
   }
 };
 
