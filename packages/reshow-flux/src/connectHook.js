@@ -20,7 +20,7 @@ const handleShouldComponentUpdate = ({
   props,
   stores,
 }) => {
-  if (!shouldComponentUpdate || !shouldComponentUpdate({ prev, props })) {
+  if (!shouldComponentUpdate || shouldComponentUpdate({ prev, props })) {
     return {
       __init__: true,
       props,
