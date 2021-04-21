@@ -18,7 +18,6 @@ const handleShouldComponentUpdate = ({
   calculateState,
   prev,
   props,
-  stores,
 }) => {
   if (!shouldComponentUpdate || shouldComponentUpdate({ prev, props })) {
     return {
@@ -27,7 +26,7 @@ const handleShouldComponentUpdate = ({
       state: {
         ...cleanKeys(prev.props, prev.state),
         ...props,
-        ...calculateState(prev.state, props, stores),
+        ...calculateState(prev.state, props),
       },
     };
   } else {
@@ -61,8 +60,7 @@ const connectHook = (Base, options) => {
                 shouldComponentUpdate,
                 calculateState,
                 prev,
-                props,
-                stores,
+                props
               })
             );
           }
