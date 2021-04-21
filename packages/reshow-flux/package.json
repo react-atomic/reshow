@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "The smallest react flux and Fast 3kb Flux alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -28,8 +28,8 @@
     "jsdom": "*",
     "jsdom-global": "*",
     "mocha": "*",
-    "react": "*",
-    "react-dom": "*",
+    "react": "16.x",
+    "react-dom": "16.x",
     "react-test-renderer": "*"
   },
   "scripts": {

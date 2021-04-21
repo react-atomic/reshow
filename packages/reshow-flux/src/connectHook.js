@@ -13,9 +13,35 @@ const cleanKeys = (props, state) => {
   }
 };
 
+const handleShouldComponentUpdate = ({
+  shouldComponentUpdate,
+  calculateState,
+  prev,
+  props,
+}) => {
+  if (!shouldComponentUpdate || !shouldComponentUpdate({ prev, props })) {
+    return {
+      __init__: true,
+      props,
+      state: {
+        ...cleanKeys(prev.props, prev.state),
+        ...props,
+        ...calculateState(prev.state, props),
+      },
+    };
+  } else {
+    return prev;
+  }
+};
+
 const connectHook = (Base, options) => {
-  const { getStores, calculateState, defaultProps, displayName } =
-    options || {};
+  const {
+    getStores,
+    calculateState,
+    defaultProps,
+    displayName,
+    shouldComponentUpdate,
+  } = options || {};
   const Connected = (props) => {
     const [data, setData] = useState(() => ({
       props,
@@ -29,15 +55,14 @@ const connectHook = (Base, options) => {
       if (stores && stores.length) {
         const handleChange = () => {
           if (_mount.current) {
-            setData((prev) => ({
-              __init__: true,
-              props,
-              state: {
-                ...cleanKeys(prev.props, prev.state),
-                ...props,
-                ...calculateState(prev.state, props),
-              },
-            }));
+            setData((prev) =>
+              handleShouldComponentUpdate({
+                shouldComponentUpdate,
+                calculateState,
+                prev,
+                props,
+              })
+            );
           }
         };
         const asyncHandleChange = () => setImmediate(handleChange);
