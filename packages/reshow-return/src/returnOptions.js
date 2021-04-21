@@ -6,8 +6,7 @@ import toJS from "./toJS";
 const keys = Object.keys;
 const isArray = Array.isArray;
 const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
-const storeLocator = (props) => props.stores;
-const globalStoreLocator = (props) => null;
+const storeLocator = (props) => props?.stores;
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 const reset = (props, more) => {
@@ -17,7 +16,6 @@ const reset = (props, more) => {
     "pathStates",
     "stores",
     "storeLocator",
-    "globalStoreLocator",
     ...(more || []),
   ].forEach((key) => delete props[key]);
   return props;
@@ -28,39 +26,23 @@ const defaultProps = {
   pathStates: {},
   immutable: false,
   storeLocator,
-  globalStoreLocator,
 };
 
 const getStores = (props) =>
-  callfunc(props.storeLocator || storeLocator, [props]);
+  callfunc(props?.storeLocator || storeLocator, [props]);
 
-const calculateState = (prevState, props) => {
+const calculateState = (prevState, props, stores) => {
   /**
    * Why not support multi stores?
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const thisStore = (getStores(props) || [])[0];
+  const thisStore = (stores || [])[0];
   if (!thisStore) {
     throw new Error("Store not found, Please check getStores function.");
   }
-  const {
-    initStates,
-    pathStates,
-    globalStoreLocator,
-    immutable: propsImmutable,
-  } = props;
+  const { initStates, pathStates, immutable: propsImmutable } = props;
   const storeState = thisStore.getState();
-  const thisThemePath = storeState.get("themePath");
-  const globalStore = callfunc(globalStoreLocator, [props]);
-  if (
-    thisThemePath &&
-    globalStore &&
-    globalStore.path &&
-    globalStore.path !== thisThemePath
-  ) {
-    return prevState;
-  }
   const immutable = propsImmutable || storeState.get("immutable");
   const results = {};
   if (immutable) {
@@ -85,7 +67,7 @@ const calculateState = (prevState, props) => {
   keys(pathStates || {}).forEach((key) => {
     const thisPath = pathStates[key];
     results[key] = immutable
-      ? getMapIn(get(results, [thisPath[0]]), thisPath.slice(1))
+      ? getMapIn(results[thisPath[0]], thisPath.slice(1))
       : get(results, thisPath);
   });
   return results;

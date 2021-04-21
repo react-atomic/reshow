@@ -38,8 +38,10 @@ describe("Test Return", () => {
   }
 
   let reset;
+  let origConsoleError;
 
   beforeEach(() => {
+    
     reset = jsdom();
     dispatch("config/reset");
   });
@@ -47,6 +49,7 @@ describe("Test Return", () => {
   afterEach(() => {
     reset();
   });
+
   it("assign props", done => {
     const vDom = <FakeComponent />;
     const uFake = mount(vDom).instance();
@@ -58,7 +61,7 @@ describe("Test Return", () => {
       });
       expect(uFake.el.props.I13N).to.deep.equal({ aaa: "bbb" });
       done();
-    });
+    }, 100);
   });
 
   it("test Immutable path state", done => {
@@ -80,7 +83,7 @@ describe("Test Return", () => {
       expect(firstI13N.toJS()).to.deep.equal({ a: "b" });
       wrap.unmount();
       done();
-    });
+    }, 100);
   });
 
   it("test path state should clean", () => {
@@ -98,7 +101,7 @@ describe("Test Return", () => {
     const vDom = (
       <Return stores={[pageStore]} initStates={["data"]}>
         {props => {
-          if (i) {
+          if (i && props.data) {
             expect(props).to.deep.equal({ data: "foo" });
             done();
           } else {
@@ -112,12 +115,14 @@ describe("Test Return", () => {
     dispatch({
       data: "foo"
     });
-    setTimeout(() => wrap.unmount());
   });
 
   it("test store not defined", () => {
+    origConsoleError = console.error;
+    console.error = () =>{};
     expect(() => {
       mount(<Return />);
     }).to.throw();
+    console.error = origConsoleError;
   });
 });
