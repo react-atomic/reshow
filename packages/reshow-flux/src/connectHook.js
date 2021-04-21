@@ -18,6 +18,7 @@ const handleShouldComponentUpdate = ({
   calculateState,
   prev,
   props,
+  stores,
 }) => {
   if (!shouldComponentUpdate || !shouldComponentUpdate({ prev, props })) {
     return {
@@ -26,7 +27,7 @@ const handleShouldComponentUpdate = ({
       state: {
         ...cleanKeys(prev.props, prev.state),
         ...props,
-        ...calculateState(prev.state, props),
+        ...calculateState(prev.state, props, stores),
       },
     };
   } else {
@@ -45,7 +46,7 @@ const connectHook = (Base, options) => {
   const Connected = (props) => {
     const [data, setData] = useState(() => ({
       props,
-      state: { ...props, ...calculateState({}, props) },
+      state: { ...props, ...calculateState({}, props, getStores(props)) },
     }));
 
     const _mount = useRef(true);
@@ -61,6 +62,7 @@ const connectHook = (Base, options) => {
                 calculateState,
                 prev,
                 props,
+                stores,
               })
             );
           }
