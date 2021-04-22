@@ -23,6 +23,7 @@ const myReturnOptions = {
     pathStates,
     storeLocator,
   },
+  displayName: 'ReshowReturn'
 };
 
 const MyReturn = connectHook(ReturnComponent, myReturnOptions);
