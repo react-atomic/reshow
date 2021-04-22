@@ -10,7 +10,7 @@ const REAL_TIME_KEY = "--realTimeData--";
 const REAL_TIME_URL = "--realTimeUrl--";
 const keys = Object.keys;
 
-const getStores = (props) => props.stores || [realTimeStore];
+const storeLocator = (props) => props.stores || [realTimeStore];
 
 const calculateState = (prevState, props) => {
   const realTimeState = realTimeStore.getState();
@@ -36,11 +36,11 @@ const defaultProps = {
   realTimePath: [REAL_TIME_KEY],
   realTimeUrl: null,
   realTimeReset: false,
+  storeLocator,
 };
 
 const myReturnOptions = {
   ...returnOptions,
-  getStores,
   calculateState,
   defaultProps,
 };

@@ -1,12 +1,19 @@
 import React from 'react';
 import Reshow from '../Reshow';
+import {globalStore} from "../../../src/stores/globalStore";
+import {dispatch} from '../../../src/dispatcher';
 
 import {expect} from 'chai';
-import {shallow, mount, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
+import {mount, cleanIt} from "reshow-unit";
 
 describe('Test Reshow Component', ()=>{ 
+
+  afterEach(() => {
+    cleanIt();
+    dispatch('config/reset');
+    globalStore.path = null;
+  });
+
   it('Reshow simple test', ()=>{
     const wrapper = mount(<Reshow themes={{hello: <div>Hello World!</div>}} themePath="hello" />);
     expect(wrapper.html()).to.equal('<div>Hello World!</div>');

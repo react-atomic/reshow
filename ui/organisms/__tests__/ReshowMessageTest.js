@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
 import {expect} from 'chai';
-import {shallow, mount, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({adapter: new Adapter()});
+import { mount, cleanIt } from "reshow-unit";
 
 import {PopupPool} from 'organism-react-popup';
 
@@ -10,6 +8,11 @@ import ReshowMessage from '../ReshowMessage';
 import {dispatch} from '../../../src/index';
 
 describe('Test ReshowMessage', done => {
+  afterEach(() => {
+    cleanIt();
+    dispatch("config/reset");
+  });
+
   it('simple test', done => {
     const vDom = <ReshowMessage />;
     const wrap = mount(vDom);
@@ -31,6 +34,7 @@ describe('Test ReshowMessage', done => {
       dialog: 'how are u',
     });
     setTimeout(() => {
+      wrap.update();
       expect(wrap.html()).to.have.string('dialog');
       done();
     }, 100);

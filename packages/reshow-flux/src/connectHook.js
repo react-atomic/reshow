@@ -4,6 +4,8 @@ import build from "reshow-build";
 import dedup from "array.dedup";
 import { CHANGE } from "reshow-flux-base";
 
+import getStores from "./getStores";
+
 const keys = Object.keys;
 
 const cleanKeys = (props, state) => {
@@ -36,7 +38,6 @@ const handleShouldComponentUpdate = ({
 
 const connectHook = (Base, options) => {
   const {
-    getStores,
     calculateState,
     defaultProps,
     displayName,
@@ -45,7 +46,7 @@ const connectHook = (Base, options) => {
   const Connected = (props) => {
     const [data, setData] = useState(() => ({
       props,
-      state: { ...props, ...calculateState({}, props, getStores(props)) },
+      state: { ...props, ...calculateState({}, props) },
     }));
 
     const _mount = useRef(true);

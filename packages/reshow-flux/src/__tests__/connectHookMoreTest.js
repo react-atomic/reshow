@@ -39,9 +39,11 @@ describe("Test Connect hook for more test", () => {
             foo: store.getState().foo,
           };
         }
-      },
-      getStores: (props) => [store],
+      }
     });
+    FakeConnected.defaultProps = {
+      storeLocator: () => store
+    };
     let vDom = <FakeConnected />;
     const wrap = mount(vDom);
     store.emit(CHANGE);
@@ -62,6 +64,9 @@ describe("Test Connect hook for more test", () => {
       },
       getStores: (props) => [store],
     });
+    FakeConnected.defaultProps = {
+      storeLocator: () => store
+    };
     expect(calculateTimes).to.equal(0);
     const vDom = <FakeConnected />;
     expect(calculateTimes).to.equal(0);
@@ -89,12 +94,15 @@ describe("Test Connect hook for more test", () => {
       calculateState: (prevState, props) => {
         calculateStateProps = { ...props };
         return { foo: props.foo };
-      },
-      getStores: (props) => {
-        getStoresProps = props;
-        return [store];
-      },
+      }
     });
+
+    FakeConnected.defaultProps = {
+      storeLocator: (props) =>{
+        getStoresProps = props;
+        return store;
+      }
+    };
     let changeFoo;
     class Parent extends Component {
       state = {};
@@ -117,14 +125,14 @@ describe("Test Connect hook for more test", () => {
     const vDom = <Parent />;
     const wrap = mount(vDom);
 
-    expect(getStoresProps).to.deep.equal({ foo: null });
-    expect(calculateStateProps).to.deep.equal({ foo: null });
+    expect(getStoresProps).to.deep.include({ foo: null });
+    expect(calculateStateProps).to.deep.include({ foo: null });
     changeFoo("bar");
     wrap.update();
     setTimeout(() => {
       expect(wrap.html()).to.equal("<div>bar</div>");
-      expect(getStoresProps).to.deep.equal({ foo: "bar" });
-      expect(calculateStateProps).to.deep.equal({ foo: "bar" });
+      expect(getStoresProps).to.deep.include({ foo: "bar" });
+      expect(calculateStateProps).to.deep.include({ foo: "bar" });
       done();
     });
   });
@@ -133,11 +141,15 @@ describe("Test Connect hook for more test", () => {
     const FakeComponent = ({ foo }) => <div>{foo}</div>;
     const FakeConnected = connectHook(FakeComponent, {
       calculateState: (prevState, props) => {},
-      getStores: (props) => [store],
     });
+    FakeConnected.defaultProps = {
+      storeLocator: () => store
+    };
     let vDom = <FakeConnected aaa="bbb" />;
     const wrap = mount(vDom);
     const props = wrap.props();
-    expect(props).to.deep.equal({ aaa: "bbb" });
+    expect(props).to.deep.include({ 
+      aaa: "bbb" 
+    });
   });
 });

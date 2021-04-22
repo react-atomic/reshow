@@ -35,8 +35,12 @@ describe("Test Connect Hook", () => {
       calculateState: (prevState, props) => {
         return store.getState();
       },
-      getStores: (props) => [store],
     });
+    
+    FooHook.defaultProps = {
+      storeLocator: () => store
+    };
+
     const wrap = mount(<FooHook />);
     expect(wrap.html()).to.equal("<div></div>");
     const a = { foo: "111" };
@@ -59,7 +63,6 @@ describe("Test Connect Hook", () => {
     let init = 0;
     const Foo = (props) => {
       if (init <= 1) {
-        dispatch.warning = true;
         dispatch({ foo: "bar" });
       }
       init++;
@@ -68,9 +71,13 @@ describe("Test Connect Hook", () => {
     const FooHook = connectHook(Foo, {
       calculateState: (prevState, props) => {
         return store.getState();
-      },
-      getStores: (props) => [store],
+      }
     });
+    FooHook.defaultProps = {
+      storeLocator: () => store
+    };
+
+
     class VDom extends Component {
       componentDidCatch(error, errorInfo) {
         console.log({ error, errorInfo });

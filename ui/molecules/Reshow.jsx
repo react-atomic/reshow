@@ -3,9 +3,8 @@ import get from "get-object-value";
 import { AjaxPage } from "organism-react-ajax";
 import { doc } from "win-doc";
 import callfunc from "call-func";
-import { toJS } from "reshow-return";
+import Return, { toJS } from "reshow-return";
 
-import { Return } from "../molecules/ReshowComponent";
 import updateCanonicalUrl, {
   initCanonicalUrl,
 } from "../../src/updateCanonicalUrl";
@@ -118,6 +117,7 @@ class Reshow extends PureComponent {
 
     return (
       <Return
+        stores={[pageStore]}
         baseUrl={baseUrl}
         staticVersion={staticVersion}
         initStates={["baseUrl", "staticVersion", "webSocketUrl", "themePath"]}

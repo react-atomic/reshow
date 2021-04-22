@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.14.5",
+  "version": "0.14.6",
   "description": "Flux Reducer Present Library (App, Server)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -42,18 +42,9 @@
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
-    "chai": "*",
-    "enzyme": "*",
-    "enzyme-adapter-react-16": "*",
-    "jsdom": "*",
-    "jsdom-global": "*",
-    "mocha": "*",
-    "prettier": "*",
-    "prettier-eslint": "*",
-    "prettier-eslint-cli": "*",
     "react": "^16.x",
     "react-dom": "^16.x",
-    "react-test-renderer": "*"
+    "reshow-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

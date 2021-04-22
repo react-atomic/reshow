@@ -1,12 +1,12 @@
 import get from "get-object-value";
 import callfunc from "call-func";
+import { getStores } from "reshow-flux";
 
 import toJS from "./toJS";
 
 const keys = Object.keys;
 const isArray = Array.isArray;
 const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
-const storeLocator = (props) => props?.stores;
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 const reset = (props, more) => {
@@ -25,21 +25,18 @@ const defaultProps = {
   initStates: [],
   pathStates: {},
   immutable: false,
-  storeLocator,
 };
 
-const getStores = (props) =>
-  callfunc(props?.storeLocator || storeLocator, [props]);
 
-const calculateState = (prevState, props, stores) => {
+const calculateState = (prevState, props) => {
   /**
    * Why not support multi stores?
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const thisStore = (stores || [])[0];
+  const thisStore = (getStores(props) || [])[0];
   if (!thisStore) {
-    throw new Error("Store not found, Please check getStores function.");
+    throw new Error("Store not found, Please check storeLocator function.");
   }
   const { initStates, pathStates, immutable: propsImmutable } = props;
   const storeState = thisStore.getState();
@@ -75,9 +72,9 @@ const calculateState = (prevState, props, stores) => {
 
 const options = {
   defaultProps,
-  getStores,
   calculateState,
   reset,
 };
 
 export default options;
+export {};

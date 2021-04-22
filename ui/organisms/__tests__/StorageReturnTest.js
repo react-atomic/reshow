@@ -1,54 +1,64 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from "react";
+import { expect } from "chai";
+import { mount, cleanIt } from "reshow-unit";
+
+import { globalStore } from "../../../src/stores/globalStore";
 
 import {
   Return,
   localStorageStore,
   sessionStorageStore,
   storageDispatch,
-} from '../../../src/index';
+} from "../../../src/index";
 
-import {expect} from 'chai';
-import {shallow, mount, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({adapter: new Adapter()});
 
-describe('Test Storage Return', () => {
-  class TestEl extends PureComponent {
-    show = 0;
-    render() {
-      this.show++;
-      return <div />;
-    }
+class TestEl extends PureComponent {
+  show = 0;
+  render() {
+    this.show++;
+    return <div />;
   }
+}
 
-  class FakeComponent extends PureComponent {
-    render() {
-      const {storage} = this.props;
-      return (
-        <Return stores={[storage]}>
-          <TestEl ref={el => (this.el = el)} />
-        </Return>
-      );
-    }
+class FakeComponent extends PureComponent {
+  render() {
+    const { storage } = this.props;
+    return (
+      <Return stores={[storage]}>
+        <TestEl ref={(el) => (this.el = el)} />
+      </Return>
+    );
   }
-  it('test get local storage', () => {
-    const vDom = <FakeComponent storage={localStorageStore} />;
-    const uFake = mount(vDom).instance();
-    const uString = 'test123';
-    storageDispatch('local', {data: uString});
-    setTimeout(() => {
-      expect(uFake.el.props.data).to.equal(uString);
-    }, 100);
+}
+
+describe("Test Storage Return", () => {
+  beforeEach(() => {
+    globalStore.path = null;
   });
 
-  it('test get session storage', done => {
-    const vDom = <FakeComponent storage={sessionStorageStore} />;
+  afterEach(() => {
+    cleanIt();
+  });
+
+  it("test get local storage", (done) => {
+    const vDom = <FakeComponent storage={localStorageStore} />;
     const uFake = mount(vDom).instance();
-    const uString = 'test456';
-    storageDispatch('session', {data: uString});
+    const uString = "test123";
+    storageDispatch("local", { data: uString });
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal(uString);
       done();
-    });
+    }, 100);
+  });
+
+  it("test get session storage", (done) => {
+    const vDom = <FakeComponent storage={sessionStorageStore} />;
+    const uFake = mount(vDom).instance();
+    const uString = "test456";
+    storageDispatch("session", { data: uString });
+    setTimeout(() => {
+      expect(uFake.el.props.data).to.equal(uString);
+      done();
+    }, 100);
   });
 });

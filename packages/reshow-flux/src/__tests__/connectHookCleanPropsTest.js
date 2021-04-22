@@ -26,13 +26,15 @@ describe("Connect Hook (clean Props)", () => {
     store = new FakeStore(dispatcher);
   });
   it("test clean props", (done) => {
-    const Foo = (props) => <div {...props} />;
+    const Foo = ({storeLocator, ...props}) => <div {...props} />;
     const FooHook = connectHook(Foo, {
       calculateState: (prevState, props) => {
         return store.getState();
       },
-      getStores: (props) => [store],
     });
+    FooHook.defaultProps = {
+      storeLocator: () => store
+    };
     class Bar extends Component {
       state = {
         p: null,

@@ -2429,9 +2429,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.10.5.tgz#5be6eadace72b7d179dc7fc5f0f5b261790eacb7"
-  integrity sha512-d/+6UbE5Rse83tmkewUagv4PUw2k9PkGkIorDUHmD1TnXlsbbqyUpTBSUheSiJjazofaq8p2MR+1kTHgNBvmVw==
+  version "0.10.9"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.10.9.tgz#b85bda6c092d66e8e1790f88b80b8793bc30eac3"
+  integrity sha512-T2hdOqcmaeQWDej3K2Oo6iVTSgu9j8rjKwq11G65VeD+OIpKxIgEMTlHXOr669PH+PnFzonO9z+svUFvDyNCaA==
   dependencies:
     array.dedup "*"
     get-object-value "*"
@@ -2442,9 +2442,9 @@ reshow-flux@*:
     setimmediate "*"
 
 reshow-return@*:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.2.1.tgz#f0e68ba4701c2b01f7fb0d7dc9c7ef6ec85fa4de"
-  integrity sha512-LKqeEJqYpMGdFiVqt/nbrJu1OdD3H8ZKcebGWDCVUxx8+dqd5964TTlDdCAZccrIQRQUsLFPcyjRGKyKRl3dcg==
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.3.1.tgz#8d6ff8f90d94551bb5c50cd9856d6b5547e4ca0c"
+  integrity sha512-Q5UzNAStyKPMvMaK99yRLp9T3Kx1k9d9H7lHO4vTxMHToIhOflCd316JgcYBNtIW7azRMe8fTINm6QoY+nPz3Q==
   dependencies:
     call-func "*"
     get-object-value "*"
