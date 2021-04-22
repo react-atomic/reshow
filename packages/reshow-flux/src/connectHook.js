@@ -50,10 +50,12 @@ const connectHook = (Base, options) => {
     }));
 
     const _mount = useRef(true);
+    const _props = useRef();
 
     useEffect(() => {
       const stores = dedup(getStores(props)) || [];
       if (stores && stores.length) {
+        _props.current = props;
         const handleChange = () => {
           if (_mount.current) {
             setData((prev) =>
@@ -61,7 +63,7 @@ const connectHook = (Base, options) => {
                 shouldComponentUpdate,
                 calculateState,
                 prev,
-                props
+                props: _props.current
               })
             );
           }
