@@ -57,4 +57,6 @@ const RealTimeReturn = (props) => {
   );
 };
 
+RealTimeReturn.displayName = "RealTime";
+
 export default connectHook(RealTimeReturn, myReturnOptions);
