@@ -28,6 +28,7 @@
               "@babel/plugin-transform-react-constant-elements",
               "@babel/plugin-transform-spread",
               "@babel/plugin-proposal-class-properties",
+              ["@babel/plugin-proposal-private-methods", { "loose": false }],
               "@babel/plugin-proposal-object-rest-spread"
             ]
         },
@@ -58,6 +59,7 @@
               "@babel/plugin-transform-react-constant-elements",
               "@babel/plugin-transform-spread",
               "@babel/plugin-proposal-class-properties",
+              ["@babel/plugin-proposal-private-methods", { "loose": false }],
               "@babel/plugin-proposal-object-rest-spread"
             ]
         },
@@ -88,6 +90,7 @@
               "@babel/plugin-transform-react-constant-elements",
               "@babel/plugin-transform-spread",
               "@babel/plugin-proposal-class-properties",
+              ["@babel/plugin-proposal-private-methods", { "loose": false }],
               "@babel/plugin-proposal-object-rest-spread"
             ]
         }
