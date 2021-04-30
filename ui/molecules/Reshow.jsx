@@ -41,7 +41,7 @@ const update = (params) => {
 
 class Reshow extends PureComponent {
   static defaultProps = {
-    fallback: "div",
+    fallback: false,
   };
 
   static getDerivedStateFromError(error) {

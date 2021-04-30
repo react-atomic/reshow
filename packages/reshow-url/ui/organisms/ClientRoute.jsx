@@ -24,6 +24,7 @@ class ClientRoute extends Reshow {
   static defaultProps = {
     ajax: false,
     goAnchorDelay: 1500,
+    fallback: 'div',
   };
 
   getPath() {
