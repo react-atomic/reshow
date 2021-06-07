@@ -10,7 +10,7 @@ const keys = Object.keys;
 
 /**
  * Calling history.pushState() or history.replaceState() won't trigger a popstate event.
- * The popstate event is only triggered by performing a browser action, such as clicking on the back button 
+ * The popstate event is only triggered by performing a browser action, such as clicking on the back button
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
  */
@@ -118,6 +118,7 @@ class UrlStore extends ReduceStore {
         });
         break;
     }
+
     if (url !== oDoc.URL) {
       updateUrl(url);
       return new URL(oDoc.location); // need put after updateUrl for new url effect

@@ -1,19 +1,18 @@
 import React, { PureComponent } from "react";
-import jsdom from "jsdom-global";
+import {cleanIt, jsdom} from "reshow-unit";
 import { expect } from "chai";
 import { urlDispatch } from "../../urlDispatcher";
 import urlStore from "../urlStore";
 
 describe("Test set New Url", () => {
-  let reset;
 
   beforeEach(() => {
-    reset = jsdom(null, { url: "http://localhost" });
+    jsdom(null, { url: "http://localhost" });
+    urlStore.reset();
   });
 
   afterEach(() => {
-    urlStore.reset();
-    reset();
+    cleanIt();
   });
 
   it("test dispatch url from action", () => {

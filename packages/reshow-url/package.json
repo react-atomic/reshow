@@ -1,6 +1,6 @@
 {
   "name": "reshow-url",
-  "version": "0.14.4",
+  "version": "0.14.5",
   "description": "reshow url util (Web / Browser)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -18,10 +18,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "chai": "*",
-    "mocha": "*",
     "reshow": "*",
-    "sinon": "*"
+    "reshow-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

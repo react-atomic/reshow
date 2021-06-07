@@ -1,21 +1,16 @@
-import jsdom from "jsdom-global";
 import React, { PureComponent } from "react";
 import { expect } from "chai";
-import { mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import {mount, cleanIt, jsdom} from "reshow-unit";
 
-let uGlobal = jsdom(null, { url: "http://localhost" });
+jsdom(null, { url: "http://localhost" });
 import { AjaxPage, ajaxDispatch } from "organism-react-ajax";
 import urlStore from "../stores/urlStore";
 
 describe("Test Handle New Url", () => {
   let wrap;
   after(() => {
-    uGlobal();
-    jsdom();
-    wrap.unmount();
     ajaxDispatch({ onUrlChange: null });
+    cleanIt();
   });
   class FakeComponent extends PureComponent {
     render() {

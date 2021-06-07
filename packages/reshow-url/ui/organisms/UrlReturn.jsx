@@ -1,5 +1,5 @@
 import React from "react";
-import { Return } from "reshow";
+import Return from "reshow-return";
 
 import urlStore from "../../src/stores/urlStore";
 

@@ -1,4 +1,4 @@
-import Reshow from "reshow";
+import Reshow, { dispatch } from "reshow";
 import { ajaxDispatch } from "organism-react-ajax";
 import { doc } from "win-doc";
 
@@ -24,11 +24,14 @@ class ClientRoute extends Reshow {
   static defaultProps = {
     ajax: false,
     goAnchorDelay: 1500,
-    fallback: 'div',
+    fallback: "div",
   };
 
   getPath() {
-    return this.getUrlChangeState(this.props.url || doc().URL)?.themePath;
+    const themePath = this.getUrlChangeState(this.props.url || doc().URL)
+      ?.themePath;
+    setTimeout(() => dispatch({ themePath }));
+    return themePath;
   }
 
   getUrlChangeState(url) {

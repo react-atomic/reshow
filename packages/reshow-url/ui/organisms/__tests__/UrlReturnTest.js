@@ -1,23 +1,17 @@
-import jsdom from "jsdom-global";
-
 import React, { PureComponent } from "react";
 import { urlStore, UrlReturn, urlDispatch } from "../../../src/index";
 
 import { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { mount, cleanIt, jsdom } from "reshow-unit";
 
 describe("Test Url Return", () => {
-  let reset;
-
   beforeEach(() => {
-    reset = jsdom(null, { url: "http://localhost" });
+    jsdom(null, { url: "http://localhost" });
+    urlStore.reset();
   });
 
   afterEach(() => {
-    urlStore.reset();
-    reset();
+    cleanIt();
   });
 
   class TestEl extends PureComponent {
@@ -38,11 +32,14 @@ describe("Test Url Return", () => {
       );
     }
   }
+
   it("test get pathname", (done) => {
     const vDom = <FakeComponent urlKey=":pathname" />;
-    const uFake = mount(vDom).instance();
+    const wrap = mount(vDom);
+    const uFake = wrap.instance();
     urlDispatch({ type: "url", url: "http://localhost/aaa" });
     setTimeout(() => {
+      wrap.update();
       expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
       done();
     }, 100);
