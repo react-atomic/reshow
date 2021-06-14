@@ -22,11 +22,6 @@ const reset = (props, more) => {
   return nextProps;
 };
 
-const defaultProps = {
-  initStates: [],
-  pathStates: {},
-  immutable: false,
-};
 
 
 const calculateState = (prevState, props) => {
@@ -72,10 +67,8 @@ const calculateState = (prevState, props) => {
 };
 
 const options = {
-  defaultProps,
   calculateState,
   reset,
 };
 
 export default options;
-export {};

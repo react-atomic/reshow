@@ -1,6 +1,6 @@
 {
   "name": "reshow-return",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
