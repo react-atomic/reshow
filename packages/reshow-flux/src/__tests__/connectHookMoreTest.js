@@ -1,13 +1,14 @@
 import React, { Component, StrictMode } from "react";
 import { expect } from "chai";
 import { shallow, mount, configure } from "enzyme";
+import { CHANGE } from "reshow-flux-base";
 import Adapter from "enzyme-adapter-react-16";
 configure({ adapter: new Adapter() });
 
 import connectHook from "../connectHook";
+import useConnect from "../useConnect";
 import ReduceStore from "../ReduceStore";
 import { Dispatcher } from "../index";
-import { CHANGE } from "reshow-flux-base";
 
 describe("Test Connect hook for more test", () => {
   class FakeStore extends ReduceStore {
@@ -29,23 +30,22 @@ describe("Test Connect hook for more test", () => {
   });
 
   it("could register with store", (done) => {
-    const FakeComponent = ({ foo }) => <div>{foo}</div>;
-    const FakeConnected = connectHook(FakeComponent, {
-      calculateState: (prevState, props) => {
-        if (!prevState.__init__) {
-          return { __init__: true };
-        } else {
+    const FakeComponent = (props) => {
+      const state = useConnect({
+        calculateState: (prevState, props) => {
           return {
             foo: store.getState().foo,
           };
-        }
-      }
-    });
-    FakeConnected.defaultProps = {
-      storeLocator: () => store
+        },
+      })(props);
+      return <div>{state.foo}</div>;
     };
-    let vDom = <FakeConnected />;
-    const wrap = mount(vDom);
+
+    FakeComponent.defaultProps = {
+      storeLocator: () => store,
+    };
+
+    const wrap = mount(<FakeComponent />);
     store.emit(CHANGE);
     setTimeout(() => {
       expect(wrap.html()).to.equal("<div>bar</div>");
@@ -55,22 +55,25 @@ describe("Test Connect hook for more test", () => {
 
   it("could work with dispatcher", (done) => {
     let calculateTimes = 0;
-    const FakeComponent = ({ aaa }) => <div>{aaa}</div>;
-    const FakeConnected = connectHook(FakeComponent, {
-      calculateState: (prevState, props) => {
-        const state = store.getState();
-        calculateTimes++;
-        return { aaa: state.aaa };
-      },
-      getStores: (props) => [store],
-    });
-    FakeConnected.defaultProps = {
-      storeLocator: () => store
+
+    const FakeComponent = (props) => {
+      const state = useConnect({
+        calculateState: (prevState, props) => {
+          const state = store.getState();
+          calculateTimes++;
+          return { aaa: state.aaa };
+        },
+        getStores: (props) => [store],
+      })(props);
+      return <div>{state.aaa}</div>;
     };
+
+    FakeComponent.defaultProps = {
+      storeLocator: () => store,
+    };
+
     expect(calculateTimes).to.equal(0);
-    const vDom = <FakeConnected />;
-    expect(calculateTimes).to.equal(0);
-    const html = mount(vDom);
+    const html = mount(<FakeComponent />);
     setTimeout(() => {
       expect(calculateTimes).to.equal(2); //init and handlchange
       dispatch({ aaa: "Hello dispatcher!" });
@@ -89,19 +92,22 @@ describe("Test Connect hook for more test", () => {
   it("could work withProps", (done) => {
     let getStoresProps = null;
     let calculateStateProps = null;
-    const FakeComponent = ({ foo }) => <div>{foo}</div>;
-    const FakeConnected = connectHook(FakeComponent, {
-      calculateState: (prevState, props) => {
-        calculateStateProps = { ...props };
-        return { foo: props.foo };
-      }
-    });
 
-    FakeConnected.defaultProps = {
-      storeLocator: (props) =>{
+    const FakeComponent = (props) => {
+      const state = useConnect({
+        calculateState: (prevState, props) => {
+          calculateStateProps = { ...props };
+          return { foo: props.foo };
+        },
+      })(props);
+      return <div>{state.foo}</div>;
+    };
+
+    FakeComponent.defaultProps = {
+      storeLocator: (props) => {
         getStoresProps = props;
         return store;
-      }
+      },
     };
     let changeFoo;
     class Parent extends Component {
@@ -119,11 +125,10 @@ describe("Test Connect hook for more test", () => {
         if (this.state && this.state.foo) {
           foo = this.state.foo;
         }
-        return <FakeConnected foo={foo} />;
+        return <FakeComponent foo={foo} />;
       }
     }
-    const vDom = <Parent />;
-    const wrap = mount(vDom);
+    const wrap = mount(<Parent />);
 
     expect(getStoresProps).to.deep.include({ foo: null });
     expect(calculateStateProps).to.deep.include({ foo: null });
@@ -138,18 +143,22 @@ describe("Test Connect hook for more test", () => {
   });
 
   it("could work with empty calculateState", () => {
-    const FakeComponent = ({ foo }) => <div>{foo}</div>;
-    const FakeConnected = connectHook(FakeComponent, {
-      calculateState: (prevState, props) => {},
-    });
-    FakeConnected.defaultProps = {
-      storeLocator: () => store
+
+    const FakeComponent = (props) => {
+      const state = useConnect({
+        calculateState: (prevState, props) => {},
+      })(props);
+      return <div>{state.foo}</div>;
     };
-    let vDom = <FakeConnected aaa="bbb" />;
-    const wrap = mount(vDom);
+
+    FakeComponent.defaultProps = {
+      storeLocator: () => store,
+    };
+
+    const wrap = mount(<FakeComponent aaa="bbb" />);
     const props = wrap.props();
-    expect(props).to.deep.include({ 
-      aaa: "bbb" 
+    expect(props).to.deep.include({
+      aaa: "bbb",
     });
   });
 });

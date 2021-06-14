@@ -4,7 +4,7 @@ import { shallow, mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 configure({ adapter: new Adapter() });
 
-import connectHook from "../connectHook";
+import useConnect from "../useConnect";
 import { Dispatcher, ReduceStore } from "../index";
 
 describe("Connect Hook (clean Props)", () => {
@@ -26,13 +26,18 @@ describe("Connect Hook (clean Props)", () => {
     store = new FakeStore(dispatcher);
   });
   it("test clean props", (done) => {
-    const Foo = ({storeLocator, ...props}) => <div {...props} />;
-    const FooHook = connectHook(Foo, {
-      calculateState: (prevState, props) => {
-        return store.getState();
-      },
-    });
-    FooHook.defaultProps = {
+    const Foo = (props) =>
+    {
+      const state = useConnect({
+        calculateState: (prevState, props) => {
+          return store.getState();
+        },
+      })(props);
+      const {storeLocator, ...otherProps} = props;
+      return <div {...{...otherProps, ...state}} />;
+    }
+
+    Foo.defaultProps = {
       storeLocator: () => store
     };
     class Bar extends Component {
@@ -40,7 +45,7 @@ describe("Connect Hook (clean Props)", () => {
         p: null,
       };
       render() {
-        return <FooHook {...this.state.p} />;
+        return <Foo {...this.state.p} />;
       }
     }
     const wrap = mount(<Bar />);
