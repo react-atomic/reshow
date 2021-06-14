@@ -15,10 +15,7 @@ const getReturn = ({ defaultProps, displayName = "Return" }) => {
     return result;
   };
 
-  Return.defaultProps = {
-    useConnect: useConnect(returnOptions),
-  };
-
+  Return.defaultProps = defaultProps;
   Return.displayName = displayName;
   return Return;
 };
