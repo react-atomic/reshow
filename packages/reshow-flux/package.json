@@ -1,7 +1,7 @@
 {
   "name": "reshow-flux",
-  "version": "0.10.10",
-  "description": "The smallest react flux and Fast 3kb Flux alternative",
+  "version": "1.0.0",
+  "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
@@ -22,15 +22,9 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "chai": "*",
-    "enzyme": "*",
-    "enzyme-adapter-react-16": "*",
-    "jsdom": "*",
-    "jsdom-global": "*",
-    "mocha": "*",
+    "reshow-unit": "*",
     "react": "16.x",
-    "react-dom": "16.x",
-    "react-test-renderer": "*"
+    "react-dom": "16.x"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

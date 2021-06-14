@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 import { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { mount } from "reshow-unit";
 
 import useConnect from "../useConnect";
 import { Dispatcher, ReduceStore } from "../index";

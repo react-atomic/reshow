@@ -1,11 +1,10 @@
 import React, { Component, StrictMode } from "react";
+import { Dispatcher } from "reshow-flux-base";
 import { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { mount } from "reshow-unit";
 
 import useConnect from "../useConnect";
-import { Dispatcher, ReduceStore } from "../index";
+import ReduceStore from "../ReduceStore";
 
 describe("Connect Hook (clean Props)", () => {
   class FakeStore extends ReduceStore {
@@ -26,19 +25,18 @@ describe("Connect Hook (clean Props)", () => {
     store = new FakeStore(dispatcher);
   });
   it("test clean props", (done) => {
-    const Foo = (props) =>
-    {
+    const Foo = (props) => {
       const state = useConnect({
         calculateState: (prevState, props) => {
           return store.getState();
         },
       })(props);
-      const {storeLocator, ...otherProps} = props;
-      return <div {...{...otherProps, ...state}} />;
-    }
+      const { storeLocator, ...otherProps } = props;
+      return <div {...{ ...otherProps, ...state }} />;
+    };
 
     Foo.defaultProps = {
-      storeLocator: () => store
+      storeLocator: () => store,
     };
     class Bar extends Component {
       state = {
@@ -57,7 +55,6 @@ describe("Connect Hook (clean Props)", () => {
       setTimeout(() => {
         expect(wrap.html()).to.equal('<div bar="c"></div>');
         done();
-        wrap.unmount();
       }, 50);
     }, 50);
   });

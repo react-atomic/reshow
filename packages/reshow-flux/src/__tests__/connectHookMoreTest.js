@@ -1,14 +1,10 @@
 import React, { Component, StrictMode } from "react";
+import { Dispatcher, CHANGE } from "reshow-flux-base";
 import { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import { CHANGE } from "reshow-flux-base";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { mount } from "reshow-unit";
 
-import connectHook from "../connectHook";
 import useConnect from "../useConnect";
 import ReduceStore from "../ReduceStore";
-import { Dispatcher } from "../index";
 
 describe("Test Connect hook for more test", () => {
   class FakeStore extends ReduceStore {
@@ -81,7 +77,6 @@ describe("Test Connect hook for more test", () => {
         html.update();
         expect(calculateTimes).to.equal(3);
         expect(html.html()).to.equal("<div>Hello dispatcher!</div>");
-        html.unmount();
         dispatch({ aaa: "Hello Unmount!" });
         expect(calculateTimes).to.equal(3);
         done();
@@ -143,7 +138,6 @@ describe("Test Connect hook for more test", () => {
   });
 
   it("could work with empty calculateState", () => {
-
     const FakeComponent = (props) => {
       const state = useConnect({
         calculateState: (prevState, props) => {},
