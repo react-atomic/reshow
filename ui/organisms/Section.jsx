@@ -1,27 +1,19 @@
 import React from "react";
 import get from "get-object-value";
 import { build } from "react-atomic-molecule";
-import { connectHook } from "reshow-flux";
 
-import { returnOptions } from "../molecules/ReshowComponent";
+import { defaultProps, returnOptions } from "../molecules/ReshowComponent";
 
-const { pathStates, ...otherDefaultProps } = returnOptions.defaultProps;
-
-const myReturnOptions = {
-  ...returnOptions,
-  defaultProps: {
-    ...otherDefaultProps,
-    initStates: ["section", "I18N"],
-  },
-};
+const { pathStates, ...otherDefaultProps } = defaultProps;
 
 const Section = (props) => {
-  const { section, immutable, children, ...otherProps } = props;
+  const { useConnect, immutable, children, ...otherProps } = props;
+  const { section, ...state } = useConnect(props);
   if (!section) {
     return null;
   }
   const name = props.name;
-  let allParams = myReturnOptions.reset(otherProps);
+  let allParams = { ...returnOptions.reset(otherProps), ...state };
   if (immutable) {
     const thisSection = section.get(name);
     if (!thisSection) {
@@ -53,6 +45,9 @@ const Section = (props) => {
   return build(children)(allParams);
 };
 
-Section.displayName = "Section";
+Section.defaultProps = {
+  ...otherDefaultProps,
+  initStates: ["section", "I18N"],
+};
 
-export default connectHook(Section, myReturnOptions);
+export default Section;

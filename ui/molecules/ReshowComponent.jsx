@@ -1,5 +1,7 @@
-import { returnOptions, ReturnComponent } from "reshow-return";
-import { connectHook } from "reshow-flux";
+import React from "react";
+import build from "reshow-build";
+import { returnOptions, getReturn } from "reshow-return";
+import { useConnect } from "reshow-flux";
 import pageStore from "../../src/stores/pageStore";
 import { globalStore } from "../../src/stores/globalStore";
 
@@ -17,15 +19,18 @@ const myReturnOptions = {
       return true;
     }
   },
-  defaultProps: {
-    ...returnOptions.defaultProps,
-    initStates,
-    pathStates,
-    storeLocator,
-  },
-  displayName: 'ReshowReturn'
 };
 
-const MyReturn = connectHook(ReturnComponent, myReturnOptions);
+const defaultProps = {
+  initStates,
+  pathStates,
+  storeLocator,
+  useConnect: useConnect(myReturnOptions),
+};
 
-export { myReturnOptions as returnOptions, MyReturn as Return };
+const ReshowReturn = getReturn({
+  defaultProps,
+  displayName: "ReshowReturn",
+});
+
+export { defaultProps, myReturnOptions as returnOptions, ReshowReturn as Return };

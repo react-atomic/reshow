@@ -1,16 +1,14 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import get from "get-object-value";
-import { connectHook } from "reshow-flux";
+import { useConnect } from "reshow-flux";
 import { build } from "react-atomic-molecule";
 
-import { returnOptions, Return } from "../molecules/ReshowComponent";
+import { defaultProps, returnOptions, Return } from "../molecules/ReshowComponent";
 import realTimeStore from "../../src/stores/realTimeStore";
 
 const REAL_TIME_KEY = "--realTimeData--";
 const REAL_TIME_URL = "--realTimeUrl--";
 const keys = Object.keys;
-
-const storeLocator = (props) => props.stores || [realTimeStore];
 
 const calculateState = (prevState, props) => {
   const realTimeState = realTimeStore.getState();
@@ -31,32 +29,32 @@ const calculateState = (prevState, props) => {
   }
 };
 
-const defaultProps = {
-  ...returnOptions.defaultProps,
-  realTimePath: [REAL_TIME_KEY],
-  realTimeUrl: null,
-  realTimeReset: false,
-  storeLocator,
-};
-
 const myReturnOptions = {
   ...returnOptions,
   calculateState,
-  defaultProps,
 };
 
 const RealTimeReturn = (props) => {
-  const { children, realTimePath, ...otherProps } = props;
-  const myOtherProps = returnOptions.reset(otherProps);
+  const { children, realTimePath, useConnect, ...otherProps } = props;
+  const state = useConnect(props);
+  const mergeState = {...returnOptions.reset(otherProps), ...state};
   return (
     <Return>
       {(pageState) => {
-        return build(children)({ ...pageState, ...myOtherProps });
+        return build(children)({ ...pageState, ...mergeState });
       }}
     </Return>
   );
 };
-
+const storeLocator = (props) => props.stores || [realTimeStore];
+RealTimeReturn.defaultProps = {
+  ...defaultProps,
+  realTimePath: [REAL_TIME_KEY],
+  realTimeUrl: null,
+  realTimeReset: false,
+  useConnect: useConnect(myReturnOptions),
+  storeLocator,
+};
 RealTimeReturn.displayName = "RealTime";
 
-export default connectHook(RealTimeReturn, myReturnOptions);
+export default RealTimeReturn;

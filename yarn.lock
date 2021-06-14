@@ -4980,9 +4980,9 @@ reshow-flux@*:
     setimmediate "*"
 
 reshow-return@*:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-1.0.1.tgz#fda3bd221a633fdff0738a82b52f0aa3b2c50428"
-  integrity sha512-WoUrrFPz3ugXVTWAu2f4/W6ISKmGWcmvhdJTYc07JTDt1n1DPVzQOdcK0ZPrzzvsmEz/sBgD6WVJkRfb2StSkw==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-1.0.3.tgz#4ae4c3c39104ba75f62133da54e9a049d45b1a1a"
+  integrity sha512-s//vAW/xdGG5Jp8DubxaPLbUH6oWOJStOUCo+TgXuYR/CZdKvxs42qEB/zxAsTuIO7vHUTxXRmGQp1KB2xEDPw==
   dependencies:
     call-func "*"
     get-object-value "*"

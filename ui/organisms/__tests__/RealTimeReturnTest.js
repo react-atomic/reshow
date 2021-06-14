@@ -46,23 +46,21 @@ describe("Test RealTimeReturn", () => {
   });
 
   it("dispatch realtime first", (done) => {
-    const vDom = <FakeComponent />;
-    uWrap = mount(vDom);
+    uWrap = mount(<FakeComponent />);
     const uFake = uWrap.instance();
     dispatch({ type: "realTime", params: { r: { data: "bar" } } });
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal("bar");
       dispatch({ data: "foo" });
       setTimeout(() => {
-        expect(uFake.el.props.data).to.equal("bar");
+        expect(uFake.el.props.data).to.equal("foo");
         done();
       }, 100);
     }, 50);
   });
 
   it("test realtime reset", (done) => {
-    const vDom = <FakeComponent realTimeReset={true} />;
-    uWrap = mount(vDom);
+    uWrap = mount(<FakeComponent realTimeReset={true} />);
     const uFake = uWrap.instance();
     dispatch({ type: "realTime", params: { r: { data: "bar" } } });
     setTimeout(() => {
@@ -72,6 +70,6 @@ describe("Test RealTimeReturn", () => {
         expect(uFake.el.props.data).to.be.null;
         done();
       }, 100);
-    }, 50);
+    }, 100);
   });
 });
