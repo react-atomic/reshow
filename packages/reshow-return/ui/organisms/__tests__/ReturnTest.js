@@ -1,12 +1,28 @@
 import React, { PureComponent } from "react";
-import { pageStore, dispatch } from "reshow";
-import chai, { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
-import jsdom from "jsdom-global";
+import { Dispatcher, ReduceStore } from "reshow-flux";
+import { expect } from "chai";
+import { mount, cleanIt } from "reshow-unit";
 
 import Return from "../Return";
+
+class PageStore extends ReduceStore {
+  reduce(state, action) {
+    switch (action.type) {
+      case "config/reset":
+        return state.clear().merge(action.params);
+      default:
+        if (Object.keys(action)) {
+          return state.merge(action);
+        } else {
+          return state;
+        }
+    }
+  }
+}
+
+const dispatcher = new Dispatcher();
+const pageStore = new PageStore(dispatcher);
+const dispatch = dispatcher.dispatch;
 
 describe("Test Return", () => {
   class TestEl extends PureComponent {
@@ -16,22 +32,26 @@ describe("Test Return", () => {
   }
 
   class FakeComponent extends PureComponent {
-    state = {};
+    state = {
+      stores: [pageStore],
+      initStates: ["data"],
+      pathStates: { I13N: ["data", "I13N"] },
+    };
 
     setNew(k, v) {
       this.setState({ [k]: v });
     }
 
     render() {
-      const { immutable } = this.props;
+      const { stores, initStates, pathStates, ...otherState } = this.state;
       return (
         <Return
-          stores={[pageStore]}
-          immutable={immutable}
-          initStates={["data", "I18N"]}
-          pathStates={{ I13N: ["data", "I13N"] }}
+          stores={stores}
+          initStates={initStates}
+          pathStates={pathStates}
+          {...this.props}
         >
-          <TestEl ref={el => (this.el = el)} {...this.state} />
+          <TestEl ref={(el) => (this.el = el)} {...otherState} />
         </Return>
       );
     }
@@ -41,35 +61,37 @@ describe("Test Return", () => {
   let origConsoleError;
 
   beforeEach(() => {
-    
-    reset = jsdom();
     dispatch("config/reset");
   });
 
   afterEach(() => {
-    reset();
+    cleanIt();
   });
 
-  it("assign props", done => {
-    const vDom = <FakeComponent />;
-    const uFake = mount(vDom).instance();
+  it("assign props", (done) => {
+    const wrap = mount(<FakeComponent />);
+    const uFake = wrap.instance();
     dispatch({ data: { foo: "bar", I13N: { aaa: "bbb" } } });
     setTimeout(() => {
       expect(uFake.el.props.data).to.deep.equal({
         foo: "bar",
-        I13N: { aaa: "bbb" }
+        I13N: { aaa: "bbb" },
       });
       expect(uFake.el.props.I13N).to.deep.equal({ aaa: "bbb" });
-      done();
+      uFake.setNew("pathStates", { foo: ["data", "foo"] });
+      setTimeout(() => {
+        expect(uFake.el.props.foo).to.equal("bar");
+        done();
+      }, 100);
     }, 100);
   });
 
-  it("test Immutable path state", done => {
+  it("test Immutable path state", (done) => {
     const vDom = <FakeComponent immutable />;
     const wrap = mount(vDom);
     const uFake = wrap.instance();
     dispatch({
-      data: { foo: "bar", I13N: { a: "b" } }
+      data: { foo: "bar", I13N: { a: "b" } },
     });
     setTimeout(() => {
       const firstData = uFake.el.props.data;
@@ -81,26 +103,25 @@ describe("Test Return", () => {
       expect(firstI13N === secondI13N).to.be.true;
       expect(firstData.toJS()).to.deep.equal({ foo: "bar", I13N: { a: "b" } });
       expect(firstI13N.toJS()).to.deep.equal({ a: "b" });
-      wrap.unmount();
       done();
     }, 100);
   });
 
   it("test path state should clean", () => {
-    const vDom = <FakeComponent immutable />;
-    const uFake = mount(vDom).instance();
-    const vDom1 = <FakeComponent />;
-    const uFake1 = mount(vDom1).instance();
+    const wrap = mount(<FakeComponent immutable />);
+    const uFake = wrap.instance();
     dispatch({ data: "" });
     expect(uFake.el.props.I13N).to.undefined;
+    const wrap1 = mount(<FakeComponent />);
+    const uFake1 = wrap1.instance();
     expect(uFake1.el.props.I13N).to.undefined;
   });
 
-  it("test child with function", done => {
+  it("test child with function", (done) => {
     let i = 0;
     const vDom = (
       <Return stores={[pageStore]} initStates={["data"]}>
-        {props => {
+        {(props) => {
           if (i && props.data) {
             expect(props).to.deep.equal({ data: "foo" });
             done();
@@ -113,13 +134,13 @@ describe("Test Return", () => {
     );
     const wrap = mount(vDom);
     dispatch({
-      data: "foo"
+      data: "foo",
     });
   });
 
   it("test store not defined", () => {
     origConsoleError = console.error;
-    console.error = () =>{};
+    console.error = () => {};
     expect(() => {
       mount(<Return />);
     }).to.throw();

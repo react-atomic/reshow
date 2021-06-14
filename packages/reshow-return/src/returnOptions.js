@@ -10,6 +10,7 @@ const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 const reset = (props, more) => {
+  const nextProps = {...props};
   [
     "immutable",
     "initStates",
@@ -17,8 +18,8 @@ const reset = (props, more) => {
     "stores",
     "storeLocator",
     ...(more || []),
-  ].forEach((key) => delete props[key]);
-  return props;
+  ].forEach((key) => delete nextProps[key]);
+  return nextProps;
 };
 
 const defaultProps = {
@@ -36,7 +37,7 @@ const calculateState = (prevState, props) => {
    */
   const thisStore = (getStores(props) || [])[0];
   if (!thisStore) {
-    throw new Error("Store not found, Please check storeLocator function.");
+    throw "Store not found, Please check storeLocator function.";
   }
   const { initStates, pathStates, immutable: propsImmutable } = props;
   const storeState = thisStore.getState();

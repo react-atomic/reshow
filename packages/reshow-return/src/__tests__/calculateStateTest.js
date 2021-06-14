@@ -1,10 +1,29 @@
 import { expect } from "chai";
-import { pageStore, dispatch } from "reshow";
+import { Dispatcher, ReduceStore } from "reshow-flux";
 import { Map } from "immutable";
 
 import options from "../returnOptions";
 
 const {calculateState} = options;  
+
+class PageStore extends ReduceStore {
+  reduce(state, action) {
+    switch (action.type) {
+      case "config/reset":
+        return state.clear().merge(action.params);
+      default:
+        if (Object.keys(action)) {
+          return state.merge(action);
+        } else {
+          return state;
+        }
+    }
+  }
+}
+
+const dispatcher = new Dispatcher();
+const pageStore = new PageStore(dispatcher);
+const dispatch = dispatcher.dispatch;
 
 
 describe("Test calculateState", () => {
@@ -13,13 +32,13 @@ describe("Test calculateState", () => {
   });
 
   it("path data with immutable", ()=>{
-    const acture = calculateState({}, {
+    const actual = calculateState({}, {
       initStates: ['foo'],
       pathStates: {bar: ['foo', 'bar']},
       immutable: true,
       storeLocator: () => pageStore,
     });
-    expect(acture.bar instanceof Map).to.be.true;
+    expect(actual.bar instanceof Map).to.be.true;
   });
 
   it("path data with immutable not exits", ()=>{

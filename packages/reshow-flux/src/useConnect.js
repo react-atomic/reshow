@@ -2,10 +2,7 @@ import "setimmediate";
 import { useState, useEffect, useRef } from "react";
 import dedup from "array.dedup";
 import { CHANGE } from "reshow-flux-base";
-
 import getStores from "./getStores";
-
-const keys = Object.keys;
 
 const handleShouldComponentUpdate = ({
   shouldComponentUpdate,
@@ -13,15 +10,15 @@ const handleShouldComponentUpdate = ({
   prev,
   props,
 }) => {
-  if (!shouldComponentUpdate || shouldComponentUpdate({ prev, props })) {
-    return {
-      __init__: true,
-      props,
-      state: calculateState(prev.state, props),
-    };
-  } else {
-    return prev;
-  }
+  const state =
+    !shouldComponentUpdate || shouldComponentUpdate({ prev, props })
+      ? calculateState(prev.state, props)
+      : prev.state;
+  return {
+    __init__: true,
+    props,
+    state,
+  };
 };
 
 const useConnect = (options) => (props) => {
@@ -31,12 +28,16 @@ const useConnect = (options) => (props) => {
     state: calculateState({}, props),
   }));
 
+  const [lastProps, setLastProps] = useState(props);
+
   const _mount = useRef(true);
-  const _props = useRef();
 
   useEffect(() => {
-    const stores = dedup(getStores(props)) || [];
-    _props.current = props;
+    setLastProps(props);
+  }, [props]);
+
+  useEffect(() => {
+    const stores = dedup(getStores(lastProps)) || [];
     if (stores && stores.length) {
       const handleChange = () => {
         if (_mount.current) {
@@ -45,23 +46,23 @@ const useConnect = (options) => (props) => {
               shouldComponentUpdate,
               calculateState,
               prev,
-              props: _props.current, // prevent get outdated props
+              props: lastProps,
             })
           );
         }
       };
       const asyncHandleChange = () => setImmediate(handleChange);
-      if (!data.__init__ || data.props !== props) {
+      if (!data.__init__ || data.props !== lastProps) {
         handleChange();
       }
-      stores.forEach((store) => store.addListener(asyncHandleChange, CHANGE));
+      stores.forEach((store) => store?.addListener(asyncHandleChange, CHANGE));
       return () => {
         stores.forEach((store) =>
-          store.removeListener(asyncHandleChange, CHANGE)
+          store?.removeListener(asyncHandleChange, CHANGE)
         );
       };
     }
-  }, [props]);
+  }, [lastProps]);
 
   useEffect(() => () => (_mount.current = false), []);
   return data.state || {};
