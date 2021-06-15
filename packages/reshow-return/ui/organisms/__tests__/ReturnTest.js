@@ -69,7 +69,7 @@ describe("Test Return", () => {
   });
 
   it("assign props", (done) => {
-    const wrap = mount(<FakeComponent />);
+    const wrap = mount(<FakeComponent withPropsChange />);
     const uFake = wrap.instance();
     dispatch({ data: { foo: "bar", I13N: { aaa: "bbb" } } });
     setTimeout(() => {

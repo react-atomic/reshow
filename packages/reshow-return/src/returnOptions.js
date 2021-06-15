@@ -9,6 +9,7 @@ const isArray = Array.isArray;
 const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
+
 const reset = (props, more) => {
   const nextProps = {...props};
   [
@@ -17,6 +18,8 @@ const reset = (props, more) => {
     "pathStates",
     "stores",
     "storeLocator",
+    "cleanProps",
+    "withPropsChange",
     ...(more || []),
   ].forEach((key) => delete nextProps[key]);
   return nextProps;

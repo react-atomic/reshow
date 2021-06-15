@@ -6,10 +6,10 @@ import returnOptions from "../../src/returnOptions";
 
 const getReturn = ({ defaultProps, displayName = "Return" }) => {
   const Return = (props) => {
-    const { useConnect, children, ...otherProps } = props;
+    const { useConnect, children, cleanProps, ...otherProps } = props;
     const state = useConnect(props);
     const result = build(children)({
-      ...returnOptions.reset(otherProps),
+      ...returnOptions.reset(otherProps, cleanProps),
       ...state,
     });
     return result;
