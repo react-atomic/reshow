@@ -1,12 +1,14 @@
 import React, { PureComponent } from "react";
-import { RealTimeReturn, dispatch } from "../../../src/index";
+import { RealTimeReturn, Return, dispatch } from "../../../src/index";
 
 import { expect } from "chai";
 import { mount, cleanIt } from "reshow-unit";
 
 class TestEl extends PureComponent {
   render() {
-    return <div />;
+    const props = {...this.props};
+    delete props["--realTimeUrl--"];
+    return <div {...props} />;
   }
 }
 
@@ -14,9 +16,11 @@ class FakeComponent extends PureComponent {
   render() {
     const { realTimeReset } = this.props;
     return (
-      <RealTimeReturn realTimeReset={realTimeReset} realTimePath={["r"]}>
-        <TestEl ref={(el) => (this.el = el)} />
-      </RealTimeReturn>
+      <Return id="real">
+        <RealTimeReturn realTimeReset={realTimeReset} realTimePath={["r"]}>
+          <TestEl ref={(el) => (this.el = el)} />
+        </RealTimeReturn>
+      </Return>
     );
   }
 }
@@ -29,9 +33,8 @@ describe("Test RealTimeReturn", () => {
     dispatch("config/reset");
   });
 
-  it("dispatch pageStore first", (done) => {
-    const vDom = <FakeComponent />;
-    uWrap = mount(vDom);
+  it("dispatch Page State first", (done) => {
+    uWrap = mount(<FakeComponent />);
     dispatch({ data: "foo" });
     setTimeout(() => {
       uWrap.update();
@@ -45,7 +48,7 @@ describe("Test RealTimeReturn", () => {
     }, 50);
   });
 
-  it("dispatch realtime first", (done) => {
+  it("dispatch Realtime State first", (done) => {
     uWrap = mount(<FakeComponent />);
     const uFake = uWrap.instance();
     dispatch({ type: "realTime", params: { r: { data: "bar" } } });

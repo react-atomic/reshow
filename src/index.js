@@ -1,6 +1,6 @@
 // Flux
 // Connect A.K.A Facebook's flux Container.create
-export { ReduceStore, Dispatcher, connect as reshow } from "reshow-flux";
+export { ReduceStore, Dispatcher } from "reshow-flux";
 
 // Stores
 export { default as pageStore } from "./stores/pageStore";

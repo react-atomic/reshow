@@ -2,8 +2,9 @@ import React from "react";
 import get from "get-object-value";
 import { useConnect } from "reshow-flux";
 import { build } from "react-atomic-molecule";
+import { getReturn } from "reshow-return";
 
-import { defaultProps, returnOptions, Return } from "../molecules/ReshowComponent";
+import { defaultProps, returnOptions } from "../molecules/ReshowComponent";
 import realTimeStore from "../../src/stores/realTimeStore";
 
 const REAL_TIME_KEY = "--realTimeData--";
@@ -34,27 +35,21 @@ const myReturnOptions = {
   calculateState,
 };
 
-const RealTimeReturn = (props) => {
-  const { children, realTimePath, useConnect, ...otherProps } = props;
-  const state = useConnect(props);
-  const mergeState = {...returnOptions.reset(otherProps), ...state};
-  return (
-    <Return>
-      {(pageState) => {
-        return build(children)({ ...pageState, ...mergeState });
-      }}
-    </Return>
-  );
-};
 const storeLocator = (props) => props.stores || [realTimeStore];
-RealTimeReturn.defaultProps = {
+
+const realTimeDefaultProps = {
   ...defaultProps,
+  cleanProps: ["realTimePath", "realTimeUrl", "realTimeReset"],
   realTimePath: [REAL_TIME_KEY],
   realTimeUrl: null,
   realTimeReset: false,
   useConnect: useConnect(myReturnOptions),
   storeLocator,
 };
-RealTimeReturn.displayName = "RealTime";
+
+const RealTimeReturn = getReturn({
+  defaultProps: realTimeDefaultProps,
+  displayName: "RealTime",
+});
 
 export default RealTimeReturn;
