@@ -33,7 +33,9 @@ const useConnect = (options) => (props) => {
   const _mount = useRef(true);
 
   useEffect(() => {
-    setLastProps(props);
+    if (props.withPropsChange) {
+      setLastProps(props);
+    }
   }, [props]);
 
   useEffect(() => {
