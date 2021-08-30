@@ -12,8 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "call-func": "*",
-    "reshow-runtime": "*",
-    "reshow-constant": "*"
+    "reshow-constant": "*",
+    "reshow-runtime": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
