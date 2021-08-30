@@ -14,13 +14,13 @@ const jsdomWrapper = { current: null };
 
 const clean = (wrapper, keepOption) => {
   if (wrapper.current) {
-    wrapper.current.unmount();
     if (keepOption.current) {
       if (keepOption.current.attachTo || keepOption.current.hydrateIn) {
         wrapper.current.detach();
       }
       keepOption.current = null;
     }
+    wrapper.current.unmount();
   }
   wrapper.current = null;
 };
@@ -30,6 +30,11 @@ const thisMount = (wrapper, keepOption) => (node, options) => {
   clean(wrapper, keepOption);
   keepOption.current = options;
   wrapper.current = enzymeMount(node, options);
+  const enzymeUnmount = wrapper.current.unmount;
+  wrapper.current.unmount = () => {
+    enzymeUnmount.call(wrapper.current);
+    wrapper.current = null;
+  };
   return wrapper.current;
 };
 

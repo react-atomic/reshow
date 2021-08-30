@@ -1,6 +1,6 @@
 {
   "name": "reshow-unit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
