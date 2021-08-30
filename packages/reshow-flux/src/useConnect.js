@@ -1,7 +1,9 @@
 import "setimmediate";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import dedup from "array.dedup";
 import { CHANGE } from "reshow-flux-base";
+import { useMounted } from "reshow-hooks"; 
+
 import getStores from "./getStores";
 
 const handleShouldComponentUpdate = ({
@@ -30,7 +32,7 @@ const useConnect = (options) => (props) => {
 
   const [lastProps, setLastProps] = useState(props);
 
-  const _mount = useRef(true);
+  const isMount = useMounted();
 
   useEffect(() => {
     if (props.withPropsChange) {
@@ -42,7 +44,7 @@ const useConnect = (options) => (props) => {
     const stores = dedup(getStores(lastProps)) || [];
     if (stores && stores.length) {
       const handleChange = () => {
-        if (_mount.current) {
+        if (false !== isMount()) {
           setData((prev) =>
             handleShouldComponentUpdate({
               shouldComponentUpdate,
@@ -66,7 +68,6 @@ const useConnect = (options) => (props) => {
     }
   }, [lastProps]);
 
-  useEffect(() => () => (_mount.current = false), []);
   return data.state || {};
 };
 
