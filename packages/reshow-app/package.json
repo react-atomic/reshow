@@ -15,7 +15,7 @@
     "build:src": "BABEL_ENV=cjs babel src -d build --root-mode upward",
     "build:client": "BABEL_ENV=es babel src/client.js -d build --root-mode upward",
     "build:babel": "npm run build:src && npm run build:client",
-    "build:dev": "npm run build:babel && npm run copy && cd build && yarn",
+    "build:dev": "npm run build:babel && npm run copy && cd build && yarn && yarn audit fix",
     "build": "npm run clean && npm run build:dev"
   }
 }
