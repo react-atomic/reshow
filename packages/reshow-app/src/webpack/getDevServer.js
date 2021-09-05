@@ -1,11 +1,13 @@
 const getDevServer = ({ confs, path }) => ({
   host: "0.0.0.0",
-  disableHostCheck: true,
+  allowedHosts: "all",
   port: confs.hotPort ?? 8080,
-  publicPath: confs.assetsRoot || '',
-  writeToDisk: true,
   liveReload: false,
   hot: true,
+  devMiddleware: {
+    publicPath: confs.assetsRoot || '',
+    writeToDisk: true,
+  }
 });
 
 export default getDevServer;

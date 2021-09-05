@@ -7,3 +7,19 @@ Reshow app skeleton share files
 
 ## link babel config
 ln -s ./node_modules/reshow-app/.babelrc
+
+## for develop
+* In reshow-app/build run 
+```
+yarn link
+```
+
+* In workspace
+```
+yarn link reshow-app
+```
+
+* Restore
+```
+yarn unlink reshow-app
+```
