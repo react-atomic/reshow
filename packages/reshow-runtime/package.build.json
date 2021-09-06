@@ -11,13 +11,12 @@
     "reshow-constant": "*"
   },
   "devDependencies": {
-    "chai": "*",
-    "jsdom": "*",
-    "jsdom-global": "*",
-    "mocha": "*"
+    "reshow-unit": "*"
   },
   "scripts": {
-    "test": "mocha 'helpers/**/__tests__/*.js' -r jsdom-global/register",
+    "mochaFor": "mocha -r jsdom-global/register",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run mocha",
     "prepublishOnly": "npm run test"
   }
 }
