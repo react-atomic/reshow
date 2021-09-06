@@ -5,3 +5,7 @@ export const DEFAULT = "default";
 export const STRING = "string";
 export const SYMBOL = "symbol";
 export const SCRIPT = "script";
+export const T_UNDEFINED = undefined;
+export const T_NULL = null;
+export const KEYS = Object.keys;
+export const IS_ARRAY = Array.isArray;

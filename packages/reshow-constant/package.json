@@ -1,6 +1,6 @@
 {
   "name": "reshow-constant",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Constant for better performance",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -11,14 +11,18 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.x"
+    "@babel/cli": "^7.x",
+    "reshow-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build": "npm run clean && npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
-    "prepublishOnly": "npm run build"
+    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "mochaFor": "mocha",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
+    "prepublishOnly": "npm run test"
   },
   "files": [
     "build",
