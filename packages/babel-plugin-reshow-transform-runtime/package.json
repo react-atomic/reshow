@@ -16,25 +16,16 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "@babel/core": "^7.x",
-    "@babel/plugin-proposal-class-properties": "*",
-    "@babel/plugin-proposal-object-rest-spread": "*",
-    "@babel/plugin-syntax-dynamic-import": "*",
-    "@babel/plugin-transform-object-assign": "*",
-    "babel-plugin-add-module-exports": "*",
-    "chai": "*",
-    "enzyme": "*",
-    "jsdom": "*",
-    "jsdom-global": "*",
-    "mocha": "*"
+    "reshow-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build": "npm run clean && npm run build:cjs",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs --root-mode upward",
-    "build:test": "BABEL_ENV=cjs babel tests -d build/tests --root-mode upward",
-    "prepublishOnly": "npm run build",
-    "test": "npm run build && npm run build:test && mocha 'build/tests/**/*.js' -r jsdom-global/register"
+    "build": "npm run clean && npm run build:cjs",
+    "mochaFor": "mocha -r jsdom-global/register",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "build",
