@@ -1,4 +1,4 @@
-Reshow Flux - Fast 3kb Flux alternative 
+Reshow Flux with react hooks. 
 ===============
 
 * GIT
@@ -6,15 +6,12 @@ Reshow Flux - Fast 3kb Flux alternative
 * NPM
    * https://www.npmjs.com/package/reshow-flux
 
-## Compatible with facebook flux
 
-* https://github.com/facebook/flux
+## Simple use with Return component
+* https://github.com/react-atomic/reshow/tree/master/packages/reshow-return
 
-```
-import {Dispatcher} from 'reshow-flux';
+## Sample useConnect options
+https://github.com/react-atomic/reshow/blob/master/packages/reshow-return/src/returnOptions.js#L70-L73
 
-import {Container} from 'reshow-flux/utils';
-// Container.create, Container.connectFunctional
-
-import {ReduceStore} from 'reshow-flux/utils';
-```
+## Sample calculateState
+https://github.com/react-atomic/reshow/blob/master/packages/reshow-return/src/returnOptions.js#L28-L68

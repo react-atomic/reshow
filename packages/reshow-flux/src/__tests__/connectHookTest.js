@@ -51,8 +51,8 @@ describe("Test Connect Hook", () => {
       setTimeout(() => {
         expect(wrap.html()).to.equal('<div class="222"></div>');
         done();
-      }, 50);
-    }, 50);
+      }, 5);
+    }, 5);
   });
 
   it("test Warnings for some updates during render", (done) => {

@@ -5,6 +5,7 @@
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
+  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/reshow-flux",
   "keywords": [
     "react",
     "reactjs"
@@ -16,6 +17,7 @@
     "get-object-value": "*",
     "immutable": "*",
     "reshow-build": "*",
+    "reshow-constant": "*",
     "reshow-flux-base": "*",
     "reshow-hooks": "*",
     "reshow-runtime": "*",
