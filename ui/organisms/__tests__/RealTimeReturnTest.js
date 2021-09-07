@@ -16,7 +16,7 @@ class FakeComponent extends PureComponent {
   render() {
     const { realTimeReset } = this.props;
     return (
-      <Return id="real">
+      <Return>
         <RealTimeReturn realTimeReset={realTimeReset} realTimePath={["r"]}>
           <TestEl ref={(el) => (this.el = el)} />
         </RealTimeReturn>
