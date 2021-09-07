@@ -2,7 +2,7 @@ import "setimmediate";
 import { useState, useEffect } from "react";
 import dedup from "array.dedup";
 import { CHANGE } from "reshow-flux-base";
-import { useMounted } from "reshow-hooks"; 
+import { useMounted } from "reshow-hooks";
 
 import getStores from "./getStores";
 

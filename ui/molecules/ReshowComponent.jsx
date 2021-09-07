@@ -33,4 +33,8 @@ const ReshowReturn = getReturn({
   displayName: "ReshowReturn",
 });
 
-export { defaultProps, myReturnOptions as returnOptions, ReshowReturn as Return };
+export {
+  defaultProps,
+  myReturnOptions as returnOptions,
+  ReshowReturn as Return,
+};

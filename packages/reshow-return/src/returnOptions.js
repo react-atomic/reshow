@@ -6,12 +6,12 @@ import toJS from "./toJS";
 
 const keys = Object.keys;
 const isArray = Array.isArray;
-const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
+const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 
 const reset = (props, more) => {
-  const nextProps = {...props};
+  const nextProps = { ...props };
   [
     "immutable",
     "initStates",
@@ -24,8 +24,6 @@ const reset = (props, more) => {
   ].forEach((key) => delete nextProps[key]);
   return nextProps;
 };
-
-
 
 const calculateState = (prevState, props) => {
   /**

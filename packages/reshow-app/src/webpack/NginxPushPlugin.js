@@ -79,8 +79,8 @@ class NginxPushPlugin {
         .then((assets) => this.getNginxConf(assets))
         .then((conf) => {
           const sourcePayload = {
-              source: () => conf,
-              size: () => conf.length,
+            source: () => conf,
+            size: () => conf.length,
           };
           if (compilation.emitAsset) {
             compilation.emitAsset(this.options.filename, sourcePayload);

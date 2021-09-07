@@ -27,7 +27,7 @@ const getPlugins = ({
     plugins.push(
       getStatsJson({ assetsStore }),
       new NginxPushPlugin(confs, assetsStore)
-    ); 
+    );
   }
   if (maxChunks != null) {
     plugins.push(new LimitChunkCountPlugin({ maxChunks }));

@@ -56,7 +56,7 @@ const jsdom = (html, options) => {
 };
 
 const cleanIt = (props) => {
-  const {withoutJsdom} = props || {};
+  const { withoutJsdom } = props || {};
   clean(mountWrapper, mountOption);
   clean(shallowWrapper);
   if (!withoutJsdom && jsdomWrapper.current) {

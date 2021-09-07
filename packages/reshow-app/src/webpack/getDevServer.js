@@ -5,9 +5,9 @@ const getDevServer = ({ confs, path }) => ({
   liveReload: false,
   hot: true,
   devMiddleware: {
-    publicPath: confs.assetsRoot || '',
+    publicPath: confs.assetsRoot || "",
     writeToDisk: true,
-  }
+  },
 });
 
 export default getDevServer;

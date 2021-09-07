@@ -21,7 +21,7 @@ const getTerser = () => {
       warnings: false,
       parse: {},
       compress: {
-        passes: 2
+        passes: 2,
       },
       mangle: true,
       module: false,

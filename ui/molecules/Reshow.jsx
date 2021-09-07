@@ -106,14 +106,8 @@ class Reshow extends PureComponent {
     if (hasError) {
       return null;
     }
-    const {
-      baseUrl,
-      staticVersion,
-      fallback,
-      themes,
-      ajax,
-      webSocketUrl,
-    } = this.props;
+    const { baseUrl, staticVersion, fallback, themes, ajax, webSocketUrl } =
+      this.props;
 
     return (
       <Return

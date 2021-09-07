@@ -8,11 +8,12 @@ class FinishPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.done.tap("Hello World Plugin", (
-      stats /* stats is passed as argument when done hook is tapped.  */
-    ) => {
-      this.stop();
-    });
+    compiler.hooks.done.tap(
+      "Hello World Plugin",
+      (stats /* stats is passed as argument when done hook is tapped.  */) => {
+        this.stop();
+      }
+    );
   }
 }
 

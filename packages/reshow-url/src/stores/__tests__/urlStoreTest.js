@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
-import {cleanIt, jsdom} from "reshow-unit";
+import { cleanIt, jsdom } from "reshow-unit";
 import { expect } from "chai";
 import { urlDispatch } from "../../urlDispatcher";
 import urlStore from "../urlStore";
 
 describe("Test set New Url", () => {
-
   beforeEach(() => {
     jsdom(null, { url: "http://localhost" });
     urlStore.reset();

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { expect } from "chai";
-import {mount, cleanIt, jsdom} from "reshow-unit";
+import { mount, cleanIt, jsdom } from "reshow-unit";
 
 jsdom(null, { url: "http://localhost" });
 import { AjaxPage, ajaxDispatch } from "organism-react-ajax";

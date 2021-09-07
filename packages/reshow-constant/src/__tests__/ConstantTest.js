@@ -52,7 +52,7 @@ describe("Test Constant", () => {
   });
 
   it("test keys", () => {
-    const a = {foo: "bar"};
+    const a = { foo: "bar" };
     expect(KEYS(a)).to.deep.equal(["foo"]);
   });
 
@@ -62,7 +62,7 @@ describe("Test Constant", () => {
   });
 
   it("test is not Array", () => {
-    const a = {foo: "bar"};
+    const a = { foo: "bar" };
     expect(IS_ARRAY(a)).to.be.false;
   });
 });
