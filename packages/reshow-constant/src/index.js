@@ -7,5 +7,7 @@ export const SYMBOL = "symbol";
 export const SCRIPT = "script";
 export const T_UNDEFINED = undefined;
 export const T_NULL = null;
+export const T_TRUE = true;
+export const T_FALSE = false;
 export const KEYS = Object.keys;
 export const IS_ARRAY = Array.isArray;

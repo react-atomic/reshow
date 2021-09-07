@@ -10,6 +10,8 @@ import {
   SCRIPT,
   T_UNDEFINED,
   T_NULL,
+  T_TRUE,
+  T_FALSE,
   KEYS,
   IS_ARRAY,
 } from "../index";
@@ -49,6 +51,14 @@ describe("Test Constant", () => {
 
   it("test type null", () => {
     expect(T_NULL).to.be.null;
+  });
+
+  it("test type true", () => {
+    expect(T_TRUE).to.be.true;
+  });
+
+  it("test type false", () => {
+    expect(T_FALSE).to.be.false;
   });
 
   it("test keys", () => {
