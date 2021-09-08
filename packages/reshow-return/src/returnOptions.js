@@ -25,13 +25,14 @@ const reset = (props, more) => {
   return nextProps;
 };
 
-const calculateState = (prevState, props) => {
+const calculateState = (prevState, props, options) => {
   /**
    * Why not support multi stores?
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const thisStore = (getStores(props) || [])[0];
+  const thisProps = { ...options, ...props };
+  const thisStore = (getStores(thisProps) || [])[0];
   if (!thisStore) {
     throw "Store not found, Please check storeLocator function.";
   }
