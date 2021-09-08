@@ -44,8 +44,8 @@ describe("Test RealTimeReturn", () => {
       setTimeout(() => {
         expect(uFake.el.props.data).to.equal("bar");
         done();
-      }, 100);
-    }, 50);
+      }, 5);
+    }, 5);
   });
 
   it("dispatch Realtime State first", (done) => {
@@ -58,8 +58,8 @@ describe("Test RealTimeReturn", () => {
       setTimeout(() => {
         expect(uFake.el.props.data).to.equal("foo");
         done();
-      }, 100);
-    }, 50);
+      }, 5);
+    }, 5);
   });
 
   it("test realtime reset", (done) => {
@@ -72,7 +72,7 @@ describe("Test RealTimeReturn", () => {
       setTimeout(() => {
         expect(uFake.el.props.data).to.be.null;
         done();
-      }, 100);
-    }, 100);
+      }, 5);
+    }, 5);
   });
 });

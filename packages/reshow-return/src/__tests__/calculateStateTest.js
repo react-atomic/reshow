@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { Dispatcher, ReduceStore } from "reshow-flux";
 import { Map } from "immutable";
 
-import options from "../returnOptions";
+import options from "../connectOptions";
 
 const { calculateState } = options;
 

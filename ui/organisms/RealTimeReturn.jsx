@@ -1,19 +1,25 @@
 import React from "react";
 import get from "get-object-value";
-import { useConnect } from "reshow-flux";
+import { useConnect, getStores } from "reshow-flux";
 import { build } from "react-atomic-molecule";
 import { getReturn } from "reshow-return";
 
-import { defaultProps, returnOptions } from "../molecules/ReshowComponent";
+import { connectOptions } from "../molecules/ReshowComponent";
 import realTimeStore from "../../src/stores/realTimeStore";
 
 const REAL_TIME_KEY = "--realTimeData--";
 const REAL_TIME_URL = "--realTimeUrl--";
 const keys = Object.keys;
 
-const calculateState = (prevState, props) => {
-  const realTimeState = realTimeStore.getState();
-  const { realTimePath: path, realTimeUrl: url, realTimeReset } = props;
+const calculateState = (prevState, props, options) => {
+  const { firstStore, allProps } = getStores({ props, options });
+  const realTimeState = firstStore.getState();
+  const {
+    realTimePath: path,
+    realTimeUrl: url,
+    realTimeReset,
+    storeLocator,
+  } = allProps;
   const data = get(realTimeState, path);
   const wsUrl = get(realTimeState, [REAL_TIME_URL]);
   if (data && (!url || url === wsUrl)) {
@@ -30,25 +36,20 @@ const calculateState = (prevState, props) => {
   }
 };
 
-const myReturnOptions = {
-  ...returnOptions,
-  calculateState,
-};
-
 const storeLocator = (props) => props.stores || [realTimeStore];
 
-const realTimeDefaultProps = {
-  ...defaultProps,
-  cleanProps: ["realTimePath", "realTimeUrl", "realTimeReset"],
+const myConnectOptions = {
+  ...connectOptions,
+  calculateState,
   realTimePath: [REAL_TIME_KEY],
   realTimeUrl: null,
   realTimeReset: false,
-  useConnect: useConnect(myReturnOptions),
   storeLocator,
 };
 
 const RealTimeReturn = getReturn({
-  defaultProps: realTimeDefaultProps,
+  cleanProps: ["realTimePath", "realTimeUrl", "realTimeReset"],
+  useConnect: useConnect(myConnectOptions),
   displayName: "RealTime",
 });
 

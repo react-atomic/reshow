@@ -1,3 +1,3 @@
 export { default as toJS } from "./toJS";
-export { default as returnOptions } from "./returnOptions";
+export { default as connectOptions } from "./connectOptions";
 export { default, getReturn } from "../ui/organisms/Return";

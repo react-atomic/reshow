@@ -1,19 +1,21 @@
 import React from "react";
 import get from "get-object-value";
 import { build } from "react-atomic-molecule";
+import { useConnect } from "reshow-flux";
 
-import { defaultProps, returnOptions } from "../molecules/ReshowComponent";
+import { connectOptions } from "../molecules/ReshowComponent";
 
-const { pathStates, ...otherDefaultProps } = defaultProps;
+const { pathStates, ...otherOptions } = connectOptions;
+otherOptions.initStates = ["section", "I18N"];
 
 const Section = (props) => {
-  const { useConnect, immutable, children, ...otherProps } = props;
-  const { section, ...state } = useConnect(props);
+  const { immutable, children, ...otherProps } = props;
+  const { section, ...state } = useConnect(otherOptions)(props);
   if (!section) {
     return null;
   }
   const name = props.name;
-  let allParams = { ...returnOptions.reset(otherProps), ...state };
+  let allParams = { ...connectOptions.reset(otherProps), ...state };
   if (immutable) {
     const thisSection = section.get(name);
     if (!thisSection) {
@@ -36,18 +38,15 @@ const Section = (props) => {
     }
     allParams = { ...others, ...allParams };
   }
+
   const noName = children.every
     ? children.every((child) => !get(child, ["props", "name"]))
     : !get(children, ["props", "name"]);
   if (!noName) {
     delete allParams["name"];
   }
-  return build(children)(allParams);
-};
 
-Section.defaultProps = {
-  ...otherDefaultProps,
-  initStates: ["section", "I18N"],
+  return build(children)(allParams);
 };
 
 export default Section;

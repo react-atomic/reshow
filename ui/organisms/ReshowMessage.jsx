@@ -1,4 +1,4 @@
-import React, { PureComponent, memo } from "react";
+import React, { memo } from "react";
 import { AlertsNotifier, Dialog, DisplayPopupEl } from "organism-react-popup";
 import { build, SemanticUI } from "react-atomic-molecule";
 import { toJS } from "reshow-return";
@@ -9,72 +9,65 @@ import { Return } from "../molecules/ReshowComponent";
 import messageStore from "../../src/stores/messageStore";
 import { dispatch } from "../../src/index";
 
-class Body extends PureComponent {
-  static defaultProps = {
-    dialogComponent: Dialog,
-    alertComponent: AlertsNotifier,
-  };
+const handleDismiss = (e) => {
+  const id = e?.data?.id;
+  if (id) {
+    dispatch("alert/del", {
+      id,
+    });
+  }
+};
 
-  handleDismiss = (e) => {
-    const id = e?.data?.id;
-    if (id) {
-      dispatch("alert/del", {
-        id,
+const handleClick = (dialog) => (e, item) => {
+  setTimeout(() => {
+    if (dialog) {
+      dispatch("dialog/end", {
+        item,
       });
     }
-  };
+  });
+};
 
-  handleClick = (e, item) => {
-    setTimeout(() => {
-      const { dialog } = this.props;
-      if (dialog) {
-        dispatch("dialog/end", {
-          item,
-        });
-      }
-    });
-  };
+const Body = (props) => {
+  const {
+    defaultAlertProps,
+    defaultDialogProps,
+    alerts,
+    alertProps,
+    alertComponent = AlertsNotifier,
+    dialog,
+    dialogProps,
+    dialogComponent = Dialog,
+  } = props;
 
-  render() {
-    const {
-      defaultAlertProps,
-      defaultDialogProps,
-      alerts,
-      alertProps,
-      alertComponent,
-      dialog,
-      dialogProps,
-      dialogComponent,
-    } = this.props;
-    let thisDialog = null;
-    if (dialog) {
-      thisDialog = (
-        <DisplayPopupEl>
-          {build(dialogComponent)(
-            {
-              ...defaultDialogProps,
-              ...toJS(dialogProps),
-              onClick: this.handleClick,
-              onClose: this.handleClick,
-            },
-            toJS(dialog)
-          )}
-        </DisplayPopupEl>
-      );
-    }
-    return (
-      <SemanticUI>
-        {thisDialog}
-        {build(alertComponent)({
-          ...defaultAlertProps,
-          ...toJS(alertProps),
-          onDismiss: this.handleDismiss,
-          alerts: toJS(alerts),
-        })}
-      </SemanticUI>
+  let thisDialog = null;
+  if (dialog) {
+    thisDialog = (
+      <DisplayPopupEl>
+        {build(dialogComponent)(
+          {
+            ...defaultDialogProps,
+            ...toJS(dialogProps),
+            onClick: handleClick(dialog),
+            onClose: handleClick(dialog),
+          },
+          toJS(dialog)
+        )}
+      </DisplayPopupEl>
     );
   }
-}
+  return (
+    <SemanticUI>
+      {thisDialog}
+      {build(alertComponent)({
+        ...defaultAlertProps,
+        ...toJS(alertProps),
+        onDismiss: handleDismiss,
+        alerts: toJS(alerts),
+      })}
+    </SemanticUI>
+  );
+};
 
 const ReshowMessage = memo((props) => (
   <Return

@@ -30,13 +30,13 @@ const calculateState = (prevState, props, options) => {
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const thisProps = { ...options, ...props };
-  const thisStore = (getStores(thisProps) || [])[0];
-  if (!thisStore) {
+  const { firstStore, allProps } = getStores({ props, options });
+
+  if (!firstStore) {
     throw "Store not found, Please check storeLocator function.";
   }
-  const { initStates, pathStates, immutable: propsImmutable } = props;
-  const storeState = thisStore.getState();
+  const { initStates, pathStates, immutable: propsImmutable } = allProps;
+  const storeState = firstStore.getState();
   const immutable = propsImmutable || storeState.get("immutable");
   const results = {};
   if (immutable) {
@@ -67,9 +67,9 @@ const calculateState = (prevState, props, options) => {
   return results;
 };
 
-const options = {
+const connectOptions = {
   calculateState,
   reset,
 };
 
-export default options;
+export default connectOptions;

@@ -1,12 +1,14 @@
 {
   "name": "reshow-return",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
   "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/reshow-return",
-  "keywords": ["flux"],
+  "keywords": [
+    "flux"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -35,5 +37,9 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
 }

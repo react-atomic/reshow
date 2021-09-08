@@ -1,6 +1,5 @@
 import "setimmediate";
 import { useState, useEffect, useDebugValue } from "react";
-import dedup from "array.dedup";
 import { CHANGE } from "reshow-flux-base";
 import { useMounted } from "reshow-hooks";
 import { T_TRUE, T_FALSE } from "reshow-constant";
@@ -47,8 +46,8 @@ const useConnect = (options) => (props) => {
 
   const [lastProps, setLastProps] = useState(props);
   useEffect(() => {
-    const stores = dedup(getStores({...options, ...lastProps})) || [];
-    if (stores && stores.length) {
+    const { stores } = getStores({ options, props: lastProps });
+    if (stores.length) {
       const handleChange = () => {
         if (T_FALSE !== isMount()) {
           setData((prev) =>
