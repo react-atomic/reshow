@@ -18,7 +18,6 @@ const reset = (props, more) => {
     "pathStates",
     "stores",
     "storeLocator",
-    "cleanProps",
     "withPropsChange",
     ...(more || []),
   ].forEach((key) => delete nextProps[key]);

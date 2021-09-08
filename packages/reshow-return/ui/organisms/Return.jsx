@@ -4,9 +4,9 @@ import { useConnect } from "reshow-flux";
 
 import returnOptions from "../../src/returnOptions";
 
-const getReturn = ({ useConnect, displayName = "Return" }) => {
+const getReturn = ({ useConnect, cleanProps, displayName = "Return" }) => {
   const Return = (props) => {
-    const { children, cleanProps, ...otherProps } = props;
+    const { children, ...otherProps } = props;
     const state = useConnect(props);
     const result = build(children)({
       ...returnOptions.reset(otherProps, cleanProps),
