@@ -28,6 +28,7 @@ describe("Test Connect hook for more test", () => {
   it("could register with store", (done) => {
     const FakeComponent = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {
           return {
             foo: store.getState().foo,
@@ -35,10 +36,6 @@ describe("Test Connect hook for more test", () => {
         },
       })(props);
       return <div>{state.foo}</div>;
-    };
-
-    FakeComponent.defaultProps = {
-      storeLocator: () => store,
     };
 
     const wrap = mount(<FakeComponent />);
@@ -54,6 +51,7 @@ describe("Test Connect hook for more test", () => {
 
     const FakeComponent = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {
           const state = store.getState();
           calculateTimes++;
@@ -62,10 +60,6 @@ describe("Test Connect hook for more test", () => {
         getStores: (props) => [store],
       })(props);
       return <div>{state.aaa}</div>;
-    };
-
-    FakeComponent.defaultProps = {
-      storeLocator: () => store,
     };
 
     expect(calculateTimes).to.equal(0);
@@ -90,6 +84,10 @@ describe("Test Connect hook for more test", () => {
 
     const FakeComponent = (props) => {
       const state = useConnect({
+        storeLocator: (props) => {
+          getStoresProps = props;
+          return store;
+        },
         calculateState: (prevState, props) => {
           calculateStateProps = { ...props };
           return { foo: props.foo };
@@ -98,12 +96,6 @@ describe("Test Connect hook for more test", () => {
       return <div>{state.foo}</div>;
     };
 
-    FakeComponent.defaultProps = {
-      storeLocator: (props) => {
-        getStoresProps = props;
-        return store;
-      },
-    };
     let changeFoo;
     class Parent extends Component {
       state = {};
@@ -140,13 +132,10 @@ describe("Test Connect hook for more test", () => {
   it("could work with empty calculateState", () => {
     const FakeComponent = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {},
       })(props);
       return <div>{state.foo}</div>;
-    };
-
-    FakeComponent.defaultProps = {
-      storeLocator: () => store,
     };
 
     const wrap = mount(<FakeComponent aaa="bbb" />);

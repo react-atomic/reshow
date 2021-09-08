@@ -8,6 +8,7 @@ import { T_TRUE, T_FALSE } from "reshow-constant";
 import getStores from "./getStores";
 
 const handleShouldComponentUpdate = ({
+  options,
   shouldComponentUpdate,
   calculateState,
   prev,
@@ -15,7 +16,7 @@ const handleShouldComponentUpdate = ({
 }) => {
   const state =
     !shouldComponentUpdate || shouldComponentUpdate({ prev, props })
-      ? calculateState(prev.state, props)
+      ? calculateState(prev.state, props, options)
       : prev.state;
   return {
     __init__: T_TRUE,
@@ -33,7 +34,7 @@ const useConnect = (options) => (props) => {
   useDebugValue(displayName);
   const [data, setData] = useState(() => ({
     props,
-    state: calculateState({}, props),
+    state: calculateState({}, props, options),
   }));
 
   const isMount = useMounted();
@@ -46,12 +47,13 @@ const useConnect = (options) => (props) => {
 
   const [lastProps, setLastProps] = useState(props);
   useEffect(() => {
-    const stores = dedup(getStores(lastProps)) || [];
+    const stores = dedup(getStores({...options, ...lastProps})) || [];
     if (stores && stores.length) {
       const handleChange = () => {
         if (T_FALSE !== isMount()) {
           setData((prev) =>
             handleShouldComponentUpdate({
+              options,
               shouldComponentUpdate,
               calculateState,
               prev,

@@ -36,15 +36,12 @@ describe("useConnect Unmount Test", () => {
   it("basic test", (done) => {
     const Foo = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {
           return store.getState();
         },
       })(props);
       return <div className={state.foo} />;
-    };
-
-    Foo.defaultProps = {
-      storeLocator: () => store,
     };
 
     class FakeComponent extends PureComponent {

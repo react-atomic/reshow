@@ -30,15 +30,12 @@ describe("Test Connect Hook", () => {
   it("basic test", (done) => {
     const Foo = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {
           return store.getState();
         },
       })(props);
       return <div className={state.foo} />;
-    };
-
-    Foo.defaultProps = {
-      storeLocator: () => store,
     };
 
     const wrap = mount(<Foo />);
@@ -63,6 +60,7 @@ describe("Test Connect Hook", () => {
     let init = 0;
     const Foo = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {
           return store.getState();
         },
@@ -72,9 +70,6 @@ describe("Test Connect Hook", () => {
       }
       init++;
       return <div className={state.foo}></div>;
-    };
-    Foo.defaultProps = {
-      storeLocator: () => store,
     };
 
     class VDom extends Component {

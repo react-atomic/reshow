@@ -27,6 +27,7 @@ describe("Connect Hook (clean Props)", () => {
   it("test clean props", (done) => {
     const Foo = (props) => {
       const state = useConnect({
+        storeLocator: () => store,
         calculateState: (prevState, props) => {
           return store.getState();
         },
@@ -35,9 +36,6 @@ describe("Connect Hook (clean Props)", () => {
       return <div {...{ ...otherProps, ...state }} />;
     };
 
-    Foo.defaultProps = {
-      storeLocator: () => store,
-    };
     class Bar extends Component {
       state = {
         p: null,
@@ -55,7 +53,7 @@ describe("Connect Hook (clean Props)", () => {
       setTimeout(() => {
         expect(wrap.html()).to.equal('<div bar="c"></div>');
         done();
-      }, 5);
-    }, 5);
+      }, 1);
+    }, 1);
   });
 });
