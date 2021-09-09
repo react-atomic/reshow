@@ -2,12 +2,11 @@ import { ReduceStore } from "reshow-flux";
 import { Map, List } from "immutable";
 import get from "get-object-value";
 import callfunc from "call-func";
+import { T_NULL, IS_ARRAY, KEYS } from "reshow-constant";
 
 import dispatcher, { dispatch } from "../dispatcher";
 
 let alertCount = 0;
-const isArray = Array.isArray;
-const keys = Object.keys;
 
 const toMessage = (message) => {
   if (-1 !== "string|number".indexOf(typeof message)) {
@@ -23,11 +22,11 @@ const toMessage = (message) => {
 const getMessage = (action) => toMessage(get(action, ["params", "message"]));
 
 class MessageStore extends ReduceStore {
-  dialogCallback = null;
+  dialogCallback = T_NULL;
   alertMap = {};
 
   getAlertList() {
-    return keys(this.alertMap).map((key) => this.alertMap[key]);
+    return KEYS(this.alertMap).map((key) => this.alertMap[key]);
   }
 
   dialogStart(state, action) {
@@ -52,18 +51,20 @@ class MessageStore extends ReduceStore {
       dialogTo = "dialogReturn";
     }
     const value = get(action, ["params", "item", "props", "value"]);
-    dispatch({
-      [dialogTo]: value,
-    });
+    if (value != T_NULL) {
+      dispatch({
+        [dialogTo]: value,
+      });
+    }
     callfunc(this.dialogCallback, [value]);
-    this.dialogCallback = null;
+    this.dialogCallback = T_NULL;
     return state.delete("dialog").delete("dialogProps").delete("dialogTo");
   }
 
   alertReset(state, action) {
     let alerts = get(action, ["params", "alerts"]);
     this.alertMap = {};
-    if (isArray(alerts)) {
+    if (IS_ARRAY(alerts)) {
       alerts.map((a) => {
         const message = toMessage(a);
         this.alertMap[message.id] = message;
