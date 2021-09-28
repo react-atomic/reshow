@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/react-atomic/reshow.svg?branch=master)](https://travis-ci.org/react-atomic/reshow) 
+
+[![CircleCI](https://circleci.com/gh/react-atomic/reshow/tree/master.svg?style=svg)](https://circleci.com/gh/react-atomic/reshow/tree/master)
+
  Reshow (A simplified version of Flux)
 ===============
    * react atomic ui for atom 
