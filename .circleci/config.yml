@@ -26,7 +26,8 @@ jobs:
       - run:
           name: Run YARN tests
           command: |
-            yarn --ignore-engines \
+            npm config set scripts-prepend-node-path auto \
+            && yarn --ignore-engines \
             && cd << parameters.test-dir >> \
             && yarn --ignore-engines \
             && yarn test
