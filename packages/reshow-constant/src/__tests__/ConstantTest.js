@@ -8,6 +8,7 @@ import {
   STRING,
   SYMBOL,
   SCRIPT,
+  TYPE_ERROR,
   T_UNDEFINED,
   T_NULL,
   T_TRUE,
@@ -45,6 +46,12 @@ describe("Test Constant", () => {
     expect(SCRIPT).to.equal("script");
   });
 
+  it("test TYPE_ERROR", () => {
+    expect(TYPE_ERROR).to.equal("TypeError");
+  });
+});
+
+describe("Test Type", () => {
   it("test type undefined", () => {
     expect(T_UNDEFINED).to.be.undefined;
   });
@@ -60,7 +67,9 @@ describe("Test Constant", () => {
   it("test type false", () => {
     expect(T_FALSE).to.be.false;
   });
+});
 
+describe("Test FUNCTION", () => {
   it("test keys", () => {
     const a = { foo: "bar" };
     expect(KEYS(a)).to.deep.equal(["foo"]);

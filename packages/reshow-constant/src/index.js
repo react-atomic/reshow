@@ -5,6 +5,7 @@ export const DEFAULT = "default";
 export const STRING = "string";
 export const SYMBOL = "symbol";
 export const SCRIPT = "script";
+export const TYPE_ERROR = "TypeError";
 export const T_UNDEFINED = undefined;
 export const T_NULL = null;
 export const T_TRUE = true;

@@ -1,6 +1,6 @@
 {
   "name": "reshow-build",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple util help u build or create component from react instance or function",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -11,14 +11,14 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "reshow-constant": "*",
-    "array.merge": "*"
+    "array.merge": "*",
+    "reshow-constant": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "*",
     "react": "^16.x",
-    "react-dom": "^16.x"
+    "react-dom": "^16.x",
+    "reshow-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
