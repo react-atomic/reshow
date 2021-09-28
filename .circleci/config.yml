@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7.0
+
+jobs:
+  test:
+    parameters:
+      test-dir:
+        type: string
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install:
+          lts: true
+          install-yarn: true
+      - run:
+          name: Run YARN tests
+          command: "yarn --ignore-engines && cd << parameters.test-dir >> && yarn --ignore-engines && yarn test && yarn audit fix"
+
+workflows:
+  run-node-tests:
+    jobs:
+      - test:
+          matrix:
+            name: test-<< matrix.test-dir >>
+            parameters:
+              test-dir:
+                - "./"
