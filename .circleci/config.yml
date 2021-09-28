@@ -15,7 +15,7 @@ jobs:
       - node/install:
           lts: true
           install-yarn: true
-          npm-version: 6
+          npm-version: "6"
       - run:
           name: Run YARN tests
           command: "yarn --ignore-engines && cd << parameters.test-dir >> && yarn --ignore-engines && yarn test && yarn audit fix"
