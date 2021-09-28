@@ -18,7 +18,12 @@ jobs:
           npm-version: "6"
       - run:
           name: Run YARN tests
-          command: "yarn --ignore-engines && cd << parameters.test-dir >> && yarn --ignore-engines && yarn test && yarn audit fix"
+          command: |
+            yarn --ignore-engines \
+            && cd << parameters.test-dir >> \
+            && yarn --ignore-engines \
+            && yarn test \
+            && yarn audit fix
 
 workflows:
   run-node-tests:
@@ -29,3 +34,13 @@ workflows:
             parameters:
               test-dir:
                 - "./"
+                - "packages/reshow-build"
+                - "packages/reshow-constant"
+                - "packages/reshow-flux-base"
+                - "packages/reshow-flux"
+                - "packages/reshow-hooks"
+                - "packages/reshow-return"
+                - "packages/reshow-runtime"
+                - "packages/reshow-unit"
+                - "packages/reshow-url"
+                - "packages/reshow-worker"
