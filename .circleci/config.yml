@@ -17,6 +17,13 @@ jobs:
           install-yarn: true
           npm-version: "6"
       - run:
+          name: "Display information"
+          command: |
+            date
+            node -v
+            npm -v
+            yarn -v
+      - run:
           name: Run YARN tests
           command: |
             yarn --ignore-engines \
