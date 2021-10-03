@@ -1,9 +1,7 @@
 import React, { PureComponent, isValidElement, Children } from "react";
 
 import { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { shallow } from "reshow-unit";
 
 import build from "../index";
 
@@ -188,5 +186,19 @@ describe("Test build", () => {
     expect(wrap.html()).to.equal(
       '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
     );
+  });
+});
+
+describe("Test build with key", () => {
+  it("with one child", () => {
+    const comp = <div />;
+    const buildComp = build(comp)({ key: 'foo' });
+    expect(buildComp.key).to.equal('foo');
+  });
+
+  it("with multi child", () => {
+    const comp = <div />;
+    const buildComp = build([comp, comp])({ key: 'foo' });
+    expect(buildComp[0].key !== buildComp[1].key).be.true;
   });
 });

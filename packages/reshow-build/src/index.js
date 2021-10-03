@@ -48,6 +48,9 @@ const build = (component, componentOption) => (props, child) => {
   }
 
   props = removeEmpty(props, T_TRUE);
+  if (component.map) {
+    delete props.key;
+  }
 
   const run = (comp) =>
     (isValidElement(comp) ? buildReact : buildFunc)(
