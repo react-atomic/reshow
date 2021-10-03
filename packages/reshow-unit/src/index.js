@@ -14,7 +14,7 @@ const jsdomWrapper = { current: null };
 
 const clean = (wrapper, keepOption) => {
   if (wrapper.current) {
-    if (keepOption.current) {
+    if (keepOption && keepOption.current) {
       if (keepOption.current.attachTo || keepOption.current.hydrateIn) {
         wrapper.current.detach();
       }

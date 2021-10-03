@@ -1,6 +1,6 @@
 {
   "name": "reshow-unit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -19,13 +19,13 @@
     "prettier": "*",
     "prettier-eslint": "*",
     "prettier-eslint-cli": "*",
-    "sinon": "*",
-    "react-test-renderer": "*"
+    "react-test-renderer": "*",
+    "sinon": "*"
   },
   "devDependencies": {
+    "@babel/cli": "^7.x",
     "react": "^16.x",
-    "react-dom": "^16.x",
-    "@babel/cli": "^7.x"
+    "react-dom": "^16.x"
   },
   "scripts": {
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",
