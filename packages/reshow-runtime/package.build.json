@@ -1,6 +1,6 @@
 {
   "name": "reshow-runtime",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
   "keywords": ["babel"],
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "mochaFor": "mocha -r jsdom-global/register",
-    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "mocha": "npm run mochaFor -- 'helpers/**/__tests__/*.js'",
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"
   }
