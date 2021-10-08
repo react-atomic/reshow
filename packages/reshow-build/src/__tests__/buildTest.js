@@ -117,88 +117,18 @@ describe("Test build", () => {
     const result = build()();
     expect(result).to.be.null;
   });
-
-  it("test with multi children", () => {
-    const FakeDom = ({ children }) => {
-      return <div>{build(children)({ title: "foo" })}</div>;
-    };
-    const vDom = (
-      <FakeDom>
-        <div>1</div>
-        <div>2</div>
-      </FakeDom>
-    );
-    const wrap = shallow(vDom);
-    expect(wrap.html()).to.equal(
-      '<div><div title="foo">1</div><div title="foo">2</div></div>'
-    );
-  });
-
-  it("test with multi function", () => {
-    const FakeDom = ({ children }) => {
-      expect(Children.count(children)).to.equal(2);
-      return (
-        <div>
-          {build(children)({
-            foo: <div>{"foo"}</div>,
-            bar: <div>{"bar"}</div>,
-          })}
-        </div>
-      );
-    };
-    const vDom = (
-      <FakeDom>
-        {({ foo }) => foo}
-        <div />
-        <div />
-        {({ bar }) => bar}
-      </FakeDom>
-    );
-    const wrap = shallow(vDom);
-    expect(wrap.html()).to.equal(
-      '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
-    );
-  });
-
-  it("test with multi Component instance", () => {
-    const FakeDom = ({ children }) => {
-      expect(Children.count(children)).to.equal(2);
-      return (
-        <div>
-          {build(children)({
-            foo: <div>{"foo"}</div>,
-            bar: <div>{"bar"}</div>,
-          })}
-        </div>
-      );
-    };
-    const A = ({ foo }) => foo;
-    const B = ({ bar }) => bar;
-    const vDom = (
-      <FakeDom>
-        {A}
-        <div />
-        <div />
-        {B}
-      </FakeDom>
-    );
-    const wrap = shallow(vDom);
-    expect(wrap.html()).to.equal(
-      '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
-    );
-  });
 });
 
 describe("Test build with key", () => {
   it("with one child", () => {
     const comp = <div />;
-    const buildComp = build(comp)({ key: 'foo' });
-    expect(buildComp.key).to.equal('foo');
+    const buildComp = build(comp)({ key: "foo" });
+    expect(buildComp.key).to.equal("foo");
   });
 
   it("with multi child", () => {
     const comp = <div />;
-    const buildComp = build([comp, comp])({ key: 'foo' });
+    const buildComp = build([comp, comp])({ key: "foo" });
     expect(buildComp[0].key !== buildComp[1].key).be.true;
   });
 });
