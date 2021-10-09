@@ -20,6 +20,6 @@ const _taggedTemplateLiteralLoose = (strings, raw) => {
 
   strings.raw = raw;
   return strings;
-}
+};
 
 export default _taggedTemplateLiteralLoose;

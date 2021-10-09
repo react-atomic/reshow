@@ -76,25 +76,33 @@ describe("Test build array", () => {
     );
   });
 
-  it("test with sub array", ()=>{
+  it("test with sub array", () => {
     const FakeDom = ({ children }) => {
-      const arr = [
-        <i />,
-        ...(Children.map(children, (c) => c) || []) 
-      ];
-      return <div>{build(arr)({'data-foo': 'bar'})}</div>;
+      const arr = [<i />, ...(Children.map(children, (c) => c) || [])];
+      return <div>{build(arr)({ "data-foo": "bar" })}</div>;
     };
 
-    const vDom = (<FakeDom><span /><span /></FakeDom>);
+    const vDom = (
+      <FakeDom>
+        <span />
+        <span />
+      </FakeDom>
+    );
     const wrap = shallow(vDom);
-    expect(wrap.html()).to.equal('<div><i data-foo="bar"></i><span data-foo="bar"></span><span data-foo="bar"></span></div>');
-    const vDom2 = (<FakeDom><span /></FakeDom>);
+    expect(wrap.html()).to.equal(
+      '<div><i data-foo="bar"></i><span data-foo="bar"></span><span data-foo="bar"></span></div>'
+    );
+    const vDom2 = (
+      <FakeDom>
+        <span />
+      </FakeDom>
+    );
     const wrap2 = shallow(vDom2);
-    expect(wrap2.html()).to.equal('<div><i data-foo="bar"></i><span data-foo="bar"></span></div>');
-    const vDom3 = (<FakeDom />);
+    expect(wrap2.html()).to.equal(
+      '<div><i data-foo="bar"></i><span data-foo="bar"></span></div>'
+    );
+    const vDom3 = <FakeDom />;
     const wrap3 = shallow(vDom3);
     expect(wrap3.html()).to.equal('<div><i data-foo="bar"></i></div>');
   });
-
-
 });
