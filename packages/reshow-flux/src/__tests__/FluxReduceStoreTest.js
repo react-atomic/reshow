@@ -1,5 +1,3 @@
-"use strict";
-
 import { Dispatcher, ReduceStore } from "../index";
 import { expect } from "chai";
 
