@@ -13,3 +13,4 @@ class ReduceStore extends Store {
 }
 
 export default ReduceStore;
+export { Map };

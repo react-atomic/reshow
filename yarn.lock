@@ -2939,10 +2939,10 @@ ignore@^5.1.2:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
-immutable@*:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
-  integrity sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==
+immutable@^3.x:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
+  integrity sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
@@ -3853,16 +3853,15 @@ optionator@^0.9.1:
     word-wrap "^1.2.3"
 
 organism-react-ajax@*:
-  version "0.14.14"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.14.tgz#ca4e1dc25b255057fa900568ba2e6a42500bed6d"
-  integrity sha512-UxnosvPahjH10Nu4iC025ciaVYv0ckxZjIoq029avQVWdJuGf7N5Z6AR2MowW8dZg/dbUPg7dn81sbQ73YfsWg==
+  version "0.14.15"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.14.15.tgz#e91d445d1b07c2b0a91f875a0637733b596dbef1"
+  integrity sha512-SM8jhvLgR/SxeL45zE6+IT5xkdrjaE1yNlcTjCMalGufNXDeOSFDz+dEqefwXEiFFoieUqhFJP/FAIHdxp/jKA==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"
     form-serialize-js "*"
     get-object-value "*"
     get-random-id "*"
-    immutable "*"
     non-worker "*"
     object-nested "*"
     parse-ini-string "*"
@@ -4254,9 +4253,9 @@ react-atomic-atom@*:
     reshow-runtime "*"
 
 react-atomic-molecule@*:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-2.8.0.tgz#59f71c5fbd5d7a3777e5bf803e1c8aaea6578b6c"
-  integrity sha512-ar5ctxTLa5vnLHfJ5Fs6HHlIlADFvKoncFX9OW6FGpUhAEFs3Hefh7rUTu3CmlZlUYpWb7i55ilTFmxwQgfNow==
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/react-atomic-molecule/-/react-atomic-molecule-2.8.1.tgz#d1b6b2d9c3ddb4f4d7b7b2d8f3d275930757c797"
+  integrity sha512-Ydv9eMkNTvOKNVwoxCaFqOGLJ/1oywPa2N0Fx/u8MHNHxPXi4vv0VPVU3KGLBhJmT5S4bDWGh39IyaMAcXKWpw==
   dependencies:
     array.merge "*"
     class-lib "*"
@@ -4499,13 +4498,13 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-1.0.5.tgz#aea777a6747359d0a4f0a7b687f5d6a4855953b0"
-  integrity sha512-QoA0Ms2UwckVTqv0DpPEen2+SYzHW76oX6VTTf0RIQuZsXvVqU5/8PvULo8qvx4jdYUiQD3qCOyOZRMcMQtX2A==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-1.0.7.tgz#9c2449beaf1e783270ca63a9e88f9030d7212ecc"
+  integrity sha512-mEJ/3uzDGxu7+L2YtOl8LlTF2CH8HN7GOdGwwQt4kh4Jh7UkPwViZagq8Zi0Juo08WvqRi4Y6Zpd/sqK+qnenQ==
   dependencies:
     array.dedup "*"
     get-object-value "*"
-    immutable "*"
+    immutable "^3.x"
     reshow-build "*"
     reshow-constant "*"
     reshow-flux-base "*"
