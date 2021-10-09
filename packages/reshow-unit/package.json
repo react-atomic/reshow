@@ -1,6 +1,6 @@
 {
   "name": "reshow-unit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -14,7 +14,7 @@
     "enzyme-adapter-react-16": "*",
     "jsdom": "16.4.0",
     "jsdom-global": "*",
-    "mocha": "^8.x",
+    "mocha": "^9.x",
     "nyc": "*",
     "prettier": "*",
     "prettier-eslint": "*",
