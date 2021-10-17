@@ -6,7 +6,7 @@ const useDebounce = (func, defaultDelay) => {
   useEffect(() => {
     _debounce.current = debounce(func, defaultDelay);
   }, []);
-  return _debounce.current;
+  return (...p) => _debounce.current(...p);
 };
 
 export default useDebounce;
