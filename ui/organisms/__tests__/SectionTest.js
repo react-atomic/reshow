@@ -149,7 +149,7 @@ describe("Test Section", () => {
     setTimeout(() => {
       expect(wrap.el.getAttribute("name")).to.equal("test2");
       done();
-    });
+    }, 10);
   });
 
   it("not pass name if one of child already have name", (done) => {

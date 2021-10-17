@@ -816,6 +816,13 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
+call-func@*:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.3.tgz#b207f47a47bf0156e1415fcf89b5167441e7cf67"
+  integrity sha512-HOwlUlbrPE7a/LQUGgWbiywBxvJI1e0cjNorKnAilEnhHSDyLVJ9BEnFONUDo1jxFGyDnFWhLzySdVDOFyUaZQ==
+  dependencies:
+    reshow-constant "*"
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -3859,6 +3866,11 @@ require-relative@^0.8.7:
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
+
+reshow-constant@*:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.1.2.tgz#7ca2aa1a37c08a7f860649c8f6ad3c3b68a322ee"
+  integrity sha512-cOBdsOS660MSeXbrJM+oUXnk9vNsam/NoHFJN6FB6/AI2Z73uZ2N3jsdSpJvlNpLmMBKHpq3ZG3388/b1z/VXg==
 
 reshow-unit@*:
   version "0.0.1"

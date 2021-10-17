@@ -1,17 +1,20 @@
 {
   "name": "reshow-hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utilities for hook",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
+  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/reshow-hooks",
   "keywords": [
     "react-hook",
     "hooks"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
-  "dependencies": { },
+  "dependencies": {
+    "call-func": "*"
+  },
   "devDependencies": {
     "@babel/cli": "^7.x",
     "react": "16.x",
