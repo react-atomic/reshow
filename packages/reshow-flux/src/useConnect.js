@@ -40,7 +40,8 @@ const useConnect = (options) => (props) => {
 
   useEffect(() => {
     const { stores } = getStores({ options, props });
-    if (stores.length) {
+    const storeLen = stores.length;
+    if (storeLen) {
       const handleChange = () => {
         if (T_FALSE !== isMount()) {
           setData((prev) =>
@@ -58,7 +59,9 @@ const useConnect = (options) => (props) => {
         handleChange();
       }
       const asyncHandleChange = () => setImmediate(handleChange);
-      stores.forEach((store) => store?.addListener(asyncHandleChange, CHANGE));
+      for (let i = 0; i < storeLen; i++) {
+        stores[i].addListener(asyncHandleChange, CHANGE);
+      }
       return () => {
         stores.forEach((store) =>
           store?.removeListener(asyncHandleChange, CHANGE)
