@@ -1,5 +1,5 @@
 import "setimmediate";
-import { useState, useEffect, useDebugValue } from "react";
+import { useState, useEffect, useDebugValue, useMemo } from "react";
 import { CHANGE } from "reshow-flux-base";
 import { useMounted } from "reshow-hooks";
 import { T_TRUE, T_FALSE } from "reshow-constant";
@@ -38,13 +38,11 @@ const useConnect = (options) => (props) => {
 
   const isMount = useMounted();
 
-  useEffect(() => {
-    if (props.withPropsChange) {
-      setLastProps(props);
-    }
-  }, [props]);
+  const lastProps = useMemo(
+    () => (props.withPropsChange ? props : null),
+    [props]
+  );
 
-  const [lastProps, setLastProps] = useState(props);
   useEffect(() => {
     const { stores } = getStores({ options, props: lastProps });
     if (stores.length) {
