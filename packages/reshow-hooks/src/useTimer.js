@@ -21,6 +21,7 @@ const useTimer = (interval) => {
   useEffect(() => () => stop(), []);
 
   const run = (func, delay) => {
+    stop();
     timer.current = callfunc(act.run, [func, delay]);
   };
 
