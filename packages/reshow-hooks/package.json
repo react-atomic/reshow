@@ -1,6 +1,6 @@
 {
   "name": "reshow-hooks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilities for hook",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
