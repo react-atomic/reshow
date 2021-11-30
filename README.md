@@ -1,7 +1,6 @@
-
 [![CircleCI](https://circleci.com/gh/react-atomic/reshow/tree/master.svg?style=svg)](https://circleci.com/gh/react-atomic/reshow/tree/master)
 
- Reshow (A simplified cross-component state management)
+Reshow (A simplified React cross-component state management)
 ===============
    * react atomic ui for atom 
    * GIT
