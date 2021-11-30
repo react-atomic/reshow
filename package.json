@@ -1,7 +1,7 @@
 {
   "name": "reshow",
   "version": "0.14.12",
-  "description": "Flux Reducer Present Library (App, Server)",
+  "description": "A simplified React cross-component state management.",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
