@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.14.11",
+  "version": "0.14.12",
   "description": "Flux Reducer Present Library (App, Server)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -59,7 +59,7 @@
     "mochaFor": "mocha -r jsdom-global/register",
     "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
-    "prepublishOnly": "npm run test && npm run format && yarn audit fix"
+    "prepublishOnly": "npm run test && npm run format"
   },
   "files": [
     "build",
