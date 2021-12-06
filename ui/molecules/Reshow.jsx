@@ -62,6 +62,8 @@ class Reshow extends PureComponent {
     }
     if (themes[path]) {
       globalStore.path = path;
+    } else {
+      return themePath;
     }
     return globalStore.path;
   }
