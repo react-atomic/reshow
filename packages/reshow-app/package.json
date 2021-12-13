@@ -1,4 +1,5 @@
 {
+  "name": "reshow-app",
   "description": "Reshow App Files Develop package",
   "repository": "react-atomic/reshow",
   "keywords": [
@@ -16,6 +17,7 @@
     "build:client": "BABEL_ENV=es babel src/client.js -d build --root-mode upward",
     "build:babel": "npm run build:src && npm run build:client",
     "build:dev": "npm run build:babel && npm run copy && cd build && yarn && yarn audit fix",
-    "build": "npm run clean && npm run build:dev"
+    "build": "npm run clean && npm run build:dev",
+    "prepublishOnly": "echo should not publish && exit 1;"
   }
 }
