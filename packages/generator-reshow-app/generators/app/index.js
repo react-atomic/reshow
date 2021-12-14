@@ -1,6 +1,4 @@
-const yeoman = require("yeoman-generator");
 const Generator = require("yeoman-generator");
-const chalk = require("chalk");
 const yosay = require("yosay");
 const mkdirp = require("mkdirp");
 
@@ -91,6 +89,7 @@ module.exports = class extends Generator {
   writing() {
     const copy = (src, dest, options) => {
       const action = options ? this.fs.copyTpl : this.fs.copy;
+      dest = dest || src;
       try {
         action.call(
           this.fs,
@@ -106,7 +105,8 @@ module.exports = class extends Generator {
     mkdirp(this.destinationPath("src"));
     mkdirp(this.destinationPath("ui"));
 
-    copy("compile.sh", "compile.sh");
-    copy("index.html", "index.html");
+    copy(".gitignore");
+    copy("compile.sh");
+    copy("index.html");
   }
 };

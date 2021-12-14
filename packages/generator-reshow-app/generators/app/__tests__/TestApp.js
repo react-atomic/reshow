@@ -5,8 +5,6 @@
 const path = require("path");
 const helpers = require("yeoman-test");
 const assert = require("yeoman-assert");
-const os = require("os");
-const fs = require("fs");
 
 describe("php-pmvc-plugin:app", () => {
   before((done) => {
