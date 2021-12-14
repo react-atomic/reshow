@@ -3,22 +3,33 @@
   "version": "0.0.0",
   "description": "Yeoman generator for reshow-app",
   "author": "Hill <hill@kimo.com>",
-  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/generator-reshow-app",
-  "license": "ISC",
-  "main": "",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "generators"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/react-atomic/reshow.git"
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/generator-reshow-app"
   },
+  "license": "ISC",
+  "main": "",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "yeoman-environment": "^3.6.0",
+    "yeoman-generator": "^5.4.2",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "reshow-unit": "*",
+    "yeoman-assert": "*",
+    "yeoman-test": "*"
+  },
+  "files": ["generators"],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "mochaFor": "mocha",
+    "mocha": "npm run mochaFor -- 'generators/**/__tests__/*.js'",
+    "test": "npm run mocha",
+    "prepublishOnly": "npm run test"
+  },
+  "engines": {
+    "node": ">=12"
   },
   "bugs": {
     "url": "https://github.com/react-atomic/reshow/issues"
