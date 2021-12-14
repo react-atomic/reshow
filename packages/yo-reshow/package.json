@@ -1,0 +1,38 @@
+{
+  "name": "yo-reshow",
+  "version": "0.0.0",
+  "description": "Yo utility for reshow",
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/reshow-yo"
+  },
+  "keywords": ["yo", "Yeoman"],
+  "author": "Hill <hill@kimo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "1.0.4",
+    "yeoman-environment": "^3.8.1",
+    "yeoman-generator": "^5.4.2",
+    "yosay": "^1.0.2",
+    "reshow-unit": "*",
+    "yeoman-assert": "*",
+    "yeoman-test": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.x"
+  },
+  "scripts": {
+    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --root-mode upward ",
+    "build:es": "BABEL_ENV=es babel src -d build/es/src --root-mode upward",
+    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "mochaFor": "mocha -r jsdom-global/register",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
+    "prepublishOnly": "npm run test"
+  },
+  "files": ["build", "package.json", "README.md"]
+}
