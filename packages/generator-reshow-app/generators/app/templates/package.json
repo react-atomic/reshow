@@ -1,0 +1,40 @@
+{
+  "description": "Reshow App",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/react-atomic-ui"
+  },
+  "keywords": [
+    "app",
+    "reshow-app"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "get-object-value": "*",
+    "get-scroll-info": "*",
+    "organism-react-ajax": "*",
+    "organism-react-navigation": "*",
+    "organism-react-popup": "*",
+    "organism-react-progress": "*",
+    "pmvc_react_admin": "*",
+    "pmvc_react_list": "*",
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "reshow": "*",
+    "reshow-app": "*",
+    "reshow-constant": "*",
+    "reshow-url": "*",
+    "ricon": "*"
+  },
+  "scripts": {
+    "webpack": "webpack",
+    "start": "ws",
+    "format": "prettier-eslint --write 'src/**/*.js' 'ui/**/*.jsx'",
+    "clean": "find ./build ./assets -name '*.*' | xargs rm -rf",
+    "build:ui": "BABEL_ENV=es babel ui -d build/es/ui --ignore /**/__tests__",
+    "build:src": "BABEL_ENV=es babel src -d build/es/src --ignore /**/__tests__",
+    "build": "npm run clean && npm run build:ui && npm run build:src",
+    "prepublishOnly": "exit 1;"
+  }
+}

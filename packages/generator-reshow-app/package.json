@@ -1,0 +1,26 @@
+{
+  "name": "generator-reshow-app",
+  "version": "0.0.0",
+  "description": "Yeoman generator for reshow-app",
+  "author": "Hill <hill@kimo.com>",
+  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/generator-reshow-app",
+  "license": "ISC",
+  "main": "",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "generators"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-atomic/reshow.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/react-atomic/reshow/issues"
+  }
+}
