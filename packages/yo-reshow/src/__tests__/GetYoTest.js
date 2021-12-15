@@ -1,10 +1,10 @@
 import { expect } from "chai";
 
-import GetYo from "../index";
+import getYo from "../index";
 
 describe("Test GetYo", () => {
   it("basic test", ()=>{
-    const o = GetYo();
+    const o = getYo();
     expect(o).is.not.null;
   });
 });

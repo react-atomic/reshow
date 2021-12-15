@@ -1,4 +1,4 @@
-const getYo = require("../index");
+import getYo from "../index";
 const { YoTest, assert } = getYo();
 
 describe("CopyTplWithFolder Test", () => {
@@ -12,7 +12,7 @@ describe("CopyTplWithFolder Test", () => {
     });
   });
   it("should have content", () => {
-        assert.fileContent('fakeSrc/fake1.js', 'foo1 = "bar"');
-        assert.fileContent('fakeSrc/fake2.js', 'foo2 = "bar"');
+    assert.fileContent("fakeSrc/fake1.js", 'foo1 = "bar"');
+    assert.fileContent("fakeSrc/fake2.js", 'foo2 = "bar"');
   });
 });
