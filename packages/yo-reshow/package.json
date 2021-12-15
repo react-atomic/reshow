@@ -1,6 +1,6 @@
 {
   "name": "yo-reshow",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -16,7 +16,6 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "call-func": "*",
     "mkdirp": "1.0.4",
     "reshow-constant": "*",
     "reshow-unit": "*",

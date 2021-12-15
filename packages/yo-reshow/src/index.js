@@ -1,5 +1,5 @@
-import callfunc from "call-func";
 import {STRING} from "reshow-constant";
+import FS from "fs";
 
 // for app
 import YoGenerator from "yeoman-generator";
@@ -42,13 +42,19 @@ const getYo = () => {
           const oGenFs = oGen.fs;
           const action = options ? oGenFs.copyTpl : oGenFs.copy;
 
-          src = callfunc(src,null,null,null) || oGen.templatePath(src);
-          dest = dest || path.basename(src);
+          let actualSrc;
+          if (!FS.existsSync(src)) {
+              dest = dest || src;
+              actualSrc = oGen.templatePath(src);
+          } else {
+              dest = dest || path.basename(src);
+              actualSrc = src;
+          }
 
           try {
             action.call(
               oGenFs,
-              src,
+              actualSrc,
               oGen.destinationPath(dest),
               options
             );

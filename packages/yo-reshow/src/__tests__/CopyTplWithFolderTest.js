@@ -18,7 +18,7 @@ class FakeGenerator extends YoGenerator {
 
   writing() {
     const { cp } = YoHelper(this);
-    cp(()=>__dirname + '/templates/fakeSrc', null, { fakeName: this.fakeName });
+    cp(__dirname + '/templates/fakeSrc', null, { fakeName: this.fakeName });
   }
 }
 
