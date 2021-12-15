@@ -2,10 +2,9 @@ import getYo from "../index";
 const { YoTest, assert } = getYo();
 
 describe("CopyTplWithFolder Test", () => {
-  before((done) => {
-    YoTest({
+  before(async () => {
+    await YoTest({
       folder: __dirname + "/fakeGenerator",
-      done,
       params: {
         fakeName: "bar",
       },

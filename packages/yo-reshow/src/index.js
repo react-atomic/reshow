@@ -11,15 +11,15 @@ import path from "path";
 const getYo = () => {
   return {
     YoGenerator,
-    YoTest: ({ folder, done, params }) => {
-      const testHelper = YoTest.run(path.join(folder))
-        .inTmpDir((dir) => {
-          console.log("Test folder: " + dir);
-        })
+    YoTest: ({ folder, params }) => {
+      const srcFolder = path.join(folder);
+      const testHelper = YoTest.create(srcFolder)
         .withPrompts(params)
-        .on("end", () => {
-          done();
-        });
+        .inTmpDir((dir) => {
+          console.log(`Build on: ${dir}`);
+          console.log(`Source on: ${srcFolder}`);
+        })
+        .run();
       return testHelper;
     },
     YoHelper: (oGen) => {
