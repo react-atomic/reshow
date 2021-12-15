@@ -2,17 +2,6 @@ const getYo = require("yo-reshow");
 const {YoGenerator, YoHelper} = getYo();
 
 module.exports = class extends YoGenerator {
-  // note: arguments and options should be defined in the constructor.
-  constructor(args, opts) {
-    super(args, opts);
-
-    // This makes `appname` a required argument.
-    // this.argument("appname", { type: String, required: true });
-
-    // And you can then access it later; e.g.
-    // this.log(this.options.appname);
-  }
-
   /**
    * Run loop (Life cycle)
    * https://yeoman.io/authoring/running-context.html#the-run-loop
