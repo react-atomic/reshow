@@ -1,10 +1,31 @@
 import getYo from "../index";
-const { YoTest, assert } = getYo();
+const { YoTest, YoGenerator, YoHelper, assert } = getYo();
+
+class FakeGenerator extends YoGenerator {
+  async prompting() {
+    const { say, destFolderName } = YoHelper(this);
+    const prompts = [
+      {
+        type: "confirm",
+        name: "fakeName",
+        message: `This is fake quetion?`,
+        default: false,
+      },
+    ];
+    const answers = await this.prompt(prompts);
+    this.fakeName = answers.fakeName;
+  }
+
+  writing() {
+    const { cp } = YoHelper(this);
+    cp(()=>__dirname + '/templates/fakeSrc', null, { fakeName: this.fakeName });
+  }
+}
 
 describe("CopyTplWithFolder Test", () => {
   before(async () => {
     await YoTest({
-      folder: __dirname + "/fakeGenerator",
+      source: FakeGenerator,
       params: {
         fakeName: "bar",
       },

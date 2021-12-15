@@ -2,6 +2,7 @@
 import YoGenerator from "yeoman-generator";
 import YoSay from "yosay";
 import mkdirp from "mkdirp";
+import callfunc from "call-func";
 
 // for test
 import YoTest from "yeoman-test";
@@ -11,13 +12,13 @@ import path from "path";
 const getYo = () => {
   return {
     YoGenerator,
-    YoTest: ({ folder, params }) => {
-      const srcFolder = path.join(folder);
-      const testHelper = YoTest.create(srcFolder)
+    YoTest: ({ source, params }) => {
+      source = "string" === typeof source ? path.join(source) : source;
+      const testHelper = YoTest.create(source)
         .withPrompts(params)
         .inTmpDir((dir) => {
           console.log(`Build on: ${dir}`);
-          console.log(`Source on: ${srcFolder}`);
+          console.log(`Source : ${source}`);
         })
         .run();
       return testHelper;
@@ -38,11 +39,14 @@ const getYo = () => {
         cp: (src, dest, options) => {
           const oGenFs = oGen.fs;
           const action = options ? oGenFs.copyTpl : oGenFs.copy;
-          dest = dest || src;
+
+          src = callfunc(src) || oGen.templatePath(src);
+          dest = dest || path.basename(src);
+
           try {
             action.call(
               oGenFs,
-              oGen.templatePath(src),
+              src,
               oGen.destinationPath(dest),
               options
             );
