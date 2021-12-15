@@ -11,6 +11,8 @@ describe("CopyTplWithFolder Test", () => {
       },
     });
   });
-  it("basic test", ()=>{
+  it("should have content", () => {
+        assert.fileContent('fakeSrc/fake1.js', 'foo1 = "bar"');
+        assert.fileContent('fakeSrc/fake2.js', 'foo2 = "bar"');
   });
 });
