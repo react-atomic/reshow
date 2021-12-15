@@ -33,7 +33,7 @@ module.exports = class extends YoGenerator {
       {
         type: "confirm",
         name: "isReady",
-        message: `We will put files at [${destFolderName}], do you already create plug-in folder?`,
+        message: `We will put files at [${destFolderName}], do you already create app folder?`,
         default: false,
       },
       {
@@ -76,5 +76,7 @@ module.exports = class extends YoGenerator {
     cp(".gitignore");
     cp("compile.sh");
     cp("index.html");
+    cp("package.json");
+    cp("webpack.config.js");
   }
 };
