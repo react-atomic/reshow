@@ -31,7 +31,7 @@ const getYo = () => {
           mkdirp(oGen.destinationPath(dir));
         },
         say: (message) => {
-          oGen.log(YoSay(message), { maxLength: 30 });
+          oGen.log(YoSay(message, { maxLength: 30 }));
         },
         cp: (src, dest, options) => {
           const oGenFs = oGen.fs;
