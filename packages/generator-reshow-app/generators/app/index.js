@@ -1,8 +1,7 @@
-const Generator = require("yeoman-generator");
-const yosay = require("yosay");
-const mkdirp = require("mkdirp");
+const getYo = require("yo-reshow");
+const {YoGenerator, YoHelper} = getYo();
 
-module.exports = class extends Generator {
+module.exports = class extends YoGenerator {
   // note: arguments and options should be defined in the constructor.
   constructor(args, opts) {
     super(args, opts);
@@ -35,21 +34,15 @@ module.exports = class extends Generator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
+    const {say, destFolderName} = YoHelper(this);
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
-    this.log(
-      yosay(
-        'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.',
-        { maxLength: 30 }
-      )
-    );
+    say('Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.');
 
-    const folders = this.destinationRoot().split("/");
-    const folderName = folders[folders.length - 1];
     const prompts = [
       {
         type: "confirm",
         name: "isReady",
-        message: `We will put files at [${folderName}], do you already create plug-in folder?`,
+        message: `We will put files at [${destFolderName}], do you already create plug-in folder?`,
         default: false,
       },
       {
@@ -63,7 +56,7 @@ module.exports = class extends Generator {
         type: "input",
         name: "appName",
         message: "Please input your app name?",
-        default: folderName,
+        default: destFolderName,
       },
       {
         type: "input",
@@ -87,26 +80,12 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const copy = (src, dest, options) => {
-      const action = options ? this.fs.copyTpl : this.fs.copy;
-      dest = dest || src;
-      try {
-        action.call(
-          this.fs,
-          this.templatePath(src),
-          this.destinationPath(dest),
-          options
-        );
-      } catch (e) {
-        console.log(e);
-      }
-    };
+    const {cp, mkdir} = YoHelper(this);
+    mkdir("src");
+    mkdir("ui");
 
-    mkdirp(this.destinationPath("src"));
-    mkdirp(this.destinationPath("ui"));
-
-    copy(".gitignore");
-    copy("compile.sh");
-    copy("index.html");
+    cp(".gitignore");
+    cp("compile.sh");
+    cp("index.html");
   }
 };

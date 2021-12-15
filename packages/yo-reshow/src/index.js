@@ -23,9 +23,12 @@ const getYo = () => {
       return testHelper;
     },
     YoHelper: (oGen) => {
+      const folders = oGen.destinationRoot().split("/");
+      const destFolderName = folders[folders.length - 1];
       return {
+        destFolderName,
         mkdir: (dir) => {
-          oGen.destinationPath("src");
+          mkdirp(oGen.destinationPath(dir));
         },
         say: (message) => {
           oGen.log(YoSay(message), { maxLength: 30 });
