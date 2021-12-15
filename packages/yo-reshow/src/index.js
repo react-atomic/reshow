@@ -1,8 +1,10 @@
+import callfunc from "call-func";
+import {STRING} from "reshow-constant";
+
 // for app
 import YoGenerator from "yeoman-generator";
 import YoSay from "yosay";
 import mkdirp from "mkdirp";
-import callfunc from "call-func";
 
 // for test
 import YoTest from "yeoman-test";
@@ -13,7 +15,7 @@ const getYo = () => {
   return {
     YoGenerator,
     YoTest: ({ source, params }) => {
-      source = "string" === typeof source ? path.join(source) : source;
+      source = STRING === typeof source ? path.join(source) : source;
       const testHelper = YoTest.create(source)
         .withPrompts(params)
         .inTmpDir((dir) => {
@@ -40,7 +42,7 @@ const getYo = () => {
           const oGenFs = oGen.fs;
           const action = options ? oGenFs.copyTpl : oGenFs.copy;
 
-          src = callfunc(src) || oGen.templatePath(src);
+          src = callfunc(src,null,null,null) || oGen.templatePath(src);
           dest = dest || path.basename(src);
 
           try {
