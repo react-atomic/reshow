@@ -1,5 +1,5 @@
 const getYo = require("yo-reshow");
-const {YoGenerator, YoHelper} = getYo();
+const { YoGenerator, YoHelper } = getYo();
 
 module.exports = class extends YoGenerator {
   /**
@@ -23,9 +23,11 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const {say, destFolderName} = YoHelper(this);
+    const { say, destFolderName } = YoHelper(this);
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
-    say('Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.');
+    say(
+      'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.'
+    );
 
     const prompts = [
       {
@@ -62,17 +64,15 @@ module.exports = class extends YoGenerator {
       },
     ];
     const answers = await this.prompt(prompts);
-    this.props = answers;
     this.appName = answers.appName;
     this.description = answers.description;
     this.keyword = answers.keyword || answers.appName;
   }
 
   writing() {
-    const {cp, mkdir} = YoHelper(this);
-    mkdir("src");
-    mkdir("ui");
-
+    const { cp } = YoHelper(this);
+    cp("ui");
+    cp("src");
     cp(".gitignore");
     cp("compile.sh");
     cp("index.html");

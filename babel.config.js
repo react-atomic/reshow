@@ -21,7 +21,7 @@ module.exports = function(api) {
           [
             'reshow-transform-runtime',
             {
-              regenerator: false,
+              regenerator: true,
               version: "7.9.0",
             },
           ],

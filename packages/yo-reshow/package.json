@@ -1,6 +1,6 @@
 {
   "name": "yo-reshow",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -25,7 +25,8 @@
     "yeoman-test": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.x"
+    "@babel/cli": "^7.x",
+    "reshow-runtime": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

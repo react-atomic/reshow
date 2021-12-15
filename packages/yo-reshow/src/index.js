@@ -33,6 +33,8 @@ const getYo = () => {
         say: (message) => {
           oGen.log(YoSay(message, { maxLength: 30 }));
         },
+
+        // https://github.com/SBoudrias/mem-fs-editor
         cp: (src, dest, options) => {
           const oGenFs = oGen.fs;
           const action = options ? oGenFs.copyTpl : oGenFs.copy;
