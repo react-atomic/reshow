@@ -1127,6 +1127,13 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
+call-func@*:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.4.tgz#c3daf9e02b449fb62cbf56b3e04825fb0076d1c1"
+  integrity sha512-rH6PhPEoMb3JDf88U/BEmWzr41VIof8tr6/4zRq++RvHigyF4/iQ8cSISXnwu1Imt0BygalLbeZiPdTYceSdNg==
+  dependencies:
+    reshow-constant "*"
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -1453,9 +1460,9 @@ convert-source-map@^1.7.0:
     safe-buffer "~5.1.1"
 
 core-js@^3.1.4:
-  version "3.19.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.3.tgz#6df8142a996337503019ff3235a7022d7cdf4559"
-  integrity sha512-LeLBMgEGSsG7giquSzvgBrTS7V5UL6ks3eQlUSbN8dJStlLFiRzUm5iqsRyzUB8carhfKjkJ2vzKqE6z1Vga9g==
+  version "3.20.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.0.tgz#1c5ac07986b8d15473ab192e45a2e115a4a95b79"
+  integrity sha512-KjbKU7UEfg4YPpskMtMXPhUKn7m/1OdTHTVjy09ScR2LVaoUXe8Jh0UdvN2EKUR6iKTJph52SJP95mAB0MnVLQ==
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -1740,9 +1747,9 @@ ejs@^3.1.6:
     jake "^10.6.1"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.18"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.18.tgz#2fb282213937986a20a653315963070e8321b3f3"
-  integrity sha512-i7nKjGGBE1+YUIbfLObA1EZPmN7J1ITEllbhusDk+KIk6V6gUxN9PFe36v+Sd+8Cg0k3cgUv9lQhQZalr8rggw==
+  version "1.4.19"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.19.tgz#b02bfdc6a5f1c683849a462cd54258288c087433"
+  integrity sha512-TeAjwsC/vhvxEtX/xN1JQUMkl+UrwKXlB4rwLyuLYVuBuRtqJJrU4Jy5pCVihMQg4m1ceZ3MEJ0yYuxHj8vC+w==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4800,6 +4807,11 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
+reshow-constant@*:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.1.2.tgz#7ca2aa1a37c08a7f860649c8f6ad3c3b68a322ee"
+  integrity sha512-cOBdsOS660MSeXbrJM+oUXnk9vNsam/NoHFJN6FB6/AI2Z73uZ2N3jsdSpJvlNpLmMBKHpq3ZG3388/b1z/VXg==
+
 reshow-unit@*:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.0.3.tgz#bf8b45663c48b7dff4e41fed9f53fc6810132329"
@@ -6073,11 +6085,13 @@ yeoman-test@*:
     temp-dir "^2.0.0"
 
 yo-reshow@*:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.0.2.tgz#23a7fca9c83daab3076ce2d2347abea2125819c7"
-  integrity sha512-AWjSkC3OlESfHyUOcT5uj8OOSSYm4oCAjLVhdUHNlJWz0ngMyCtYtXq+oIC3J1Zxt+FqZJDKS1s3tcCa6jaazQ==
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.0.5.tgz#afa60dd5c7dce11eb5b1c34bc0c5b39673ffcaae"
+  integrity sha512-JHFWeqQWwEg+V4Vppyolbc7O7P2iklBDwoltgR2u2EynsXbAP5Ao2NxGickLa4B2h78uPmQopqAL+sUuuEho2g==
   dependencies:
+    call-func "*"
     mkdirp "1.0.4"
+    reshow-constant "*"
     reshow-unit "*"
     yeoman-assert "*"
     yeoman-environment "^3.8.1"

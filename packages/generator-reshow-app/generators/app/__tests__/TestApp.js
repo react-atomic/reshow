@@ -7,10 +7,9 @@ const getYo = require("yo-reshow");
 const { YoTest, assert } = getYo();
 
 describe("generator-reshow-app:app", () => {
-  before((done) => {
-    YoTest({
-      folder: __dirname + "/../.",
-      done,
+  before(async () => {
+    await YoTest({
+      source: __dirname + "/../.",
       params: {
         isReady: true,
         appNamee: "foo",
