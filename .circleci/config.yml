@@ -57,5 +57,5 @@ workflows:
                 - "packages/reshow-unit"
                 - "packages/reshow-url"
                 - "packages/reshow-worker"
-                - "packages/generator-reshow-app"
+                - "packages/generator-reshow"
                 - "packages/yo-reshow"
