@@ -45,7 +45,7 @@ module.exports = class extends YoGenerator {
       },
       {
         type: "input",
-        name: "appName",
+        name: "mainName",
         message: "Please input your app name?",
         default: destFolderName,
       },
@@ -64,9 +64,9 @@ module.exports = class extends YoGenerator {
       },
     ];
     const answers = await this.prompt(prompts);
-    this.appName = answers.appName;
+    this.mainName = answers.mainName;
     this.description = answers.description;
-    this.keyword = answers.keyword || answers.appName;
+    this.keyword = answers.keyword || answers.mainName;
   }
 
   writing() {
