@@ -71,12 +71,5 @@ module.exports = class extends YoGenerator {
 
   writing() {
     const { cp } = YoHelper(this);
-    cp("ui");
-    cp("src");
-    cp(".gitignore");
-    cp("compile.sh");
-    cp("index.html");
-    cp("package.json");
-    cp("webpack.config.js");
   }
 };
