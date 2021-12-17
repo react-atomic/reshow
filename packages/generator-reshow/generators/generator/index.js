@@ -23,7 +23,7 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const { say, destFolderName } = YoHelper(this);
+    const { say, destFolderName, promptChainLocator, promptChain, getAllAns } = YoHelper(this);
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
     say(
       'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.'
@@ -38,8 +38,9 @@ module.exports = class extends YoGenerator {
       },
       {
         when: (response) => {
-          if (!response.isReady) {
-            process.exit(0);
+          if (!getAllAns().isReady) {
+               say("Exit for not ready to create folder.");
+               process.exit(0);
           }
         },
       },
@@ -63,7 +64,11 @@ module.exports = class extends YoGenerator {
         default: "",
       },
     ];
-    const answers = await this.prompt(prompts);
+
+    const answers = await promptChain(promptChainLocator(prompts));
+    
+    say(answers);
+
     this.mainName = answers.mainName;
     this.description = answers.description;
     this.keyword = answers.keyword || answers.mainName;
