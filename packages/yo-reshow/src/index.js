@@ -35,6 +35,9 @@ const getYo = () => {
           mkdirp(oGen.destinationPath(dir));
         },
         say: (message) => {
+          if (STRING !== typeof message) {
+            message = JSON.stringify(message, null, "\t");
+          }
           oGen.log(YoSay(message, { maxLength: 30 }));
         },
 

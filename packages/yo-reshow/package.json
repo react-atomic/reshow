@@ -1,6 +1,6 @@
 {
   "name": "yo-reshow",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
