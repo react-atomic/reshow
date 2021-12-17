@@ -1,4 +1,4 @@
-import {STRING} from "reshow-constant";
+import { STRING } from "reshow-constant";
 import FS from "fs";
 
 // for app
@@ -11,6 +11,7 @@ import YoTest from "yeoman-test";
 import assert from "yeoman-assert";
 import path from "path";
 
+let lastAns;
 const getYo = () => {
   return {
     YoGenerator,
@@ -44,24 +45,44 @@ const getYo = () => {
 
           let actualSrc;
           if (!FS.existsSync(src)) {
-              dest = dest || src;
-              actualSrc = oGen.templatePath(src);
+            dest = dest || src;
+            actualSrc = oGen.templatePath(src);
           } else {
-              dest = dest || path.basename(src);
-              actualSrc = src;
+            dest = dest || path.basename(src);
+            actualSrc = src;
           }
 
           try {
-            action.call(
-              oGenFs,
-              actualSrc,
-              oGen.destinationPath(dest),
-              options
-            );
+            action.call(oGenFs, actualSrc, oGen.destinationPath(dest), options);
           } catch (e) {
             console.log(e);
           }
         },
+
+        promptChainLocator: (prompts) => (index) => prompts[index],
+
+        promptChain: (promptLocator, cb = () => true) => {
+          let i = 0;
+          lastAns = {};
+          const go = () => {
+            const thisPrompt = promptLocator(i, lastAns);
+            return thisPrompt
+              ? oGen.prompt(thisPrompt).then((props) => {
+                  lastAns = { ...lastAns, ...props };
+                  const isContinue = cb(lastAns);
+                  if (isContinue) {
+                    i++;
+                    return go();
+                  } else {
+                    return oGen.prompt([]);
+                  }
+                })
+              : lastAns;
+          };
+          return go();
+        },
+
+        getAllAns: () => lastAns,
       };
     },
     assert,
