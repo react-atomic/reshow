@@ -17,7 +17,7 @@ module.exports = class extends YoGenerator {
    */
 
   /**
-   * Using lists in a yeoman prompt
+   * Questions.
    *
    * https://www.alwaystwisted.com/post.php?s=using-lists-in-a-yeoman-generator
    * https://github.com/SBoudrias/Inquirer.js
