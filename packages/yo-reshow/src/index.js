@@ -64,22 +64,21 @@ const getYo = () => {
         promptChain: (promptLocator, cb = () => true) => {
           let i = 0;
           lastAns = {};
-          const go = () => {
-            const thisPrompt = promptLocator(i, lastAns);
+          const go = (thisPrompt) => {
             return thisPrompt
               ? oGen.prompt(thisPrompt).then((props) => {
                   lastAns = { ...lastAns, ...props };
                   const isContinue = cb(lastAns);
                   if (isContinue) {
                     i++;
-                    return go();
+                    return go(promptLocator(i, lastAns));
                   } else {
                     return oGen.prompt([]);
                   }
                 })
               : lastAns;
           };
-          return go();
+          return go(promptLocator(i, lastAns));
         },
 
         getAllAns: () => lastAns,
