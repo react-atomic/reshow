@@ -23,7 +23,9 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const { say, destFolderName, promptChainLocator, promptChain, getAllAns } = YoHelper(this);
+    const { say, getDestFolderName, promptChainLocator, promptChain, getAllAns } = YoHelper(this);
+    const destFolderName = getDestFolderName();
+
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
     say(
       'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.'

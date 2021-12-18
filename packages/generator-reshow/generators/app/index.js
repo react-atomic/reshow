@@ -25,7 +25,8 @@ module.exports = class extends YoGenerator {
   async prompting() {
     this.env.options.nodePackageManager = "yarn";
 
-    const { say, destFolderName } = YoHelper(this);
+    const { say, getDestFolderName } = YoHelper(this);
+    const destFolderName = getDestFolderName();
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
     say(
       'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.'
