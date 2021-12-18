@@ -84,8 +84,10 @@ module.exports = class extends YoGenerator {
   }
 
   async end() {
-    const { say } = YoHelper(this);
-    await this.spawnCommand("./compile.sh", ["s", "open"]);
-    say("Check the web browser, it should autoload now.");
+    if (!this.options?.skipInstall) {
+      const { say } = YoHelper(this);
+      await this.spawnCommand("./compile.sh", ["s", "open"]);
+      say("Check the web browser, it should autoload now.");
+    }
   }
 };
