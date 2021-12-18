@@ -17,12 +17,14 @@ module.exports = class extends YoGenerator {
    */
 
   /**
-   * Questions. 
+   * Questions.
    *
    * https://www.alwaystwisted.com/post.php?s=using-lists-in-a-yeoman-generator
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
+    this.env.options.nodePackageManager = "yarn";
+
     const { say, destFolderName } = YoHelper(this);
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
     say(
@@ -78,5 +80,11 @@ module.exports = class extends YoGenerator {
     cp("index.html");
     cp("package.json");
     cp("webpack.config.js");
+  }
+
+  async end() {
+    const { say } = YoHelper(this);
+    await this.spawnCommand("./compile.sh", ["s", "open"]);
+    say("Check the web browser, it should autoload now.");
   }
 };

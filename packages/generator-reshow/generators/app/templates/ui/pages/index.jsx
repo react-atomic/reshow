@@ -4,10 +4,12 @@ import { PopupPool } from "organism-react-popup";
 import { PageLoadProgressHandler } from "organism-react-progress";
 
 import Doc from "../templates/Doc";
-import Atoms from "../pages/Atoms";
+import Page1 from "../pages/Page1";
+import Page2 from "../pages/Page2";
 
 const themes = {
-  Atoms,
+  Page1,
+  Page2,
 };
 
 const Index = (props) => (
@@ -15,7 +17,7 @@ const Index = (props) => (
     {({ tplProps }) => {
       return (
         <Doc {...tplProps}>
-          <ClientRoute {...props} themes={themes} defaultThemePath="Atoms" />
+          <ClientRoute {...props} themes={themes} defaultThemePath="Page1" />
           <PageLoadProgressHandler ajax={true} />
           <ReshowMessage />
           <PopupPool />

@@ -6,9 +6,14 @@ conf+='"externals":{"d3": "d3"},'
 conf+='"devPort": "'${hotPort:-8080}'"'
 conf+='}'
 
-PWD=`dirname $0`
-cd $PWD
+DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+cd $DIR
+OPEN=$(which xdg-open 2>/dev/null)
+if [ -z "$OPEN" ]; then 
+  OPEN="open"
+fi
 webpack='npm run webpack --'
+
 
 production(){
     echo "Production Mode";
@@ -25,17 +30,28 @@ analyzer(){
 develop(){
     stop
     echo "Develop Mode";
+    if [ ! -e ".babelrc" ]; then
+        cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
+    fi
     npm run build
     CONFIG=$conf $webpack
 }
 
 startServer(){
-    DIR="$( cd "$(dirname "$0")" ; pwd -P )"
     killBy ${DIR}/node_modules/.bin/ws
     yarn
+    if [ ! -e "build" ]; then
+        develop
+    fi
     port=${port-3000}
     echo "Start server";
-    npm run start -- -p $port -v
+    if [ "$1" == "open" ]; then
+        npm run start -- -p $port &
+        sleep 3 
+        $OPEN http://localhost:$port        
+    else
+        npm run start -- -p $port -v
+    fi
 }
 
 killBy(){
@@ -43,7 +59,6 @@ killBy(){
 }
 
 stop(){
-    DIR="$( cd "$(dirname "$0")" ; pwd -P )"
     killBy ${DIR}/node_modules/.bin/babel 
     cat webpack.pid | xargs -I{} kill -9 {}
     npm run clean
@@ -82,7 +97,7 @@ case "$1" in
     analyzer 
     ;;
   s)
-    startServer 
+    startServer $2 
     ;;
   hot)
     hot
