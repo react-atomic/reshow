@@ -4,21 +4,17 @@
     "type": "git",
     "url": "https://github.com/react-atomic/react-atomic-ui"
   },
-  "keywords": [
-    "app",
-    "reshow-app"
-  ],
+  "keywords": ["app", "reshow-app"],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "get-object-value": "*",
-    "get-scroll-info": "*",
     "organism-react-ajax": "*",
     "organism-react-navigation": "*",
     "organism-react-popup": "*",
     "organism-react-progress": "*",
     "pmvc_react_admin": "*",
-    "pmvc_react_list": "*",
     "react": "^16.x",
     "react-dom": "^16.x",
     "reshow": "*",
