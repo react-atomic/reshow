@@ -1,6 +1,6 @@
 {
   "name": "reshow-unit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -19,7 +19,7 @@
     "prettier": "*",
     "prettier-eslint": "*",
     "prettier-eslint-cli": "*",
-    "react-test-renderer": "*",
+    "react-test-renderer": "^16.x",
     "sinon": "*"
   },
   "devDependencies": {
