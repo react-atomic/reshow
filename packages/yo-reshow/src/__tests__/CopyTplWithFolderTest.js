@@ -3,7 +3,7 @@ const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 class FakeGenerator extends YoGenerator {
   async prompting() {
-    const { say, destFolderName } = YoHelper(this);
+    const { say } = YoHelper(this);
     const prompts = [
       {
         type: "confirm",
@@ -18,7 +18,7 @@ class FakeGenerator extends YoGenerator {
 
   writing() {
     const { cp } = YoHelper(this);
-    cp(__dirname + '/templates/fakeSrc', null, { fakeName: this.fakeName });
+    cp(__dirname + "/templates/fakeSrc", null, { fakeName: this.fakeName });
   }
 }
 

@@ -13,32 +13,38 @@ import path from "path";
 
 let lastAns;
 const getYo = () => {
+  let buildDir;
   return {
     YoGenerator,
-    YoTest: ({ source, params }) => {
+    YoTest: ({ source, params, options = {} }) => {
       source = STRING === typeof source ? path.join(source) : source;
       const testHelper = YoTest.create(source)
         .withPrompts(params)
+        .withOptions(options)
         .inTmpDir((dir) => {
-          console.log(`Build on: ${dir}`);
+          buildDir = dir;
+          console.log(`Build on: ${buildDir}`);
           console.log(`Source : ${source}`);
         })
         .run();
       return testHelper;
     },
+    getBuildDir: () => buildDir,
     YoHelper: (oGen) => {
-      const folders = oGen.destinationRoot().split("/");
-      const destFolderName = folders[folders.length - 1];
+      const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
       return {
-        destFolderName,
-        mkdir: (dir) => {
-          mkdirp(oGen.destinationPath(dir));
+        getDestFolderName: () => path.basename(oGen.destinationRoot()),
+        chdir: (dir) => {
+          mkdir(dir);
+          process.chdir(oGen.destinationRoot(dir));
         },
+        mkdir,
         say: (message) => {
           if (STRING !== typeof message) {
-            message = JSON.stringify(message, null, "\t");
+            oGen.log(JSON.stringify(message, null, "\t"));
+          } else {
+            oGen.log(YoSay(message, { maxLength: 30 }));
           }
-          oGen.log(YoSay(message, { maxLength: 30 }));
         },
 
         // https://github.com/SBoudrias/mem-fs-editor
