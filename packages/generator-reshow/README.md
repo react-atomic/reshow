@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const generatorReshow = require('generator-reshow');
-
-// TODO: DEMONSTRATE API
+npx yo reshow my-app
+cd my-app
+npm start
 ```
