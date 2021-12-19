@@ -92,6 +92,7 @@ module.exports = class extends YoGenerator {
     cp("data");
     cp(".gitignore");
     cp("compile.sh");
+    cp("screen.sh");
     cp("index.html");
     cp("package.json");
     cp("webpack.config.js");

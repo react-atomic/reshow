@@ -3,7 +3,7 @@
 conf='{'
 conf+='"assetsRoot":"./assets/",'
 conf+='"externals":{"d3": "d3"},'
-conf+='"devPort": "'${hotPort:-8080}'"'
+conf+='"hotPort": "'${hotPort:-8080}'"'
 conf+='}'
 
 DIR="$( cd "$(dirname "$0")" ; pwd -P )"
