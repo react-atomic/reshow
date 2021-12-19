@@ -1,8 +1,10 @@
 {
+  "private": true,
   "description": "Reshow App",
+  "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-atomic/react-atomic-ui"
+    "url": "https://github.com/react-atomic/"
   },
   "keywords": ["app", "reshow-app"],
   "author": "",

@@ -4,7 +4,7 @@ const { YoGenerator, YoHelper } = getYo();
 module.exports = class extends YoGenerator {
   constructor(args, opts) {
     super(args, opts);
-    this.argument("mainName", { type: String });
+    this.argument("mainName", { type: String, required: false });
   }
 
   /**
@@ -30,49 +30,49 @@ module.exports = class extends YoGenerator {
   async prompting() {
     this.env.options.nodePackageManager = "yarn";
 
-    const { say, chdir, getDestFolderName } = YoHelper(this);
+    const { say, getDestFolderName } = YoHelper(this);
     const { mainName } = this.options;
-    if (mainName) {
-        
+    let namePrompt = [];
+    if (!mainName) {
+      say(
+        'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder\n by yourself.'
+      );
+      namePrompt = [
+        {
+          type: "confirm",
+          name: "isReady",
+          message: `We will put files at [${getDestFolderName()}], do you already create app folder?`,
+          default: false,
+        },
+        {
+          when: (response) => {
+            if (!response.isReady) {
+              process.exit(0);
+            }
+          },
+        },
+      ];
     }
 
-    const destFolderName = getDestFolderName();
-    // https://github.com/yeoman/environment/blob/main/lib/util/log.js
-    say(
-      'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder by yourself.'
-    );
-
     const prompts = [
-      {
-        type: "confirm",
-        name: "isReady",
-        message: `We will put files at [${destFolderName}], do you already create app folder?`,
-        default: false,
-      },
-      {
-        when: (response) => {
-          if (!response.isReady) {
-            process.exit(0);
-          }
-        },
-      },
+      ...namePrompt,
       {
         type: "input",
         name: "mainName",
         message: "Please input your app name?",
-        default: destFolderName,
+        default: mainName || getDestFolderName(),
       },
       {
         type: "input",
         name: "description",
         message:
-          "Please input description for plug-in? (will use in package.json)",
+          "Please input description for app? (will use in package.json)",
         default: "About ...",
       },
       {
         type: "input",
         name: "keyword",
-        message: "Please input keyword for plug-in? (will use in package.json)",
+        message: "Please input keyword for app? (will use in package.json)",
         default: "",
       },
     ];
@@ -83,7 +83,8 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp } = YoHelper(this);
+    const { cp, chdir } = YoHelper(this);
+    chdir(this.mainName);
     cp("ui");
     cp("src");
     cp("data");

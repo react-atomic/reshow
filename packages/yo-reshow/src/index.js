@@ -34,6 +34,8 @@ const getYo = () => {
         getDestFolderName: () => path.basename(oGen.destinationRoot()),
         chdir: (dir) => oGen.destinationRoot(dir),
         mkdir,
+
+        // https://github.com/yeoman/environment/blob/main/lib/util/log.js
         say: (message) => {
           if (STRING !== typeof message) {
             oGen.log(JSON.stringify(message, null, "\t"));
