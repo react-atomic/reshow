@@ -41,12 +41,13 @@ module.exports = class extends YoGenerator {
         {
           type: "confirm",
           name: "isReady",
-          message: `We will put files at [${getDestFolderName()}], do you already create app folder?`,
+          message: `We will put files at [${getDestFolderName()}], do you confirm it?`,
           default: false,
         },
         {
           when: (response) => {
             if (!response.isReady) {
+              say("Exit for not ready to create folder.");
               process.exit(0);
             }
           },
