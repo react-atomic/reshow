@@ -65,8 +65,7 @@ module.exports = class extends YoGenerator {
       {
         type: "input",
         name: "description",
-        message:
-          "Please input description for app? (will use in package.json)",
+        message: "Please input description for app? (will use in package.json)",
         default: "About ...",
       },
       {
@@ -83,8 +82,10 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chdir } = YoHelper(this);
-    chdir(this.mainName);
+    const { cp, chdir, getDestFolderName } = YoHelper(this);
+    if (this.mainName !== getDestFolderName()) {
+      chdir(this.mainName);
+    }
     cp("ui");
     cp("src");
     cp("data");
