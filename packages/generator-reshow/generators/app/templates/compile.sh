@@ -3,7 +3,7 @@
 conf='{'
 conf+='"assetsRoot":"./assets/",'
 conf+='"externals":{"d3": "d3"},'
-conf+='"hotPort": "'${hotPort:-8080}'"'
+conf+='"hotPort": "'${hotPort:-3088}'"'
 conf+='}'
 
 DIR="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -15,14 +15,22 @@ fi
 webpack='npm run webpack --'
 
 
+checkBabel(){
+    if [ ! -e ".babelrc" ]; then
+        cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
+    fi
+}
+
 production(){
     echo "Production Mode";
+    checkBabel
     npm run build
-    CONFIG=$conf NODE_ENV=production $webpack --mode=production 
+    CONFIG=$conf NODE_ENV=production $webpack
 }
 
 analyzer(){
     echo "Analyzer Mode";
+    checkBabel
     npm run build
     CONFIG=$conf BUNDLE='{}' $webpack
 }
@@ -30,9 +38,7 @@ analyzer(){
 develop(){
     stop
     echo "Develop Mode";
-    if [ ! -e ".babelrc" ]; then
-        cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
-    fi
+    checkBabel
     npm run build
     CONFIG=$conf $webpack
 }
@@ -68,6 +74,7 @@ stop(){
 watch(){
     stop 
     echo "Watch Mode";
+    checkBabel
     npm run build:ui -- --watch &
     npm run build:src -- --watch &
     sleep 10 
@@ -77,6 +84,7 @@ watch(){
 watchTest(){
     stop 
     echo "Watch Test";
+    checkBabel
     npm run build:test:ui -- --watch &
     npm run build:test:src -- --watch &
 }
@@ -84,8 +92,10 @@ watchTest(){
 hot(){
     stop 
     echo "Hot Mode";
+    checkBabel
     npm run build:ui -- --watch &
     npm run build:src -- --watch &
+    sleep 5
     HOT_UPDATE=1 CONFIG=$conf $webpack serve &
 }
 
