@@ -2,6 +2,11 @@ const getYo = require("yo-reshow");
 const { YoGenerator, YoHelper } = getYo();
 
 module.exports = class extends YoGenerator {
+  constructor(args, opts) {
+    super(args, opts);
+    this.argument("mainName", { type: String });
+  }
+
   /**
    * Run loop (Life cycle)
    * https://yeoman.io/authoring/running-context.html#the-run-loop
@@ -25,7 +30,12 @@ module.exports = class extends YoGenerator {
   async prompting() {
     this.env.options.nodePackageManager = "yarn";
 
-    const { say, getDestFolderName } = YoHelper(this);
+    const { say, chdir, getDestFolderName } = YoHelper(this);
+    const { mainName } = this.options;
+    if (mainName) {
+        
+    }
+
     const destFolderName = getDestFolderName();
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
     say(

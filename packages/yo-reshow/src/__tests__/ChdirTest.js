@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import getYo from "../index";
-const { YoTest, YoGenerator, YoHelper, assert, getBuildDir } = getYo();
+const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 class FakeGenerator extends YoGenerator {
   async prompting() {
@@ -19,7 +19,6 @@ class FakeGenerator extends YoGenerator {
 
   writing() {
     const { cp, chdir } = YoHelper(this);
-    console.log(this.options.chdir);
     chdir(this.options.chdir);
   }
 }
@@ -42,9 +41,11 @@ describe("Chdir test", () => {
     }
   });
 
-  it("test path", () => {
+  it("test chdir", () => {
+    const {generator} = runResult;
+    const {getBuildDir} = YoHelper(generator);
     const expected = getBuildDir() + '/abc';
-    expect(runResult.generator.destinationPath()).to.equal(expected);
+    expect(generator.destinationPath()).to.equal(expected);
   });
 });
 

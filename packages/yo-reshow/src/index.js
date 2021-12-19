@@ -13,7 +13,6 @@ import path from "path";
 
 let lastAns;
 const getYo = () => {
-  let buildDir;
   return {
     YoGenerator,
     YoTest: ({ source, params, options = {} }) => {
@@ -22,22 +21,18 @@ const getYo = () => {
         .withPrompts(params)
         .withOptions(options)
         .inTmpDir((dir) => {
-          buildDir = dir;
-          console.log(`Build on: ${buildDir}`);
+          console.log(`Build on: ${dir}`);
           console.log(`Source : ${source}`);
         })
         .run();
       return testHelper;
     },
-    getBuildDir: () => buildDir,
     YoHelper: (oGen) => {
       const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
       return {
+        getBuildDir: () => oGen.contextRoot,
         getDestFolderName: () => path.basename(oGen.destinationRoot()),
-        chdir: (dir) => {
-          mkdir(dir);
-          process.chdir(oGen.destinationRoot(dir));
-        },
+        chdir: (dir) => oGen.destinationRoot(dir),
         mkdir,
         say: (message) => {
           if (STRING !== typeof message) {
