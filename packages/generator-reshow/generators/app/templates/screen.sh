@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCREEN_NAME="reactui"
+SCREEN_NAME=`basename "$PWD"`
 
 exec() {
     tabName=$1
