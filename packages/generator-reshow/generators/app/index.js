@@ -83,11 +83,12 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chdir, getDestFolderName } = YoHelper(this);
+    const { cp, chdir, mkdir, getDestFolderName } = YoHelper(this);
     if (this.mainName !== getDestFolderName()) {
       chdir(this.mainName);
     }
     cp("ui");
+    mkdir("ui/organisms");
     cp("src");
     cp("data");
     cp(".gitignore");
