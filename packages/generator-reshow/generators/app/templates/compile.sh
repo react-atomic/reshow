@@ -43,8 +43,13 @@ develop(){
     CONFIG=$conf $webpack
 }
 
+stopServer(){
+  killBy ${DIR}/node_modules/.bin/ws
+  echo "stop server done";
+}
+
 startServer(){
-    killBy ${DIR}/node_modules/.bin/ws
+    stopServer
     yarn
     if [ ! -e "build" ]; then
         develop
@@ -108,6 +113,9 @@ case "$1" in
     ;;
   s)
     startServer $2 
+    ;;
+  ss)
+    stopServer
     ;;
   hot)
     hot
