@@ -6,7 +6,7 @@ conf+='"externals":{"d3": "d3"},'
 conf+='"hotPort": "'${hotPort:-3088}'"'
 conf+='}'
 
-DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+DIR=$( cd "$(dirname "$0")" ; pwd -P )
 cd $DIR
 OPEN=$(which xdg-open 2>/dev/null)
 if [ -z "$OPEN" ]; then 
