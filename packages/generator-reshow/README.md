@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-npx yo reshow my-app
+npx -p yo -p generator-reshow -c 'yo reshow my-app'
 cd my-app
 npm start
 ```
