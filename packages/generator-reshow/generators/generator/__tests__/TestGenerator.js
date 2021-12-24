@@ -14,29 +14,28 @@ describe("generator-reshow:generator", () => {
       source: __dirname + "/../.",
       params: {
         isReady: true,
-        appNamee: "foo",
+        mainNamee: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
       },
     });
   });
 
-  after(()=>{
+  after(() => {
     if (runResult) {
       runResult.restore();
     }
   });
 
   it("should have folder", () => {
-//    assert.file(["src", "ui"]);
+    assert.file(["__tests__"]);
   });
 
   it("should have file", () => {
- //   assert.file(["compile.sh", "index.html"]);
+    assert.file(["README.md", "index.js"]);
   });
 
   it("should have content", () => {
-    //    assert.fileContent('composer.json', 'foo-desc');
-    //    assert.fileContent('.circleci/config.yml', 'foo');
+    assert.fileContent("README.md", "foo");
   });
 });

@@ -90,8 +90,11 @@ module.exports = class extends YoGenerator {
     say(answers);
 
     this.mainName = answers.mainName;
-    this.description = answers.description;
-    this.keyword = answers.keyword || answers.mainName;
+    this.payload = {
+      mainName: this.mainName,
+      description: answers.description,
+      keyword: answers.keyword || this.mainName,
+    };
   }
 
   writing() {
@@ -100,7 +103,8 @@ module.exports = class extends YoGenerator {
       chdir(this.mainName);
     }
     // const ucMainName = 
-    mkdir('__tests__');
-    cp('README.md');
+    cp('Test.js', '__tests__/Test.js', this.payload);
+    cp('README.md', null, this.payload);
+    cp('index.js',  null, this.payload);
   }
 };
