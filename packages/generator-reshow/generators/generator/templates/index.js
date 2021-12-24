@@ -67,20 +67,20 @@ module.exports = class extends YoGenerator {
       {
         type: "input",
         name: "mainName",
-        message: "Please input your generator name?",
+        message: "Please input your <%= mainName %> name?",
         default: mainName || getDestFolderName(),
       },
       {
         type: "input",
         name: "description",
         message:
-          "Please input description for generator? (will use in package.json)",
-        default: "About ...",
+          "Please input description for <%= mainName %>?",
+        default: "",
       },
       {
         type: "input",
         name: "keyword",
-        message: "Please input keyword for generator? (will use in package.json)",
+        message: "Please input keyword for <%= mainName %>?",
         default: "",
       },
     ];
@@ -90,17 +90,14 @@ module.exports = class extends YoGenerator {
     say(answers);
 
     this.mainName = answers.mainName;
-    this.description = answers.description;
+    this.description = answers.description || 'TODO: description';
     this.keyword = answers.keyword || answers.mainName;
   }
 
   writing() {
-    const { cp, chdir, mkdir, getDestFolderName } = YoHelper(this);
+    const { cp, chdir, getDestFolderName } = YoHelper(this);
     if (this.mainName !== getDestFolderName()) {
       chdir(this.mainName);
     }
-    // const ucMainName = 
-    mkdir('__tests__');
-    cp('README.md');
   }
 };
