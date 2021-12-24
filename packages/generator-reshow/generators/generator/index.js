@@ -41,7 +41,7 @@ module.exports = class extends YoGenerator {
     let namePrompt = [];
     if (!mainName) {
       say(
-        'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder\n by yourself.'
+        'Generate "Generator"\n\n !! \n\nYou need create folder\n by yourself.'
       );
       namePrompt = [
         {
@@ -75,7 +75,7 @@ module.exports = class extends YoGenerator {
         name: "description",
         message:
           "Please input description for generator? (will use in package.json)",
-        default: "About ...",
+        default: "",
       },
       {
         type: "input",
@@ -92,7 +92,7 @@ module.exports = class extends YoGenerator {
     this.mainName = answers.mainName;
     this.payload = {
       mainName: this.mainName,
-      description: answers.description,
+      description: answers.description || 'TODO: description',
       keyword: answers.keyword || this.mainName,
     };
   }

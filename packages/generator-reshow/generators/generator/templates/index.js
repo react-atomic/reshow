@@ -41,7 +41,7 @@ module.exports = class extends YoGenerator {
     let namePrompt = [];
     if (!mainName) {
       say(
-        'Before "Start!"\n\n!! Need Create Folder First !!\n\nYou need create folder\n by yourself.'
+        'Generate "<%= mainName %>"\n\n !! \n\nYou need create folder\n by yourself.'
       );
       namePrompt = [
         {
