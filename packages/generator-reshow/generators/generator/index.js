@@ -87,8 +87,6 @@ module.exports = class extends YoGenerator {
 
     const answers = await promptChain(promptChainLocator(prompts));
 
-    say(answers);
-
     this.mainName = answers.mainName;
     this.payload = {
       mainName: this.mainName,
@@ -106,5 +104,6 @@ module.exports = class extends YoGenerator {
     cp('Test.js', '__tests__/Test.js', this.payload);
     cp('README.md', null, this.payload);
     cp('index.js',  null, this.payload);
+    cp('templates');
   }
 };

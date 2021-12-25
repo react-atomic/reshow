@@ -41,7 +41,7 @@ module.exports = class extends YoGenerator {
     let namePrompt = [];
     if (!mainName) {
       say(
-        'Generate "<%= mainName %>"\n\n !! \n\nYou need create folder\n by yourself.'
+        'Generate "library"\n\n !! \n\nYou need create folder\n by yourself.'
       );
       namePrompt = [
         {
@@ -67,33 +67,44 @@ module.exports = class extends YoGenerator {
       {
         type: "input",
         name: "mainName",
-        message: "Please input your <%= mainName %> name?",
+        message: "Please input your library name?",
         default: mainName || getDestFolderName(),
       },
       {
         type: "input",
         name: "description",
-        message:
-          "Please input description for <%= mainName %>?",
+        message: "Please input description for library?",
         default: "",
       },
       {
         type: "input",
         name: "keyword",
-        message: "Please input keyword for <%= mainName %>?",
+        message: "Please input keyword for library?",
+        default: "",
+      },
+      {
+        type: "input",
+        name: "authorName",
+        message: "Please input author Name?",
+        default: "",
+      },
+      {
+        type: "input",
+        name: "authorEmail",
+        message: "Please input author Email?",
         default: "",
       },
     ];
 
     const answers = await promptChain(promptChainLocator(prompts));
 
-    say(answers);
-
     this.mainName = answers.mainName;
     this.payload = {
       mainName: this.mainName,
       description: answers.description || 'TODO: description',
       keyword: answers.keyword || this.mainName,
+      authorName: answers.authorName,
+      authorEmail: answers.authorEmail,
     };
   }
 
@@ -101,6 +112,18 @@ module.exports = class extends YoGenerator {
     const { cp, chdir, getDestFolderName } = YoHelper(this);
     if (this.mainName !== getDestFolderName()) {
       chdir(this.mainName);
+    }
+    cp("README.md", null, this.payload);
+    cp("compile.sh", null, this.payload);
+    cp("package.json", null, this.payload);
+    cp("src", null, this.payload);
+    cp("Test.js", "src/__tests__/Test.js", this.payload);
+  }
+
+  end() {
+    if (!this.options?.skipInstall) {
+      const { say } = YoHelper(this);
+      say('Next you could try "npm run build" or "npm run test"');
     }
   }
 };
