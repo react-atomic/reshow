@@ -11,6 +11,26 @@ import YoTest from "yeoman-test";
 import assert from "yeoman-assert";
 import path from "path";
 
+const globSync = (folderPath, callback) => {
+  let fileArr = FS.readdirSync(folderPath);
+  while (fileArr.length !== 0) {
+    const relativePath = fileArr.pop();
+    const fullPath = path.join(folderPath, relativePath);
+    if (FS.statSync(fullPath).isDirectory()) {
+      fileArr = fileArr.concat(
+        FS.readdirSync(fullPath).map((v) => path.join(relativePath, v))
+      );
+    } else {
+      callback({
+        fullPath,
+        relativePath,
+        basename: path.basename(relativePath),
+        dirname: path.dirname(relativePath),
+      });
+    }
+  }
+};
+
 let lastAns;
 const getYo = () => {
   return {
@@ -63,6 +83,11 @@ const getYo = () => {
           } catch (e) {
             console.log(e);
           }
+        },
+
+        glob: (srcPath, cb) => {
+          const actualSrc = FS.existsSync(srcPath) ? srcPath : oGen.templatePath(srcPath || ""); 
+          globSync(actualSrc, cb);
         },
 
         promptChainLocator: (prompts) => (index) => prompts[index],
