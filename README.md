@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/react-atomic/reshow/tree/master.svg?style=svg)](https://circleci.com/gh/react-atomic/reshow/tree/master)
+[![CircleCI](https://circleci.com/gh/react-atomic/reshow/tree/main.svg?style=svg)](https://circleci.com/gh/react-atomic/reshow/tree/main)
 
 Reshow (A simplified React cross-component state management)
 ===============

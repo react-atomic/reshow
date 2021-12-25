@@ -1,7 +1,7 @@
 Reshow app skeleton share files
 ===
 * GIT
-   * https://github.com/react-atomic/reshow/tree/master/packages/reshow-app
+   * https://github.com/react-atomic/reshow/tree/main/packages/reshow-app
 * NPM
    * https://www.npmjs.com/package/reshow-app
 

@@ -5,7 +5,7 @@
     "url": "https://github.com/react-atomic/reshow",
     "directory": "packages/reshow-unit"
   },
-  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/reshow-unit",
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit",
   "version": "0.0.5",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",

@@ -5,7 +5,7 @@
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
-  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/reshow-flux",
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux",
   "keywords": [
     "react",
     "reactjs"

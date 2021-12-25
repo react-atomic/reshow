@@ -2,7 +2,7 @@ babel runtime alternative
 ===============
 
 * GIT
-   * https://github.com/react-atomic/reshow/tree/master/packages/reshow-runtime
+   * https://github.com/react-atomic/reshow/tree/main/packages/reshow-runtime
 * NPM
    * https://www.npmjs.com/package/reshow-runtime
 

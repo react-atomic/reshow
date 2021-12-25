@@ -5,7 +5,7 @@
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
-  "homepage": "https://github.com/react-atomic/reshow/tree/master/packages/reshow-hooks",
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-hooks",
   "keywords": [
     "react-hook",
     "hooks"
