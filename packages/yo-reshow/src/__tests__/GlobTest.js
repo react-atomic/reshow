@@ -3,25 +3,11 @@ import getYo from "../index";
 const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 class FakeGenerator extends YoGenerator {
-  async prompting() {
-    const { say } = YoHelper(this);
-    const prompts = [
-      {
-        type: "confirm",
-        name: "fakeName",
-        message: `This is fake quetion?`,
-        default: false,
-      },
-    ];
-    const answers = await this.prompt(prompts);
-    this.fakeName = answers.fakeName;
-  }
-
   writing() {
     const { glob } = YoHelper(this);
-    this.testDir = [];
+    this.testGlob = [];
     glob(__dirname + "/templates", ({ dirname, basename }) => {
-      this.testDir.push({ dirname, basename });
+      this.testGlob.push({ dirname, basename });
     });
   }
 }
@@ -31,9 +17,6 @@ describe("Glob test", () => {
   before(async () => {
     runResult = await YoTest({
       source: FakeGenerator,
-      params: {
-        fakeName: "bar",
-      },
     });
   });
 
@@ -45,7 +28,7 @@ describe("Glob test", () => {
 
   it("test glob", () => {
     const { generator } = runResult;
-    expect(generator.testDir).to.deep.equals([
+    expect(generator.testGlob).to.deep.equals([
       { dirname: "fakeSrc", basename: "fake2.js" },
       { dirname: "fakeSrc", basename: "fake1.js" },
     ]);
