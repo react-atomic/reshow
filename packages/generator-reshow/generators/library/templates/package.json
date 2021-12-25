@@ -2,12 +2,12 @@
   "name": "<%= mainName %>",
   "version": "0.0.0",
   "description": "<%= description %>",
-  "repository": "react-atomic/react-atomic-organism",
   "repository": {
     "type": "git",
     "url": "https://github.com/react-atomic/react-atomic-organism",
     "directory": "packages/<%= mainName %>"
   },
+  "homepage":"https://github.com/react-atomic/react-atomic-organism/tree/main/packages/<%= mainName %>",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "keywords": [],
