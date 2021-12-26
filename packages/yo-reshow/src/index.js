@@ -1,5 +1,7 @@
 import { STRING } from "reshow-constant";
 import FS from "fs";
+import PATH from "path";
+import { promptResetDefault, promptFilterAns } from "./getDotYo";
 
 // for app
 import YoGenerator from "yeoman-generator";
@@ -9,23 +11,22 @@ import mkdirp from "mkdirp";
 // for test
 import YoTest from "yeoman-test";
 import assert from "yeoman-assert";
-import path from "path";
 
 const globSync = (folderPath, callback) => {
   const fileArr = FS.readdirSync(folderPath);
   while (fileArr.length !== 0) {
     const relativePath = fileArr.pop();
-    const fullPath = path.join(folderPath, relativePath);
+    const fullPath = PATH.join(folderPath, relativePath);
     if (FS.statSync(fullPath).isDirectory()) {
       fileArr.push(
-        ...FS.readdirSync(fullPath).map((v) => path.join(relativePath, v))
+        ...FS.readdirSync(fullPath).map((v) => PATH.join(relativePath, v))
       );
     } else {
       callback({
         fullPath,
         relativePath,
-        basename: path.basename(relativePath),
-        dirname: path.dirname(relativePath),
+        basename: PATH.basename(relativePath),
+        dirname: PATH.dirname(relativePath),
       });
     }
   }
@@ -36,7 +37,7 @@ const getYo = () => {
   return {
     YoGenerator,
     YoTest: ({ source, params, options = {} }) => {
-      source = STRING === typeof source ? path.join(source) : source;
+      source = STRING === typeof source ? PATH.join(source) : source;
       const testHelper = YoTest.create(source)
         .withPrompts(params)
         .withOptions(options)
@@ -51,7 +52,7 @@ const getYo = () => {
       const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
       return {
         getBuildDir: () => oGen.contextRoot,
-        getDestFolderName: () => path.basename(oGen.destinationRoot()),
+        getDestFolderName: () => PATH.basename(oGen.destinationRoot()),
         chdir: (dir) => oGen.destinationRoot(dir),
         mkdir,
 
@@ -74,7 +75,7 @@ const getYo = () => {
             dest = dest || src;
             actualSrc = oGen.templatePath(src);
           } else {
-            dest = dest || path.basename(src);
+            dest = dest || PATH.basename(src);
             actualSrc = src;
           }
 
@@ -92,6 +93,8 @@ const getYo = () => {
           globSync(actualSrc, cb);
         },
 
+        promptResetDefault,
+        promptFilterAns,
         promptChainLocator: (prompts) => (index) => prompts[index],
 
         promptChain: (promptLocator, cb = () => true) => {

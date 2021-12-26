@@ -6,15 +6,19 @@
     "directory": "packages/reshow-yo"
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yo-reshow",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
-  "keywords": ["yo", "Yeoman"],
+  "keywords": [
+    "yo",
+    "Yeoman"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
     "mkdirp": "1.0.4",
+    "parse-ini-string": "*",
     "reshow-constant": "*",
     "reshow-runtime": "*",
     "reshow-unit": "*",
@@ -37,5 +41,9 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
 }
