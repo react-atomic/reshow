@@ -6,7 +6,7 @@
     "directory": "packages/reshow-yo"
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yo-reshow",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
