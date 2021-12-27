@@ -1,4 +1,5 @@
 {
+  "version": "0.1.3",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -6,7 +7,6 @@
     "directory": "packages/yo-reshow"
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yo-reshow",
-  "version": "0.1.2",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
