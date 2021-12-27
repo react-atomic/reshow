@@ -50,7 +50,7 @@ describe("mergePromptOrOption test", () => {
     }
   });
 
-  it("test chdir", () => {
+  it("test mergePromptOrOption", () => {
     const {generator} = runResult;
     expect(generator.payload).to.deep.equal({fakeName: 'fakeValue', foo: 'bar', foo1: 'bar1'});
   });
