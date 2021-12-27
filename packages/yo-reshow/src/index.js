@@ -1,8 +1,9 @@
 import { STRING } from "reshow-constant";
 import PATH from "path";
 
-import YoHelper from "./YoHelper";
 import YoGenerator from "yeoman-generator";
+import YoHelper from "./YoHelper";
+import namePrompt from "./namePrompt";
 
 // for test
 import YoTest from "yeoman-test";
@@ -11,7 +12,6 @@ import assert from "yeoman-assert";
 let lastAns;
 const getYo = () => {
   return {
-    YoGenerator,
     YoTest: ({ source, params, options = {} }) => {
       source = STRING === typeof source ? PATH.join(source) : source;
       return YoTest.create(source)
@@ -24,7 +24,9 @@ const getYo = () => {
         .run();
     },
     assert,
-    YoHelper
+    YoGenerator,
+    YoHelper,
+    namePrompt,
   };
 };
 
