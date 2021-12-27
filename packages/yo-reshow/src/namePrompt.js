@@ -2,7 +2,7 @@ import getYo from "./index";
 import YoHelper from "./YoHelper";
 
 const namePrompt = oGen => {
-    const { say, getDestFolderName } = YoHelper(oGen);
+    const { say, getDestFolderName, getAllAns } = YoHelper(oGen);
     oGen.argument("mainName", { type: String, required: false });
     const { mainName } = oGen.options;
     const prompts = [];
@@ -19,7 +19,8 @@ const namePrompt = oGen => {
         },
         {
           when: (response) => {
-            if (!response.isReady) {
+            const allAns = {...response, ...getAllAns()};
+            if (!allAns.isReady) {
               say("Exit for not ready to create folder.");
               process.exit(0);
             }

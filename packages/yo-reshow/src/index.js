@@ -9,7 +9,6 @@ import namePrompt from "./namePrompt";
 import YoTest from "yeoman-test";
 import assert from "yeoman-assert";
 
-let lastAns;
 const getYo = () => {
   return {
     YoTest: ({ source, params, options = {}, build }) => {

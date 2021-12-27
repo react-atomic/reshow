@@ -64,7 +64,6 @@ module.exports = class extends YoGenerator {
         },
       ];
     }
-    const destFolderName = getDestFolderName();
 
     const prompts = [
       ...namePrompt,

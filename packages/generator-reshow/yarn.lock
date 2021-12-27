@@ -6065,9 +6065,9 @@ yeoman-test@*:
     temp-dir "^2.0.0"
 
 yo-reshow@*:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.1.2.tgz#11d771e3d250c6c2d8bfd4bd6b28d039bff96c71"
-  integrity sha512-i9LYtDgnGhRuYlIstBB1j5dAGd3D5R1bP50wuIGG9cWrfFVgtWcVuKYQ58+cdRqxWO97kHVmf4mc+aowgYi+xQ==
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.1.8.tgz#5f5ad1b71ba3393b5c9b2e06fad861d6c0583dad"
+  integrity sha512-YbFGrfwnfFyu1R2J1BtPebVjB5Sf5+afuN6Op3g3sdOlm/rYsABL+rqKQpbDjT/6Zn82Zc+G//d2/QlCvJEeHg==
   dependencies:
     mkdirp "1.0.4"
     parse-ini-string "*"

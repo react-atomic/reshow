@@ -1,16 +1,11 @@
 const getYo = require("yo-reshow");
-const { YoGenerator, YoHelper } = getYo();
+const { YoGenerator, YoHelper, namePrompt } = getYo();
 
 /**
  * NPM Generator 
  */
 
 module.exports = class extends YoGenerator {
-  constructor(args, opts) {
-    super(args, opts);
-    this.argument("mainName", { type: String, required: false });
-  }
-
   /**
    * Run loop (Life cycle)
    * https://yeoman.io/authoring/running-context.html#the-run-loop
@@ -42,39 +37,9 @@ module.exports = class extends YoGenerator {
       promptChain,
       getAllAns,
     } = YoHelper(this);
-    const { mainName } = this.options;
-    let namePrompt = [];
-    if (!mainName) {
-      say(
-        'Generate "npm"\n\n !! \n\nYou need create folder\n by yourself.'
-      );
-      namePrompt = [
-        {
-          type: "confirm",
-          name: "isReady",
-          message: `We will put files at [${getDestFolderName()}], do you confirm it?`,
-          default: false,
-        },
-        {
-          when: (response) => {
-            if (!getAllAns().isReady) {
-              say("Exit for not ready to create folder.");
-              process.exit(0);
-            }
-          },
-        },
-      ];
-    }
-    const destFolderName = getDestFolderName();
 
     const prompts = [
-      ...namePrompt,
-      {
-        type: "input",
-        name: "mainName",
-        message: "Please input your npm name?",
-        default: mainName || getDestFolderName(),
-      },
+      ...namePrompt(this),
       {
         type: "input",
         name: "description",

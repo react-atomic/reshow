@@ -11,6 +11,8 @@ import getDotYo, {
   promptFilterByOptions,
 } from "./getDotYo";
 
+let lastAns;
+
 const YoHelper = (oGen) => {
   const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
   return {
