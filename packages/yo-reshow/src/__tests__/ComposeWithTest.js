@@ -20,10 +20,7 @@ class FakeGenerator extends YoGenerator {
         default: false,
       },
     ];
-    const sub = this.composeWith({
-      Generator: SubGenerator,
-      path: PATH.join(__dirname, "ComposeWithTest.js"),
-    });
+    const sub = this.composeWith('composed:gen');
 
     order.push("parent prompting");
 
@@ -64,6 +61,9 @@ describe("ComposeWithTest", () => {
       options: { pwd: __dirname, foo1: "bar1" },
       params: {
         fakeName: "fakeValue",
+      },
+      build: (runContext) => {
+        runContext.env.registerStub(SubGenerator, 'composed:gen')
       },
     });
   });

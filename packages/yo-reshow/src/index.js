@@ -12,7 +12,7 @@ import assert from "yeoman-assert";
 let lastAns;
 const getYo = () => {
   return {
-    YoTest: ({ source, params, options = {} }) => {
+    YoTest: ({ source, params, options = {}, build }) => {
       source = STRING === typeof source ? PATH.join(source) : source;
       return YoTest.create(source)
         .withPrompts(params)
@@ -21,6 +21,7 @@ const getYo = () => {
           console.log(`Build Dest on: ${dir}`);
           console.log(`Source : ${source}`);
         })
+        .build(build)
         .run();
     },
     assert,
