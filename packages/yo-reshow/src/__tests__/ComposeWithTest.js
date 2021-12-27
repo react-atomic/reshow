@@ -4,6 +4,7 @@
  */
 
 import { expect } from "chai";
+import PATH from "path";
 import getYo from "../index";
 const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
@@ -21,7 +22,7 @@ class FakeGenerator extends YoGenerator {
     ];
     const sub = this.composeWith({
       Generator: SubGenerator,
-      path: __dirname + "/ComposeWithTest.js",
+      path: PATH.join(__dirname, "ComposeWithTest.js"),
     });
 
     order.push("parent prompting");
