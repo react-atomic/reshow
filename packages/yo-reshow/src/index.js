@@ -1,7 +1,10 @@
 import { STRING } from "reshow-constant";
 import FS from "fs";
 import PATH from "path";
-import { promptResetDefault, promptFilterAns } from "./getDotYo";
+import getDotYo, {
+  promptResetDefault,
+  promptFilterByOptions,
+} from "./getDotYo";
 
 // for app
 import YoGenerator from "yeoman-generator";
@@ -38,15 +41,14 @@ const getYo = () => {
     YoGenerator,
     YoTest: ({ source, params, options = {} }) => {
       source = STRING === typeof source ? PATH.join(source) : source;
-      const testHelper = YoTest.create(source)
+      return YoTest.create(source)
         .withPrompts(params)
         .withOptions(options)
         .inTmpDir((dir) => {
-          console.log(`Build on: ${dir}`);
+          console.log(`Build Dest on: ${dir}`);
           console.log(`Source : ${source}`);
         })
         .run();
-      return testHelper;
     },
     YoHelper: (oGen) => {
       const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
@@ -94,7 +96,17 @@ const getYo = () => {
         },
 
         promptResetDefault,
-        promptFilterAns,
+        mergePromptOrOption: (prompts, cb) => {
+          const options = {
+            ...oGen.options,
+            ...getDotYo(oGen.options),
+          };
+          const { nextAnswer, nextPrompts } = promptFilterByOptions(
+            prompts,
+            options
+          );
+          return cb(nextPrompts).then((props) => ({ ...props, ...nextAnswer }));
+        },
         promptChainLocator: (prompts) => (index) => prompts[index],
 
         promptChain: (promptLocator, cb = () => true) => {

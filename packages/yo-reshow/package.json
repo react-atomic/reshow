@@ -3,10 +3,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/react-atomic/reshow",
-    "directory": "packages/reshow-yo"
+    "directory": "packages/yo-reshow"
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yo-reshow",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Yo utility for reshow",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",

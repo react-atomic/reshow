@@ -1,6 +1,6 @@
 import { expect } from "chai";
 
-import getDotYo, { promptResetDefault, promptFilterAns } from "../getDotYo";
+import getDotYo, { promptResetDefault, promptFilterByOptions } from "../getDotYo";
 
 describe("Test getDotYo", () => {
   it("test .yo", () => {
@@ -25,7 +25,7 @@ describe("Test promptResetDefault", () => {
   });
 });
 
-describe("Test promptFilterAns", () => {
+describe("Test promptFilterByOptions", () => {
   const prompts = [
     {
       type: "input",
@@ -42,7 +42,7 @@ describe("Test promptFilterAns", () => {
   ];
 
   it("test clean already have ans", () => {
-    const { nextPrompts, nextAnswer } = promptFilterAns(prompts, {
+    const { nextPrompts, nextAnswer } = promptFilterByOptions(prompts, {
       foo: "bar",
     });
     expect(nextPrompts[0].name).to.equal("bar");

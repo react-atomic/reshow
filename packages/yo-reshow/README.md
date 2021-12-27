@@ -1,4 +1,4 @@
-Reshow YO utility (easy yeoman tool) 
+Yeoman utility for reshow. (easy yeoman tool) 
 ===============
 
 * GIT

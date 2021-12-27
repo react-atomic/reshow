@@ -39,7 +39,7 @@ const promptResetDefault = (prompts, yoData = getDotYo()) => {
   return prompts;
 };
 
-const promptFilterAns = (prompts, yoData = getDotYo()) => {
+const promptFilterByOptions = (prompts, yoData = getDotYo()) => {
   const nextAnswer = {};
   const nextPrompts = prompts.filter((oPrompt) => {
     const hasYoData = yoData[oPrompt.name];
@@ -54,4 +54,4 @@ const promptFilterAns = (prompts, yoData = getDotYo()) => {
 };
 
 export default getDotYo;
-export { promptResetDefault, promptFilterAns };
+export { promptResetDefault, promptFilterByOptions };
