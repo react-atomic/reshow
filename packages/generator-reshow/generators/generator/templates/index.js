@@ -1,6 +1,9 @@
 const getYo = require("yo-reshow");
 const { YoGenerator, YoHelper } = getYo();
 
+/**
+ * <%= mainName %> Generator
+ */
 module.exports = class extends YoGenerator {
   constructor(args, opts) {
     super(args, opts);
@@ -33,6 +36,7 @@ module.exports = class extends YoGenerator {
     const {
       say,
       getDestFolderName,
+      mergePromptOrOption,
       promptChainLocator,
       promptChain,
       getAllAns,
@@ -85,7 +89,10 @@ module.exports = class extends YoGenerator {
       },
     ];
 
-    const answers = await promptChain(promptChainLocator(prompts));
+    const answers =  await mergePromptOrOption(
+      prompts,
+      (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
+    );
 
     say(answers);
 

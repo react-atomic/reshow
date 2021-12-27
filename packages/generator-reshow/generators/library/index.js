@@ -1,6 +1,10 @@
 const getYo = require("yo-reshow");
 const { YoGenerator, YoHelper } = getYo();
 
+/**
+ * Library Generator 
+ */
+
 module.exports = class extends YoGenerator {
   constructor(args, opts) {
     super(args, opts);

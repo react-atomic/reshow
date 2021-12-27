@@ -2,7 +2,7 @@ const getYo = require("yo-reshow");
 const { YoGenerator, YoHelper } = getYo();
 
 /**
- * The Generator
+ * NPM Generator 
  */
 
 module.exports = class extends YoGenerator {
@@ -37,6 +37,7 @@ module.exports = class extends YoGenerator {
     const {
       say,
       getDestFolderName,
+      mergePromptOrOption,
       promptChainLocator,
       promptChain,
       getAllAns,
@@ -45,7 +46,7 @@ module.exports = class extends YoGenerator {
     let namePrompt = [];
     if (!mainName) {
       say(
-        'Generate "Generator"\n\n !! \n\nYou need create folder\n by yourself.'
+        'Generate "npm"\n\n !! \n\nYou need create folder\n by yourself.'
       );
       namePrompt = [
         {
@@ -71,25 +72,51 @@ module.exports = class extends YoGenerator {
       {
         type: "input",
         name: "mainName",
-        message: "Please input your generator name?",
+        message: "Please input your npm name?",
         default: mainName || getDestFolderName(),
       },
       {
         type: "input",
         name: "description",
         message:
-          "Please input description for generator?",
+          "Please input description for npm?",
         default: "",
       },
       {
         type: "input",
         name: "keyword",
-        message: "Please input keyword for generator?",
+        message: "Please input keyword for npm?",
+        default: "",
+      },
+      {
+        type: "input",
+        name: "authorName",
+        message: "Please input author Name?",
+        default: "",
+      },
+      {
+        type: "input",
+        name: "authorEmail",
+        message: "Please input author Email?",
+        default: "",
+      },
+      {
+        type: "input",
+        name: "repositoryName",
+        message: "Please input GIT repository name ?",
+        default: "",
+      },
+      {
+        type: "input",
+        name: "orgName",
+        message: "Please input GIT organization name ?",
         default: "",
       },
     ];
-
-    const answers = await promptChain(promptChainLocator(prompts));
+    const answers =  await mergePromptOrOption(
+      prompts,
+      (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
+    );
 
     this.mainName = answers.mainName;
     this.payload = {
@@ -100,14 +127,9 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chdir, mkdir, getDestFolderName } = YoHelper(this);
+    const { cp, chdir, getDestFolderName } = YoHelper(this);
     if (this.mainName !== getDestFolderName()) {
       chdir(this.mainName);
     }
-    // const ucMainName = 
-    cp('Test.js', '__tests__/Test.js', this.payload);
-    cp('README.md', null, this.payload);
-    cp('index.js',  null, this.payload);
-    cp('templates');
   }
 };
