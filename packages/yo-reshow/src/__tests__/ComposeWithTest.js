@@ -19,7 +19,7 @@ class FakeGenerator extends YoGenerator {
         default: false,
       },
     ];
-    const sub = await this.composeWith({
+    const sub = this.composeWith({
       Generator: SubGenerator,
       path: __dirname + "/ComposeWithTest.js",
     });
