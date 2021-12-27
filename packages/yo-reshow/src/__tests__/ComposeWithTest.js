@@ -20,7 +20,9 @@ class FakeGenerator extends YoGenerator {
         default: false,
       },
     ];
-    const sub = this.composeWith('composed:gen');
+
+    // use runContext.env.registerStub to avoid CircleCI hang
+    const sub = this.composeWith("composed:gen");
 
     order.push("parent prompting");
 
@@ -63,7 +65,7 @@ describe("ComposeWithTest", () => {
         fakeName: "fakeValue",
       },
       build: (runContext) => {
-        runContext.env.registerStub(SubGenerator, 'composed:gen')
+        runContext.env.registerStub(SubGenerator, "composed:gen");
       },
     });
   });
