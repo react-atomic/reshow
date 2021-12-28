@@ -4,11 +4,11 @@ import YoHelper from "./YoHelper";
 const mainNamePrompt = (oGen) => {
   const { say, getDestFolderName, getAllAns } = YoHelper(oGen);
   oGen.argument("argMainName", { type: String, required: false });
-  const { argMainName } = oGen.options;
+  const { argMainName, namespace } = oGen.options;
   const prompts = [];
   if (!argMainName) {
     say(
-      'Generate "Reshow App"\n\n !! \n\nYou need create folder\n by yourself.'
+      `Generate "${namespace}"\n\n !! \n\nYou need create folder\n by yourself.`
     );
     prompts.push(
       {
