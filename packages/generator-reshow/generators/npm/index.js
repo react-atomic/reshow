@@ -49,7 +49,7 @@ module.exports = class extends YoGenerator {
 
     this.mainName = answers.mainName;
     this.payload = {
-      mainName: this.mainName,
+      ...answers,
       description: answers.description || 'TODO: description',
       keyword: answers.keyword || this.mainName,
     };
@@ -60,5 +60,13 @@ module.exports = class extends YoGenerator {
 
     // handle change to new folder
     chMainName(this.mainName);
+
+    // handle copy file 
+    cp("compile.sh");
+    cp("src", null, this.payload);
+    cp("compile.sh", null, this.payload);
+    cp("README.md", null, this.payload);
+    cp("package.json", null, this.payload);
+    cp("Test.js", "src/__tests__/Test.js", this.payload);
   }
 };
