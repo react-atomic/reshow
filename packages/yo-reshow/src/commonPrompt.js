@@ -44,6 +44,20 @@ const commonPrompt = {
       default: "",
     },
   ],
+  babel: oGen => [
+    {
+        type: "confirm",
+        name: "babelRootMode",
+        message: "Do you prepare monorepo (sub-package) ?",
+        default: false,
+    },
+    {
+        type: "confirm",
+        name: "isUseWebpack",
+        message: "Do you use webpack ?",
+        default: false,
+    }
+  ]
 };
 
 export default commonPrompt;

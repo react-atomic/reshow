@@ -1127,6 +1127,13 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
+call-func@*:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.4.tgz#c3daf9e02b449fb62cbf56b3e04825fb0076d1c1"
+  integrity sha512-rH6PhPEoMb3JDf88U/BEmWzr41VIof8tr6/4zRq++RvHigyF4/iQ8cSISXnwu1Imt0BygalLbeZiPdTYceSdNg==
+  dependencies:
+    reshow-constant "*"
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -6060,10 +6067,11 @@ yeoman-test@*:
     temp-dir "^2.0.0"
 
 yo-reshow@*:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.1.9.tgz#b50ff8ab4a1f9e3f581fb02b982c0d3b1820b26b"
-  integrity sha512-iN5LCQPjtB411kYaNsd9vDlAmJf4kj7ylAHg7kyiMVAexqlZLuMrkgJLC0+PNbOxM0fnv/6QKLLXH38l9a3JyQ==
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.1.14.tgz#cbffe95b01efdd2882f8138070830035162afe67"
+  integrity sha512-GAKfwJpHEY9XrbTTpp9ecepbayjn0AHw1B/Ng9MZ8stT6oI15g1sWvakEc7BEdhNCZMPlmalP/EGzBXdkRQ8/w==
   dependencies:
+    call-func "*"
     mkdirp "1.0.4"
     parse-ini-string "*"
     reshow-constant "*"

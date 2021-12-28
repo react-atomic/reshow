@@ -30,6 +30,7 @@ module.exports = class extends YoGenerator {
     this.env.options.nodePackageManager = "yarn";
 
     const {
+      handleAnswers,
       mergePromptOrOption,
       promptChainLocator,
       promptChain,
@@ -37,6 +38,7 @@ module.exports = class extends YoGenerator {
 
     const prompts = [
       ...commonPrompt.mainName(this),
+      ...commonPrompt.babel(this),
       ...commonPrompt.desc(this),
       ...commonPrompt.author(this),
       ...commonPrompt.repository(this),
@@ -46,13 +48,7 @@ module.exports = class extends YoGenerator {
       prompts,
       (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
     );
-
-    this.mainName = answers.mainName;
-    this.payload = {
-      ...answers,
-      description: answers.description || 'TODO: description',
-      keyword: answers.keyword || this.mainName,
-    };
+    handleAnswers(answers);
   }
 
   writing() {

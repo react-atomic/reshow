@@ -1,5 +1,5 @@
 {
-  "version": "0.1.9",
+  "version": "0.1.14",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "call-func": "*",
     "mkdirp": "1.0.4",
     "parse-ini-string": "*",
     "reshow-constant": "*",

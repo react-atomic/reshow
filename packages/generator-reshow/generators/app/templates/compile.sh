@@ -16,8 +16,9 @@ webpack='npm run webpack --'
 
 
 checkBabel(){
-    if [ ! -e ".babelrc" ] && [ ! -e "../../packages" ]; then
-        cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
+  if [ ! -e ".babelrc" ] && [ ! -e "../../packages" ]; then
+    if [ -e ${DIR}/node_modules/reshow-app/.babelrc ]; then
+      cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
     fi
 }
 

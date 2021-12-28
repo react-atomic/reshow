@@ -53,11 +53,10 @@ module.exports = class extends YoGenerator {
 
     this.mainName = answers.mainName;
     this.payload = {
+      ...answers,
       mainName: this.mainName,
       description: answers.description || 'TODO: description',
       keyword: answers.keyword || this.mainName,
-      authorName: answers.authorName,
-      authorEmail: answers.authorEmail,
     };
   }
 

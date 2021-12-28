@@ -6,6 +6,8 @@ import { STRING } from "reshow-constant";
 import YoSay from "yosay";
 import mkdirp from "mkdirp";
 import globSync from "./globSync";
+import handleAnswers from "./handleAnswers";
+
 import getDotYo, {
   promptResetDefault,
   promptFilterByOptions,
@@ -18,14 +20,14 @@ const YoHelper = (oGen) => {
   const chdir = (dir) => oGen.destinationRoot(dir);
   const getDestFolderName = () => PATH.basename(oGen.destinationRoot());
   return {
+    mkdir,
     getDestFolderName,
     chdir,
-    chMainName: name => {
+    chMainName: (name) => {
       if (name !== getDestFolderName()) {
         chdir(name);
       }
     },
-    mkdir,
 
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js
     say: (message) => {
@@ -76,6 +78,7 @@ const YoHelper = (oGen) => {
       );
       return cb(nextPrompts).then((props) => ({ ...props, ...nextAnswer }));
     },
+
     promptChainLocator: (prompts) => (index) => prompts[index],
 
     promptChain: (promptLocator, cb = () => true) => {
@@ -99,6 +102,7 @@ const YoHelper = (oGen) => {
     },
 
     getAllAns: () => lastAns,
+    handleAnswers: handleAnswers(oGen),
   };
 };
 

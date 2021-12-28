@@ -1,6 +1,5 @@
-import { expect } from "chai";
-
-import init from "../init";
+const {expect} = require("chai");
+const {init} = require("../init");
 
 describe("Test <%= mainName %>", () => {
   it("basic testt", () => {

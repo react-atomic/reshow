@@ -1,5 +1,7 @@
-const init = props => {
-  return 'foo';
+const init = (props) => {
+  return "foo";
 };
 
-export default init;
+module.exports = {
+  init,
+};

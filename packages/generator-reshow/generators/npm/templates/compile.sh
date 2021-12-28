@@ -12,13 +12,15 @@ OPEN=$(which xdg-open 2>/dev/null)
 if [ -z "$OPEN" ]; then 
   OPEN="open"
 fi
-webpack='npm run webpack --'
+webpack='<%= webpackBin %>'
 
 
 checkBabel(){
-    if [ ! -e ".babelrc" ] && [ ! -e "../../packages" ]; then
-        cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
+  if [ ! -e ".babelrc" ] && [ ! -e "../../packages" ]; then
+    if [ -e ${DIR}/node_modules/reshow-app/.babelrc ]; then
+      cp ${DIR}/node_modules/reshow-app/.babelrc ${DIR}/.babelrc
     fi
+  fi
 }
 
 production(){

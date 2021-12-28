@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import init from "./init";
+const {init} = require("./init");
 
 init();
