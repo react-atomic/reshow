@@ -2,10 +2,10 @@
   "xname": "<%= mainName %>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<%= orgName %>/<%= repositoryName %>",
+    "url": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>",
     "directory": "packages/lib/<%= mainName %>"
   },
-  "homepage": "https://github.com/<%= orgName %>/<%= repositoryName %>/tree/main/packages/lib/<%= mainName %>",
+  "homepage": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>/tree/main/packages/lib/<%= mainName %>",
   "description": "<%= description %>",
   "version": "0.0.0",
   "main": "./build/cjs/src/index.js",

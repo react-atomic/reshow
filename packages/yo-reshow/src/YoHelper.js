@@ -15,10 +15,16 @@ let lastAns;
 
 const YoHelper = (oGen) => {
   const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
+  const chdir = (dir) => oGen.destinationRoot(dir);
+  const getDestFolderName = () => PATH.basename(oGen.destinationRoot());
   return {
-    getBuildDir: () => oGen.contextRoot,
-    getDestFolderName: () => PATH.basename(oGen.destinationRoot()),
-    chdir: (dir) => oGen.destinationRoot(dir),
+    getDestFolderName,
+    chdir,
+    chMainName: name => {
+      if (name !== getDestFolderName()) {
+        chdir(name);
+      }
+    },
     mkdir,
 
     // https://github.com/yeoman/environment/blob/main/lib/util/log.js

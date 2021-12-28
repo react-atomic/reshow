@@ -1,5 +1,5 @@
 const getYo = require("yo-reshow");
-const { YoGenerator, YoHelper } = getYo();
+const { YoGenerator, YoHelper, commonPrompt } = getYo();
 
 /**
  * Library Generator 
@@ -35,71 +35,21 @@ module.exports = class extends YoGenerator {
     this.env.options.nodePackageManager = "yarn";
 
     const {
-      say,
-      getDestFolderName,
+      mergePromptOrOption,
       promptChainLocator,
       promptChain,
-      getAllAns,
     } = YoHelper(this);
-    const { mainName } = this.options;
-    let namePrompt = [];
-    if (!mainName) {
-      say(
-        'Generate "library"\n\n !! \n\nYou need create folder\n by yourself.'
-      );
-      namePrompt = [
-        {
-          type: "confirm",
-          name: "isReady",
-          message: `We will put files at [${getDestFolderName()}], do you confirm it?`,
-          default: false,
-        },
-        {
-          when: (response) => {
-            if (!getAllAns().isReady) {
-              say("Exit for not ready to create folder.");
-              process.exit(0);
-            }
-          },
-        },
-      ];
-    }
 
     const prompts = [
-      ...namePrompt,
-      {
-        type: "input",
-        name: "mainName",
-        message: "Please input your library name?",
-        default: mainName || getDestFolderName(),
-      },
-      {
-        type: "input",
-        name: "description",
-        message: "Please input description for library?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "keyword",
-        message: "Please input keyword for library?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "authorName",
-        message: "Please input author Name?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "authorEmail",
-        message: "Please input author Email?",
-        default: "",
-      },
+      ...commonPrompt.mainName(this),
+      ...commonPrompt.desc(this),
+      ...commonPrompt.author(this),
     ];
 
-    const answers = await promptChain(promptChainLocator(prompts));
+    const answers =  await mergePromptOrOption(
+      prompts,
+      (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
+    );
 
     this.mainName = answers.mainName;
     this.payload = {
@@ -112,10 +62,12 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chdir, getDestFolderName } = YoHelper(this);
-    if (this.mainName !== getDestFolderName()) {
-      chdir(this.mainName);
-    }
+    const { cp, chMainName } = YoHelper(this);
+
+    // handle change to new folder
+    chMainName(this.mainName);
+
+    // handle copy file
     cp("README.md", null, this.payload);
     cp("compile.sh", null, this.payload);
     cp("package.json", null, this.payload);

@@ -3,7 +3,7 @@ import PATH from "path";
 
 import YoGenerator from "yeoman-generator";
 import YoHelper from "./YoHelper";
-import namePrompt from "./namePrompt";
+import commonPrompt from "./commonPrompt";
 
 // for test
 import YoTest from "yeoman-test";
@@ -26,7 +26,7 @@ const getYo = () => {
     assert,
     YoGenerator,
     YoHelper,
-    namePrompt,
+    commonPrompt,
   };
 };
 

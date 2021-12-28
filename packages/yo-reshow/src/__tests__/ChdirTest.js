@@ -43,8 +43,7 @@ describe("Chdir test", () => {
 
   it("test chdir", () => {
     const {generator} = runResult;
-    const {getBuildDir} = YoHelper(generator);
-    const expected = getBuildDir() + '/abc';
+    const expected = generator.contextRoot + '/abc';
     expect(generator.destinationPath()).to.equal(expected);
   });
 });

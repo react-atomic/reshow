@@ -1,5 +1,5 @@
 const getYo = require("yo-reshow");
-const { YoGenerator, YoHelper, namePrompt } = getYo();
+const { YoGenerator, YoHelper, commonPrompt } = getYo();
 
 /**
  * NPM Generator 
@@ -30,54 +30,18 @@ module.exports = class extends YoGenerator {
     this.env.options.nodePackageManager = "yarn";
 
     const {
-      say,
-      getDestFolderName,
       mergePromptOrOption,
       promptChainLocator,
       promptChain,
-      getAllAns,
     } = YoHelper(this);
 
     const prompts = [
-      ...namePrompt(this),
-      {
-        type: "input",
-        name: "description",
-        message:
-          "Please input description for npm?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "keyword",
-        message: "Please input keyword for npm?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "authorName",
-        message: "Please input author Name?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "authorEmail",
-        message: "Please input author Email?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "repositoryName",
-        message: "Please input GIT repository name ?",
-        default: "",
-      },
-      {
-        type: "input",
-        name: "orgName",
-        message: "Please input GIT organization name ?",
-        default: "",
-      },
+      ...commonPrompt.mainName(this),
+      ...commonPrompt.desc(this),
+      ...commonPrompt.author(this),
+      ...commonPrompt.repository(this),
     ];
+
     const answers =  await mergePromptOrOption(
       prompts,
       (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
@@ -92,9 +56,9 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chdir, getDestFolderName } = YoHelper(this);
-    if (this.mainName !== getDestFolderName()) {
-      chdir(this.mainName);
-    }
+    const { cp, chMainName } = YoHelper(this);
+
+    // handle change to new folder
+    chMainName(this.mainName);
   }
 };
