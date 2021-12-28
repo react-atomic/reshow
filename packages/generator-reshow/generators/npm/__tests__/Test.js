@@ -36,6 +36,7 @@ describe("generator-reshow:npm", () => {
   });
 
   it("should have content", () => {
+    const {generator} = runResult;
     //    assert.fileContent('composer.json', 'foo-desc');
     //    assert.fileContent('.circleci/config.yml', 'foo');
   });

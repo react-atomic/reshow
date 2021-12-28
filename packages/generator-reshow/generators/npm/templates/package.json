@@ -4,9 +4,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>",
-    "directory": "packages/lib/<%= mainName %>"
+    "directory": "packages/<%= mainName %>"
   },
-  "homepage": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>/tree/main/packages/lib/<%= mainName %>",
+  "homepage": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>/tree/main/packages/<%= mainName %>",
   "description": "<%= description %>",
   "keywords": [],
   "author": "<%= authorName %> <<%= authorEmail %>>",
@@ -26,8 +26,8 @@
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src <%= babelRootMode %>",
-    "build:es": "BABEL_ENV=es babel src -d build/es/src <%= babelRootMode %>",
+    "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src<%= babelRootMode %>",
+    "build:es": "BABEL_ENV=es babel src -d build/es/src<%= babelRootMode %>",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
     "mochaFor": "mocha -r jsdom-global/register",
     "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",

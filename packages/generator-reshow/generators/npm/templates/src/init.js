@@ -1,5 +1,6 @@
 const init = (props) => {
-  return "foo";
+  console.log('foo');
+  return "bar";
 };
 
 module.exports = {
