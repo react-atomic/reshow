@@ -1,18 +1,13 @@
 {
   "version": "0.0.0",
   "name": "<%= mainName %>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>",
-    "directory": "packages/<%= mainName %>"
-  },
-  "homepage": "https://github.com/<%= repositoryOrgName %>/<%= repositoryName %>/tree/main/packages/<%= mainName %>",
+  "repository": {},
+  "homepage": "",
   "description": "<%= description %>",
   "keywords": [],
   "author": "<%= authorName %> <<%= authorEmail %>>",
   "license": "ISC",
   "dependencies": {
-    <%= reshowAppPackage %>
     "reshow-constant": "*"
   },
   "devDependencies": {

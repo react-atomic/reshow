@@ -1,6 +1,9 @@
 /**
  * https://yeoman.io/authoring/testing.html
  * https://gilsondev.gitbooks.io/yeoman-authoring/content/authoring/unit_testing.html
+ *
+ * https://github.com/yeoman/yeoman-assert/blob/main/index.js
+ * https://github.com/yeoman/yeoman-test/blob/main/lib/run-context.js
  */
 
 const getYo = require("yo-reshow");

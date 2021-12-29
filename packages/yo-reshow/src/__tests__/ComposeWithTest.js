@@ -1,5 +1,6 @@
 /**
  * https://yeoman.io/authoring/composability.html
+ * https://github.com/yeoman/generator/blob/main/lib/index.js#L1206
  * https://github.com/yeoman/generator-generator/blob/a4abe0c371ee36476ede29dcd29f8f6c8e3b22e6/app/index.js
  */
 

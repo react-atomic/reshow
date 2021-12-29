@@ -15,11 +15,43 @@ import getDotYo, {
 
 let lastAns;
 
+/**
+ * Copy
+ *
+ * https://yeoman.io/authoring/file-system.html#tip-update-existing-files-content
+ * https://yeoman.github.io/generator/Generator.html#readTemplate
+ * https://github.com/SBoudrias/mem-fs-editor
+ * https://github.com/sboudrias/mem-fs
+ */
+const RUN_CP = (oGen) => (src, dest, options) => {
+  const oGenFs = oGen.fs;
+  const action = options ? oGenFs.copyTpl : oGenFs.copy;
+
+  let actualSrc;
+  if (!FS.existsSync(src)) {
+    dest = dest || src;
+    actualSrc = oGen.templatePath(src);
+  } else {
+    dest = dest || PATH.basename(src);
+    actualSrc = src;
+  }
+
+  try {
+    action.call(oGenFs, actualSrc, oGen.destinationPath(dest), options);
+  } catch (e) {
+    console.log(e);
+  }
+  return dest;
+};
+
 const YoHelper = (oGen) => {
   const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
   const chdir = (dir) => oGen.destinationRoot(dir);
   const getDestFolderName = () => PATH.basename(oGen.destinationRoot());
+  const cp = RUN_CP(oGen);
+
   return {
+    cp,
     mkdir,
     getDestFolderName,
     chdir,
@@ -38,24 +70,13 @@ const YoHelper = (oGen) => {
       }
     },
 
-    // https://github.com/SBoudrias/mem-fs-editor
-    cp: (src, dest, options) => {
-      const oGenFs = oGen.fs;
-      const action = options ? oGenFs.copyTpl : oGenFs.copy;
-
-      let actualSrc;
-      if (!FS.existsSync(src)) {
-        dest = dest || src;
-        actualSrc = oGen.templatePath(src);
-      } else {
-        dest = dest || PATH.basename(src);
-        actualSrc = src;
-      }
-
-      try {
-        action.call(oGenFs, actualSrc, oGen.destinationPath(dest), options);
-      } catch (e) {
-        console.log(e);
+    updateJSON: (src, dest, options, cb) => {
+      dest = cp(src, dest, options);
+      const json = oGen.readDestinationJSON(dest);
+      const nextJson = cb(json);
+      if (nextJson) {
+        oGen.writeDestinationJSON(dest, nextJson);
+        return nextJson;
       }
     },
 

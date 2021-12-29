@@ -5,6 +5,6 @@ describe("Test <%= mainName %>", () => {
   it("basic testt", () => {
     /*your test code*/
     const actual = init();
-    expect(actual).to.equal('foo');
+    expect(actual).to.equal('bar');
   });
 });

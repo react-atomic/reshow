@@ -2,7 +2,7 @@ const getYo = require("yo-reshow");
 const { YoGenerator, YoHelper, commonPrompt } = getYo();
 
 /**
- * NPM Generator 
+ * NPM Generator
  */
 
 module.exports = class extends YoGenerator {
@@ -44,25 +44,33 @@ module.exports = class extends YoGenerator {
       ...commonPrompt.repository(this),
     ];
 
-    const answers =  await mergePromptOrOption(
-      prompts,
-      (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
+    const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
+      promptChain(promptChainLocator(nextPrompts))
     );
     handleAnswers(answers);
   }
 
   writing() {
-    const { cp, chMainName } = YoHelper(this);
+    const { cp, chMainName, updateJSON } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
 
-    // handle copy file 
+    // handle copy file
     cp("compile.sh");
     cp("src", null, this.payload);
     cp("compile.sh", null, this.payload);
     cp("README.md", null, this.payload);
-    cp("package.json", null, this.payload);
     cp("Test.js", "src/__tests__/Test.js", this.payload);
+
+    updateJSON("package.json", null, this.payload, (data) => {
+      data.repository = this.payload.repository;
+      data.homepage = this.payload.repositoryHomepage;
+      data.dependencies = {
+        ...data.dependencies,
+        ...this.payload.npmDependencies,
+      };
+      return data;
+    });
   }
 };
