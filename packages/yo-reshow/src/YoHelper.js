@@ -1,6 +1,7 @@
 import FS from "fs";
 import PATH from "path";
 import { STRING } from "reshow-constant";
+import callfunc from "call-func";
 
 // for app
 import YoSay from "yosay";
@@ -14,6 +15,11 @@ import getDotYo, {
 } from "./getDotYo";
 
 let lastAns;
+const exitCb = { current: null };
+const onExit = (cb) => (exitCb.current = cb);
+process.once("exit", () => {
+  callfunc(exitCb.current);
+});
 
 /**
  * Copy
@@ -44,13 +50,32 @@ const RUN_CP = (oGen) => (src, dest, options) => {
   return dest;
 };
 
+/**
+ * SAY
+ *
+ * https://github.com/yeoman/environment/blob/main/lib/util/log.js
+ */
+const RUN_SAY = (oGen) => (message) => {
+  if (STRING !== typeof message) {
+    oGen.log(JSON.stringify(message, null, "\t"));
+  } else {
+    oGen.log(YoSay(message, { maxLength: 30 }));
+  }
+};
+
 const YoHelper = (oGen) => {
   const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
   const chdir = (dir) => oGen.destinationRoot(dir);
   const getDestFolderName = () => PATH.basename(oGen.destinationRoot());
   const cp = RUN_CP(oGen);
+  const say = RUN_SAY(oGen);
+
+  if (!exitCb.current) {
+    onExit(() => say("Bye from us!\n Chat soon."));
+  }
 
   return {
+    say,
     cp,
     mkdir,
     getDestFolderName,
@@ -58,15 +83,6 @@ const YoHelper = (oGen) => {
     chMainName: (name) => {
       if (name !== getDestFolderName()) {
         chdir(name);
-      }
-    },
-
-    // https://github.com/yeoman/environment/blob/main/lib/util/log.js
-    say: (message) => {
-      if (STRING !== typeof message) {
-        oGen.log(JSON.stringify(message, null, "\t"));
-      } else {
-        oGen.log(YoSay(message, { maxLength: 30 }));
       }
     },
 
@@ -79,6 +95,9 @@ const YoHelper = (oGen) => {
         return nextJson;
       }
     },
+
+    onExit,
+    exit: (cb, statusCode = 0) => onExit(cb) && process.exit(statusCode),
 
     glob: (srcPath, cb) => {
       const actualSrc = FS.existsSync(srcPath)
