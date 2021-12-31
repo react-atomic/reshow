@@ -30,7 +30,7 @@ const mainNamePrompt = (oGen) => {
   prompts.push({
     type: "input",
     name: "mainName",
-    message: "Please confirm your generator naming or rename?",
+    message: "Please confirm your generator naming? Or rename it.",
     default: argMainName || getDestFolderName(),
   });
   return prompts;
