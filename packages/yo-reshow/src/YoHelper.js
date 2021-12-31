@@ -19,6 +19,7 @@ const exitCb = { current: null };
 const onExit = (cb) => (exitCb.current = cb);
 process.once("exit", () => {
   callfunc(exitCb.current);
+  process.exit(0);
 });
 
 /**
