@@ -45,4 +45,5 @@ const init = async (props) => {
 module.exports = {
   init,
   getNpxCmd,
+  getPkgName,
 };

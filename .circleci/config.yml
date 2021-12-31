@@ -58,3 +58,4 @@ workflows:
                 - "packages/reshow-worker"
                 - "packages/generator-reshow"
                 - "packages/yo-reshow"
+                - "packages/yonpx"
