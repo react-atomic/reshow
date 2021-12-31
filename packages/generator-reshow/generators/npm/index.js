@@ -48,6 +48,7 @@ module.exports = class extends YoGenerator {
       promptChain(promptChainLocator(nextPrompts))
     );
     handleAnswers(answers);
+    this.composeWith(require.resolve("../compile-sh"), this.payload);
   }
 
   writing() {

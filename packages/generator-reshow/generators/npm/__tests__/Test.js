@@ -6,7 +6,7 @@
 const getYo = require("yo-reshow");
 const { YoTest, assert } = getYo();
 
-describe("generator-reshow:npm", () => {
+describe("!! npm !!", () => {
   let runResult;
 
   before(async () => {

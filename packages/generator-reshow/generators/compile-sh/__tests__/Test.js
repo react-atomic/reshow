@@ -9,7 +9,7 @@
 const getYo = require("yo-reshow");
 const { YoTest, assert } = getYo();
 
-describe("!! <%= mainName %> !!", () => {
+describe("!! compile-sh !!", () => {
   let runResult;
 
   before(async () => {

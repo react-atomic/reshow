@@ -6,7 +6,6 @@ const { YoGenerator, YoHelper, commonPrompt } = getYo();
  */
 
 module.exports = class extends YoGenerator {
-
   /**
    * Run loop (Life cycle)
    * https://yeoman.io/authoring/running-context.html#the-run-loop
@@ -28,31 +27,29 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    this.env.options.nodePackageManager = "yarn";
-
+    const { handleAnswers } = YoHelper(this);
     const prompts = [
       ...commonPrompt.mainName(this),
       ...commonPrompt.desc(this),
     ];
     const answers = await this.prompt(prompts);
-    this.mainName = answers.mainName;
-    this.description = answers.description;
-    this.keyword = answers.keyword || answers.mainName;
+    handleAnswers(answers);
+    this.composeWith(require.resolve("../compile-sh"), this.payload);
   }
 
   writing() {
+    this.env.options.nodePackageManager = "yarn";
     const { cp, chMainName, mkdir } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
 
-    // handle copy file 
+    // handle copy file
     mkdir("ui/organisms");
     cp("ui");
     cp("src");
     cp("data");
     cp(".gitignore");
-    cp("compile.sh");
     cp("screen.sh");
     cp("index.html");
     cp("package.json");

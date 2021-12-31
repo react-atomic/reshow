@@ -32,7 +32,7 @@ const handleAnswers = (oGen) => (answers, cb) => {
       ? " --root-mode upward"
       : "";
     // isUseWebpack
-    oGen.payload.webpackBin = isUseWebpack ? "npm run webpack --" : "";
+    oGen.payload.webpackEnabled = isUseWebpack ? "on" : "";
     if (isUseWebpack) {
       oGen.payload.npmDependencies["reshow-app"] = "*";
     }

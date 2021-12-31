@@ -6,7 +6,7 @@
 const getYo = require("yo-reshow");
 const { YoTest, assert } = getYo();
 
-describe("generator-reshow:generator", () => {
+describe("!! generator !!", () => {
   let runResult;
 
   before(async () => {
