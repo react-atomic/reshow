@@ -30,7 +30,7 @@ const mainNamePrompt = (oGen) => {
   prompts.push({
     type: "input",
     name: "mainName",
-    message: "Please input your app name?",
+    message: "Please confirm your generator naming or rename?",
     default: argMainName || getDestFolderName(),
   });
   return prompts;
