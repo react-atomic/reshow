@@ -1,6 +1,6 @@
 # `yonpx`
 
-> TODO: description 
+> a shorter for `npx -p yo -p generator-app -c 'yo app'` to `npx yonpx app`
 
 ## Usage
 
@@ -13,3 +13,4 @@ ex:
 ```
 npx yonpx reshow myapp
 ```
+
