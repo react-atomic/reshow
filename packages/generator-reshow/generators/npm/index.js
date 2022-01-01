@@ -52,7 +52,7 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chMainName, updateJSON, exit } = YoHelper(this);
+    const { cp, chMainName, updateJSON } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
@@ -85,6 +85,5 @@ module.exports = class extends YoGenerator {
       }
       return data;
     });
-    exit();
   }
 };
