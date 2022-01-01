@@ -1,9 +1,9 @@
-# `npm`
+# `generator`
 
 > TODO: description 
 
 ## Usage
 
 ```
-npx yonpx reshow:npm
+npx yonpx reshow:generator
 ```

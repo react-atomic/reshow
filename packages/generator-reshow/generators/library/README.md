@@ -5,5 +5,5 @@
 ## Usage
 
 ```
-
+npx yonpx reshow:library
 ```

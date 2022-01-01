@@ -1,9 +1,8 @@
 # `compile-sh`
 
-> TODO: description 
+> build compile.sh 
 
 ## Usage
 
-```
+> You should call it with this.composeWith()
 
-```
