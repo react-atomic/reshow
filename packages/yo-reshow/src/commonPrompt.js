@@ -1,4 +1,4 @@
-import mainName from "./mainNamePrompt";
+const mainName = require("./mainNamePrompt");
 
 const commonPrompt = {
   mainName,
@@ -60,4 +60,4 @@ const commonPrompt = {
   ]
 };
 
-export default commonPrompt;
+module.exports = commonPrompt;

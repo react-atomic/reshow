@@ -1,5 +1,4 @@
-import getYo from "./index";
-import YoHelper from "./YoHelper";
+const YoHelper = require("./YoHelper");
 
 const mainNamePrompt = (oGen) => {
   const { say, getDestFolderName, getAllAns, exit } = YoHelper(oGen);
@@ -36,4 +35,4 @@ const mainNamePrompt = (oGen) => {
   return prompts;
 };
 
-export default mainNamePrompt;
+module.exports = mainNamePrompt;

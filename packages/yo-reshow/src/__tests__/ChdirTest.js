@@ -1,5 +1,5 @@
-import { expect } from "chai";
-import getYo from "../index";
+const { expect } = require("chai");
+const getYo = require("../index");
 const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 class FakeGenerator extends YoGenerator {
@@ -26,25 +26,24 @@ class FakeGenerator extends YoGenerator {
 describe("Chdir test", () => {
   let runResult;
   before(async () => {
-   runResult = await YoTest({
+    runResult = await YoTest({
       source: FakeGenerator,
-      options: {chdir: 'abc'},
+      options: { chdir: "abc" },
       params: {
         fakeName: "bar",
       },
     });
   });
 
-  after(()=>{
+  after(() => {
     if (runResult) {
       runResult.restore();
     }
   });
 
   it("test chdir", () => {
-    const {generator} = runResult;
-    const expected = generator.contextRoot + '/abc';
+    const { generator } = runResult;
+    const expected = generator.contextRoot + "/abc";
     expect(generator.destinationPath()).to.equal(expected);
   });
 });
-

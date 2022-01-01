@@ -1,7 +1,7 @@
-import OS from "os";
-import PATH from "path";
-import FS from "fs";
-import ini from "parse-ini-string";
+const FS = require("fs");
+const PATH = require("path");
+const OS = require("os");
+const ini = require("parse-ini-string");
 
 const searchDotYo = (path) => {
   const dirs = path.split("/");
@@ -53,5 +53,4 @@ const promptFilterByOptions = (prompts, yoData = getDotYo()) => {
   return {nextAnswer, nextPrompts};
 };
 
-export default getDotYo;
-export { promptResetDefault, promptFilterByOptions };
+module.exports = { getDotYo, promptResetDefault, promptFilterByOptions };

@@ -1,6 +1,5 @@
-import { expect } from "chai";
-
-import getYo from "../index";
+const { expect } = require("chai");
+const getYo = require("../index");
 
 describe("Test GetYo", () => {
   it("basic test", ()=>{

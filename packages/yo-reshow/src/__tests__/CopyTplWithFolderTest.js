@@ -1,4 +1,4 @@
-import getYo from "../index";
+const getYo = require("../index");
 const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 class FakeGenerator extends YoGenerator {

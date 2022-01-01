@@ -1,5 +1,5 @@
-import { expect } from "chai";
-import getYo from "../index";
+const { expect } = require("chai");
+const getYo = require("../index");
 const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 class FakeGenerator extends YoGenerator {

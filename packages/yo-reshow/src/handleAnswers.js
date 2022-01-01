@@ -1,4 +1,3 @@
-import callfunc from "call-func";
 
 const handleRepository = (payload) => {
   if (!payload.repositoryName) {
@@ -18,7 +17,7 @@ const handleRepository = (payload) => {
   }
 };
 
-const handleAnswers = (oGen) => (answers, cb) => {
+const handleAnswers = (oGen) => (answers, cb = ()=>{}) => {
   const { mainName, isUseWebpack } = answers;
   oGen.mainName = mainName;
   oGen.payload = {
@@ -38,7 +37,7 @@ const handleAnswers = (oGen) => (answers, cb) => {
     }
   }
   handleRepository(oGen.payload);
-  callfunc(cb, [oGen.payload]);
+  cb(oGen.payload);
 };
 
-export default handleAnswers;
+module.exports = handleAnswers;

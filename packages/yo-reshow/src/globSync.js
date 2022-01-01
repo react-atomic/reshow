@@ -1,5 +1,5 @@
-import FS from "fs";
-import PATH from "path";
+const FS = require("fs");
+const PATH = require("path");
 
 const globSync = (folderPath, callback) => {
   const fileArr = FS.readdirSync(folderPath);
@@ -21,4 +21,4 @@ const globSync = (folderPath, callback) => {
   }
 };
 
-export default globSync;
+module.exports = globSync;

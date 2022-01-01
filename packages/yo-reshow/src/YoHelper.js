@@ -1,24 +1,19 @@
-import FS from "fs";
-import PATH from "path";
-import { STRING } from "reshow-constant";
-import callfunc from "call-func";
+const FS = require("fs");
+const PATH = require("path");
+const { STRING } = require("reshow-constant");
 
 // for app
-import YoSay from "yosay";
-import mkdirp from "mkdirp";
-import globSync from "./globSync";
-import handleAnswers from "./handleAnswers";
-
-import getDotYo, {
-  promptResetDefault,
-  promptFilterByOptions,
-} from "./getDotYo";
+const YoSay = require("yosay");
+const mkdirp = require("mkdirp");
+const globSync = require("./globSync");
+const handleAnswers = require("./handleAnswers");
+const {getDotYo, promptResetDefault, promptFilterByOptions} = require("./getDotYo"); 
 
 let lastAns;
 const exitCb = { current: null };
 const onExit = (cb) => (exitCb.current = cb);
 process.once("exit", () => {
-  callfunc(exitCb.current);
+  exitCb.current();
   process.exit(0);
 });
 
@@ -147,4 +142,4 @@ const YoHelper = (oGen) => {
   };
 };
 
-export default YoHelper;
+module.exports = YoHelper;

@@ -1,13 +1,13 @@
-import { STRING } from "reshow-constant";
-import PATH from "path";
+const { STRING } = require("reshow-constant");
+const PATH = require("path");
 
-import YoGenerator from "yeoman-generator";
-import YoHelper from "./YoHelper";
-import commonPrompt from "./commonPrompt";
+const YoGenerator = require("yeoman-generator");
+const YoHelper = require("./YoHelper");
+const commonPrompt = require("./commonPrompt");
 
 // for test
-import YoTest from "yeoman-test";
-import assert from "yeoman-assert";
+const YoTest = require("yeoman-test");
+const assert = require("yeoman-assert");
 
 const getYo = () => {
   return {
@@ -30,4 +30,4 @@ const getYo = () => {
   };
 };
 
-export default getYo;
+module.exports = getYo;

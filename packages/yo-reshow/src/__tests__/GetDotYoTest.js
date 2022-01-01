@@ -1,6 +1,9 @@
-import { expect } from "chai";
-
-import getDotYo, { promptResetDefault, promptFilterByOptions } from "../getDotYo";
+const { expect } = require("chai");
+const {
+  getDotYo,
+  promptResetDefault,
+  promptFilterByOptions,
+} = require("../getDotYo");
 
 describe("Test getDotYo", () => {
   it("test .yo", () => {

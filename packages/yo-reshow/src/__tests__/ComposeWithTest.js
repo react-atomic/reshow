@@ -4,9 +4,9 @@
  * https://github.com/yeoman/generator-generator/blob/a4abe0c371ee36476ede29dcd29f8f6c8e3b22e6/app/index.js
  */
 
-import { expect } from "chai";
-import PATH from "path";
-import getYo from "../index";
+const { expect } = require("chai");
+const PATH = require("path");
+const getYo = require("../index");
 const { YoTest, YoGenerator, YoHelper, assert } = getYo();
 
 const order = [];
