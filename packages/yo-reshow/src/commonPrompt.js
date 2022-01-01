@@ -1,4 +1,5 @@
 const mainName = require("./mainNamePrompt");
+const YoHelper = require("./YoHelper");
 
 const commonPrompt = {
   mainName,
@@ -44,20 +45,33 @@ const commonPrompt = {
       default: "",
     },
   ],
-  babel: oGen => [
+  babel: (oGen) => [
     {
-        type: "confirm",
-        name: "babelRootMode",
-        message: "Do you prepare monorepo (sub-package) ?",
-        default: false,
+      type: "confirm",
+      name: "isUseBabel",
+      message: "Do you plan use babel ?",
+      default: true,
     },
     {
-        type: "confirm",
-        name: "isUseWebpack",
-        message: "Do you use webpack ?",
-        default: false,
-    }
-  ]
+      type: "confirm",
+      name: "babelRootMode",
+      message: "Do you plan use monorepo (sub-package) ?",
+      default: false,
+      when: (response) => {
+        const { getAllAns } = YoHelper(oGen);
+        const allAns = getAllAns(response);
+        if (allAns.isUseBabel) {
+          return true;
+        }
+      },
+    },
+    {
+      type: "confirm",
+      name: "isUseWebpack",
+      message: "Do you use webpack ?",
+      default: false,
+    },
+  ],
 };
 
 module.exports = commonPrompt;

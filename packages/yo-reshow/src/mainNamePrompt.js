@@ -18,7 +18,7 @@ const mainNamePrompt = (oGen) => {
       },
       {
         when: (response) => {
-          const allAns = { ...response, ...getAllAns() };
+          const allAns = getAllAns(response);
           if (!allAns.isReady) {
             exit(()=>say("Exit for not ready to create folder."));
           }

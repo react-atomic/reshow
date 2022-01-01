@@ -146,7 +146,7 @@ const YoHelper = (oGen) => {
       return go(promptLocator(i, lastAns));
     },
 
-    getAllAns: () => lastAns,
+    getAllAns: (customAns) => ({ ...customAns, ...lastAns }),
     handleAnswers: handleAnswers(oGen),
   };
 };
