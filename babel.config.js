@@ -22,7 +22,7 @@ module.exports = function(api) {
             'reshow-transform-runtime',
             {
               regenerator: true,
-              version: "7.9.0",
+              version: "7.16.7",
             },
           ],
           '@babel/plugin-proposal-export-default-from',
@@ -53,7 +53,7 @@ module.exports = function(api) {
             {
               regenerator: false,
               useESModules: true,
-              version: "7.9.0",
+              version: "7.16.7",
             },
           ],
           '@babel/plugin-proposal-export-default-from',
