@@ -25,17 +25,17 @@ const handleAnswers = (oGen) => (answers, cb = ()=>{}) => {
     description: answers.description || "TODO: description",
     keyword: answers.keyword || mainName,
     npmDependencies: {},
+    babelRootMode: "",
+    webpackEnabled: "",
   };
-  if (answers.babelRootMode != null) {
-    oGen.payload.babelRootMode = answers.babelRootMode
-      ? " --root-mode upward"
-      : "";
-    // isUseWebpack
-    oGen.payload.webpackEnabled = isUseWebpack ? "on" : "";
-    if (isUseWebpack) {
-      oGen.payload.npmDependencies["reshow-app"] = "*";
-    }
+  if (answers.babelRootMode) {
+    oGen.payload.babelRootMode = " --root-mode upward";
   }
+  if (isUseWebpack) {
+    oGen.payload.webpackEnabled = "on"; 
+    oGen.payload.npmDependencies["reshow-app"] = "*";
+  }
+
   handleRepository(oGen.payload);
   cb(oGen.payload);
 };

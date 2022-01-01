@@ -52,7 +52,7 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
-    const { cp, chMainName, updateJSON } = YoHelper(this);
+    const { cp, chMainName, updateJSON, exit } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
@@ -69,7 +69,22 @@ module.exports = class extends YoGenerator {
         ...data.dependencies,
         ...this.payload.npmDependencies,
       };
+      if (!this.payload.isUseBabel) {
+        delete data.devDependencies['@babel/cli'];
+        delete data.module;
+        delete data.scripts.clean;
+        delete data.scripts.build;
+        delete data.scripts["build:cjs"];
+        delete data.scripts["build:es"];
+        data.main = "./src/index.js";
+        data.bin[this.mainName] = "./src/index.js";
+        data.scripts.test = "npm run mocha";
+        data.files = data.files.filter(f => f !== "build");
+        data.files.push("src");
+        console.log({data});
+      }
       return data;
     });
+    exit();
   }
 };

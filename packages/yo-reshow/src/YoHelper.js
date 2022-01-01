@@ -15,7 +15,7 @@ const {
 
 let lastAns;
 const exitCb = { current: null };
-const onExit = (cb) => (exitCb.current = cb);
+const onExit = (cb) => (cb && (exitCb.current = cb));
 process.once("exit", () => {
   exitCb.current();
   process.exit(0);
@@ -102,7 +102,7 @@ const YoHelper = (oGen) => {
     },
 
     onExit,
-    exit: (cb, statusCode = 0) => onExit(cb) && process.exit(statusCode),
+    exit: (cb, statusCode = 0) => onExit(cb) || process.exit(statusCode),
 
     glob: (srcPath, cb) => {
       const actualSrc = isFile(srcPath)
