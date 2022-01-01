@@ -1,10 +1,16 @@
-const path = require("path");
+const PATH = require("path");
+const FS = require("fs");
 const { createRequire } = require("module");
-const npxPath = () =>
-  path.join(
-    path.dirname(process.execPath),
-    "../lib/node_modules/npm/node_modules/libnpx/"
-  );
+
+const npxPath = () => {
+  const path = "node_modules/npm/node_modules/libnpx/";
+  const binPath = PATH.dirname(process.execPath);
+  let libnpx = PATH.join(binPath, "../lib/" + path);
+  if (!FS.existsSync(libnpx)) {
+    libnpx = PATH.join(binPath, path);
+  }
+  return libnpx;
+};
 const npx = createRequire(npxPath())("libnpx");
 
 const pkgPrefix = "generator-";
@@ -13,7 +19,7 @@ const addOrgGenReg = /^@([^/]+)\/(generator-)?/;
 const addGenReg = new RegExp(`^(${pkgPrefix})?`);
 const getPkgName = (generator) =>
   isOrgReg.test(generator)
-    ? generator.replace(addOrgGenReg, "@$1/"+pkgPrefix)
+    ? generator.replace(addOrgGenReg, "@$1/" + pkgPrefix)
     : generator.replace(addGenReg, pkgPrefix);
 
 const getNpxCmd = (argv) => {
@@ -24,7 +30,7 @@ const getNpxCmd = (argv) => {
     return false;
   }
 
-  const npmCli = path.join(path.dirname(process.execPath), "npm");
+  const npmCli = PATH.join(PATH.dirname(process.execPath), "npm");
   const parsed = npx.parseArgs(
     [
       "-p",
