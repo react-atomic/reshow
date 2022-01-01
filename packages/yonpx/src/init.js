@@ -38,7 +38,8 @@ const init = async (props) => {
     await npx(cmdOptions);
     process.exit(0);
   } else {
-    console.error("Not input generator.", argv);
+    console.error("Generator not found.", argv);
+    process.exit(1);
   }
 };
 
