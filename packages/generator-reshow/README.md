@@ -1,11 +1,11 @@
 # `generator-reshow`
 
-> TODO: description
+> Lets you focus on code, not build tools like `create-react-app`
 
 ## Usage
 
 ```
-npx -p yo -p generator-reshow -c 'yo reshow my-app'
+npx yonpx reshow my-app
 cd my-app
 npm start
 ```
