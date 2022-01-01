@@ -9,9 +9,10 @@ const npxPath = () => {
   if (!FS.existsSync(libnpx)) {
     libnpx = PATH.join(binPath, path);
   }
-  return libnpx;
+  return {libnpx, npmCli: PATH.join(binPath, "npm")};
 };
-const npx = createRequire(npxPath())("libnpx");
+const {libnpx, npmCli} = npxPath();
+const npx = createRequire(libnpx)("libnpx");
 
 const pkgPrefix = "generator-";
 const isOrgReg = /^@[^/]+\//;
@@ -30,7 +31,6 @@ const getNpxCmd = (argv) => {
     return false;
   }
 
-  const npmCli = PATH.join(PATH.dirname(process.execPath), "npm");
   const parsed = npx.parseArgs(
     [
       "-p",

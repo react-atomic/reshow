@@ -22,3 +22,6 @@ ex:
 npx yonpx reshow myapp
 ```
 
+## Inspire
+* https://github.com/facebook/create-react-app
+* https://github.com/boneskull/create-yo
