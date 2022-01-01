@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.1.3",
   "name": "yonpx",
   "repository": {
     "type": "git",
@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yonpx",
   "description": "Npx CLI for yeoman",
-  "keywords": [],
+  "keywords": ["create-react-app", "npx", "npm", "yo", "yeoman", "yonpx", "yo-npx", "npx-yo"],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {},
@@ -24,11 +24,7 @@
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": [
-    "src",
-    "package.json",
-    "README.md"
-  ],
+  "files": ["src", "package.json", "README.md"],
   "engines": {
     "node": ">=14"
   }

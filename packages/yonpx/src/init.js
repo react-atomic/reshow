@@ -7,13 +7,14 @@ const npxPath = () =>
   );
 const npx = createRequire(npxPath())("libnpx");
 
+const pkgPrefix = "generator-";
 const isOrgReg = /^@[^/]+\//;
 const addOrgGenReg = /^@([^/]+)\/(generator-)?/;
-const addGenReg = /^(generator-)?/;
+const addGenReg = new RegExp(`^(${pkgPrefix})?`);
 const getPkgName = (generator) =>
   isOrgReg.test(generator)
-    ? generator.replace(addOrgGenReg, "@$1/generator-")
-    : generator.replace(addGenReg, "generator-");
+    ? generator.replace(addOrgGenReg, "@$1/"+pkgPrefix)
+    : generator.replace(addGenReg, pkgPrefix);
 
 const getNpxCmd = (argv) => {
   const generatorName = argv[2];

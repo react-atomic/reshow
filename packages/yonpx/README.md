@@ -1,6 +1,8 @@
 # `yonpx`
 
-> a shorter for `npx -p yo -p generator-app -c 'yo app'` to `npx yonpx app`
+A shorter for 
+> `npx -p yo -p generator-app -c 'yo app'` to 
+> `npx yonpx app`
 
 ## Repository 
 * `GIT`
