@@ -34,7 +34,9 @@ module.exports = class extends YoGenerator {
     ];
     const answers = await this.prompt(prompts);
     handleAnswers(answers);
-    this.composeWith(require.resolve("../compile-sh"), this.payload);
+    this.composeWith(require.resolve("../compile-sh"), {
+      webpackEnabled: true,
+    });
   }
 
   writing() {
