@@ -42,7 +42,9 @@ module.exports = class extends YoGenerator {
     ];
 
     const answers = await promptChain(promptChainLocator(prompts));
-    handleAnswers(answers);
+    handleAnswers(answers, (payload)=>{
+      payload.generatorName = payload.mainName;
+    });
   }
 
   writing() {

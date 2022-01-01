@@ -5,5 +5,5 @@
 ## Usage
 
 ```
-
+npx yonpx <%= generatorName %>
 ```
