@@ -8,13 +8,15 @@ const assert = require("yeoman-assert");
 const getYoUnit = () => {
   return {
     YoTest: ({ source, params, options = {}, build }) => {
-      source = STRING === typeof source ? PATH.join(source) : source;
+      const isStringSource = STRING === typeof source;
+      source = isStringSource ? PATH.join(source) : source;
+      const sourceName = isStringSource ? source : source.name;
       return YoTest.create(source)
         .withPrompts(params)
         .withOptions(options)
         .inTmpDir((dir) => {
           console.log(`Build Dest on: ${dir}`);
-          console.log(`Source : ${source}`);
+          console.log(`Source : ${sourceName}`);
         })
         .build(build)
         .run();

@@ -7,7 +7,11 @@ const YoSay = require("yosay");
 const mkdirp = require("mkdirp");
 const globSync = require("./globSync");
 const handleAnswers = require("./handleAnswers");
-const {getDotYo, promptResetDefault, promptFilterByOptions} = require("./getDotYo"); 
+const {
+  getDotYo,
+  promptResetDefault,
+  promptFilterByOptions,
+} = require("./getDotYo");
 
 let lastAns;
 const exitCb = { current: null };
@@ -17,6 +21,8 @@ process.once("exit", () => {
   process.exit(0);
 });
 
+const isFile = (f) => FS.existsSync(f);
+
 /**
  * Copy
  *
@@ -25,12 +31,12 @@ process.once("exit", () => {
  * https://github.com/SBoudrias/mem-fs-editor
  * https://github.com/sboudrias/mem-fs
  */
-const RUN_CP = (oGen) => (src, dest, options) => {
+const RUN_CP = (oGen) => (src, dest, options, bOverwrite) => {
   const oGenFs = oGen.fs;
   const action = options ? oGenFs.copyTpl : oGenFs.copy;
 
   let actualSrc;
-  if (!FS.existsSync(src)) {
+  if (!isFile(src)) {
     dest = dest || src;
     actualSrc = oGen.templatePath(src);
   } else {
@@ -39,7 +45,10 @@ const RUN_CP = (oGen) => (src, dest, options) => {
   }
 
   try {
-    action.call(oGenFs, actualSrc, oGen.destinationPath(dest), options);
+    const realDestFile = oGen.destinationPath(dest);
+    if (!isFile(realDestFile) || bOverwrite) {
+      action.call(oGenFs, actualSrc, realDestFile, options);
+    }
   } catch (e) {
     console.log(e);
   }
@@ -96,7 +105,7 @@ const YoHelper = (oGen) => {
     exit: (cb, statusCode = 0) => onExit(cb) && process.exit(statusCode),
 
     glob: (srcPath, cb) => {
-      const actualSrc = FS.existsSync(srcPath)
+      const actualSrc = isFile(srcPath)
         ? srcPath
         : oGen.templatePath(srcPath || "");
       globSync(actualSrc, cb);
