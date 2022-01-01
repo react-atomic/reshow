@@ -5976,7 +5976,7 @@ yeoman-assert@*:
   resolved "https://registry.yarnpkg.com/yeoman-assert/-/yeoman-assert-3.1.1.tgz#9f6fa0ecba7dd007c40f579668cb5dda18c79343"
   integrity sha512-bCuLb/j/WzpvrJZCTdJJLFzm7KK8IYQJ3+dF9dYtNs2CUYyezFJDuULiZ2neM4eqjf45GN1KH/MzCTT3i90wUQ==
 
-yeoman-environment@^3.8.1:
+yeoman-environment@*:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-3.8.1.tgz#619e32ba63c9ec29bfaab8cfaa6306d58bf8d85b"
   integrity sha512-UM42p60GcJOwPfL63yBwBiiZiZ4p7taEjR5B+XdEu+sf73T+510gxiAqYuTCDOVTYBqhywVpZoWEnR+HtshiBA==
@@ -6047,18 +6047,26 @@ yeoman-test@*:
     temp-dir "^2.0.0"
 
 yo-reshow@*:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.2.0.tgz#645eaa2410b442688199403be45171828590f640"
-  integrity sha512-3Dh/SOX5tQY6+eDzwK2UvSPl1hK61lJ5z+iLohVdRucK2Wb6Te/eFzV4GZETp94SSpGwpqslKiGFLIKsSgTKqw==
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.2.2.tgz#f6022fd347505f1bb36a10b15055db9890e528b5"
+  integrity sha512-AyRoY0u/TTY0RK1eaBGR44Ji+PAp85W5b/O07s42llW/eTN4qsl+GfFzAxMAgnHS+xvECDbUtZTFeqTmQW2m0Q==
   dependencies:
     mkdirp "1.0.4"
     parse-ini-string "*"
     reshow-constant "*"
-    yeoman-assert "*"
-    yeoman-environment "^3.8.1"
     yeoman-generator "^5.4.2"
-    yeoman-test "*"
     yosay "^1.0.2"
+
+yo-unit@*:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/yo-unit/-/yo-unit-0.0.2.tgz#8ed8d1aa99782f90106f2905774e204a193281eb"
+  integrity sha512-ZksEo3FhhJopvni0PDGRnbbVfCqN0IKY4LHY9a9pVdyCzVw19jie7xkKyNX4rwRthLcl+hCzHZyr1A3L/EAsGg==
+  dependencies:
+    reshow-constant "*"
+    reshow-unit "*"
+    yeoman-assert "*"
+    yeoman-environment "*"
+    yeoman-test "*"
 
 yocto-queue@^0.1.0:
   version "0.1.0"

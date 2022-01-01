@@ -1,6 +1,9 @@
 const { expect } = require("chai");
+const getYoUnit = require("yo-unit");
 const getYo = require("../index");
-const { YoTest, YoGenerator, YoHelper, assert } = getYo();
+
+const { YoGenerator, YoHelper } = getYo();
+const { YoTest, assert } = getYoUnit();
 
 class FakeGenerator extends YoGenerator {
   async prompting() {

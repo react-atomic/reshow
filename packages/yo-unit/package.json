@@ -1,0 +1,36 @@
+{
+  "version": "0.0.2",
+  "name": "yo-unit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/yo-unit"
+  },
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yo-unit",
+  "description": "Yeoman test utility.",
+  "keywords": [],
+  "author": "Hill <hill@kimo.com>",
+  "license": "ISC",
+  "dependencies": {
+    "reshow-constant": "*",
+    "reshow-unit": "*",
+    "yeoman-assert": "*",
+    "yeoman-environment": "*",
+    "yeoman-test": "*"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "mochaFor": "mocha",
+    "mocha": "npm run mochaFor -- 'src/**/__tests__/*.js'",
+    "test": "npm run mocha",
+    "prepublishOnly": "npm run test"
+  },
+  "files": [
+    "src",
+    "package.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=14"
+  }
+}

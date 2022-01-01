@@ -6,8 +6,8 @@
  * https://github.com/yeoman/yeoman-test/blob/main/lib/run-context.js
  */
 
-const getYo = require("yo-reshow");
-const { YoTest, assert } = getYo();
+const getYoUnit = require("yo-unit");
+const { YoTest, assert } = getYoUnit();
 
 describe("!! compile-sh !!", () => {
   let runResult;

@@ -17,7 +17,7 @@
     "yo-reshow": "*"
   },
   "devDependencies": {
-    "reshow-unit": "*"
+    "yo-unit": "*"
   },
   "files": [
     "generators"
