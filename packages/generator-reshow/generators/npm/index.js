@@ -81,7 +81,6 @@ module.exports = class extends YoGenerator {
         data.scripts.test = "npm run mocha";
         data.files = data.files.filter(f => f !== "build");
         data.files.push("src");
-        console.log({data});
       }
       return data;
     });
