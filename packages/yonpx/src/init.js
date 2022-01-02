@@ -5,13 +5,14 @@ const { createRequire } = require("module");
 const npxPath = () => {
   const path = "node_modules/npm/node_modules/libnpx/";
   const binPath = PATH.dirname(process.execPath);
-  let libnpx = PATH.join(binPath, "../lib/" + path);
+  const getPath = (p) => PATH.join(binPath, ...p);
+  let libnpx = getPath(["../lib", path]);
   if (!FS.existsSync(libnpx)) {
-    libnpx = PATH.join(binPath, path);
+    libnpx = getPath([path]);
   }
-  return {libnpx, npmCli: PATH.join(binPath, "npm")};
+  return { libnpx, npmCli: getPath(["npm"]) };
 };
-const {libnpx, npmCli} = npxPath();
+const { libnpx, npmCli } = npxPath();
 const npx = createRequire(libnpx)("libnpx");
 
 const pkgPrefix = "generator-";
@@ -45,7 +46,7 @@ const getNpxCmd = (argv) => {
   return parsed;
 };
 
-const init = async (props) => {
+const init = async () => {
   const argv = process.argv;
   const cmdOptions = getNpxCmd(argv);
   if (cmdOptions) {
