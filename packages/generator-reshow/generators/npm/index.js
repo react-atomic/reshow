@@ -27,8 +27,6 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    this.env.options.nodePackageManager = "yarn";
-
     const {
       handleAnswers,
       mergePromptOrOption,
@@ -47,11 +45,15 @@ module.exports = class extends YoGenerator {
     const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
       promptChain(promptChainLocator(nextPrompts))
     );
-    handleAnswers(answers);
-    this.composeWith(require.resolve("../compile-sh"), this.payload);
+    handleAnswers(answers, (payload) => {
+      if (payload.isUseBabel) {
+        this.composeWith(require.resolve("../compile-sh"), payload);
+      }
+    });
   }
 
   writing() {
+    this.env.options.nodePackageManager = "yarn";
     const { cp, chMainName, updateJSON } = YoHelper(this);
 
     // handle change to new folder
@@ -61,6 +63,7 @@ module.exports = class extends YoGenerator {
     cp("src", null, this.payload);
     cp("README.md", null, this.payload);
     cp("Test.js", "src/__tests__/Test.js", this.payload);
+    cp("yarn.lock");
 
     updateJSON("package.json", null, this.payload, (data) => {
       data.repository = this.payload.repository;
@@ -70,7 +73,7 @@ module.exports = class extends YoGenerator {
         ...this.payload.npmDependencies,
       };
       if (!this.payload.isUseBabel) {
-        delete data.devDependencies['@babel/cli'];
+        delete data.devDependencies["@babel/cli"];
         delete data.module;
         delete data.scripts.clean;
         delete data.scripts.build;
@@ -79,7 +82,8 @@ module.exports = class extends YoGenerator {
         data.main = "./src/index.js";
         data.bin[this.mainName] = "./src/index.js";
         data.scripts.test = "npm run mocha";
-        data.files = data.files.filter(f => f !== "build");
+        data.scripts.mocha = "npm run mochaFor -- 'src/**/__tests__/*.js'";
+        data.files = data.files.filter((f) => f !== "build");
         data.files.push("src");
       }
       return data;
