@@ -17,7 +17,7 @@ let lastAns;
 const exitCb = { current: null };
 const onExit = (cb) => cb && (exitCb.current = cb);
 process.once("exit", () => {
-  exitCb.current();
+  exitCb.current && exitCb.current();
   process.exit(0);
 });
 

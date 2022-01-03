@@ -4,6 +4,8 @@ const mainNamePrompt = (oGen) => {
   const { say, getDestFolderName, getAllAns, exit } = YoHelper(oGen);
   oGen.argument("argMainName", { type: String, required: false });
   const { argMainName, namespace } = oGen.options;
+  oGen.options.subGeneratorName = namespace.split(":")[1];
+
   const prompts = [];
   if (!argMainName) {
     say(
@@ -20,7 +22,7 @@ const mainNamePrompt = (oGen) => {
         when: (response) => {
           const allAns = getAllAns(response);
           if (!allAns.isReady) {
-            exit(()=>say("Exit for not ready to create folder."));
+            exit(() => say("Exit for not ready to create folder."));
           }
         },
       }
@@ -29,7 +31,7 @@ const mainNamePrompt = (oGen) => {
   prompts.push({
     type: "input",
     name: "mainName",
-    message: "Please confirm your generator naming? Or rename it.",
+    message: "Please confirm your naming? Or rename it.",
     default: argMainName || getDestFolderName(),
   });
   return prompts;

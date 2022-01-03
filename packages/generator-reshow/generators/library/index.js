@@ -72,12 +72,13 @@ module.exports = class extends YoGenerator {
     cp("package.json", null, this.payload);
     cp("src", null, this.payload);
     cp("Test.js", "src/__tests__/Test.js", this.payload);
+    cp("yarn.lock");
   }
 
   end() {
     if (!this.options?.skipInstall) {
-      const { say } = YoHelper(this);
-      say('Next you could try "npm run build" or "npm run test"');
+      const { say, onExit } = YoHelper(this);
+      onExit(()=>say('Next you could try "npm run build" or "npm run test"'));
     }
   }
 };

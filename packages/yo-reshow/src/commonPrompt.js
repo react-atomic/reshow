@@ -7,13 +7,13 @@ const commonPrompt = {
     {
       type: "input",
       name: "description",
-      message: "Please input description for npm?",
+      message: "Please input this description?",
       default: "",
     },
     {
       type: "input",
       name: "keyword",
-      message: "Please input keyword for npm?",
+      message: "Please input keyword?",
       default: "",
     },
   ],
