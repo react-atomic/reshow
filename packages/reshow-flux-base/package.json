@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.3.7",
+  "version": "0.15.0",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -12,12 +12,12 @@
   "license": "MIT",
   "dependencies": {
     "call-func": "*",
-    "reshow-constant": "*",
+    "reshow-constant": "^0.15.0",
     "reshow-runtime": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

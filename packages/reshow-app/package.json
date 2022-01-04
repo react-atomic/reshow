@@ -20,5 +20,6 @@
     "build:dev": "npm run build:babel && npm run copy &&  yarn",
     "build": "npm run clean && npm run build:dev",
     "prepublishOnly": "echo should not publish && exit 1;"
-  }
+  },
+  "version": "0.15.0"
 }

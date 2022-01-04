@@ -1,6 +1,6 @@
 {
   "name": "reshow-return",
-  "version": "1.1.0",
+  "version": "0.15.0",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -15,13 +15,13 @@
     "call-func": "*",
     "get-object-value": "*",
     "memoize-one": "*",
-    "reshow-build": "*",
-    "reshow-flux": "*",
+    "reshow-build": "^0.15.0",
+    "reshow-flux": "^0.15.0",
     "reshow-runtime": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "1.1.3",
+  "version": "0.15.0",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -17,10 +17,10 @@
     "array.merge": "*",
     "get-object-value": "*",
     "immutable": "^3.x",
-    "reshow-build": "*",
-    "reshow-constant": "*",
-    "reshow-flux-base": "*",
-    "reshow-hooks": "*",
+    "reshow-build": "^0.15.0",
+    "reshow-constant": "^0.15.0",
+    "reshow-flux-base": "^0.15.0",
+    "reshow-hooks": "^0.15.0",
     "reshow-runtime": "*",
     "setimmediate": "*"
   },
@@ -28,7 +28,7 @@
     "@babel/cli": "^7.x",
     "react": "16.x",
     "react-dom": "16.x",
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

@@ -9,7 +9,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
@@ -21,5 +21,6 @@
     "mocha": "npm run mochaFor -- 'build/helpers/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "echo should not publish && exit 1;"
-  }
+  },
+  "version": "0.15.0"
 }

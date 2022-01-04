@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.15.0",
   "name": "yo-unit",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
-    "reshow-constant": "*",
-    "reshow-unit": "*",
+    "reshow-constant": "^0.15.0",
+    "reshow-unit": "^0.15.0",
     "yeoman-assert": "*",
     "yeoman-environment": "*",
     "yeoman-test": "*"

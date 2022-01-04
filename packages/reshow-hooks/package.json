@@ -1,6 +1,6 @@
 {
   "name": "reshow-hooks",
-  "version": "0.0.7",
+  "version": "0.15.0",
   "description": "Utilities for hook",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -19,7 +19,7 @@
     "@babel/cli": "^7.x",
     "react": "16.x",
     "react-dom": "16.x",
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

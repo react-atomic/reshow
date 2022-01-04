@@ -1,6 +1,6 @@
 {
   "name": "generator-reshow",
-  "version": "0.0.3",
+  "version": "0.15.0",
   "description": "Yeoman generator for reshow. (app, generator, ...etc)",
   "author": "Hill <hill@kimo.com>",
   "repository": {
@@ -14,10 +14,10 @@
   "license": "ISC",
   "main": "",
   "dependencies": {
-    "yo-reshow": "*"
+    "yo-reshow": "^0.15.0"
   },
   "devDependencies": {
-    "yo-unit": "*"
+    "yo-unit": "^0.15.0"
   },
   "files": [
     "generators"

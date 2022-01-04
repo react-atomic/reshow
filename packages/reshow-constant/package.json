@@ -1,6 +1,6 @@
 {
   "name": "reshow-constant",
-  "version": "0.1.2",
+  "version": "0.15.0",
   "description": "Constant for better performance",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

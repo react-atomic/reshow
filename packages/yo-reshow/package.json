@@ -1,5 +1,5 @@
 {
-  "version": "0.2.10",
+  "version": "0.15.0",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -18,12 +18,12 @@
   "dependencies": {
     "mkdirp": "1.0.4",
     "parse-ini-string": "*",
-    "reshow-constant": "*",
+    "reshow-constant": "^0.15.0",
     "yeoman-generator": "^5.4.2",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
-    "yo-unit": "*"
+    "yo-unit": "^0.15.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

@@ -1,5 +1,5 @@
 {
-  "version": "0.1.6",
+  "version": "0.15.0",
   "name": "yonpx",
   "repository": {
     "type": "git",
@@ -21,9 +21,8 @@
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
-    "reshow-unit": "*"
+    "reshow-unit": "^0.15.0"
   },
   "bin": {
     "yonpx": "./src/index.js"
@@ -34,7 +33,11 @@
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["src", "package.json", "README.md"],
+  "files": [
+    "src",
+    "package.json",
+    "README.md"
+  ],
   "engines": {
     "node": ">=14"
   }
