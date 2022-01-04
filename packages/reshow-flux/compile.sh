@@ -15,9 +15,9 @@ stop(){
 }
 
 watch(){
-    stop 
-    npm run build:cjs -- --watch &
-    npm run build:es -- --watch &
+  stop
+  npm run build:cjs -- --watch &
+  npm run build:es -- --watch &
 }
 
 case "$1" in

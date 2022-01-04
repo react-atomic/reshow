@@ -63,14 +63,15 @@ describe("Test Connect hook for more test", () => {
     };
 
     expect(calculateTimes).to.equal(0);
-    const html = mount(<FakeComponent />);
+    const wrap = mount(<FakeComponent />);
     setTimeout(() => {
       expect(calculateTimes).to.equal(2); //init and handlchange
       dispatch({ aaa: "Hello dispatcher!" });
       setTimeout(() => {
-        html.update();
+        wrap.update();
         expect(calculateTimes).to.equal(3);
-        expect(html.html()).to.equal("<div>Hello dispatcher!</div>");
+        expect(wrap.html()).to.equal("<div>Hello dispatcher!</div>");
+        wrap.unmount();
         dispatch({ aaa: "Hello Unmount!" });
         expect(calculateTimes).to.equal(3);
         done();

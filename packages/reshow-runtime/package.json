@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "reshow-runtime",
   "repository": "react-atomic/reshow",
   "keywords": [

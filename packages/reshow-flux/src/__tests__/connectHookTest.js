@@ -1,30 +1,18 @@
 import React, { Component } from "react";
-
 import { expect } from "chai";
 import { mount } from "reshow-unit";
+import { createReducer } from "reshow-flux-base";
 
 import useConnect from "../useConnect";
-import { Dispatcher, ReduceStore } from "../index";
 
 describe("Test Connect Hook", () => {
-  class FakeStore extends ReduceStore {
-    getInitialState() {
-      return {};
-    }
-
-    reduce(state, action) {
-      return action;
-    }
-  }
-
-  let dispatcher;
   let dispatch;
   let store;
 
   beforeEach(() => {
-    dispatcher = new Dispatcher();
-    dispatch = dispatcher.dispatch;
-    store = new FakeStore(dispatcher);
+    const reducer = createReducer((state, action) => action, []);
+    store = reducer[0];
+    dispatch = reducer[1];
   });
 
   it("basic test", (done) => {
