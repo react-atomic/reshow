@@ -1,4 +1,4 @@
-import { Map, Set, fromJS } from "immutable";
+import { Map, fromJS } from "immutable";
 import { Store } from "reshow-flux-base";
 import { toJS } from "get-object-value";
 
@@ -17,4 +17,3 @@ class ReduceStore extends Store {
 }
 
 export default ReduceStore;
-export { Map, Set };

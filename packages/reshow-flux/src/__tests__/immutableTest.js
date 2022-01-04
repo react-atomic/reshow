@@ -1,6 +1,7 @@
 import { expect } from "chai";
+import { Map } from "immutable";
 
-import ReduceStore, { Map } from "../ReduceStore";
+import ReduceStore from "../ReduceStore";
 import { Dispatcher } from "reshow-flux-base";
 
 describe("Test immutable", () => {
