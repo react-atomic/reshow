@@ -23,6 +23,7 @@ watch(){
 }
 
 canary(){
+  # https://en.wikipedia.org/wiki/Feature_toggle#Canary_release 
   lerna publish --canary
 }
 
