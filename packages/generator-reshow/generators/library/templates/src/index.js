@@ -1,5 +1,3 @@
-const YourFunc = props => {
-
-};
+const YourFunc = (props) => {};
 
 export default YourFunc;

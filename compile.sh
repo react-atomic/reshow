@@ -22,7 +22,14 @@ watch(){
     npm run build:es:src -- --watch &
 }
 
+canary(){
+  lerna publish --canary
+}
+
 case "$1" in
+  canary)
+    canary
+    ;;
   watch)
     watch 
     ;;

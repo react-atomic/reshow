@@ -25,36 +25,38 @@ class FakeGenerator extends YoGenerator {
         message: `This is fake quetion?`,
       },
     ];
-    this.payload = await mergePromptOrOption(
-      prompts,
-      nextPrompts => this.prompt(nextPrompts)
+    this.payload = await mergePromptOrOption(prompts, (nextPrompts) =>
+      this.prompt(nextPrompts)
     );
   }
 
-  writing() { }
+  writing() {}
 }
 
 describe("mergePromptOrOption test", () => {
   let runResult;
   before(async () => {
-   runResult = await YoTest({
+    runResult = await YoTest({
       source: FakeGenerator,
-      options: {pwd: __dirname, foo1: "bar1"},
+      options: { pwd: __dirname, foo1: "bar1" },
       params: {
         fakeName: "fakeValue",
       },
     });
   });
 
-  after(()=>{
+  after(() => {
     if (runResult) {
       runResult.restore();
     }
   });
 
   it("test mergePromptOrOption", () => {
-    const {generator} = runResult;
-    expect(generator.payload).to.deep.equal({fakeName: 'fakeValue', foo: 'bar', foo1: 'bar1'});
+    const { generator } = runResult;
+    expect(generator.payload).to.deep.equal({
+      fakeName: "fakeValue",
+      foo: "bar",
+      foo1: "bar1",
+    });
   });
 });
-

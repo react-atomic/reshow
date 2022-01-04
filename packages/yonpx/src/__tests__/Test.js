@@ -27,7 +27,7 @@ describe("Test getPkgName", () => {
 describe("Test npxPath", () => {
   const isExists = (f) => FS.existsSync(f);
   it("test npxPath", () => {
-    const {libnpx, npmCli} = npxPath();
+    const { libnpx, npmCli } = npxPath();
     console.log("npx path: " + libnpx);
     expect(isExists(libnpx)).to.be.true;
     expect(isExists(npmCli)).to.be.true;

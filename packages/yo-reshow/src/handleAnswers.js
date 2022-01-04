@@ -1,4 +1,3 @@
-
 const handleRepository = (payload) => {
   if (!payload.repositoryName) {
     payload.repositoryName = payload.mainName;
@@ -17,27 +16,29 @@ const handleRepository = (payload) => {
   }
 };
 
-const handleAnswers = (oGen) => (answers, cb = ()=>{}) => {
-  const { mainName, isUseWebpack } = answers;
-  oGen.mainName = mainName;
-  oGen.payload = {
-    ...answers,
-    description: answers.description || "TODO: description",
-    keyword: answers.keyword || mainName,
-    npmDependencies: {},
-    babelRootMode: "",
-    webpackEnabled: "",
-  };
-  if (answers.babelRootMode) {
-    oGen.payload.babelRootMode = " --root-mode upward";
-  }
-  if (isUseWebpack) {
-    oGen.payload.webpackEnabled = "on"; 
-    oGen.payload.npmDependencies["reshow-app"] = "*";
-  }
+const handleAnswers =
+  (oGen) =>
+  (answers, cb = () => {}) => {
+    const { mainName, isUseWebpack } = answers;
+    oGen.mainName = mainName;
+    oGen.payload = {
+      ...answers,
+      description: answers.description || "TODO: description",
+      keyword: answers.keyword || mainName,
+      npmDependencies: {},
+      babelRootMode: "",
+      webpackEnabled: "",
+    };
+    if (answers.babelRootMode) {
+      oGen.payload.babelRootMode = " --root-mode upward";
+    }
+    if (isUseWebpack) {
+      oGen.payload.webpackEnabled = "on";
+      oGen.payload.npmDependencies["reshow-app"] = "*";
+    }
 
-  handleRepository(oGen.payload);
-  cb(oGen.payload);
-};
+    handleRepository(oGen.payload);
+    cb(oGen.payload);
+  };
 
 module.exports = handleAnswers;

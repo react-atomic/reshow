@@ -1,5 +1,5 @@
 const init = (props) => {
-  console.log('foo');
+  console.log("foo");
   return "bar";
 };
 

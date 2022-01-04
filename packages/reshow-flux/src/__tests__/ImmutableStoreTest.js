@@ -19,6 +19,6 @@ describe("Test ImmutableStore", () => {
     const action = { aaa: { bbb: "ccc" } };
     dispatch(action);
     const state = store.getState();
-    expect(getMap(state, 'aaa')).to.deep.equal({ bbb: "ccc" });
+    expect(getMap(state, "aaa")).to.deep.equal({ bbb: "ccc" });
   });
 });

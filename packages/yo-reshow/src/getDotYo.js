@@ -33,7 +33,7 @@ const promptResetDefault = (prompts, yoData = getDotYo()) => {
   prompts.forEach((oPrompt) => {
     const hasYoData = yoData[oPrompt.name];
     if (hasYoData) {
-        oPrompt.default = hasYoData;
+      oPrompt.default = hasYoData;
     }
   });
   return prompts;
@@ -44,13 +44,13 @@ const promptFilterByOptions = (prompts, yoData = getDotYo()) => {
   const nextPrompts = prompts.filter((oPrompt) => {
     const hasYoData = yoData[oPrompt.name];
     if (hasYoData) {
-        nextAnswer[oPrompt.name] = hasYoData;
-        return false;
+      nextAnswer[oPrompt.name] = hasYoData;
+      return false;
     } else {
-        return true;
+      return true;
     }
   });
-  return {nextAnswer, nextPrompts};
+  return { nextAnswer, nextPrompts };
 };
 
 module.exports = { getDotYo, promptResetDefault, promptFilterByOptions };
