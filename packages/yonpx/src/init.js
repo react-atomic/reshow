@@ -10,10 +10,25 @@ const npxPath = () => {
   if (!FS.existsSync(libnpx)) {
     libnpx = getPath([path]);
   }
+  if (!FS.existsSync(libnpx)) {
+    libnpx = getPath(["../lib", "node_modules/npm/lib/cli.js"]);
+  }
   return { libnpx, npmCli: getPath(["npm"]) };
 };
 const { libnpx, npmCli } = npxPath();
-const npx = createRequire(libnpx)("libnpx");
+
+const npx8 = (cmd) => {
+  const npmcli = require(libnpx);
+  process.argv[1] = libnpx;
+  process.argv.splice(2, 0, "exec");
+  for (let i = 0, j = cmd.length; i < j; i++) {
+    process.argv[i + 3] = cmd[i];
+  }
+  npmcli(process);
+};
+
+const npx =
+  libnpx.substr(-6) === "cli.js" ? npx8 : createRequire(libnpx)("libnpx");
 
 const pkgPrefix = "generator-";
 const isOrgReg = /^@[^/]+\//;
@@ -32,18 +47,19 @@ const getNpxCmd = (argv) => {
     return false;
   }
 
-  const parsed = npx.parseArgs(
-    [
-      "-p",
-      "yo",
-      "-p",
-      getPkgName(generatorPkg),
-      "-c",
-      `yo ${generatorName} ${otherArgv.join(" ")}`,
-    ],
-    npmCli
-  );
-  return parsed;
+  let cmd = [
+    "--package",
+    "yo",
+    "--package",
+    getPkgName(generatorPkg),
+    "--call",
+    `yo ${generatorName} ${otherArgv.join(" ")}`,
+  ];
+  if (npx.parseArgs != null) {
+    cmd = npx.parseArgs(cmd, npmCli);
+  }
+
+  return cmd;
 };
 
 const init = async () => {
@@ -51,7 +67,6 @@ const init = async () => {
   const cmdOptions = getNpxCmd(argv);
   if (cmdOptions) {
     await npx(cmdOptions);
-    process.exit(0);
   } else {
     console.error("Generator not found.", argv);
     process.exit(1);

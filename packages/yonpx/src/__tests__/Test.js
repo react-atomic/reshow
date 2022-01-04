@@ -4,9 +4,12 @@ const { init, getNpxCmd, getPkgName, npxPath } = require("../init");
 
 describe("Test yonpx", () => {
   it("test getNpxCmd", () => {
-    /*your test code*/
     const actual = getNpxCmd(["", "", "reshow"]);
-    expect(actual.p).to.deep.equal(["yo@latest", "generator-reshow@latest"]);
+    if (actual.p) {
+      expect(actual.p).to.deep.equal(["yo@latest", "generator-reshow@latest"]);
+    } else {
+      expect(actual[5]).to.equal("yo reshow ");
+    }
   });
 });
 

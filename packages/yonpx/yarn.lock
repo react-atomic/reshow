@@ -3177,10 +3177,10 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
-reshow-unit@*:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.0.5.tgz#a3fa410f7ab266492edf6afb3dbd5130d66ced68"
-  integrity sha512-TMnfSJwbDKzq4SAZXh5oNzDLu1we4rT/ZOf2iXa69PdKZPqO0aVBq+jJr23Zh/itZbagEt+YKro7tQHNSxZqsg==
+reshow-unit@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.15.0.tgz#2ed3edb586066c59119f09e1430b63a415c044af"
+  integrity sha512-wvxGZLUCsTXpLbX95YYwbN/xxufj2M/ongbyQxbPnUoR0SyNmjK02+MbdEetWCrwQelQ46KqM5stG6Ky1ZHeEw==
   dependencies:
     chai "*"
     enzyme "*"
