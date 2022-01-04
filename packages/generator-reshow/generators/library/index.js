@@ -2,15 +2,10 @@ const getYo = require("yo-reshow");
 const { YoGenerator, YoHelper, commonPrompt } = getYo();
 
 /**
- * Library Generator 
+ * Library Generator
  */
 
 module.exports = class extends YoGenerator {
-  constructor(args, opts) {
-    super(args, opts);
-    this.argument("mainName", { type: String, required: false });
-  }
-
   /**
    * Run loop (Life cycle)
    * https://yeoman.io/authoring/running-context.html#the-run-loop
@@ -32,9 +27,8 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    this.env.options.nodePackageManager = "yarn";
-
     const {
+      handleAnswers,
       mergePromptOrOption,
       promptChainLocator,
       promptChain,
@@ -46,21 +40,14 @@ module.exports = class extends YoGenerator {
       ...commonPrompt.author(this),
     ];
 
-    const answers =  await mergePromptOrOption(
-      prompts,
-      (nextPrompts) => promptChain(promptChainLocator(nextPrompts))
+    const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
+      promptChain(promptChainLocator(nextPrompts))
     );
-
-    this.mainName = answers.mainName;
-    this.payload = {
-      ...answers,
-      mainName: this.mainName,
-      description: answers.description || 'TODO: description',
-      keyword: answers.keyword || this.mainName,
-    };
+    handleAnswers(answers);
   }
 
   writing() {
+    this.env.options.nodePackageManager = "yarn";
     const { cp, chMainName } = YoHelper(this);
 
     // handle change to new folder
@@ -78,7 +65,7 @@ module.exports = class extends YoGenerator {
   end() {
     if (!this.options?.skipInstall) {
       const { say, onExit } = YoHelper(this);
-      onExit(()=>say('Next you could try "npm run build" or "npm run test"'));
+      onExit(() => say('Next you could try "npm run build" or "npm run test"'));
     }
   }
 };
