@@ -6,10 +6,10 @@ const emitter = () => {
   return {
     add: (handler) => pool.push(handler),
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
-    emit: (state) =>
+    emit: (state, action) =>
       setTimeout(() => {
         for (let i = 0, j = pool.length; i < j; i++) {
-          pool[i](state);
+          pool[i](state, action);
         }
       }),
   };
