@@ -27,7 +27,6 @@ const [store, dispatch] = ImmutableStore((state, action) => {
       return mergeMap(state, action.params);
     case "config/reset":
       return mergeMap(state.clear(), action.params);
-      return state.clear().merge(action.params);
     default:
       if (KEYS(action)) {
         return mergeMap(state, action);
