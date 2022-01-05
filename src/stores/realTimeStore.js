@@ -1,17 +1,13 @@
-"use strict";
+import { ImmutableStore } from "reshow-flux";
 
-import { ReduceStore } from "reshow-flux";
-import dispatcher from "../dispatcher";
-
-class RealTimeStore extends ReduceStore {
-  reduce(state, action) {
-    switch (action.type) {
-      case "realTime":
-        return action.params;
-      default:
-        return [];
-    }
+const [store, realTimeDispatch] = ImmutableStore((state, action) => {
+  switch (action.type) {
+    case "realTime":
+      return action.params;
+    default:
+      return [];
   }
-}
+});
 
-export default new RealTimeStore(dispatcher);
+export default store;
+export { realTimeDispatch };

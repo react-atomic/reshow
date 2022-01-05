@@ -1,26 +1,41 @@
-import { ReduceStore } from "reshow-flux";
-import dispatcher from "../dispatcher";
+import { ImmutableStore, mergeMap } from "reshow-flux";
+import { KEYS } from "reshow-constant";
+import { realTimeDispatch } from "./realTimeStore";
+import { messageDispatch } from "./messageStore";
+import { sessionDispatch } from "./sessionStorageStore";
+import { localDispatch } from "./localStorageStore";
 
-const keys = Object.keys;
-
-class PageStore extends ReduceStore {
-  reduce(state, action) {
-    switch (action.type) {
-      case "config/set":
-        return state.merge(action.params);
-      case "config/reset":
-        return state.clear().merge(action.params);
-      case "realTime":
+const [store, dispatch] = ImmutableStore((state, action) => {
+  switch (action.type) {
+    case "dialog/start":
+    case "dialog/end":
+    case "alert/reset":
+    case "alert/del":
+    case "alert/add":
+      messageDispatch(action);
+      return state;
+    case "realTime":
+      realTimeDispatch(action);
+      return state;
+    case "local":
+      localDispatch(action);
+      return state;
+    case "session":
+      sessionDispatch(action);
+      return state;
+    case "config/set":
+      return mergeMap(state, action.params);
+    case "config/reset":
+      return mergeMap(state.clear(), action.params);
+      return state.clear().merge(action.params);
+    default:
+      if (KEYS(action)) {
+        return mergeMap(state, action);
+      } else {
         return state;
-      default:
-        if (keys(action)) {
-          return state.merge(action);
-        } else {
-          return state;
-        }
-    }
+      }
   }
-}
+});
 
-// Export a singleton instance of the store
-export default new PageStore(dispatcher);
+export default store;
+export { dispatch };

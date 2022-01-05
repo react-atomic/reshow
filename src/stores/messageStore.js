@@ -1,10 +1,8 @@
-import { ReduceStore } from "reshow-flux";
+import { ImmutableStore } from "reshow-flux";
 import { Map, List } from "immutable";
 import get from "get-object-value";
 import callfunc from "call-func";
 import { T_NULL, IS_ARRAY, KEYS } from "reshow-constant";
-
-import dispatcher, { dispatch } from "../dispatcher";
 
 let alertCount = 0;
 
@@ -21,7 +19,7 @@ const toMessage = (message) => {
 
 const getMessage = (action) => toMessage(get(action, ["params", "message"]));
 
-class MessageStore extends ReduceStore {
+class MessageStore {
   dialogCallback = T_NULL;
   alertMap = {};
 
@@ -89,24 +87,25 @@ class MessageStore extends ReduceStore {
     this.alertMap[message.id] = message;
     return state.set("alerts", this.getAlertList());
   }
-
-  reduce(state, action) {
-    switch (action.type) {
-      case "dialog/start":
-        return this.dialogStart(state, action);
-      case "dialog/end":
-        return this.dialogEnd(state, action);
-      case "alert/reset":
-        return this.alertReset(state, action);
-      case "alert/del":
-        return this.alertDel(state, action);
-      case "alert/add":
-        return this.alertAdd(state, action);
-      default:
-        return state;
-    }
-  }
 }
 
-// Export a singleton instance of the store
-export default new MessageStore(dispatcher);
+const [store, messageDispatch] = ImmutableStore((state, action) => {
+  const oMess = new MessageStore();
+  switch (action.type) {
+    case "dialog/start":
+      return oMess.dialogStart(state, action);
+    case "dialog/end":
+      return oMess.dialogEnd(state, action);
+    case "alert/reset":
+      return oMess.alertReset(state, action);
+    case "alert/del":
+      return oMess.alertDel(state, action);
+    case "alert/add":
+      return oMess.alertAdd(state, action);
+    default:
+      return state;
+  }
+});
+
+export default store;
+export { messageDispatch };

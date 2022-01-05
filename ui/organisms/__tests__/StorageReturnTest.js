@@ -8,9 +8,8 @@ import {
   Return,
   localStorageStore,
   sessionStorageStore,
-  storageDispatch,
+  dispatch,
 } from "../../../src/index";
-
 
 class TestEl extends PureComponent {
   show = 0;
@@ -44,7 +43,7 @@ describe("Test Storage Return", () => {
     const vDom = <FakeComponent storage={localStorageStore} />;
     const uFake = mount(vDom).instance();
     const uString = "test123";
-    storageDispatch("local", { data: uString });
+    dispatch("local", { data: uString });
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal(uString);
       done();
@@ -55,7 +54,7 @@ describe("Test Storage Return", () => {
     const vDom = <FakeComponent storage={sessionStorageStore} />;
     const uFake = mount(vDom).instance();
     const uString = "test456";
-    storageDispatch("session", { data: uString });
+    dispatch("session", { data: uString });
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal(uString);
       done();

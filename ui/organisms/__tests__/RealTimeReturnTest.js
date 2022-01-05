@@ -6,7 +6,7 @@ import { mount, cleanIt } from "reshow-unit";
 
 class TestEl extends PureComponent {
   render() {
-    const props = {...this.props};
+    const props = { ...this.props };
     delete props["--realTimeUrl--"];
     return <div {...props} />;
   }
@@ -56,7 +56,7 @@ describe("Test RealTimeReturn", () => {
       expect(uFake.el.props.data).to.equal("bar");
       dispatch({ data: "foo" });
       setTimeout(() => {
-        expect(uFake.el.props.data).to.equal("foo");
+        expect(uFake.el.props.data).to.equal("bar");
         done();
       }, 5);
     }, 5);
@@ -68,7 +68,7 @@ describe("Test RealTimeReturn", () => {
     dispatch({ type: "realTime", params: { r: { data: "bar" } } });
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal("bar");
-      dispatch({ data: "foo" });
+      dispatch("realTime");
       setTimeout(() => {
         expect(uFake.el.props.data).to.be.null;
         done();
