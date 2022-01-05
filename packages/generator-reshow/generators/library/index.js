@@ -63,7 +63,7 @@ module.exports = class extends YoGenerator {
   }
 
   end() {
-    if (!this.options?.skipInstall) {
+    if (!this.options.skipInstall) {
       const { say, onExit } = YoHelper(this);
       onExit(() => say('Next you could try "npm run build" or "npm run test"'));
     }
