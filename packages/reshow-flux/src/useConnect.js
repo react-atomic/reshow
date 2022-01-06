@@ -4,7 +4,7 @@ import { useMounted } from "reshow-hooks";
 import { T_TRUE, T_FALSE } from "reshow-constant";
 import { CHANGE } from "reshow-flux-base";
 
-import getStores from "./getStores";
+import getStore from "./getStore";
 
 const handleShouldComponentUpdate = ({
   options,
@@ -33,7 +33,6 @@ const useConnect =
       calculateState,
       shouldComponentUpdate,
       displayName = "useConnect",
-      immutable,
     } = options;
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
@@ -45,7 +44,7 @@ const useConnect =
 
     useEffect(
       () => {
-        const { allProps, firstStore } = getStores({ options, props });
+        const { store } = getStore({ options, props });
         const handleChange = () => {
           if (T_FALSE !== isMount()) {
             setData((prev) =>
@@ -62,12 +61,12 @@ const useConnect =
         if (!data.__init__ || data.props !== props) {
           handleChange();
         }
-        firstStore.addListener(handleChange, CHANGE);
+        store.addListener(handleChange, CHANGE);
         return () => {
-          firstStore.removeListener(handleChange, CHANGE);
+          store.removeListener(handleChange, CHANGE);
         };
       },
-      immutable ? [] : [props]
+      props.changeable ? [props] : []
     );
 
     return data.state || {};

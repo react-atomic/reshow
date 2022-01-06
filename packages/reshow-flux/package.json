@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.15.1",
+  "version": "0.15.3",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -17,10 +17,10 @@
     "array.merge": "*",
     "get-object-value": "*",
     "immutable": "^3.x",
-    "reshow-build": "^0.15.0",
-    "reshow-constant": "^0.15.0",
-    "reshow-flux-base": "^0.15.0",
-    "reshow-hooks": "^0.15.0",
+    "reshow-build": "*",
+    "reshow-constant": "*",
+    "reshow-flux-base": "*",
+    "reshow-hooks": "*",
     "reshow-runtime": "*",
     "setimmediate": "*"
   },

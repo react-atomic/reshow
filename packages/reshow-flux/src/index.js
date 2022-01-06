@@ -7,5 +7,5 @@ export {
   getMap,
   mergeMap,
 } from "./ImmutableStore";
-export { default as getStores } from "./getStores";
+export { default as getStore } from "./getStore";
 export { Dispatcher } from "reshow-flux-base";

@@ -57,7 +57,6 @@ describe("Test Connect hook for more test", () => {
           calculateTimes++;
           return { aaa: state.aaa };
         },
-        getStores: (props) => [store],
       })(props);
       return <div>{state.aaa}</div>;
     };
@@ -113,7 +112,7 @@ describe("Test Connect hook for more test", () => {
         if (this.state && this.state.foo) {
           foo = this.state.foo;
         }
-        return <FakeComponent foo={foo} />;
+        return <FakeComponent foo={foo} changeable />;
       }
     }
     const wrap = mount(<Parent />);
