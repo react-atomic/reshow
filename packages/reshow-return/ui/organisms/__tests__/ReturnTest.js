@@ -33,7 +33,7 @@ describe("Test Return", () => {
 
   class FakeComponent extends PureComponent {
     state = {
-      stores: [pageStore],
+      store: pageStore,
       initStates: ["data"],
       pathStates: { I13N: ["data", "I13N"] },
     };
@@ -43,10 +43,11 @@ describe("Test Return", () => {
     }
 
     render() {
-      const { stores, initStates, pathStates, ...otherState } = this.state;
+      const { store, initStates, pathStates, ...otherState } = this.state;
       return (
         <Return
-          stores={stores}
+          changeable
+          store={store}
           initStates={initStates}
           pathStates={pathStates}
           {...this.props}
@@ -120,7 +121,7 @@ describe("Test Return", () => {
   it("test child with function", (done) => {
     let i = 0;
     const vDom = (
-      <Return stores={[pageStore]} initStates={["data"]}>
+      <Return store={pageStore} initStates={["data"]}>
         {(props) => {
           if (i && props.data) {
             expect(props).to.deep.equal({ data: "foo" });

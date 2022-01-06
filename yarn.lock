@@ -3413,9 +3413,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.33"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.33.tgz#1fe18961becb51c7db8ec739c655ef1b93d9349e"
-  integrity sha512-OVK1Ad3pHnmuXPhEfq85X8vUKr1UPNHryBnbKnyLcAfh8dPwoFjoDhDlP5KpPJIiymvSucZs48UBrE1250IxOw==
+  version "1.4.36"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.36.tgz#446c6184dbe5baeb5eae9a875490831e4bc5319a"
+  integrity sha512-MbLlbF39vKrXWlFEFpCgDHwdlz4O3LmHM5W4tiLRHjSmEUXjJjz8sZkMgWgvYxlZw3N1iDTmCEtOkkESb5TMCg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4369,9 +4369,9 @@ globby@^11.0.2:
     slash "^3.0.0"
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.2, graceful-fs@^4.2.3:
-  version "4.2.8"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
-  integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
+  version "4.2.9"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
+  integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
 growl@1.10.5:
   version "1.10.5"
@@ -4602,9 +4602,9 @@ import-fresh@^3.0.0, import-fresh@^3.2.1:
     resolve-from "^4.0.0"
 
 import-local@^3.0.2:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/import-local/-/import-local-3.0.3.tgz#4d51c2c495ca9393da259ec66b62e022920211e0"
-  integrity sha512-bE9iaUY3CXH8Cwfan/abDKAxe1KGT9kyGsBPqf6DMK/z0a2OzAsrukeYNgIH6cH5Xr452jb1TUL8rSfCLjZ9uA==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/import-local/-/import-local-3.1.0.tgz#b4479df8a5fd44f6cdce24070675676063c95cb4"
+  integrity sha512-ASB07uLtnDs1o6EHjKpX34BKYDSqnFerfTOJL2HvMqF70LnxpjkzDB8J44oT9pu4AMPkQwf8jl6szgvNd2tRIg==
   dependencies:
     pkg-dir "^4.2.0"
     resolve-cwd "^3.0.0"
@@ -4752,9 +4752,9 @@ is-ci@^2.0.0:
     ci-info "^2.0.0"
 
 is-core-module@^2.1.0, is-core-module@^2.5.0, is-core-module@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.8.0.tgz#0321336c3d0925e497fd97f5d95cb114a5ccd548"
-  integrity sha512-vd15qHsaqrRL7dtH6QNuy0ndJmRDrS9HAM1CAiSifNUFv4x1a0CCVsj18hJ1mShxIG6T2i1sO78MkP56r0nYRw==
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.8.1.tgz#f59fdfca701d5879d0a6b100a40aa1560ce27211"
+  integrity sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==
   dependencies:
     has "^1.0.3"
 
@@ -6711,9 +6711,9 @@ prop-types-exact@^1.2.0:
     reflect.ownkeys "^0.2.0"
 
 prop-types@*, prop-types@^15.6.2, prop-types@^15.7.2:
-  version "15.8.0"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.0.tgz#d237e624c45a9846e469f5f31117f970017ff588"
-  integrity sha512-fDGekdaHh65eI3lMi5OnErU6a8Ighg2KjcjQxO7m8VHyWjcPyj5kiOgV1LQDOOOgVy3+5FgjXvdSSX7B8/5/4g==
+  version "15.8.1"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
+  integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
   dependencies:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
@@ -7149,32 +7149,32 @@ reshow-constant@*, reshow-constant@^0.15.0:
   resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.15.0.tgz#9682b5fae47f424e37c1cde8a054472071d72c1b"
   integrity sha512-UxXIt88+ld5EVKsCy8pyT7JkqM1GTbi/JtEVrtLk9CoreW8VijbG4q/RNDpUfFK5FTOO0UQhXPYpodUH0vGEZQ==
 
-reshow-flux-base@^0.15.0:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.1.tgz#aa4fbe161ee622625b8b417bd5325e1439b6a155"
-  integrity sha512-IvHf5OrZCFTZtPt8UQoPc0gVR1uwjwX9aq+zESMMv3G/0o6U6lGvOmfpvIBzUigqMnw8aBKZcRf/dY7CkfJB/A==
+reshow-flux-base@*:
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.5.tgz#159a11ee85817cee54d8eb3e8095e7d8aa113424"
+  integrity sha512-Rb8Qs0OCaRw4TqvRB6sylYUEW09mQqdNPIi5Nk/4hy8jqMf7J05Y7k9lP02jEnxKdhFLnBJPRnD90rj2EEg3aA==
   dependencies:
     call-func "*"
     reshow-constant "^0.15.0"
     reshow-runtime "*"
 
 reshow-flux@*, reshow-flux@^0.15.0:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.15.1.tgz#668d6f56c6321ff9fcad667956ec2f750bd51051"
-  integrity sha512-/viPz+iw14LOhlghYDmMhYqqVjxXSvQGzMvBhs74sto3YjOKlG2PZ78t/8jab/zqFGYrYLKrugYuuxkvdXk4mw==
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.15.5.tgz#8f96d67d159f9fb2f18ca785b05ab88916802eb2"
+  integrity sha512-tXtO0Ur13udPmDdQnhhyjMGxhwexNxRTw9T9uySAhZeJIUxUmhf4SrqMpIyDYocioGuDxPhG3aXxSjjmAaoIwA==
   dependencies:
     array.dedup "*"
     array.merge "*"
     get-object-value "*"
     immutable "^3.x"
-    reshow-build "^0.15.0"
-    reshow-constant "^0.15.0"
-    reshow-flux-base "^0.15.0"
-    reshow-hooks "^0.15.0"
+    reshow-build "*"
+    reshow-constant "*"
+    reshow-flux-base "*"
+    reshow-hooks "*"
     reshow-runtime "*"
     setimmediate "*"
 
-reshow-hooks@^0.15.0:
+reshow-hooks@*:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.15.0.tgz#b50d9ff750ddb41bbd5b8476a3a4aa04e20d0143"
   integrity sha512-TOKcSp3GBYsprHcepAZYbhljJJmr3fOj7oKf3n72kArVKz0j37UTkfLycXRFR9Ap14esSgtqen98nTdYsvsg2Q==
@@ -7182,9 +7182,9 @@ reshow-hooks@^0.15.0:
     call-func "*"
 
 reshow-return@*:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.15.0.tgz#200b3966c42639ff4416923457bc542637a8e196"
-  integrity sha512-O/3FqevnQrHQcKQzrW9deroahCgJayt9u3UzAbFAPMQwTJnj3zEJ0xBJ8i4cnu9WFD3s6XoBu3oR/YDR7iRBSw==
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.15.1.tgz#593900a922703f49e26a2462a6af3ac3bbbbef23"
+  integrity sha512-ER5yJUHRVtw6v1zck8HT/+HQpV5yhLgT//rPjRPm3CFYZ9fPOyJYyguzBM3MdJf7YjGvgcB4Wr+myLom3HB4ZQ==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -7888,9 +7888,9 @@ table@^5.2.3:
     string-width "^3.0.0"
 
 table@^6.0.9:
-  version "6.7.5"
-  resolved "https://registry.yarnpkg.com/table/-/table-6.7.5.tgz#f04478c351ef3d8c7904f0e8be90a1b62417d238"
-  integrity sha512-LFNeryOqiQHqCVKzhkymKwt6ozeRhlm8IL1mE8rNUurkir4heF6PzMyRgaTa4tlyPTGGgXuvVOF/OLWiH09Lqw==
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/table/-/table-6.8.0.tgz#87e28f14fa4321c3377ba286f07b79b281a3b3ca"
+  integrity sha512-s/fitrbVeEyHKFa7mFdkuQMWlH1Wgw/yEXMt5xACT4ZpzWFluehAxRtUUQKPuWhaLAWhFcVx6w3oC8VKaUfPGA==
   dependencies:
     ajv "^8.0.1"
     lodash.truncate "^4.4.2"

@@ -15,18 +15,24 @@ const emitter = () => {
   };
 };
 
+const refineAction = (action = {}, params) => {
+  if (action.trim) {
+    action = { type: action };
+    params && (action.params = params);
+  }
+  return action;
+};
+
 const createReducer = (reduce, initState = {}) => {
   const state = { current: callfunc(initState) };
   const mitt = emitter();
-  const dispatch = (action = {}, params) => {
-    if (action.trim) {
-      action = { type: action };
-      params && (action.params = params);
-    }
+  const dispatch = (...action) => {
+    action = refineAction(...action);
     const startingState = state.current;
     const endingState = reduce(startingState, action);
     if (endingState === T_UNDEFINED) {
-      console.error(`reduce() return ${UNDEFINED}.`);
+      console.trace();
+      throw `reduce() return ${UNDEFINED}.`;
     }
     if (startingState !== endingState) {
       state.current = endingState;
@@ -42,3 +48,4 @@ const createReducer = (reduce, initState = {}) => {
 };
 
 export default createReducer;
+export { refineAction };

@@ -1,9 +1,12 @@
 // Stores
-export { default as pageStore, dispatch } from "./stores/pageStore";
+export { default as pageStore } from "./stores/pageStore";
 export { default as realTimeStore } from "./stores/realTimeStore";
 export { default as localStorageStore } from "./stores/localStorageStore";
 export { default as sessionStorageStore } from "./stores/sessionStorageStore";
 export { default as messageStore } from "./stores/messageStore";
+
+// dispatch
+export { default as dispatch } from "./dispatch";
 
 // Ajax
 export { AjaxLink as ReLink, AjaxForm as ReForm } from "organism-react-ajax";

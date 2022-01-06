@@ -8,7 +8,7 @@ import Return, { toJS } from "reshow-return";
 import updateCanonicalUrl, {
   initCanonicalUrl,
 } from "../../src/updateCanonicalUrl";
-import { dispatch } from "../../src/dispatcher";
+import dispatch from "../../src/dispatch";
 import { globalStore } from "../../src/stores/globalStore";
 import pageStore from "../../src/stores/pageStore";
 

@@ -37,8 +37,10 @@ describe("Test calculateState", () => {
         initStates: ["foo"],
         pathStates: { bar: ["foo", "bar"] },
         immutable: true,
+      },
+      {
         storeLocator: () => pageStore,
-      }
+      },
     );
     expect(actual.bar instanceof Map).to.be.true;
   });
@@ -49,6 +51,8 @@ describe("Test calculateState", () => {
       {
         pathStates: { bar: ["foo", "bar"] },
         immutable: true,
+      },
+      {
         storeLocator: () => pageStore,
       }
     );
@@ -61,6 +65,8 @@ describe("Test calculateState", () => {
       {
         initStates: ["foo"],
         pathStates: { bar: ["foo", "bar"] },
+      },
+      {
         storeLocator: () => pageStore,
       }
     );

@@ -1,6 +1,6 @@
 import get from "get-object-value";
 import callfunc from "call-func";
-import { getStores } from "reshow-flux";
+import { getStore } from "reshow-flux";
 
 import toJS from "./toJS";
 
@@ -16,6 +16,7 @@ const reset = (props, more) => {
     "immutable",
     "initStates",
     "pathStates",
+    "store",
     "stores",
     "storeLocator",
     ...(more || []),
@@ -29,13 +30,9 @@ const calculateState = (prevState, props, options) => {
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const { firstStore, allProps } = getStores({ props, options });
-
-  if (!firstStore) {
-    throw "Store not found, Please check storeLocator function.";
-  }
+  const { store, allProps } = getStore({ props, options });
   const { initStates, pathStates, immutable: propsImmutable } = allProps;
-  const storeState = firstStore.getState();
+  const storeState = store.getState();
   const immutable = propsImmutable || storeState.get("immutable");
   const results = {};
   if (immutable) {

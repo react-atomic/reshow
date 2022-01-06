@@ -1,6 +1,6 @@
 import React from "react";
 import get from "get-object-value";
-import { useConnect, getStores } from "reshow-flux";
+import { useConnect, getStore } from "reshow-flux";
 import { build } from "react-atomic-molecule";
 import { getReturn } from "reshow-return";
 
@@ -12,13 +12,13 @@ const REAL_TIME_URL = "--realTimeUrl--";
 const keys = Object.keys;
 
 const calculateState = (prevState, props, options) => {
-  const { firstStore, allProps } = getStores({ props, options });
-  const realTimeState = firstStore.getState();
+  const { store, allProps } = getStore({ props, options });
+
+  const realTimeState = store.getState();
   const {
     realTimePath: path,
     realTimeUrl: url,
     realTimeReset,
-    storeLocator,
   } = allProps;
   const data = get(realTimeState, path);
   const wsUrl = get(realTimeState, [REAL_TIME_URL]);
@@ -36,7 +36,7 @@ const calculateState = (prevState, props, options) => {
   }
 };
 
-const storeLocator = (props) => props.stores || [realTimeStore];
+const storeLocator = (props) => props.store || realTimeStore;
 
 const myConnectOptions = {
   ...connectOptions,
