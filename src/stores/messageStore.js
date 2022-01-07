@@ -3,6 +3,7 @@ import { Map, List } from "immutable";
 import get from "get-object-value";
 import callfunc from "call-func";
 import { T_NULL, IS_ARRAY, KEYS } from "reshow-constant";
+import { pageDispatch } from "./pageStore";
 
 let alertCount = 0;
 
@@ -50,7 +51,7 @@ class MessageStore {
     }
     const value = get(action, ["params", "item", "props", "value"]);
     if (value != T_NULL) {
-      dispatch({
+      pageDispatch({
         [dialogTo]: value,
       });
     }
@@ -89,8 +90,8 @@ class MessageStore {
   }
 }
 
+const oMess = new MessageStore();
 const [store, messageDispatch] = ImmutableStore((state, action) => {
-  const oMess = new MessageStore();
   switch (action.type) {
     case "dialog/start":
       return oMess.dialogStart(state, action);

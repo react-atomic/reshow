@@ -4,7 +4,6 @@ export {
   default as ImmutableStore,
   Map,
   Set,
-  getMap,
   mergeMap,
 } from "./ImmutableStore";
 export { default as getStore } from "./getStore";
