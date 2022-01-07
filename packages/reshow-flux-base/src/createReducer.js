@@ -5,12 +5,13 @@ const emitter = () => {
   const pool = [];
   return {
     reset: () => pool.splice(0, pool.length),
-    add: (handler) => pool.push(handler),
+    add: (handler) => pool.unshift(handler),
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     emit: (state, action) =>
       setTimeout(() => {
-        for (let i = 0, j = pool.length; i < j; i++) {
-          pool[i](state, action);
+        let i = pool.length;
+        while (i--) {
+          pool[i] && pool[i](state, action);
         }
       }),
   };
