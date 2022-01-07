@@ -2,8 +2,8 @@ import { Map, Set, fromJS } from "immutable";
 import { toJS } from "get-object-value";
 import { createReducer } from "reshow-flux-base";
 
-const ImmutableStore = (reduce) => {
-  const [store, dispatch] = createReducer(reduce, Map());
+const ImmutableStore = (reduce, initState = Map()) => {
+  const [store, dispatch] = createReducer(reduce, initState);
   store.getMap = (k) => getMap(store.getState(), k);
   return [store, dispatch];
 };
