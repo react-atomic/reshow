@@ -13,10 +13,10 @@ const themes = {
 };
 
 const Index = (props) => (
-  <Return initStates={["tplProps"]}>
-    {({ tplProps }) => {
+  <Return initStates={["tplProps", "pageName"]}>
+    {({ tplProps, pageName }) => {
       return (
-        <Doc {...tplProps}>
+        <Doc {...tplProps} className={pageName}>
           <ClientRoute {...props} themes={themes} defaultThemePath="Page1" />
           <PageLoadProgressHandler ajax={true} />
           <ReshowMessage />
