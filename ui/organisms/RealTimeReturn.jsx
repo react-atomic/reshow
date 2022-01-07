@@ -15,11 +15,7 @@ const calculateState = (prevState, props, options) => {
   const { store, allProps } = getStore({ props, options });
 
   const realTimeState = store.getState();
-  const {
-    realTimePath: path,
-    realTimeUrl: url,
-    realTimeReset,
-  } = allProps;
+  const { realTimePath: path, realTimeUrl: url, realTimeReset } = allProps;
   const data = get(realTimeState, path);
   const wsUrl = get(realTimeState, [REAL_TIME_URL]);
   if (data && (!url || url === wsUrl)) {

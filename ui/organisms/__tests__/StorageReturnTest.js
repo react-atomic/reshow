@@ -23,7 +23,7 @@ class FakeComponent extends PureComponent {
   render() {
     const { storage } = this.props;
     return (
-      <Return stores={[storage]}>
+      <Return store={storage}>
         <TestEl ref={(el) => (this.el = el)} />
       </Return>
     );

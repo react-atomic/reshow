@@ -40,7 +40,7 @@ describe("Test calculateState", () => {
       },
       {
         storeLocator: () => pageStore,
-      },
+      }
     );
     expect(actual.bar instanceof Map).to.be.true;
   });

@@ -71,7 +71,7 @@ const Body = (props) => {
 
 const ReshowMessage = memo((props) => (
   <Return
-    stores={[messageStore]}
+    store={messageStore}
     initStates={["alerts", "alertProps", "dialog", "dialogProps"]}
   >
     <Body {...props} />
