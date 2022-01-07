@@ -1,5 +1,4 @@
 import { ImmutableStore } from "reshow-flux";
-import { Map, List } from "immutable";
 import get from "get-object-value";
 import callfunc from "call-func";
 import { T_NULL, IS_ARRAY, KEYS } from "reshow-constant";
