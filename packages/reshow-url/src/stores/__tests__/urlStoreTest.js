@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react";
 import { cleanIt, jsdom } from "reshow-unit";
 import { expect } from "chai";
-import { urlDispatch } from "../../urlDispatcher";
-import urlStore from "../urlStore";
+import urlStore, { urlDispatch } from "../urlStore";
 
 describe("Test set New Url", () => {
   beforeEach(() => {

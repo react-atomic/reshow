@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { urlStore, UrlReturn, urlDispatch } from "../../../src/index";
+import { urlStore, urlDispatch, UrlReturn } from "../../../src/index";
 
 import { expect } from "chai";
 import { mount, cleanIt, jsdom } from "reshow-unit";
@@ -42,7 +42,7 @@ describe("Test Url Return", () => {
       wrap.update();
       expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
       done();
-    }, 100);
+    }, 5);
   });
 
   it("test get query", (done) => {
@@ -52,7 +52,7 @@ describe("Test Url Return", () => {
     setTimeout(() => {
       expect(uFake.el.props["foo"]).to.equal("bar");
       done();
-    }, 100);
+    }, 5);
   });
 
   it("test trigger by history", (done) => {
@@ -65,6 +65,6 @@ describe("Test Url Return", () => {
     setTimeout(() => {
       expect(uFake.el.props[":pathname"]).to.deep.equal(["", "bbb"]);
       done();
-    }, 100);
+    }, 5);
   });
 });

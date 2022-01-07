@@ -4,6 +4,7 @@ import { UNDEFINED, T_UNDEFINED } from "reshow-constant";
 const emitter = () => {
   const pool = [];
   return {
+    reset: () => pool.splice(0, pool.length),
     add: (handler) => pool.push(handler),
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     emit: (state, action) =>
@@ -40,6 +41,10 @@ const createReducer = (reduce, initState = {}) => {
     }
   };
   const store = {
+    reset: () => {
+      mitt.reset();
+      return callfunc(initState);
+    },
     getState: () => state.current,
     addListener: mitt.add,
     removeListener: mitt.remove,

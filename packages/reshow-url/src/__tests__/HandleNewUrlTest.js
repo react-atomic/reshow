@@ -8,10 +8,6 @@ import urlStore from "../stores/urlStore";
 
 describe("Test Handle New Url", () => {
   let wrap;
-  after(() => {
-    ajaxDispatch({ onUrlChange: null });
-    cleanIt();
-  });
   class FakeComponent extends PureComponent {
     render() {
       return (
@@ -24,6 +20,10 @@ describe("Test Handle New Url", () => {
       );
     }
   }
+  after(() => {
+    ajaxDispatch({ onUrlChange: null });
+    cleanIt();
+  });
 
   it("test history back", (done) => {
     const myUpdate = () => {

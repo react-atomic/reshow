@@ -1,9 +1,7 @@
-export { default as urlStore } from "./stores/urlStore";
-export { urlDispatch } from "./urlDispatcher";
+export { default as urlStore, urlDispatch } from "./stores/urlStore";
 
 // component
 export { default as UrlReturn } from "../ui/organisms/UrlReturn";
-
 // Router
 export { default as ClientRoute } from "../ui/organisms/ClientRoute";
 

@@ -1,12 +1,10 @@
-import { ReduceStore } from "reshow-flux";
-import urlDispatcher, { urlDispatch } from "../urlDispatcher";
+import { createReducer } from "reshow-flux-base";
+import { KEYS } from "reshow-constant";
+import { ajaxDispatch, ajaxStore } from "organism-react-ajax";
 import get from "get-object-value";
 import setUrl, { getUrl, unsetUrl } from "seturl";
 import { win, doc } from "win-doc";
-import { ajaxDispatch, ajaxStore } from "organism-react-ajax";
 import arrayDedup from "array.dedup";
-
-const keys = Object.keys;
 
 /**
  * Calling history.pushState() or history.replaceState() won't trigger a popstate event.
@@ -46,43 +44,35 @@ class URL {
   }
 }
 
-class UrlStore extends ReduceStore {
-  getInitialState() {
-    let loc = {};
-    this.group = null;
-    this.groupUrlKeys = null;
+const onUrlChange = () => {
+  urlDispatch({ type: "url", url: doc().URL });
+  ajaxDispatch(urlChange);
+};
+
+const registerEvent = (oWin) => {
+  if (oWin && oWin.addEventListener) {
+    oWin.addEventListener("popstate", onUrlChange, true);
+    ajaxStore.urlDispatch = urlDispatch;
+  }
+};
+
+const handleUrl = () => {
+  const Group = {};
+
+  const init = () => {
+    Group.name = null;
+    Group.urlKeys = null;
     setTimeout(() => {
       const oDoc = doc();
       if (oDoc.URL) {
         urlDispatch({ type: "url", url: oDoc.URL });
-        this.registerEvent(win());
+        registerEvent(win());
       }
     });
     return new URL({});
-  }
-
-  handleUrlChange = () => {
-    this.nextEmits.push(urlChange);
-    urlDispatch({ type: "url", url: doc().URL });
-    ajaxDispatch(urlChange);
   };
 
-  onUrlChange(cb) {
-    this.addListener(cb, urlChange);
-  }
-
-  offUrlChange(cb) {
-    this.removeListener(cb, urlChange);
-  }
-
-  registerEvent(oWin) {
-    if (oWin && oWin.addEventListener) {
-      oWin.addEventListener("popstate", this.handleUrlChange, true);
-      ajaxStore.urlDispatch = urlDispatch;
-    }
-  }
-
-  reduce(state, action) {
+  const reduce = (state, action) => {
     const oDoc = doc();
     if (!oDoc.URL) {
       return state;
@@ -99,26 +89,24 @@ class UrlStore extends ReduceStore {
         break;
       case "query":
         url = oDoc.URL;
-        const urlKeys = keys(params || []);
-        if (this.group !== group && this.groupUrlKeys) {
-          this.groupUrlKeys.forEach((key) => {
-            url = unsetUrl(key, url);
-          });
+        const urlKeys = KEYS(params || []);
+        if (Group.name !== group && Group.urlKeys) {
+          Group.urlKeys.forEach((key) => (url = unsetUrl(key, url)));
+          Group.urlKeys = null;
         }
         if (group) {
-          this.groupUrlKeys =
-            this.group === group
-              ? arrayDedup(this.groupUrlKeys.concat(urlKeys))
+          Group.urlKeys =
+            Group.name === group
+              ? arrayDedup(Group.urlKeys.concat(urlKeys))
               : urlKeys;
         }
-        this.group = group;
+        Group.name = group;
         urlKeys.forEach((key) => {
           urlV = get(params, [key]);
           url = urlV != null ? setUrl(key, urlV, url) : unsetUrl(key, url);
         });
         break;
     }
-
     if (url !== oDoc.URL) {
       updateUrl(url);
       return new URL(oDoc.location); // need put after updateUrl for new url effect
@@ -128,7 +116,14 @@ class UrlStore extends ReduceStore {
       }
       return state;
     }
-  }
-}
+  };
 
-export default new UrlStore(urlDispatcher);
+  return { init, reduce };
+};
+
+const oUrl = handleUrl();
+const [store, urlDispatch] = createReducer(oUrl.reduce, oUrl.init);
+store.registerEvent = registerEvent;
+
+export default store;
+export { urlDispatch };

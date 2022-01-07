@@ -113,7 +113,7 @@ class Reshow extends PureComponent {
 
     return (
       <Return
-        stores={[pageStore]}
+        store={pageStore}
         baseUrl={baseUrl}
         staticVersion={staticVersion}
         initStates={["baseUrl", "staticVersion", "webSocketUrl", "themePath"]}
