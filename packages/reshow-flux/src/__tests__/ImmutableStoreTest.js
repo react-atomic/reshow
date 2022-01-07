@@ -1,6 +1,6 @@
 import { expect } from "chai";
 
-import ImmutableStore, { Map, mergeMap, getMap } from "../ImmutableStore";
+import ImmutableStore, { Map, mergeMap } from "../ImmutableStore";
 
 describe("Test ImmutableStore", () => {
   const reducee = (state, action) => mergeMap(state, action);
@@ -18,7 +18,6 @@ describe("Test ImmutableStore", () => {
     const [store, dispatch] = ImmutableStore(reducee);
     const action = { aaa: { bbb: "ccc" } };
     dispatch(action);
-    const state = store.getState();
-    expect(getMap(state, "aaa")).to.deep.equal({ bbb: "ccc" });
+    expect(store.getMap("aaa")).to.deep.equal({ bbb: "ccc" });
   });
 });

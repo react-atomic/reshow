@@ -3413,9 +3413,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.36"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.36.tgz#446c6184dbe5baeb5eae9a875490831e4bc5319a"
-  integrity sha512-MbLlbF39vKrXWlFEFpCgDHwdlz4O3LmHM5W4tiLRHjSmEUXjJjz8sZkMgWgvYxlZw3N1iDTmCEtOkkESb5TMCg==
+  version "1.4.37"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.37.tgz#eedd53cad229ae2d1632b958a92a3d7d7b27f553"
+  integrity sha512-XIvFB1omSAxYgHYX48sC+HR8i/p7lx7R+0cX9faElg1g++h9IilCrJ12+bQuY+d96Wp7zkBiJwMOv+AhLtLrTg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4473,9 +4473,9 @@ hosted-git-info@^2.1.4:
   integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
 hosted-git-info@^4.0.0, hosted-git-info@^4.0.1:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-4.0.2.tgz#5e425507eede4fea846b7262f0838456c4209961"
-  integrity sha512-c9OGXbZ3guC/xOlCg1Ci/VgWlwsqDv1yMQL1CWqXDL0hDjXuNcq0zuR4xqPSuasI3kqFDhqSyTjREz5gzq0fXg==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-4.1.0.tgz#827b82867e9ff1c8d0c4d9d53880397d2c86d224"
+  integrity sha512-kyCuEOWjJqZuDbRHzL8V93NzQhwIB71oFWSyzVo+KPZI+pnQPPxucdkrOZvkLRnrf5URsQM+IJ09Dw29cRALIA==
   dependencies:
     lru-cache "^6.0.0"
 
@@ -7150,18 +7150,18 @@ reshow-constant@*, reshow-constant@^0.15.0:
   integrity sha512-UxXIt88+ld5EVKsCy8pyT7JkqM1GTbi/JtEVrtLk9CoreW8VijbG4q/RNDpUfFK5FTOO0UQhXPYpodUH0vGEZQ==
 
 reshow-flux-base@*:
-  version "0.15.5"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.5.tgz#159a11ee85817cee54d8eb3e8095e7d8aa113424"
-  integrity sha512-Rb8Qs0OCaRw4TqvRB6sylYUEW09mQqdNPIi5Nk/4hy8jqMf7J05Y7k9lP02jEnxKdhFLnBJPRnD90rj2EEg3aA==
+  version "0.15.6"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.6.tgz#a9d4facb065373ffb94a87c177a2550e36310187"
+  integrity sha512-tpuyBSe8OtEEp7nplP1F4zD6wRY8KPvaUmcytWEydnBALZAwKpa8CgSKJtBb/b5gCS37eigQ63JUHWADslbGmA==
   dependencies:
     call-func "*"
     reshow-constant "^0.15.0"
     reshow-runtime "*"
 
 reshow-flux@*, reshow-flux@^0.15.0:
-  version "0.15.5"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.15.5.tgz#8f96d67d159f9fb2f18ca785b05ab88916802eb2"
-  integrity sha512-tXtO0Ur13udPmDdQnhhyjMGxhwexNxRTw9T9uySAhZeJIUxUmhf4SrqMpIyDYocioGuDxPhG3aXxSjjmAaoIwA==
+  version "0.15.7"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.15.7.tgz#b1c03452ea7262f7e9a27c6ea3a5e5276f332e3e"
+  integrity sha512-TBdX2+jAiD41I0DrD75YSHOecWbClYix5viXnjF3dY/wRhJw3S81IBIn+7Ra95qzlE9U9ci79DkGCmMlMffuyQ==
   dependencies:
     array.dedup "*"
     array.merge "*"

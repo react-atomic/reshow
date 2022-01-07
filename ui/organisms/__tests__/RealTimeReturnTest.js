@@ -54,9 +54,10 @@ describe("Test RealTimeReturn", () => {
     dispatch({ type: "realTime", params: { r: { data: "bar" } } });
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal("bar");
+      dispatch("realTime");
       dispatch({ data: "foo" });
       setTimeout(() => {
-        expect(uFake.el.props.data).to.equal("bar");
+        expect(uFake.el.props.data).to.equal("foo");
         done();
       }, 5);
     }, 5);
