@@ -1,7 +1,6 @@
 import { useState, useEffect, useDebugValue } from "react";
 import { useMounted } from "reshow-hooks";
 import { T_TRUE } from "reshow-constant";
-import { CHANGE } from "reshow-flux-base";
 
 import getStore from "./getStore";
 
@@ -60,9 +59,9 @@ const useConnect =
         if (!data.__init__ || data.props !== props) {
           handleChange();
         }
-        store.addListener(handleChange, CHANGE);
+        store.addListener(handleChange);
         return () => {
-          store.removeListener(handleChange, CHANGE);
+          store.removeListener(handleChange);
         };
       },
       props.changeable ? [props] : []

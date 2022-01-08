@@ -12,15 +12,18 @@ const getMapIn = (map, path) =>
 
 const reset = (props, more) => {
   const nextProps = { ...props };
-  [
+  const cleanKeys = [
     "immutable",
     "initStates",
     "pathStates",
     "store",
-    "stores",
     "storeLocator",
     ...(more || []),
-  ].forEach((key) => delete nextProps[key]);
+  ];
+  let i = cleanKeys.length;
+  while (i--) {
+    delete nextProps[cleanKeys[i]];
+  }
   return nextProps;
 };
 

@@ -1,7 +1,7 @@
 import callfunc from "call-func";
 import get from "get-object-value";
 
-const storeLocator = (props) => props?.store || get(props, ["stores", 0]);
+const storeLocator = (props) => props?.store;
 
 const getStore = ({ props, options }) => {
   const allProps = { ...options, ...props };
