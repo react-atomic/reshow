@@ -13,7 +13,7 @@ Reshow Flux with react hooks.
 ## Examples
 
 ### useConnect options
-https://github.com/react-atomic/reshow/blob/main/packages/reshow-return/src/returnOptions.js#L70-L73
+* https://github.com/react-atomic/reshow/blob/c07b511dd10da9559c5a7509206ef8db3b53af9d/packages/reshow-return/src/connectOptions.js#L13-L25
 
 ### calculateState
-https://github.com/react-atomic/reshow/blob/main/packages/reshow-return/src/returnOptions.js#L28-L68
+* https://github.com/react-atomic/reshow/blob/c07b511dd10da9559c5a7509206ef8db3b53af9d/packages/reshow-return/src/connectOptions.js#L27-L64
