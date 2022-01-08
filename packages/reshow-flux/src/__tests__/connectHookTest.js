@@ -6,7 +6,6 @@ import { createReducer } from "reshow-flux-base";
 import useConnect from "../useConnect";
 
 describe("Test Connect Hook", () => {
-
   let reducer;
   beforeEach(() => {
     reducer = createReducer((state, action) => action, {});
