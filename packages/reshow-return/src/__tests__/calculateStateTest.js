@@ -1,33 +1,26 @@
 import { expect } from "chai";
-import { Dispatcher, ReduceStore } from "reshow-flux";
-import { Map } from "immutable";
+import { ImmutableStore, Map, mergeMap } from "reshow-flux";
 
 import options from "../connectOptions";
-
 const { calculateState } = options;
 
-class PageStore extends ReduceStore {
-  reduce(state, action) {
-    switch (action.type) {
-      case "config/reset":
-        return state.clear().merge(action.params);
-      default:
-        if (Object.keys(action)) {
-          return state.merge(action);
-        } else {
-          return state;
-        }
-    }
-  }
-}
-
-const dispatcher = new Dispatcher();
-const pageStore = new PageStore(dispatcher);
-const dispatch = dispatcher.dispatch;
-
 describe("Test calculateState", () => {
+  let pageStore;
   beforeEach(() => {
+    const [store, dispatch] = ImmutableStore((state, action) => {
+      switch (action.type) {
+        case "config/reset":
+          return mergeMap(state.clear(), action.params);
+        default:
+          if (Object.keys(action)) {
+            return mergeMap(state, action);
+          } else {
+            return state;
+          }
+      }
+    });
     dispatch("config/reset", { foo: { bar: { foo1: "bar1" } } });
+    pageStore = store;
   });
 
   it("path data with immutable", () => {

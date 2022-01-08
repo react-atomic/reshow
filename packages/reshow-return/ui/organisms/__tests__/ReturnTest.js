@@ -1,28 +1,22 @@
 import React, { PureComponent } from "react";
-import { Dispatcher, ReduceStore } from "reshow-flux";
+import { ImmutableStore, mergeMap } from "reshow-flux";
 import { expect } from "chai";
 import { mount, cleanIt } from "reshow-unit";
 
 import Return from "../Return";
 
-class PageStore extends ReduceStore {
-  reduce(state, action) {
-    switch (action.type) {
-      case "config/reset":
-        return state.clear().merge(action.params);
-      default:
-        if (Object.keys(action)) {
-          return state.merge(action);
-        } else {
-          return state;
-        }
-    }
+const [pageStore, dispatch] = ImmutableStore((state, action) => {
+  switch (action.type) {
+    case "config/reset":
+      return mergeMap(state.clear(), action.params);
+    default:
+      if (Object.keys(action)) {
+        return mergeMap(state, action);
+      } else {
+        return state;
+      }
   }
-}
-
-const dispatcher = new Dispatcher();
-const pageStore = new PageStore(dispatcher);
-const dispatch = dispatcher.dispatch;
+});
 
 describe("Test Return", () => {
   class TestEl extends PureComponent {
