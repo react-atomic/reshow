@@ -1,12 +1,17 @@
 {
   "name": "reshow-flux-base",
-  "version": "0.15.8",
+  "version": "0.15.10",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
   "keywords": [
-    "flux"
+    "state",
+    "global-state",
+    "state-management",
+    "flux",
+    "reducer",
+    "reshow-flux"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
@@ -29,9 +34,5 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": [
-    "build",
-    "package.json",
-    "README.md"
-  ]
+  "files": ["build", "package.json", "README.md"]
 }

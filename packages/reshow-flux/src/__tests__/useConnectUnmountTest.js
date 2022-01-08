@@ -3,30 +3,14 @@ import React, { PureComponent } from "react";
 import { expect } from "chai";
 import { mount } from "reshow-unit";
 import sinon from "sinon";
-
+import { createReducer } from "reshow-flux-base";
 import useConnect from "../useConnect";
-import { Dispatcher, ReduceStore } from "../index";
 
 describe("useConnect Unmount Test", () => {
-  class FakeStore extends ReduceStore {
-    getInitialState() {
-      return {};
-    }
-
-    reduce(state, action) {
-      return action;
-    }
-  }
-
-  let dispatcher;
-  let dispatch;
-  let store;
   const sandbox = sinon.createSandbox();
-
+  let reducer;
   beforeEach(() => {
-    dispatcher = new Dispatcher();
-    dispatch = dispatcher.dispatch;
-    store = new FakeStore(dispatcher);
+    reducer = createReducer((state, action) => action, {});
   });
 
   afterEach(() => {
@@ -34,6 +18,7 @@ describe("useConnect Unmount Test", () => {
   });
 
   it("basic test", (done) => {
+    const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
         storeLocator: () => store,

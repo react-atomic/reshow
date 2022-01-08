@@ -1,30 +1,18 @@
 import React, { Component, StrictMode } from "react";
-import { Dispatcher } from "reshow-flux-base";
+import { createReducer } from "reshow-flux-base";
 import { expect } from "chai";
 import { mount } from "reshow-unit";
 
 import useConnect from "../useConnect";
-import ReduceStore from "../ReduceStore";
 
 describe("Connect Hook (clean Props)", () => {
-  class FakeStore extends ReduceStore {
-    getInitialState() {
-      return {};
-    }
-
-    reduce(state, action) {
-      return action;
-    }
-  }
-  let dispatcher;
-  let dispatch;
-  let store;
+  let reducer;
   beforeEach(() => {
-    dispatcher = new Dispatcher();
-    dispatch = dispatcher.dispatch;
-    store = new FakeStore(dispatcher);
+    reducer = createReducer((state, action) => action, {});
   });
+
   it("test clean props", (done) => {
+    const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
         storeLocator: () => store,
@@ -53,7 +41,7 @@ describe("Connect Hook (clean Props)", () => {
       setTimeout(() => {
         expect(wrap.html()).to.equal('<div bar="c"></div>');
         done();
-      }, 1);
-    }, 1);
+      });
+    });
   });
 });

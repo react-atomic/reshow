@@ -1,12 +1,19 @@
 {
   "name": "reshow-flux",
-  "version": "0.15.10",
+  "version": "0.15.11",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "repository": "react-atomic/reshow",
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux",
   "keywords": [
+    "state",
+    "global-state",
+    "state-management",
+    "reducer",
+    "flux",
+    "reshow-flux",
+    "redux",
     "react",
     "reactjs"
   ],
@@ -43,7 +50,6 @@
   "files": [
     "build",
     "package.json",
-    "utils.js",
     "README.md"
   ]
 }

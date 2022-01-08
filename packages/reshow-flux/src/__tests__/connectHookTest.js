@@ -6,16 +6,14 @@ import { createReducer } from "reshow-flux-base";
 import useConnect from "../useConnect";
 
 describe("Test Connect Hook", () => {
-  let dispatch;
-  let store;
 
+  let reducer;
   beforeEach(() => {
-    const reducer = createReducer((state, action) => action, []);
-    store = reducer[0];
-    dispatch = reducer[1];
+    reducer = createReducer((state, action) => action, {});
   });
 
   it("basic test", (done) => {
+    const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
         storeLocator: () => store,
@@ -36,11 +34,12 @@ describe("Test Connect Hook", () => {
       setTimeout(() => {
         expect(wrap.html()).to.equal('<div class="222"></div>');
         done();
-      }, 5);
-    }, 5);
+      });
+    });
   });
 
   it("test Warnings for some updates during render", (done) => {
+    const [store, dispatch] = reducer;
     /**
      * https://fb.me/setstate-in-render
      * https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render
@@ -72,6 +71,6 @@ describe("Test Connect Hook", () => {
     setTimeout(() => {
       expect(wrap.html()).to.equal('<div class="bar"></div>');
       done();
-    }, 50);
+    });
   });
 });

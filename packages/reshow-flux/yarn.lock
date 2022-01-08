@@ -759,9 +759,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286:
-  version "1.0.30001296"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001296.tgz#d99f0f3bee66544800b93d261c4be55a35f1cec8"
-  integrity sha512-WfrtPEoNSoeATDlf4y3QvkwiELl9GyPLISV5GejTbbQRtQx4LhsXmc9IQ6XCL2d7UxCyEzToEZNMeqR79OUw8Q==
+  version "1.0.30001297"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001297.tgz#ea7776ccc4992956582cae5b8fea127fbebde430"
+  integrity sha512-6bbIbowYG8vFs/Lk4hU9jFt7NknGDleVAciK916tp6ft1j+D//ZwwL6LbF1wXMQ32DMSjeuUV8suhh6dlmFjcA==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -1178,9 +1178,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.36"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.36.tgz#446c6184dbe5baeb5eae9a875490831e4bc5319a"
-  integrity sha512-MbLlbF39vKrXWlFEFpCgDHwdlz4O3LmHM5W4tiLRHjSmEUXjJjz8sZkMgWgvYxlZw3N1iDTmCEtOkkESb5TMCg==
+  version "1.4.38"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.38.tgz#10ea58d73d36b13e78d5024f3b74a352d3958d01"
+  integrity sha512-WhHt3sZazKj0KK/UpgsbGQnUUoFeAHVishzHFExMxagpZgjiGYSC9S0ZlbhCfSH2L2i+2A1yyqOIliTctMx7KQ==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -3292,9 +3292,9 @@ reshow-constant@*, reshow-constant@^0.15.0:
   integrity sha512-UxXIt88+ld5EVKsCy8pyT7JkqM1GTbi/JtEVrtLk9CoreW8VijbG4q/RNDpUfFK5FTOO0UQhXPYpodUH0vGEZQ==
 
 reshow-flux-base@*:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.3.tgz#92a5201cad86ce7897424e264379241f71740fb5"
-  integrity sha512-pr6EzQ7kaUXVRk/xnCCIVgH1GsQnE3oiqUvN1xM4WdhB9ibfn4ukap8VTTliWD8qimrjT/seyF3fNJeYMg99QQ==
+  version "0.15.10"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.10.tgz#dc0bc2b77ca6d564b9a6adaff104323dde2be74b"
+  integrity sha512-BqgYSB076kLgPIhk7ook1UKDAYb5gDThJ2wPpU+1dBGGgV1D/3hxxpuz/wJSfKggkjho6phLd9hZfPxKExHCZg==
   dependencies:
     call-func "*"
     reshow-constant "^0.15.0"
@@ -3560,9 +3560,9 @@ sprintf-js@~1.0.2:
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
 sshpk@^1.7.0:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"
-  integrity sha512-HXXqVUq7+pcKeLqqZj6mHFUMvXtOJt1uoUx09pFW6011inTMxqI8BA8PM95myrIyyKwdnzjdFjLiE6KBPVtJIg==
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.17.0.tgz#578082d92d4fe612b13007496e543fa0fbcbe4c5"
+  integrity sha512-/9HIEs1ZXGhSPE8X6Ccm7Nam1z8KcoCqPdI7ecm1N33EzAetWahvQWVqLZtaZQ+IDKX4IyA2o0gBzqIMkAagHQ==
   dependencies:
     asn1 "~0.2.3"
     assert-plus "^1.0.0"

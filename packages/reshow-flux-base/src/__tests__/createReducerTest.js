@@ -3,26 +3,26 @@ import sinon from "sinon";
 import createReducer from "../createReducer";
 
 describe("Test createReducer", () => {
-  let reduce;
+  let reducer;
   beforeEach(() => {
-    reduce = createReducer((state, action) => action, []);
+    reducer = createReducer((state, action) => action, {});
   });
 
   it("basic test", () => {
-    const [store, dispatch] = reduce;
+    const [store, dispatch] = reducer;
     const action = { aaa: "bbb" };
     dispatch(action);
     expect(store.getState()).to.deep.equal(action);
   });
 
   it("dispatch empty", () => {
-    const [store, dispatch] = reduce;
+    const [store, dispatch] = reducer;
     dispatch();
     expect(store.getState()).to.be.empty;
   });
 
   it("Emit with custom event", (done) => {
-    const [store, dispatch] = reduce;
+    const [store, dispatch] = reducer;
     const callback = sinon.spy();
     store.addListener(callback);
     dispatch();
@@ -33,7 +33,7 @@ describe("Test createReducer", () => {
   });
 
   it("could support text dispatch", () => {
-    const [store, dispatch] = reduce;
+    const [store, dispatch] = reducer;
     dispatch("xxx");
     expect(store.getState()).to.deep.equal({ type: "xxx" });
   });

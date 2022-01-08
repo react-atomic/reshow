@@ -1,31 +1,18 @@
 import React, { Component, StrictMode } from "react";
-import { Dispatcher, CHANGE } from "reshow-flux-base";
+import { createReducer } from "reshow-flux-base";
 import { expect } from "chai";
 import { mount } from "reshow-unit";
 
 import useConnect from "../useConnect";
-import ReduceStore from "../ReduceStore";
 
 describe("Test Connect hook for more test", () => {
-  class FakeStore extends ReduceStore {
-    getInitialState() {
-      return { foo: "bar" };
-    }
-
-    reduce(state, action) {
-      return action;
-    }
-  }
-  let dispatcher;
-  let dispatch;
-  let store;
+  let reducer;
   beforeEach(() => {
-    dispatcher = new Dispatcher();
-    dispatch = dispatcher.dispatch;
-    store = new FakeStore(dispatcher);
+    reducer = createReducer((state, action) => action, {});
   });
 
   it("could register with store", (done) => {
+    const [store, dispatch] = reducer;
     const FakeComponent = (props) => {
       const state = useConnect({
         storeLocator: () => store,
@@ -37,18 +24,17 @@ describe("Test Connect hook for more test", () => {
       })(props);
       return <div>{state.foo}</div>;
     };
-
     const wrap = mount(<FakeComponent />);
-    store.emit(CHANGE);
+    dispatch({ foo: "bar" });
     setTimeout(() => {
       expect(wrap.html()).to.equal("<div>bar</div>");
       done();
-    }, 50);
+    });
   });
 
   it("could work with dispatcher", (done) => {
+    const [store, dispatch] = reducer;
     let calculateTimes = 0;
-
     const FakeComponent = (props) => {
       const state = useConnect({
         storeLocator: () => store,
@@ -60,7 +46,6 @@ describe("Test Connect hook for more test", () => {
       })(props);
       return <div>{state.aaa}</div>;
     };
-
     expect(calculateTimes).to.equal(0);
     const wrap = mount(<FakeComponent />);
     setTimeout(() => {
@@ -74,14 +59,14 @@ describe("Test Connect hook for more test", () => {
         dispatch({ aaa: "Hello Unmount!" });
         expect(calculateTimes).to.equal(3);
         done();
-      }, 5);
-    }, 5);
+      });
+    });
   });
 
   it("could work withProps", (done) => {
     let getStoresProps = null;
     let calculateStateProps = null;
-
+    const [store, dispatch] = reducer;
     const FakeComponent = (props) => {
       const state = useConnect({
         storeLocator: (props) => {
@@ -130,6 +115,7 @@ describe("Test Connect hook for more test", () => {
   });
 
   it("could work with empty calculateState", () => {
+    const [store, dispatch] = reducer;
     const FakeComponent = (props) => {
       const state = useConnect({
         storeLocator: () => store,
