@@ -6,12 +6,14 @@ const emitter = () => {
   return {
     reset: () => pool.splice(0, pool.length),
     add: (handler) => pool.unshift(handler),
+    // >>> 0 for change indexOf return -1 to 4294967295
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     emit: (state, action) =>
       setTimeout(() => {
         let i = pool.length;
         while (i--) {
-          pool[i] && pool[i](state, action);
+          const func = pool[i];
+          func && func(state, action);
         }
       }),
   };
