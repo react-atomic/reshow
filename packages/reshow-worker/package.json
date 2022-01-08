@@ -1,6 +1,6 @@
 {
   "name": "reshow-worker",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Reshow Worker for ajax",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "^0.15.0"
+    "reshow-unit": "^0.16.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

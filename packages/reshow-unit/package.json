@@ -2,7 +2,7 @@
   "name": "reshow-unit",
   "repository": "react-atomic/reshow",
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",

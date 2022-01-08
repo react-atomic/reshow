@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-reshow-transform-runtime",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Custom path for babel7 transform-runtime",
   "main": "./build/cjs/index.js",
   "repository": "react-atomic/reshow",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "^0.15.0"
+    "reshow-unit": "^0.16.0"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

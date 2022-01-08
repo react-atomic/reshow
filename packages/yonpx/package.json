@@ -1,5 +1,5 @@
 {
-  "version": "0.15.1",
+  "version": "0.16.0",
   "name": "yonpx",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "devDependencies": {
-    "reshow-unit": "^0.15.0"
+    "reshow-unit": "^0.16.0"
   },
   "bin": {
     "yonpx": "./src/index.js"
