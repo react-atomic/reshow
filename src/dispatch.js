@@ -1,9 +1,10 @@
+import { refineAction } from "reshow-flux-base";
+
 import { realTimeDispatch } from "./stores/realTimeStore";
 import { messageDispatch } from "./stores/messageStore";
 import { localStorageDispatch } from "./stores/localStorageStore";
 import { sessionStorageDispatch } from "./stores/sessionStorageStore";
 import { pageDispatch } from "./stores/pageStore";
-import { refineAction } from "reshow-flux-base";
 
 const dispatch = (...action) => {
   action = refineAction(...action);
