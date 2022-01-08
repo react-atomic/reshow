@@ -37,6 +37,6 @@ describe('Test ReshowMessage', done => {
       wrap.update();
       expect(wrap.html()).to.have.string('dialog');
       done();
-    }, 100);
+    }, 30);
   });
 });

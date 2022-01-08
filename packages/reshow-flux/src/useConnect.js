@@ -1,7 +1,6 @@
-import "setimmediate";
 import { useState, useEffect, useDebugValue } from "react";
 import { useMounted } from "reshow-hooks";
-import { T_TRUE, T_FALSE } from "reshow-constant";
+import { T_TRUE } from "reshow-constant";
 import { CHANGE } from "reshow-flux-base";
 
 import getStore from "./getStore";
@@ -46,7 +45,7 @@ const useConnect =
       () => {
         const { store } = getStore({ options, props });
         const handleChange = () => {
-          if (T_FALSE !== isMount()) {
+          if (T_TRUE === isMount()) {
             setData((prev) =>
               handleShouldComponentUpdate({
                 options,

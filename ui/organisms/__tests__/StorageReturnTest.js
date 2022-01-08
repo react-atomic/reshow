@@ -47,7 +47,7 @@ describe("Test Storage Return", () => {
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal(uString);
       done();
-    }, 100);
+    });
   });
 
   it("test get session storage", (done) => {
@@ -58,6 +58,6 @@ describe("Test Storage Return", () => {
     setTimeout(() => {
       expect(uFake.el.props.data).to.equal(uString);
       done();
-    }, 100);
+    });
   });
 });

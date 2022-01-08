@@ -52,7 +52,7 @@ describe("Test Section", () => {
       expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
       expect(uFake.el.props.I18N).to.deep.equal({ ddd: "fff" });
       done();
-    }, 100);
+    });
   });
 
   it("Section is not existed", (done) => {
@@ -83,7 +83,7 @@ describe("Test Section", () => {
       expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
       expect(uFake.el.props.I18N.toJS()).to.deep.equal({ ddd: "fff" });
       done();
-    }, 100);
+    });
   });
 
   it("Section is not existed with immutable", (done) => {
@@ -122,7 +122,7 @@ describe("Test Section", () => {
     setTimeout(() => {
       expect(wrap.el.getAttribute("name")).to.equal("test");
       done();
-    }, 10);
+    });
   });
 
   it("not pass name if child already have name", (done) => {
@@ -149,7 +149,7 @@ describe("Test Section", () => {
     setTimeout(() => {
       expect(wrap.el.getAttribute("name")).to.equal("test2");
       done();
-    }, 10);
+    });
   });
 
   it("not pass name if one of child already have name", (done) => {
@@ -184,6 +184,6 @@ describe("Test Section", () => {
       expect(uObj.el1.getAttribute("name")).to.be.null;
       expect(uObj.el2.getAttribute("name")).to.equal("test2");
       done();
-    }, 100);
+    });
   });
 });
