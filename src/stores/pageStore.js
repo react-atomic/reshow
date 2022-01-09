@@ -8,7 +8,7 @@ const [store, pageDispatch] = ImmutableStore((state, action) => {
     case "config/reset":
       return mergeMap(state.clear(), action.params);
     default:
-      if (KEYS(action)) {
+      if (KEYS(action).length) {
         return mergeMap(state, action);
       } else {
         return state;
