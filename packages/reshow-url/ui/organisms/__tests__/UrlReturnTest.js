@@ -65,6 +65,6 @@ describe("Test Url Return", () => {
     setTimeout(() => {
       expect(uFake.el.props[":pathname"]).to.deep.equal(["", "bbb"]);
       done();
-    }, 10);
+    }, 30);
   });
 });
