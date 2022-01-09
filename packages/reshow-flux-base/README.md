@@ -1,9 +1,4 @@
 
-* GIT
-   * https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux-base
-* NPM
-   * https://www.npmjs.com/package/reshow-flux-base
-
 
 # `createReducer`
 
@@ -11,6 +6,13 @@
 > `
 > Similar with react useReducer, but let you use anywhere.
 > `
+
+
+* GIT
+   * https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux-base
+* NPM
+   * https://www.npmjs.com/package/reshow-flux-base
+
 
 
 ## Usage
