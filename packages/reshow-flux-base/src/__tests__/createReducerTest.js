@@ -37,4 +37,26 @@ describe("Test createReducer", () => {
     dispatch("xxx");
     expect(store.getState()).to.deep.equal({ type: "xxx" });
   });
+
+  it("Test reset", () => {
+    const [store, dispatch] = createReducer((state, action) => action, "foo");
+    const resetVal = store.reset();
+    expect(resetVal).to.equal("foo");
+  });
+
+  it("Test reset event", (done) => {
+    const [store, dispatch] = reducer;
+    const callback = sinon.spy();
+    store.addListener(callback);
+    dispatch();
+    setTimeout(() => {
+      expect(callback.callCount).to.equal(1);
+      store.reset();
+      dispatch();
+      setTimeout(() => {
+        expect(callback.callCount).to.equal(1);
+        done();
+      });
+    });
+  });
 });

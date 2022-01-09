@@ -44,10 +44,7 @@ const createReducer = (reduce, initState = {}) => {
     }
   };
   const store = {
-    reset: () => {
-      mitt.reset();
-      return callfunc(initState);
-    },
+    reset: () => mitt.reset() && callfunc(initState),
     getState: () => state.current,
     addListener: mitt.add,
     removeListener: mitt.remove,
