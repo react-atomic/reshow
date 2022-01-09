@@ -11,7 +11,7 @@
 ## Usage
 
 ```js
-const [storee, dispatch] = createReducer(reducer, initial[Arg|Function]);
+const [store, dispatch] = createReducer(reducer, initial[Arg|Function]);
 ```
 
 Accepts a reducer of type `(state, action) => newState`, and returns the current store with a dispatch method.
@@ -23,9 +23,9 @@ Store will have three method.
 
 getState -> Return current state.
 
-addListener -> You could register any callback function such as react useStattee.
+addListener -> You could register any callback function such as react useState.
 
-removeListener -> Remove register callback, such as when you unmount a component.
+removeListener -> Remove register callback, such as unmount a component.
 
 ```js
 const initialState = {count: 0};
