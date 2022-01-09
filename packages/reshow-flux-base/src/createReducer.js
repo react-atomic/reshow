@@ -40,7 +40,7 @@ const createReducer = (reduce, initState = {}) => {
     }
     if (startingState !== endingState) {
       state.current = endingState;
-      mitt.emit(state, action);
+      mitt.emit(endingState, action);
     }
   };
   const store = {
