@@ -19,6 +19,10 @@ const emitter = () => {
   };
 };
 
+/**
+ * Transpile dispatch("your-type", {foo: "bar"})
+ * to dispatch({type: "your-type", params: {foo: "bar"}})
+ */
 const refineAction = (action = {}, params) => {
   if (action.trim) {
     action = { type: action };
