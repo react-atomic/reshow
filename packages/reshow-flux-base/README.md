@@ -1,12 +1,8 @@
-
-
 # `createReducer`
-
 
 > `
 > Similar with react useReducer, but let you use anywhere.
 > `
-
 
 * GIT
    * https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux-base
@@ -51,7 +47,7 @@ function reducer(state, action) {
 const [store, dispatch] = createReducer(reducer, initialState);
 
 function Counter() {
-  const [state, setState] = useState(store.getState());
+  const [state, setState] = useState(() => store.getState());
   useEffect(()=>{
      store.addListener(setState);
      return ()=>{
