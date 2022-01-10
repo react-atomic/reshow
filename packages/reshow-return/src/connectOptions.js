@@ -1,7 +1,5 @@
 import get from "get-object-value";
 import callfunc from "call-func";
-import { getStore } from "reshow-flux";
-
 import toJS from "./toJS";
 
 const keys = Object.keys;
@@ -27,14 +25,13 @@ const reset = (props, more) => {
   return nextProps;
 };
 
-const calculateState = (prevState, props, options) => {
+const calculateState = (prevState, options) => {
   /**
    * Why not support multi stores?
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const { store, allProps } = getStore({ props, options });
-  const { initStates, pathStates, immutable: propsImmutable } = allProps;
+  const { initStates, pathStates, immutable: propsImmutable, store } = options;
   const storeState = store.getState();
   const immutable = propsImmutable || storeState.get("immutable");
   const results = {};

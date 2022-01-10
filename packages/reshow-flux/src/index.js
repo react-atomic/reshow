@@ -5,4 +5,3 @@ export {
   Set,
   mergeMap,
 } from "./ImmutableStore";
-export { default as getStore } from "./getStore";

@@ -7,8 +7,28 @@ import useConnect from "../useConnect";
 
 describe("Test Connect Hook", () => {
   let reducer;
+  let origConsole; 
   beforeEach(() => {
     reducer = createReducer((state, action) => action, {});
+  });
+
+  it("test store not defined", () => {
+    const [store, dispatch] = reducer;
+    const Foo = (props) => {
+      const state = useConnect({
+        calculateState: (prevState, props) => {
+          return store.getState();
+        },
+      })(props);
+      return <div className={state.foo} />;
+    };
+
+    origConsole = console.error;
+    console.error = () => {};
+    expect(() => {
+      mount(<Foo />);
+    }).to.throw();
+    console.error = origConsole;
   });
 
   it("basic test", (done) => {

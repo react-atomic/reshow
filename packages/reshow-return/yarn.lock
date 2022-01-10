@@ -727,11 +727,12 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
-call-func@*:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.4.tgz#c3daf9e02b449fb62cbf56b3e04825fb0076d1c1"
-  integrity sha512-rH6PhPEoMb3JDf88U/BEmWzr41VIof8tr6/4zRq++RvHigyF4/iQ8cSISXnwu1Imt0BygalLbeZiPdTYceSdNg==
+call-func@*, call-func@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.5.tgz#2a67771937ded5253d1a120beee148fb2a2b9f41"
+  integrity sha512-45JPUw/On2Lut6pfRc4WduCnRyhVona2gjF7todpbz6Z92enTC3/PL2ttVuuPzSbLSlXzS/5ppF32f6+Wkgfxg==
   dependencies:
+    get-object-value "*"
     reshow-constant "*"
 
 callsites@^3.0.0:
@@ -3278,18 +3279,18 @@ reshow-constant@*, reshow-constant@^0.16.0:
   integrity sha512-AKrU8A6EdFw7L5zHs8W8WNsdXbZwpgimvY92ZwobLhH5wC6mVG+L6H6zzS6/Y/DBqWXcuCsRGTg5hT1ahwZ6pQ==
 
 reshow-flux-base@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.0.tgz#a9b79794001f79f2c92d58a4f3d35db789d43080"
-  integrity sha512-TLaTs95qDjhEKjUC6oVbp562rWeQOi5sbgRnBbPxwWyEy9VVK3zdU6yIOH0svd1o/9CeRvccs6i/d8kg/hUZPg==
+  version "0.16.8"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.8.tgz#9e2012572507c7cf7f776d466885340e37fd1830"
+  integrity sha512-PqNTWt6GapVzKj15qZuabZYpdCt6lIYlKYIog8wz4G5s4AwukE3eR8W4H/Sfe/YuEAfSP0iDz/e4imPpsuBiBQ==
   dependencies:
-    call-func "*"
+    call-func "^0.1.5"
     reshow-constant "^0.16.0"
     reshow-runtime "^0.16.0"
 
 reshow-flux@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.16.0.tgz#f2fa13021fa71e4f79a5da07f33eb40b290ce58f"
-  integrity sha512-DgBD1nqyxvScl7i2RryuRqC8kYQAgdP3l4tLq/Cj7Yms5D0qd3Bo8lSKc/N1ZLA217Weh24OgyFglyVFb/1tmg==
+  version "0.16.4"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.16.4.tgz#c4edd35ce24df023c181ceaa3a54e2986229bff3"
+  integrity sha512-2f1oQ0R71S4rkwcpV65U57pqQXm8e1vfcXAG61MvgGq4hIyKbwuIMd8yHcZxXg1Eou6cL8qpH9bqImMT/r5s6A==
   dependencies:
     array.dedup "*"
     array.merge "*"

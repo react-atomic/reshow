@@ -11,7 +11,7 @@ const handleShouldComponentUpdate = ({
   prev,
   props,
 }) => {
-  const nextState = calculateState(prev.state, props, options);
+  const nextState = calculateState(prev.state, options);
   const state =
     !shouldComponentUpdate ||
     shouldComponentUpdate({ prev, nextProps: props, nextState })
@@ -25,8 +25,9 @@ const handleShouldComponentUpdate = ({
 };
 
 const useConnect =
-  (options = {}) =>
+  (inputOptions = {}) =>
   (props) => {
+    const options = getStore({ options: inputOptions, props });
     const {
       calculateState,
       shouldComponentUpdate,
@@ -35,14 +36,13 @@ const useConnect =
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
       props,
-      state: calculateState({}, props, options),
+      state: calculateState({}, options),
     }));
 
     const isMount = useMounted();
 
     useEffect(
       () => {
-        const { store } = getStore({ options, props });
         const handleChange = () => {
           if (T_TRUE === isMount()) {
             setData((prev) =>
@@ -59,9 +59,9 @@ const useConnect =
         if (!data.__init__ || data.props !== props) {
           handleChange();
         }
-        store.addListener(handleChange);
+        options.store.addListener(handleChange);
         return () => {
-          store.removeListener(handleChange);
+          options.store.removeListener(handleChange);
         };
       },
       props.changeable ? [props] : []

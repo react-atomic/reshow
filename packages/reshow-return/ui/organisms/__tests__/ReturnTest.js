@@ -53,7 +53,6 @@ describe("Test Return", () => {
   }
 
   let reset;
-  let origConsoleError;
 
   beforeEach(() => {
     dispatch("config/reset");
@@ -133,12 +132,4 @@ describe("Test Return", () => {
     });
   });
 
-  it("test store not defined", () => {
-    origConsoleError = console.error;
-    console.error = () => {};
-    expect(() => {
-      mount(<Return />);
-    }).to.throw();
-    console.error = origConsoleError;
-  });
 });

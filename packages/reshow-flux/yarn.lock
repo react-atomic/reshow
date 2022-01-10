@@ -734,6 +734,14 @@ call-func@*:
   dependencies:
     reshow-constant "*"
 
+call-func@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.5.tgz#2a67771937ded5253d1a120beee148fb2a2b9f41"
+  integrity sha512-45JPUw/On2Lut6pfRc4WduCnRyhVona2gjF7todpbz6Z92enTC3/PL2ttVuuPzSbLSlXzS/5ppF32f6+Wkgfxg==
+  dependencies:
+    get-object-value "*"
+    reshow-constant "*"
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -3278,32 +3286,37 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
-reshow-build@*:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.15.0.tgz#1c34233140c9108eb35eb61c1c0255e81fe27e67"
-  integrity sha512-J21kUckGCMpW0diGhXIkuHiJNAB9reQQ0HJV78ck7zXmJtDxHOxNyc+aD7mN39qwxdNnhsQJAj9estyDmFgSzQ==
+reshow-build@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.16.0.tgz#66eac75736278ab67f87c5f5ab97c10641b458cb"
+  integrity sha512-kW9eCX/sTG08g3Aq4+ZsRmtpklVZkZ7PI1dumGtP8MJLUMjD0W1CmDM9XesSFQXOwXznaFhHxVFv8SU8NsKbIQ==
   dependencies:
     array.merge "*"
-    reshow-constant "^0.15.0"
+    reshow-constant "^0.16.0"
 
-reshow-constant@*, reshow-constant@^0.15.0:
+reshow-constant@*:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.15.0.tgz#9682b5fae47f424e37c1cde8a054472071d72c1b"
   integrity sha512-UxXIt88+ld5EVKsCy8pyT7JkqM1GTbi/JtEVrtLk9CoreW8VijbG4q/RNDpUfFK5FTOO0UQhXPYpodUH0vGEZQ==
 
-reshow-flux-base@*:
-  version "0.15.10"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.15.10.tgz#dc0bc2b77ca6d564b9a6adaff104323dde2be74b"
-  integrity sha512-BqgYSB076kLgPIhk7ook1UKDAYb5gDThJ2wPpU+1dBGGgV1D/3hxxpuz/wJSfKggkjho6phLd9hZfPxKExHCZg==
-  dependencies:
-    call-func "*"
-    reshow-constant "^0.15.0"
-    reshow-runtime "*"
+reshow-constant@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.16.0.tgz#2fe26deb6fbd1b45fa6ff5202bda7644156dce1a"
+  integrity sha512-AKrU8A6EdFw7L5zHs8W8WNsdXbZwpgimvY92ZwobLhH5wC6mVG+L6H6zzS6/Y/DBqWXcuCsRGTg5hT1ahwZ6pQ==
 
-reshow-hooks@*:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.15.0.tgz#b50d9ff750ddb41bbd5b8476a3a4aa04e20d0143"
-  integrity sha512-TOKcSp3GBYsprHcepAZYbhljJJmr3fOj7oKf3n72kArVKz0j37UTkfLycXRFR9Ap14esSgtqen98nTdYsvsg2Q==
+reshow-flux-base@^0.16.0:
+  version "0.16.8"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.8.tgz#9e2012572507c7cf7f776d466885340e37fd1830"
+  integrity sha512-PqNTWt6GapVzKj15qZuabZYpdCt6lIYlKYIog8wz4G5s4AwukE3eR8W4H/Sfe/YuEAfSP0iDz/e4imPpsuBiBQ==
+  dependencies:
+    call-func "^0.1.5"
+    reshow-constant "^0.16.0"
+    reshow-runtime "^0.16.0"
+
+reshow-hooks@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.16.0.tgz#be20717d92e70c4f2dd7d4196fc7464a02aa6e1b"
+  integrity sha512-7N7fgInP/AnMJH1Pe3vSF5DkHW3to9xutskSKwDVCHwrCq0kQ+Snh8GoB2tWINrXZP2dwmqjfCa0pff/smZEnQ==
   dependencies:
     call-func "*"
 
@@ -3315,10 +3328,18 @@ reshow-runtime@*:
     regenerator-runtime "^0.13.4"
     reshow-constant "*"
 
-reshow-unit@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.15.0.tgz#2ed3edb586066c59119f09e1430b63a415c044af"
-  integrity sha512-wvxGZLUCsTXpLbX95YYwbN/xxufj2M/ongbyQxbPnUoR0SyNmjK02+MbdEetWCrwQelQ46KqM5stG6Ky1ZHeEw==
+reshow-runtime@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.16.0.tgz#0c49f40ecfc18ea4b6ca6609c453f0e4b4065929"
+  integrity sha512-IJfJ87X9RjUFVbx9SpNuhw9gIMsGdLNPs8a96Q9iZ+fX3ZnfhlZvmearNUAKdHrVIrUU4WQVKWQ7OMQ0j4/Xzw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+    reshow-constant "*"
+
+reshow-unit@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.16.0.tgz#7b346e52d71c459e734ef55791de2cdf4c150800"
+  integrity sha512-NH0q7OHYcwsz4eZ+hg8fDxhyzsUJtZtrRxuF/HptTIU3nrvVhX93tqa8ft1lGKdgxFKKiSEry1xNb7BTqfXF1A==
   dependencies:
     chai "*"
     enzyme "*"
