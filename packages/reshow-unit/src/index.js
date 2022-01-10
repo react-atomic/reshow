@@ -1,4 +1,5 @@
-import jsdomGlobal from "jsdom-global";
+import {jsdom, cleanIt as jsdomCleanIt} from "reshow-unit-dom";
+
 import {
   shallow as enzymeShallow,
   mount as enzymeMount,
@@ -10,7 +11,6 @@ configure({ adapter: new Adapter() });
 const mountWrapper = { current: null };
 const mountOption = { current: null };
 const shallowWrapper = { current: null };
-const jsdomWrapper = { current: null };
 
 const clean = (wrapper, keepOption) => {
   if (wrapper.current) {
@@ -47,21 +47,13 @@ const thisShallow = (wrapper) => (node, options) => {
 
 const mount = thisMount(mountWrapper, mountOption);
 const shallow = thisShallow(shallowWrapper);
-const jsdom = (html, options) => {
-  if (jsdomWrapper.current) {
-    jsdomWrapper.current();
-  }
-  jsdomWrapper.current = jsdomGlobal(html, options);
-  return jsdomWrapper.current;
-};
 
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
   clean(mountWrapper, mountOption);
   clean(shallowWrapper);
-  if (!withoutJsdom && jsdomWrapper.current) {
-    jsdomWrapper.current();
-    jsdomWrapper.current = jsdomGlobal();
+  if (!withoutJsdom) {
+    jsdomCleanIt();
   }
 };
 

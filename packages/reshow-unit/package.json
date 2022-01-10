@@ -2,7 +2,7 @@
   "name": "reshow-unit",
   "repository": "react-atomic/reshow",
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -10,18 +10,10 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "chai": "*",
     "enzyme": "*",
     "enzyme-adapter-react-16": "*",
-    "jsdom": "16.4.0",
-    "jsdom-global": "*",
-    "mocha": "^9.x",
-    "nyc": "*",
-    "prettier": "*",
-    "prettier-eslint": "*",
-    "prettier-eslint-cli": "*",
     "react-test-renderer": "^16.x",
-    "sinon": "*"
+    "reshow-unit-dom": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",

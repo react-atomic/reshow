@@ -3,8 +3,7 @@ import { expect } from "chai";
 
 import { mount, cleanIt, jsdom } from "../index";
 
-describe("Test Reshow Component", () => {
-  let resetGlobal;
+describe("Test Reshow UNIT", () => {
   beforeEach(() => {
     jsdom();
   });
