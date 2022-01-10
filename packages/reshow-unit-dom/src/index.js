@@ -19,12 +19,13 @@ const hideConsoleError = () => {
 };
 
 const cleanIt = (props) => {
+  if (consoleWrapper.current) {
+    // Need locate before jsdom
+    console.error = consoleWrapper.current;
+  }
   if (jsdomWrapper.current) {
     jsdomWrapper.current();
     jsdomWrapper.current = jsdomGlobal();
-  }
-  if (consoleWrapper.current) {
-    console.error = consoleWrapper.current;
   }
 };
 
