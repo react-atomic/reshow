@@ -1,35 +1,16 @@
 import React, { Component } from "react";
 import { expect } from "chai";
-import { mount } from "reshow-unit";
+import { mount, hideConsoleError, cleanIt } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
 
 import useConnect from "../useConnect";
 
 describe("Test Connect Hook", () => {
   let reducer;
-  let origConsole;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, {});
+    reducer = createReducer((state, action) => action);
   });
 
-  it("test store not defined", () => {
-    const [store, dispatch] = reducer;
-    const Foo = (props) => {
-      const state = useConnect({
-        calculateState: (prevState, props) => {
-          return store.getState();
-        },
-      })(props);
-      return <div className={state.foo} />;
-    };
-
-    origConsole = console.error;
-    console.error = () => {};
-    expect(() => {
-      mount(<Foo />);
-    }).to.throw();
-    console.error = origConsole;
-  });
 
   it("basic test", (done) => {
     const [store, dispatch] = reducer;
@@ -91,5 +72,34 @@ describe("Test Connect Hook", () => {
       expect(wrap.html()).to.equal('<div class="bar"></div>');
       done();
     });
+  });
+});
+
+
+describe("Test Connect Hook", () => {
+  let reducer;
+  beforeEach(() => {
+    reducer = createReducer((state, action) => action);
+    hideConsoleError();
+  });
+
+  afterEach(() => {
+    cleanIt();
+  });
+
+  it("test store not defined", () => {
+    const [store, dispatch] = reducer;
+    const Foo = (props) => {
+      const state = useConnect({
+        calculateState: (prevState, props) => {
+          return store.getState();
+        },
+      })(props);
+      return <div className={state.foo} />;
+    };
+
+    expect(() => {
+      mount(<Foo />);
+    }).to.throw();
   });
 });

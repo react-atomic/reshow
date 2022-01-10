@@ -1,4 +1,8 @@
-import {jsdom, cleanIt as jsdomCleanIt} from "reshow-unit-dom";
+import {
+  jsdom,
+  cleanIt as domCleanIt,
+  hideConsoleError,
+} from "reshow-unit-dom";
 
 import {
   shallow as enzymeShallow,
@@ -53,8 +57,8 @@ const cleanIt = (props) => {
   clean(mountWrapper, mountOption);
   clean(shallowWrapper);
   if (!withoutJsdom) {
-    jsdomCleanIt();
+    domCleanIt();
   }
 };
 
-export { shallow, mount, cleanIt, jsdom };
+export { shallow, mount, cleanIt, jsdom, hideConsoleError };
