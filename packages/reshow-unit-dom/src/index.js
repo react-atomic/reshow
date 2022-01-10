@@ -22,6 +22,7 @@ const cleanIt = (props) => {
   if (consoleWrapper.current) {
     // Need locate before jsdom
     console.error = consoleWrapper.current;
+    consoleWrapper.current = null;
   }
   if (jsdomWrapper.current) {
     jsdomWrapper.current();
