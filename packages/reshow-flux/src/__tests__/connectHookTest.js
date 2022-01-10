@@ -7,7 +7,7 @@ import useConnect from "../useConnect";
 
 describe("Test Connect Hook", () => {
   let reducer;
-  let origConsole; 
+  let origConsole;
   beforeEach(() => {
     reducer = createReducer((state, action) => action, {});
   });
