@@ -11,7 +11,6 @@ describe("Test Connect Hook", () => {
     reducer = createReducer((state, action) => action);
   });
 
-
   it("basic test", (done) => {
     const [store, dispatch] = reducer;
     const Foo = (props) => {
@@ -74,7 +73,6 @@ describe("Test Connect Hook", () => {
     });
   });
 });
-
 
 describe("Test Connect Hook", () => {
   let reducer;

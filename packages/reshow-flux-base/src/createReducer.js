@@ -8,12 +8,12 @@ const emitter = () => {
     add: (handler) => pool.unshift(handler),
     // >>> 0 for change indexOf return -1 to 4294967295
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
-    emit: (state, action) =>
+    emit: (state, action, prevState) =>
       setTimeout(() => {
         let i = pool.length;
         while (i--) {
           const func = pool[i];
-          func && func(state, action);
+          func && func(state, action, prevState);
         }
       }),
   };
@@ -44,7 +44,7 @@ const createReducer = (reduce, initState = {}) => {
     }
     if (startingState !== endingState) {
       state.current = endingState;
-      mitt.emit(endingState, action);
+      mitt.emit(endingState, action, startingState);
     }
   };
   const store = {
