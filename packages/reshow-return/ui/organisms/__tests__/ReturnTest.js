@@ -76,8 +76,8 @@ describe("Test Return", () => {
       setTimeout(() => {
         expect(uFake.el.props.foo).to.equal("bar");
         done();
-      }, 100);
-    }, 100);
+      });
+    });
   });
 
   it("test Immutable path state", (done) => {
@@ -98,7 +98,7 @@ describe("Test Return", () => {
       expect(firstData.toJS()).to.deep.equal({ foo: "bar", I13N: { a: "b" } });
       expect(firstI13N.toJS()).to.deep.equal({ a: "b" });
       done();
-    }, 100);
+    });
   });
 
   it("test path state should clean", () => {
@@ -131,5 +131,4 @@ describe("Test Return", () => {
       data: "foo",
     });
   });
-
 });

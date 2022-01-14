@@ -1,5 +1,5 @@
 import { Map, Set, fromJS } from "immutable";
-import { toJS } from "get-object-value";
+import toJS from "./toJS";
 import { createReducer } from "reshow-flux-base";
 
 const ImmutableStore = (reduce, initState = Map()) => {

@@ -11,6 +11,7 @@ const getStore = ({ props, options }) => {
     throw "Need defined store. such as store={your-store}";
   }
   allProps.store = store;
+  allProps.storeState = store.getState();
   return allProps;
 };
 

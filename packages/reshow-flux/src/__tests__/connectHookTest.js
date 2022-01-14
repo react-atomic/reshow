@@ -16,8 +16,8 @@ describe("Test Connect Hook", () => {
     const Foo = (props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {
-          return store.getState();
+        calculateState: (prevState, opt) => {
+          return opt.storeState;
         },
       })(props);
       return <div className={state.foo} />;
@@ -47,8 +47,8 @@ describe("Test Connect Hook", () => {
     const Foo = (props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {
-          return store.getState();
+        calculateState: (prevState, opt) => {
+          return opt.storeState;
         },
       })(props);
       if (init <= 1) {
@@ -89,8 +89,8 @@ describe("Test Connect Hook", () => {
     const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
-        calculateState: (prevState, props) => {
-          return store.getState();
+        calculateState: (prevState, opt) => {
+          return opt.storeState;
         },
       })(props);
       return <div className={state.foo} />;

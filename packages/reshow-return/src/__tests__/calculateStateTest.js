@@ -30,7 +30,7 @@ describe("Test calculateState", () => {
         initStates: ["foo"],
         pathStates: { bar: ["foo", "bar"] },
         immutable: true,
-        store: pageStore,
+        storeState: pageStore.getState(),
       }
     );
     expect(actual.bar instanceof Map).to.be.true;
@@ -42,7 +42,7 @@ describe("Test calculateState", () => {
       {
         pathStates: { bar: ["foo", "bar"] },
         immutable: true,
-        store: pageStore,
+        storeState: pageStore.getState(),
       }
     );
     expect(acture.bar).to.be.undefined;
@@ -54,7 +54,7 @@ describe("Test calculateState", () => {
       {
         initStates: ["foo"],
         pathStates: { bar: ["foo", "bar"] },
-        store: pageStore,
+        storeState: pageStore.getState(),
       }
     );
     expect(acture.bar).to.deep.equal({ foo1: "bar1" });
