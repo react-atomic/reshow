@@ -3,7 +3,8 @@ import get from "get-object-value";
 import { AjaxPage } from "organism-react-ajax";
 import { doc } from "win-doc";
 import callfunc from "call-func";
-import Return, { toJS } from "reshow-return";
+import Return from "reshow-return";
+import { toJS } from "reshow-flux";
 
 import updateCanonicalUrl, {
   initCanonicalUrl,

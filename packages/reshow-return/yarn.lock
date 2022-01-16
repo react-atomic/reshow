@@ -467,9 +467,9 @@ ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.9.1:
     uri-js "^4.2.2"
 
 ajv@^8.0.1:
-  version "8.8.2"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.8.2.tgz#01b4fef2007a28bf75f0b7fc009f62679de4abbb"
-  integrity sha512-x9VuX+R/jcFj1DHo/fCp99esgGDWiHENrKxaCENuCxpoMCmAt/COCGVDwA7kleEpEzJjDnvh3yGoOuLu0Dtllw==
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.9.0.tgz#738019146638824dea25edcf299dcba1b0e7eb18"
+  integrity sha512-qOKJyNj/h+OWx7s5DePL6Zu1KeM9jPZhwBqs+7DzP6bGOvqzVCSf0xueYmVuaC/oQ/VtS2zLMLHdQFbkka+XDQ==
   dependencies:
     fast-deep-equal "^3.1.1"
     json-schema-traverse "^1.0.0"
@@ -966,9 +966,9 @@ convert-source-map@^1.1.0, convert-source-map@^1.7.0:
     safe-buffer "~5.1.1"
 
 core-js@^3.1.4:
-  version "3.20.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.2.tgz#46468d8601eafc8b266bd2dd6bf9dee622779581"
-  integrity sha512-nuqhq11DcOAbFBV4zCbKeGbKQsUDRqTX0oqx7AttUBuqe3h20ixsE039QHelbL6P4h+9kytVqyEtyZ6gsiwEYw==
+  version "3.20.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.3.tgz#c710d0a676e684522f3db4ee84e5e18a9d11d69a"
+  integrity sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -1769,13 +1769,12 @@ get-intrinsic@^1.0.2, get-intrinsic@^1.1.0, get-intrinsic@^1.1.1:
     has-symbols "^1.0.1"
 
 get-object-value@*:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.3.0.tgz#f37fdc394dcf32afbf23b076fa174182df171ee4"
-  integrity sha512-SbDS5FnX7WnQGyAAb82I2NSUonV+oweULza0NwGWAJAszCjAKXXcXYRIfLGuCaMKfurZqKkHmTLN3MeOqXiWAg==
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.3.2.tgz#c1c3bd1bdd00d58a005f42dc5a6e33a47e2850e2"
+  integrity sha512-ca1xzBvcF7G2BMAvKM2gBT5a57BOLnsccqvv3KkGRZ0XnUjhCsLC+Ng1JX5O1R5z96V9DM2HdRGZv7KTY77CIw==
   dependencies:
     reshow-constant "*"
     reshow-runtime "*"
-    with-array "*"
 
 get-package-type@^0.1.0:
   version "0.1.0"
@@ -4002,13 +4001,6 @@ which@^1.2.9:
   integrity sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ==
   dependencies:
     isexe "^2.0.0"
-
-with-array@*:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/with-array/-/with-array-0.0.0.tgz#9206b38bcf95d9c254e415e82b3dc3b24b332f04"
-  integrity sha512-7uN41JVWShGa+Y6NK5TgO33D9KUnM0L1eQHFIoqWHrvu1UY75LjPPYMYlfuo1bSpHKF85BHWLzh1oUQ0Nn+XRg==
-  dependencies:
-    reshow-constant "*"
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
