@@ -12,16 +12,19 @@ const handleShouldComponentUpdate = ({
   props,
 }) => {
   const nextState = calculateState(prev.state, options);
-  const state =
+  const bUpdate =
     !shouldComponentUpdate ||
-    shouldComponentUpdate({ prev, nextProps: props, nextState })
-      ? nextState
-      : prev.state;
-  return {
-    __init__: T_TRUE,
-    props,
-    state,
-  };
+    shouldComponentUpdate({ prev, nextProps: props, nextState });
+  if (!bUpdate) {
+    prev.__init__ = T_TRUE;
+    return prev;
+  } else {
+    return {
+      props,
+      __init__: T_TRUE,
+      state: nextState,
+    };
+  }
 };
 
 const useConnect =

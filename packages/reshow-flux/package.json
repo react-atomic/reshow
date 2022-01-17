@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.16.7",
+  "version": "0.16.9",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -24,6 +24,7 @@
     "array.merge": "*",
     "get-object-value": "*",
     "immutable": "^3.x",
+    "memoize-one": "*",
     "reshow-build": "^0.16.0",
     "reshow-constant": "^0.16.0",
     "reshow-flux-base": "^0.16.0",
