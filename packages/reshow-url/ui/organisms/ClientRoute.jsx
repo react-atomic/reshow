@@ -44,7 +44,7 @@ class ClientRoute extends Reshow {
   componentDidMount() {
     super.componentDidMount();
 
-    ajaxDispatch("config/set", {
+    ajaxDispatch({
       onUrlChange: this.getUrlChangeState.bind(this),
     });
   }
