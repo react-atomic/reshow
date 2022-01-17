@@ -16,10 +16,7 @@ Reshow (A simplified React cross-component state management)
 ## Example Usage
 * Demo Url:
    * https://react-atomic-ui.js.org/
-* Multi ways with flux.
-   * https://codesandbox.io/s/91ow594kqp
 * How to use router?
    * https://github.com/react-atomic/reshow/wiki/Router-possible-solution
 
-## PHP Template
-   * https://github.com/pmvc-plugin/view_react
+
