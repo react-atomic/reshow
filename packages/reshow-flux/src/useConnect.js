@@ -15,7 +15,8 @@ const handleShouldComponentUpdate = ({
   const bUpdate =
     !shouldComponentUpdate ||
     shouldComponentUpdate({ prev, nextProps: props, nextState });
-  if (!bUpdate) {
+
+  if (!bUpdate || (props === prev.props && nextState === props.state)) {
     prev.__init__ = T_TRUE;
     return prev;
   } else {
