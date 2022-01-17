@@ -1,9 +1,8 @@
 import get from "get-object-value";
 import callfunc from "call-func";
 import { toJS } from "reshow-flux";
+import { IS_ARRAY, KEYS } from "reshow-constant";
 
-const keys = Object.keys;
-const isArray = Array.isArray;
 const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
@@ -52,26 +51,38 @@ const calculateState = (prevState, options) => {
 
   const toImmutable = getImmutable(immutable);
 
-  if (isArray(initStates)) {
+  if (IS_ARRAY(initStates)) {
     initStates.forEach((key) => {
       const data = getStateValue(key);
       results[key] = toImmutable(data);
     });
   } else if (initStates) {
-    keys(initStates).forEach((key) => {
+    KEYS(initStates).forEach((key) => {
       const data = getStateValue(key);
       const newKey = null != initStates[key] ? initStates[key] : key;
       results[newKey] = toImmutable(data);
     });
   }
 
-  keys(pathStates || {}).forEach((key) => {
+  KEYS(pathStates || {}).forEach((key) => {
     const thisPath = pathStates[key];
     results[key] = immutable
       ? getMapIn(results[thisPath[0]], thisPath.slice(1))
       : get(results, thisPath);
   });
-  return results;
+
+  const resultKeys = KEYS(results);
+  let bSame = true;
+  let i = resultKeys.length;
+  while (i--) {
+    const key = resultKeys[i];
+    if (results[key] !== prevState[key]) {
+      bSame = false;
+      break;
+    }
+  }
+
+  return bSame ? prevState : results;
 };
 
 const connectOptions = {
