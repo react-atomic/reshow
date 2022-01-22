@@ -3,9 +3,9 @@
 > <%= description %> 
 
 ## Repositories
-* GIT
-   * https://github.com/react-atomic/react-atomic-organism/tree/main/packages/lib/<%= mainName %>
-* NPM
+* `GIT`
+   * <%= repositoryHomepage %>
+* `NPM`
    * https://www.npmjs.com/package/<%= mainName %>
 
 ## Usage
