@@ -4,7 +4,7 @@
 
 ## Repository 
 * `GIT`
-   * <% repositoryHomepage %>
+   * <%= repositoryHomepage %>
 * `NPM`
    * https://www.npmjs.com/package/<%= mainName %>
 
