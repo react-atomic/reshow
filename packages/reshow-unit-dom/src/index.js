@@ -1,7 +1,9 @@
 import jsdomGlobal from "jsdom-global";
+import sinon from "sinon";
 
 const jsdomWrapper = { current: null };
 const consoleWrapper = { current: null };
+const sinonWrapper = { current: null };
 
 const jsdom = (html, options) => {
   if (jsdomWrapper.current) {
@@ -18,6 +20,14 @@ const hideConsoleError = () => {
   }
 };
 
+const getSinon = () => {
+  if (sinonWrapper.current) {
+    sinonWrapper.current.restore();
+  }
+  sinonWrapper.current = sinon.createSandbox();
+  return sinonWrapper.current;
+};
+
 const cleanIt = (props) => {
   if (consoleWrapper.current) {
     // Need locate before jsdom
@@ -28,6 +38,10 @@ const cleanIt = (props) => {
     jsdomWrapper.current();
     jsdomWrapper.current = jsdomGlobal();
   }
+  if (sinonWrapper.current) {
+    sinonWrapper.current.restore();
+    sinonWrapper.current = null;
+  }
 };
 
-export { cleanIt, jsdom, hideConsoleError };
+export { cleanIt, jsdom, hideConsoleError, getSinon };

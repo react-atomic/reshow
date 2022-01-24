@@ -4,6 +4,7 @@ import { expect } from "chai";
 import { mount } from "reshow-unit";
 import sinon from "sinon";
 import { createReducer } from "reshow-flux-base";
+
 import useConnect from "../useConnect";
 
 describe("useConnect Unmount Test", () => {
