@@ -48,7 +48,7 @@ class MessageStore {
     if (!dialogTo) {
       dialogTo = "dialogReturn";
     }
-    const value = get(action, ["params", "item", "props", "value"]);
+    const value = get(action, ["params", "value"]);
     if (value != T_NULL) {
       pageDispatch({
         [dialogTo]: value,

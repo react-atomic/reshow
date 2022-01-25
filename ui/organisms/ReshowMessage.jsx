@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { AlertsNotifier, Dialog, DisplayPopupEl } from "organism-react-popup";
 import { build, SemanticUI } from "react-atomic-molecule";
 import { toJS } from "reshow-flux";
+import get from "get-object-value";
 
 // src
 import { Return } from "../molecules/ReshowComponent";
@@ -17,11 +18,12 @@ const handleDismiss = (e) => {
   }
 };
 
-const handleClick = (dialog) => (e, item) => {
+const handleClick = (dialog) => (e) => {
+  const value = get(e, ["currentTarget", "value"]);
   setTimeout(() => {
     if (dialog) {
       dispatch("dialog/end", {
-        item,
+        value,
       });
     }
   });
@@ -48,7 +50,6 @@ const Body = (props) => {
             ...defaultDialogProps,
             ...toJS(dialogProps),
             onClick: handleClick(dialog),
-            onClose: handleClick(dialog),
           },
           toJS(dialog)
         )}
