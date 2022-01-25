@@ -44,10 +44,7 @@ class MessageStore {
   }
 
   dialogEnd(state, action) {
-    let dialogTo = state.get("dialogTo");
-    if (!dialogTo) {
-      dialogTo = "dialogReturn";
-    }
+    const dialogTo = state.get("dialogTo") || "dialogReturn";
     const value = get(action, ["params", "value"]);
     if (value != T_NULL) {
       pageDispatch({
