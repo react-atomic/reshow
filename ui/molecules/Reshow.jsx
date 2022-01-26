@@ -5,6 +5,7 @@ import { doc } from "win-doc";
 import callfunc from "call-func";
 import Return from "reshow-return";
 import { toJS } from "reshow-flux";
+import { oneItemArrayToString } from "with-array";
 
 import updateCanonicalUrl, {
   initCanonicalUrl,
@@ -13,7 +14,6 @@ import dispatch from "../../src/dispatch";
 import { globalStore } from "../../src/stores/globalStore";
 import pageStore from "../../src/stores/pageStore";
 
-const isArray = Array.isArray;
 let isInit;
 
 const update = (params) => {
@@ -27,11 +27,7 @@ const update = (params) => {
   if (oDoc.URL) {
     const htmlTitle = get(params, ["htmlTitle"]);
     if (htmlTitle) {
-      if (isArray(htmlTitle)) {
-        oDoc.title = get(htmlTitle, [0]);
-      } else {
-        oDoc.title = htmlTitle;
-      }
+      oDoc.title = oneItemArrayToString(htmlTitle);
     }
     const canonical = get(params, ["data", "canonical"]);
     if (canonical) {

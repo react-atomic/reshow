@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.16.5",
+  "version": "0.16.6",
   "description": "A simplified React cross-component state management.",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -23,7 +23,8 @@
     "reshow-return": "*",
     "reshow-runtime": "*",
     "seturl": "*",
-    "smooth-scroll-to": "*"
+    "smooth-scroll-to": "*",
+    "with-array": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",

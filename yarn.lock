@@ -2654,9 +2654,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286:
-  version "1.0.30001301"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001301.tgz#ebc9086026534cab0dab99425d9c3b4425e5f450"
-  integrity sha512-csfD/GpHMqgEL3V3uIgosvh+SVIQvCh43SNu9HRbP1lnxkKm1kjDG4f32PP571JplkLjfS+mg2p1gxR7MYrrIA==
+  version "1.0.30001302"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001302.tgz#da57ce61c51177ef3661eeed7faef392d3790aaa"
+  integrity sha512-YYTMO+tfwvgUN+1ZnRViE53Ma1S/oETg+J2lISsqi/ZTNThj3ZYBOKP2rHwJc37oCsPqAzJ3w2puZHn0xlLPPw==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -3408,9 +3408,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.52"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.52.tgz#ce44c6d6cc449e7688a4356b8c261cfeafa26833"
-  integrity sha512-JGkh8HEh5PnVrhU4HbpyyO0O791dVY6k7AdqfDeqbcRMeoGxtNHWT77deR2nhvbLe4dKpxjlDEvdEwrvRLGu2Q==
+  version "1.4.53"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.53.tgz#5d80a91c399b44952ef485857fb5b9d4387d2e60"
+  integrity sha512-rFveSKQczlcav+H3zkKqykU6ANseFwXwkl855jOIap5/0gnEcuIhv2ecz6aoTrXavF6I/CEBeRnBnkB51k06ew==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -8152,9 +8152,9 @@ ucfirst-js@*:
   integrity sha512-8YSiUPTnleVp2yx1g02ocC+WCS6U/3TimRnxzeGSmp+Er8u+0qo2SvEREdul93B2BbmSE3paILzKN+inRCm39w==
 
 uglify-js@^3.1.4:
-  version "3.14.5"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.5.tgz#cdabb7d4954231d80cb4a927654c4655e51f4859"
-  integrity sha512-qZukoSxOG0urUTvjc2ERMTcAy+BiFh3weWAkeurLwjrCba73poHmG3E36XEjd/JGukMzwTL7uCxZiAexj8ppvQ==
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.15.0.tgz#2d6a689d94783cab43975721977a13c2afec28f1"
+  integrity sha512-x+xdeDWq7FiORDvyIJ0q/waWd4PhjBNOm5dQUOq2AKC0IEjxOS66Ha9tctiVDGcRQuh69K7fgU5oRuTK4cysSg==
 
 uid-number@0.0.6:
   version "0.0.6"
@@ -8416,9 +8416,9 @@ win-doc@*:
     reshow-runtime "*"
 
 with-array@*:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/with-array/-/with-array-0.0.3.tgz#c5d921a1abb2539580d1f28b58ddcebcf9661b92"
-  integrity sha512-NR0X/0mT+NFihL5tcvfkhdkzY4LF6gcEn+hNDHJMG6cqWBDwd+0fjfQ5cmaXraUR/9y5rFRO02ZFv9x2slldPQ==
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/with-array/-/with-array-0.0.4.tgz#12569ff9988bd0f54618ccd0c26a86d655857245"
+  integrity sha512-qnIyG7d0/WVdIZfo7xrPtvTKdRRHG0OP9zTetDBP59BGHRgGguD06kBgs1FpQgENquq7vkr84q/UtAx6ykM28A==
   dependencies:
     reshow-constant "*"
 
