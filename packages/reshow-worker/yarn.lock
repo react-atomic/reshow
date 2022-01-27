@@ -3472,14 +3472,12 @@ reshow-runtime@*:
     regenerator-runtime "^0.13.4"
     reshow-constant "*"
 
-reshow-unit@*:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.0.5.tgz#a3fa410f7ab266492edf6afb3dbd5130d66ced68"
-  integrity sha512-TMnfSJwbDKzq4SAZXh5oNzDLu1we4rT/ZOf2iXa69PdKZPqO0aVBq+jJr23Zh/itZbagEt+YKro7tQHNSxZqsg==
+reshow-unit-dom@*:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.0.4.tgz#9a3b7152b6c8fe201f69d98c0f319e5acf875770"
+  integrity sha512-hp0Je2Y7X4/QTEXXU/UILbbiQYxL1tutrJG4A1cHKPSsPOWvcSUM0RzYYPq50rrPWv0LAvSRA2HhXHyozSpVDg==
   dependencies:
     chai "*"
-    enzyme "*"
-    enzyme-adapter-react-16 "*"
     jsdom "16.4.0"
     jsdom-global "*"
     mocha "^9.x"
@@ -3487,8 +3485,17 @@ reshow-unit@*:
     prettier "*"
     prettier-eslint "*"
     prettier-eslint-cli "*"
-    react-test-renderer "^16.x"
     sinon "*"
+
+reshow-unit@^0.16.0:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.16.2.tgz#d1b198b4a0c51fbd7a4391424a9b4fe44c6712f9"
+  integrity sha512-yGEBRhnBnsf6imL0KLTS7HsoCyioG1ppyNw3QUAVN6r/nz5WsyR5hYDpytU/W3WxQJqzwAsIX9co7kah/1eISg==
+  dependencies:
+    enzyme "*"
+    enzyme-adapter-react-16 "*"
+    react-test-renderer "^16.x"
+    reshow-unit-dom "*"
 
 resolve-from@^4.0.0:
   version "4.0.0"
@@ -4207,6 +4214,13 @@ win-doc@*:
   dependencies:
     reshow-constant "*"
     reshow-runtime "*"
+
+window-onload@*:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/window-onload/-/window-onload-0.2.0.tgz#912e2628921c5408fe08dfc0dc599c994672e253"
+  integrity sha512-7oVJfK3Q3tzAvZMzKxjW5Hh32OAz1/Zf1ry9oRj8NyAtE+iQxxMcINQr9HYRBliLuiFUqE0f8VBIMdxspyVASg==
+  dependencies:
+    reshow-constant "*"
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"

@@ -1,4 +1,5 @@
 import webpack from "webpack";
+import WorkboxPlugin from "workbox-webpack-plugin";
 import Refresh from "./refresh";
 import getStatsJson from "./getStatsJson";
 import getBundleAnalyzerPlugin from "./getBundleAnalyzerPlugin";
@@ -47,6 +48,14 @@ const getPlugins = ({
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new Refresh({ disableRefreshCheck: true })
+    );
+  } else {
+    plugins.push(
+      new WorkboxPlugin.GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+        maximumFileSizeToCacheInBytes: 10240000,
+      })
     );
   }
   if (stop) {
