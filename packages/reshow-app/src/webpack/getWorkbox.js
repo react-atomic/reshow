@@ -10,22 +10,25 @@ import { PRODUCTION } from "./const";
  */
 const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
   const oneMB = 1024000;
+  // https://developers.google.cn/web/tools/workbox/guides/generate-service-worker/webpack?hl=zh-cn#adding_runtime_caching
   const runtimeCaching = [
     {
-      urlPattern: /\.(?:css)$/,
+      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:css)/,
       // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies
       handler: "CacheFirst",
-      options: {
-        cacheName: "css",
-        expiration: {
-          maxEntries: 10,
-        },
-      },
+      options: { cacheName: "css" },
+    },
+    {
+      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:env|md|json)/,
+      // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies
+      handler: "CacheFirst",
+      options: { cacheName: "env" },
     },
   ];
   const options = {
     swDest,
     runtimeCaching,
+    sourcemap: false,
     clientsClaim: true,
     skipWaiting: true,
     maximumFileSizeToCacheInBytes: oneMB * 10,
