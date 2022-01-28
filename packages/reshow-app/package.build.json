@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.15.0",
+  "version": "0.15.3",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "repository": {
@@ -57,6 +57,7 @@
     "reshow-worker": "*",
     "terser-webpack-plugin": "^1.4.3",
     "thread-loader": "*",
+    "html-webpack-plugin": "^4.x",
     "webpack": "^4.x",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^4.x",

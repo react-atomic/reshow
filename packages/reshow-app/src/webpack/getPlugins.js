@@ -1,15 +1,17 @@
 import webpack from "webpack";
-import WorkboxPlugin from "workbox-webpack-plugin";
-import Refresh from "./refresh";
-import getStatsJson from "./getStatsJson";
-import getBundleAnalyzerPlugin from "./getBundleAnalyzerPlugin";
+
 import FinishPlugin from "./FinishPlugin";
+import getStatsJson from "./getStatsJson";
+import getWorkbox from "./getWorkbox";
+import getHTML from "./getHTML";
+import getBundleAnalyzerPlugin from "./getBundleAnalyzerPlugin";
 import NginxPushPlugin from "./NginxPushPlugin";
+import Refresh from "./refresh";
 import { PRODUCTION } from "./const";
 
 const { AggressiveMergingPlugin, LimitChunkCountPlugin } = webpack.optimize;
 
-const assetsStore = { data: null };
+const assetsStore = { current: null };
 
 const getPlugins = ({
   path,
@@ -36,6 +38,9 @@ const getPlugins = ({
   if (BUNDLE) {
     plugins.push(getBundleAnalyzerPlugin({ BUNDLE }));
   }
+  if (confs.indexTpl) {
+    plugins.push(getHTML(confs));
+  }
   if (mode === PRODUCTION) {
     plugins.push(
       new AggressiveMergingPlugin({
@@ -50,13 +55,8 @@ const getPlugins = ({
       new Refresh({ disableRefreshCheck: true })
     );
   } else {
-    plugins.push(
-      new WorkboxPlugin.GenerateSW({
-        clientsClaim: true,
-        skipWaiting: true,
-        maximumFileSizeToCacheInBytes: 10240000,
-      })
-    );
+    // get Workbox for non hot update
+    plugins.push(getWorkbox(confs));
   }
   if (stop) {
     plugins.push(new FinishPlugin({ stop }));

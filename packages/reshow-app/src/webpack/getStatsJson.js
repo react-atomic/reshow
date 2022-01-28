@@ -21,8 +21,8 @@ const getStatsJson = ({ assetsStore }) => {
           },
         ];
       });
-      assetsStore.data = { chunks, publicPath, status: "done" };
-      return JSON.stringify(assetsStore.data, null, 2);
+      assetsStore.current = { chunks, publicPath, status: "done" };
+      return JSON.stringify(assetsStore.current, null, 2);
     },
   });
 };

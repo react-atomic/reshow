@@ -65,9 +65,9 @@ class NginxPushPlugin {
             new Promise((resolve) => {
               setTimeout(() => {
                 // get all assets
-                const assets = keys(this.assetsStore.data?.chunks || {}).map(
+                const assets = keys(this.assetsStore.current?.chunks || {}).map(
                   (key) => {
-                    const item = this.assetsStore.data.chunks[key];
+                    const item = this.assetsStore.current.chunks[key];
                     return item[0].publicPath;
                   }
                 );
