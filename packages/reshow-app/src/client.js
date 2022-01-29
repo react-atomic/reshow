@@ -8,6 +8,7 @@ import { ajaxDispatch } from "organism-react-ajax";
 import { urlStore } from "reshow-url";
 import { win, doc } from "win-doc";
 import build from "reshow-build";
+import { UNDEFINED } from "reshow-constant";
 
 const render = (oApp, dom) =>
   (dom.innerHTML && ReactDOM.hydrate ? ReactDOM.hydrate : ReactDOM.render)(
@@ -21,17 +22,15 @@ let bInitWorker = false;
 
 const client = (rawApp, { selector = "#app", serviceWorkerURL } = {}) => {
   const app = build(rawApp);
+  win().Reshow = { render, app, update };
   setImmediate(() => {
-    win().Reshow = { render, app, update };
-    let data = {};
-    if ("undefined" !== typeof REACT_DATA) {
-      data = REACT_DATA;
-    }
+    const data = UNDEFINED !== typeof REACT_DATA ? REACT_DATA : {};
     const attachDom = doc().querySelector(selector);
     if (attachDom) {
       render(app(data), attachDom);
     }
     if (!bInitWorker) {
+      serviceWorkerURL = serviceWorkerURL ?? data.serviceWorkerURL;
       initWorker({ serviceWorkerURL });
       bInitWorker = true;
     }
