@@ -13,7 +13,7 @@ const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
   // https://developers.google.cn/web/tools/workbox/guides/generate-service-worker/webpack?hl=zh-cn#adding_runtime_caching
   const runtimeCaching = [
     {
-      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:css)/,
+      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:css)$/,
       // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies
       handler: "CacheFirst",
       options: {
@@ -24,8 +24,17 @@ const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
       },
     },
     {
-      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:env|md|json)/,
-      // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies
+      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:env|md|json)$/,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "env",
+        expiration: {
+          maxEntries: 5,
+        },
+      },
+    },
+    {
+      urlPattern: /^(http)(s)?(\:\/\/).*\/(?:env)$/,
       handler: "CacheFirst",
       options: {
         cacheName: "env",

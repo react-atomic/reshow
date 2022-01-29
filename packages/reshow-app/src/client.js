@@ -19,7 +19,7 @@ const update = (json) => ajaxDispatch("callback", { json });
 
 let bInitWorker = false;
 
-const client = (rawApp, selector) => {
+const client = (rawApp, { selector = "#app", serviceWorkerURL } = {}) => {
   const app = build(rawApp);
   setImmediate(() => {
     win().Reshow = { render, app, update };
@@ -27,13 +27,12 @@ const client = (rawApp, selector) => {
     if ("undefined" !== typeof REACT_DATA) {
       data = REACT_DATA;
     }
-    const appSelector = selector || "#app";
-    const attachDom = doc().querySelector(appSelector);
+    const attachDom = doc().querySelector(selector);
     if (attachDom) {
       render(app(data), attachDom);
     }
     if (!bInitWorker) {
-      initWorker();
+      initWorker({ serviceWorkerURL });
       bInitWorker = true;
     }
   });

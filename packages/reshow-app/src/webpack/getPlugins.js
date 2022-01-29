@@ -49,14 +49,16 @@ const getPlugins = ({
       })
     );
   }
-  if (HOT_UPDATE) {
-    plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-      new Refresh({ disableRefreshCheck: true })
-    );
-  } else {
-    // get Workbox for non hot update
-    plugins.push(getWorkbox(confs));
+  if (!server) {
+    if (HOT_UPDATE) {
+      plugins.push(
+        new webpack.HotModuleReplacementPlugin(),
+        new Refresh({ disableRefreshCheck: true })
+      );
+    } else {
+      // get Workbox for non hot update
+      plugins.push(getWorkbox(confs));
+    }
   }
   if (stop) {
     plugins.push(new FinishPlugin({ stop }));
