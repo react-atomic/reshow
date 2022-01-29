@@ -16,18 +16,30 @@ const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
       urlPattern: /^(http)(s)?(\:\/\/).*\.(?:css)/,
       // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies
       handler: "CacheFirst",
-      options: { cacheName: "css" },
+      options: {
+        cacheName: "css",
+        expiration: {
+          maxEntries: 10,
+        },
+      },
     },
     {
       urlPattern: /^(http)(s)?(\:\/\/).*\.(?:env|md|json)/,
       // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies
       handler: "CacheFirst",
-      options: { cacheName: "env" },
+      options: {
+        cacheName: "env",
+        expiration: {
+          maxEntries: 5,
+        },
+      },
     },
   ];
   const options = {
     swDest,
     runtimeCaching,
+    ignoreURLParametersMatching: [/.*/],
+    cleanupOutdatedCaches: false,
     sourcemap: false,
     clientsClaim: true,
     skipWaiting: true,
