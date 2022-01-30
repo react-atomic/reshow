@@ -1,0 +1,53 @@
+version: 2.1
+
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: <%= mainName %>
+    docker:
+      - image: circleci/buildpack-deps:18.04
+
+jobs:
+  build-and-publish:
+    parameters:
+      docker-tag:
+        type: string
+      folder-prefix:
+        type: string
+        default: "<%= folderPrefix %>"
+    executor: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.7
+          docker_layer_caching: true
+      - run:
+          name: Log time
+          command: date
+      - run:
+          name: Gen Docker file
+          command: |
+            ./build.sh << parameters.docker-tag >>
+            ls -la << parameters.folder-prefix >><< parameters.docker-tag >>
+      - run:
+          name: build Docker image
+          command: |
+            VERSION=$(support/VERSION.sh)
+            BUILD_VERSION=<< parameters.docker-tag >>
+            BUILD_FOLDER=<< parameters.folder-prefix >><< parameters.docker-tag >>
+            BUILD_ARG=""
+            docker build ${BUILD_ARG} -f ${BUILD_FOLDER}/Dockerfile \
+              -t $IMAGE_NAME:${BUILD_VERSION} \
+              ./${BUILD_FOLDER}
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            ./compile.sh p << parameters.docker-tag >>
+
+workflows:
+  run-job:
+    jobs:
+      - build-and-publish:
+          matrix:
+            parameters:
+              docker-tag: ["0.0"]
