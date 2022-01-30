@@ -56,7 +56,7 @@ module.exports = class extends YoGenerator {
     const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
       promptChain(promptChainLocator(nextPrompts))
     );
-    handleAnswers(answers, payload => { say(payload) });
+    handleAnswers(answers);
   }
 
   writing() {
