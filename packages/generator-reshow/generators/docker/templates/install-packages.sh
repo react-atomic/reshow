@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PREPARE=""
+INSTALL=""
 
 BUILD_DEPS=""
 
@@ -8,7 +8,7 @@ echo "###"
 echo "# Will install"
 echo "###"
 echo ""
-echo $PREPARE
+echo $INSTALL
 echo ""
 echo "###"
 echo "# Will build package"
@@ -17,8 +17,8 @@ echo ""
 echo $BUILD_DEPS
 echo ""
 
-apk add --virtual .build-deps $BUILD_DEPS && apk add $PREPARE
+apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL
 
-apk del -f .build-deps && rm -rf /var/cache/apk/* || exit 6
+apk del -f .build-deps && rm -rf /var/cache/apk/* || exit 1
 
 exit 0
