@@ -50,7 +50,7 @@ const RUN_CP = (oGen) => (src, dest, options, bOverwrite) => {
       action.call(oGenFs, actualSrc, realDestFile, options);
     }
   } catch (e) {
-    console.log(e);
+    throw e;
   }
   return dest;
 };
@@ -85,7 +85,7 @@ const YoHelper = (oGen) => {
     mkdir,
     getDestFolderName,
     chdir,
-    chMainName: (name) => {
+    chMainName: (name = oGen.mainName) => {
       if (name !== getDestFolderName()) {
         chdir(name);
       }

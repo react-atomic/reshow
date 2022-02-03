@@ -60,11 +60,15 @@ module.exports = class extends YoGenerator {
   }
 
   writing() {
+    this.payload.folderPrefixGitIgnore = this.payload.folderPrefix
+      ? this.payload.folderPrefix + "*"
+      : "";
+
     this.env.options.nodePackageManager = "yarn";
-    const { cp,  chMainName } = YoHelper(this);
+    const { cp, chMainName } = YoHelper(this);
 
     // handle change to new folder
-    chMainName(this.mainName);
+    chMainName();
 
     // handle copy file
     cp(".env.build", null, this.payload);
