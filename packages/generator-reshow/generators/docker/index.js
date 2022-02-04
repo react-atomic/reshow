@@ -37,6 +37,22 @@ module.exports = class extends YoGenerator {
     const prompts = [
       ...commonPrompt.mainName(this),
       ...commonPrompt.desc(this),
+      ...commonPrompt.repository(this, {
+        defaultRepositoryName: "[REPOSITORY_NAME]",
+        defaultRepositoryOrgName: "[REPOSITORY_ORG_NAME]",
+      }),
+      {
+        type: "input",
+        name: "dockerImageName",
+        message: "Please input your docker-image-name?",
+        default: "[DOCKER_IMAGE_NAME]",
+      },
+      {
+        type: "input",
+        name: "dockerOrgName",
+        message: "Please input your docker-org-name?",
+        default: "[DOCKER_ORG_NAME]",
+      },
       {
         type: "input",
         name: "folderPrefix",

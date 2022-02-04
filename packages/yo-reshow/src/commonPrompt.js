@@ -31,18 +31,21 @@ const commonPrompt = {
       default: "",
     },
   ],
-  repository: (oGen) => [
+  repository: (
+    oGen,
+    { defaultRepositoryName, defaultRepositoryOrgName } = {}
+  ) => [
     {
       type: "input",
       name: "repositoryName",
       message: "Please input code repository name ?",
-      default: "",
+      default: defaultRepositoryName,
     },
     {
       type: "input",
       name: "repositoryOrgName",
       message: "Please input code repository organization name ?",
-      default: "",
+      default: defaultRepositoryOrgName,
     },
   ],
   babel: (oGen) => [
