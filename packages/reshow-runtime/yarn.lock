@@ -3221,14 +3221,12 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
-reshow-unit@*:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.0.5.tgz#a3fa410f7ab266492edf6afb3dbd5130d66ced68"
-  integrity sha512-TMnfSJwbDKzq4SAZXh5oNzDLu1we4rT/ZOf2iXa69PdKZPqO0aVBq+jJr23Zh/itZbagEt+YKro7tQHNSxZqsg==
+reshow-unit-dom@*:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.0.4.tgz#9a3b7152b6c8fe201f69d98c0f319e5acf875770"
+  integrity sha512-hp0Je2Y7X4/QTEXXU/UILbbiQYxL1tutrJG4A1cHKPSsPOWvcSUM0RzYYPq50rrPWv0LAvSRA2HhXHyozSpVDg==
   dependencies:
     chai "*"
-    enzyme "*"
-    enzyme-adapter-react-16 "*"
     jsdom "16.4.0"
     jsdom-global "*"
     mocha "^9.x"
@@ -3236,8 +3234,17 @@ reshow-unit@*:
     prettier "*"
     prettier-eslint "*"
     prettier-eslint-cli "*"
-    react-test-renderer "^16.x"
     sinon "*"
+
+reshow-unit@^0.16.0:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.16.2.tgz#d1b198b4a0c51fbd7a4391424a9b4fe44c6712f9"
+  integrity sha512-yGEBRhnBnsf6imL0KLTS7HsoCyioG1ppyNw3QUAVN6r/nz5WsyR5hYDpytU/W3WxQJqzwAsIX9co7kah/1eISg==
+  dependencies:
+    enzyme "*"
+    enzyme-adapter-react-16 "*"
+    react-test-renderer "^16.x"
+    reshow-unit-dom "*"
 
 resolve-from@^4.0.0:
   version "4.0.0"

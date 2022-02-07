@@ -3,6 +3,7 @@
  */
 
 import _defaults from "./defaults";
+
 const setProtoOf = (obj, proto) => {
   obj.__proto__ = proto;
   return obj;
@@ -10,8 +11,8 @@ const setProtoOf = (obj, proto) => {
 
 const setDefaults = (o, p) => setProtoOf(_defaults(o, p), p);
 
-export default function _setPrototypeOf(o, p, force) {
-  _setPrototypeOf =
+export default function setPrototypeOf(o, p, force) {
+  const _setPrototypeOf =
     Object.setPrototypeOf ||
     ({ __proto__: [] } instanceof Array && !force ? setProtoOf : setDefaults);
 

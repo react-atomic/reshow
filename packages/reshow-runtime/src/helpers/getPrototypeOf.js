@@ -1,7 +1,7 @@
-export default function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf
+export default function getPrototypeOf(o) {
+  const _getPrototypeOf = Object.setPrototypeOf
     ? Object.getPrototypeOf
-    : function _getPrototypeOf(o) {
+    : (o) => {
         return o.__proto__ || Object.getPrototypeOf(o);
       };
   return _getPrototypeOf(o);
