@@ -1,7 +1,6 @@
 import React from "react";
 import ReactServer from "react-dom/server";
 import build from "reshow-build";
-global.d3 = {}; // hack for ignore in d3 in server side
 
 const server = (app) => {
   return ({ process, fs, JSON, Buffer }) => {
