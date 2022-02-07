@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.15.13",
+  "version": "0.15.16",
   "description": "Reshow App Files",
   "repository": "react-atomic/reshow",
   "repository": {
@@ -47,7 +47,6 @@
     "organism-react-ajax": "*",
     "path": "*",
     "react-refresh": "*",
-    "react-test-renderer": "*",
     "reshow": "*",
     "reshow-build": "*",
     "reshow-constant": "*",
