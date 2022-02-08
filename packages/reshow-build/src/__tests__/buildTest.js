@@ -6,6 +6,13 @@ import { shallow } from "reshow-unit";
 import build from "../index";
 
 describe("Test build", () => {
+
+  it("test build string", ()=>{
+    const vdom = build("foo")(); 
+    const actual = shallow(vdom).html();
+    expect(actual).to.equal("<span>foo</span>");
+  });
+
   it("test function with error", () => {
     const run = () => {
       build((props) => {

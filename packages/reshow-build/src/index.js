@@ -1,5 +1,10 @@
-import { isValidElement, cloneElement, createElement, Children } from "react";
-import { FUNCTION, T_NULL, T_TRUE, TYPE_ERROR } from "reshow-constant";
+import React, {
+  isValidElement,
+  cloneElement,
+  createElement,
+  Children,
+} from "react";
+import { STRING, FUNCTION, T_NULL, T_TRUE, TYPE_ERROR } from "reshow-constant";
 import { removeEmpty } from "array.merge";
 
 const buildFunc = (component, props, child, componentOption) => {
@@ -39,11 +44,16 @@ const build = (component, componentOption) => (props, child) => {
   if (!component) {
     return T_NULL;
   }
+
   const { wrap, doCallFunction } = componentOption || {};
   if (wrap) {
     if (FUNCTION !== typeof component && !isValidElement(component)) {
       child = component;
       component = wrap;
+    }
+  } else {
+    if (STRING === typeof component) {
+      component = <span>{component}</span>;
     }
   }
 
