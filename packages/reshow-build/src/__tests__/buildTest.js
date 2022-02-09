@@ -8,9 +8,15 @@ import build from "../index";
 describe("Test build", () => {
 
   it("test build string", ()=>{
-    const vdom = build("foo")(); 
+    const vdom = build("Foo Bar")(); 
     const actual = shallow(vdom).html();
-    expect(actual).to.equal("<span>foo</span>");
+    expect(actual).to.equal("<span>Foo Bar</span>");
+  });
+
+  it("test build native html", ()=>{
+    const vdom = build("a")(); 
+    const actual = shallow(vdom).html();
+    expect(actual).to.equal("<a></a>");
   });
 
   it("test function with error", () => {

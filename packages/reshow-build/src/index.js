@@ -34,10 +34,17 @@ const buildReact = (component, props, child) => {
   if (child != T_NULL) {
     params.push(child);
   }
-  return (isValidElement(component) ? cloneElement : createElement).apply(
-    T_NULL,
-    params
-  );
+  if (
+    STRING === typeof component &&
+    component !== component.replace(/[^a-z]/g, "")
+  ) {
+    return buildReact(<span>{component}</span>, props, child);
+  } else {
+    return (isValidElement(component) ? cloneElement : createElement).apply(
+      T_NULL,
+      params
+    );
+  }
 };
 
 const build = (component, componentOption) => (props, child) => {
@@ -50,10 +57,6 @@ const build = (component, componentOption) => (props, child) => {
     if (FUNCTION !== typeof component && !isValidElement(component)) {
       child = component;
       component = wrap;
-    }
-  } else {
-    if (STRING === typeof component) {
-      component = <span>{component}</span>;
     }
   }
 
