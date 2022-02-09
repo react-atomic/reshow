@@ -739,6 +739,14 @@ call-func@*:
   dependencies:
     reshow-constant "*"
 
+call-func@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.1.5.tgz#2a67771937ded5253d1a120beee148fb2a2b9f41"
+  integrity sha512-45JPUw/On2Lut6pfRc4WduCnRyhVona2gjF7todpbz6Z92enTC3/PL2ttVuuPzSbLSlXzS/5ppF32f6+Wkgfxg==
+  dependencies:
+    get-object-value "*"
+    reshow-constant "*"
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -3550,10 +3558,23 @@ reshow-build@*, reshow-build@^0.15.0:
     array.merge "*"
     reshow-constant "^0.15.0"
 
+reshow-build@^0.16.0:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.16.1.tgz#a6f7b815b8604ae66f81fadd41b8c473fc60a534"
+  integrity sha512-kII7o1IYELHLPxGTirfh91glyqM2qYoBoZXMMT0AsRg5TCBP6Njp/DgOYfTs6X/fVkQf4hi3qhIhmByqaU2wVw==
+  dependencies:
+    array.merge "*"
+    reshow-constant "^0.16.0"
+
 reshow-constant@*, reshow-constant@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.15.0.tgz#9682b5fae47f424e37c1cde8a054472071d72c1b"
   integrity sha512-UxXIt88+ld5EVKsCy8pyT7JkqM1GTbi/JtEVrtLk9CoreW8VijbG4q/RNDpUfFK5FTOO0UQhXPYpodUH0vGEZQ==
+
+reshow-constant@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.16.0.tgz#2fe26deb6fbd1b45fa6ff5202bda7644156dce1a"
+  integrity sha512-AKrU8A6EdFw7L5zHs8W8WNsdXbZwpgimvY92ZwobLhH5wC6mVG+L6H6zzS6/Y/DBqWXcuCsRGTg5hT1ahwZ6pQ==
 
 reshow-flux-base@*:
   version "0.15.10"
@@ -3563,6 +3584,15 @@ reshow-flux-base@*:
     call-func "*"
     reshow-constant "^0.15.0"
     reshow-runtime "*"
+
+reshow-flux-base@^0.16.0:
+  version "0.16.10"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.10.tgz#cca0b4082ceb826250e42c74d2ac0282e03e5c1e"
+  integrity sha512-8J5IoMc5wFjHoP57tT2OJUbxQj8JvDpNkk+CTfqUDs0we1OQde/GRa2cXXPflNS7oZ6Tkj5GW+iF8PAZAvvdRg==
+  dependencies:
+    call-func "^0.1.5"
+    reshow-constant "^0.16.0"
+    reshow-runtime "^0.16.0"
 
 reshow-flux@*, reshow-flux@^0.15.0:
   version "0.15.12"
@@ -3580,10 +3610,34 @@ reshow-flux@*, reshow-flux@^0.15.0:
     reshow-runtime "*"
     setimmediate "*"
 
+reshow-flux@^0.16.0:
+  version "0.16.13"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.16.13.tgz#eef920574e63ee64a603da72dabe1dbeebd08d56"
+  integrity sha512-gmLg0xx7Dt+7C0L/D8gUkt/VC+3PJp2PbsIJVY4avu6a2JUUalCCdusgsmb7Mq1PfP+pFWC6KLAuAJM7Jl4xvw==
+  dependencies:
+    array.dedup "*"
+    array.merge "*"
+    get-object-value "*"
+    immutable "^3.x"
+    memoize-one "*"
+    reshow-build "^0.16.0"
+    reshow-constant "^0.16.0"
+    reshow-flux-base "^0.16.0"
+    reshow-hooks "^0.16.0"
+    reshow-runtime "^0.16.0"
+    setimmediate "*"
+
 reshow-hooks@*:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.15.0.tgz#b50d9ff750ddb41bbd5b8476a3a4aa04e20d0143"
   integrity sha512-TOKcSp3GBYsprHcepAZYbhljJJmr3fOj7oKf3n72kArVKz0j37UTkfLycXRFR9Ap14esSgtqen98nTdYsvsg2Q==
+  dependencies:
+    call-func "*"
+
+reshow-hooks@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.16.0.tgz#be20717d92e70c4f2dd7d4196fc7464a02aa6e1b"
+  integrity sha512-7N7fgInP/AnMJH1Pe3vSF5DkHW3to9xutskSKwDVCHwrCq0kQ+Snh8GoB2tWINrXZP2dwmqjfCa0pff/smZEnQ==
   dependencies:
     call-func "*"
 
@@ -3607,14 +3661,20 @@ reshow-runtime@*:
     regenerator-runtime "^0.13.4"
     reshow-constant "*"
 
-reshow-unit@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.15.0.tgz#2ed3edb586066c59119f09e1430b63a415c044af"
-  integrity sha512-wvxGZLUCsTXpLbX95YYwbN/xxufj2M/ongbyQxbPnUoR0SyNmjK02+MbdEetWCrwQelQ46KqM5stG6Ky1ZHeEw==
+reshow-runtime@^0.16.0:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.16.1.tgz#ffbc3fe298721f7e8e97d9234b3d65efa44db193"
+  integrity sha512-mnAv9nq/mucGETEdVxKInY3r+4ekMy6WjFaL84MW1pYhqaUBS826R+p/j5FfF93FFoi7mjgrlqxTnT9lpBqm0g==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+    reshow-constant "*"
+
+reshow-unit-dom@*:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.0.4.tgz#9a3b7152b6c8fe201f69d98c0f319e5acf875770"
+  integrity sha512-hp0Je2Y7X4/QTEXXU/UILbbiQYxL1tutrJG4A1cHKPSsPOWvcSUM0RzYYPq50rrPWv0LAvSRA2HhXHyozSpVDg==
   dependencies:
     chai "*"
-    enzyme "*"
-    enzyme-adapter-react-16 "*"
     jsdom "16.4.0"
     jsdom-global "*"
     mocha "^9.x"
@@ -3622,8 +3682,17 @@ reshow-unit@^0.15.0:
     prettier "*"
     prettier-eslint "*"
     prettier-eslint-cli "*"
-    react-test-renderer "^16.x"
     sinon "*"
+
+reshow-unit@^0.16.0:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.16.2.tgz#d1b198b4a0c51fbd7a4391424a9b4fe44c6712f9"
+  integrity sha512-yGEBRhnBnsf6imL0KLTS7HsoCyioG1ppyNw3QUAVN6r/nz5WsyR5hYDpytU/W3WxQJqzwAsIX9co7kah/1eISg==
+  dependencies:
+    enzyme "*"
+    enzyme-adapter-react-16 "*"
+    react-test-renderer "^16.x"
+    reshow-unit-dom "*"
 
 reshow@*:
   version "0.15.3"

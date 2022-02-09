@@ -1,6 +1,6 @@
 {
   "name": "reshow-url",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "description": "reshow url util (Web / Browser)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -13,12 +13,12 @@
   "dependencies": {
     "array.dedup": "*",
     "organism-react-ajax": "*",
+    "reshow": "*",
     "reshow-flux": "^0.16.0",
     "reshow-runtime": "^0.16.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow": "*",
     "reshow-unit": "^0.16.0"
   },
   "scripts": {
