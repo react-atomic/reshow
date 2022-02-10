@@ -42,16 +42,20 @@ push() {
     fi
   fi
   echo "* <!-- Start to push ${targetImage}:$tag"
-  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_LOGIN" --password-stdin
+  IS_LOGIN=$(echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_LOGIN" --password-stdin)
+  if ! [[ $IS_LOGIN =~ "Succeeded" ]]; then
+    echo "Login Failed."
+    exit 1
+  fi
   docker push ${targetImage}:$tag
-  echo "* Finish to push -->"
+  echo "* Finish pushed -->"
   echo ""
   if [ ! -z "$1" ]; then
     if [ "x$VERSION" == "x$PUSH_VERSION" ]; then
       echo "* <!-- Start to auto push ${targetImage}:${LATEST_TAG}"
       docker tag ${targetImage}:$tag ${targetImage}:${LATEST_TAG}
       docker push ${targetImage}:${LATEST_TAG}
-      echo "* Finish to push -->"
+      echo "* Finish pushed -->"
     fi
   fi
 }
@@ -67,7 +71,7 @@ build() {
     BUILD_ARG="$BUILD_ARG --build-arg VERSION=${VERSION}"
   fi
   echo build: ${DIR}/${DOCKER_FILE}
-  if [ -z "$NO_CACHE" ]; then
+  if [ "x" != "x$NO_CACHE" ]; then
     echo nocache: ${NO_CACHE}
   fi
   docker build ${BUILD_ARG} ${NO_CACHE} -f ${DIR}/${DOCKER_FILE} -t $sourceImage ${DIR}
