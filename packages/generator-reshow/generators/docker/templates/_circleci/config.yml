@@ -2,8 +2,6 @@ version: 2.1
 
 executors:
   docker-publisher:
-    environment:
-      IMAGE_NAME: <%= mainName %>
     docker:
       - image: circleci/buildpack-deps:18.04
 
@@ -33,6 +31,7 @@ jobs:
           name: build Docker image
           command: |
             VERSION=$(support/VERSION.sh)
+            IMAGE_NAME=$(support/targetImage.sh)
             BUILD_VERSION=<< parameters.docker-tag >>
             BUILD_FOLDER=<< parameters.folder-prefix >><< parameters.docker-tag >>
             BUILD_ARG=""
