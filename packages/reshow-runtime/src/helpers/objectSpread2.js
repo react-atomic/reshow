@@ -1,11 +1,11 @@
 import defineProperty from "./defineProperty";
 import typeIs from "./getTypeOf";
-import { FUNCTION } from "reshow-constant";
+import { FUNCTION, KEYS } from "reshow-constant";
 export default function _objectSpread2(target) {
   for (var i = 1, j = arguments.length; i < j; i++) {
     if (i % 2 || !Object.getOwnPropertyDescriptors) {
       var source = arguments[i] != null ? arguments[i] : {};
-      var ownKeys = Object.keys(source);
+      var ownKeys = KEYS(source);
 
       if (typeIs(Object.getOwnPropertySymbols) === FUNCTION) {
         ownKeys = ownKeys.concat(

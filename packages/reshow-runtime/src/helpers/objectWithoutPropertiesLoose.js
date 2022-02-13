@@ -1,7 +1,8 @@
+import { KEYS } from "reshow-constant";
 export default function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
-  var sourceKeys = Object.keys(source);
+  var sourceKeys = KEYS(source);
   var key, i;
 
   for (i = 0; i < sourceKeys.length; i++) {
