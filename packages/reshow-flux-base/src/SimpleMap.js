@@ -18,12 +18,14 @@ class SimpleMap {
 
   set(k, v) {
     const state = { ...this._state, [k]: toJS(v) };
+    this._state = state;
     return new SimpleMap(state);
   }
 
   delete(k) {
     const state = { ...this._state };
     delete state[k];
+    this._state = state;
     return new SimpleMap(state);
   }
 
@@ -32,6 +34,7 @@ class SimpleMap {
       ...this._state,
       ...toJS(arr),
     };
+    this._state = state;
     return new SimpleMap(state);
   }
 
