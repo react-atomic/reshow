@@ -31,7 +31,9 @@ class ClientRoute extends Reshow {
     const themePath = this.getUrlChangeState(
       this.props.url || doc().URL
     )?.themePath;
-    setTimeout(() => dispatch({ themePath }));
+    setTimeout(() =>
+      dispatch({ themePath: themePath ?? this.getGlobalPath() })
+    );
     return themePath;
   }
 
