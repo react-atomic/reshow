@@ -31,6 +31,8 @@ const calculateState = (prevState, options) => {
       const reset = {};
       keys(prevState).forEach((key) => (reset[key] = null));
       return reset;
+    } else {
+      return prevState;
     }
   }
 };
@@ -49,7 +51,7 @@ const myConnectOptions = {
 const RealTimeReturn = getReturn({
   cleanProps: ["realTimePath", "realTimeUrl", "realTimeReset"],
   useConnect: useConnect(myConnectOptions),
-  displayName: "RealTime",
+  displayName: "RealTimeReturn",
 });
 
 export default RealTimeReturn;
