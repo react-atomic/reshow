@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.16.7",
+  "version": "0.16.8",
   "description": "A simplified React cross-component state management.",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -19,6 +19,7 @@
     "organism-react-ajax": "*",
     "organism-react-popup": "*",
     "react-atomic-molecule": "*",
+    "reshow-constant": "*",
     "reshow-flux": "*",
     "reshow-return": "*",
     "reshow-runtime": "*",

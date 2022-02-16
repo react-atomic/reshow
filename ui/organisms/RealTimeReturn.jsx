@@ -3,6 +3,7 @@ import get from "get-object-value";
 import { useConnect } from "reshow-flux";
 import { build } from "react-atomic-molecule";
 import { getReturn } from "reshow-return";
+import { KEYS } from "reshow-constant";
 
 import { connectOptions } from "../molecules/ReshowComponent";
 import realTimeStore from "../../src/stores/realTimeStore";
