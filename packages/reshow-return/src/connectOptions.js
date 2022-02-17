@@ -34,14 +34,9 @@ const calculateState = (prevState, options) => {
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const {
-    initStates,
-    pathStates,
-    immutable: optImmutable,
-    storeState,
-  } = options;
+  const { initStates, pathStates, immutable: optImmutable, store } = options;
 
-  const getStateValue = stateValueGetter(storeState);
+  const getStateValue = stateValueGetter(store.getState());
 
   const immutable = optImmutable || getStateValue("immutable");
   const results = {};

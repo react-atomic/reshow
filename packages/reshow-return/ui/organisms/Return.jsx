@@ -6,12 +6,19 @@ import connectOptions from "../../src/connectOptions";
 
 const getReturn = ({ useConnect, cleanProps, displayName = "Return" }) => {
   const Return = (props) => {
-    const { children, ...otherProps } = props;
+    const { children, backfillProps, ...otherProps } = props;
     const state = useConnect(props);
-    const result = build(children)({
-      ...connectOptions.reset(otherProps, cleanProps),
-      ...state,
-    });
+    const result = build(children)(
+      backfillProps
+        ? {
+            ...state,
+            ...connectOptions.reset(otherProps, cleanProps),
+          }
+        : {
+            ...connectOptions.reset(otherProps, cleanProps),
+            ...state,
+          }
+    );
     return result;
   };
 

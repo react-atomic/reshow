@@ -52,14 +52,9 @@ describe("Test Return", () => {
     }
   }
 
-  let reset;
-
-  beforeEach(() => {
-    dispatch("config/reset");
-  });
-
   afterEach(() => {
     cleanIt();
+    dispatch("config/reset");
   });
 
   it("assign props", (done) => {
@@ -130,5 +125,36 @@ describe("Test Return", () => {
     dispatch({
       data: "foo",
     });
+  });
+
+  it("test backfill props", () => {
+    dispatch({
+      foo: "foo",
+      bar: "bar",
+    });
+    const wrap = mount(
+      <FakeComponent
+        store={pageStore}
+        initStates={["foo", "bar"]}
+        backfillProps
+        foo="foo1"
+      />
+    );
+    const uFake = wrap.instance();
+    const uFakeEl = uFake.el;
+    expect(uFakeEl.props).to.deep.equal({ foo: "foo1", bar: "bar" });
+  });
+
+  it("test non backfill", () => {
+    dispatch({
+      foo: "foo",
+      bar: "bar",
+    });
+    const wrap = mount(
+      <FakeComponent store={pageStore} initStates={["foo", "bar"]} foo="foo1" />
+    );
+    const uFake = wrap.instance();
+    const uFakeEl = uFake.el;
+    expect(uFakeEl.props).to.deep.equal({ foo: "foo", bar: "bar" });
   });
 });
