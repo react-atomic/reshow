@@ -10,7 +10,6 @@ const getMapIn = (map, path) =>
 const reset = (props, more) => {
   const nextProps = { ...props };
   const cleanKeys = [
-    "busting",
     "changeable",
     "immutable",
     "initStates",

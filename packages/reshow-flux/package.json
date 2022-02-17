@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.16.13",
+  "version": "0.16.14",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",

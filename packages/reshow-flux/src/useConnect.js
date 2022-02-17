@@ -47,9 +47,8 @@ const useConnect =
 
     useEffect(
       () => {
-        const handleChange = (storeState = options.storeState) => {
+        const handleChange = () => {
           if (T_TRUE === isMount()) {
-            options.storeState = storeState;
             setData((prev) =>
               handleShouldComponentUpdate({
                 options,
