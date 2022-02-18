@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
+import Return from "reshow-return";
+import { toJS } from "reshow-flux";
+import { REAL_TIME_DATA_KEY } from "reshow-constant";
 import get from "get-object-value";
 import { AjaxPage } from "organism-react-ajax";
 import { doc } from "win-doc";
 import callfunc from "call-func";
-import Return from "reshow-return";
-import { toJS } from "reshow-flux";
 import { oneItemArrayToString } from "with-array";
 
 import updateCanonicalUrl, {
@@ -17,7 +18,7 @@ import pageStore from "../../src/stores/pageStore";
 let isInit;
 
 const update = (params) => {
-  const realTimeData = get(params, ["--realTimeData--"]);
+  const realTimeData = get(params, [REAL_TIME_DATA_KEY]);
   const reset = get(params, ["--reset--"]);
   const type = realTimeData
     ? "realTime"

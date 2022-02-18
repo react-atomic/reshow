@@ -12,3 +12,7 @@ export const T_TRUE = true;
 export const T_FALSE = false;
 export const KEYS = Object.keys;
 export const IS_ARRAY = Array.isArray;
+
+// reshow specific
+export const REAL_TIME_URL = "--real-time-url--";
+export const REAL_TIME_DATA_KEY = "--real-time-data-key--";

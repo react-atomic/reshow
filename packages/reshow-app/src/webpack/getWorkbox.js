@@ -1,4 +1,4 @@
-import WorkboxPlugin from "workbox-webpack-plugin";
+import { GenerateSW } from "workbox-webpack-plugin";
 import { stringToArray } from "with-array";
 import { PRODUCTION } from "./const";
 
@@ -58,7 +58,7 @@ const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
   if (!swDebug) {
     options.mode = PRODUCTION;
   }
-  return new WorkboxPlugin.GenerateSW(options);
+  return new GenerateSW(options);
 };
 
 export default getWorkbox;

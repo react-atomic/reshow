@@ -15,6 +15,8 @@ import {
   T_FALSE,
   KEYS,
   IS_ARRAY,
+  REAL_TIME_URL,
+  REAL_TIME_DATA_KEY,
 } from "../index";
 
 describe("Test Constant", () => {
@@ -83,5 +85,14 @@ describe("Test FUNCTION", () => {
   it("test is not Array", () => {
     const a = { foo: "bar" };
     expect(IS_ARRAY(a)).to.be.false;
+  });
+});
+
+describe("Test Reshow Specific", () => {
+  it("test REAL_TIME_URL", () => {
+    expect(REAL_TIME_URL).to.equal("--real-time-url--");
+  });
+  it("test REAL_TIME_DATA_KEY", () => {
+    expect(REAL_TIME_DATA_KEY).to.equal("--real-time-data-key--");
   });
 });
