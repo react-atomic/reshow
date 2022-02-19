@@ -83,7 +83,8 @@ const handleUrl = () => {
     }
     let url;
     let urlV;
-    const { type, params, group } = action || {};
+    const { type, group, ...otherParams } = action || {};
+    const params = get(action, ["params"], otherParams);
     switch (type) {
       case "url":
         url = get(action, ["url"], () => get(params, ["url"]));
@@ -92,6 +93,7 @@ const handleUrl = () => {
         }
         break;
       case "query":
+      default:
         url = oDoc.URL;
         const urlKeys = KEYS(params || []);
         if (Group.name !== group && Group.urlKeys) {
