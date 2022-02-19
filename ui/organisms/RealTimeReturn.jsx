@@ -14,13 +14,15 @@ import { connectOptions } from "../molecules/ReshowComponent";
 import realTimeStore from "../../src/stores/realTimeStore";
 
 const calculateState = (prevState, options) => {
+  /**
+   * storeState was pass from reducer directly to avoid synchronous get wrong data.
+   */
   const {
     realTimePath: path,
     realTimeUrl: url,
     realTimeReset,
-    store,
+    storeSyncState: realTimeState,
   } = options;
-  const realTimeState = store.getState();
   if (IS_ARRAY(path) && path.length) {
     path.unshift(REAL_TIME_DATA_KEY);
   }

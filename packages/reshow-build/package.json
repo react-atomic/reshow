@@ -1,12 +1,12 @@
 {
   "name": "reshow-build",
-  "version": "0.16.2",
-  "description": "A simple util help u build or create component from react instance or function",
+  "version": "0.16.4",
+  "description": "React super cloneElement and createElement",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
   "keywords": [
-    "flux"
+    "reactjs", "cloneElement", "createElement"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",

@@ -12,6 +12,18 @@ describe("Test build", () => {
     expect(actual).to.equal("<span>Foo Bar</span>");
   });
 
+  it("test build string with child", () => {
+    const vdom = build("Foo Bar")({}, <div />);
+    const actual = shallow(vdom).html();
+    expect(actual).to.equal("<span>Foo Bar</span>");
+  });
+
+  it("test build string with params has child", () => {
+    const vdom = build("Foo Bar")({children: <div />});
+    const actual = shallow(vdom).html();
+    expect(actual).to.equal("<span>Foo Bar</span>");
+  });
+
   it("test build native html", () => {
     const vdom = build("a")();
     const actual = shallow(vdom).html();

@@ -47,8 +47,15 @@ const useConnect =
 
     useEffect(
       () => {
-        const handleChange = () => {
+        const handleChange = (storeSyncState) => {
           if (T_TRUE === isMount()) {
+            /**
+             * Why storeSyncState?
+             *
+             * It's useful for synchronous programing to get correct data,
+             * when it pass from reducer directly.
+             */
+            options.storeSyncState = storeSyncState;
             setData((prev) =>
               handleShouldComponentUpdate({
                 options,
@@ -61,7 +68,7 @@ const useConnect =
           }
         };
         if (!data.__init__ || data.props !== props) {
-          handleChange();
+          handleChange(options.store.getState());
         }
         options.store.addListener(handleChange);
         return () => {

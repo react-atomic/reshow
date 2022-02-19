@@ -22,7 +22,7 @@ describe('Test ReshowMessage', done => {
     });
   });
 
-  it('test', done => {
+  it('test dialog', done => {
     const vDom = (
       <div>
         <ReshowMessage />
@@ -37,6 +37,6 @@ describe('Test ReshowMessage', done => {
       wrap.update();
       expect(wrap.html()).to.have.string('dialog');
       done();
-    }, 30);
+    }, 50);
   });
 });
