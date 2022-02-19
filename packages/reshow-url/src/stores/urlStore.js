@@ -26,12 +26,16 @@ class URL {
     return this.loc.href;
   }
 
+  getLocKey(key) {
+    return key.substr(1);
+  }
+
   get(key) {
     let value;
     if (0 === key.indexOf(":")) {
-      const cookKey = key.substr(1);
-      value = get(this.loc, [key.substr(1)]);
-      if ("pathname" === cookKey) {
+      const locKey = this.getLocKey(key);
+      value = get(this.loc, [locKey]);
+      if ("pathname" === locKey) {
         value = value.split("/");
       }
     } else {
@@ -126,4 +130,4 @@ const [store, urlDispatch] = createReducer(oUrl.reduce, oUrl.init);
 store.registerEvent = registerEvent;
 
 export default store;
-export { urlDispatch };
+export { urlDispatch, URL };

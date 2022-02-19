@@ -1,4 +1,3 @@
-import React, { PureComponent } from "react";
 import { cleanIt, jsdom } from "reshow-unit";
 import { expect } from "chai";
 import urlStore, { urlDispatch } from "../urlStore";
