@@ -56,8 +56,10 @@ const getPlugins = ({
         new Refresh({ disableRefreshCheck: true })
       );
     } else {
-      // get Workbox for non hot update
-      plugins.push(getWorkbox(confs));
+      if (HOT_UPDATE != null) {
+        // get Workbox for non hot update
+        plugins.push(getWorkbox(confs));
+      }
     }
   }
   if (stop) {
