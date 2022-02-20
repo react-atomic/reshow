@@ -30,7 +30,7 @@ const getTerser = () => {
       },
       toplevel: true,
       nameCache: null,
-      keep_fnames: true,
+      keep_classnames: true,
       ie8: true,
       safari10: true,
     },
