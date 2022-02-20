@@ -56,7 +56,7 @@ const getPlugins = ({
         new Refresh({ disableRefreshCheck: true })
       );
     } else {
-      if (HOT_UPDATE != null) {
+      if (HOT_UPDATE == null) {
         // get Workbox for non hot update
         plugins.push(getWorkbox(confs));
       }
