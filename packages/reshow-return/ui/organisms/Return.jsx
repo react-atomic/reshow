@@ -1,10 +1,16 @@
 import React from "react";
 import build from "reshow-build";
-import { useConnect } from "reshow-flux";
+import { useConnect as useConn } from "reshow-flux";
 
 import connectOptions from "../../src/connectOptions";
 
-const getReturn = ({ useConnect, cleanProps, displayName = "Return" }) => {
+const getReturn = ({
+  displayName = "Return",
+  useConnect,
+  cleanProps,
+  options,
+} = {}) => {
+  useConnect = useConnect || useConn({ ...connectOptions, ...options });
   const Return = (props) => {
     const { children, backfillProps, ...otherProps } = props;
     const state = useConnect(props);
@@ -26,9 +32,7 @@ const getReturn = ({ useConnect, cleanProps, displayName = "Return" }) => {
   return Return;
 };
 
-const Return = getReturn({
-  useConnect: useConnect(connectOptions),
-});
+const Return = getReturn();
 
 export default Return;
 export { getReturn };
