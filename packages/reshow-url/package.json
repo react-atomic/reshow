@@ -1,6 +1,6 @@
 {
   "name": "reshow-url",
-  "version": "0.16.5",
+  "version": "0.16.6",
   "description": "reshow url util (Web / Browser)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",

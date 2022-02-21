@@ -1,9 +1,13 @@
 import React from "react";
-import Return from "reshow-return";
+import { getReturn } from "reshow-return";
 
 import urlStore from "../../src/stores/urlStore";
 
-const UrlReturn = (props) => <Return {...props} store={urlStore} />;
-UrlReturn.displayName = "UrlReturn";
+const UrlReturn = getReturn({
+  displayName: "UrlReturn",
+  options: {
+    storeLocator: () => urlStore,
+  },
+});
 
 export default UrlReturn;
