@@ -28,6 +28,19 @@ const reset = (props, more) => {
 const stateValueGetter = (state) => (k) =>
   state.get ? state.get(k) : get(state, [k]);
 
+const stateKeyLocator = (initStates) => {
+  let keys;
+  let getNewKey;
+  if (IS_ARRAY(initStates)) {
+    keys = initStates;
+    getNewKey = (key) => key;
+  } else {
+    keys = initStates ? KEYS(initStates) : [];
+    getNewKey = (key) => (null != initStates[key] ? initStates[key] : key);
+  }
+  return [keys, getNewKey];
+};
+
 const calculateState = (prevState, options) => {
   /**
    * Why not support multi stores?
@@ -46,18 +59,11 @@ const calculateState = (prevState, options) => {
 
   const toImmutable = getImmutable(immutable);
 
-  if (IS_ARRAY(initStates)) {
-    initStates.forEach((key) => {
-      const data = getStateValue(key);
-      results[key] = toImmutable(data);
-    });
-  } else if (initStates) {
-    KEYS(initStates).forEach((key) => {
-      const data = getStateValue(key);
-      const newKey = null != initStates[key] ? initStates[key] : key;
-      results[newKey] = toImmutable(data);
-    });
-  }
+  const [stateKeys, newKey] = stateKeyLocator(initStates);
+  stateKeys.forEach((key) => {
+    const data = getStateValue(key);
+    results[newKey(key)] = toImmutable(data);
+  });
 
   KEYS(pathStates || {}).forEach((key) => {
     const thisPath = pathStates[key];
@@ -86,3 +92,5 @@ const connectOptions = {
 };
 
 export default connectOptions;
+
+export { stateKeyLocator };
