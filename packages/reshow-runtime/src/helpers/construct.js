@@ -1,10 +1,11 @@
 import { FUNCTION, UNDEFINED } from "reshow-constant";
 import setPrototypeOf from "./setPrototypeOf";
+import typeIs from "./getTypeOf";
 
 function isNativeReflectConstruct() {
-  if (typeof Reflect === UNDEFINED || !Reflect.construct) return false;
+  if (typeIs(Reflect) === UNDEFINED || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
-  if (typeof Proxy === FUNCTION) return true;
+  if (typeIs(Proxy) === FUNCTION) return true;
 
   try {
     Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));

@@ -2,14 +2,16 @@ import { NUMBER, UNDEFINED, T_NULL, IS_ARRAY } from "reshow-constant";
 import unsupportedIterableToArray, {
   NonIterableError,
 } from "./unsupportedIterableToArray";
+import typeIs from "./getTypeOf";
+
 export default function _createForOfIteratorHelperLoose(o, allowArrayLike) {
   var it;
 
-  if (typeof Symbol === UNDEFINED || o[Symbol.iterator] == T_NULL) {
+  if (typeIs(Symbol) === UNDEFINED || o[Symbol.iterator] == T_NULL) {
     if (
       IS_ARRAY(o) ||
       (it = unsupportedIterableToArray(o)) ||
-      (allowArrayLike && o && typeof o.length === NUMBER)
+      (allowArrayLike && o && typeIs(o.length) === NUMBER)
     ) {
       if (it) o = it;
       var i = 0;
