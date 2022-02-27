@@ -1,3 +1,4 @@
+import { T_UNDEFINED } from "reshow-constant";
 export default function _defaults(obj, defaults) {
   var keys = Object.getOwnPropertyNames(defaults);
 
@@ -5,7 +6,7 @@ export default function _defaults(obj, defaults) {
     var key = keys[i];
     var value = Object.getOwnPropertyDescriptor(defaults, key);
 
-    if (value && value.configurable && obj[key] === undefined) {
+    if (value && value.configurable && obj[key] === T_UNDEFINED) {
       Object.defineProperty(obj, key, value);
     }
   }

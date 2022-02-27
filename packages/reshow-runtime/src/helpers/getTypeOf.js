@@ -1,6 +1,8 @@
-import { STRING, OBJECT, FUNCTION, UNDEFINED } from "reshow-constant";
+import { NUMBER, STRING, OBJECT, FUNCTION, UNDEFINED } from "reshow-constant";
 const types =
-  "|number|boolean|" +
+  "|boolean|" +
+  NUMBER +
+  "|" +
   STRING +
   "|" +
   OBJECT +

@@ -1,10 +1,11 @@
-export const UNDEFINED = "undefined";
-export const FUNCTION = "function";
-export const OBJECT = "object";
 export const DEFAULT = "default";
+export const FUNCTION = "function";
+export const NUMBER = "number";
+export const OBJECT = "object";
 export const STRING = "string";
 export const SYMBOL = "symbol";
 export const SCRIPT = "script";
+export const UNDEFINED = "undefined";
 export const TYPE_ERROR = "TypeError";
 export const T_UNDEFINED = undefined;
 export const T_NULL = null;

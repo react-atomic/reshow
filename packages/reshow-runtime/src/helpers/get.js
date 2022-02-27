@@ -1,12 +1,13 @@
+import { T_UNDEFINED, T_NULL } from "reshow-constant";
 const get = (object, property, receiver) => {
-  if (object === null) {
+  if (object === T_NULL) {
     object = Function.prototype;
   }
   var desc = Object.getOwnPropertyDescriptor(object, property);
-  if (desc === undefined) {
+  if (desc === T_UNDEFINED) {
     var parent = Object.getPrototypeOf(object);
-    if (parent === null) {
-      return undefined;
+    if (parent === T_NULL) {
+      return T_UNDEFINED;
     } else {
       return get(parent, property, receiver);
     }
@@ -14,8 +15,8 @@ const get = (object, property, receiver) => {
     return desc.value;
   } else {
     var getter = desc.get;
-    if (getter === undefined) {
-      return undefined;
+    if (getter === T_UNDEFINED) {
+      return T_UNDEFINED;
     }
     return getter.call(receiver);
   }
