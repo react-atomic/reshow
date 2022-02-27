@@ -23,7 +23,8 @@ const emitter = () => {
  * Transpile dispatch("your-type", {foo: "bar"})
  * to dispatch({type: "your-type", params: {foo: "bar"}})
  */
-const refineAction = (action = {}, params) => {
+const refineAction = (action, params) => {
+  action = action || {};
   if (action.trim) {
     action = { type: action };
     params && (action.params = params);
@@ -31,11 +32,11 @@ const refineAction = (action = {}, params) => {
   return action;
 };
 
-const createReducer = (reduce, initState = {}) => {
-  const state = { current: callfunc(initState) };
+const createReducer = (reduce, initState) => {
+  const state = { current: callfunc(initState || {}) };
   const mitt = emitter();
-  const dispatch = (...action) => {
-    action = refineAction(...action);
+  const dispatch = (action, action1) => {
+    action = refineAction(action, action1);
     const startingState = state.current;
     const endingState = reduce(startingState, action);
     if (endingState === T_UNDEFINED) {
@@ -48,7 +49,7 @@ const createReducer = (reduce, initState = {}) => {
     }
   };
   const store = {
-    reset: () => mitt.reset() && callfunc(initState),
+    reset: () => mitt.reset() && callfunc(initState || {}),
     getState: () => state.current,
     addListener: mitt.add,
     removeListener: mitt.remove,
