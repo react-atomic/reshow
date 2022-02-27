@@ -8,14 +8,15 @@ const emitter = () => {
     add: (handler) => pool.unshift(handler),
     // >>> 0 for change indexOf return -1 to 4294967295
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
-    emit: (state, action, prevState) =>
+    emit: (state, action, prevState) => {
+      const nextPool = pool.concat();
       setTimeout(() => {
-        let i = pool.length;
+        let i = nextPool.length;
         while (i--) {
-          const func = pool[i];
-          func && func(state, action, prevState);
+          nextPool[i](state, action, prevState);
         }
-      }),
+      });
+    },
   };
 };
 
