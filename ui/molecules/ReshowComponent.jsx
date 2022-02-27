@@ -7,8 +7,7 @@ import get from "get-object-value";
 import pageStore from "../../src/stores/pageStore";
 import { globalStore } from "../../src/stores/globalStore";
 
-const storeLocator = (props) =>
-  props?.store || get(props, ["stores", 0]) || pageStore;
+const storeLocator = (props) => props?.store || pageStore;
 const initStates = ["data", "I18N"];
 const pathStates = { I13N: ["data", "I13N"] };
 
