@@ -1,28 +1,28 @@
-import React, {PureComponent} from 'react';
-import {expect} from 'chai';
+import React, { PureComponent } from "react";
+import { expect } from "chai";
 import { mount, cleanIt } from "reshow-unit";
 
-import {PopupPool} from 'organism-react-popup';
+import { PopupPool } from "organism-react-popup";
 
-import ReshowMessage from '../ReshowMessage';
-import {dispatch} from '../../../src/index';
+import ReshowMessage from "../ReshowMessage";
+import { dispatch } from "../../../src/index";
 
-describe('Test ReshowMessage', done => {
+describe("Test ReshowMessage", (done) => {
   afterEach(() => {
     cleanIt();
     dispatch("config/reset");
   });
 
-  it('simple test', done => {
+  it("simple test", (done) => {
     const vDom = <ReshowMessage />;
     const wrap = mount(vDom);
     setTimeout(() => {
-      expect(wrap.html()).to.have.string('div');
+      expect(wrap.html()).to.have.string("div");
       done();
     });
   });
 
-  it('test dialog', done => {
+  it("test dialog", (done) => {
     const vDom = (
       <div>
         <ReshowMessage />
@@ -30,13 +30,13 @@ describe('Test ReshowMessage', done => {
       </div>
     );
     const wrap = mount(vDom);
-    dispatch('dialog/start', {
-      dialog: 'how are u',
+    dispatch("dialog/start", {
+      dialog: "how are u",
     });
     setTimeout(() => {
       wrap.update();
-      expect(wrap.html()).to.have.string('dialog');
+      expect(wrap.html()).to.have.string("dialog");
       done();
-    }, 50);
+    }, 25);
   });
 });

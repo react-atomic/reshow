@@ -3428,9 +3428,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.71:
-  version "1.4.73"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.73.tgz#422f6f514315bcace9615903e4a9b6b9fa283137"
-  integrity sha512-RlCffXkE/LliqfA5m29+dVDPB2r72y2D2egMMfIy3Le8ODrxjuZNVo4NIC2yPL01N4xb4nZQLwzi6Z5tGIGLnA==
+  version "1.4.74"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.74.tgz#f444036a90ffe75f6423b635e77edd4cc9e6cb2f"
+  integrity sha512-DvQ20M0I4dIH8KcAo7n7E4OEeNafZ1N8z6g6ck+ALCM0ZoV6mpjaX6ekjs31zKlqPzacU3lmjG9PZEa1mQhEpQ==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -6210,9 +6210,9 @@ optionator@^0.9.1:
     word-wrap "^1.2.3"
 
 organism-react-ajax@*:
-  version "0.15.28"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.15.28.tgz#2ab0c81f951207969d36b1a5e8c0af8a1f001ec4"
-  integrity sha512-066isH4Irfg9mPX2O4nIv6UUhZqoWCh1DvC0jX8l1b4c4kf/4JzWNZH/a2gWYpScy5avDCbYjzWdM7NbkKUCxw==
+  version "0.15.29"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.15.29.tgz#7a8942ed6fcc64f0ff49662915c9bf0d6933f90a"
+  integrity sha512-mdNrN2N7MQ2DrtUNK4/fN8wqL7df6MswB8urIJKA4SnrEcWWYx4tPJ0iUk+VPG8+PFaCGr6ae/czFydRChQvlw==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"
@@ -7179,9 +7179,9 @@ reshow-constant@*, reshow-constant@^0.16.0:
   integrity sha512-IEPAvcQhcVY4GS7XtIBwmrF5IZwK9XqfxTniiJRaY+1C60a3RvZ4tLhIfNEvfR2N+4FCWO8apmkoTHtCugArDg==
 
 reshow-flux-base@^0.16.0:
-  version "0.16.13"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.13.tgz#52a5708a59add8831ebe53ed06199d47f99132dc"
-  integrity sha512-oHNtLhlLkk6OWyN1Mmjd8jVUdAjgDiExOEpjg3CPg+i4XXhnT4oZLtZ2DGYCEi47BZuQ8zf5zo9Wn1OdPOnI7A==
+  version "0.16.14"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.14.tgz#0b0757568e0aed1c73f5fe4227dacf88bc61e03a"
+  integrity sha512-sp/AGRqIiWC8PnQ6gfXxcBWefEUD/ucT+s5a0ewWfXRup7AxNoumrrdaK6/6nnEA0YhLylVzsOENh/mSz2ixAA==
   dependencies:
     call-func "^0.1.5"
     reshow-constant "^0.16.0"
