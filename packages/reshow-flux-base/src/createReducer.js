@@ -9,11 +9,11 @@ const emitter = () => {
     // >>> 0 for change indexOf return -1 to 4294967295
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     emit: (state, action, prevState) => {
-      const nextPool = pool.concat();
+      const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
       setTimeout(() => {
-        let i = nextPool.length;
+        let i = nextExec.length;
         while (i--) {
-          nextPool[i](state, action, prevState);
+          nextExec[i](state, action, prevState);
         }
       });
     },
