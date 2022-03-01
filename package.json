@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.16.11",
+  "version": "0.16.12",
   "description": "A simplified React cross-component state management.",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",

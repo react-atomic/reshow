@@ -51,7 +51,7 @@ const calculateState = (prevState, options) => {
 
   const getStateValue = stateValueGetter(store.getState());
 
-  const immutable = optImmutable || getStateValue("immutable");
+  const immutable = optImmutable ?? getStateValue("immutable");
   const results = {};
   if (immutable) {
     results.immutable = immutable;
