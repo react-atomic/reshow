@@ -97,7 +97,7 @@ describe("Test Connect hook for more test", () => {
         if (this.state && this.state.foo) {
           foo = this.state.foo;
         }
-        return <FakeComponent foo={foo} changeable />;
+        return <FakeComponent foo={foo} renewProps />;
       }
     }
     const wrap = mount(<Parent />);

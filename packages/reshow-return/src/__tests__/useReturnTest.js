@@ -6,7 +6,7 @@ import { mount } from "reshow-unit";
 
 import useReturn from "../useReturn";
 
-describe("Test return", () => {
+describe("Test useReturn", () => {
   it("basic test", () => {
     const [store, dispatch] = createReducer((state, ation) => action, {
       foo: "bar",

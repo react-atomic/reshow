@@ -75,7 +75,7 @@ const useConnect =
           options.store.removeListener(handleChange);
         };
       },
-      props.changeable ? [props] : []
+      props.renewProps ? [props] : []
     );
 
     return data.state || {};

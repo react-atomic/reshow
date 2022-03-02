@@ -40,7 +40,7 @@ describe("Test Return", () => {
       const { store, initStates, pathStates, ...otherState } = this.state;
       return (
         <Return
-          changeable
+          renewProps
           store={store}
           initStates={initStates}
           pathStates={pathStates}
