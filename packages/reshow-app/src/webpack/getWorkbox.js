@@ -10,7 +10,7 @@ import { PRODUCTION } from "./const";
  */
 const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
   const oneMB = 1024000;
-  // https://developers.google.cn/web/tools/workbox/guides/generate-service-worker/webpack?hl=zh-cn#adding_runtime_caching
+  // https://developers.google.com/web/tools/workbox/guides/generate-service-worker/webpack?hl=zh-cn#adding_runtime_caching
   const runtimeCaching = [
     {
       urlPattern: /^(http)(s)?(\:\/\/).*\.(?:css)$/,
@@ -48,7 +48,7 @@ const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
     swDest,
     runtimeCaching,
     ignoreURLParametersMatching: [/.*/],
-    cleanupOutdatedCaches: false,
+    cleanupOutdatedCaches: true,
     sourcemap: false,
     clientsClaim: true,
     skipWaiting: true,
