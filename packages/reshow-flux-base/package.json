@@ -1,5 +1,5 @@
 {
-  "version": "0.16.14",
+  "version": "0.16.15",
   "name": "reshow-flux-base",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
@@ -21,7 +21,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "call-func": "^0.1.5",
+    "call-func": "*",
     "reshow-constant": "^0.16.0",
     "reshow-runtime": "^0.16.0"
   },
