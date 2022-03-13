@@ -5,7 +5,7 @@ import getOptimization from "./webpack/getOptimization";
 import getModule from "./webpack/getModule";
 import getPlugins from "./webpack/getPlugins";
 import getOutput from "./webpack/getOutput";
-import getDevServer from "./webpack/getDevServer";
+import getHotServer from "./webpack/getHotServer";
 import { DEVELOPMENT, PRODUCTION } from "./webpack/const";
 import progress from "./webpack/progress";
 

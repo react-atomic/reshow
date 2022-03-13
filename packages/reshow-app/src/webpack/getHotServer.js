@@ -1,4 +1,4 @@
-const getDevServer = ({ confs, path }) => ({
+const getHotServer = ({ confs, path }) => ({
   host: "0.0.0.0",
   allowedHosts: "all",
   port: confs.hotPort ?? 8080,
@@ -10,4 +10,4 @@ const getDevServer = ({ confs, path }) => ({
   },
 });
 
-export default getDevServer;
+export default getHotServer;
