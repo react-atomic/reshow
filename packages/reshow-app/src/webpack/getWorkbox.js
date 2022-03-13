@@ -24,6 +24,16 @@ const getWorkbox = ({ swDest, swDebug, additionalManifestEntries }) => {
       },
     },
     {
+      urlPattern: /^(http)(s)?(\:\/\/).*\.(?:js)$/,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "js",
+        expiration: {
+          maxEntries: 5,
+        },
+      },
+    },
+    {
       urlPattern: /^(http)(s)?(\:\/\/).*\.(?:env|md|json|adoc)/,
       handler: "CacheFirst",
       options: {
