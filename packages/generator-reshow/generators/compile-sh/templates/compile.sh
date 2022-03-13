@@ -1,13 +1,19 @@
-#!/bin/sh
-
-conf='{'
-conf+='"assetsRoot":"./assets/",'
-conf+='"externals":{"d3": "d3"},'
-conf+='"hotPort": "'${hotPort:-3088}'"'
-conf+='}'
+#!/bin/bash
 
 DIR=$( cd "$(dirname "$0")" ; pwd -P )
 cd $DIR
+SWJS=${DIR}/service-worker.js
+
+conf='{'
+conf+='"assetsRoot":"/assets/",'
+conf+='"externals":{},'
+conf+='"indexTpl":"'${DIR}/index.tpl'",'
+conf+='"indexHtml":"'${DIR}/index.html'",'
+conf+='"swDest":"'${SWJS}'",'
+# conf+='"swDebug":true,'
+conf+='"hotPort": "'${hotPort:-3088}'"'
+conf+='}'
+
 OPEN=$(which xdg-open 2>/dev/null)
 if [ -z "$OPEN" ]; then 
   OPEN="open"
@@ -36,7 +42,7 @@ analyzer(){
     echo "Analyzer Mode";
     checkBabel
     npm run build
-    CONFIG=$conf BUNDLE='{}' $webpack
+    HOT_UPDATE=0 CONFIG=$conf BUNDLE='{}' $webpack
 }
 
 develop(){
@@ -44,7 +50,7 @@ develop(){
     echo "Develop Mode";
     checkBabel
     npm run build
-    CONFIG=$conf $webpack
+    HOT_UPDATE=0 CONFIG=$conf $webpack
 }
 
 stopServer(){
@@ -87,7 +93,7 @@ watch(){
     npm run build:ui -- --watch &
     npm run build:src -- --watch &
     sleep 10 
-    CONFIG=$conf $webpack --watch &
+    HOT_UPDATE=0 CONFIG=$conf $webpack --watch &
 }
 
 watchTest(){
@@ -99,7 +105,8 @@ watchTest(){
 }
 
 hot(){
-    stop 
+    stop
+    rm $SWJS 
     echo "Hot Mode";
     checkBabel
     npm run build:ui -- --watch &
@@ -116,7 +123,7 @@ case "$1" in
     analyzer 
     ;;
   s)
-    startServer $2 
+    startServer $2
     ;;
   ss)
     stopServer
