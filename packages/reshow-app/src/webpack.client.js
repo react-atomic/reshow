@@ -38,7 +38,7 @@ const myWebpack = (root, main, lazyConfs) => {
     externals: confs.externals,
   };
   if (HOT_UPDATE) {
-    result.devServer = getDevServer({ confs, path });
+    result.devServer = getHotServer({ confs, path });
   }
   return result;
 };
