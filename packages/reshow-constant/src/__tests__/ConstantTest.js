@@ -15,6 +15,7 @@ import {
   T_FALSE,
   KEYS,
   IS_ARRAY,
+  OBJ_SIZE,
   REAL_TIME_URL,
   REAL_TIME_DATA_KEY,
 } from "../index";
@@ -85,6 +86,18 @@ describe("Test FUNCTION", () => {
   it("test is not Array", () => {
     const a = { foo: "bar" };
     expect(IS_ARRAY(a)).to.be.false;
+  });
+
+  it("test is empty obj", () => {
+    expect(OBJ_SIZE(null)).to.equal(0);
+  });
+
+  it("test is empty obj length", () => {
+    expect(OBJ_SIZE({})).to.equal(0);
+  });
+
+  it("test is not empty obj", () => {
+    expect(OBJ_SIZE({ foo: "bar" })).to.equal(1);
   });
 });
 

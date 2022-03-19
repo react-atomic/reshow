@@ -19,7 +19,7 @@ const toMessage = (message) => {
 
 const getMessage = (action) => toMessage(get(action, ["params", "message"]));
 
-class MessageStore {
+class HandleMessage {
   dialogCallback = T_NULL;
   alertMap = {};
 
@@ -86,7 +86,7 @@ class MessageStore {
   }
 }
 
-const oMess = new MessageStore();
+const oMess = new HandleMessage();
 const [store, messageDispatch] = ImmutableStore((state, action) => {
   switch (action.type) {
     case "dialog/start":
