@@ -1,4 +1,5 @@
 import webpack from "webpack";
+import chalk from "chalk";
 
 import FinishPlugin from "./FinishPlugin";
 import getStatsJson from "./getStatsJson";
@@ -10,8 +11,8 @@ import Refresh from "./refresh";
 import { PRODUCTION } from "./const";
 
 const { AggressiveMergingPlugin, LimitChunkCountPlugin } = webpack.optimize;
-
 const assetsStore = { current: null };
+const log = (s) => console.log(chalk.inverse(s));
 
 const getPlugins = ({
   path,
@@ -22,6 +23,7 @@ const getPlugins = ({
   HOT_UPDATE,
   server,
 }) => {
+  HOT_UPDATE = HOT_UPDATE * 1;
   const plugins = [];
   let maxChunks = confs.maxChunks;
   if (server) {
@@ -51,14 +53,18 @@ const getPlugins = ({
   }
   if (!server) {
     if (HOT_UPDATE) {
+      log(`HOT Mode: enable.`);
       plugins.push(
         new webpack.HotModuleReplacementPlugin(),
         new Refresh({ disableRefreshCheck: true })
       );
     } else {
       if (HOT_UPDATE == null) {
+        log(`HOT Mode: disable, Workbox: enable.`);
         // get Workbox for non hot update
         plugins.push(getWorkbox(confs));
+      } else {
+        log(`HOT Mode: disable, Workbox: disable.`);
       }
     }
   }
