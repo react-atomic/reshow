@@ -9,8 +9,7 @@
   "keywords": ["app", "reshow-app"],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "get-object-value": "*",
     "organism-react-ajax": "*",
     "organism-react-navigation": "*",
