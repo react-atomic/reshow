@@ -15,4 +15,24 @@ describe("Test reshowWorker", () => {
     initWorker({ win, cb });
     expect(cb.called).to.be.true;
   });
+
+  it("test unregister sw", () => {
+    const fakeCb = sinon.spy();
+    const win = {
+      Worker: true,
+      navigator: {
+        serviceWorker: {
+          getRegistrations: () => {
+            return {
+              then: (thenCb) => {
+                thenCb([{ unregister: fakeCb }]);
+              },
+            };
+          },
+        },
+      },
+    };
+    initWorker({ win });
+    expect(fakeCb.called).to.be.true;
+  });
 });
