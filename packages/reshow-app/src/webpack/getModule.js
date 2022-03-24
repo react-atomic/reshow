@@ -8,6 +8,10 @@ const getModule = ({ mode, HOT_UPDATE }) => {
   };
   if (mode === PRODUCTION) {
     babelLoaderOption.envName = PRODUCTION;
+    babelLoaderOption.plugins.push(
+      // https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types#options
+      ["transform-react-remove-prop-types", { mode: "remove" }]
+    );
   }
   if (HOT_UPDATE) {
     babelLoaderOption.plugins.push("react-refresh/babel");

@@ -9,11 +9,11 @@ import getHotServer from "./webpack/getHotServer";
 import { DEVELOPMENT, PRODUCTION } from "./webpack/const";
 import progress from "./webpack/progress";
 
-const { NODE_ENV, CONFIG, BUNDLE, HOT_UPDATE } = process.env;
-let confs = CONFIG ? JSON.parse(CONFIG) : {};
+const { NODE_ENV, CONFIG, BUNDLE, HOT_UPDATE, ENABLE_SW } = process.env;
+const processConfs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
-  confs = { ...{ assetsFolder: "/assets" }, ...confs, ...lazyConfs };
+  const confs = { assetsFolder: "/assets", ...processConfs, ...lazyConfs };
   const stop = progress({ confs });
   const path = root + confs.assetsFolder;
   let mode = DEVELOPMENT;
@@ -30,7 +30,7 @@ const myWebpack = (root, main, lazyConfs) => {
     entry: getEntry({ main, confs }),
     output: getOutput({ path, confs }),
     optimization: getOptimization({ mode, confs }),
-    plugins: getPlugins({ path, stop, mode, confs, BUNDLE, HOT_UPDATE }),
+    plugins: getPlugins({ path, stop, mode, confs, BUNDLE, HOT_UPDATE, ENABLE_SW }),
     module: getModule({ mode, HOT_UPDATE }),
     resolve: getResolve({ confs, root }),
     resolveLoader: getResolveLoader({ root }),

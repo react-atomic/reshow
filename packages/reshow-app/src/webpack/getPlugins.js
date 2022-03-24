@@ -21,9 +21,9 @@ const getPlugins = ({
   confs,
   BUNDLE,
   HOT_UPDATE,
+  ENABLE_SW,
   server,
 }) => {
-  HOT_UPDATE = HOT_UPDATE * 1;
   const plugins = [];
   let maxChunks = confs.maxChunks;
   if (server) {
@@ -48,6 +48,10 @@ const getPlugins = ({
       new AggressiveMergingPlugin({
         minSizeReduce: 2,
         moveToParents: true,
+      }),
+      // https://webpack.js.org/plugins/environment-plugin/
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: PRODUCTION,
       })
     );
   }
@@ -59,7 +63,7 @@ const getPlugins = ({
         new Refresh({ disableRefreshCheck: true })
       );
     } else {
-      if (HOT_UPDATE == null) {
+      if (ENABLE_SW) {
         log(`HOT Mode: disable, Workbox: enable.`);
         // get Workbox for non hot update
         plugins.push(getWorkbox(confs));
