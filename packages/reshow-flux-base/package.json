@@ -1,5 +1,5 @@
 {
-  "version": "0.16.15",
+  "version": "0.16.16",
   "name": "reshow-flux-base",
   "description": "Pure flux dispatch mechanism",
   "main": "./build/cjs/index.js",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "^0.16.0"
+    "reshow-unit-dom": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

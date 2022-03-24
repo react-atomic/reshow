@@ -36,8 +36,8 @@ const refineAction = (action, params) => {
 const createReducer = (reduce, initState) => {
   const state = { current: callfunc(initState || {}) };
   const mitt = emitter();
-  const dispatch = (action, action1) => {
-    action = refineAction(action, action1);
+  const dispatch = (action, actionParams) => {
+    action = refineAction(action, actionParams);
     const startingState = state.current;
     const endingState = reduce(startingState, action);
     if (endingState === T_UNDEFINED) {

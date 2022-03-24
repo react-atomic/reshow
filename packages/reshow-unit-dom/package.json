@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4",
+  "version": "0.0.5",
   "name": "reshow-unit-dom",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "*",
-    "jsdom": "16.4.0",
+    "jsdom": "^19.0.0",
     "jsdom-global": "*",
     "mocha": "^9.x",
     "nyc": "*",
