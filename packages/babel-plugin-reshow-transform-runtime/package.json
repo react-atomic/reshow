@@ -30,7 +30,6 @@
   "files": [
     "build",
     "package.json",
-    "utils.js",
     "README.md"
   ]
 }
