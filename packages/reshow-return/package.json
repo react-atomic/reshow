@@ -1,6 +1,6 @@
 {
   "name": "reshow-return",
-  "version": "0.16.12",
+  "version": "0.16.13",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -32,7 +32,7 @@
     "build:es:ui": "BABEL_ENV=es babel ui -d build/es/ui --root-mode upward",
     "build:es": "npm run build:es:src && npm run build:es:ui",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "mochaFor": "mocha -r jsdom-global/register",
+    "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"

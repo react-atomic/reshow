@@ -1,5 +1,5 @@
 {
-  "version": "0.16.0",
+  "version": "0.16.1",
   "name": "yo-unit",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "reshow-constant": "^0.16.0",
-    "reshow-unit": "^0.16.0",
+    "reshow-unit-dom": "*",
     "yeoman-assert": "*",
     "yeoman-environment": "*",
     "yeoman-test": "*"

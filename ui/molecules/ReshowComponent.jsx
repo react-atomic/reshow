@@ -1,4 +1,3 @@
-import React from "react";
 import build from "reshow-build";
 import { connectOptions, getReturn } from "reshow-return";
 import { useConnect } from "reshow-flux";

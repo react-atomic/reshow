@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import Return from "reshow-return";
 import { toJS } from "reshow-flux";
 import { REAL_TIME_DATA_KEY } from "reshow-constant";

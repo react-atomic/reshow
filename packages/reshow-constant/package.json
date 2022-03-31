@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "^0.16.0"
+    "reshow-unit-dom": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",

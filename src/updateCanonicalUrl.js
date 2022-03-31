@@ -1,5 +1,5 @@
 import { sessionStorage as sStore } from "get-storage";
-import { doc } from "win-doc";
+import { doc, win } from "win-doc";
 import get from "get-object-value";
 
 const getDocCanonicalUrl = (oDoc) => {
@@ -35,6 +35,7 @@ const updateCanonicalUrl = (url, props) => {
       const urlArr = url.split(":");
       url = loc.protocol + urlArr[1];
     }
+    const history = win().history || {};
     history.replaceState && history.replaceState("", "", newUrl(url));
   } else {
     loc.replace(newUrl(url));

@@ -1,5 +1,6 @@
-import jsdom from "jsdom-global";
 import { expect } from "chai";
+import { jsdom } from "reshow-unit";
+import { doc } from "win-doc";
 
 import updateCanonicalUrl, {
   initCanonicalUrl,
@@ -14,7 +15,6 @@ describe("Test handle CanonicalUrl", () => {
 
   after(() => {
     reset();
-    jsdom(null, { url: "http://localhost" });
   });
 
   it("Get doc canonicalUrl", () => {

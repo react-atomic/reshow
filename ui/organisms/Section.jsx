@@ -1,4 +1,3 @@
-import React from "react";
 import get from "get-object-value";
 import { build } from "react-atomic-molecule";
 import { useConnect } from "reshow-flux";

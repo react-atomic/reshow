@@ -1,4 +1,3 @@
-import React from "react";
 import { getReturn } from "reshow-return";
 
 import urlStore from "../../src/stores/urlStore";

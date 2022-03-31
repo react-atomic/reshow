@@ -9,15 +9,15 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "^0.16.0"
+    "reshow-unit-dom": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
-    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn install",
+    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn",
     "copy": "cp package.build.json ./build/package.json && cp README.md ./build/ && cp regenerator.js ./build",
     "build:cjs": "BABEL_ENV=cjs babel src -d build --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --root-mode upward",
-    "mochaFor": "mocha -r jsdom-global/register",
+    "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/helpers/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "echo should not publish && exit 1;"

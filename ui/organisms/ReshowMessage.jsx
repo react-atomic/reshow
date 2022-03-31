@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { AlertsNotifier, Dialog, DisplayPopupEl } from "organism-react-popup";
 import { build, SemanticUI } from "react-atomic-molecule";
 import { toJS } from "reshow-flux";

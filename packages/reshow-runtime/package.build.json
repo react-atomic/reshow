@@ -11,10 +11,10 @@
     "reshow-constant": "*"
   },
   "devDependencies": {
-    "reshow-unit": "*"
+    "reshow-unit-dom": "*"
   },
   "scripts": {
-    "mochaFor": "mocha -r jsdom-global/register",
+    "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'helpers/**/__tests__/*.js'",
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"

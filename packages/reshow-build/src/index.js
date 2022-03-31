@@ -1,9 +1,4 @@
-import React, {
-  isValidElement,
-  cloneElement,
-  createElement,
-  Children,
-} from "react";
+import { isValidElement, cloneElement, createElement, Children } from "react";
 import { STRING, FUNCTION, T_NULL, T_TRUE, TYPE_ERROR } from "reshow-constant";
 import { removeEmpty } from "array.merge";
 

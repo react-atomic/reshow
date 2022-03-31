@@ -1,8 +1,12 @@
 {
+  "version": "0.16.3",
   "name": "reshow-unit",
-  "repository": "react-atomic/reshow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/reshow-unit"
+  },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit",
-  "version": "0.16.2",
   "description": "Reshow Unit Test Pack",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -26,7 +30,7 @@
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es/src --root-mode upward",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "mochaFor": "mocha -r jsdom-global/register",
+    "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
