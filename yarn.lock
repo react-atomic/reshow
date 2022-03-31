@@ -3446,9 +3446,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.84:
-  version "1.4.97"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.97.tgz#36578e57a6ae4f50d2ce5790380616567c40c911"
-  integrity sha512-vqSu7Qn6o5E1uAJQxmq2U69aBhBTxUAXMuT5Sm3jj8kEJciuUcKciktLuTPFSRlwSdNyeu9qah8Nzy9JyxefCw==
+  version "1.4.103"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.103.tgz#abfe376a4d70fa1e1b4b353b95df5d6dfd05da3a"
+  integrity sha512-c/uKWR1Z/W30Wy/sx3dkZoj4BijbXX85QKWu9jJfjho3LBAXNEGAEW3oWiGb+dotA6C6BzCTxL2/aLes7jlUeg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4267,9 +4267,9 @@ get-stream@^6.0.0:
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
 
 get-style@*:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/get-style/-/get-style-0.0.0.tgz#966e37b08dea60e1994a2652437a8a5e6d7b0224"
-  integrity sha512-n7deNaume3ChauFSCdEe9nIz/npTmVR/FUhlVB7JiLceqtjjKlRX7PVGf8TDxfWHHbfzkNcOlhOrkWwEjmn9OQ==
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/get-style/-/get-style-0.0.2.tgz#a8cd41517da7561c45610c21abab6752ce36867e"
+  integrity sha512-kSztxz7Qj61BCmamg4U58dkXSios94+f138hGtD8nVnjQqjVYGvUQEVwo9qy98zdhjEkufrfk4ZUG/Nl4gayyQ==
 
 get-symbol-description@^1.0.0:
   version "1.0.0"

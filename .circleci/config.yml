@@ -46,6 +46,7 @@ workflows:
             parameters:
               test-dir:
                 - "./"
+                - "packages/generator-reshow"
                 - "packages/reshow-build"
                 - "packages/reshow-constant"
                 - "packages/reshow-flux-base"
@@ -53,9 +54,10 @@ workflows:
                 - "packages/reshow-hooks"
                 - "packages/reshow-return"
                 - "packages/reshow-runtime"
+                - "packages/reshow-unit-dom"
                 - "packages/reshow-unit"
                 - "packages/reshow-url"
                 - "packages/reshow-worker"
-                - "packages/generator-reshow"
                 - "packages/yo-reshow"
+                - "packages/yo-unit"
                 - "packages/yonpx"
