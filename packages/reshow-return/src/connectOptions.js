@@ -1,14 +1,13 @@
 import get from "get-object-value";
 import callfunc from "call-func";
 import { toJS } from "reshow-flux";
-import { IS_ARRAY, KEYS } from "reshow-constant";
+import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
 
 const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
 const getMapIn = (map, path) =>
   map && map.getIn ? map.getIn(path) : undefined;
 
 const reset = (props, more) => {
-  const nextProps = { ...props };
   const cleanKeys = [
     "immutable",
     "initStates",
@@ -19,10 +18,11 @@ const reset = (props, more) => {
     ...(more || []),
   ];
   let i = cleanKeys.length;
+  // https://twitter.com/Steve8708/status/1508502292344938496
   while (i--) {
-    delete nextProps[cleanKeys[i]];
+    props[cleanKeys[i]] && (props[cleanKeys[i]] = T_UNDEFINED);
   }
-  return nextProps;
+  return props;
 };
 
 const stateValueGetter = (state) => (k) =>
