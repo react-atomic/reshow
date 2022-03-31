@@ -1,4 +1,4 @@
-import jsdomGlobal from "jsdom-global";
+import jsdomGlobal from "global-jsdom";
 import sinon from "sinon";
 
 const jsdomWrapper = { current: null };
