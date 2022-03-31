@@ -19,6 +19,7 @@
     "build:babel": "npm run build:src && npm run build:client",
     "build:dev": "npm run build:babel && npm run copy && cd build && yarn && cp yarn.lock ../yarn.build.lock",
     "build": "npm run clean && npm run build:dev",
+    "test": "exit 0;",
     "prepublishOnly": "echo should not publish && exit 1;"
   }
 }

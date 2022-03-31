@@ -63,7 +63,7 @@ module.exports = class extends YoGenerator {
     cp("src", null, this.payload);
     cp("README.md", null, this.payload);
     cp("Test.js", "src/__tests__/Test.js", this.payload);
-    cp("yarn.lock");
+    // cp("yarn.lock");
 
     updateJSON("package.json", null, this.payload, (data) => {
       data.repository = this.payload.repository;
