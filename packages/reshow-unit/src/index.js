@@ -3,62 +3,28 @@ import {
   cleanIt as domCleanIt,
   hideConsoleError,
 } from "reshow-unit-dom";
+import { doc } from "win-doc";
 
+// rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
 import {
-  shallow as enzymeShallow,
-  mount as enzymeMount,
-  configure,
-} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+  render,
+  cleanup,
+  getQueriesForElement,
+  queries,
+} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-const mountWrapper = { current: null };
-const mountOption = { current: null };
-const shallowWrapper = { current: null };
-
-const clean = (wrapper, keepOption) => {
-  if (wrapper.current) {
-    if (keepOption && keepOption.current) {
-      if (keepOption.current.attachTo || keepOption.current.hydrateIn) {
-        wrapper.current.detach();
-      }
-      keepOption.current = null;
-    }
-    wrapper.current.unmount();
-  }
-  wrapper.current = null;
-};
-
-// https://github.com/enzymejs/enzyme/blob/master/docs/api/mount.md
-const thisMount = (wrapper, keepOption) => (node, options) => {
-  clean(wrapper, keepOption);
-  keepOption.current = options;
-  wrapper.current = enzymeMount(node, options);
-  const enzymeUnmount = wrapper.current.unmount;
-  wrapper.current.unmount = () => {
-    enzymeUnmount.call(wrapper.current);
-    wrapper.current = null;
-  };
-  return wrapper.current;
-};
-
-// https://github.com/enzymejs/enzyme/blob/master/docs/api/shallow.md
-const thisShallow = (wrapper) => (node, options) => {
-  clean(wrapper);
-  wrapper.current = enzymeShallow(node, options);
-  return wrapper.current;
-};
-
-const mount = thisMount(mountWrapper, mountOption);
-const shallow = thisShallow(shallowWrapper);
+// https://github.com/testing-library/react-testing-library/issues/1025
+global.IS_REACT_ACT_ENVIRONMENT = true;
+// https://testing-library.com/docs/queries/about/#screen
+const screen = () => getQueriesForElement(doc(), queries);
 
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
-  clean(mountWrapper, mountOption);
-  clean(shallowWrapper);
   if (!withoutJsdom) {
     domCleanIt();
   }
+  cleanup();
 };
 
-export { shallow, mount, cleanIt, jsdom, hideConsoleError };
+export { render, screen, cleanIt, jsdom, hideConsoleError };
