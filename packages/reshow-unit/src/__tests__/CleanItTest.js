@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { render, screen, cleanIt, jsdom } from "../index";
 
-describe("Test Reshow UNIT", () => {
+describe("Test cleanIt", () => {
   beforeEach(() => {
     jsdom();
   });

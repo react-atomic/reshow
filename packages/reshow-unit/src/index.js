@@ -7,10 +7,13 @@ import { doc } from "win-doc";
 
 // rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
 import {
+  act as rtlAct,
   render,
   cleanup,
   getQueriesForElement,
   queries,
+  waitFor,
+  waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -27,4 +30,23 @@ const cleanIt = (props) => {
   cleanup();
 };
 
-export { render, screen, cleanIt, jsdom, hideConsoleError };
+const act = async (cb, milliseconds) => {
+  await rtlAct(
+    () =>
+      new Promise((resolve, reject) => {
+        cb();
+        setTimeout(resolve, milliseconds || 0);
+      })
+  );
+};
+
+export {
+  waitFor,
+  waitForElementToBeRemoved,
+  act,
+  render,
+  screen,
+  cleanIt,
+  jsdom,
+  hideConsoleError,
+};
