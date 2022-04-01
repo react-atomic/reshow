@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { expect } from "chai";
-import { mount, hideConsoleError, cleanIt } from "reshow-unit";
+import { act, render, screen, hideConsoleError, cleanIt } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
 
 import useConnect from "../useConnect";
@@ -11,7 +11,7 @@ describe("Test Connect Hook", () => {
     reducer = createReducer((state, action) => action);
   });
 
-  it("basic test", (done) => {
+  it("basic test", async () => {
     const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
@@ -23,21 +23,16 @@ describe("Test Connect Hook", () => {
       return <div className={state.foo} />;
     };
 
-    const wrap = mount(<Foo />);
-    expect(wrap.html()).to.equal("<div></div>");
+    const wrap = render(<Foo />);
+    expect(wrap.html()).to.equal(`<div></div>`);
     const a = { foo: "111" };
-    dispatch(a);
-    setTimeout(() => {
-      expect(wrap.html()).to.equal('<div class="111"></div>');
-      dispatch({ foo: "222" });
-      setTimeout(() => {
-        expect(wrap.html()).to.equal('<div class="222"></div>');
-        done();
-      });
-    });
+    await act(()=>dispatch(a));
+    expect(wrap.html()).to.equal('<div class="111"></div>');
+    await act(()=>dispatch({ foo: "222" }));
+    expect(wrap.html()).to.equal('<div class="222"></div>');
   });
 
-  it("test Warnings for some updates during render", (done) => {
+  it("test Warnings for some updates during render", async () => {
     const [store, dispatch] = reducer;
     /**
      * https://fb.me/setstate-in-render
@@ -66,15 +61,13 @@ describe("Test Connect Hook", () => {
         return <Foo />;
       }
     }
-    const wrap = mount(<VDom />);
-    setTimeout(() => {
-      expect(wrap.html()).to.equal('<div class="bar"></div>');
-      done();
-    });
+    let wrap;
+    await act(()=>wrap = render(<VDom />), 20);
+    expect(wrap.html()).to.equal('<div class="bar"></div>');
   });
 });
 
-describe("Test Connect Hook", () => {
+describe("Test Connect Hook with store", () => {
   let reducer;
   beforeEach(() => {
     reducer = createReducer((state, action) => action);
@@ -97,7 +90,7 @@ describe("Test Connect Hook", () => {
     };
 
     expect(() => {
-      mount(<Foo />);
+      render(<Foo />);
     }).to.throw();
   });
 });

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 
 import { expect } from "chai";
-import { mount } from "reshow-unit";
+import { render, act } from "reshow-unit";
 import sinon from "sinon";
 import { createReducer } from "reshow-flux-base";
 
@@ -18,7 +18,7 @@ describe("useConnect Unmount Test", () => {
     sandbox.restore();
   });
 
-  it("basic test", (done) => {
+  it("basic test", async () => {
     const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
@@ -30,10 +30,15 @@ describe("useConnect Unmount Test", () => {
       return <div className={state.foo} />;
     };
 
+    const oFake = {};
+
     class FakeComponent extends PureComponent {
       state = { show: true };
-      set(k, v) {
-        this.setState({ [k]: v });
+      constructor(props) {
+        super(props);
+        oFake.set = (k, v) => {
+          this.setState({ [k]: v });
+        };
       }
 
       render() {
@@ -45,15 +50,13 @@ describe("useConnect Unmount Test", () => {
       }
     }
 
-    const wrap = mount(<FakeComponent />);
-    const oFake = wrap.instance();
+    const wrap = render(<FakeComponent />);
     sandbox.spy(store, "removeListener");
     console.log("before unmount", store.removeListener.callCount);
     expect(store.removeListener.callCount).to.equal(0);
-    oFake.set("show", false);
+    await act(() => oFake.set("show", false));
     expect(store.removeListener.callCount).to.equal(1);
     console.log("after unmount", store.removeListener.callCount);
     dispatch({});
-    done();
   });
 });

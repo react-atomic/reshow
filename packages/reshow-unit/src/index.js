@@ -8,7 +8,7 @@ import { doc } from "win-doc";
 // rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
 import {
   act as rtlAct,
-  render,
+  render as rtlRender,
   cleanup,
   getQueriesForElement,
   queries,
@@ -38,6 +38,13 @@ const act = async (cb, milliseconds) => {
         setTimeout(resolve, milliseconds || 0);
       })
   );
+};
+
+const render = (...p) => {
+  const result = rtlRender(...p);
+  const html = () => result.container.innerHTML;
+  result.html = html;
+  return result;
 };
 
 export {

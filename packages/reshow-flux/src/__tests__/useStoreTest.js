@@ -1,7 +1,5 @@
-import React from "react";
-
 import { expect } from "chai";
-import { mount } from "reshow-unit";
+import { act, render } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
 import sinon from "sinon";
 
@@ -19,11 +17,11 @@ describe("useStore Test", () => {
       const state = useStore(store, () => () => "foo");
       return <div>{state}</div>;
     };
-    const wrap = mount(<Comp />);
+    const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div>foo</div>");
   });
 
-  it("test apply dispatch", (done) => {
+  it("test apply dispatch", async () => {
     const [store, dispatch] = reducer;
     const Comp = (props) => {
       const state = useStore(store, (setState) => () => {
@@ -31,15 +29,13 @@ describe("useStore Test", () => {
       });
       return <div>{state}</div>;
     };
-    const wrap = mount(<Comp />);
-    dispatch();
-    setTimeout(() => {
-      expect(wrap.html()).to.equal("<div>bar</div>");
-      done();
-    });
+    const wrap = render(<Comp />);
+    expect(wrap.html()).to.equal("<div></div>");
+    await act(() => dispatch());
+    expect(wrap.html()).to.equal("<div>bar</div>");
   });
 
-  it("test not apply dispatch", (done) => {
+  it("test not apply dispatch", async () => {
     let spy;
     const heeding = (setState) => {
       spy = sinon.spy((state, action) => {
@@ -56,19 +52,14 @@ describe("useStore Test", () => {
       const state = useStore(store, heeding);
       return <div>{state}</div>;
     };
-    const wrap = mount(<Comp />);
+    const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div>foo</div>");
     expect(spy.callCount).to.equal(0);
-    dispatch("on");
-    setTimeout(() => {
-      expect(spy.callCount).to.equal(1);
-      expect(wrap.html()).to.equal("<div>bar</div>");
-      dispatch("off");
-      setTimeout(() => {
-        expect(spy.callCount).to.equal(2);
-        expect(wrap.html()).to.equal("<div>bar</div>");
-        done();
-      });
-    });
+    await act(() => dispatch("on"));
+    expect(spy.callCount).to.equal(1);
+    expect(wrap.html()).to.equal("<div>bar</div>");
+    await act(() => dispatch("off"));
+    expect(spy.callCount).to.equal(2);
+    expect(wrap.html()).to.equal("<div>bar</div>");
   });
 });
