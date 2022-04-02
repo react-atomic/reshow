@@ -3,7 +3,7 @@ import { Section, dispatch } from "../../../src/index";
 import { globalStore } from "../../../src/stores/globalStore";
 
 import { expect } from "chai";
-import { mount, cleanIt } from "reshow-unit";
+import { act, render, cleanIt } from "reshow-unit";
 
 class TestEl extends PureComponent {
   render() {
@@ -11,10 +11,15 @@ class TestEl extends PureComponent {
   }
 }
 
+let uFake;
 class FakeComponent extends PureComponent {
   static defaultProps = {
     name: "test",
   };
+  constructor(props) {
+    super(props);
+    uFake = this;
+  }
 
   render() {
     const { immutable, name } = this.props;
@@ -31,75 +36,68 @@ describe("Test Section", () => {
     globalStore.path = null;
   });
 
-  afterEach(()=>{
-    cleanIt();
+  afterEach(() => {
     dispatch("config/reset");
+    cleanIt();
   });
 
-  it("Section is existed", (done) => {
-    const vDom = <FakeComponent />;
-    const uFake = mount(vDom).instance();
-    dispatch({
-      section: {
-        test: {
-          shouldRender: true,
-          aaa: { bbb: "ccc" },
-        },
-      },
-      I18N: { ddd: "fff" },
-    });
-    setTimeout(() => {
-      expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
-      expect(uFake.el.props.I18N).to.deep.equal({ ddd: "fff" });
-      done();
-    });
+  it("Section is existed", async () => {
+    const wrap = render(<FakeComponent />);
+    await act(
+      () =>
+        dispatch({
+          section: {
+            test: {
+              shouldRender: true,
+              aaa: { bbb: "ccc" },
+            },
+          },
+          I18N: { ddd: "fff" },
+        }),
+      3
+    );
+    expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
+    expect(uFake.el.props.I18N).to.deep.equal({ ddd: "fff" });
   });
 
-  it("Section is not existed", (done) => {
-    const vDom = <FakeComponent name="xxx" />;
-    const uFake = mount(vDom).instance();
-    dispatch({
-      section: null,
-    });
-    setTimeout(() => {
-      expect("undefined" === typeof uFake.el).to.be.true;
-      done();
-    });
+  it("Section is not existed", async () => {
+    const wrap = render(<FakeComponent name="xxx" />);
+    await act(() => dispatch({ section: null }), 3);
+    expect("undefined" === typeof uFake.el).to.be.true;
   });
 
-  it("Section is existed with immutable", (done) => {
-    const vDom = <FakeComponent immutable />;
-    const uFake = mount(vDom).instance();
-    dispatch({
-      section: {
-        test: {
-          shouldRender: true,
-          aaa: { bbb: "ccc" },
-        },
-      },
-      I18N: { ddd: "fff" },
-    });
-    setTimeout(() => {
-      expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
-      expect(uFake.el.props.I18N.toJS()).to.deep.equal({ ddd: "fff" });
-      done();
-    });
+  it("Section is existed with immutable", async () => {
+    const wrap = render(<FakeComponent immutable />);
+    await act(
+      () =>
+        dispatch({
+          section: {
+            test: {
+              shouldRender: true,
+              aaa: { bbb: "ccc" },
+            },
+          },
+          I18N: { ddd: "fff" },
+        }),
+      3
+    );
+    expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
+    expect(uFake.el.props.I18N.toJS()).to.deep.equal({ ddd: "fff" });
   });
 
-  it("Section is not existed with immutable", (done) => {
-    const vDom = <FakeComponent name="xxx" immutable />;
-    const uFake = mount(vDom).instance();
-    dispatch({
-      section: null,
-    });
-    setTimeout(() => {
-      expect("undefined" === typeof uFake.el).to.be.true;
-      done();
-    });
+  it("Section is not existed with immutable", () => {
+    const wrap = render(<FakeComponent name="xxx" immutable />);
+    act(() => dispatch({ section: null }));
+    expect("undefined" === typeof uFake.el).to.be.true;
   });
 
-  it("pass name to child", (done) => {
+  it("pass name to child", async () => {
+    let uFake;
     class PassName extends PureComponent {
+      constructor(props) {
+        super(props);
+        uFake = this;
+      }
       render() {
         const { immutable, name } = this.props;
         return (
@@ -109,24 +107,29 @@ describe("Test Section", () => {
         );
       }
     }
-    const vDom = <PassName />;
-    const wrap = mount(vDom).instance();
-    dispatch({
-      section: {
-        test: {
-          shouldRender: true,
-          aaa: { bbb: "ccc" },
-        },
-      },
-    });
-    setTimeout(() => {
-      expect(wrap.el.getAttribute("name")).to.equal("test");
-      done();
-    });
+    const wrap = render(<PassName />);
+    await act(
+      () =>
+        dispatch({
+          section: {
+            test: {
+              shouldRender: true,
+              aaa: { bbb: "ccc" },
+            },
+          },
+        }),
+      5
+    );
+    expect(uFake.el.getAttribute("name")).to.equal("test");
   });
 
-  it("not pass name if child already have name", (done) => {
+  it("not pass name if child already have name", async () => {
+    let uFake;
     class NotPassName extends PureComponent {
+      constructor(props) {
+        super(props);
+        uFake = this;
+      }
       render() {
         const { immutable, name } = this.props;
         return (
@@ -136,24 +139,29 @@ describe("Test Section", () => {
         );
       }
     }
-    const vDom = <NotPassName />;
-    const wrap = mount(vDom).instance();
-    dispatch({
-      section: {
-        test: {
-          shouldRender: true,
-          aaa: { bbb: "ccc" },
-        },
-      },
-    });
-    setTimeout(() => {
-      expect(wrap.el.getAttribute("name")).to.equal("test2");
-      done();
-    });
+    const wrap = render(<NotPassName />);
+    await act(
+      () =>
+        dispatch({
+          section: {
+            test: {
+              shouldRender: true,
+              aaa: { bbb: "ccc" },
+            },
+          },
+        }),
+      5
+    );
+    expect(uFake.el.getAttribute("name")).to.equal("test2");
   });
 
-  it("not pass name if one of child already have name", (done) => {
+  it("not pass name if one of child already have name", async () => {
+    let uFake;
     class NotPassNameMultiChild extends PureComponent {
+      constructor(props) {
+        super(props);
+        uFake = this;
+      }
       render() {
         const { immutable, name } = this.props;
         return (
@@ -168,22 +176,19 @@ describe("Test Section", () => {
         );
       }
     }
-    const vDom = <NotPassNameMultiChild />;
-    const wrap = mount(vDom);
-    const uObj = wrap.instance();
-    dispatch({
-      section: {
-        test: {
-          shouldRender: true,
-          aaa: { bbb: "ccc" },
+    const wrap = render(<NotPassNameMultiChild />);
+    await act(() =>
+      dispatch({
+        section: {
+          test: {
+            shouldRender: true,
+            aaa: { bbb: "ccc" },
+          },
         },
-      },
-    });
-    setTimeout(() => {
-      wrap.update();
-      expect(uObj.el1.getAttribute("name")).to.be.null;
-      expect(uObj.el2.getAttribute("name")).to.equal("test2");
-      done();
-    });
+      }),
+      3
+    );
+    expect(uFake.el1.getAttribute("name")).to.be.null;
+    expect(uFake.el2.getAttribute("name")).to.equal("test2");
   });
 });

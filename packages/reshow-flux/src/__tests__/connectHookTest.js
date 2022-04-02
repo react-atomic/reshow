@@ -26,9 +26,9 @@ describe("Test Connect Hook", () => {
     const wrap = render(<Foo />);
     expect(wrap.html()).to.equal(`<div></div>`);
     const a = { foo: "111" };
-    await act(()=>dispatch(a));
+    await act(() => dispatch(a));
     expect(wrap.html()).to.equal('<div class="111"></div>');
-    await act(()=>dispatch({ foo: "222" }));
+    await act(() => dispatch({ foo: "222" }));
     expect(wrap.html()).to.equal('<div class="222"></div>');
   });
 
@@ -62,7 +62,7 @@ describe("Test Connect Hook", () => {
       }
     }
     let wrap;
-    await act(()=>wrap = render(<VDom />), 20);
+    await act(() => (wrap = render(<VDom />)), 20);
     expect(wrap.html()).to.equal('<div class="bar"></div>');
   });
 });

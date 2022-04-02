@@ -1,6 +1,6 @@
 {
   "name": "reshow",
-  "version": "0.16.16",
+  "version": "0.17.0",
   "description": "A simplified React cross-component state management.",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -20,7 +20,7 @@
     "organism-react-popup": "*",
     "react-atomic-molecule": "*",
     "reshow-constant": "*",
-    "reshow-flux": "*",
+    "reshow-flux": "^0.17.x",
     "reshow-return": "*",
     "reshow-runtime": "*",
     "seturl": "*",
@@ -45,9 +45,9 @@
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
     "lerna": "^4.0.0",
-    "react": "^16.x",
-    "react-dom": "^16.x",
-    "reshow-unit": "*"
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "reshow-unit": "^0.17.x"
   },
   "scripts": {
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { expect } from "chai";
-import { mount, cleanIt } from "reshow-unit";
+import { act, render, cleanIt } from "reshow-unit";
 
 import { globalStore } from "../../../src/stores/globalStore";
 
@@ -19,7 +19,12 @@ class TestEl extends PureComponent {
   }
 }
 
+let uFake;
 class FakeComponent extends PureComponent {
+  constructor(props) {
+    super(props);
+    uFake = this;
+  }
   render() {
     const { storage } = this.props;
     return (
@@ -39,25 +44,17 @@ describe("Test Storage Return", () => {
     cleanIt();
   });
 
-  it("test get local storage", (done) => {
-    const vDom = <FakeComponent storage={localStorageStore} />;
-    const uFake = mount(vDom).instance();
+  it("test get local storage", async () => {
+    const wrap = render(<FakeComponent storage={localStorageStore} />);
     const uString = "test123";
-    dispatch("local", { data: uString });
-    setTimeout(() => {
-      expect(uFake.el.props.data).to.equal(uString);
-      done();
-    });
+    await act(() => dispatch("local", { data: uString }), 5);
+    expect(uFake.el.props.data).to.equal(uString);
   });
 
-  it("test get session storage", (done) => {
-    const vDom = <FakeComponent storage={sessionStorageStore} />;
-    const uFake = mount(vDom).instance();
+  it("test get session storage", async () => {
+    const wrap = render(<FakeComponent storage={sessionStorageStore} />);
     const uString = "test456";
-    dispatch("session", { data: uString });
-    setTimeout(() => {
-      expect(uFake.el.props.data).to.equal(uString);
-      done();
-    });
+    await act(()=>dispatch("session", { data: uString }), 5);
+    expect(uFake.el.props.data).to.equal(uString);
   });
 });

@@ -52,7 +52,9 @@ describe("Connect Hook (clean Props)", () => {
         setState.current({ p: { bar: "c" } });
       });
       setTimeout(() => {
-        expect(screen().getByRole("udom").outerHTML).to.equal('<div role="udom" bar="c"></div>');
+        expect(screen().getByRole("udom").outerHTML).to.equal(
+          '<div role="udom" bar="c"></div>'
+        );
         done();
       });
     });

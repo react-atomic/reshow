@@ -21,6 +21,7 @@ import userEvent from "@testing-library/user-event";
 global.IS_REACT_ACT_ENVIRONMENT = true;
 // https://testing-library.com/docs/queries/about/#screen
 const screen = () => getQueriesForElement(doc(), queries);
+const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
 
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
@@ -30,15 +31,15 @@ const cleanIt = (props) => {
   cleanup();
 };
 
-const act = async (cb, milliseconds = 0, debug) => {
+const act = async (cb, milliseconds = 1, debug) => {
   const start = getTimestamp();
   let timer;
   const wait = (resolve) => {
     const now = getTimestamp();
-    debug && console.log({ start, now }, now - start);
+    debug && console.log({ debug, start, now }, now - start);
     if (milliseconds + start > now) {
       clearTimeout(timer);
-      timer = setTimeout(() => wait(resolve), 10);
+      timer = setTimeout(() => wait(resolve), 1);
     } else {
       resolve();
     }
@@ -53,12 +54,15 @@ const act = async (cb, milliseconds = 0, debug) => {
 };
 
 // rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
+let gRenderObj;
 const render = (...p) => {
   const result = rtlRender(...p);
   const html = () => result.container.innerHTML;
   result.html = html;
+  gRenderObj = result;
   return result;
 };
+const unmount = () => gRenderObj.unmount();
 
 export {
   waitFor,
@@ -66,7 +70,9 @@ export {
   act,
   render,
   screen,
+  getRoleHtml,
   cleanIt,
+  unmount,
   jsdom,
   hideConsoleError,
 };
