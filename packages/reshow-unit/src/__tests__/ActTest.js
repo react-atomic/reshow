@@ -14,7 +14,10 @@ describe("Test Act", () => {
     expect(screen().getByRole("dom").outerHTML).to.equal(
       `<div role="dom"></div>`
     );
-    await act(() => change("foo"));
+    setTimeout(() => console.log(1), 10);
+    setTimeout(() => console.log(2), 20);
+    setTimeout(() => console.log(3), 30);
+    await act(() => change("foo"), 30, true);
     expect(screen().getByRole("dom").outerHTML).to.equal(
       `<div role="dom">foo</div>`
     );

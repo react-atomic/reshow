@@ -1,5 +1,5 @@
 {
-  "version": "0.17.5",
+  "version": "0.17.6",
   "name": "reshow-unit",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
+    "get-random-id": "*",
     "@testing-library/react": "^13.x",
     "@testing-library/user-event": "^14.x",
     "react-test-renderer": "^18.x",

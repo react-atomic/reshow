@@ -4,8 +4,8 @@ import {
   hideConsoleError,
 } from "reshow-unit-dom";
 import { doc } from "win-doc";
+import { getTimestamp } from "get-random-id";
 
-// rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
 import {
   act as rtlAct,
   render as rtlRender,
@@ -30,16 +30,29 @@ const cleanIt = (props) => {
   cleanup();
 };
 
-const act = async (cb, milliseconds) => {
+const act = async (cb, milliseconds = 0, debug) => {
+  const start = getTimestamp();
+  let timer;
+  const wait = (resolve) => {
+    const now = getTimestamp();
+    debug && console.log({ start, now }, now - start);
+    if (milliseconds + start > now) {
+      clearTimeout(timer);
+      timer = setTimeout(() => wait(resolve), 10);
+    } else {
+      resolve();
+    }
+  };
   await rtlAct(
     () =>
       new Promise((resolve, reject) => {
         cb();
-        setTimeout(resolve, milliseconds || 0);
+        wait(resolve);
       })
   );
 };
 
+// rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
 const render = (...p) => {
   const result = rtlRender(...p);
   const html = () => result.container.innerHTML;
