@@ -1,11 +1,11 @@
 import { Component } from "react";
 import { expect } from "chai";
-import { mount } from "reshow-unit";
+import { render, act } from "reshow-unit";
 
 import usePrevious from "../usePrevious";
 
 describe("test usePrevious", () => {
-  it("basic test", () => {
+  it("basic test", async () => {
     let hackGlobal;
     const Foo = (props) => {
       const prev = usePrevious(props.v);
@@ -15,11 +15,14 @@ describe("test usePrevious", () => {
       return null;
     };
 
+    let ufakeSet;
     class Comp extends Component {
       state = { v: null };
-
-      setV(v) {
-        this.setState({ v });
+      constructor(props) {
+        super(props);
+        ufakeSet = (v) => {
+          this.setState({ v });
+        };
       }
 
       render() {
@@ -27,9 +30,9 @@ describe("test usePrevious", () => {
       }
     }
 
-    const wrap = mount(<Comp />);
+    render(<Comp />);
     expect(hackGlobal()).to.deep.equal({ v: null, prev: undefined });
-    wrap.instance().setV("bar");
+    await act(() => ufakeSet("bar"));
     expect(hackGlobal()).to.deep.equal({ v: "bar", prev: null });
   });
 });
