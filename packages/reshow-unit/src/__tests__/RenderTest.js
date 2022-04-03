@@ -10,9 +10,9 @@ describe("Test Render", () => {
 
   it("test unmount", () => {
     const Foo = (props) => <div>bar</div>;
-    render(<Foo />);
+    const wrap = render(<Foo />);
     expect(document.body.innerHTML).to.have.string("bar");
-    unmount();
+    wrap.unmount();
     expect(document.body.innerHTML).not.have.string("bar");
   });
 

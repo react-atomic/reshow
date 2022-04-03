@@ -787,9 +787,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001317:
-  version "1.0.30001323"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001323.tgz#a451ff80dec7033016843f532efda18f02eec011"
-  integrity sha512-e4BF2RlCVELKx8+RmklSEIVub1TWrmdhvA5kEUueummz1XyySW0DVk+3x9HyhU9MuWTa2BhqLgEuEmUwASAdCA==
+  version "1.0.30001324"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001324.tgz#e17c3a8b34822b02d5d15639d570057550074884"
+  integrity sha512-/eYp1J6zYh1alySQB4uzYFkLmxxI8tk0kxldbNHXp8+v+rdMKdUBNjRLz7T7fz6Iox+1lIdYpc7rq6ZcXfTukg==
 
 chai@*:
   version "4.3.6"
@@ -1557,6 +1557,11 @@ get-package-type@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/get-package-type/-/get-package-type-0.1.0.tgz#8de2d803cff44df3bc6c456e6668b36c3926e11a"
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
+
+get-random-id@*:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/get-random-id/-/get-random-id-0.1.2.tgz#66fa288abb58242abf521dc2f269f3107aca3d50"
+  integrity sha512-9Sk1lFgJgIQhSsA0fLJgPCbQn2GZTrTnuaYpcSci5kze/O8YxadDMEEM/Vs9Ozj321ECLvpuUiswhEfOtNg+dA==
 
 get-stdin@^7.0.0:
   version "7.0.0"
@@ -2557,9 +2562,9 @@ prettier-eslint@^9.0.0:
     vue-eslint-parser "^2.0.2"
 
 prettier@*, prettier@^2.0.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.1.tgz#d472797e0d7461605c1609808e27b80c0f9cfe17"
-  integrity sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.2.tgz#e26d71a18a74c3d0f0597f55f01fb6c06c206032"
+  integrity sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==
 
 prettier@^1.7.0:
   version "1.19.1"
@@ -2761,12 +2766,13 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@^0.17.0:
-  version "0.17.5"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.5.tgz#c97ceeadbc909d23b893869a32994c530a99a34d"
-  integrity sha512-gXwGBCxpFV/8LYiAw/ul05W+rbGtTZvhXHze/zaq9LHvBBHRx09PaGw+jcUpBV621/UPM8Z2z9wh0vmoRGzSZQ==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.11.tgz#b294f8855f514b6555b99a141dfe9caf4baf06d7"
+  integrity sha512-3BIwFIJsYX8qXWd8Q+GR9h9dB6+omQebmsDx2qba1Xqz1mhTmA883wO0O9hSyEoGQOUs2nQ03azydjny1th78w==
   dependencies:
     "@testing-library/react" "^13.x"
     "@testing-library/user-event" "^14.x"
+    get-random-id "*"
     react-test-renderer "^18.x"
     reshow-unit-dom "*"
     win-doc "*"

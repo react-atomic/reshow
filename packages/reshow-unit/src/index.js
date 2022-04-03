@@ -54,15 +54,12 @@ const act = async (cb, milliseconds = 1, debug) => {
 };
 
 // rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
-let gRenderObj;
 const render = (...p) => {
   const result = rtlRender(...p);
   const html = () => result.container.innerHTML;
   result.html = html;
-  gRenderObj = result;
   return result;
 };
-const unmount = () => gRenderObj.unmount();
 
 export {
   waitFor,
@@ -72,7 +69,6 @@ export {
   screen,
   getRoleHtml,
   cleanIt,
-  unmount,
   jsdom,
   hideConsoleError,
 };

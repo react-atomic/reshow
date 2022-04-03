@@ -14,7 +14,7 @@ describe("useStore Test", () => {
   it("test default", () => {
     const [store, dispatch] = reducer;
     const Comp = (props) => {
-      const state = useStore(store, () => () => "foo");
+      const state = useStore(store, () => "foo");
       return <div>{state}</div>;
     };
     const wrap = render(<Comp />);
@@ -24,42 +24,69 @@ describe("useStore Test", () => {
   it("test apply dispatch", async () => {
     const [store, dispatch] = reducer;
     const Comp = (props) => {
-      const state = useStore(store, (setState) => () => {
-        setState && setState("bar");
+      const state = useStore(store, (emit = {}) => {
+        emit && emit.current && (emit.current.state = "bar");
+        emit?.current?.notify();
       });
       return <div>{state}</div>;
     };
     const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div></div>");
-    await act(() => dispatch());
+    await act(() => dispatch(), 5);
     expect(wrap.html()).to.equal("<div>bar</div>");
   });
 
   it("test not apply dispatch", async () => {
-    let spy;
-    const heeding = (setState) => {
-      spy = sinon.spy((state, action) => {
-        if (action && action.type === "on") {
-          setState("bar");
-        }
-        return "foo";
-      });
-      return spy;
-    };
+    const heeding = sinon.spy((emit = {}) => {
+      const { action, notify } = emit.current || {};
+      if (action && action.type === "on") {
+        emit.current.state = "bar";
+        notify();
+      }
+      return "foo";
+    });
 
     const [store, dispatch] = reducer;
     const Comp = (props) => {
       const state = useStore(store, heeding);
       return <div>{state}</div>;
     };
+    expect(heeding.callCount).to.equal(0);
     const wrap = render(<Comp />);
+    expect(heeding.callCount).to.equal(1);
     expect(wrap.html()).to.equal("<div>foo</div>");
-    expect(spy.callCount).to.equal(0);
     await act(() => dispatch("on"));
-    expect(spy.callCount).to.equal(1);
+    expect(heeding.callCount).to.equal(2);
     expect(wrap.html()).to.equal("<div>bar</div>");
-    await act(() => dispatch("off"));
-    expect(spy.callCount).to.equal(2);
+    await act(() => dispatch("off"), 5);
+    expect(heeding.callCount).to.equal(3);
     expect(wrap.html()).to.equal("<div>bar</div>");
+  });
+});
+
+describe("useStore Test without heeding", () => {
+  let reducer;
+  beforeEach(() => {
+    reducer = createReducer((state, action) => action, { foo: "bar" });
+  });
+  it("test default", () => {
+    const [store, dispatch] = reducer;
+    const Comp = (props) => {
+      const state = useStore(store);
+      return <div>{state.foo}</div>;
+    };
+    const wrap = render(<Comp />);
+    expect(wrap.html()).to.equal("<div>bar</div>");
+  });
+  it("test apply dispatch", async () => {
+    const [store, dispatch] = reducer;
+    const Comp = (props) => {
+      const state = useStore(store);
+      return <div>{state.bar}</div>;
+    };
+    const wrap = render(<Comp />);
+    expect(wrap.html()).to.equal("<div></div>");
+    await act(() => dispatch({bar: "aaa"}), 5);
+    expect(wrap.html()).to.equal("<div>aaa</div>");
   });
 });

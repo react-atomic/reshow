@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { render, unmount, cleanIt } from "reshow-unit";
+import { render, cleanIt } from "reshow-unit";
 
 import useMounted from "../useMounted";
 
@@ -13,9 +13,9 @@ describe("test useMounted", () => {
       hackGlobal = useMounted();
       return null;
     };
-    render(<Foo />);
+    const wrap = render(<Foo />);
     expect(hackGlobal()).to.be.true;
-    unmount();
+    wrap.unmount();
     expect(hackGlobal()).to.be.false;
   });
 });

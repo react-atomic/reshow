@@ -2,7 +2,6 @@ import { expect } from "chai";
 import {
   act,
   render,
-  unmount,
   getRoleHtml,
   cleanIt,
   waitFor,
@@ -30,13 +29,14 @@ describe("Test ReshowMessage", (done) => {
         <PopupPool />
       </div>
     );
+    let wrap;
     await act(() => {
-      render(<VDom />);
+      wrap = render(<VDom />);
       dispatch("dialog/start", { dialog: "how are u" });
     }, 5);
     await waitFor(() => {
       expect(getRoleHtml("udom")).to.have.string("dialog");
     });
-    unmount();
+    wrap.unmount();
   });
 });

@@ -11,7 +11,7 @@ describe("Connect Hook (clean Props)", () => {
     reducer = createReducer((state, action) => action, {});
   });
 
-  it("test clean props", (done) => {
+  it("test clean props", async () => {
     const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
@@ -41,22 +41,17 @@ describe("Connect Hook (clean Props)", () => {
       }
     }
     render(<Bar />);
-    act(() => {
+    await act(() => {
       setState.current({ p: { foo: "a", bar: "b" } });
-    });
-    setTimeout(() => {
-      expect(screen().getByRole("udom").outerHTML).to.equal(
-        '<div role="udom" foo="a" bar="b"></div>'
-      );
-      act(() => {
-        setState.current({ p: { bar: "c" } });
-      });
-      setTimeout(() => {
-        expect(screen().getByRole("udom").outerHTML).to.equal(
-          '<div role="udom" bar="c"></div>'
-        );
-        done();
-      });
-    });
+    }, 5);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      '<div role="udom" foo="a" bar="b"></div>'
+    );
+    await act(() => {
+      setState.current({ p: { bar: "c" } });
+    }, 5);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      '<div role="udom" bar="c"></div>'
+    );
   });
 });

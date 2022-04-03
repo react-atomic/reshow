@@ -25,7 +25,7 @@ describe("Test Connect hook for more test", () => {
       return <div role="udom">{state.foo}</div>;
     };
     render(<FakeComponent />);
-    await act(() => dispatch({ foo: "bar" }));
+    await act(() => dispatch({ foo: "bar" }), 5);
     expect(screen().getByRole("udom").outerHTML).to.equal(
       `<div role="udom">bar</div>`
     );
@@ -33,6 +33,7 @@ describe("Test Connect hook for more test", () => {
 
   it("could work with dispatcher", async () => {
     let calculateTimes = 0;
+    let wrap;
     const [store, dispatch] = reducer;
     const FakeComponent = (props) => {
       let state;
@@ -46,18 +47,12 @@ describe("Test Connect hook for more test", () => {
       })(props);
       return <div role="udom">{state.aaa}</div>;
     };
-    const wrap = { unmount: null };
-    const WrapComp = () => {
-      const [state, setState] = useState(() => <FakeComponent />);
-      wrap.unmount = setState;
-      return state;
-    };
     expect(calculateTimes).to.equal(0);
-    await act(() => render(<WrapComp />));
+    await act(() => wrap = render(<FakeComponent />));
     expect(calculateTimes).to.equal(2); //init and handlchange
     await act(() => {
       dispatch({ aaa: "Hello dispatcher!" });
-    });
+    }, 5);
     expect(calculateTimes).to.equal(3);
     expect(screen().getByRole("udom").outerHTML).to.equal(
       `<div role="udom">Hello dispatcher!</div>`

@@ -1,18 +1,28 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore, useCallback, useRef } from "react";
 
 const useStore = (store, heeding) => {
-  const [state, setState] = useState(() =>
-    heeding ? heeding()() : store.getState()
+  const lastEmit = useRef();
+  if (!lastEmit.current) {
+    lastEmit.current = { state: heeding ? heeding() : store.getState() };
+  }
+  const subscribe = useCallback(
+    (notify) => {
+      const myHeeding =
+        heeding ||
+        ((emit = {}) => {
+          emit?.current?.notify();
+        });
+      const myListener = (state, action, prevState) => {
+        lastEmit.current = { state, action, prevState, notify };
+        myHeeding(lastEmit);
+      };
+      store.addListener(myListener);
+      return () => store.removeListener(myListener);
+    },
+    [store, heeding]
   );
-  useEffect(() => {
-    heeding =
-      heeding || ((setState) => (state, action, prevState) => setState(state));
-    const handler = heeding(setState);
-    store.addListener(handler);
-    return () => {
-      store.removeListener(handler);
-    };
-  }, []);
+  const getState = () => lastEmit.current.state;
+  const state = useSyncExternalStore(subscribe, getState, getState);
   return state;
 };
 
