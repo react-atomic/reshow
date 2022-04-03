@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -36,7 +36,7 @@
     "@babel/cli": "^7.x",
     "react": "18.x",
     "react-dom": "18.x",
-    "reshow-unit": "^0.17.0"
+    "reshow-unit": "^0.17.x"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
