@@ -1,7 +1,7 @@
-import React, { Component, StrictMode } from "react";
+import { Component, StrictMode } from "react";
 import { createReducer } from "reshow-flux-base";
 import { expect } from "chai";
-import { mount } from "reshow-unit";
+import { act, render, screen } from "reshow-unit";
 
 import useConnect from "../useConnect";
 
@@ -11,7 +11,7 @@ describe("Connect Hook (clean Props)", () => {
     reducer = createReducer((state, action) => action, {});
   });
 
-  it("test clean props", (done) => {
+  it("test clean props", async () => {
     const [store, dispatch] = reducer;
     const Foo = (props) => {
       const state = useConnect({
@@ -21,10 +21,18 @@ describe("Connect Hook (clean Props)", () => {
         },
       })(props);
       const { storeLocator, ...otherProps } = props;
-      return <div {...{ ...otherProps, ...state }} />;
+      return <div role="udom" {...{ ...otherProps, ...state }} />;
     };
 
+    const setState = { current: null };
+
     class Bar extends Component {
+      constructor(props) {
+        super(props);
+        setState.current = (...p) => {
+          this.setState(...p);
+        };
+      }
       state = {
         p: null,
       };
@@ -32,16 +40,18 @@ describe("Connect Hook (clean Props)", () => {
         return <Foo {...this.state.p} />;
       }
     }
-    const wrap = mount(<Bar />);
-    wrap.setState({ p: { foo: "a", bar: "b" } });
-    wrap.update();
-    setTimeout(() => {
-      expect(wrap.html()).to.equal('<div foo="a" bar="b"></div>');
-      wrap.setState({ p: { bar: "c" } });
-      setTimeout(() => {
-        expect(wrap.html()).to.equal('<div bar="c"></div>');
-        done();
-      });
-    });
+    render(<Bar />);
+    await act(() => {
+      setState.current({ p: { foo: "a", bar: "b" } });
+    }, 5);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      '<div role="udom" foo="a" bar="b"></div>'
+    );
+    await act(() => {
+      setState.current({ p: { bar: "c" } });
+    }, 5);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      '<div role="udom" bar="c"></div>'
+    );
   });
 });

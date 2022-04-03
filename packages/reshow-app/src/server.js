@@ -15,7 +15,7 @@ const server = (app) => {
       temp = fs.readSync(fd, buffer, 0, bSize);
     }
     const myJson = JSON.parse(context);
-    const result = ReactServer.renderToString(build(app)(myJson));
+    const result = ReactServer.renderToReadableStream(build(app)(myJson));
     const len = result.length;
     process.stdout.write("<!--start-->");
     let last = 0;

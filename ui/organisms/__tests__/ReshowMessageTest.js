@@ -1,8 +1,13 @@
-import React, { PureComponent } from "react";
 import { expect } from "chai";
-import { mount, cleanIt } from "reshow-unit";
+import {
+  act,
+  render,
+  getRoleHtml,
+  cleanIt,
+  waitFor,
+} from "reshow-unit";
 
-import { PopupPool } from "organism-react-popup";
+import { popupDispatch, PopupPool } from "organism-react-popup";
 
 import ReshowMessage from "../ReshowMessage";
 import { dispatch } from "../../../src/index";
@@ -10,33 +15,28 @@ import { dispatch } from "../../../src/index";
 describe("Test ReshowMessage", (done) => {
   afterEach(() => {
     cleanIt();
-    dispatch("config/reset");
   });
 
-  it("simple test", (done) => {
-    const vDom = <ReshowMessage />;
-    const wrap = mount(vDom);
-    setTimeout(() => {
-      expect(wrap.html()).to.have.string("div");
-      done();
-    });
+  it("simple test", () => {
+    const wrap = render(<ReshowMessage />);
+    expect(wrap.html()).to.have.string("div");
   });
 
-  it("test dialog", (done) => {
-    const vDom = (
-      <div>
+  it("test dialog", async () => {
+    const VDom = (props) => (
+      <div role="udom">
         <ReshowMessage />
         <PopupPool />
       </div>
     );
-    const wrap = mount(vDom);
-    dispatch("dialog/start", {
-      dialog: "how are u",
+    let wrap;
+    await act(() => {
+      wrap = render(<VDom />);
+      dispatch("dialog/start", { dialog: "how are u" });
+    }, 5);
+    await waitFor(() => {
+      expect(getRoleHtml("udom")).to.have.string("dialog");
     });
-    setTimeout(() => {
-      wrap.update();
-      expect(wrap.html()).to.have.string("dialog");
-      done();
-    }, 25);
+    wrap.unmount();
   });
 });

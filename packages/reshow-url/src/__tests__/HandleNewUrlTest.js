@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { expect } from "chai";
-import { mount, cleanIt, jsdom } from "reshow-unit";
+import { render, cleanIt, jsdom } from "reshow-unit";
 jsdom(null, { url: "http://localhost" });
 import { AjaxPage, ajaxDispatch } from "organism-react-ajax";
 import urlStore from "../stores/urlStore";
@@ -17,7 +17,7 @@ describe("Test Handle New Url", () => {
       done();
     };
     ajaxDispatch({ onUrlChange: myUpdate });
-    const wrap = mount(
+    render(
       <AjaxPage win={window} themes={{ fake: <div /> }} themePath="fake" />
     );
     window.history.pushState(null, "title", "http://localhost/bbb");

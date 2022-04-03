@@ -1,9 +1,7 @@
 import React, { PureComponent, isValidElement, Children } from "react";
 
 import { expect } from "chai";
-import { shallow, mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { render } from "reshow-unit";
 
 import build from "../index";
 
@@ -12,7 +10,7 @@ describe("Test wrap", () => {
     const FakeDom = () => {
       return build("test", { wrap: <div /> })();
     };
-    const wrap = shallow(<FakeDom />);
+    const wrap = render(<FakeDom />);
     expect(wrap.html()).to.equal("<div>test</div>");
   });
 
@@ -23,7 +21,7 @@ describe("Test wrap", () => {
         doCallFunction: true,
       })({ "data-foo": "bar" });
     };
-    const wrap = shallow(<FakeDom />);
+    const wrap = render(<FakeDom />);
     expect(wrap.html()).to.equal('<div data-foo="bar">after-func-call</div>');
   });
 
@@ -40,7 +38,7 @@ describe("Test wrap", () => {
         }
       )({ "data-foo": "foo", "data-bar": "bar" });
     };
-    const wrap = shallow(<FakeDom />);
+    const wrap = render(<FakeDom />);
     expect(wrap.html()).to.equal('<div data-bar="bar">after-func-call</div>');
   });
 });

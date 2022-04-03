@@ -10,11 +10,14 @@ import { win, doc } from "win-doc";
 import build from "reshow-build";
 import { UNDEFINED } from "reshow-constant";
 
-const render = (oApp, dom) =>
-  (dom.innerHTML && ReactDOM.hydrate ? ReactDOM.hydrate : ReactDOM.render)(
-    oApp,
-    dom
-  );
+const render = (oApp, dom) => {
+  if (dom.innerHTML) {
+    ReactDOM.hydrateRoot(oApp, dom);
+  } else {
+    const root = ReactDOM.createRoot(dom);
+    root.render(oApp);
+  }
+};
 
 const update = (json) => ajaxDispatch("callback", { json });
 

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { ImmutableStore, mergeMap } from "reshow-flux";
 import { expect } from "chai";
-import { mount, cleanIt } from "reshow-unit";
+import { act, render, getRoleHtml, cleanIt } from "reshow-unit";
 
 import Return from "../Return";
 
@@ -24,13 +24,18 @@ describe("Test Return", () => {
       return <div />;
     }
   }
-
+  let uFake;
   class FakeComponent extends PureComponent {
     state = {
       store: pageStore,
       initStates: ["data"],
       pathStates: { I13N: ["data", "I13N"] },
     };
+
+    constructor(props) {
+      super(props);
+      uFake = this;
+    }
 
     setNew(k, v) {
       this.setState({ [k]: v });
@@ -57,74 +62,62 @@ describe("Test Return", () => {
     dispatch("config/reset");
   });
 
-  it("assign props", (done) => {
-    const wrap = mount(<FakeComponent />);
-    const uFake = wrap.instance();
-    dispatch({ data: { foo: "bar", I13N: { aaa: "bbb" } } });
-    setTimeout(() => {
-      expect(uFake.el.props.data).to.deep.equal({
-        foo: "bar",
-        I13N: { aaa: "bbb" },
-      });
-      expect(uFake.el.props.I13N).to.deep.equal({ aaa: "bbb" });
-      uFake.setNew("pathStates", { foo: ["data", "foo"] });
-      setTimeout(() => {
-        expect(uFake.el.props.foo).to.equal("bar");
-        done();
-      });
+  it("assign props", async () => {
+    const wrap = render(<FakeComponent />);
+    await act(
+      () => dispatch({ data: { foo: "bar", I13N: { aaa: "bbb" } } }),
+      5
+    );
+    expect(uFake.el.props.data).to.deep.equal({
+      foo: "bar",
+      I13N: { aaa: "bbb" },
     });
+    expect(uFake.el.props.I13N).to.deep.equal({ aaa: "bbb" });
+    await act(() => uFake.setNew("pathStates", { foo: ["data", "foo"] }));
+    expect(uFake.el.props.foo).to.equal("bar");
   });
 
-  it("test Immutable path state", (done) => {
-    const vDom = <FakeComponent immutable />;
-    const wrap = mount(vDom);
-    const uFake = wrap.instance();
-    dispatch({
-      data: { foo: "bar", I13N: { a: "b" } },
-    });
-    setTimeout(() => {
-      const firstData = uFake.el.props.data;
-      const firstI13N = uFake.el.props.I13N;
+  it("test Immutable path state", async () => {
+    const wrap = render(<FakeComponent immutable />);
+    await act(() => {
+      dispatch({
+        data: { foo: "bar", I13N: { a: "b" } },
+      });
+    }, 5);
+    const firstData = uFake.el.props.data;
+    const firstI13N = uFake.el.props.I13N;
+    await act(() => {
       uFake.setNew("bar", "bbb");
-      const secondData = uFake.el.props.data;
-      const secondI13N = uFake.el.props.I13N;
-      expect(firstData === secondData).to.be.true;
-      expect(firstI13N === secondI13N).to.be.true;
-      expect(firstData.toJS()).to.deep.equal({ foo: "bar", I13N: { a: "b" } });
-      expect(firstI13N.toJS()).to.deep.equal({ a: "b" });
-      done();
-    });
+    }, 5);
+    const secondData = uFake.el.props.data;
+    const secondI13N = uFake.el.props.I13N;
+    expect(firstData === secondData).to.be.true;
+    expect(firstI13N === secondI13N).to.be.true;
+    expect(firstData.toJS()).to.deep.equal({ foo: "bar", I13N: { a: "b" } });
+    expect(firstI13N.toJS()).to.deep.equal({ a: "b" });
   });
 
-  it("test path state should clean", () => {
-    const wrap = mount(<FakeComponent immutable />);
-    const uFake = wrap.instance();
-    dispatch({ data: "" });
+  it("test path state should clean", async () => {
+    render(<FakeComponent immutable />);
+    expect(uFake.el.props.data).to.undefined;
+    await act(() => dispatch({ data: "" }), 3);
     expect(uFake.el.props.I13N).to.undefined;
-    const wrap1 = mount(<FakeComponent />);
-    const uFake1 = wrap1.instance();
-    expect(uFake1.el.props.I13N).to.undefined;
+    expect(uFake.el.props.data).to.equal("");
   });
 
-  it("test child with function", (done) => {
-    let i = 0;
+  it("test child with function", async () => {
     const vDom = (
       <Return store={pageStore} initStates={["data"]}>
         {(props) => {
-          if (i && props.data) {
-            expect(props).to.deep.equal({ data: "foo" });
-            done();
-          } else {
-            i++;
-          }
-          return <div />;
+          return <div role="dom">{props.data}</div>;
         }}
       </Return>
     );
-    const wrap = mount(vDom);
-    dispatch({
-      data: "foo",
+    await act(() => {
+      render(vDom);
+      dispatch({ data: "foo" });
     });
+    expect(getRoleHtml('dom')).to.equal(`<div role="dom">foo</div>`);
   });
 
   it("test backfill props", () => {
@@ -132,7 +125,7 @@ describe("Test Return", () => {
       foo: "foo",
       bar: "bar",
     });
-    const wrap = mount(
+    const wrap = render(
       <FakeComponent
         store={pageStore}
         initStates={["foo", "bar"]}
@@ -140,7 +133,6 @@ describe("Test Return", () => {
         foo="foo1"
       />
     );
-    const uFake = wrap.instance();
     const uFakeEl = uFake.el;
     expect(uFakeEl.props).to.deep.equal({ foo: "foo1", bar: "bar" });
   });
@@ -150,10 +142,9 @@ describe("Test Return", () => {
       foo: "foo",
       bar: "bar",
     });
-    const wrap = mount(
+    const wrap = render(
       <FakeComponent store={pageStore} initStates={["foo", "bar"]} foo="foo1" />
     );
-    const uFake = wrap.instance();
     const uFakeEl = uFake.el;
     expect(uFakeEl.props).to.deep.equal({ foo: "foo", bar: "bar" });
   });

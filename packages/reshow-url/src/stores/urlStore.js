@@ -12,7 +12,8 @@ import arrayDedup from "array.dedup";
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
  */
-const updateUrl = (url) => win().history.pushState && win().history.pushState("", "", url);
+const updateUrl = (url) =>
+  win().history.pushState && win().history.pushState("", "", url);
 
 const urlChange = "urlChange";
 

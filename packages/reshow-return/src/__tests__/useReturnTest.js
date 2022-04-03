@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { Map, mergeMap } from "reshow-flux";
 import { createReducer } from "reshow-flux-base";
-import { mount } from "reshow-unit";
+import { render } from "reshow-unit";
 
 import useReturn from "../useReturn";
 
@@ -14,7 +14,7 @@ describe("Test useReturn", () => {
       const state = useReturn(["foo"], store);
       return state.foo;
     };
-    const wrap = mount(<Dom />);
+    const wrap = render(<Dom />);
     expect(wrap.html()).to.equal("bar");
   });
 
@@ -29,7 +29,7 @@ describe("Test useReturn", () => {
       expect(state.immutable).to.be.true;
       return null;
     };
-    const wrap = mount(<Dom />);
+    const wrap = render(<Dom />);
   });
 
   it("test default is not immutable", () => {
@@ -43,6 +43,6 @@ describe("Test useReturn", () => {
       expect(state.immutable).to.be.undefined;
       return null;
     };
-    const wrap = mount(<Dom />);
+    const wrap = render(<Dom />);
   });
 });

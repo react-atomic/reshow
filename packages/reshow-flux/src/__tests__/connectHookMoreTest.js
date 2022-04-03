@@ -1,7 +1,7 @@
-import React, { Component, StrictMode } from "react";
+import { useState, Component } from "react";
 import { createReducer } from "reshow-flux-base";
 import { expect } from "chai";
-import { mount } from "reshow-unit";
+import { act, render, screen } from "reshow-unit";
 
 import useConnect from "../useConnect";
 
@@ -11,7 +11,7 @@ describe("Test Connect hook for more test", () => {
     reducer = createReducer((state, action) => action, {});
   });
 
-  it("could register with store", (done) => {
+  it("could register with store", async () => {
     const [store, dispatch] = reducer;
     const FakeComponent = (props) => {
       const state = useConnect({
@@ -22,21 +22,22 @@ describe("Test Connect hook for more test", () => {
           };
         },
       })(props);
-      return <div>{state.foo}</div>;
+      return <div role="udom">{state.foo}</div>;
     };
-    const wrap = mount(<FakeComponent />);
-    dispatch({ foo: "bar" });
-    setTimeout(() => {
-      expect(wrap.html()).to.equal("<div>bar</div>");
-      done();
-    });
+    render(<FakeComponent />);
+    await act(() => dispatch({ foo: "bar" }), 5);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      `<div role="udom">bar</div>`
+    );
   });
 
-  it("could work with dispatcher", (done) => {
-    const [store, dispatch] = reducer;
+  it("could work with dispatcher", async () => {
     let calculateTimes = 0;
+    let wrap;
+    const [store, dispatch] = reducer;
     const FakeComponent = (props) => {
-      const state = useConnect({
+      let state;
+      state = useConnect({
         storeLocator: () => store,
         calculateState: (prevState, props) => {
           const state = store.getState();
@@ -44,26 +45,24 @@ describe("Test Connect hook for more test", () => {
           return { aaa: state.aaa };
         },
       })(props);
-      return <div>{state.aaa}</div>;
+      return <div role="udom">{state.aaa}</div>;
     };
     expect(calculateTimes).to.equal(0);
-    const wrap = mount(<FakeComponent />);
-    setTimeout(() => {
-      expect(calculateTimes).to.equal(2); //init and handlchange
+    await act(() => wrap = render(<FakeComponent />));
+    expect(calculateTimes).to.equal(2); //init and handlchange
+    await act(() => {
       dispatch({ aaa: "Hello dispatcher!" });
-      setTimeout(() => {
-        wrap.update();
-        expect(calculateTimes).to.equal(3);
-        expect(wrap.html()).to.equal("<div>Hello dispatcher!</div>");
-        wrap.unmount();
-        dispatch({ aaa: "Hello Unmount!" });
-        expect(calculateTimes).to.equal(3);
-        done();
-      });
-    });
+    }, 5);
+    expect(calculateTimes).to.equal(3);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      `<div role="udom">Hello dispatcher!</div>`
+    );
+    await act(() => wrap.unmount());
+    dispatch({ aaa: "Hello Unmount!" });
+    expect(calculateTimes).to.equal(3);
   });
 
-  it("could work withProps", (done) => {
+  it("could work withProps", async () => {
     let getStoresProps = null;
     let calculateStateProps = null;
     const [store, dispatch] = reducer;
@@ -78,7 +77,7 @@ describe("Test Connect hook for more test", () => {
           return { foo: props.foo };
         },
       })(props);
-      return <div>{state.foo}</div>;
+      return <div role="udom">{state.foo}</div>;
     };
 
     let changeFoo;
@@ -100,18 +99,16 @@ describe("Test Connect hook for more test", () => {
         return <FakeComponent foo={foo} renewProps />;
       }
     }
-    const wrap = mount(<Parent />);
+    render(<Parent />);
 
     expect(getStoresProps).to.deep.include({ foo: null });
     expect(calculateStateProps).to.deep.include({ foo: null });
-    changeFoo("bar");
-    wrap.update();
-    setTimeout(() => {
-      expect(wrap.html()).to.equal("<div>bar</div>");
-      expect(getStoresProps).to.deep.include({ foo: "bar" });
-      expect(calculateStateProps).to.deep.include({ foo: "bar" });
-      done();
-    });
+    await act(() => changeFoo("bar"));
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      `<div role="udom">bar</div>`
+    );
+    expect(getStoresProps).to.deep.include({ foo: "bar" });
+    expect(calculateStateProps).to.deep.include({ foo: "bar" });
   });
 
   it("could work with empty calculateState", () => {
@@ -121,13 +118,12 @@ describe("Test Connect hook for more test", () => {
         storeLocator: () => store,
         calculateState: (prevState, props) => {},
       })(props);
-      return <div>{state.foo}</div>;
+      return <div role="udom" data-foo={state.foo} data-bar={props.bar} />;
     };
 
-    const wrap = mount(<FakeComponent aaa="bbb" />);
-    const props = wrap.props();
-    expect(props).to.deep.include({
-      aaa: "bbb",
-    });
+    render(<FakeComponent bar="bbb" />);
+    expect(screen().getByRole("udom").outerHTML).to.equal(
+      `<div role="udom" data-bar="bbb"></div>`
+    );
   });
 });

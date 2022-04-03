@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { urlStore, urlDispatch, UrlReturn } from "../../../src/index";
 
 import { expect } from "chai";
-import { mount, cleanIt, jsdom } from "reshow-unit";
+import { act, render, unmount, cleanIt, jsdom, waitFor } from "reshow-unit";
 
 describe("Test Url Return", () => {
   beforeEach(() => {
@@ -22,7 +22,12 @@ describe("Test Url Return", () => {
     }
   }
 
+  let uFake;
   class FakeComponent extends PureComponent {
+    constructor(props) {
+      super(props);
+      uFake = this;
+    }
     render() {
       const { urlKey } = this.props;
       return (
@@ -33,38 +38,29 @@ describe("Test Url Return", () => {
     }
   }
 
-  it("test get pathname", (done) => {
-    const vDom = <FakeComponent urlKey=":pathname" />;
-    const wrap = mount(vDom);
-    const uFake = wrap.instance();
-    urlDispatch({ type: "url", url: "http://localhost/aaa" });
-    setTimeout(() => {
-      wrap.update();
-      expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
-      done();
-    }, 5);
+  it("test get pathname", async () => {
+    render(<FakeComponent urlKey=":pathname" />);
+    await act(
+      () => urlDispatch({ type: "url", url: "http://localhost/aaa" }),
+      5
+    );
+    expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
   });
 
-  it("test get query", (done) => {
-    const vDom = <FakeComponent urlKey="foo" />;
-    const uFake = mount(vDom).instance();
-    urlDispatch({ type: "query", params: { foo: "bar" } });
-    setTimeout(() => {
-      expect(uFake.el.props["foo"]).to.equal("bar");
-      done();
-    }, 5);
+  it("test get query", async () => {
+    render(<FakeComponent urlKey="foo" />);
+    await act(() => urlDispatch({ type: "query", params: { foo: "bar" } }), 5);
+    expect(uFake.el.props["foo"]).to.equal("bar");
   });
 
-  it("test trigger by history", (done) => {
-    const vDom = <FakeComponent urlKey=":pathname" />;
-    const uFake = mount(vDom).instance();
+  it("test trigger by history", async () => {
+    await act(() => render(<FakeComponent urlKey=":pathname" />), 5);
     urlStore.registerEvent(window);
     window.history.pushState(null, "title", "http://localhost/bbb");
     window.history.pushState(null, "title", "http://localhost/ccc");
     window.history.back();
-    setTimeout(() => {
+    waitFor(() => {
       expect(uFake.el.props[":pathname"]).to.deep.equal(["", "bbb"]);
-      done();
-    }, 30);
+    });
   });
 });

@@ -1,7 +1,7 @@
 import React, { isValidElement, Children } from "react";
 
 import { expect } from "chai";
-import { shallow } from "reshow-unit";
+import { render } from "reshow-unit";
 
 import build from "../index";
 
@@ -16,7 +16,7 @@ describe("Test build array", () => {
         <div>2</div>
       </FakeDom>
     );
-    const wrap = shallow(vDom);
+    const wrap = render(vDom);
     expect(wrap.html()).to.equal(
       '<div><div title="foo">1</div><div title="foo">2</div></div>'
     );
@@ -42,7 +42,7 @@ describe("Test build array", () => {
         {({ bar }) => bar}
       </FakeDom>
     );
-    const wrap = shallow(vDom);
+    const wrap = render(vDom);
     expect(wrap.html()).to.equal(
       '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
     );
@@ -70,7 +70,7 @@ describe("Test build array", () => {
         {B}
       </FakeDom>
     );
-    const wrap = shallow(vDom);
+    const wrap = render(vDom);
     expect(wrap.html()).to.equal(
       '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
     );
@@ -88,7 +88,7 @@ describe("Test build array", () => {
         <span />
       </FakeDom>
     );
-    const wrap = shallow(vDom);
+    const wrap = render(vDom);
     expect(wrap.html()).to.equal(
       '<div><i data-foo="bar"></i><span data-foo="bar"></span><span data-foo="bar"></span></div>'
     );
@@ -97,12 +97,12 @@ describe("Test build array", () => {
         <span />
       </FakeDom>
     );
-    const wrap2 = shallow(vDom2);
+    const wrap2 = render(vDom2);
     expect(wrap2.html()).to.equal(
       '<div><i data-foo="bar"></i><span data-foo="bar"></span></div>'
     );
     const vDom3 = <FakeDom />;
-    const wrap3 = shallow(vDom3);
+    const wrap3 = render(vDom3);
     expect(wrap3.html()).to.equal('<div><i data-foo="bar"></i></div>');
   });
 });
