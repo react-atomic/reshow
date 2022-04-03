@@ -2837,9 +2837,9 @@ prettier-eslint@^9.0.0:
     vue-eslint-parser "^2.0.2"
 
 prettier@*, prettier@^2.0.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.1.tgz#d472797e0d7461605c1609808e27b80c0f9cfe17"
-  integrity sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.2.tgz#e26d71a18a74c3d0f0597f55f01fb6c06c206032"
+  integrity sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==
 
 prettier@^1.7.0:
   version "1.19.1"
@@ -2940,6 +2940,14 @@ react-atomic-molecule@*:
     ucfirst-js "*"
     win-doc "*"
 
+react-dom@18.x:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0.tgz#26b88534f8f1dbb80853e1eabe752f24100d8023"
+  integrity sha512-XqX7uzmFo0pUceWFCt7Gff6IyIMzFUn7QMZrbrQfGxtaxXZIcGQzoNpRLE3fQLnS4XzLLPMZX2T9TRcSrasicw==
+  dependencies:
+    loose-envify "^1.1.0"
+    scheduler "^0.21.0"
+
 "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
@@ -2971,6 +2979,13 @@ react-test-renderer@^18.x:
     react-is "^18.0.0"
     react-shallow-renderer "^16.13.1"
     scheduler "^0.21.0"
+
+react@18.x:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0.tgz#b468736d1f4a5891f38585ba8e8fb29f91c3cb96"
+  integrity sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==
+  dependencies:
+    loose-envify "^1.1.0"
 
 readable-stream@^3.4.0:
   version "3.6.0"
@@ -3052,10 +3067,10 @@ reshow-flux-base@^0.16.0:
     reshow-constant "^0.16.0"
     reshow-runtime "^0.16.0"
 
-reshow-flux@*, reshow-flux@^0.16.0:
-  version "0.16.17"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.16.17.tgz#90abd8cb3d6cf4e9e1f8201c206ffab5f35217e0"
-  integrity sha512-+aWNUnG3vqtfFU5zBJI0cmgvEU/5dPwFrQeBRVLrHIwVCbbWX9lBgRJ87459a+z0CnERM5xKGrRF+2oOodcjQA==
+reshow-flux@*, reshow-flux@^0.17.x:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.1.tgz#7a7cdd62c1f793c10c143ab1f0c8670d2230e170"
+  integrity sha512-gKyf0BAau8b4xgrgMH/Ai4pGPnFX4sAUh9+b08OlN4f3wY5GH4o8Jw5ODtQ3Qd2RUdIyvjoHGnhqfJCBQvIGpA==
   dependencies:
     array.dedup "*"
     array.merge "*"
@@ -3069,10 +3084,10 @@ reshow-flux@*, reshow-flux@^0.16.0:
     reshow-runtime "^0.16.0"
     setimmediate "*"
 
-reshow-flux@^0.17.x:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.0.tgz#94ef3aebcec619ab20783db7e4648fc512868aae"
-  integrity sha512-UnGfyMEwz3PxLAZpZQi+pRrj/8h79Sc0dx8ZgmZ1qutPvYD+937leuHvH9MfZPHgw0dB575WC6LkViq6VEowYg==
+reshow-flux@^0.16.0:
+  version "0.16.17"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.16.17.tgz#90abd8cb3d6cf4e9e1f8201c206ffab5f35217e0"
+  integrity sha512-+aWNUnG3vqtfFU5zBJI0cmgvEU/5dPwFrQeBRVLrHIwVCbbWX9lBgRJ87459a+z0CnERM5xKGrRF+2oOodcjQA==
   dependencies:
     array.dedup "*"
     array.merge "*"
@@ -3129,9 +3144,9 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@^0.17.x:
-  version "0.17.10"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.10.tgz#4b9fc56b3c09826d91d7445948b2417d8d0df37b"
-  integrity sha512-Y+N9RmVvy5jXD6UDSLsO1EvWNMYBiFBCgyzPHaZwk7+qE3CpEoo/g2KI0B5BfcHQV1vzLaXAdta+hGdS01NjxA==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.11.tgz#b294f8855f514b6555b99a141dfe9caf4baf06d7"
+  integrity sha512-3BIwFIJsYX8qXWd8Q+GR9h9dB6+omQebmsDx2qba1Xqz1mhTmA883wO0O9hSyEoGQOUs2nQ03azydjny1th78w==
   dependencies:
     "@testing-library/react" "^13.x"
     "@testing-library/user-event" "^14.x"
