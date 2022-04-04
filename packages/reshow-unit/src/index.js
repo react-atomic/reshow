@@ -2,6 +2,7 @@ import {
   jsdom,
   cleanIt as domCleanIt,
   hideConsoleError,
+  getSinon,
 } from "reshow-unit-dom";
 import { doc } from "win-doc";
 import { getTimestamp } from "get-random-id";
@@ -61,13 +62,20 @@ const render = (...p) => {
   return result;
 };
 
+// https://testing-library.com/docs/user-event/intro
+const simulateEvent = () => {
+  return userEvent.setup();
+};
+
 export {
   waitFor,
   waitForElementToBeRemoved,
   act,
   render,
   screen,
+  simulateEvent,
   getRoleHtml,
+  getSinon,
   cleanIt,
   jsdom,
   hideConsoleError,
