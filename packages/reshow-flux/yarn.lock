@@ -2713,20 +2713,20 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
-reshow-build@^0.16.0:
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.16.4.tgz#add8516825def7dfe8caa019a87361b56513ee2c"
-  integrity sha512-xUlGLqsyTWHIBGEejSb0ykQ3kWBWwiR4T3Yiknj2wvJHfvSn2P0WK/4uFi/rhCoAVdydwAjTxOu/qTiW1bKFNA==
+reshow-build@*:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.17.0.tgz#d11520a82ca093553e3d94a4a44c39e06bb285e6"
+  integrity sha512-9z5E88hr6/6SR1C+5nHbhVmTMc4vc0Vwgkoxk1A46R47j5DHDvgeOMoVtpzUJeTteG9UIMIDruxs1Eb1+y+UeA==
   dependencies:
     array.merge "*"
-    reshow-constant "^0.16.0"
+    reshow-constant "*"
 
 reshow-constant@*, reshow-constant@^0.16.0:
   version "0.16.5"
   resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.16.5.tgz#5f972f6aa818df58f610f1dbf9a6489f20dfad10"
   integrity sha512-ZoGJfwTOJHNzP9OGdi/m3dmVIBJz/I/h/RzgFGQk0Fu3KZZ+jS1TpuYJoDGV0cWCHdXmE0r0NCv1jijwWEpS+w==
 
-reshow-flux-base@^0.16.0:
+reshow-flux-base@*:
   version "0.16.16"
   resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.16.tgz#561a8935e14daf9680487329efb15940954f1175"
   integrity sha512-a+buN3EY+u4QbqbPKCxui4H2nt733oJLV5nQ+cpGzwdJIItF/AkRNw1+lUtvWGeiHYH60r7uxZ7zuy86CAEsiA==
@@ -2735,7 +2735,7 @@ reshow-flux-base@^0.16.0:
     reshow-constant "^0.16.0"
     reshow-runtime "^0.16.0"
 
-reshow-hooks@^0.16.0:
+reshow-hooks@*:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.16.0.tgz#be20717d92e70c4f2dd7d4196fc7464a02aa6e1b"
   integrity sha512-7N7fgInP/AnMJH1Pe3vSF5DkHW3to9xutskSKwDVCHwrCq0kQ+Snh8GoB2tWINrXZP2dwmqjfCa0pff/smZEnQ==

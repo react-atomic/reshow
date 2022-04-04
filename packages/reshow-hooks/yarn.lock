@@ -2718,7 +2718,7 @@ reshow-unit-dom@*:
     prettier-eslint-cli "*"
     sinon "*"
 
-reshow-unit@^0.17.x:
+reshow-unit@*:
   version "0.17.11"
   resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.11.tgz#b294f8855f514b6555b99a141dfe9caf4baf06d7"
   integrity sha512-3BIwFIJsYX8qXWd8Q+GR9h9dB6+omQebmsDx2qba1Xqz1mhTmA883wO0O9hSyEoGQOUs2nQ03azydjny1th78w==

@@ -1,6 +1,6 @@
 {
   "name": "reshow-url",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "reshow url util (Web / Browser)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
@@ -13,7 +13,7 @@
   "dependencies": {
     "array.dedup": "*",
     "organism-react-ajax": "*",
-    "reshow": "*",
+    "reshow": "^0.17.x",
     "reshow-flux": "^0.17.x",
     "reshow-runtime": "*"
   },

@@ -3045,20 +3045,20 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
-reshow-build@*, reshow-build@^0.16.0:
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.16.4.tgz#add8516825def7dfe8caa019a87361b56513ee2c"
-  integrity sha512-xUlGLqsyTWHIBGEejSb0ykQ3kWBWwiR4T3Yiknj2wvJHfvSn2P0WK/4uFi/rhCoAVdydwAjTxOu/qTiW1bKFNA==
+reshow-build@*, reshow-build@^0.17.x:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.17.0.tgz#d11520a82ca093553e3d94a4a44c39e06bb285e6"
+  integrity sha512-9z5E88hr6/6SR1C+5nHbhVmTMc4vc0Vwgkoxk1A46R47j5DHDvgeOMoVtpzUJeTteG9UIMIDruxs1Eb1+y+UeA==
   dependencies:
     array.merge "*"
-    reshow-constant "^0.16.0"
+    reshow-constant "*"
 
 reshow-constant@*, reshow-constant@^0.16.0:
   version "0.16.5"
   resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.16.5.tgz#5f972f6aa818df58f610f1dbf9a6489f20dfad10"
   integrity sha512-ZoGJfwTOJHNzP9OGdi/m3dmVIBJz/I/h/RzgFGQk0Fu3KZZ+jS1TpuYJoDGV0cWCHdXmE0r0NCv1jijwWEpS+w==
 
-reshow-flux-base@^0.16.0:
+reshow-flux-base@*:
   version "0.16.16"
   resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.16.16.tgz#561a8935e14daf9680487329efb15940954f1175"
   integrity sha512-a+buN3EY+u4QbqbPKCxui4H2nt733oJLV5nQ+cpGzwdJIItF/AkRNw1+lUtvWGeiHYH60r7uxZ7zuy86CAEsiA==
@@ -3068,57 +3068,40 @@ reshow-flux-base@^0.16.0:
     reshow-runtime "^0.16.0"
 
 reshow-flux@*, reshow-flux@^0.17.x:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.1.tgz#7a7cdd62c1f793c10c143ab1f0c8670d2230e170"
-  integrity sha512-gKyf0BAau8b4xgrgMH/Ai4pGPnFX4sAUh9+b08OlN4f3wY5GH4o8Jw5ODtQ3Qd2RUdIyvjoHGnhqfJCBQvIGpA==
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.3.tgz#8e94a5725b88068161c610ab065acf1450e731ad"
+  integrity sha512-GoThgVUiCyMdJ1LX38zLZFIuWfvu5jriWAb+HiI83szpXglGKZre8o1CFJGtSnpu2hMyA9yeuOLYGOXb0PnAqQ==
   dependencies:
     array.dedup "*"
     array.merge "*"
     get-object-value "*"
     immutable "^3.x"
     memoize-one "*"
-    reshow-build "^0.16.0"
-    reshow-constant "^0.16.0"
-    reshow-flux-base "^0.16.0"
-    reshow-hooks "^0.16.0"
-    reshow-runtime "^0.16.0"
+    reshow-build "*"
+    reshow-constant "*"
+    reshow-flux-base "*"
+    reshow-hooks "*"
+    reshow-runtime "*"
     setimmediate "*"
 
-reshow-flux@^0.16.0:
-  version "0.16.17"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.16.17.tgz#90abd8cb3d6cf4e9e1f8201c206ffab5f35217e0"
-  integrity sha512-+aWNUnG3vqtfFU5zBJI0cmgvEU/5dPwFrQeBRVLrHIwVCbbWX9lBgRJ87459a+z0CnERM5xKGrRF+2oOodcjQA==
-  dependencies:
-    array.dedup "*"
-    array.merge "*"
-    get-object-value "*"
-    immutable "^3.x"
-    memoize-one "*"
-    reshow-build "^0.16.0"
-    reshow-constant "^0.16.0"
-    reshow-flux-base "^0.16.0"
-    reshow-hooks "^0.16.0"
-    reshow-runtime "^0.16.0"
-    setimmediate "*"
-
-reshow-hooks@*, reshow-hooks@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.16.0.tgz#be20717d92e70c4f2dd7d4196fc7464a02aa6e1b"
-  integrity sha512-7N7fgInP/AnMJH1Pe3vSF5DkHW3to9xutskSKwDVCHwrCq0kQ+Snh8GoB2tWINrXZP2dwmqjfCa0pff/smZEnQ==
+reshow-hooks@*:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.0.tgz#fd293f1bd442fe8887b7e6190e6d8b22e73669a8"
+  integrity sha512-zP4VhDsDbkkHX6K7Bn6TFMO/99MfmytZgAb6KKD55QaqTZ9lZXqrMVNXAUhpRXzzm0CcQnZg3oHq0TkRipXhCw==
   dependencies:
     call-func "*"
 
 reshow-return@*:
-  version "0.16.13"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.16.13.tgz#e1e28d9428ded3e69502e268852b0e6d4cf511f5"
-  integrity sha512-j8rVTeuyu6BTICGGR31uzxn6RtbzdiRcR6B+4af5qQMBAjlzrK7VqVbkfGJL1HsBao/bucyaQPr5mbSVojdUWA==
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.0.tgz#ab7e8455761e68e097cf5afb8cdd57cc342f628f"
+  integrity sha512-k2Qsv3ZVtaXfYMPb3bqE9zwf0uKde/52GGlxohFGmhuvVKXYoji9vsgnXZTXDFZR3dnS4kAApJLYy4kHClHAxQ==
   dependencies:
     call-func "*"
     get-object-value "*"
     memoize-one "*"
-    reshow-build "^0.16.0"
-    reshow-flux "^0.16.0"
-    reshow-runtime "^0.16.0"
+    reshow-build "^0.17.x"
+    reshow-flux "^0.17.x"
+    reshow-runtime "*"
 
 reshow-runtime@*, reshow-runtime@^0.16.0:
   version "0.16.4"
@@ -3155,10 +3138,10 @@ reshow-unit@^0.17.x:
     reshow-unit-dom "*"
     win-doc "*"
 
-reshow@*:
-  version "0.16.16"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.16.16.tgz#82e15384972e051161229688c5615cdb68e2d83e"
-  integrity sha512-PItQIwLTjquh/iddwS8t9sBAJrNvd+bdF6LS3F7KFk2H+4JyM1IWD55q6LkWC5bAJuUYFixYvNP1l1MPJioJyg==
+reshow@^0.17.x:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.0.tgz#08cde505c285a253864d5b5789a4e502b60f5986"
+  integrity sha512-Y5qFyZ5/g45ZBA36ls+ExkzKQJbQgDtdC6I/gQLNG11ITVMw0vI41GarpCOBOBJ3aFaJkY5GIiN+vm8Z4C6JJQ==
   dependencies:
     call-func "*"
     get-storage "*"
@@ -3168,7 +3151,7 @@ reshow@*:
     organism-react-popup "*"
     react-atomic-molecule "*"
     reshow-constant "*"
-    reshow-flux "*"
+    reshow-flux "^0.17.x"
     reshow-return "*"
     reshow-runtime "*"
     seturl "*"

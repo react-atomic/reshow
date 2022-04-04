@@ -19,7 +19,7 @@
     "@babel/cli": "^7.x",
     "react": "18.x",
     "react-dom": "18.x",
-    "reshow-unit": "^0.17.x"
+    "reshow-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
