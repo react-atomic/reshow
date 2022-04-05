@@ -19,7 +19,7 @@ const getVendorSplitConfig = ({ confs }) => ({
 const getOptimization = ({ mode, server, confs }) => {
   const cacheGroups = {};
   if (!confs.disableVendor) {
-    cacheGroups.vendor = getVendorSplitConfig({ confs });
+    cacheGroups.defaultVendors = getVendorSplitConfig({ confs });
   }
   const results = {
     occurrenceOrder: true,
