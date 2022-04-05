@@ -2,7 +2,7 @@ import "setimmediate";
 import "array.polyfill";
 import "es6-promise/auto"; // for webpack promise fixed
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import initWorker from "reshow-worker";
 import { ajaxDispatch } from "organism-react-ajax";
 import { urlStore } from "reshow-url";

@@ -63,8 +63,8 @@ const render = (...p) => {
 };
 
 // https://testing-library.com/docs/user-event/intro
-const simulateEvent = () => {
-  return userEvent.setup();
+const simulateEvent = (...p) => {
+  return userEvent.setup(...p);
 };
 
 export {

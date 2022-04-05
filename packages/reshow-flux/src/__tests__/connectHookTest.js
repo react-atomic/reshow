@@ -1,6 +1,13 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { expect } from "chai";
-import { act, render, screen, hideConsoleError, cleanIt } from "reshow-unit";
+import {
+  act,
+  render,
+  screen,
+  hideConsoleError,
+  cleanIt,
+  waitFor,
+} from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
 
 import useConnect from "../useConnect";
@@ -29,7 +36,9 @@ describe("Test Connect Hook", () => {
     await act(() => dispatch(a), 5);
     expect(wrap.html()).to.equal('<div class="111"></div>');
     await act(() => dispatch({ foo: "222" }));
-    expect(wrap.html()).to.equal('<div class="222"></div>');
+    await waitFor(() => {
+      expect(wrap.html()).to.equal('<div class="222"></div>');
+    });
   });
 
   it("test Warnings for some updates during render", async () => {
