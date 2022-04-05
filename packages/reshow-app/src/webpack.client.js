@@ -1,5 +1,5 @@
 import webpack from "webpack";
-import getResolve, { getResolveLoader, getNode } from "./webpack/getResolve";
+import getResolve, { getResolveLoader } from "./webpack/getResolve";
 import getEntry from "./webpack/getEntry";
 import getOptimization from "./webpack/getOptimization";
 import getModule from "./webpack/getModule";
@@ -42,7 +42,6 @@ const myWebpack = (root, main, lazyConfs) => {
     module: getModule({ mode, HOT_UPDATE }),
     resolve: getResolve({ confs, root }),
     resolveLoader: getResolveLoader({ root }),
-    node: getNode(),
     externals: confs.externals,
   };
   if (HOT_UPDATE) {

@@ -11,8 +11,16 @@ const getResolve = ({ confs, root, moduleAlias }) => {
     ...confs.alias,
   };
 
+  const fallback = {
+    fs: false,
+    net: false,
+    tls: false,
+    os: false,
+  };
+
   const results = {
     extensions: [".mjs", ".js", ".jsx"],
+    fallback
   };
   if (moduleAlias) {
     moduleAlias.addAliases(alias);
@@ -27,10 +35,10 @@ const getResolveLoader = ({ root }) => ({
 });
 
 const getNode = () => ({
-  fs: "empty",
-  net: "empty",
-  tls: "empty",
+  fs: global.fs, 
+  net: false,
+  tls: false,
 });
 
 export default getResolve;
-export { getResolveLoader, getNode };
+export { getResolveLoader };

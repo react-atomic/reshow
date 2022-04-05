@@ -10,7 +10,7 @@ const getVendorSplitConfig = ({ confs }) => ({
   chunks: "initial",
   name: "vendor",
   filename:
-    confs.bustMode === "name" ? "[name].[hash].bundle.js" : "[name].bundle.js",
+    confs.bustMode === "name" ? "[name].[fullhash].bundle.js" : "[name].bundle.js",
   priority: -20,
   enforce: true,
   reuseExistingChunk: true,
@@ -22,7 +22,8 @@ const getOptimization = ({ mode, server, confs }) => {
     cacheGroups.defaultVendors = getVendorSplitConfig({ confs });
   }
   const results = {
-    occurrenceOrder: true,
+    chunkIds: "total-size",
+    moduleIds: "size",
   };
   if (!server && 1 !== confs.maxChunks) {
     results.splitChunks = {
