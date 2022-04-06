@@ -1,4 +1,3 @@
-import path from "path";
 import webpack from "webpack";
 import { getRefreshGlobalScope, refreshUtils } from "./globals";
 import injectRefreshLoader from "./utils/injectRefreshLoader";
@@ -21,7 +20,7 @@ class ReactRefreshPlugin {
    * @returns {void}
    */
   constructor(options) {
-    this.options = Object.assign(defaultOptions, options);
+    this.options = { ...defaultOptions, ...options };
   }
 
   /**
@@ -46,7 +45,6 @@ class ReactRefreshPlugin {
       undefined,
       this.options
     );
-    let loggedHotWarning = false;
 
     // Inject react-refresh context to all Webpack entry points
     compiler.options.entry = injectRefreshEntry(compiler.options.entry);
@@ -56,22 +54,6 @@ class ReactRefreshPlugin {
       [refreshUtils]: require.resolve("./runtime/utils"),
     });
     providePlugin.apply(compiler);
-
-    compiler.hooks.beforeRun.tap(this.constructor.name, (compiler) => {
-      // Check for existence of HotModuleReplacementPlugin in the plugin list
-      // It is the foundation to this plugin working correctly
-      if (
-        !compiler.options.plugins.find(
-          // It's validated with the name rather than the constructor reference
-          // because a project might contain multiple references to Webpack
-          (plugin) => plugin.constructor.name === "HotModuleReplacementPlugin"
-        )
-      ) {
-        throw new Error(
-          "Hot Module Replacement (HMR) is not enabled! React-refresh requires HMR to function properly."
-        );
-      }
-    });
 
     compiler.hooks.compilation.tap(
       this.constructor.name,
@@ -120,25 +102,6 @@ class ReactRefreshPlugin {
             });
           }
         );
-        /*
-        webpack.NormalModule.getCompilationHooks(compilation).loader.tap(
-          // `Infinity` ensures this check will run only after all other taps
-          { name: this.constructor.name, stage: Infinity },
-          // Check for existence of the HMR runtime -
-          // it is the foundation to this plugin working correctly
-          (context) => {
-            if (!context.hot && !loggedHotWarning) {
-              console.warn(
-                [
-                  "Hot Module Replacement (HMR) is not enabled!",
-                  "React Refresh requires HMR to function properly.",
-                ].join(" ")
-              );
-              loggedHotWarning = true;
-            }
-          }
-        );
-        */
       }
     );
   }
