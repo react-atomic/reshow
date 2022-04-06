@@ -59,7 +59,7 @@ const getPlugins = ({
     if (HOT_UPDATE) {
       log(`HOT Mode: enable.`);
       plugins.push(
-        new webpack.HotModuleReplacementPlugin(),
+//        new webpack.HotModuleReplacementPlugin(),
         new Refresh({ disableRefreshCheck: true })
       );
     } else {

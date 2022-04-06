@@ -20,7 +20,7 @@ const getResolve = ({ confs, root, moduleAlias }) => {
 
   const results = {
     extensions: [".mjs", ".js", ".jsx"],
-    fallback
+    fallback,
   };
   if (moduleAlias) {
     moduleAlias.addAliases(alias);
@@ -35,7 +35,7 @@ const getResolveLoader = ({ root }) => ({
 });
 
 const getNode = () => ({
-  fs: global.fs, 
+  fs: global.fs,
   net: false,
   tls: false,
 });

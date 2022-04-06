@@ -1,17 +1,17 @@
 import path from "path";
 import webpack from "webpack";
-import { createRefreshTemplate, injectRefreshEntry } from "./helpers";
-import { refreshUtils } from "./runtime/globals";
+import { getRefreshGlobalScope, refreshUtils } from "./globals";
+import injectRefreshLoader from "./utils/injectRefreshLoader";
+import injectRefreshEntry from "./utils/injectRefreshEntry";
+import makeRefreshRuntimeModule from "./utils/makeRefreshRuntimeModule";
 
 /**
  * @typedef {Object} ReactRefreshPluginOptions
- * @property {boolean} [disableRefreshCheck] Disables detection of react-refresh's Babel plugin.
  * @property {boolean} [forceEnable] Enables the plugin forcefully.
  */
 
 /** @type {ReactRefreshPluginOptions} */
 const defaultOptions = {
-  disableRefreshCheck: false,
   forceEnable: false,
 };
 
@@ -42,6 +42,11 @@ class ReactRefreshPlugin {
     ) {
       return;
     }
+    const match = webpack.ModuleFilenameHelpers.matchObject.bind(
+      undefined,
+      this.options
+    );
+    let loggedHotWarning = false;
 
     // Inject react-refresh context to all Webpack entry points
     compiler.options.entry = injectRefreshEntry(compiler.options.entry);
@@ -68,105 +73,74 @@ class ReactRefreshPlugin {
       }
     });
 
-    compiler.hooks.normalModuleFactory.tap(this.constructor.name, (nmf) => {
-      nmf.hooks.afterResolve.tap(this.constructor.name, (data) => {
-        // Inject refresh loader to all JavaScript-like files
-        if (
-          // Test for known (and popular) JavaScript-like extensions
-          /\.([jt]sx?|flow)$/.test(data.resource) &&
-          // Skip all files from node_modules
-          !/node_modules/.test(data.resource) &&
-          // Skip files related to refresh runtime (to prevent self-referencing)
-          // This is useful when using the plugin as a direct dependency
-          !data.resource.includes(path.join(__dirname, "./runtime"))
-        ) {
-          data.loaders.unshift({
-            loader: require.resolve("./loader"),
-            options: undefined,
-          });
+    compiler.hooks.compilation.tap(
+      this.constructor.name,
+      (compilation, { normalModuleFactory }) => {
+        // Only hook into the current compiler
+        if (compilation.compiler !== compiler) {
+          return;
         }
 
-        return data;
-      });
-    });
+        // Set factory for EntryDependency which is used to initialise the module
+        compilation.dependencyFactories.set(
+          webpack.EntryDependency,
+          normalModuleFactory
+        );
 
-    compiler.hooks.compilation.tap(this.constructor.name, (compilation) => {
-      compilation.mainTemplate.hooks.require.tap(
-        this.constructor.name,
-        // Constructs the correct module template for react-refresh
-        (source, chunk, hash) => {
-          const mainTemplate = compilation.mainTemplate;
-
-          // Check for the output filename
-          // This is to ensure we are processing a JS-related chunk
-          let filename = mainTemplate.outputOptions.filename;
-          if (typeof filename === "function") {
-            // Only usage of the `chunk` property is documented by Webpack.
-            // However, some internal Webpack plugins uses other properties,
-            // so we also pass them through to be on the safe side.
-            filename = filename({
+        const refreshGlobal = getRefreshGlobalScope(
+          webpack.RuntimeGlobals || {}
+        );
+        const ReactRefreshRuntimeModule = makeRefreshRuntimeModule(webpack);
+        compilation.hooks.additionalTreeRuntimeRequirements.tap(
+          this.constructor.name,
+          // Setup react-refresh globals with a Webpack runtime module
+          (chunk, runtimeRequirements) => {
+            runtimeRequirements.add(
+              webpack.RuntimeGlobals.interceptModuleExecution
+            );
+            runtimeRequirements.add(webpack.RuntimeGlobals.moduleCache);
+            runtimeRequirements.add(refreshGlobal);
+            compilation.addRuntimeModule(
               chunk,
-              hash,
-              //  TODO: Figure out whether we need to stub the following properties, probably no
-              contentHashType: "javascript",
-              hashWithLength: (length) =>
-                mainTemplate.renderCurrentHashCode(hash, length),
-              noChunkHash: mainTemplate.useChunkHash(chunk),
+              new ReactRefreshRuntimeModule()
+            );
+          }
+        );
+
+        normalModuleFactory.hooks.afterResolve.tap(
+          this.constructor.name,
+          // Add react-refresh loader to process files that matches specified criteria
+          (resolveData) => {
+            injectRefreshLoader(resolveData.createData, {
+              match,
+              options: {
+                const: compilation.runtimeTemplate.supportsConst(),
+                esModule: this.options.esModule,
+              },
             });
           }
-
-          // Check whether the current compilation is outputting to JS,
-          // since other plugins can trigger compilations for other file types too.
-          // If we apply the transform to them, their compilation will break fatally.
-          // One prominent example of this is the HTMLWebpackPlugin.
-          // If filename is falsy, something is terribly wrong and there's nothing we can do.
-          if (!filename || !filename.includes(".js")) {
-            return source;
-          }
-
-          return createRefreshTemplate(source, chunk);
-        }
-      );
-
-      compilation.hooks.finishModules.tap(this.constructor.name, (modules) => {
-        if (!this.options.disableRefreshCheck) {
-          for (const module of modules) {
-            const refreshPluginInjection = /\$RefreshReg\$/;
-            /** @type {undefined | null | string} */
-            const moduleSource = module._source && module._source.source();
-
-            // Some module might not have the _source property,
-            // so we have to gracefully skip them.
-            if (!moduleSource) {
-              continue;
-            }
-
-            // Check for the function transform by the Babel plugin.
-            if (
-              module.resource ===
-                require.resolve("./runtime/BabelDetectComponent.js") &&
-              !refreshPluginInjection.test(moduleSource)
-            ) {
-              const transformNotDetectedError = new Error(
+        );
+        /*
+        webpack.NormalModule.getCompilationHooks(compilation).loader.tap(
+          // `Infinity` ensures this check will run only after all other taps
+          { name: this.constructor.name, stage: Infinity },
+          // Check for existence of the HMR runtime -
+          // it is the foundation to this plugin working correctly
+          (context) => {
+            if (!context.hot && !loggedHotWarning) {
+              console.warn(
                 [
-                  "React Refresh Plugin:",
-                  "The plugin is unable to detect transformed code from react-refresh.",
-                  'Did you forget to include "react-refresh/babel" in your list of Babel plugins?',
-                  'Note: you can disable this check by setting "disableRefreshCheck: true".',
+                  "Hot Module Replacement (HMR) is not enabled!",
+                  "React Refresh requires HMR to function properly.",
                 ].join(" ")
               );
-
-              // We cannot throw here as it will halt compilation.
-              // Warnings/Errors will get swallowed unless we explicitly push it to the stack.
-              compilation.warnings.push(transformNotDetectedError);
-
-              // Early exit for performance
-              break;
+              loggedHotWarning = true;
             }
           }
-        }
-      });
-    });
+        );
+        */
+      }
+    );
   }
 }
 
