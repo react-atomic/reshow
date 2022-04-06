@@ -6,6 +6,7 @@ import getModule from "./webpack/getModule";
 import getPlugins from "./webpack/getPlugins";
 import getOutput from "./webpack/getOutput";
 import getHotServer from "./webpack/getHotServer";
+import getCache from "./webpack/getCache";
 import { DEVELOPMENT, PRODUCTION } from "./webpack/const";
 import progress from "./webpack/progress";
 
@@ -27,6 +28,7 @@ const myWebpack = (root, main, lazyConfs) => {
   const result = {
     mode,
     devtool,
+    cache: getCache(),
     entry: getEntry({ main, confs }),
     output: getOutput({ path, confs }),
     optimization: getOptimization({ mode, confs }),

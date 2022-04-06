@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.17.3",
+  "version": "0.17.4",
   "description": "Reshow App Files",
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "path": "0.12.7",
     "process": "0.11.10",
     "react-refresh": "*",
+    "readable-stream": "3.6.0",
     "reshow": "^0.17.x",
     "reshow-build": "^0.17.x",
     "reshow-constant": "*",
@@ -58,6 +59,7 @@
     "reshow-worker": "*",
     "terser-webpack-plugin": "^5.3.x",
     "thread-loader": "*",
+    "web-streams-polyfill": "3.2.0",
     "webpack": "^5.71.x",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.x",
@@ -66,7 +68,17 @@
     "win-doc": "*",
     "workbox-webpack-plugin": "*"
   },
-  "devDependencies": {
-    "npmignore": "*"
-  }
+  "scripts": {
+    "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json"
+  },
+  "files": [
+    ".babelrc",
+    "README.md",
+    "client.js",
+    "package.json",
+    "server.js",
+    "webpack",
+    "webpack.client.js",
+    "webpack.server.js"
+  ]
 }

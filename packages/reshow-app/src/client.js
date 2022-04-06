@@ -12,7 +12,7 @@ import { UNDEFINED } from "reshow-constant";
 
 const render = (oApp, dom) => {
   if (dom.innerHTML) {
-    ReactDOM.hydrateRoot(oApp, dom);
+    ReactDOM.hydrateRoot(dom, oApp);
   } else {
     const root = ReactDOM.createRoot(dom);
     root.render(oApp);

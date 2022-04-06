@@ -23,7 +23,6 @@ const getModule = ({ mode, HOT_UPDATE }) => {
         exclude: [/node_modules/],
         use: [
           "thread-loader",
-          "cache-loader",
           {
             loader: "babel-loader",
             options: babelLoaderOption,

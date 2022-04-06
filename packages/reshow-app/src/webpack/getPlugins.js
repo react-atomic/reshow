@@ -27,6 +27,7 @@ const getPlugins = ({
   const plugins = [
     new webpack.ProvidePlugin({
       process: "process/browser",
+      ReadableStream: require.resolve("reshow-app/webpack/ReadableStream"),
     }),
   ];
   let maxChunks = confs.maxChunks;

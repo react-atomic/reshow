@@ -34,11 +34,5 @@ const getResolveLoader = ({ root }) => ({
   modules: [root + "/node_modules"],
 });
 
-const getNode = () => ({
-  fs: global.fs,
-  net: false,
-  tls: false,
-});
-
 export default getResolve;
 export { getResolveLoader };
