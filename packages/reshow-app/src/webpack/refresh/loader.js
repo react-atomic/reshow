@@ -1,5 +1,5 @@
 import { Template } from "webpack";
-import { refreshUtils } from "./runtime/globals";
+import { refreshUtils } from "./globals";
 import RefreshModuleRuntime from "./runtime/RefreshModuleRuntime";
 
 const RefreshModuleRuntimeString = Template.getFunctionContent(

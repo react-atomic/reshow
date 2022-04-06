@@ -12,8 +12,6 @@ const injectRefreshEntry = (originalEntry) => {
     require.resolve("../runtime/ReactRefreshEntry"),
     // Error overlay runtime
     require.resolve("../runtime/ErrorOverlayEntry"),
-    // React-refresh Babel transform detection
-    require.resolve("../runtime/BabelDetectComponent"),
   ];
 
   // Single string entry point

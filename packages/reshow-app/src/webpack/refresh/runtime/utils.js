@@ -42,24 +42,20 @@ function getReactRefreshBoundarySignature(moduleExports) {
  * @param {*} module A Webpack module object.
  * @returns {hotDisposeCallback} A webpack hot dispose callback.
  */
-function createHotDisposeCallback(module) {
+const createHotDisposeCallback = (module) => (data) => {
   /**
    * A callback to performs a full refresh if React has unrecoverable errors,
    * and also caches the to-be-disposed module.
    * @param {*} data A hot module data object from Webpack HMR.
    * @returns {void}
    */
-  function hotDisposeCallback(data) {
-    if (Refresh.hasUnrecoverableErrors()) {
-      window.location.reload();
-    }
-
-    // We have to mutate the data object to get data registered and cached
-    data.module = module;
+  if (Refresh.hasUnrecoverableErrors()) {
+    window.location.reload();
   }
 
-  return hotDisposeCallback;
-}
+  // We have to mutate the data object to get data registered and cached
+  data.module = module;
+};
 
 /**
  * Creates self-recovering an error handler for webpack hot.
@@ -228,10 +224,10 @@ function shouldInvalidateReactRefreshBoundary(prevModule, nextModule) {
 }
 
 export default Object.freeze({
+  registerExportsForReactRefresh,
+  isReactRefreshBoundary,
   createHotDisposeCallback,
   createHotErrorHandler,
-  enqueueUpdate: createDebounceUpdate(),
-  isReactRefreshBoundary,
   shouldInvalidateReactRefreshBoundary,
-  registerExportsForReactRefresh,
+  enqueueUpdate: createDebounceUpdate(),
 });

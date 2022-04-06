@@ -2,7 +2,7 @@ const getOutput = ({ path, confs, server }) => {
   const output = {
     filename:
       confs.bustMode === "name"
-        ? "[name].[hash].bundle.js"
+        ? "[name].[fullhash].bundle.js"
         : "[name].bundle.js",
     path,
     publicPath: confs.assetsRoot || "",
@@ -10,8 +10,8 @@ const getOutput = ({ path, confs, server }) => {
   if (server) {
     output.globalObject = "this";
   } else {
-    output.chunkFilename = "[id].[hash].bundle.js";
-    output.hotUpdateChunkFilename = "[id].[hash].hot.js";
+    output.chunkFilename = "[id].[fullhash].bundle.js";
+    output.hotUpdateChunkFilename = "[id].[fullhash].hot.js";
   }
   return output;
 };
