@@ -24,7 +24,11 @@ const getPlugins = ({
   ENABLE_SW,
   server,
 }) => {
-  const plugins = [];
+  const plugins = [
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+  ];
   let maxChunks = confs.maxChunks;
   if (server) {
     maxChunks = 1;
@@ -57,11 +61,8 @@ const getPlugins = ({
   }
   if (!server) {
     if (HOT_UPDATE) {
-      log(`HOT Mode: enable.`);
-      plugins.push(
-//        new webpack.HotModuleReplacementPlugin(),
-        new Refresh({ disableRefreshCheck: true })
-      );
+      log(`HOT Mode: enable, Workbox: disable.`);
+      plugins.push(new Refresh());
     } else {
       if (ENABLE_SW) {
         log(`HOT Mode: disable, Workbox: enable.`);
