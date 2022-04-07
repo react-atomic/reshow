@@ -36,7 +36,7 @@ const getSinon = () => {
   return sinonWrapper.current;
 };
 
-const cleanIt = (props) => {
+const cleanIt = ({ debug } = {}) => {
   if (consoleWrapper.current) {
     // Need locate before jsdom
     console.error = consoleWrapper.current;
@@ -49,6 +49,9 @@ const cleanIt = (props) => {
   if (sinonWrapper.current) {
     sinonWrapper.current.restore();
     sinonWrapper.current = null;
+  }
+  if (debug) {
+    console.log({ debug });
   }
 };
 
