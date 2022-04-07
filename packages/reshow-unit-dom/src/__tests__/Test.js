@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { cleanIt, jsdom, hideConsoleError } from "../index";
+import { cleanIt, jsdom, hideConsoleError, getSinon as sinon } from "../index";
 
 describe("Test reshow-unit-dom", () => {
   beforeEach(() => {
@@ -20,5 +20,12 @@ describe("Test hideConsoleError", () => {
   it("test throw", () => {
     hideConsoleError(true);
     expect(() => console.error("foo")).to.throw("foo");
+  });
+
+  it("test spy", () => {
+    const spy = sinon().spy(() => {});
+    hideConsoleError(spy);
+    console.error("foo");
+    expect(spy.called).to.be.true;
   });
 });

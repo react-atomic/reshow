@@ -1,5 +1,5 @@
 {
-  "version": "0.0.7",
+  "version": "0.0.8",
   "name": "reshow-unit-dom",
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
     "prettier": "*",
     "prettier-eslint": "*",
     "prettier-eslint-cli": "*",
-    "sinon": "*"
+    "sinon": "*",
+    "reshow-constant": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x"

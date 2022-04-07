@@ -1,5 +1,6 @@
 import jsdomGlobal from "global-jsdom";
 import sinon from "sinon";
+import { FUNCTION } from "reshow-constant";
 
 const jsdomWrapper = { current: null };
 const consoleWrapper = { current: null };
@@ -18,10 +19,12 @@ const hideConsoleError = (toThrow) => {
     consoleWrapper.current = console.error;
     console.error = () => {};
   }
-  if (toThrow) {
+  if (true === toThrow) {
     console.error = (p) => {
       throw p;
     };
+  } else if (FUNCTION === typeof toThrow) {
+    console.error = toThrow;
   }
 };
 

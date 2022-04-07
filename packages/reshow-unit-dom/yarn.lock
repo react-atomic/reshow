@@ -2500,6 +2500,11 @@ require-relative@^0.8.7:
   resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
   integrity sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=
 
+reshow-constant@*:
+  version "0.16.5"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.16.5.tgz#5f972f6aa818df58f610f1dbf9a6489f20dfad10"
+  integrity sha512-ZoGJfwTOJHNzP9OGdi/m3dmVIBJz/I/h/RzgFGQk0Fu3KZZ+jS1TpuYJoDGV0cWCHdXmE0r0NCv1jijwWEpS+w==
+
 resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"

@@ -11,17 +11,14 @@ import { DEVELOPMENT, PRODUCTION } from "./webpack/const";
 import progress from "./webpack/progress";
 
 const { NODE_ENV, CONFIG } = process.env;
-let confs = CONFIG ? JSON.parse(CONFIG) : {};
+const processConfs = CONFIG ? JSON.parse(CONFIG) : {};
 
 const myWebpack = (root, main, lazyConfs) => {
-  confs = { ...{ assetsFolder: "/assets" }, ...confs, ...lazyConfs };
+  const confs = { assetsFolder: "/assets", ...processConfs, ...lazyConfs };
   const server = true;
   const stop = progress({ confs });
   const path = root + confs.assetsFolder;
-  let mode = DEVELOPMENT;
-  if (PRODUCTION === NODE_ENV) {
-    mode = PRODUCTION;
-  }
+  const mode = PRODUCTION === NODE_ENV ? PRODUCTION : DEVELOPMENT;
   const result = {
     mode,
     devtool: false,
