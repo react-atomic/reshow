@@ -26,7 +26,6 @@ describe("Test useReturn", () => {
     const Dom = (props) => {
       const state = useReturn(["m"], store);
       expect(Map.isMap(state.m)).to.be.true;
-      expect(state.immutable).to.be.true;
       return null;
     };
     const wrap = render(<Dom />);
@@ -40,7 +39,6 @@ describe("Test useReturn", () => {
     const Dom = (props) => {
       const state = useReturn(["m"], store, { immutable: false });
       expect(Map.isMap(state.m)).to.be.false;
-      expect(state.immutable).to.be.undefined;
       return null;
     };
     const wrap = render(<Dom />);

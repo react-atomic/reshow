@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import { ImmutableStore, mergeMap } from "reshow-flux";
 import { expect } from "chai";
 import { act, render, getRoleHtml, cleanIt } from "reshow-unit";

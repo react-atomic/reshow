@@ -20,7 +20,8 @@ const reset = (props, more) => {
   let i = cleanKeys.length;
   // https://twitter.com/Steve8708/status/1508502292344938496
   while (i--) {
-    props[cleanKeys[i]] && (props[cleanKeys[i]] = T_UNDEFINED);
+    const key = cleanKeys[i];
+    props[key] && (props[key] = T_UNDEFINED);
   }
   return props;
 };
@@ -53,9 +54,6 @@ const calculateState = (prevState, options) => {
 
   const immutable = optImmutable ?? getStateValue("immutable");
   const results = {};
-  if (immutable) {
-    results.immutable = immutable;
-  }
 
   const toImmutable = getImmutable(immutable);
 
