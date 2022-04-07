@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { cleanIt, jsdom } from "../index";
+import { cleanIt, jsdom, hideConsoleError } from "../index";
 
 describe("Test reshow-unit-dom", () => {
   beforeEach(() => {
@@ -13,5 +13,12 @@ describe("Test reshow-unit-dom", () => {
     /*your test code*/
     cleanIt();
     expect(document.body.innerHTML).to.equal("");
+  });
+});
+
+describe("Test hideConsoleError", () => {
+  it("test throw", () => {
+    hideConsoleError(true);
+    expect(() => console.error("foo")).to.throw("foo");
   });
 });

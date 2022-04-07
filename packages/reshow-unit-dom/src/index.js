@@ -13,10 +13,15 @@ const jsdom = (html, options) => {
   return jsdomWrapper.current;
 };
 
-const hideConsoleError = () => {
+const hideConsoleError = (toThrow) => {
   if (!consoleWrapper.current) {
     consoleWrapper.current = console.error;
     console.error = () => {};
+  }
+  if (toThrow) {
+    console.error = (p) => {
+      throw p;
+    };
   }
 };
 
