@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { act, render } from "reshow-unit";
+import { act, render, waitFor } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
 import sinon from "sinon";
 
@@ -56,11 +56,15 @@ describe("useStore Test", () => {
     expect(heeding.callCount).to.equal(1);
     expect(wrap.html()).to.equal("<div>foo</div>");
     await act(() => dispatch("on"));
-    expect(heeding.callCount).to.equal(2);
-    expect(wrap.html()).to.equal("<div>bar</div>");
+    await waitFor(() => {
+      expect(heeding.callCount).to.equal(2);
+      expect(wrap.html()).to.equal("<div>bar</div>");
+    });
     await act(() => dispatch("off"), 5);
-    expect(heeding.callCount).to.equal(3);
-    expect(wrap.html()).to.equal("<div>bar</div>");
+    await waitFor(() => {
+      expect(heeding.callCount).to.equal(3);
+      expect(wrap.html()).to.equal("<div>bar</div>");
+    });
   });
 });
 
@@ -86,7 +90,7 @@ describe("useStore Test without heeding", () => {
     };
     const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div></div>");
-    await act(() => dispatch({bar: "aaa"}), 5);
+    await act(() => dispatch({ bar: "aaa" }), 5);
     expect(wrap.html()).to.equal("<div>aaa</div>");
   });
 });
