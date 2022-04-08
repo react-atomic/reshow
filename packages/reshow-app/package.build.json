@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.17.7",
+  "version": "0.17.8",
   "description": "Reshow App Files",
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
     "es6-promise": "4.2.5",
     "html-entities": "1.2.1",
     "html-webpack-plugin": "^5.5.x",
-    "local-web-server": "2.6.0",
+    "local-web-server": "5.2.0",
     "module-alias": "*",
     "ora": "^5.x",
     "organism-react-ajax": "*",
