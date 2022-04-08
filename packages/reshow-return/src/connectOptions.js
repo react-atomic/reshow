@@ -18,7 +18,7 @@ const reset = (props, more) => {
     ...(more || []),
   ];
   let i = cleanKeys.length;
-  // https://twitter.com/Steve8708/status/1508502292344938496
+  // https://github.com/react-atomic/reshow/issues/117
   while (i--) {
     const key = cleanKeys[i];
     props[key] && (props[key] = T_UNDEFINED);
