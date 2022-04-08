@@ -1,5 +1,5 @@
 import { isValidElement, cloneElement, createElement, Children } from "react";
-import { STRING, FUNCTION, T_NULL, T_TRUE, TYPE_ERROR } from "reshow-constant";
+import { STRING, FUNCTION, T_NULL, T_TRUE, TYPE_ERROR, T_UNDEFINED } from "reshow-constant";
 import { removeEmpty } from "array.merge";
 
 const buildFunc = (component, props, child, componentOption) => {
@@ -56,10 +56,11 @@ const build = (component, componentOption) => (props, child) => {
     }
   }
 
-  props = removeEmpty(props, T_TRUE);
   if (component.map) {
-    delete props.key;
+    // need locate before removeEmpty
+    props.key = T_UNDEFINED;
   }
+  props = removeEmpty(props, T_TRUE);
 
   const run = (comp) =>
     (isValidElement(comp) ? buildReact : buildFunc)(

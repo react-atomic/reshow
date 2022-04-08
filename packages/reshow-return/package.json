@@ -1,13 +1,18 @@
 {
   "name": "reshow-return",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "reshow-return (simple connect component with reshow-flux)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-return",
   "keywords": [
-    "flux"
+    "state",
+    "global-state",
+    "state-management",
+    "flux",
+    "reducer",
+    "reshow-flux"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",

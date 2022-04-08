@@ -5,7 +5,7 @@ import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
 
 const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
 const getMapIn = (map, path) =>
-  map && map.getIn ? map.getIn(path) : undefined;
+  map && map.getIn ? map.getIn(path) : T_UNDEFINED;
 
 const reset = (props, more) => {
   const cleanKeys = [
@@ -18,7 +18,16 @@ const reset = (props, more) => {
     ...(more || []),
   ];
   let i = cleanKeys.length;
-  // https://github.com/react-atomic/reshow/issues/117
+
+  /**
+   * Why use undefined?
+   * https://github.com/react-atomic/reshow/issues/117
+   *
+   * Why could use undefined?
+   * because reshow-build have remove empty to clean undefined.
+   * if u use react directly, react will complain error.
+   *
+   */
   while (i--) {
     const key = cleanKeys[i];
     props[key] && (props[key] = T_UNDEFINED);
