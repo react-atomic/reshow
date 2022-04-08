@@ -3,7 +3,9 @@
   "name": "reshow-app",
   "description": "Reshow App Files Develop package",
   "repository": "react-atomic/reshow",
-  "keywords": ["reactjs"],
+  "keywords": [
+    "reactjs"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "reshow-app",
-  "version": "0.17.8",
+  "version": "0.17.12",
   "description": "Reshow App Files",
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
     "babel-plugin-reshow-transform-runtime": "*",
     "babel-plugin-transform-react-pure-class-to-function": "*",
     "babel-plugin-transform-react-remove-prop-types": "*",
-    "cache-loader": "*",
     "chalk": "^2.x",
     "core-js": "^3.1.4",
     "error-stack-parser": "2.0.6",

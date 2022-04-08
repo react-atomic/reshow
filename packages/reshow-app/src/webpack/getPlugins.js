@@ -15,6 +15,7 @@ const assetsStore = { current: null };
 const log = (s) => console.log(chalk.inverse(s));
 
 const getPlugins = ({
+  root,
   path,
   stop,
   mode,
@@ -24,12 +25,17 @@ const getPlugins = ({
   ENABLE_SW,
   server,
 }) => {
-  const plugins = [
-    new webpack.ProvidePlugin({
-      process: "process/browser",
-      ReadableStream: require.resolve("reshow-app/webpack/ReadableStream"),
-    }),
-  ];
+  const plugins = [];
+  if (root) {
+    plugins.push(
+      new webpack.ProvidePlugin({
+        process: "process/browser",
+        ReadableStream: require.resolve(
+          root + "/node_modules/reshow-app/webpack/ReadableStream"
+        ),
+      })
+    );
+  }
   let maxChunks = confs.maxChunks;
   if (server) {
     maxChunks = 1;
