@@ -3,6 +3,8 @@ import ReactServerNode from "react-dom/server.node";
 import build from "reshow-build";
 import Stream from "readable-stream";
 
+const SEPARATOR = "\r\n\r\n";
+
 const readStream = async (stream, { Buffer }) => {
   const reader = stream.getReader();
   const arr = [];
@@ -23,7 +25,7 @@ const getPipeWritable = ({ process }) => {
   writable.on("data", (chunk) => {
     if (!init) {
       init = true;
-      process.stdout.write("<!--start-->");
+      process.stdout.write(SEPARATOR);
     }
     process.stdout.write(chunk);
   });
@@ -68,25 +70,17 @@ const ReactServer = {
   renderToReadableStream: ReactServerBrowser.renderToReadableStream,
 };
 
-const server = (app, renderTo = "renderToReadableStream") => {
-  return ({ process, fs, JSON, Buffer }) => {
-    process.env.node_env = "production";
-    const fd = process.stdin.fd;
-    const bSize = 4096;
-    const buffer = Buffer.alloc(bSize);
-    let temp = fs.readSync(fd, buffer, 0, bSize);
-    let context = "";
-    while (temp) {
-      context += buffer.toString("utf-8", 0, temp);
-      temp = fs.readSync(fd, buffer, 0, bSize);
-    }
-    const myJson = JSON.parse(context);
-    const result = ReactServer[renderTo](build(app)(myJson));
+const server =
+  (app, renderTo = "renderToReadableStream") =>
+  ({ process, fs, JSON, Buffer }) => {
+    const inputData = Buffer.from(fs.readFileSync(process.stdin.fd)).toString(
+      "utf-8"
+    );
+    const result = ReactServer[renderTo](build(app)(JSON.parse(inputData)));
     if ("renderToPipeableStream" !== renderTo) {
-      process.stdout.write("<!--start-->");
+      process.stdout.write(SEPARATOR);
     }
     render[renderTo](result, { process, Buffer });
   };
-};
 
 export default server;
