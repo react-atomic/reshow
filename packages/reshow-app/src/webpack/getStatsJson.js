@@ -17,7 +17,7 @@ const getStatsJson = ({ assetsStore }) => {
         chunks[key] = [
           {
             name,
-            publicPath: publicPath + name + "?" + hash,
+            publicPath: publicPath + name + "?" + hash.substring(0, 7),
           },
         ];
       });

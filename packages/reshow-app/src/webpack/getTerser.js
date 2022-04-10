@@ -20,7 +20,6 @@ const getTerser = () =>
         toplevel: true,
         dead_code: true,
         computed_props: true,
-        conditionals: true,
         directives: true,
       },
       mangle: {
