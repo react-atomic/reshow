@@ -18,6 +18,10 @@ const getTerser = () =>
         passes: 2,
         keep_classnames: true,
         toplevel: true,
+        dead_code: true,
+        computed_props: true,
+        conditionals: true,
+        directives: true,
       },
       mangle: {
         keepClassNames: true,
