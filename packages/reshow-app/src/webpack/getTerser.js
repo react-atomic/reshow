@@ -6,6 +6,7 @@ import TerserPlugin from "terser-webpack-plugin";
  *
  * SWC options
  * https://swc.rs/docs/configuration/minification
+ * https://github.com/swc-project/swc/blob/main/node-swc/src/types.ts
  *
  */
 const getTerser = () =>
@@ -22,7 +23,6 @@ const getTerser = () =>
         keepClassNames: true,
         keepFnNames: false,
         topLevel: true,
-        ie8: true,
         safari10: true,
       },
     },
