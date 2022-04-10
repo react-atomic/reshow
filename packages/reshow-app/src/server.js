@@ -35,9 +35,11 @@ const getPipeWritable = ({ process }) => {
   const completed = new Promise((resolve) => {
     writable.on("finish", () => {
       resolve();
+      process.exit();
     });
     writable.on("error", () => {
       resolve();
+      process.exit();
     });
   });
   return { writable, completed, output };
@@ -51,6 +53,7 @@ const render = {
       process.stdout.write(result.substr(last, 1000));
       last += 1000;
     }
+    process.exit();
   },
   renderToPipeableStream: (result, { process }) => {
     const { writable, output } = getPipeWritable({ process });
