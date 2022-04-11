@@ -326,13 +326,13 @@
     pretty-format "^27.0.2"
 
 "@testing-library/react@^13.x":
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.0.0.tgz#8cdaf4667c6c2b082eb0513731551e9db784e8bc"
-  integrity sha512-p0lYA1M7uoEmk2LnCbZLGmHJHyH59sAaZVXChTXlyhV/PRW9LoIh4mdf7tiXsO8BoNG+vN8UnFJff1hbZeXv+w==
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.0.1.tgz#00d223e182923d341a9610590561fb9dd1324110"
+  integrity sha512-zeHx3PohYYp+4bTJwrixQY8zSBZjWUGwYc7OhD1EpWTHS92RleApLoP72NdwaWxOrM1P1Uezt3XvGf6t2XSWPQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^8.5.0"
-    "@types/react-dom" "*"
+    "@types/react-dom" "^18.0.0"
 
 "@testing-library/user-event@^14.x":
   version "14.1.0"
@@ -364,7 +364,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
-"@types/react-dom@*":
+"@types/react-dom@^18.0.0":
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.0.tgz#b13f8d098e4b0c45df4f1ed123833143b0c71141"
   integrity sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==
@@ -2443,9 +2443,9 @@ node-preload@^0.2.1:
     process-on-spawn "^1.0.0"
 
 node-releases@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.2.tgz#7139fe71e2f4f11b47d4d2986aaf8c48699e0c01"
-  integrity sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.3.tgz#225ee7488e4a5e636da8da52854844f9d716ca96"
+  integrity sha512-maHFz6OLqYxz+VQyCAtA3PTX4UP/53pa05fyDNc9CwjvJ0yEh6+xBwKsgCxMNhS8taUKBFYxfuiaD9U/55iFaw==
 
 non-worker@^0.2:
   version "0.2.1"
@@ -3133,9 +3133,9 @@ reshow-unit@^0.17.x:
     win-doc "*"
 
 reshow@^0.17.x:
-  version "0.17.3"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.3.tgz#66f344f404fd53a5c64f6076aadd9ef6066d5bb6"
-  integrity sha512-cYSy27AZYWbW3lwkCyhqkFXXu1OK4IHbcGoCAVT6Aib+sDOa60XfxGcvgtC89iv9SbkwlV2giQ2jwQHMIWqd9g==
+  version "0.17.5"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.5.tgz#971ba59e3229e0e260de3f4800e17696bd9510c6"
+  integrity sha512-LqbDJDWb0/BjbDncmdVtvn9GwP+vMhYF6LKn2B27nxNcpb4nRbd4c3iKvnmc/QdzwWEBwsuk5YF3QPvq3NTh3g==
   dependencies:
     call-func "*"
     get-storage "*"
@@ -3150,7 +3150,6 @@ reshow@^0.17.x:
     reshow-runtime "*"
     seturl "*"
     smooth-scroll-to "*"
-    win-doc "*"
     with-array "*"
 
 resolve-from@^4.0.0:

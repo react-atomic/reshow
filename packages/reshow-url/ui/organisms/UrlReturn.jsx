@@ -1,6 +1,4 @@
-import { getReturn } from "reshow-return";
-import { ClientReturn } from "reshow-return";
-
+import { getReturn, ClientReturn } from "reshow-return";
 import urlStore from "../../src/stores/urlStore";
 
 const UrlReturn = getReturn({
