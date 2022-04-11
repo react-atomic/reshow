@@ -1985,9 +1985,9 @@
     "@types/react-dom" "*"
 
 "@testing-library/user-event@^14.x":
-  version "14.0.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.0.4.tgz#5b430a9c27f25078bff4471661b755115d0db9d4"
-  integrity sha512-VBZe5lcUsmrQyOwIFvqOxLBoaTw1/Qy4Ek+VgmFYs719bs2SxUp42vbsb7ATlQDkHdj4OIQlucfpwxe5WoG1jA==
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.1.0.tgz#db479c06271b72a4d41cf595ec2ad7ff078c1d72"
+  integrity sha512-+CGfMXlVM+OwREHDEsfTGsXIMI+rjr3a7YBUSutq7soELht+8kQrM5k46xa/WLfHdtX/wqsDIleL6bi4i+xz0w==
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -2047,9 +2047,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.0.tgz#4be8aa3a2d04afc3ac2cc1ca43d39b0bd412890c"
-  integrity sha512-7+K7zEQYu7NzOwQGLR91KwWXXDzmTFODRVizJyIALf6RfLv2GDpqpknX64pvRVILXCpXi7O/pua8NGk44dLvJw==
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.1.tgz#1b2e02fb7613212518733946e49fb963dfc66e19"
+  integrity sha512-VnWlrVgG0dYt+NqlfMI0yUYb8Rdl4XUROyH+c6gq/iFCiZ805Vi//26UW38DHnxQkbDhnrIWTBiy6oKZqL11cw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4105,9 +4105,9 @@ get-stdin@^7.0.0:
   integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
 get-storage@*:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/get-storage/-/get-storage-0.2.0.tgz#344f645eff1b0211dc0d12830adb4bedf17c0da6"
-  integrity sha512-M9yyY0IfWqGyQ+0w2nzGFyLnmL9Uln5txxwvqvYAm+JDe+HLETrX4I14w90c2nmwkFGwlvjk1WizWgUty2eseg==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/get-storage/-/get-storage-0.2.1.tgz#424a208016d5d95a2a6dc0f3a379b18da59dbd0d"
+  integrity sha512-hKSF5kfY9kXbwG2z6oWRMZ49SnI5wS3Qvj4S5JI8D8SribcDM1C2WnAPueQB2H6QHx8f+m5DI3VYtX4mVo7GIw==
   dependencies:
     get-object-value "*"
     reshow-constant "*"
@@ -5254,9 +5254,9 @@ lru-cache@^6.0.0:
     yallist "^4.0.0"
 
 lru-cache@^7.4.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.8.0.tgz#649aaeb294a56297b5cbc5d70f198dcc5ebe5747"
-  integrity sha512-AmXqneQZL3KZMIgBpaPTeI6pfwh+xQ2vutMsyqOu1TBdEXFZgpG/80wuJ531w2ZN7TI0/oc8CPxzh/DKQudZqg==
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.8.1.tgz#68ee3f4807a57d2ba185b7fd90827d5c21ce82bb"
+  integrity sha512-E1v547OCgJvbvevfjgK9sNKIVXO96NnsTsFPBlg4ZxjhsJSODoH9lk8Bm0OxvHNm6Vm5Yqkl/1fErDxhYL8Skg==
 
 lz-string@^1.4.4:
   version "1.4.4"
@@ -5720,9 +5720,9 @@ node-preload@^0.2.1:
     process-on-spawn "^1.0.0"
 
 node-releases@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.2.tgz#7139fe71e2f4f11b47d4d2986aaf8c48699e0c01"
-  integrity sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.3.tgz#225ee7488e4a5e636da8da52854844f9d716ca96"
+  integrity sha512-maHFz6OLqYxz+VQyCAtA3PTX4UP/53pa05fyDNc9CwjvJ0yEh6+xBwKsgCxMNhS8taUKBFYxfuiaD9U/55iFaw==
 
 non-worker@^0.2:
   version "0.2.1"
@@ -6983,9 +6983,9 @@ reshow-hooks@*:
     call-func "*"
 
 reshow-return@*:
-  version "0.17.2"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.2.tgz#0df34eefd88cb14307d66969df4b24005badf953"
-  integrity sha512-jk/4J6kCDIrhJC+yLuSPlL+SD3icTOXLp0Rbv4TywWc72qV93y26DPDONFDHpfX74XxlIWrhcY1LFDn1wEuRjg==
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.3.tgz#10f4d9d6471a05804a5af8f7625a57ce968e8189"
+  integrity sha512-m9OeqLaWHzaeMmRxxtQA6L9XquTDI88FeszxLlbBGV5s5pJ5LBIhyDYbVFh+xxO5jR1HEOgHhs4MdxRtYQE5sA==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -6993,6 +6993,7 @@ reshow-return@*:
     reshow-build "^0.17.x"
     reshow-flux "^0.17.x"
     reshow-runtime "*"
+    win-doc "*"
 
 reshow-runtime@*, reshow-runtime@^0.16.0:
   version "0.16.6"
@@ -7927,9 +7928,9 @@ ucfirst-js@*:
   integrity sha512-8YSiUPTnleVp2yx1g02ocC+WCS6U/3TimRnxzeGSmp+Er8u+0qo2SvEREdul93B2BbmSE3paILzKN+inRCm39w==
 
 uglify-js@^3.1.4:
-  version "3.15.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.15.3.tgz#9aa82ca22419ba4c0137642ba0df800cb06e0471"
-  integrity sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==
+  version "3.15.4"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.15.4.tgz#fa95c257e88f85614915b906204b9623d4fa340d"
+  integrity sha512-vMOPGDuvXecPs34V74qDKk4iJ/SN4vL3Ow/23ixafENYvtrNvtbcgUeugTcUGRGsOF/5fU8/NYSL5Hyb3l1OJA==
 
 uid-number@0.0.6:
   version "0.0.6"
