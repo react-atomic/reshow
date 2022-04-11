@@ -11,11 +11,15 @@ import build from "reshow-build";
 import { UNDEFINED } from "reshow-constant";
 
 const render = (oApp, dom) => {
+  const onlyRender = () => ReactDOM.createRoot(dom).render(oApp);
   if (dom.innerHTML) {
-    ReactDOM.hydrateRoot(dom, oApp);
+    ReactDOM.hydrateRoot(dom, oApp, {
+      onRecoverableError: (...p) => {
+        console.log(p);
+      },
+    });
   } else {
-    const root = ReactDOM.createRoot(dom);
-    root.render(oApp);
+    onlyRender();
   }
 };
 
