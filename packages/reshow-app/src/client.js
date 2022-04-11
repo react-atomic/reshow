@@ -11,7 +11,6 @@ import build from "reshow-build";
 import { UNDEFINED } from "reshow-constant";
 
 const render = (oApp, dom) => {
-  const onlyRender = () => ReactDOM.createRoot(dom).render(oApp);
   if (dom.innerHTML) {
     win().Reshow.hydrate = true;
     ReactDOM.hydrateRoot(dom, oApp, {
@@ -20,7 +19,7 @@ const render = (oApp, dom) => {
       },
     });
   } else {
-    onlyRender();
+    ReactDOM.createRoot(dom).render(oApp);
   }
 };
 

@@ -1282,9 +1282,9 @@
     "@types/react-dom" "*"
 
 "@testing-library/user-event@^14.x":
-  version "14.0.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.0.4.tgz#5b430a9c27f25078bff4471661b755115d0db9d4"
-  integrity sha512-VBZe5lcUsmrQyOwIFvqOxLBoaTw1/Qy4Ek+VgmFYs719bs2SxUp42vbsb7ATlQDkHdj4OIQlucfpwxe5WoG1jA==
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.1.0.tgz#db479c06271b72a4d41cf595ec2ad7ff078c1d72"
+  integrity sha512-+CGfMXlVM+OwREHDEsfTGsXIMI+rjr3a7YBUSutq7soELht+8kQrM5k46xa/WLfHdtX/wqsDIleL6bi4i+xz0w==
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -5491,9 +5491,9 @@ node-preload@^0.2.1:
     process-on-spawn "^1.0.0"
 
 node-releases@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.2.tgz#7139fe71e2f4f11b47d4d2986aaf8c48699e0c01"
-  integrity sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.3.tgz#225ee7488e4a5e636da8da52854844f9d716ca96"
+  integrity sha512-maHFz6OLqYxz+VQyCAtA3PTX4UP/53pa05fyDNc9CwjvJ0yEh6+xBwKsgCxMNhS8taUKBFYxfuiaD9U/55iFaw==
 
 non-worker@^0.2:
   version "0.2.1"
@@ -6440,9 +6440,9 @@ reshow-hooks@*:
     call-func "*"
 
 reshow-return@*:
-  version "0.17.2"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.2.tgz#0df34eefd88cb14307d66969df4b24005badf953"
-  integrity sha512-jk/4J6kCDIrhJC+yLuSPlL+SD3icTOXLp0Rbv4TywWc72qV93y26DPDONFDHpfX74XxlIWrhcY1LFDn1wEuRjg==
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.3.tgz#10f4d9d6471a05804a5af8f7625a57ce968e8189"
+  integrity sha512-m9OeqLaWHzaeMmRxxtQA6L9XquTDI88FeszxLlbBGV5s5pJ5LBIhyDYbVFh+xxO5jR1HEOgHhs4MdxRtYQE5sA==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -6450,6 +6450,7 @@ reshow-return@*:
     reshow-build "^0.17.x"
     reshow-flux "^0.17.x"
     reshow-runtime "*"
+    win-doc "*"
 
 reshow-runtime@*, reshow-runtime@^0.16.0:
   version "0.16.6"
@@ -6488,9 +6489,9 @@ reshow-unit@^0.17.x:
     win-doc "*"
 
 reshow-url@^0.17.x:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/reshow-url/-/reshow-url-0.17.1.tgz#8bad7a282273080df69fe7547b9b5c790264c5a0"
-  integrity sha512-SsLcvGjOVLPT9lfw+zx1uzZ3toZIDb923pBP9PamS1cNqSE1O2aKkfQAfG80BOihQZQxmG3i8PgrnZXIYGp40Q==
+  version "0.17.5"
+  resolved "https://registry.yarnpkg.com/reshow-url/-/reshow-url-0.17.5.tgz#a2af94694bdab462fbea3b778c844f7061123cc8"
+  integrity sha512-flNgShf3FOidKgp/oapayug602bBTZvhvciTNCpKf1Uz2llMMExFzTeiimCN8Cv22D/k9MvK5YUEzLBpmZ0E/Q==
   dependencies:
     array.dedup "*"
     organism-react-ajax "*"
@@ -6511,9 +6512,9 @@ reshow-worker@*:
     worker-loader "*"
 
 reshow@^0.17.x:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.0.tgz#08cde505c285a253864d5b5789a4e502b60f5986"
-  integrity sha512-Y5qFyZ5/g45ZBA36ls+ExkzKQJbQgDtdC6I/gQLNG11ITVMw0vI41GarpCOBOBJ3aFaJkY5GIiN+vm8Z4C6JJQ==
+  version "0.17.5"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.5.tgz#971ba59e3229e0e260de3f4800e17696bd9510c6"
+  integrity sha512-LqbDJDWb0/BjbDncmdVtvn9GwP+vMhYF6LKn2B27nxNcpb4nRbd4c3iKvnmc/QdzwWEBwsuk5YF3QPvq3NTh3g==
   dependencies:
     call-func "*"
     get-storage "*"
