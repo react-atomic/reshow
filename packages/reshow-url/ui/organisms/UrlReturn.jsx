@@ -1,7 +1,7 @@
 import { getReturn } from "reshow-return";
+import { ClientReturn } from "reshow-return";
 
 import urlStore from "../../src/stores/urlStore";
-import ClientReturn from "../organisms/ClientReturn";
 
 const UrlReturn = getReturn({
   displayName: "UrlReturn",

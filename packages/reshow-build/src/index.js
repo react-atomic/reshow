@@ -1,5 +1,12 @@
 import { isValidElement, cloneElement, createElement, Children } from "react";
-import { STRING, FUNCTION, T_NULL, T_TRUE, TYPE_ERROR, T_UNDEFINED } from "reshow-constant";
+import {
+  STRING,
+  FUNCTION,
+  T_NULL,
+  T_TRUE,
+  TYPE_ERROR,
+  T_UNDEFINED,
+} from "reshow-constant";
 import { removeEmpty } from "array.merge";
 
 const buildFunc = (component, props, child, componentOption) => {

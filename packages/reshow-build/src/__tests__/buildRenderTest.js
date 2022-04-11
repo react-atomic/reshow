@@ -6,7 +6,6 @@ import { render } from "reshow-unit";
 import build from "../index";
 
 describe("Test build render", () => {
-
   it("test build string", () => {
     const vdom = build("Foo Bar")();
     const actual = render(vdom).html();
@@ -109,5 +108,4 @@ describe("Test build render", () => {
     const html = render(vDom).html();
     expect(html).to.equal('<div id="foo">hello</div>');
   });
-
 });

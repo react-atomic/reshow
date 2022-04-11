@@ -1,1 +1,1 @@
-export {ReadableStream as default} from "web-streams-polyfill/ponyfill";
+export { ReadableStream as default } from "web-streams-polyfill/ponyfill";

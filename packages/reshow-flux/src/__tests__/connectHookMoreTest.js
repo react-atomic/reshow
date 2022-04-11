@@ -48,7 +48,7 @@ describe("Test Connect hook for more test", () => {
       return <div role="udom">{state.aaa}</div>;
     };
     expect(calculateTimes).to.equal(0);
-    await act(() => wrap = render(<FakeComponent />));
+    await act(() => (wrap = render(<FakeComponent />)));
     expect(calculateTimes).to.equal(2); //init and handlchange
     await act(() => {
       dispatch({ aaa: "Hello dispatcher!" });

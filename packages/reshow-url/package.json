@@ -1,11 +1,13 @@
 {
   "name": "reshow-url",
-  "version": "0.17.3",
+  "version": "0.17.5",
   "description": "reshow url util (Web / Browser)",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
   "repository": "react-atomic/reshow",
-  "keywords": ["flux"],
+  "keywords": [
+    "flux"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -13,8 +15,7 @@
     "organism-react-ajax": "*",
     "reshow": "^0.17.x",
     "reshow-flux": "^0.17.x",
-    "reshow-runtime": "*",
-    "win-doc": "*"
+    "reshow-runtime": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
@@ -36,5 +37,9 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
 }
