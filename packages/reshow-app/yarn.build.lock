@@ -3807,9 +3807,9 @@ get-stdin@^7.0.0:
   integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
 get-storage@*:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/get-storage/-/get-storage-0.2.0.tgz#344f645eff1b0211dc0d12830adb4bedf17c0da6"
-  integrity sha512-M9yyY0IfWqGyQ+0w2nzGFyLnmL9Uln5txxwvqvYAm+JDe+HLETrX4I14w90c2nmwkFGwlvjk1WizWgUty2eseg==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/get-storage/-/get-storage-0.2.1.tgz#424a208016d5d95a2a6dc0f3a379b18da59dbd0d"
+  integrity sha512-hKSF5kfY9kXbwG2z6oWRMZ49SnI5wS3Qvj4S5JI8D8SribcDM1C2WnAPueQB2H6QHx8f+m5DI3VYtX4mVo7GIw==
   dependencies:
     get-object-value "*"
     reshow-constant "*"
