@@ -16,6 +16,7 @@ import {
   KEYS,
   IS_ARRAY,
   OBJ_SIZE,
+  HAS,
   REAL_TIME_URL,
   REAL_TIME_DATA_KEY,
 } from "../index";
@@ -78,26 +79,40 @@ describe("Test FUNCTION", () => {
     expect(KEYS(a)).to.deep.equal(["foo"]);
   });
 
-  it("test isArray", () => {
-    const a = ["foo"];
-    expect(IS_ARRAY(a)).to.be.true;
+  describe("Test IS_ARRAY", () => {
+    it("test isArray to true", () => {
+      const a = ["foo"];
+      expect(IS_ARRAY(a)).to.be.true;
+    });
+
+    it("test is not Array", () => {
+      const a = { foo: "bar" };
+      expect(IS_ARRAY(a)).to.be.false;
+    });
   });
 
-  it("test is not Array", () => {
-    const a = { foo: "bar" };
-    expect(IS_ARRAY(a)).to.be.false;
-  });
+  describe("Test OBJ_SIZE", () => {
+    it("test is empty obj", () => {
+      expect(OBJ_SIZE(null)).to.equal(0);
+    });
 
-  it("test is empty obj", () => {
-    expect(OBJ_SIZE(null)).to.equal(0);
-  });
+    it("test is empty obj length", () => {
+      expect(OBJ_SIZE({})).to.equal(0);
+    });
 
-  it("test is empty obj length", () => {
-    expect(OBJ_SIZE({})).to.equal(0);
+    it("test is not empty obj", () => {
+      expect(OBJ_SIZE({ foo: "bar" })).to.equal(1);
+    });
   });
-
-  it("test is not empty obj", () => {
-    expect(OBJ_SIZE({ foo: "bar" })).to.equal(1);
+  describe("Test HAS", () => {
+    it("test hasOwnProperty", () => {
+      expect(HAS({ foo: "bar" }, "foo")).to.be.true;
+    });
+    it("test Object.create(null)", () => {
+      const foo = Object.create(null);
+      foo.prop = "exists";
+      expect(HAS(foo, "prop")).to.be.true;
+    });
   });
 });
 

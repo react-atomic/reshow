@@ -12,8 +12,9 @@ export const T_NULL = null;
 export const T_TRUE = true;
 export const T_FALSE = false;
 export const KEYS = Object.keys;
-export const OBJ_SIZE = (o) => (o ? KEYS(o).length : 0);
 export const IS_ARRAY = Array.isArray;
+export const OBJ_SIZE = (o) => (o ? KEYS(o).length : 0);
+export const HAS = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 
 // reshow specific
 export const REAL_TIME_URL = "--real-time-url--";
