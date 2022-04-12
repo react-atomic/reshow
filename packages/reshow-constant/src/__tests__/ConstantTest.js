@@ -113,6 +113,14 @@ describe("Test FUNCTION", () => {
       foo.prop = "exists";
       expect(HAS(foo, "prop")).to.be.true;
     });
+    it("test null or undefined", () => {
+      expect(HAS(null)).to.be.false;
+      expect(HAS(undefined)).to.be.false;
+    });
+    it("test key is null  or undefined", () => {
+      expect(HAS({}, null)).to.be.false;
+      expect(HAS({}, undefined)).to.be.false;
+    });
   });
 });
 
