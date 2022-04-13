@@ -50,8 +50,8 @@ const render = {
     const len = result.length;
     let last = 0;
     while (last < len) {
-      process.stdout.write(result.substr(last, 1000));
-      last += 1000;
+      process.stdout.write(result.substr(last, 4096));
+      last += 4096;
     }
     process.exit();
   },
@@ -76,9 +76,8 @@ const ReactServer = {
 const server =
   (app, renderTo = "renderToReadableStream") =>
   ({ process, fs, JSON, Buffer }) => {
-    const inputData = Buffer.from(fs.readFileSync(process.stdin.fd)).toString(
-      "utf-8"
-    );
+    const fd = process.stdin.fd;
+    const inputData = fs.readFileSync(fd, { encoding: "utf8", flag: "r" });
     const result = ReactServer[renderTo](build(app)(JSON.parse(inputData)));
     if ("renderToPipeableStream" !== renderTo) {
       process.stdout.write(SEPARATOR);
