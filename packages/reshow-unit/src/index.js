@@ -16,7 +16,13 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
+
 import userEvent from "@testing-library/user-event";
+import process from "process";
+import build from "reshow-build";
+import { StrictMode } from "react";
+
+const { STRICT_MODE } = process.env;
 
 // https://github.com/testing-library/react-testing-library/issues/1025
 global.IS_REACT_ACT_ENVIRONMENT = true;
@@ -55,10 +61,22 @@ const act = async (cb, milliseconds = 1, debug) => {
 };
 
 // rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
-const render = (...p) => {
-  const result = rtlRender(...p);
-  const html = () => result.container.innerHTML;
-  result.html = html;
+const render = (OrigDom, options, ...p) => {
+  let instance = options?.instance;
+  let Dom = OrigDom;
+  let uInstance;
+  if (instance) {
+    if (true === instance) {
+      instance = (el) => (uInstance = el);
+    }
+    Dom = build(OrigDom)({ ref: instance });
+  }
+  if (STRICT_MODE) {
+    Dom = build(StrictMode)(null, Dom);
+  }
+  const result = rtlRender(Dom, options, ...p);
+  result.html = () => result.container.innerHTML;
+  result.instance = () => uInstance;
   return result;
 };
 

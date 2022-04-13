@@ -31,8 +31,9 @@ const buildFunc = (component, props, child, componentOption) => {
   }
 };
 
-const buildReact = (component, { children, ...props } = {}, child) => {
-  const params = [component, props];
+const buildReact = (component, props, child) => {
+  const { children, ...otherProps } = props || {};
+  const params = [component, otherProps];
   child = child || children;
   if (child != T_NULL) {
     params.push(child);
@@ -41,7 +42,7 @@ const buildReact = (component, { children, ...props } = {}, child) => {
     STRING === typeof component &&
     component !== component.replace(/[^a-z]/g, "")
   ) {
-    return buildReact(<span>{component}</span>, props);
+    return buildReact(<span>{component}</span>, otherProps);
   } else {
     return (isValidElement(component) ? cloneElement : createElement).apply(
       T_NULL,

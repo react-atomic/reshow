@@ -1,4 +1,4 @@
-import React, { isValidElement, Children } from "react";
+import { isValidElement, Children } from "react";
 
 import { expect } from "chai";
 import { render } from "reshow-unit";

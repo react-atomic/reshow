@@ -1,3 +1,4 @@
+import { PureComponent } from "react";
 import { expect } from "chai";
 import { render, unmount, getRoleHtml } from "../index";
 
@@ -20,5 +21,32 @@ describe("Test Render", () => {
     const Foo = (props) => <div role="dom">bar</div>;
     render(<Foo />);
     expect(getRoleHtml("dom")).to.equal(`<div role="dom">bar</div>`);
+  });
+
+  it("Test get instance", () => {
+    class Foo extends PureComponent {
+      bar() {
+        return "foo";
+      }
+      render() {
+        return <div />;
+      }
+    }
+    const wrap = render(<Foo />, { instance: true });
+    expect(wrap.instance().bar()).to.equal("foo");
+  });
+
+  it("Test get instance with callback", () => {
+    class Foo extends PureComponent {
+      bar() {
+        return "foo";
+      }
+      render() {
+        return <div />;
+      }
+    }
+    let myEl;
+    const wrap = render(<Foo />, { instance: (el) => (myEl = el) });
+    expect(myEl.bar()).to.equal("foo");
   });
 });

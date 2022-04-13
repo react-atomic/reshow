@@ -1,6 +1,6 @@
 {
   "name": "reshow-build",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "React super cloneElement and createElement",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
