@@ -76,8 +76,14 @@ const ReactServer = {
 const server =
   (app, renderTo = "renderToReadableStream") =>
   ({ process, fs, JSON, Buffer }) => {
-    const fd = process.stdin.fd;
-    const inputData = fs.readFileSync(fd, { encoding: "utf8", flag: "r" });
+    /**
+     * why use /dev/stdin?
+     * https://github.com/react-atomic/reshow/issues/119
+     */
+    const inputData = fs.readFileSync("/dev/stdin", {
+      encoding: "utf8",
+      flag: "r",
+    });
     const result = ReactServer[renderTo](build(app)(JSON.parse(inputData)));
     if ("renderToPipeableStream" !== renderTo) {
       process.stdout.write(SEPARATOR);
