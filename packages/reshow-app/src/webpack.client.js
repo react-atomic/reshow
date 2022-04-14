@@ -33,6 +33,7 @@ const myWebpack = (root, main, lazyConfs) => {
     output: getOutput({ path, confs }),
     optimization: getOptimization({ mode, confs }),
     plugins: getPlugins({
+      root,
       path,
       stop,
       mode,

@@ -1,16 +1,18 @@
 import { expect } from "chai";
 import sinon from "sinon";
 
-import initWorker from "../index";
+import initWorker from "../index.js";
+
+const Worker = () => ({ addEventListener: () => {} });
 
 describe("Test reshowWorker", () => {
   it("test init", () => {
-    const win = { Worker: false };
+    const win = { Worker, navigator: {} };
     initWorker({ win });
   });
 
   it("test import is call", () => {
-    const win = { Worker: true };
+    const win = { Worker };
     const cb = sinon.spy();
     initWorker({ win, cb });
     expect(cb.called).to.be.true;
@@ -19,7 +21,7 @@ describe("Test reshowWorker", () => {
   it("test unregister sw", () => {
     const fakeCb = sinon.spy();
     const win = {
-      Worker: true,
+      Worker,
       navigator: {
         serviceWorker: {
           getRegistrations: () => {

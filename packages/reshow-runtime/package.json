@@ -2,9 +2,7 @@
   "private": true,
   "name": "reshow-runtime",
   "repository": "react-atomic/reshow",
-  "keywords": [
-    "babel"
-  ],
+  "keywords": ["babel"],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {
@@ -13,10 +11,10 @@
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
-    "copy": "cp package.build.json ./build/package.json && cp README.md ./build/ && cp regenerator.js ./build",
+    "copy": "cp package.build.json ./build/package.json && cp yarn.build.lock ./build/yarn.lock && cp README.md regenerator.js ./build",
     "build:cjs": "BABEL_ENV=cjs babel src -d build --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es --out-file-extension .mjs --root-mode upward",
-    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn",
+    "build": "npm run clean && npm run copy && npm run build:cjs && npm run build:es && cd build && yarn && npm run syncpkg",
     "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/helpers/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",

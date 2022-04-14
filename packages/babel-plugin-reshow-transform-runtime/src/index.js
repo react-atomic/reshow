@@ -160,9 +160,11 @@ export default declare((api, options, dirname) => {
             esModules && file.path.node.sourceType === "module"
               ? "es/helpers"
               : "helpers";
+          const helpersExtension =
+            esModules && file.path.node.sourceType === "module" ? ".mjs" : "";
 
           return this.addDefaultImport(
-            `${modulePath}/${helpersDir}/${name}`,
+            `${modulePath}/${helpersDir}/${name}${helpersExtension}`,
             name,
             blockHoist
           );
@@ -200,7 +202,7 @@ export default declare((api, options, dirname) => {
         if (node.name === "regeneratorRuntime" && useRuntimeRegenerator) {
           path.replaceWith(
             this.addDefaultImport(
-              `${modulePath}/regenerator`,
+              `${modulePath}/regenerator.js`,
               "regeneratorRuntime"
             )
           );

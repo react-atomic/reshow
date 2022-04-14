@@ -1,9 +1,11 @@
 {
   "name": "reshow-runtime",
-  "version": "0.16.6",
+  "version": "0.17.0",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
-  "keywords": ["babel"],
+  "keywords": [
+    "babel"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -14,6 +16,7 @@
     "reshow-unit-dom": "*"
   },
   "scripts": {
+    "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json",
     "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'helpers/**/__tests__/*.js'",
     "test": "npm run mocha",
