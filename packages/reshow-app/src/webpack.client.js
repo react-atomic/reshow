@@ -26,9 +26,9 @@ const myWebpack = (root, main, lazyConfs) => {
     confs.bustMode = null;
   }
   const result = {
+    ...getCache({ mode }),
     mode,
     devtool,
-    cache: getCache(),
     entry: getEntry({ main, confs }),
     output: getOutput({ path, confs }),
     optimization: getOptimization({ mode, confs }),

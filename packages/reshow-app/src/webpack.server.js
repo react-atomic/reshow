@@ -20,9 +20,9 @@ const myWebpack = (root, main, lazyConfs) => {
   const path = root + confs.assetsFolder;
   const mode = PRODUCTION === NODE_ENV ? PRODUCTION : DEVELOPMENT;
   const result = {
+    ...getCache({ mode }),
     mode,
     devtool: false,
-    cache: getCache(),
     entry: getEntry({ main, confs, server }),
     output: getOutput({ path, confs, server }),
     optimization: getOptimization({ mode, confs, server }),
