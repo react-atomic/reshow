@@ -2,7 +2,7 @@
  * !! Important !! if update this file, need take care ie10 inherit
  */
 
-import _defaults from "./defaults";
+import _defaults from "./defaults.js";
 
 const setProtoOf = (obj, proto) => {
   obj.__proto__ = proto;

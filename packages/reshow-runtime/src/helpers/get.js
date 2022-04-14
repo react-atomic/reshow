@@ -1,4 +1,5 @@
 import { T_UNDEFINED, T_NULL } from "reshow-constant";
+
 const get = (object, property, receiver) => {
   if (object === T_NULL) {
     object = Function.prototype;

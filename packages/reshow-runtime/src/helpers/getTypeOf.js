@@ -1,4 +1,5 @@
 import { NUMBER, STRING, OBJECT, FUNCTION, UNDEFINED } from "reshow-constant";
+
 const types =
   "|boolean|" +
   NUMBER +

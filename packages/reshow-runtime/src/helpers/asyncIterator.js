@@ -1,5 +1,5 @@
 import { UNDEFINED } from "reshow-constant";
-import typeIs from "./getTypeOf";
+import typeIs from "./getTypeOf.js";
 
 export default function _asyncIterator(iterable) {
   var method,

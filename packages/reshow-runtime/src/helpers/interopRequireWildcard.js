@@ -1,4 +1,4 @@
-import _typeof from "./getTypeOf";
+import _typeof from "./getTypeOf.js";
 
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
