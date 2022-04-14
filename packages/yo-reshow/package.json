@@ -1,5 +1,5 @@
 {
-  "version": "0.16.4",
+  "version": "0.16.5",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -9,21 +9,18 @@
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/yo-reshow",
   "description": "Yo utility for reshow",
   "main": "./src/index.js",
-  "keywords": [
-    "yo",
-    "Yeoman"
-  ],
+  "keywords": ["yo", "Yeoman"],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
     "mkdirp": "1.0.4",
     "parse-ini-string": "*",
-    "reshow-constant": "^0.16.0",
+    "reshow-constant": "*",
     "yeoman-generator": "^5.4.2",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
-    "yo-unit": "^0.16.0"
+    "yo-unit": "*"
   },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
@@ -32,9 +29,5 @@
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": [
-    "src",
-    "package.json",
-    "README.md"
-  ]
+  "files": ["src", "package.json", "README.md"]
 }

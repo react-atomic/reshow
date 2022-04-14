@@ -1,6 +1,6 @@
 const FS = require("fs");
 const PATH = require("path");
-const { STRING } = require("reshow-constant");
+const { STRING, FUNCTION } = require("reshow-constant");
 
 // for app
 const YoSay = require("yosay");
@@ -17,7 +17,9 @@ let lastAns;
 const exitCb = { current: null };
 const onExit = (cb) => cb && (exitCb.current = cb);
 process.once("exit", () => {
-  exitCb.current && exitCb.current();
+  if (FUNCTION === typeof exitCb.current) {
+    exitCb.current();
+  }
   process.exit(0);
 });
 
