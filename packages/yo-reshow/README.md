@@ -17,7 +17,7 @@ const { YoGenerator, YoHelper } = getYo();
 module.exports = class extends YoGenerator {
   initializing() {
     const { exit } = YoHelper(this);
-    exit(false);
+    exit(true);
   }
 };
 ```
