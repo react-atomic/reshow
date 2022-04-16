@@ -10,24 +10,39 @@
  * [Reference for Runtime Injection](https://github.com/webpack/webpack/blob/b07d3b67d2252f08e4bb65d354a11c9b69f8b434/lib/HotModuleReplacementPlugin.js#L419)
  * [Reference for HMR Error Recovery](https://github.com/webpack/webpack/issues/418#issuecomment-490296365)
  */
-module.exports = function () {
-  $RefreshUtils$.registerExportsForReactRefresh(module);
-
-  if (module.hot && $RefreshUtils$.isReactRefreshBoundary(module)) {
-    module.hot.dispose($RefreshUtils$.createHotDisposeCallback(module));
-    module.hot.accept($RefreshUtils$.createHotErrorHandler(module.id));
-
-    if (!!module.hot.data && !!Object.keys(module.hot.data).length) {
-      if (
-        !module.hot.data.module ||
-        $RefreshUtils$.shouldInvalidateReactRefreshBoundary(
-          module.hot.data.module,
-          module
-        )
-      ) {
-        window.location.reload();
+module.exports = (Template) => {
+  const constDeclaration = "const";
+  const letDeclaration = "let";
+  const webpackHot = "import.meta.webpackHot";
+  const s = `
+    ${constDeclaration} $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
+    ${constDeclaration} $ReactRefreshCurrentExports$ = $RefreshUtils$.getModuleExports(
+      $ReactRefreshModuleId$
+    );
+    function $ReactRefreshModuleRuntime$(exports) {
+      if (${webpackHot}) {
+        ${letDeclaration} errorOverlay;
+        if (typeof __react_refresh_error_overlay__ !== 'undefined') {
+          errorOverlay = __react_refresh_error_overlay__;
+        }
+        ${letDeclaration} testMode;
+        if (typeof __react_refresh_test__ !== 'undefined') {
+          testMode = __react_refresh_test__;
+        }
+        return $RefreshUtils$.executeRuntime(
+          exports,
+          $ReactRefreshModuleId$,
+          ${webpackHot},
+          errorOverlay,
+          testMode
+        );
       }
-      $RefreshUtils$.enqueueUpdate();
     }
-  }
+    if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
+      $ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
+    } else {
+      $ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
+   }
+  `;
+  return s;
 };

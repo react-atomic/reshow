@@ -45,4 +45,3 @@ const client = (rawApp, { selector = "#app", serviceWorkerURL } = {}) => {
 };
 
 export default client;
-export { render };

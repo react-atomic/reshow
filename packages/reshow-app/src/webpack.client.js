@@ -29,7 +29,7 @@ const myWebpack = (root, main, lazyConfs) => {
     ...getCache({ mode }),
     mode,
     devtool,
-    entry: getEntry({ main, confs }),
+    entry: getEntry({ root, main, confs }),
     output: getOutput({ path, confs }),
     optimization: getOptimization({ mode, confs }),
     plugins: getPlugins({

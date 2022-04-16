@@ -11,7 +11,7 @@ const getVendorSplitConfig = ({ confs }) => ({
   name: "vendor",
   filename:
     confs.bustMode === "name"
-      ? "[name].[chunkhash:7].bundle.js"
+      ? "[name].[fullhash:7].bundle.js"
       : "[name].bundle.js",
   priority: -20,
   enforce: true,

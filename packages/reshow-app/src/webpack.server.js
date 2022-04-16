@@ -23,7 +23,7 @@ const myWebpack = (root, main, lazyConfs) => {
     ...getCache({ mode }),
     mode,
     devtool: false,
-    entry: getEntry({ main, confs, server }),
+    entry: getEntry({ root, main, confs, server }),
     output: getOutput({ path, confs, server }),
     optimization: getOptimization({ mode, confs, server }),
     plugins: getPlugins({ root, path, stop, mode, confs, server }),

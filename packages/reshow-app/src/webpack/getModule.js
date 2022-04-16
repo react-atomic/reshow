@@ -19,13 +19,21 @@ const getModule = ({ mode, HOT_UPDATE }) => {
   const module = {
     rules: [
       {
-        test: /(.js|.jsx)$/,
-        exclude: [/node_modules/],
-        use: [
-          "thread-loader",
+        oneOf: [
           {
-            loader: "babel-loader",
-            options: babelLoaderOption,
+            resourceQuery: /raw/,
+            type: "asset/source",
+          },
+          {
+            test: /(.js|.jsx)$/,
+            exclude: [/node_modules/],
+            use: [
+              "thread-loader",
+              {
+                loader: "babel-loader",
+                options: babelLoaderOption,
+              },
+            ],
           },
         ],
       },

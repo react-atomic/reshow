@@ -2,9 +2,7 @@ import { Template } from "webpack";
 import { refreshUtils } from "./globals";
 import RefreshModuleRuntime from "./runtime/RefreshModuleRuntime";
 
-const RefreshModuleRuntimeString = Template.getFunctionContent(
-  RefreshModuleRuntime
-)
+const RefreshModuleRuntimeString = RefreshModuleRuntime(Template)
   .trim()
   .replace(/^ {2}/gm, "")
   .replace(/\$RefreshUtils\$/g, refreshUtils);

@@ -1,15 +1,29 @@
-const getEntry = ({ main, confs, server }) => {
-  let entry;
+import fs from "fs";
+
+const isExists = (f) => fs.existsSync(f);
+
+const getEntry = ({ main, confs, root, server }) => {
   if (!main) {
+    const entry = {};
     if (server) {
-      entry = { node: "./build/es/src/server.js" };
+      const defEntry = `${root}/build/es/src/server`;
+      if (isExists(`${defEntry}.mjs`)) {
+        entry.node = `${defEntry}.mjs`;
+      } else {
+        entry.node = `${defEntry}.js`;
+      }
     } else {
-      entry = { main: "./build/es/src/client.js" };
+      const defEntry = `${root}/build/es/src/client`;
+      if (isExists(`${defEntry}.mjs`)) {
+        entry.main = `${defEntry}.mjs`;
+      } else {
+        entry.main = `${defEntry}.js`;
+      }
     }
+    return entry;
   } else {
-    entry = main;
+    return main;
   }
-  return entry;
 };
 
 export default getEntry;
