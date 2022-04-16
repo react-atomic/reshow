@@ -1,14 +1,18 @@
-import { Template } from "webpack";
+import fs from "fs";
 import { refreshUtils } from "./globals";
 import RefreshModuleRuntime from "./runtime/RefreshModuleRuntime";
+import isUseEsm from "./utils/isUseEsm";
 
-const RefreshModuleRuntimeString = RefreshModuleRuntime(Template)
-  .trim()
-  .replace(/^ {2}/gm, "")
-  .replace(/\$RefreshUtils\$/g, refreshUtils);
+const toRefreshUtils = (o) =>
+  o.trim().replace(/\$RefreshUtils\$/g, refreshUtils);
+
+const RefreshModuleRuntimeString = {
+  cjs: toRefreshUtils(RefreshModuleRuntime()),
+  esm: toRefreshUtils(RefreshModuleRuntime(true)),
+};
 
 /** A token to match code statements similar to a React import. */
-const reactModule = /['"]react['"]/;
+const reactModule = /['"]react['"]|jsx/;
 
 /**
  * A simple Webpack loader to inject react-refresh HMR code into modules.
@@ -21,12 +25,14 @@ const reactModule = /['"]react['"]/;
  * @returns {string} The injected module source code.
  */
 function RefreshHotLoader(source, inputSourceMap) {
+  const type = isUseEsm(this.resourcePath, this.rootContext) ? "esm" : "cjs";
+
   // Use callback to allow source maps to pass through
   this.callback(
     null,
     // Only apply transform if the source code contains a React import
     reactModule.test(source)
-      ? source + "\n\n" + RefreshModuleRuntimeString
+      ? source + "\n\n" + RefreshModuleRuntimeString[type]
       : source,
     inputSourceMap
   );
