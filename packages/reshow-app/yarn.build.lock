@@ -5754,6 +5754,24 @@ organism-react-animate@*:
     reshow-hooks "*"
     win-doc "*"
 
+organism-react-navigation@*:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/organism-react-navigation/-/organism-react-navigation-0.17.1.tgz#5f45215b67da634a4c400227cb7fd4b3cecfee90"
+  integrity sha512-XvP5Bcirp0ia2lQpeV5TrgMxUdOE61DK/TR3AZMUBPXg3T5fY/exLtqkYrdast6GG0jlX0svcYKHp656rB6CbQ==
+  dependencies:
+    call-func "*"
+    class-lib "*"
+    css-query-selector "*"
+    get-object-value "*"
+    getoffset "*"
+    react-atomic-molecule "*"
+    reshow-constant "*"
+    reshow-flux "*"
+    reshow-hooks "*"
+    reshow-return "*"
+    ricon "*"
+    to-percent-js "*"
+
 organism-react-popup@*:
   version "0.15.11"
   resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.15.11.tgz#67a2d52dfe6fa1dec2193f1e6e818cac4cc4366a"
@@ -5779,6 +5797,17 @@ organism-react-popup@*:
     setimmediate "*"
     to-percent-js "*"
     win-doc "*"
+
+organism-react-progress@*:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/organism-react-progress/-/organism-react-progress-0.17.0.tgz#650cbb6411e0a8eda8dd8ba36b2c5554f358aab7"
+  integrity sha512-IOZ+fCEqsFvab5hN/w1Hg04wfOKieMGiR3mCUAajht5Gn+OPFjUDvg6alpZQLLgwrYy8UjFOkW1Vh7XkcEf3ag==
+  dependencies:
+    organism-react-ajax "*"
+    organism-react-popup "*"
+    react-atomic-molecule "*"
+    reshow-hooks "*"
+    reshow-return "*"
 
 os-tmpdir@~1.0.2:
   version "1.0.2"
