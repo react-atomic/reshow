@@ -1,27 +1,41 @@
 import fs from "fs";
 
-let gPackageJsonType;
+const isFile = (f) => fs.existsSync(f);
+const pkgType = {current: null};
 
 const getPackageJsonType = (rootContext) => {
-  if (gPackageJsonType == null) {
+  if (pkgType.current == null) {
     const f = `${rootContext}/package.json`;
-    const rawPackageJson = fs.readFileSync(f, { encoding: "utf8" });
-    const { type: packageJsonType } = JSON.parse(rawPackageJson);
-    gPackageJsonType = packageJsonType;
+    if (isFile(f)) {
+      const rawPackageJson = fs.readFileSync(f, { encoding: "utf8" });
+      const { type: packageJsonType } = JSON.parse(rawPackageJson);
+      pkgType.current = packageJsonType || false;
+    }
   }
-  return gPackageJsonType;
+  return pkgType.current;
 };
 
+/**
+ * https://webpack.js.org/guides/ecma-script-modules/
+ */
 const isUseEsm = (resourcePath, rootContext) => {
   const fileExtensions = resourcePath?.split(".").slice(-1)[0];
-  if ("mjs" === fileExtensions) {
-    return true;
+  let isEsm = false;
+  switch (fileExtensions) {
+    case "mjs":
+      isEsm = true;
+      break;
+    case "cjs":
+      isEsm = false;
+      break;
+    default:
+      if ("module" === getPackageJsonType(rootContext)) {
+        isEsm = true;
+      }
+      break;
   }
-  if ("module" === getPackageJsonType(rootContext)) {
-    return true;
-  } else {
-    return false;
-  }
+  return isEsm;
 };
 
 export default isUseEsm;
+export {pkgType};

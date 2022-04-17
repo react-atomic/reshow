@@ -3,7 +3,9 @@
   "name": "reshow-app",
   "description": "Reshow App Files Develop package",
   "repository": "react-atomic/reshow",
-  "keywords": ["reactjs"],
+  "keywords": [
+    "reactjs"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {
@@ -17,7 +19,9 @@
     "build:babel": "npm run build:src && npm run build:client",
     "build:dev": "npm run build:babel && npm run copy && cd build && yarn && npm run syncpkg",
     "build": "npm run clean && npm run build:dev",
-    "test": "exit 0;",
+    "mochaFor": "mocha -r global-jsdom/register",
+    "mocha": "npm run mochaFor -- 'build/{,!(node_modules)/**}/__tests__/*.js'",
+    "test": "npm run build && npm run mocha",
     "prepublishOnly": "echo should not publish && exit 1;"
   }
 }

@@ -17,7 +17,7 @@ watch(){
 
 develop(){
     echo "Develop Mode";
-    npm run build
+    npm t 
 }
 
 case "$1" in

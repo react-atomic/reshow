@@ -1,5 +1,5 @@
 {
-  "version": "0.17.36",
+  "version": "0.17.37",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "html-entities": "1.2.1",
     "html-webpack-plugin": "^5.5.x",
     "local-web-server": "5.2.0",
-    "module-alias": "*",
+    "module-alias": "2.2.2",
     "ora": "^5.x",
     "organism-react-ajax": "*",
     "path": "0.12.7",
@@ -39,7 +39,7 @@
     "reshow-url": "^0.17.x",
     "reshow-worker": "*",
     "terser-webpack-plugin": "^5.3.x",
-    "thread-loader": "*",
+    "thread-loader": "3.0.4",
     "web-streams-polyfill": "3.2.0",
     "webpack": "^5.71.x",
     "webpack-bundle-analyzer": "^4.5.0",
@@ -50,7 +50,10 @@
     "workbox-webpack-plugin": "*"
   },
   "scripts": {
-    "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json"
+    "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json",
+    "mochaFor": "mocha -r global-jsdom/register",
+    "mocha": "npm run mochaFor -- '{,!(node_modules)/**}/__tests__/*.js'",
+    "test": "npm run mocha"
   },
   "files": [
     "README.md",
