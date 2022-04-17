@@ -9,7 +9,8 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.x"
+    "@babel/cli": "^7.x",
+    "reshow-unit": "*"
   },
   "scripts": {
     "copy": "cp package.build.json ./build/package.json && cp yarn.build.lock ./build/yarn.lock && cp README.md ./build",
