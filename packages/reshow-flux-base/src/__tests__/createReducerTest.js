@@ -8,17 +8,30 @@ describe("Test createReducer", () => {
     reducer = createReducer((state, action) => action, {});
   });
 
-  it("basic test", () => {
-    const [store, dispatch] = reducer;
-    const action = { aaa: "bbb" };
-    dispatch(action);
-    expect(store.getState()).to.deep.equal(action);
-  });
-
-  it("dispatch empty", () => {
-    const [store, dispatch] = reducer;
-    dispatch();
-    expect(store.getState()).to.be.empty;
+  describe("Test dispatch", () => {
+    it("basic dispatch", () => {
+      const [store, dispatch] = reducer;
+      const action = { aaa: "bbb" };
+      dispatch(action);
+      expect(store.getState()).to.deep.equal(action);
+    });
+    it("dispatch empty", () => {
+      const [store, dispatch] = reducer;
+      dispatch();
+      expect(store.getState()).to.be.empty;
+    });
+    it("could support text dispatch", () => {
+      const [store, dispatch] = reducer;
+      dispatch("xxx");
+      expect(store.getState()).to.deep.equal({ type: "xxx" });
+    });
+    it("it could dispatch with function", () => {
+      const [store, dispatch] = reducer;
+      dispatch(() => "xxx");
+      expect(store.getState()).to.deep.equal("xxx");
+      dispatch((prev) => prev + "yyy");
+      expect(store.getState()).to.deep.equal("xxxyyy");
+    });
   });
 
   it("Emit with custom event", (done) => {
@@ -30,12 +43,6 @@ describe("Test createReducer", () => {
       expect(callback.called).to.be.true;
       done();
     });
-  });
-
-  it("could support text dispatch", () => {
-    const [store, dispatch] = reducer;
-    dispatch("xxx");
-    expect(store.getState()).to.deep.equal({ type: "xxx" });
   });
 
   it("Test reset", () => {

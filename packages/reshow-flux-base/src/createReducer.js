@@ -24,21 +24,21 @@ const emitter = () => {
  * Transpile dispatch("your-type", {foo: "bar"})
  * to dispatch({type: "your-type", params: {foo: "bar"}})
  */
-const refineAction = (action, params) => {
+const refineAction = (action, params, prevState) => {
   action = action || {};
   if (action.trim) {
     action = { type: action };
     params && (action.params = params);
   }
-  return action;
+  return callfunc(action, [prevState]);
 };
 
 const createReducer = (reduce, initState) => {
   const state = { current: callfunc(initState || {}) };
   const mitt = emitter();
   const dispatch = (action, actionParams) => {
-    action = refineAction(action, actionParams);
     const startingState = state.current;
+    action = refineAction(action, actionParams, startingState);
     const endingState = reduce(startingState, action);
     if (endingState === T_UNDEFINED) {
       console.trace();
