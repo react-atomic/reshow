@@ -23,4 +23,12 @@ describe("Test ImmutableStore", () => {
     dispatch(action);
     expect(store.getMap("aaa")).to.deep.equal({ bbb: "ccc" });
   });
+
+  [true, false, 0, null, undefined, ""].forEach((v) => {
+    it(`test set empty [${v}]`, () => {
+      const [store, dispatch] = reducer;
+      dispatch(v);
+      expect(store.getState().toJS()).to.deep.equal({});
+    });
+  });
 });

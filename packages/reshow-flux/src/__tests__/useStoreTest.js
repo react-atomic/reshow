@@ -4,6 +4,7 @@ import { createReducer } from "reshow-flux-base";
 import sinon from "sinon";
 
 import useStore from "../useStore";
+import ImmutableStore from "../ImmutableStore";
 
 describe("useStore Test", () => {
   let reducer;
@@ -24,20 +25,24 @@ describe("useStore Test", () => {
   it("test apply dispatch", async () => {
     const [store, dispatch] = reducer;
     const Comp = (props) => {
-      const state = useStore(store, (emit = {}) => {
-        emit && emit.current && (emit.current.state = "bar");
-        emit?.current?.notify();
+      const state = useStore(store, (emit) => {
+        if (emit.current) {
+          emit.current.state = "bar";
+          emit.current.notify();
+        }
       });
       return <div>{state}</div>;
     };
     const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div></div>");
     await act(() => dispatch(), 5);
-    expect(wrap.html()).to.equal("<div>bar</div>");
+    await waitFor(() => {
+      expect(wrap.html()).to.equal("<div>bar</div>");
+    });
   });
 
   it("test not apply dispatch", async () => {
-    const heeding = sinon.spy((emit = {}) => {
+    const heeding = sinon.spy((emit) => {
       const { action, notify } = emit.current || {};
       if (action && action.type === "on") {
         emit.current.state = "bar";
@@ -55,15 +60,19 @@ describe("useStore Test", () => {
     const wrap = render(<Comp />);
     expect(heeding.callCount).to.equal(1);
     expect(wrap.html()).to.equal("<div>foo</div>");
-    await act(() => dispatch("on"));
-    await waitFor(() => {
-      expect(heeding.callCount).to.equal(2);
-      expect(wrap.html()).to.equal("<div>bar</div>");
+    await act(() => dispatch("on"), 5);
+    await waitFor(async () => {
+      await act(() => {
+        expect(heeding.callCount).to.equal(2);
+        expect(wrap.html()).to.equal("<div>bar</div>");
+      });
     });
     await act(() => dispatch("off"), 5);
-    await waitFor(() => {
-      expect(heeding.callCount).to.equal(3);
-      expect(wrap.html()).to.equal("<div>bar</div>");
+    await waitFor(async () => {
+      await act(() => {
+        expect(heeding.callCount).to.equal(3);
+        expect(wrap.html()).to.equal("<div>bar</div>");
+      });
     });
   });
 });
@@ -92,5 +101,16 @@ describe("useStore Test without heeding", () => {
     expect(wrap.html()).to.equal("<div></div>");
     await act(() => dispatch({ bar: "aaa" }), 5);
     expect(wrap.html()).to.equal("<div>aaa</div>");
+  });
+  it("test ImmutableStore", async () => {
+    const [store, dispatch] = ImmutableStore();
+    const Comp = (props) => {
+      const state = useStore(store);
+      return <div>{state.get("foo")}</div>;
+    };
+    const wrap = render(<Comp />);
+    expect(wrap.html()).to.equal("<div></div>");
+    await act(() => dispatch({ foo: "bar" }), 5);
+    expect(wrap.html()).to.equal("<div>bar</div>");
   });
 });
