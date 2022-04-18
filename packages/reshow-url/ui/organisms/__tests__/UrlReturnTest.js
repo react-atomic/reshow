@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { urlStore, urlDispatch, UrlReturn } from "../../../src/index";
 
 import { expect } from "chai";
-import { act, render, unmount, cleanIt, jsdom, waitFor } from "reshow-unit";
+import { act, render, cleanIt, jsdom, waitFor } from "reshow-unit";
 
 describe("Test Url Return", () => {
   beforeEach(() => {
