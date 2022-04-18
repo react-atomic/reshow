@@ -1,22 +1,22 @@
 import { expect } from "chai";
-import {dirname, resolve} from "path";
+import { dirname, resolve } from "path";
 
 import isUseEsm, { pkgType } from "../isUseEsm";
 
 let dir;
 
 try {
-  NOT_DEFINED 
-} catch(e) {
-  const initiator = e.stack.split('\n').slice(1)[0];
+  NOT_DEFINED;
+} catch (e) {
+  const initiator = e.stack.split("\n").slice(1)[0];
   dir = resolve(
     dirname(/(?<path>[^\(\s]+):[0-9]+:[0-9]+/.exec(initiator).groups.path),
     "../../../../../src/webpack/refresh/utils/__tests__/"
-  )
+  );
 }
 
 describe("Test isUseEsm", () => {
-  beforeEach(() => pkgType.current = null);
+  beforeEach(() => (pkgType.current = null));
   it("test file extensions (mjs)", () => {
     const acture = isUseEsm("xxx.mjs");
     expect(acture).to.be.true;

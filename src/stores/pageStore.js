@@ -1,5 +1,4 @@
 import { ImmutableStore, mergeMap } from "reshow-flux";
-import { OBJ_SIZE } from "reshow-constant";
 
 const [store, pageDispatch] = ImmutableStore((state, action) => {
   switch (action.type) {
@@ -8,7 +7,7 @@ const [store, pageDispatch] = ImmutableStore((state, action) => {
     case "config/reset":
       return mergeMap(state.clear(), action.params);
     default:
-      return OBJ_SIZE(action) ? mergeMap(state, action) : state;
+      return mergeMap(state, action);
   }
 });
 

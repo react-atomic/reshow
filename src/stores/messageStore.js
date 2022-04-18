@@ -1,4 +1,4 @@
-import { ImmutableStore } from "reshow-flux";
+import { ImmutableStore, mergeMap } from "reshow-flux";
 import get from "get-object-value";
 import callfunc from "call-func";
 import { T_NULL, IS_ARRAY, KEYS } from "reshow-constant";
@@ -40,7 +40,7 @@ class HandleMessage {
     if (callback) {
       this.dialogCallback = callback;
     }
-    return state.merge(next);
+    return mergeMap(state, next);
   }
 
   dialogEnd(state, action) {

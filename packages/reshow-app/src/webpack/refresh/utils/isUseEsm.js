@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const isFile = (f) => fs.existsSync(f);
-const pkgType = {current: null};
+const pkgType = { current: null };
 
 const getPackageJsonType = (rootContext) => {
   if (pkgType.current == null) {
@@ -38,4 +38,4 @@ const isUseEsm = (resourcePath, rootContext) => {
 };
 
 export default isUseEsm;
-export {pkgType};
+export { pkgType };
