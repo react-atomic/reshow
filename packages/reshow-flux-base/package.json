@@ -1,5 +1,5 @@
 {
-  "version": "0.17.2",
+  "version": "0.17.3",
   "name": "reshow-flux-base",
   "repository": {
     "type": "git",
@@ -43,5 +43,9 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
 }

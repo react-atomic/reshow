@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.17.6",
+  "version": "0.17.7",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.mjs",
@@ -52,5 +52,9 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ]
 }
