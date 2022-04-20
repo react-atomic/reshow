@@ -8,8 +8,8 @@
   "homepage": "https://github.com/react-atomic/reshow",
   "description": "A simplified React cross-component state management.",
   "keywords": [
-    "react",
-    "reactjs"
+    "react-atomic",
+    "react-atomic-ui"
   ],
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.mjs",
