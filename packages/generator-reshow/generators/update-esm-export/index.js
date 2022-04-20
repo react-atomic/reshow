@@ -27,14 +27,7 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const {
-      say,
-      exit,
-      isFile,
-      getDotYo,
-      glob,
-      updateJSON,
-    } = YoHelper(this);
+    const { say, exit, isFile, getDotYo, glob, updateJSON } = YoHelper(this);
     const pkg = isFile("package.json");
 
     const opts = getDotYo();
@@ -63,20 +56,27 @@ module.exports = class extends YoGenerator {
 
     const pkgFile = isFile(pkgjson);
     if (pkgFile) {
-      updateJSON(null, pkgFile, null, ({ exports, ...json }) => {
+      updateJSON(null, pkgFile, null, ({ exports = {}, ...json }) => {
         if (this.options.n) {
           const diff = {};
           KEYS(exports).forEach((key) => {
             if (exports[key] !== nextExports[key]) {
               diff[key] = {
                 prev: exports[key],
-                next: nextExports[key]
+                next: nextExports[key],
               };
             }
-            delete exports[key];
+            if (exports[key] && nextExports[key]) {
+              delete exports[key];
+              delete nextExports[key];
+            }
           });
-          const allDiff = {...diff, ...exports};
-          this.log({allDiff});
+          const allDiff = {
+            new: nextExports,
+            willClean: exports,
+            modify: diff,
+          };
+          this.log({ allDiff });
           return null;
         } else {
           json.exports = nextExports;
@@ -84,7 +84,6 @@ module.exports = class extends YoGenerator {
         }
       });
     }
-
   }
 
   writing() {}
