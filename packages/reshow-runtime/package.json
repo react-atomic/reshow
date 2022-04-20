@@ -10,6 +10,8 @@
     "reshow-unit-dom": "*"
   },
   "scripts": {
+    "esm": "yo reshow:update-esm-export",
+    "esm:n": "yo reshow:update-esm-export -n",
     "clean": "find ./build -name '*.*' | xargs rm -rf && mkdir -p build",
     "copy": "cp package.build.json ./build/package.json && cp yarn.build.lock ./build/yarn.lock && cp README.md regenerator.js ./build",
     "build:cjs": "BABEL_ENV=cjs babel src -d build --ignore /**/__tests__ --root-mode upward",

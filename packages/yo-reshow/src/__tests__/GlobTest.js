@@ -31,8 +31,8 @@ describe("Glob test", () => {
   it("test glob", () => {
     const { generator } = runResult;
     expect(generator.testGlob).to.deep.equals([
-      { dirname: "fakeSrc", basename: "fake2.js" },
       { dirname: "fakeSrc", basename: "fake1.js" },
+      { dirname: "fakeSrc", basename: "fake2.js" },
     ]);
   });
 });

@@ -29,9 +29,7 @@ module.exports = class extends YoGenerator {
     const {
       say,
       handleAnswers,
-      mergePromptOrOption,
-      promptChainLocator,
-      promptChain,
+      promptChainAll,
     } = YoHelper(this);
 
     const prompts = [
@@ -47,14 +45,13 @@ module.exports = class extends YoGenerator {
       */
     ];
 
-    const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
-      promptChain(promptChainLocator(nextPrompts))
-    );
+    const answers = await promptChainAll(prompts);
     handleAnswers(answers);
   }
 
   writing() {
     this.env.options.nodePackageManager = "yarn";
+    this.options.skipInstall = true;
     const { cp,  chMainName } = YoHelper(this);
 
     // handle change to new folder

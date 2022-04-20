@@ -1,0 +1,12 @@
+exports_prependArr[]="./helpers/"
+exports_appendArr[]=".js"
+exports_srcArr[]="./src/helpers"
+
+exports_prependArr[]="./es/helpers/"
+exports_appendArr[]=".mjs"
+exports_srcArr[]="./src/helpers"
+
+exports_moreKeyArr[]="./regenerator";
+exports_moreValArr[]="./regenerator.js";
+
+exports_pkgjson="package.build.json"
