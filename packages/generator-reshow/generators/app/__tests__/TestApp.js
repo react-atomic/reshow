@@ -6,8 +6,7 @@
  * https://github.com/yeoman/yeoman-test/blob/main/lib/run-context.js
  */
 
-const getYoUnit = require("yo-unit");
-const { YoTest, assert } = getYoUnit();
+const { YoTest, assert } = require("yo-unit");
 
 describe("generator-reshow:app", () => {
   let runResult;

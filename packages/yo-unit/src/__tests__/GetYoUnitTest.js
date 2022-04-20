@@ -1,9 +1,9 @@
 const { expect } = require("chai");
-const getYoUnit = require("../index");
+const { YoTest, assert } = require("../index");
 
 describe("Test yo-unit", () => {
   it("basic testt", () => {
-    const o = getYoUnit();
-    expect(o).is.not.null;
+    expect(YoTest).is.not.null;
+    expect(assert).is.not.null;
   });
 });

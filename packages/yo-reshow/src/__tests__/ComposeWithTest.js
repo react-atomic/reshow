@@ -5,11 +5,9 @@
  */
 
 const { expect } = require("chai");
-const getYoUnit = require("yo-unit");
 const PATH = require("path");
-const getYo = require("../index");
-const { YoGenerator, YoHelper } = getYo();
-const { YoTest, assert } = getYoUnit();
+const { YoTest, assert } = require("yo-unit");
+const { YoGenerator, YoHelper } = require("../index");
 
 const order = [];
 class FakeGenerator extends YoGenerator {

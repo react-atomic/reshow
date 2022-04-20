@@ -1,5 +1,4 @@
-const getYo = require("yo-reshow");
-const { YoGenerator, YoHelper, commonPrompt } = getYo();
+const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
 
 /**
  * compile-sh Generator

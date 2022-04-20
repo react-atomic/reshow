@@ -1,6 +1,4 @@
-const getYo = require("yo-reshow");
-const { KEYS } = require("reshow-constant");
-const { YoGenerator, YoHelper, commonPrompt } = getYo();
+const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
 
 /**
  * update-esm-export Generator

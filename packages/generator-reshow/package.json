@@ -14,10 +14,10 @@
   "license": "ISC",
   "main": "",
   "dependencies": {
-    "yo-reshow": "^0.16.0"
+    "yo-reshow": "*"
   },
   "devDependencies": {
-    "yo-unit": "^0.16.0"
+    "yo-unit": "*"
   },
   "files": [
     "generators"
