@@ -1,6 +1,7 @@
 const FS = require("fs");
 const PATH = require("path");
-const { STRING, FUNCTION } = require("reshow-constant");
+const isFile = require("./isFile");
+const { STRING, FUNCTION, OBJ_SIZE } = require("reshow-constant");
 
 // for app
 const YoSay = require("yosay");
@@ -22,8 +23,6 @@ process.once("exit", () => {
   }
   process.exit(0);
 });
-
-const isFile = (f) => FS.existsSync(f);
 
 /**
  * Copy
@@ -81,42 +80,7 @@ const YoHelper = (oGen) => {
     onExit(() => say("Bye from us!\n Chat soon."));
   }
 
-  return {
-    say,
-    cp,
-    mkdir,
-    getDestFolderName,
-    chdir,
-    chMainName: (name = oGen.mainName) => {
-      if (name !== getDestFolderName()) {
-        chdir(name);
-      }
-    },
-
-    updateJSON: (src, dest, options, cb) => {
-      dest = cp(src, dest, options);
-      const json = oGen.readDestinationJSON(dest);
-      const nextJson = cb(json);
-      if (nextJson) {
-        oGen.writeDestinationJSON(dest, nextJson);
-        return nextJson;
-      }
-    },
-
-    onExit,
-    exit: (cb, statusCode = 0) => {
-      onExit(cb);
-      process.exit(statusCode);
-    },
-
-    glob: (srcPath, cb) => {
-      const actualSrc = isFile(srcPath)
-        ? srcPath
-        : oGen.templatePath(srcPath || "");
-      globSync(actualSrc, cb);
-    },
-
-    promptResetDefault,
+  const chainUtil = {
     mergePromptOrOption: (prompts, cb) => {
       const options = {
         ...oGen.options,
@@ -129,9 +93,10 @@ const YoHelper = (oGen) => {
       return cb(nextPrompts).then((props) => ({ ...props, ...nextAnswer }));
     },
 
-    promptChainLocator: (prompts) => (index) => prompts[index],
+    promptChainLocator: (prompts) => (index) => prompts.shift(),
 
-    promptChain: (promptLocator, cb = () => true) => {
+    promptChain: (promptLocator, cb) => {
+      cb = cb || (() => true);
       let i = 0;
       lastAns = {};
       const go = (thisPrompt) => {
@@ -146,10 +111,71 @@ const YoHelper = (oGen) => {
                 return oGen.prompt([]);
               }
             })
-          : lastAns;
+          : OBJ_SIZE(lastAns)
+          ? lastAns
+          : oGen.prompt([]);
       };
       return go(promptLocator(i, lastAns));
     },
+  };
+
+  return {
+    say,
+    cp,
+    mkdir,
+    getDestFolderName,
+    chdir,
+    chMainName: (name = oGen.mainName) => {
+      if (name !== getDestFolderName()) {
+        chdir(name);
+      }
+    },
+
+    updateJSON: (src, dest, options, cb) => {
+      if (src != null) {
+        dest = cp(src, dest, options);
+      }
+      cb = cb || ((json) => json);
+      const json = oGen.readDestinationJSON(dest);
+      const nextJson = cb(json);
+      if (nextJson) {
+        const result = oGen.writeDestinationJSON(dest, nextJson);
+        FS.writeFileSync(dest, result);
+        return nextJson;
+      }
+    },
+
+    onExit,
+    exit: (cb, statusCode = 0) => {
+      onExit(cb);
+      process.exit(statusCode);
+    },
+
+    getDotYo,
+    isFile: (f) => {
+      const destPath = oGen.destinationPath(f);
+      if (isFile(destPath)) {
+        return destPath;
+      } else {
+        return false;
+      }
+    },
+    glob: (srcPath, ...p) => {
+      const actualSrc = isFile(srcPath)
+        ? srcPath
+        : oGen.templatePath(srcPath || "");
+      globSync(actualSrc, ...p);
+    },
+
+    promptResetDefault,
+    ...chainUtil,
+    promptChainAll: (
+      prompts,
+      { locator = chainUtil.promptChainLocator, callback } = {}
+    ) =>
+      chainUtil.mergePromptOrOption(prompts, (nextPrompts) =>
+        chainUtil.promptChain(locator(nextPrompts), callback)
+      ),
 
     getAllAns: (customAns) => ({ ...customAns, ...lastAns }),
     handleAnswers: handleAnswers(oGen),
