@@ -22,5 +22,5 @@ const YoTest = ({ source, params, options = {}, build }) => {
 
 module.exports = {
   YoTest,
-  assert
+  assert,
 };

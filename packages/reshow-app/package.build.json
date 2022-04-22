@@ -1,5 +1,5 @@
 {
-  "version": "0.17.39",
+  "version": "0.17.41",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -9,6 +9,12 @@
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-app",
   "description": "Reshow App Files",
   "keywords": [],
+  "exports": {
+    "./client": "./client.js",
+    "./server": "./server.js",
+    "./webpack.client": "./webpack.client.js",
+    "./webpack.server": "./webpack.server.js"
+  },
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {

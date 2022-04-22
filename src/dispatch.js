@@ -20,10 +20,10 @@ const dispatch = (...action) => {
       realTimeDispatch(action);
       break;
     case "local":
-      localStorageDispatch(action);
+      localStorageDispatch(action.params);
       break;
     case "session":
-      sessionStorageDispatch(action);
+      sessionStorageDispatch(action.params);
       break;
     default:
       pageDispatch(action);
