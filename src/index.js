@@ -9,8 +9,8 @@ export { default as messageStore } from "./stores/messageStore";
 export { default as dispatch } from "./dispatch";
 
 // hooks
-export { default as useSessionStorage } from "./useSessionStorage";
-export { default as useLocalStorage } from "./useLocalStorage";
+export { default as useSessionStorage } from "./hooks/useSessionStorage";
+export { default as useLocalStorage } from "./hooks/useLocalStorage";
 
 // Ajax
 export { AjaxLink as ReLink, AjaxForm as ReForm } from "organism-react-ajax";
