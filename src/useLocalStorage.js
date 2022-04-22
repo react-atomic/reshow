@@ -1,8 +1,8 @@
-import { useReturn } from "reshow-return";
+import { useClientReturn } from "reshow-return";
 import lStore, { localStorageDispatch } from "./stores/localStorageStore";
 
 const useLocalStorage = (initStates) => {
-  const state = useReturn(initStates, lStore);
+  const state = useClientReturn(initStates, lStore);
   return [state, localStorageDispatch];
 };
 

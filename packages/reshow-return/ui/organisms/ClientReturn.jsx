@@ -1,15 +1,12 @@
 import build from "reshow-build";
+import { useLoaded } from "reshow-hooks";
 import { hasWin, win } from "win-doc";
-import { useEffect, useState } from "react";
 import { connectOptions } from "reshow-return";
 
 const ClientReturn = (comp, cleanProps) => (props) => {
   const hydrate = win().Reshow?.hydrate;
   if (hydrate || !hasWin()) {
-    const [isLoad, setIsLoad] = useState();
-    useEffect(() => {
-      setIsLoad(true);
-    }, []);
+    const isLoad = useLoaded();
     if (isLoad) {
       return build(comp)(props);
     } else {

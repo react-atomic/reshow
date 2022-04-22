@@ -1,5 +1,5 @@
 {
-  "version": "0.17.9",
+  "version": "0.17.10",
   "name": "reshow",
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "reshow-constant": "*",
     "reshow-flux": "*",
     "reshow-return": "*",
+    "reshow-runtime": ">=0.17.4",
     "seturl": "*",
     "smooth-scroll-to": "*",
     "with-array": "*"
