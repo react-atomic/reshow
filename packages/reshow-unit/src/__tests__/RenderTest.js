@@ -1,6 +1,6 @@
 import { PureComponent } from "react";
 import { expect } from "chai";
-import { render, unmount, getRoleHtml } from "../index";
+import { render, getRoleHtml } from "../index";
 
 describe("Test Render", () => {
   it("basic test", () => {

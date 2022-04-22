@@ -2,7 +2,9 @@
   "private": true,
   "name": "reshow-runtime",
   "repository": "react-atomic/reshow",
-  "keywords": ["babel"],
+  "keywords": [
+    "babel"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "devDependencies": {

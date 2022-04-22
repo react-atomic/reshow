@@ -1,5 +1,5 @@
 {
-  "version": "0.0.9",
+  "version": "0.0.10",
   "name": "reshow-unit-dom",
   "repository": {
     "type": "git",
@@ -9,6 +9,12 @@
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit-dom",
   "description": "TODO: description",
   "keywords": [],
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.js",
+  "exports": {
+    "require": "./build/cjs/src/index.js",
+    "import": "./build/es/src/index.mjs"
+  },
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
@@ -20,24 +26,19 @@
     "prettier": "*",
     "prettier-eslint": "*",
     "prettier-eslint-cli": "*",
-    "sinon": "*",
-    "reshow-constant": "*"
+    "reshow-constant": "*",
+    "sinon": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x"
   },
-  "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.js",
-  "bin": {
-    "reshow-unit-dom": "./build/cjs/src/index.js"
-  },
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
-    "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --root-mode upward",
-    "build:es": "BABEL_ENV=es babel src -d build/es/src --root-mode upward",
+    "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --ignore /**/__tests__ --root-mode upward",
+    "build:es": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs --root-mode upward",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
     "mochaFor": "mocha -r global-jsdom/register",
-    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
+    "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },

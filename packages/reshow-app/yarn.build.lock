@@ -2130,9 +2130,9 @@ babel-plugin-reshow-object-to-json-parse@*:
     "@babel/types" "^7.7.4"
 
 babel-plugin-reshow-transform-runtime@*:
-  version "0.17.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-reshow-transform-runtime/-/babel-plugin-reshow-transform-runtime-0.17.3.tgz#82f72699dafdba8c5b8124d54ca369a04e08c35e"
-  integrity sha512-VBXksXfTKMIzyvWp6CpfXYRjfpXFLRGQ2iW3JwLJ6+ZB9ebR9b6zXGAdQMvwHvYpgftlDAlCtINPTxo4qe1t2g==
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-reshow-transform-runtime/-/babel-plugin-reshow-transform-runtime-0.17.4.tgz#94e695ee05d6a228f4bd744178cf42ffe96f244f"
+  integrity sha512-gMuRLhjWQVUiVteFqTGhYITRuPibRJ/GXBw1yWSDx2M4XVq1Gw3OQjh4J6d0tAc3h4H9d5APGQPnOcD4iBsZpQ==
   dependencies:
     resolve "1.19.0"
     semver "5.6.0"
@@ -3100,9 +3100,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.84:
-  version "1.4.117"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.117.tgz#829d747deb9faa653cab72764a891ef523ba7413"
-  integrity sha512-ypZHxY+Sf/PXu7LVN+xoeanyisnJeSOy8Ki439L/oLueZb4c72FI45zXcK3gPpmTwyufh9m6NnbMLXnJh/0Fxg==
+  version "1.4.118"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.118.tgz#2d917c71712dac9652cc01af46c7d0bd51552974"
+  integrity sha512-maZIKjnYDvF7Fs35nvVcyr44UcKNwybr93Oba2n3HkKDFAtk0svERkLN/HyczJDS3Fo4wU9th9fUQd09ZLtj1w==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -6297,9 +6297,9 @@ raw-body@^2.3.3:
     unpipe "1.0.0"
 
 react-atomic-atom@*:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-2.2.7.tgz#9d57b64c3b38d5008eec382c58bf3790023f1dda"
-  integrity sha512-lqEPjuVdfWUonP98f1fNR1Jew2Rrt5WIYR/TDlIWSG6uC/9cBqZyqdJxpqgx8nLU8RSsqoqD6g+HAz2Ofl1KSg==
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-2.2.9.tgz#ab1f8b5a6ad4f7edc40066b9b2086893dabc0f22"
+  integrity sha512-eI/f3VNohMnwxWlQ11kf2HnoPERPA42cIzYsFQEmTbxs4+Pv7jjCXGs7jsvysZk/2nkC2lbk6DH6JTsaZCzR+g==
   dependencies:
     "@babel/cli" "^7.x"
     "@babel/core" "^7.x"
@@ -6661,9 +6661,9 @@ reshow-worker@*:
     worker-loader "*"
 
 reshow@^0.17.x:
-  version "0.17.8"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.8.tgz#5f96d8e02eaf0cfd7c992ab56a0d53b6f232db12"
-  integrity sha512-vXqovzodVDz5fhGhz307hyPraPiYpXwDahS9FgjYN2ks4P+wQEYbt59kGRto1lexsrlq0LLShVnOzMesfnKD7Q==
+  version "0.17.9"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.9.tgz#5eabf30eb157cae5276d2e7240b88187535b91eb"
+  integrity sha512-WV2NTY9jeNdERFUyeZkC206qhDK5b9oBxsEs/GAu+PXB+FMEOZfEvhNLSHFAa7MUhZzcraZHtZ07H1/D0XFwKQ==
   dependencies:
     call-func "*"
     get-storage "*"
@@ -7601,9 +7601,9 @@ tslib@^1.8.1, tslib@^1.9.0:
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
 tslib@^2.0.3:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
-  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsscmp@1.0.6:
   version "1.0.6"
