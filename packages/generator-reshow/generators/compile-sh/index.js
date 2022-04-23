@@ -5,7 +5,8 @@ const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
  */
 module.exports = class extends YoGenerator {
   writing() {
-    const { cp } = YoHelper(this);
-    cp("compile.sh", null, { webpackEnabled: this.options.webpackEnabled });
+    const { cp, getDotYo } = YoHelper(this);
+    const { webpackEnabled } = { ...this.options, ...getDotYo(this.options) };
+    cp("compile.sh", null, { webpackEnabled }, true);
   }
 };

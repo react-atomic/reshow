@@ -1,6 +1,8 @@
 const FS = require("fs");
 const PATH = require("path");
 const isFile = require("./isFile");
+const isDir = require("./isDir");
+const unlink = require("./unlink");
 const { STRING, FUNCTION, OBJ_SIZE } = require("reshow-constant");
 
 // for app
@@ -37,8 +39,8 @@ const RUN_CP = (oGen) => (src, dest, options, bOverwrite) => {
   const action = options ? oGenFs.copyTpl : oGenFs.copy;
 
   let actualSrc;
-  if (!isFile(src)) {
-    dest = dest || src;
+  if (!isFile(src) || isFile(oGen.templatePath(src))) {
+    dest = dest || (isDir(src) ? PATH.basename(src) : src);
     actualSrc = oGen.templatePath(src);
   } else {
     dest = dest || PATH.basename(src);
@@ -48,6 +50,9 @@ const RUN_CP = (oGen) => (src, dest, options, bOverwrite) => {
   try {
     const realDestFile = oGen.destinationPath(dest);
     if (!isFile(realDestFile) || bOverwrite) {
+      if (isFile(realDestFile) && bOverwrite) {
+        unlink(realDestFile);
+      }
       action.call(oGenFs, actualSrc, realDestFile, options);
     }
   } catch (e) {

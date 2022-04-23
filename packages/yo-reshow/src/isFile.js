@@ -1,2 +1,4 @@
 const FS = require("fs");
-module.exports = (f) => FS.existsSync(f);
+const fileExists = require("./fileExists");
+const isDir = require("./isDir");
+module.exports = (f) => fileExists(f) && !isDir(f);
