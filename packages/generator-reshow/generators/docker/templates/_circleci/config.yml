@@ -3,7 +3,8 @@ version: 2.1
 executors:
   docker-publisher:
     docker:
-      - image: circleci/buildpack-deps:18.04
+      # https://github.com/CircleCI-Public/cimg-base
+      - image: cimg/base:current
 
 jobs:
   build-and-publish:
