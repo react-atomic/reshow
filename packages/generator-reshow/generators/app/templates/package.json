@@ -10,18 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "get-object-value": "*",
-    "organism-react-ajax": "*",
-    "organism-react-navigation": "*",
-    "organism-react-popup": "*",
-    "organism-react-progress": "*",
     "pmvc_react_admin": "*",
-    "react": "^16.x",
-    "react-dom": "^16.x",
-    "reshow": "*",
+    "react": "^18.x",
+    "react-dom": "^18.x",
     "reshow-app": "*",
-    "reshow-constant": "*",
-    "reshow-url": "*",
     "ricon": "*"
   },
   "scripts": {
