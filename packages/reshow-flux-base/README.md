@@ -14,6 +14,7 @@
 ## Usage
 
 ```js
+import { createReducer } from "reshow-flux-base";
 const [store, dispatch] = createReducer(reducer, initial[Arg|Function]);
 ```
 
