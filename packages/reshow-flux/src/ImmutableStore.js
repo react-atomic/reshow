@@ -1,4 +1,4 @@
-import { Map, Set, fromJS, isMap } from "immutable";
+import { Map, Set, fromJS, isMap, is as equal } from "immutable";
 import { createReducer } from "reshow-flux-base";
 import { OBJ_SIZE } from "reshow-constant";
 import callfunc from "call-func";
@@ -29,4 +29,4 @@ const ImmutableStore = (reduce, initState) => {
 };
 
 export default ImmutableStore;
-export { Map, Set, mergeMap };
+export { Map, Set, mergeMap, equal };

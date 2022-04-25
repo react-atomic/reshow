@@ -6,4 +6,5 @@ export {
   Map,
   Set,
   mergeMap,
+  equal,
 } from "./ImmutableStore";
