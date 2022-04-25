@@ -50,6 +50,7 @@ const Body = (props) => {
             ...defaultDialogProps,
             ...toJS(dialogProps),
             onClick: handleClick(dialog),
+            name: "reshow-dialog",
           },
           toJS(dialog)
         )}
@@ -64,6 +65,7 @@ const Body = (props) => {
         ...toJS(alertProps),
         onDismiss: handleDismiss,
         alerts: toJS(alerts),
+        name: "reshow-alerts",
       })}
     </SemanticUI>
   );

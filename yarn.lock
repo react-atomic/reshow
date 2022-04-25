@@ -2571,14 +2571,14 @@ browser-stdout@1.3.1:
   integrity sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==
 
 browserslist@^4.17.5, browserslist@^4.20.2:
-  version "4.20.2"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.20.2.tgz#567b41508757ecd904dab4d1c646c612cd3d4f88"
-  integrity sha512-CQOBCqp/9pDvDbx3xfMi+86pr4KXIf2FDkTTdeuYw8OxS9t898LA1Khq57gtufFILXpfgsSx5woNgsBgvGjpsA==
+  version "4.20.3"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.20.3.tgz#eb7572f49ec430e054f56d52ff0ebe9be915f8bf"
+  integrity sha512-NBhymBQl1zM0Y5dQT/O+xiLP9/rzOIQdKM/eMJBAq7yBgaB6krIYLGejrwVYnSHZdqjscB1SPuAjHwxjvN6Wdg==
   dependencies:
-    caniuse-lite "^1.0.30001317"
-    electron-to-chromium "^1.4.84"
+    caniuse-lite "^1.0.30001332"
+    electron-to-chromium "^1.4.118"
     escalade "^3.1.1"
-    node-releases "^2.0.2"
+    node-releases "^2.0.3"
     picocolors "^1.0.0"
 
 buffer-from@^1.0.0:
@@ -2644,9 +2644,9 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     get-intrinsic "^1.0.2"
 
 call-func@*:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.2.5.tgz#cc6f5dacb9bbdeeeac10d7683183dcde2ce8e8dd"
-  integrity sha512-/gGC2quWRcpB9fESLm7fxAWBBmI5oJNVPmvg9bSGoUL/zY8aAKRn3SEZWcU6FW+VN5X1QHux6+kzFYYQH6hrIw==
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.2.6.tgz#4d9325dfe6a84c9d19fdc39b0877539ce8a32ac4"
+  integrity sha512-9VXaiZUoiCw0oXvq2cZqPNtC6b/Bc4najcaFIvXo6RCwxWNfEua1ZWmsmkJreZ2MMQTVo0vu3Fou0MNcdds62Q==
   dependencies:
     css-query-selector "*"
     get-object-value "*"
@@ -2676,7 +2676,7 @@ camelcase@^6.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.3.0.tgz#5685b95eb209ac9c0c177467778c9c84df58ba9a"
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
-caniuse-lite@^1.0.30001317:
+caniuse-lite@^1.0.30001332:
   version "1.0.30001332"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001332.tgz#39476d3aa8d83ea76359c70302eafdd4a1d727dd"
   integrity sha512-10T30NYOEQtN6C11YGg411yebhvpnC6Z102+B95eAsN0oB6KUs01ivE8u+G6FMIRtIrVlYXhL+LUwQ3/hXwDWw==
@@ -3369,7 +3369,7 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-electron-to-chromium@^1.4.84:
+electron-to-chromium@^1.4.118:
   version "1.4.118"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.118.tgz#2d917c71712dac9652cc01af46c7d0bd51552974"
   integrity sha512-maZIKjnYDvF7Fs35nvVcyr44UcKNwybr93Oba2n3HkKDFAtk0svERkLN/HyczJDS3Fo4wU9th9fUQd09ZLtj1w==
@@ -5684,7 +5684,7 @@ node-preload@^0.2.1:
   dependencies:
     process-on-spawn "^1.0.0"
 
-node-releases@^2.0.2:
+node-releases@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.3.tgz#225ee7488e4a5e636da8da52854844f9d716ca96"
   integrity sha512-maHFz6OLqYxz+VQyCAtA3PTX4UP/53pa05fyDNc9CwjvJ0yEh6+xBwKsgCxMNhS8taUKBFYxfuiaD9U/55iFaw==
@@ -6006,9 +6006,9 @@ organism-react-ajax@*:
     win-doc "*"
 
 organism-react-animate@*:
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/organism-react-animate/-/organism-react-animate-0.10.5.tgz#16dc507e59a6a7e1d20aead7b397fa3008d3509c"
-  integrity sha512-BeOejBJ2qAnnaziLfJgp6oD4PxEJXkvxg8QE8WqWKyQKBKUOLXJHmRZjg8mN0O+3uRqZrA7u0R6XSicibDpKSA==
+  version "0.10.6"
+  resolved "https://registry.yarnpkg.com/organism-react-animate/-/organism-react-animate-0.10.6.tgz#3e470ac22ca413e2619d9eefc6ec804cd0ff115a"
+  integrity sha512-rZNcHA0hph7TbVIPhCiXQySrniELPREFc8v+BaBTm5T1t83btFioJBkjLLRt8j1MSFu3iKv7MaTzlO25jewqLQ==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -6019,9 +6019,9 @@ organism-react-animate@*:
     win-doc "*"
 
 organism-react-popup@*:
-  version "0.15.11"
-  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.15.11.tgz#67a2d52dfe6fa1dec2193f1e6e818cac4cc4366a"
-  integrity sha512-GzOCdUEH5IIDdXO7IW6GJPnfYFMIoF2t3lmn1W+pxvITX+KNLZSqz/mlqS74PqCOQlBB56+ns1nYBITmfIYWfQ==
+  version "0.15.12"
+  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.15.12.tgz#6da4afd011559037594d92f878611208b2c0e7cc"
+  integrity sha512-qSZDqGGWjvoQdlw4r5qjOaz7dJHdhnX7Fr8mIciJcI/oPeW9ZBM7aIlXyVidWCKiLIGafjKrHHvMF/JeuE9S7w==
   dependencies:
     array.merge "*"
     call-func "*"
