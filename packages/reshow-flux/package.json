@@ -1,6 +1,6 @@
 {
   "name": "reshow-flux",
-  "version": "0.17.15",
+  "version": "0.17.16",
   "description": "The smallest react flux and Fast hook alternative",
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.mjs",
@@ -33,8 +33,7 @@
     "reshow-constant": "*",
     "reshow-flux-base": "*",
     "reshow-hooks": "*",
-    "reshow-runtime": "*",
-    "setimmediate": "*"
+    "reshow-runtime": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
