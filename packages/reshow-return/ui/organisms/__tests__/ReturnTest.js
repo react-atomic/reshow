@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { ImmutableStore, mergeMap } from "reshow-flux";
+import { ImmutableStore, mergeMap, fromJS } from "reshow-flux";
 import { expect } from "chai";
 import { act, render, getRoleHtml, cleanIt } from "reshow-unit";
 
@@ -8,13 +8,9 @@ import Return from "../Return";
 const [pageStore, dispatch] = ImmutableStore((state, action) => {
   switch (action.type) {
     case "config/reset":
-      return mergeMap(state.clear(), action.params);
+      return fromJS(action.params) || state.clear();
     default:
-      if (Object.keys(action)) {
-        return mergeMap(state, action);
-      } else {
-        return state;
-      }
+      return mergeMap(state, action);
   }
 });
 
@@ -80,9 +76,9 @@ describe("Test Return", () => {
   it("test Immutable path state", async () => {
     const wrap = render(<FakeComponent immutable />);
     await act(() => {
-      dispatch({
+      dispatch(fromJS({
         data: { foo: "bar", I13N: { a: "b" } },
-      });
+      }));
     }, 5);
     const firstData = uFake.el.props.data;
     const firstI13N = uFake.el.props.I13N;
@@ -117,7 +113,7 @@ describe("Test Return", () => {
       render(vDom);
       dispatch({ data: "foo" });
     });
-    expect(getRoleHtml('dom')).to.equal(`<div role="dom">foo</div>`);
+    expect(getRoleHtml("dom")).to.equal(`<div role="dom">foo</div>`);
   });
 
   it("test backfill props", () => {

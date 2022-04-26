@@ -1,10 +1,11 @@
-import { Map, Set, isMap, is as equal } from "immutable";
+import { Map, Set, fromJS, is as equal } from "immutable";
 import { createReducer } from "reshow-flux-base";
 import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
 
 const getMap = (state, k) => toJS(state.get(k)) ?? {};
+const isMap = Map.isMap;
 
 const forEachMap = (maybeMap, cb) => {
   if (isMap(maybeMap)) {
@@ -47,4 +48,4 @@ const ImmutableStore = (reduce, initState) => {
 };
 
 export default ImmutableStore;
-export { Map, Set, mergeMap, equal, defaultReducer };
+export { defaultReducer, equal, fromJS, mergeMap, Map, Set };

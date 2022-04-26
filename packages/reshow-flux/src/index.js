@@ -5,8 +5,9 @@ export { default as useStore } from "./useStore";
 export { default as toJS } from "./toJS";
 export {
   default as ImmutableStore,
+  equal,
+  fromJS,
+  mergeMap,
   Map,
   Set,
-  mergeMap,
-  equal,
 } from "./ImmutableStore";

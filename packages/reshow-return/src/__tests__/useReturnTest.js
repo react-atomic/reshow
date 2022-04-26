@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Map, mergeMap } from "reshow-flux";
+import { Map, fromJS } from "reshow-flux";
 import { createReducer } from "reshow-flux-base";
 import { render } from "reshow-unit";
 
@@ -21,7 +21,7 @@ describe("Test useReturn", () => {
   it("test default immutable", () => {
     const [store, dispatch] = createReducer(
       (state, ation) => action,
-      mergeMap(Map(), { m: {} })
+      fromJS({ m: {} })
     );
     const Dom = (props) => {
       const state = useReturn(["m"], store);
@@ -34,7 +34,7 @@ describe("Test useReturn", () => {
   it("test default is not immutable", () => {
     const [store, dispatch] = createReducer(
       (state, ation) => action,
-      mergeMap(Map(), { m: {} })
+      fromJS({ m: {} })
     );
     const Dom = (props) => {
       const state = useReturn(["m"], store, { immutable: false });

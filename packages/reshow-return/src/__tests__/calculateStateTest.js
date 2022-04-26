@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ImmutableStore, Map, mergeMap } from "reshow-flux";
+import { ImmutableStore, Map, mergeMap, fromJS } from "reshow-flux";
 
 import options from "../connectOptions";
 const { calculateState } = options;
@@ -19,7 +19,7 @@ describe("Test calculateState", () => {
           }
       }
     });
-    dispatch("config/reset", { foo: { bar: { foo1: "bar1" } } });
+    dispatch("config/reset", fromJS({ foo: { bar: { foo1: "bar1" } } }));
     pageStore = store;
   });
 
