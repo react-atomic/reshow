@@ -1,23 +1,39 @@
-import { Map, Set, fromJS, isMap, is as equal } from "immutable";
+import { Map, Set, isMap, is as equal } from "immutable";
 import { createReducer } from "reshow-flux-base";
-import { OBJ_SIZE } from "reshow-constant";
+import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
 
 const getMap = (state, k) => toJS(state.get(k)) ?? {};
 
-const toImmuteMap = (maybeMap) =>
-  isMap(maybeMap) ? maybeMap : fromJS(maybeMap);
+const forEachMap = (maybeMap, cb) => {
+  if (isMap(maybeMap)) {
+    maybeMap.forEach(cb);
+  } else {
+    if (STRING === typeof maybeMap) {
+      cb(maybeMap, "type");
+    } else {
+      KEYS(maybeMap).forEach((k) => cb(maybeMap[k], k));
+    }
+  }
+};
 
 const MAP_SIZE = (maybeMap) =>
   isMap(maybeMap) ? maybeMap.size : OBJ_SIZE(maybeMap);
 
+/**
+ * Why not just use immutable mergeMap?
+ * Because after merge can not use === to compare
+ */
 const mergeMap = (state, maybeMap) => {
   try {
-    return MAP_SIZE(maybeMap) ? state.merge(toImmuteMap(maybeMap)) : state;
-  } catch (e) {
-    return state;
-  }
+    if (MAP_SIZE(maybeMap)) {
+      forEachMap(maybeMap, (v, k) => {
+        state = state.set(k, v);
+      });
+    }
+  } catch (e) {}
+  return state;
 };
 
 const defaultReducer = (state, action) => mergeMap(state, action);

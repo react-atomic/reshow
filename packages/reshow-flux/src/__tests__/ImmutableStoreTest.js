@@ -8,13 +8,33 @@ describe("Test ImmutableStore", () => {
     reducer = ImmutableStore((state, action) => mergeMap(state, action));
   });
 
-  it("test merge map", () => {
+  it("test merge map with js array", () => {
     const [store, dispatch] = reducer;
     const action = { aaa: { bbb: "ccc" } };
     dispatch(action);
     const state = store.getState();
-    expect(Map.isMap(state.get("aaa"))).to.be.true;
-    expect(state.get("aaa").toJS()).to.deep.equal({ bbb: "ccc" });
+    const aaa = state.get("aaa");
+    expect(Map.isMap(aaa)).to.be.false;
+    expect(aaa).to.deep.equal({ bbb: "ccc" });
+    expect(aaa === action.aaa).to.be.true;
+  });
+
+  it("test merge map with map", () => {
+    const [store, dispatch] = reducer;
+    const action = Map({ aaa: Map({ bbb: "ccc" }) });
+    dispatch(action);
+    const state = store.getState();
+    const aaa = state.get("aaa");
+    expect(Map.isMap(aaa)).to.be.true;
+    expect(aaa.toJS()).to.deep.equal({ bbb: "ccc" });
+    expect(aaa === action.get("aaa")).to.be.true;
+  });
+
+  it("test getIn", () => {
+    const result = mergeMap(Map(), { a: { b: { c: "d" } } });
+    const b = result.getIn(["a", "b"]);
+    expect(Map.isMap(b)).to.be.false;
+    expect(b).to.deep.equal({ c: "d" });
   });
 
   it("test get map", () => {
