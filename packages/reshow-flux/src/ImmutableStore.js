@@ -20,8 +20,10 @@ const mergeMap = (state, maybeMap) => {
   }
 };
 
+const defaultReducer = (state, action) => mergeMap(state, action);
+
 const ImmutableStore = (reduce, initState) => {
-  reduce = reduce || ((state, action) => mergeMap(state, action));
+  reduce = reduce || defaultReducer;
   initState = mergeMap(Map(), callfunc(initState));
   const [store, dispatch] = createReducer(reduce, initState);
   store.getMap = (k) => getMap(store.getState(), k);
@@ -29,4 +31,4 @@ const ImmutableStore = (reduce, initState) => {
 };
 
 export default ImmutableStore;
-export { Map, Set, mergeMap, equal };
+export { Map, Set, mergeMap, equal, defaultReducer };

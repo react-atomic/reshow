@@ -34,7 +34,9 @@ describe("Test Connect Hook", () => {
     expect(wrap.html()).to.equal(`<div></div>`);
     const a = { foo: "111" };
     await act(() => dispatch(a), 5);
-    expect(wrap.html()).to.equal('<div class="111"></div>');
+    await waitFor(() => {
+      expect(wrap.html()).to.equal('<div class="111"></div>');
+    });
     await act(() => dispatch({ foo: "222" }));
     await waitFor(() => {
       expect(wrap.html()).to.equal('<div class="222"></div>');
