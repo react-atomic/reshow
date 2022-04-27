@@ -1,5 +1,5 @@
 {
-  "version": "0.17.44",
+  "version": "0.17.46",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -29,8 +29,9 @@
     "get-object-value": "*",
     "html-entities": "1.2.1",
     "html-webpack-plugin": "^5.5.x",
+    "is-arguments": "1.1.1",
+    "is-typed-array": "1.1.8",
     "local-web-server": "5.2.0",
-    "module-alias": "2.2.2",
     "ora": "^5.x",
     "organism-react-ajax": "*",
     "organism-react-navigation": "*",
@@ -56,6 +57,7 @@
     "webpack-cli": "^4.9.x",
     "webpack-dev-server": "^4.7.x",
     "webpack-stats-plugin": "*",
+    "which-typed-array": "1.1.7",
     "win-doc": "*",
     "workbox-webpack-plugin": "*"
   },

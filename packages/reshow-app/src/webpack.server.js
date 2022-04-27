@@ -1,5 +1,4 @@
 import webpack from "webpack";
-import moduleAlias from "module-alias";
 import getResolve, { getResolveLoader } from "./webpack/getResolve";
 import getEntry from "./webpack/getEntry";
 import getOptimization from "./webpack/getOptimization";
@@ -28,7 +27,7 @@ const myWebpack = (root, main, lazyConfs) => {
     optimization: getOptimization({ mode, confs, server }),
     plugins: getPlugins({ root, path, stop, mode, confs, server }),
     module: getModule({ mode }),
-    resolve: getResolve({ confs, root, moduleAlias }),
+    resolve: getResolve({ confs, root }),
     resolveLoader: getResolveLoader({ root }),
     externals: confs.externals,
   };

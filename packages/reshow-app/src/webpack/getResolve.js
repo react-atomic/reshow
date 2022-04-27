@@ -1,19 +1,23 @@
 import reshowRuntimeAlias from "./reshowRuntimeAlias";
 
-const getResolve = ({ confs, root, moduleAlias }) => {
-  const nroot = root + "/node_modules";
+const getNRoot = (root) => root + "/node_modules";
+
+const getResolve = ({ confs, root }) => {
+  const nroot = getNRoot(root);
   const alias = {
     react: `${nroot}/react`,
     "react-dom": `${nroot}/react-dom`,
     reshow: `${nroot}/reshow`,
     "organism-react-ajax": `${nroot}/organism-react-ajax`,
     "organism-react-popup": `${nroot}/organism-react-popup`,
+    util: `${nroot}/reshow-app/webpack/util/util`,
     ...reshowRuntimeAlias(root),
     ...confs.alias,
   };
 
   const fallback = {
     stream: require.resolve("readable-stream"),
+    util: require.resolve(`${nroot}/reshow-app/webpack/util/util`),
     fs: false,
     net: false,
     tls: false,
@@ -26,16 +30,12 @@ const getResolve = ({ confs, root, moduleAlias }) => {
     extensions: [".mjs", ".js", ".jsx"],
     fallback,
   };
-  if (moduleAlias) {
-    moduleAlias.addAliases(alias);
-  } else {
-    results.alias = alias;
-  }
+  results.alias = alias;
   return results;
 };
 
 const getResolveLoader = ({ root }) => ({
-  modules: [root + "/node_modules"],
+  modules: [getNRoot(root)],
 });
 
 export default getResolve;
