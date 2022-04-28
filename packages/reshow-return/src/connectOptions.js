@@ -4,8 +4,6 @@ import { toJS } from "reshow-flux";
 import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
 
 const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
-const getMapIn = (map, path) =>
-  map && map.getIn ? map.getIn(path) : T_UNDEFINED;
 
 const reset = (props, more) => {
   const cleanKeys = [
@@ -71,13 +69,9 @@ const calculateState = (prevState, options) => {
     const data = getStateValue(key);
     results[newKey(key)] = toImmutable(data);
   });
-
-  KEYS(pathStates || {}).forEach((key) => {
-    const thisPath = pathStates[key];
-    results[key] = immutable
-      ? getMapIn(results[thisPath[0]], thisPath.slice(1))
-      : get(results, thisPath);
-  });
+  KEYS(pathStates || {}).forEach(
+    (key) => (results[key] = get(results, pathStates[key]))
+  );
 
   const resultKeys = KEYS(results);
   let bSame = true;
