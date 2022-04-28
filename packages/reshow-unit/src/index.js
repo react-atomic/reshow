@@ -22,7 +22,15 @@ import process from "process";
 import build from "reshow-build";
 import { StrictMode } from "react";
 
-const { STRICT_MODE } = process.env;
+const envStrictMode = process.env.STRICT_MODE;
+const STRICT_MODE =
+  -1 !== "|true|false|null|0|".indexOf(envStrictMode)
+    ? JSON.parse(envStrictMode)
+    : envStrictMode;
+
+if (STRICT_MODE) {
+  console.log("STRICT_MODE: on");
+};
 
 // https://github.com/testing-library/react-testing-library/issues/1025
 global.IS_REACT_ACT_ENVIRONMENT = true;

@@ -9,7 +9,8 @@
   "description": "A simplified React cross-component state management.",
   "keywords": [
     "react-atomic",
-    "react-atomic-ui"
+    "react-atomic-ui",
+    "reshow"
   ],
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.mjs",
@@ -51,7 +52,7 @@
     "build:es:ui": "BABEL_ENV=es babel ui -d build/es/ui --out-file-extension .mjs",
     "build:es": "npm run build:es:src && npm run build:es:ui",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "mochaFor": "mocha -r global-jsdom/register",
+    "mochaFor": "STRICT_MODE=1 mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test && npm run format"

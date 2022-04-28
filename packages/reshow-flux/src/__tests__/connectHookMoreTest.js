@@ -49,17 +49,18 @@ describe("Test Connect hook for more test", () => {
     };
     expect(calculateTimes).to.equal(0);
     await act(() => (wrap = render(<FakeComponent />)));
-    expect(calculateTimes).to.equal(2); //init and handlchange
+    expect(calculateTimes >= 2).to.be.true; //init and handlchange
     await act(() => {
       dispatch({ aaa: "Hello dispatcher!" });
     }, 5);
-    expect(calculateTimes).to.equal(3);
+    const dispatchCalculateTimes = calculateTimes;
+    expect(dispatchCalculateTimes >= 3).to.be.true;
     expect(screen().getByRole("udom").outerHTML).to.equal(
       `<div role="udom">Hello dispatcher!</div>`
     );
     await act(() => wrap.unmount());
     dispatch({ aaa: "Hello Unmount!" });
-    expect(calculateTimes).to.equal(3);
+    expect(calculateTimes).to.equal(dispatchCalculateTimes);
   });
 
   it("could work withProps", async () => {

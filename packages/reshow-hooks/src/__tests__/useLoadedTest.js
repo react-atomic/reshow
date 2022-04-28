@@ -16,6 +16,6 @@ describe("test useLoaded", () => {
     };
     render(<Comp />);
     expect(spy.getCall(0).firstArg).to.be.false;
-    expect(spy.getCall(1).firstArg).to.be.true;
+    expect(spy.lastCall.firstArg).to.be.true;
   });
 });

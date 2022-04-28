@@ -2301,9 +2301,9 @@ node-preload@^0.2.1:
     process-on-spawn "^1.0.0"
 
 node-releases@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.3.tgz#225ee7488e4a5e636da8da52854844f9d716ca96"
-  integrity sha512-maHFz6OLqYxz+VQyCAtA3PTX4UP/53pa05fyDNc9CwjvJ0yEh6+xBwKsgCxMNhS8taUKBFYxfuiaD9U/55iFaw==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.4.tgz#f38252370c43854dc48aa431c766c6c398f40476"
+  integrity sha512-gbMzqQtTtDz/00jQzZ21PQzdI9PyLYqUSvD0p3naOhX4odFji0ZxYdnVwPTxmSwkmxhcFImpozceidSG+AgoPQ==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -2784,9 +2784,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-hooks@*:
-  version "0.17.5"
-  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.5.tgz#5b4fba24b003a867494c1392a7a69d1d105b9ac3"
-  integrity sha512-GhAcktCQkUz1I3IK7ODiYd5Agc0LUQkhSiAOErWaGxtdL2hqiUc3Pba4mtWN0MIr5lSJd3QUlwl5rV0Tl1zFPw==
+  version "0.17.6"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.6.tgz#f71802ea7ba128e4260fc7cd8613159a2c5d6bb9"
+  integrity sha512-wCrBojEglQM8OxHCJKXjTTb/bQJ+fNDwvJXhvmYQdugTVPULbURlxGbega5g4JSeRVgV4F9zXri57xJC5u2ygg==
   dependencies:
     call-func "*"
 
@@ -2815,9 +2815,9 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@^0.17.x:
-  version "0.17.17"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.17.tgz#67298d68f6258401387527cb447d59a88e83b2a6"
-  integrity sha512-Kskpbb3TuAn/dTE0dm6+dYJ5mIPtDQpvgrvuERQrSXEFkoTf0Nb2Xc+O/LvlIAN+a4WO02PU1Ui44gHOrZMFVg==
+  version "0.17.19"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.19.tgz#063c30697904c87eab037dffc61b8411a2fbe575"
+  integrity sha512-w1PVHN9JLROp/TaOf9XqqUXANO5bo1UdXGL9A4PFPkWGW0FJXpb33LIatr4MVSCiiM6usouEpJ8zGC4a/M6ipQ==
   dependencies:
     "@testing-library/react" "^13.x"
     "@testing-library/user-event" "^14.x"

@@ -58,19 +58,19 @@ describe("useStore Test", () => {
     };
     expect(heeding.callCount).to.equal(0);
     const wrap = render(<Comp />);
-    expect(heeding.callCount).to.equal(1);
+    expect(heeding.callCount >= 1).to.be.true;
     expect(wrap.html()).to.equal("<div>foo</div>");
     await act(() => dispatch("on"), 5);
     await waitFor(async () => {
       await act(() => {
-        expect(heeding.callCount).to.equal(2);
+        expect(heeding.callCount >= 2).to.be.true;
         expect(wrap.html()).to.equal("<div>bar</div>");
       });
     });
     await act(() => dispatch("off"), 5);
     await waitFor(async () => {
       await act(() => {
-        expect(heeding.callCount).to.equal(3);
+        expect(heeding.callCount >= 3).to.be.true;
         expect(wrap.html()).to.equal("<div>bar</div>");
       });
     });
