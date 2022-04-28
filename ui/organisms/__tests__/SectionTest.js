@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
+import { expect } from "chai";
+import { fromJS } from "reshow-flux";
+import { act, render, cleanIt } from "reshow-unit";
+
 import { Section, dispatch } from "../../../src/index";
 import { globalStore } from "../../../src/stores/globalStore";
-
-import { expect } from "chai";
-import { act, render, cleanIt } from "reshow-unit";
 
 class TestEl extends PureComponent {
   render() {
@@ -70,7 +71,7 @@ describe("Test Section", () => {
     const wrap = render(<FakeComponent immutable />);
     await act(
       () =>
-        dispatch({
+        dispatch(fromJS({
           section: {
             test: {
               shouldRender: true,
@@ -78,7 +79,7 @@ describe("Test Section", () => {
             },
           },
           I18N: { ddd: "fff" },
-        }),
+        })),
       3
     );
     expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
@@ -177,15 +178,16 @@ describe("Test Section", () => {
       }
     }
     const wrap = render(<NotPassNameMultiChild />);
-    await act(() =>
-      dispatch({
-        section: {
-          test: {
-            shouldRender: true,
-            aaa: { bbb: "ccc" },
+    await act(
+      () =>
+        dispatch({
+          section: {
+            test: {
+              shouldRender: true,
+              aaa: { bbb: "ccc" },
+            },
           },
-        },
-      }),
+        }),
       3
     );
     expect(uFake.el1.getAttribute("name")).to.be.null;

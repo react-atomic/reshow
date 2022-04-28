@@ -1,6 +1,6 @@
 import get from "get-object-value";
 import { build } from "react-atomic-molecule";
-import { useConnect } from "reshow-flux";
+import { useConnect, forEachMap } from "reshow-flux";
 
 import { connectOptions } from "../molecules/ReshowComponent";
 import pageStore from "../../src/stores/pageStore";
@@ -18,20 +18,16 @@ const Section = (props) => {
   const immutable = propsImmutable ?? pageStore.getState().get("immutable");
   let allParams = { ...connectOptions.reset(otherProps), ...state };
   if (immutable) {
-    const thisSection = section.get(name);
+    const thisSection = get(section, [name]);
     if (!thisSection) {
       return null;
     }
-    const shouldRender = thisSection.get("shouldRender");
+    const shouldRender = get(thisSection, ["shouldRender"]);
     if (!shouldRender) {
       return null;
     }
-    thisSection
-      .delete("shouldRender")
-      .keySeq()
-      .forEach((key) => {
-        allParams[key] = thisSection.get(key);
-      });
+    forEachMap(thisSection, (v, k) => (allParams[k] = v));
+    delete allParams["shouldRender"];
   } else {
     const { shouldRender, ...others } = get(section, [name], {});
     if (!shouldRender) {

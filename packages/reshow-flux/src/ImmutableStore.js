@@ -8,6 +8,9 @@ const getMap = (state, k) => toJS(state.get(k)) ?? {};
 const isMap = Map.isMap;
 
 const forEachMap = (maybeMap, cb) => {
+  if (!MAP_SIZE(maybeMap)) {
+    return;
+  }
   if (isMap(maybeMap)) {
     maybeMap.forEach(cb);
   } else {
@@ -28,11 +31,9 @@ const MAP_SIZE = (maybeMap) =>
  */
 const mergeMap = (state, maybeMap) => {
   try {
-    if (MAP_SIZE(maybeMap)) {
-      forEachMap(maybeMap, (v, k) => {
-        state = state.set(k, v);
-      });
-    }
+    forEachMap(maybeMap, (v, k) => {
+      state = state.set(k, v);
+    });
   } catch (e) {}
   return state;
 };
@@ -48,4 +49,4 @@ const ImmutableStore = (reduce, initState) => {
 };
 
 export default ImmutableStore;
-export { defaultReducer, equal, fromJS, mergeMap, Map, Set };
+export { defaultReducer, equal, forEachMap, fromJS, mergeMap, Map, Set };

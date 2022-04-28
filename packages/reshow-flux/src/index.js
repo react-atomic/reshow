@@ -6,6 +6,7 @@ export { default as toJS } from "./toJS";
 export {
   default as ImmutableStore,
   equal,
+  forEachMap,
   fromJS,
   mergeMap,
   Map,
