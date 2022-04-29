@@ -17,10 +17,14 @@ const getTerser = () =>
       compress: {
         passes: 2,
         keep_classnames: true,
-        toplevel: true,
         dead_code: true,
         computed_props: true,
         directives: true,
+
+        /**
+         * have issue with react 18.1
+         */
+        //toplevel: true,
       },
       mangle: {
         keepClassNames: true,
