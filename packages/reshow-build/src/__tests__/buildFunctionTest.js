@@ -27,23 +27,24 @@ describe("Test build function", () => {
     expect(run).to.throw();
   });
 
-  it("test function with return", () => {
-    const a = build((props) => props.foo)({ foo: "barbar" });
-    expect(a).to.equal("barbar");
-  });
-
   it("test with stateless function return", () => {
     const func = (props) => <div {...props} />;
-    const a = build(func)({ foo: "barbar" });
+    const actual = build(func)({ foo: "barbar" });
     // will return react instance
-    expect(a.props.foo).to.equal("barbar");
-    expect(isValidElement(a)).to.be.true;
+    expect(actual.props.foo).to.equal("barbar");
+    expect(isValidElement(actual)).to.be.true;
   });
 
   it("test with func and child", () => {
-    const result = build((props) => props)({ foo: "bar" }, "hello child");
-    expect(result.children).to.equal("hello child");
-    expect(result.foo).to.equal("bar");
+    const result = build((props) => "div")({ foo: "bar" }, "hello child");
+    expect(result.props.children).to.equal("hello child");
+    expect(result.props.foo).to.equal("bar");
+  });
+
+  it("test function with wrap return", () => {
+    const actual = build((props) => "foo", { wrap: "div" })({ foo: "barbar" });
+    expect(actual.type).to.equal("div");
+    expect(actual.props.foo).to.equal("barbar");
   });
 
   it("test with empty", () => {

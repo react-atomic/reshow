@@ -18,7 +18,11 @@ const buildFunc = (component, props, child, componentOption) => {
         props.children = child;
       }
       const el = component(props);
-      return wrap && !isValidElement(el) ? buildReact(wrap, props, el) : el;
+      return isValidElement(el)
+        ? el
+        : wrap
+        ? buildReact(wrap, props, el)
+        : buildReact(el, props);
     } catch (e) {
       if (e.name === TYPE_ERROR) {
         return buildReact(component, props, child);
