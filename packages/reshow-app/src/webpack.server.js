@@ -23,13 +23,14 @@ const myWebpack = (root, main, lazyConfs) => {
     mode,
     devtool: false,
     entry: getEntry({ root, main, confs, server }),
+    externals: confs.externals,
     output: getOutput({ path, confs, server }),
     optimization: getOptimization({ mode, confs, server }),
     plugins: getPlugins({ root, path, stop, mode, confs, server }),
     module: getModule({ mode }),
     resolve: getResolve({ confs, root }),
     resolveLoader: getResolveLoader({ root }),
-    externals: confs.externals,
+    target: "node",
   };
   return result;
 };
