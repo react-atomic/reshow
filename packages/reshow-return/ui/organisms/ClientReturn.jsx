@@ -3,6 +3,9 @@ import { useLoaded } from "reshow-hooks";
 import { hasWin, win } from "win-doc";
 import { connectOptions } from "reshow-return";
 
+/**
+ * Example: https://github.com/react-atomic/reshow/blob/main/packages/reshow-url/ui/organisms/UrlReturn.jsx
+ */
 const ClientReturn = (comp, cleanProps) => (props) => {
   const hydrate = win().Reshow?.hydrate;
   if (hydrate || !hasWin()) {

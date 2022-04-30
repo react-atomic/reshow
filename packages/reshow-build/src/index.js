@@ -12,7 +12,11 @@ import { removeEmpty } from "array.merge";
 const buildFunc = (component, props, child, componentOption) => {
   // anonymous function will call directly
   const { wrap, doCallFunction } = componentOption || {};
-  if ((FUNCTION === typeof component && !component.name) || doCallFunction) {
+  if (
+    (FUNCTION === typeof component &&
+      (!component.name || "children" === component.name)) ||
+    doCallFunction
+  ) {
     try {
       if (child != T_NULL) {
         props.children = child;

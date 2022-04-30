@@ -1,5 +1,5 @@
 {
-  "version": "0.17.6",
+  "version": "0.17.7",
   "name": "reshow-build",
   "repository": {
     "type": "git",
@@ -8,11 +8,7 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-build",
   "description": "React super cloneElement and createElement",
-  "keywords": [
-    "reactjs",
-    "cloneElement",
-    "createElement"
-  ],
+  "keywords": ["reactjs", "cloneElement", "createElement"],
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.mjs",
   "exports": {
@@ -39,9 +35,5 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": [
-    "build",
-    "package.json",
-    "README.md"
-  ]
+  "files": ["build", "package.json", "README.md"]
 }

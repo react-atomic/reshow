@@ -1,6 +1,5 @@
-import build from "reshow-build";
 import { useConnect as useConn } from "reshow-flux";
-
+import MemoReturn from "../organisms/MemoReturn";
 import connectOptions from "../../src/connectOptions";
 
 const getReturn = ({
@@ -13,18 +12,16 @@ const getReturn = ({
   const Return = (props) => {
     const { children, backfillProps, ...otherProps } = props;
     const state = useConnect(props);
-    const result = build(children)(
-      backfillProps
-        ? {
-            ...state,
-            ...connectOptions.reset(otherProps, cleanProps),
-          }
-        : {
-            ...connectOptions.reset(otherProps, cleanProps),
-            ...state,
-          }
-    );
-    return result;
+    const nextProps = backfillProps
+      ? {
+          ...state,
+          ...connectOptions.reset(otherProps, cleanProps),
+        }
+      : {
+          ...connectOptions.reset(otherProps, cleanProps),
+          ...state,
+        };
+    return <MemoReturn props={nextProps}>{children}</MemoReturn>;
   };
 
   Return.displayName = displayName;

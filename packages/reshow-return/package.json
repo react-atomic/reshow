@@ -1,5 +1,5 @@
 {
-  "version": "0.17.11",
+  "version": "0.17.12",
   "name": "reshow-return",
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "get-object-value": "*",
     "memoize-one": "*",
     "reshow-build": "*",
+    "reshow-constant": "*",
     "reshow-flux": "*",
     "reshow-hooks": "*",
     "reshow-runtime": "*",

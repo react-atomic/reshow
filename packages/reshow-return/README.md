@@ -7,8 +7,13 @@ Reshow Return
    * https://www.npmjs.com/package/reshow-return
 
 ## How to use
-```
-<Return initStates={["name1", "name2"]}>{/*your code*/}</Return>
+```jsx
+<Return
+  store={/*subscribe store*/}
+  initStates={["name1", "name2"]}
+>
+  {/*your code*/}
+</Return>
 ```
 
 
