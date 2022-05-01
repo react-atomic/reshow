@@ -6563,9 +6563,9 @@ requires-port@^1.0.0:
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
 reshow-build@*, reshow-build@^0.17.x:
-  version "0.17.7"
-  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.17.7.tgz#4fba7070cd8b7138839bcc47d589fb7203701036"
-  integrity sha512-v6amFuSzQGpWKvzft/PWdXJzqtx/MJXu3/1naM7FYEYhIaofAT4QSpkZMUDH92BvAO38NxmliMsEAnyxtTecLg==
+  version "0.17.9"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.17.9.tgz#c8ffe1da7b119c361bc00b0e983096890f3ae362"
+  integrity sha512-3pthnjO3PJ9jvwYK2WvbcpriX7K8h1nr0S3OjqNki0e86vOrQCS7SGshBwKJtJbObBf6b7HD5OboJg3JMc37Vw==
   dependencies:
     array.merge "*"
     reshow-constant "*"
@@ -6608,9 +6608,9 @@ reshow-hooks@*:
     call-func "*"
 
 reshow-return@*:
-  version "0.17.12"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.12.tgz#595aab4273c79ab66d34ed23d398eb9c64a8be68"
-  integrity sha512-FUMKPSCP6LOt+fSXL+AIIc3ZltfGR9KXSX02E6eVSqK3TWdEWBUuSx7XXSoAKBLwVAHsgsgO3O9ad/PcSB677w==
+  version "0.17.14"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.14.tgz#b3e3be219e905cfc5aafab46aa5bcc67f03f37dc"
+  integrity sha512-YTuw6PLAvT33vgPmRyVJAvcHRp0Dmteh3S8TqnDAsVxztBAWROGK1DZj9Nw9toMWfvwYeCwXW4KnwdEuwJIzUQ==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -6672,9 +6672,9 @@ reshow-url@^0.17.x:
     reshow-runtime "*"
 
 reshow-worker@*:
-  version "0.17.3"
-  resolved "https://registry.yarnpkg.com/reshow-worker/-/reshow-worker-0.17.3.tgz#49e2a9fe53390d47db08c159efefd07e5803ec24"
-  integrity sha512-kVzoTG5ojCgzX9dVTtYLP5qkxBorLglrBJilj/ldQYNMOZd2WcLjEpo3EIW2sHwaPWBduZw8sASijf0uKv3gOQ==
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/reshow-worker/-/reshow-worker-0.17.4.tgz#77e4727463fdd19a9db4a28c913f2775a8e3ef82"
+  integrity sha512-hWeu7f7P7lZZ9a6P41/tPaloPPJPNPvnxqb0t81MqiFvJtW4TrrlHVjAFJ98UGi9SgB2fYCsoT01DbFa1Sm61A==
   dependencies:
     get-object-value "*"
     organism-react-ajax "*"

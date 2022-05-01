@@ -25,11 +25,15 @@ const getPlugins = ({
   ENABLE_SW,
   server,
 }) => {
+  ENABLE_SW = ENABLE_SW || confs.swDebug;
+  const processEnv = {
+    ENABLE_SW,
+  };
   const plugins = [];
   if (root) {
     plugins.push(
       new webpack.ProvidePlugin({
-        process: "process/browser",
+        process: "process/browser.js",
         ReadableStream: require.resolve(
           root + "/node_modules/reshow-app/webpack/ReadableStream"
         ),
@@ -59,12 +63,9 @@ const getPlugins = ({
       new AggressiveMergingPlugin({
         minSizeReduce: 2,
         moveToParents: true,
-      }),
-      // https://webpack.js.org/plugins/environment-plugin/
-      new webpack.EnvironmentPlugin({
-        NODE_ENV: PRODUCTION,
       })
     );
+    processEnv.NODE_ENV = PRODUCTION;
   }
   if (!server) {
     if (HOT_UPDATE) {
@@ -83,6 +84,10 @@ const getPlugins = ({
   if (stop) {
     plugins.push(new FinishPlugin({ stop }));
   }
+  plugins.push(
+    // https://webpack.js.org/plugins/environment-plugin/
+    new webpack.EnvironmentPlugin(processEnv)
+  );
   return plugins;
 };
 

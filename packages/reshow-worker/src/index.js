@@ -16,7 +16,7 @@ const importWorker = (win, serviceWorkerURL) => {
   );
   const navigator = win.navigator;
   if ("serviceWorker" in navigator) {
-    if ("production" === process.env.NODE_ENV) {
+    if (process.env.ENABLE_SW) {
       if (serviceWorkerURL) {
         const [load] = windowOnLoad({ domReady: true, domReadyDelay: 0 });
         load(() => {
