@@ -51,6 +51,11 @@ describe("Test build function", () => {
     const result = build()();
     expect(result).to.be.null;
   });
+
+  it("test return null", () => {
+    const result = build(() => undefined)();
+    expect(result).to.be.null;
+  });
 });
 
 describe("Test build with key", () => {

@@ -12,6 +12,7 @@ describe("Test build array", () => {
     };
     const vDom = (
       <FakeDom>
+        {null}
         <div>1</div>
         <div>2</div>
       </FakeDom>

@@ -40,6 +40,9 @@ const buildFunc = (component, props, child, componentOption) => {
 };
 
 const buildReact = (component, props, child) => {
+  if (!component) {
+    return T_NULL;
+  }
   const { children, ...otherProps } = props || {};
   const params = [component, otherProps];
   child = child || children;
