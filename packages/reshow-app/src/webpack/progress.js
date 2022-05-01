@@ -8,20 +8,22 @@ const defaultTips = [
 ];
 
 fs.writeFile("webpack.pid", process.pid + "", () => {});
+let spinner;
+let spinnTimer;
+let secTimer;
 
 const init = ({ confs }) => {
   const tips = confs.tips?.slice(0) || defaultTips.slice(0);
-  let spinner;
-  let spinnTimer;
-  let secTimer;
   let curTip = tips.shift();
   let curSec = 0;
 
   if (!spinner) {
-    spinner = ora({
-      text: curTip,
-      spinner: "line",
-    }).start();
+    setTimeout(() => {
+      spinner = ora({
+        text: curTip,
+        spinner: "line",
+      }).start();
+    }, 100);
   }
 
   if (!spinnTimer) {

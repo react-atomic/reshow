@@ -25,10 +25,8 @@ const getPlugins = ({
   ENABLE_SW,
   server,
 }) => {
-  ENABLE_SW = ENABLE_SW || confs.swDebug;
-  const processEnv = {
-    ENABLE_SW,
-  };
+  ENABLE_SW = ENABLE_SW || confs.swDebug || false;
+  const processEnv = { ENABLE_SW };
   const plugins = [];
   if (root) {
     plugins.push(
