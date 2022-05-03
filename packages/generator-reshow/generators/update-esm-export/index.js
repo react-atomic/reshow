@@ -32,18 +32,39 @@ module.exports = class extends YoGenerator {
     if (!opts.exports) {
       return;
     }
-    const { srcArr, appendArr, prependArr, moreKeyArr, moreValArr, pkgjson } =
-      opts.exports;
+    const {
+      srcArr,
+      prependArr,
+      moreKeyArr,
+      moreValArr,
+      pkgjson,
+      appendArr,
+      requirePrependArr,
+      requireAppendArr,
+      importPrependArr,
+      importAppendArr,
+    } = opts.exports;
     const nextExports = {};
     srcArr.forEach((v, index) => {
       const prepend = prependArr[index];
-      const append = appendArr[index];
       glob(
         v,
         ({ filename }) => {
-          nextExports[
-            `${prepend}${filename}`
-          ] = `${prepend}${filename}${append}`;
+          let content;
+          if (appendArr) {
+            const append = appendArr[index];
+            content = `${prepend}${filename}${append}`;
+          } else {
+            content = {
+              require: `${requirePrependArr[index]}${filename}${requireAppendArr[index]}`,
+              import: `${importPrependArr[index]}${filename}${importAppendArr[index]}`,
+            };
+          }
+          let nextKey = `${prepend}${filename}`;
+          if (nextKey === "./index") {
+            nextKey = ".";
+          }
+          nextExports[nextKey] = content;
         },
         true
       );

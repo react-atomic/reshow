@@ -166,7 +166,7 @@ const YoHelper = (oGen) => {
       }
     },
     glob: (srcPath, ...p) => {
-      const actualSrc = isFile(srcPath)
+      const actualSrc = isDir(srcPath)
         ? srcPath
         : oGen.templatePath(srcPath || "");
       globSync(actualSrc, ...p);
