@@ -30,7 +30,6 @@ const myWebpack = (root, main, lazyConfs) => {
     module: getModule({ mode }),
     resolve: getResolve({ confs, root }),
     resolveLoader: getResolveLoader({ root }),
-    target: "node",
   };
   return result;
 };
