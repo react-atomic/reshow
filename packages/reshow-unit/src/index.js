@@ -30,7 +30,7 @@ const STRICT_MODE =
 
 if (STRICT_MODE) {
   console.log("STRICT_MODE: on");
-};
+}
 
 // https://github.com/testing-library/react-testing-library/issues/1025
 global.IS_REACT_ACT_ENVIRONMENT = true;

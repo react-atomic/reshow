@@ -1,10 +1,10 @@
 import { PureComponent } from "react";
 import Return from "reshow-return";
 import { toJS } from "reshow-flux";
-import { REAL_TIME_DATA_KEY } from "reshow-constant";
+import { REAL_TIME_DATA_KEY, T_TRUE } from "reshow-constant";
 import get from "get-object-value";
 import { AjaxPage } from "organism-react-ajax";
-import { doc } from "win-doc";
+import { doc, win } from "win-doc";
 import callfunc from "call-func";
 import { oneItemArrayToString } from "with-array";
 
@@ -43,7 +43,7 @@ class Reshow extends PureComponent {
   };
 
   static getDerivedStateFromError(error) {
-    return { hasError: true };
+    return { hasError: T_TRUE };
   }
 
   getPath(stateThemePath) {
@@ -77,7 +77,7 @@ class Reshow extends PureComponent {
     super(props);
     if (isInit) {
       console.warn("The best practice is avoid multi Reshow Component.");
-      this.state = { hasError: true };
+      this.state = { hasError: T_TRUE };
     } else {
       update(props);
       this.state = { hasError: false };
@@ -89,6 +89,9 @@ class Reshow extends PureComponent {
   componentDidMount() {
     // Server site version also need update Canonical
     initCanonicalUrl(this.props);
+    if (win().Reshow) {
+      win().Reshow.isLoad = T_TRUE;
+    }
   }
 
   componentDidCatch(error, info) {
@@ -98,7 +101,7 @@ class Reshow extends PureComponent {
     } else {
       console.error([error, info]);
     }
-    this.setState({ hasError: true });
+    this.setState({ hasError: T_TRUE });
   }
 
   render() {
