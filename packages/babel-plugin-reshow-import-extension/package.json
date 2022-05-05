@@ -1,0 +1,41 @@
+{
+  "version": "0.0.2",
+  "name": "babel-plugin-reshow-import-extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/babel-plugin-reshow-import-extension"
+  },
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/babel-plugin-reshow-import-extension",
+  "description": "TODO: description",
+  "keywords": [],
+  "author": "Hill <hill@kimo.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "*",
+    "@babel/template": "*",
+    "reshow-runtime": "*"
+  },
+  "devDependencies": {
+    "reshow-unit-dom": "*"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./resolveExt": "./src/resolveExt.js"
+  },
+  "scripts": {
+    "mochaFor": "mocha -r jsdom-global/register",
+    "mocha": "npm run mochaFor -- 'src/**/__tests__/*.js'",
+    "test": "npm run mocha",
+    "prepublishOnly": "echo 'build'"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "src"
+  ],
+  "engines": {
+    "node": ">=14"
+  }
+}

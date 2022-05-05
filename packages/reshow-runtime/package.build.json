@@ -1,6 +1,6 @@
 {
   "name": "reshow-runtime",
-  "version": "0.17.4",
+  "version": "0.17.5",
   "description": "Babel runtime alternative",
   "repository": "react-atomic/reshow",
   "keywords": [
@@ -56,6 +56,7 @@
     "./helpers/possibleConstructorReturn": "./helpers/possibleConstructorReturn.js",
     "./helpers/readOnlyError": "./helpers/readOnlyError.js",
     "./helpers/refError": "./helpers/refError.js",
+    "./helpers/resolveExt": "./helpers/resolveExt.js",
     "./helpers/setPrototypeOf": "./helpers/setPrototypeOf.js",
     "./helpers/slicedToArray": "./helpers/slicedToArray.js",
     "./helpers/taggedTemplateLiteral": "./helpers/taggedTemplateLiteral.js",
@@ -97,6 +98,7 @@
     "./es/helpers/possibleConstructorReturn": "./es/helpers/possibleConstructorReturn.mjs",
     "./es/helpers/readOnlyError": "./es/helpers/readOnlyError.mjs",
     "./es/helpers/refError": "./es/helpers/refError.mjs",
+    "./es/helpers/resolveExt": "./es/helpers/resolveExt.mjs",
     "./es/helpers/setPrototypeOf": "./es/helpers/setPrototypeOf.mjs",
     "./es/helpers/slicedToArray": "./es/helpers/slicedToArray.mjs",
     "./es/helpers/taggedTemplateLiteral": "./es/helpers/taggedTemplateLiteral.mjs",
