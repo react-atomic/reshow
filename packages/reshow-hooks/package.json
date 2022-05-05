@@ -1,5 +1,5 @@
 {
-  "version": "0.17.7",
+  "version": "0.17.8",
   "name": "reshow-hooks",
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "call-func": "*"
+    "call-func": "*",
+    "reshow-constant": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
