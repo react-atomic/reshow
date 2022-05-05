@@ -1,13 +1,5 @@
 const { parseSync } = require("@babel/core");
-const { default: template } = require("@babel/template");
 const resolveExt = require("reshow-runtime/helpers/resolveExt");
-
-const buildImport = template(
-  `import resolveExt from 'reshow-runtime/helpers/resolveExt';`
-);
-const resolveExtLib = (filepath, extMapp) => resolveExt(filepath, extMapp);
-
-const astResolveExtension = () => parseSync(`(${resolveExtLib.toString()})`);
 
 const getOption = (state, key) => {
   const opts = state.opts || {};
@@ -31,10 +23,6 @@ module.exports = function ({ types: t }) {
   let root;
   return {
     visitor: {
-      Program(path) {
-        root = path;
-      },
-
       ImportDeclaration(path, state) {
         resetNodeSource(path, state);
       },
@@ -46,10 +34,6 @@ module.exports = function ({ types: t }) {
 
       // For dynamic import
       CallExpression(path, state) {
-        if (!imported) {
-          imported = true;
-          root.unshiftContainer("body", buildImport());
-        }
         const extMap = getOption(state, "extMapping");
         if (!extMap) {
           return;
@@ -58,16 +42,11 @@ module.exports = function ({ types: t }) {
           return;
         }
 
-        const astExtMapping = t.objectExpression(
-          Object.keys(extMap).map((key) =>
-            t.objectProperty(t.stringLiteral(key), t.stringLiteral(extMap[key]))
-          )
-        );
-
         const argument = path.get("arguments.0");
-        argument.replaceWith(
-          t.callExpression(astResolveExtension().program.body[0].expression, [argument.node, astExtMapping])
-        );
+        const nextPath = resolveExt(argument.node.quasis[0].value.raw, {
+          ...extMap,
+        });
+        argument.replaceWithSourceString(`"${nextPath}"`);
       },
     },
   };
