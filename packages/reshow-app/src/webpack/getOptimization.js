@@ -10,7 +10,6 @@ const getChunkConfig = ({ bustMode }) => ({
   filename:
     bustMode === "name" ? "[name].[fullhash:7].bundle.js" : "[name].bundle.js",
   enforce: true,
-  minSize: 171000,
   reuseExistingChunk: true,
 });
 
