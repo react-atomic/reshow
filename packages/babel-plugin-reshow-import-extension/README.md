@@ -12,7 +12,7 @@
 
 * `Add Import Extensions`
 
-```
+```js
 plugins: [
   ["reshow-import-extension", { extMapping: {"": "js"} }], // will add js extension
 ];
@@ -20,7 +20,7 @@ plugins: [
 
 * `Replace Import Extensions`
 
-```
+```js
 plugins: [
   ["reshow-import-extension", { extMapping: {"js": "mjs"} }], // will replace js extension with mjs
 ];
