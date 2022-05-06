@@ -2,8 +2,8 @@ import { NUMBER, UNDEFINED, T_NULL, IS_ARRAY } from "reshow-constant";
 
 import unsupportedIterableToArray, {
   NonIterableError,
-} from "./unsupportedIterableToArray.js";
-import typeIs from "./getTypeOf.js";
+} from "./unsupportedIterableToArray";
+import typeIs from "./getTypeOf";
 
 export default function _createForOfIteratorHelper(o, allowArrayLike) {
   var it;

@@ -1,7 +1,7 @@
 import { FUNCTION, KEYS } from "reshow-constant";
 
-import defineProperty from "./defineProperty.js";
-import typeIs from "./getTypeOf.js";
+import defineProperty from "./defineProperty";
+import typeIs from "./getTypeOf";
 
 export default function _objectSpread(target) {
   for (var i = 1, j = arguments.length; i < j; i++) {

@@ -1,6 +1,6 @@
-import _typeof from "./typeof.js";
-import setPrototypeOf from "./setPrototypeOf.js";
-import inherits from "./inherits.js";
+import _typeof from "./typeof";
+import setPrototypeOf from "./setPrototypeOf";
+import inherits from "./inherits";
 export default function _wrapRegExp() {
   _wrapRegExp = function _wrapRegExp(re, groups) {
     return new BabelRegExp(re, void 0, groups);

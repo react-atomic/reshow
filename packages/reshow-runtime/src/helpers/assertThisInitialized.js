@@ -1,4 +1,4 @@
-import refError from "./refError.js";
+import refError from "./refError";
 
 export default function _assertThisInitialized(self) {
   if (self === void 0) {

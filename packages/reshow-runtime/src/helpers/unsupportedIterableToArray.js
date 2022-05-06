@@ -1,4 +1,4 @@
-import arrayLikeToArray from "./arrayLikeToArray.js";
+import arrayLikeToArray from "./arrayLikeToArray";
 
 const NonIterableError =
   "Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.";

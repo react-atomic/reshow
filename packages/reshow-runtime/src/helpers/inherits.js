@@ -1,7 +1,7 @@
 import { FUNCTION } from "reshow-constant";
 
-import setPrototypeOf from "./setPrototypeOf.js";
-import typeIs from "./getTypeOf.js";
+import setPrototypeOf from "./setPrototypeOf";
+import typeIs from "./getTypeOf";
 
 export default function _inherits(subClass, superClass) {
   if (typeIs(superClass) !== FUNCTION && superClass !== null) {

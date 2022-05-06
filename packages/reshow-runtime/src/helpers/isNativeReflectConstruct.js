@@ -1,6 +1,6 @@
 import { FUNCTION, UNDEFINED } from "reshow-constant";
 
-import typeIs from "./getTypeOf.js";
+import typeIs from "./getTypeOf";
 
 export default function _isNativeReflectConstruct() {
   if (typeIs(Reflect) === UNDEFINED || !Reflect.construct) return false;

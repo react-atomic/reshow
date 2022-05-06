@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import sinon from "sinon";
 
-import initWorker from "../index.js";
+import initWorker from "../index";
 
 const Worker = () => ({ addEventListener: () => {} });
 
