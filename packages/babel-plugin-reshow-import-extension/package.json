@@ -8,7 +8,12 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/babel-plugin-reshow-import-extension",
   "description": "TODO: description",
-  "keywords": [],
+  "keywords": [
+    "Add import extension",
+    "Add import extensionis",
+    "Replace import extension",
+    "Replace import extensionis"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
