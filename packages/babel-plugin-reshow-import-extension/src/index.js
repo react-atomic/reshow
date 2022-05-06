@@ -38,7 +38,8 @@ module.exports = function ({ types: t }) {
         }
 
         const arg = path.get("arguments.0");
-        const nextPath = resolveExt(arg.node.quasis[0].value.raw, {
+        const value = arg.node.value || arg.node.quasis[0].value.raw;
+        const nextPath = resolveExt(value, {
           ...extMap,
         });
         arg.replaceWithSourceString(`"${nextPath}"`);
