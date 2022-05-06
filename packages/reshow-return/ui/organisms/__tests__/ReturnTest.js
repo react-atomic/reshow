@@ -121,7 +121,7 @@ describe("Test Return", () => {
     render(vDom);
     await act(() => {
       dispatch({ data: "foo" });
-    });
+    }, 10);
     expect(getRoleHtml("dom")).to.equal(`<div role="dom">foo</div>`);
   });
 
@@ -175,16 +175,16 @@ describe("Test Return", () => {
     count = spy.callCount;
     expect(count > 1, 1).to.be.true;
     await act(() => dispatch({ foo: "bar" }));
-    expect(count < spy.callCount).to.be.true;
+    expect(count < spy.callCount, 2).to.be.true;
     count = spy.callCount;
     await act(() => dispatch({ bar: "bar" }));
-    expect(count === spy.callCount, 2).to.be.true;
+    expect(count === spy.callCount, 3).to.be.true;
     count = spy.callCount;
     await act(() => gSet((prev) => ({ ...prev, bar: { bar: "b" } })));
-    expect(count < spy.callCount, 3).to.be.true;
+    expect(count < spy.callCount, 4).to.be.true;
     count = spy.callCount;
     await act(() => gSet((prev) => ({ ...prev, foo: { bar: "b" } })));
-    expect(count === spy.callCount, 4).to.be.true;
+    expect(count === spy.callCount, 5).to.be.true;
     expect(wrap.html()).to.equal(`<div data-state="bar" data-props="b"></div>`);
   });
 });
