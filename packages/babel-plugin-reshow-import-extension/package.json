@@ -1,5 +1,5 @@
 {
-  "version": "0.0.5",
+  "version": "0.0.6",
   "name": "babel-plugin-reshow-import-extension",
   "repository": {
     "type": "git",
@@ -9,10 +9,15 @@
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/babel-plugin-reshow-import-extension",
   "description": "TODO: description",
   "keywords": [
-    "Add import extension",
-    "Add import extensionis",
-    "Replace import extension",
-    "Replace import extensionis"
+    "add-import-extension",
+    "add-import-extensionis",
+    "replace-import-extension",
+    "replace-import-extensionis",
+    "add",
+    "replace",
+    "import",
+    "extension",
+    "extensions"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
@@ -34,11 +39,7 @@
     "test": "npm run mocha",
     "prepublishOnly": "echo 'build'"
   },
-  "files": [
-    "package.json",
-    "README.md",
-    "src"
-  ],
+  "files": ["package.json", "README.md", "src"],
   "engines": {
     "node": ">=14"
   }
