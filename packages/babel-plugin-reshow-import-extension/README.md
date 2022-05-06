@@ -15,7 +15,18 @@
 ```js
 plugins: [
   ["reshow-import-extension", { extMapping: {"": "js"} }], // will add js extension
-];
+]
+```
+
+* `Always Add Import Extensions (with white list)`
+
+```js
+plugins: [
+  ["reshow-import-extension", { extMapping: {"": "js", ".example": ".example"} }],
+]
+
+// input file: xxx.example will output xxx.example.js
+// input file: xxx.css will output xxx.css
 ```
 
 * `Replace Import Extensions`
@@ -23,7 +34,7 @@ plugins: [
 ```js
 plugins: [
   ["reshow-import-extension", { extMapping: {"js": "mjs"} }], // will replace js extension with mjs
-];
+]
 ```
 
 * Whole babel.config.js
