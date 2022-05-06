@@ -1,26 +1,31 @@
-export default (filepath, extMap) => {
-  if (0 !== filepath.indexOf(".")) {
-    return filepath; // not local import
+export default (filePath, extMap) => {
+  if (0 !== filePath.indexOf(".")) {
+    return filePath; // not local import
   }
 
-  const baseName = filepath.split("/").splice(-1)[0];
+  const baseName = filePath.split("/").splice(-1)[0];
   const extDotPos = baseName.lastIndexOf(".");
   const extNone = extMap[""];
   delete extMap[""];
   if (-1 === extDotPos) {
     // No extension
-    return extNone ? filepath + extNone : filepath;
+    return extNone ? filePath + extNone : filePath;
   }
 
-  const extPos = extDotPos + 1;
   const extKeys = Object.keys(extMap);
+  let nextPath = filePath;
+  let isFind;
   let i = extKeys.length;
   while (i--) {
-    const origExt = extKeys[i];
-    if (extPos === baseName.lastIndexOf(origExt)) {
-      filepath = filepath.slice(0, -origExt.length) + extMap[origExt];
+    const fromExt = extKeys[i];
+    if (extDotPos === baseName.lastIndexOf(fromExt)) {
+      nextPath = filePath.slice(0, -fromExt.length) + extMap[fromExt];
+      isFind = true;
       break;
     }
   }
-  return filepath;
+  if (extNone && nextPath === filePath && isFind) {
+    nextPath = filePath + extNone;
+  }
+  return nextPath;
 };

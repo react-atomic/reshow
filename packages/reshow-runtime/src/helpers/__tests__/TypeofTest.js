@@ -1,6 +1,7 @@
+import { expect } from "chai";
+
 import typeIs from "../getTypeOf";
 import helperTypeof from "../typeof";
-import { expect } from "chai";
 
 describe("Test typeof", () => {
   class FOO {}
