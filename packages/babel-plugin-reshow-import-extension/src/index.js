@@ -23,14 +23,9 @@ module.exports = function ({ types: t }) {
   let root;
   return {
     visitor: {
-      ImportDeclaration(path, state) {
-        resetNodeSource(path, state);
-      },
-
-      // For re-exporting
-      "ExportNamedDeclaration|ExportAllDeclaration"(path, state) {
-        resetNodeSource(path, state);
-      },
+      ImportDeclaration: resetNodeSource,
+      ExportAllDeclaration: resetNodeSource,
+      ExportNamedDeclaration: resetNodeSource,
 
       // For dynamic import
       CallExpression(path, state) {
@@ -38,15 +33,15 @@ module.exports = function ({ types: t }) {
         if (!extMap) {
           return;
         }
-        if (!path.node.callee || path.node.callee.type !== "Import") {
+        if (!path.get("callee").isImport()) {
           return;
         }
 
-        const argument = path.get("arguments.0");
-        const nextPath = resolveExt(argument.node.quasis[0].value.raw, {
+        const arg = path.get("arguments.0");
+        const nextPath = resolveExt(arg.node.quasis[0].value.raw, {
           ...extMap,
         });
-        argument.replaceWithSourceString(`"${nextPath}"`);
+        arg.replaceWithSourceString(`"${nextPath}"`);
       },
     },
   };

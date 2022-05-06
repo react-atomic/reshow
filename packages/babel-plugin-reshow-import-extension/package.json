@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.5",
   "name": "babel-plugin-reshow-import-extension",
   "repository": {
     "type": "git",
@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "*",
-    "@babel/template": "*",
     "reshow-runtime": "*"
   },
   "devDependencies": {

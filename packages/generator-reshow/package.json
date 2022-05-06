@@ -1,6 +1,6 @@
 {
   "name": "generator-reshow",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "Yeoman generator for reshow. (app, generator, ...etc)",
   "author": "Hill <hill@kimo.com>",
   "repository": {
@@ -8,9 +8,7 @@
     "url": "https://github.com/react-atomic/reshow",
     "directory": "packages/generator-reshow"
   },
-  "keywords": [
-    "yeoman-generator"
-  ],
+  "keywords": ["yeoman-generator"],
   "license": "ISC",
   "main": "",
   "dependencies": {
@@ -19,9 +17,7 @@
   "devDependencies": {
     "yo-unit": "*"
   },
-  "files": [
-    "generators"
-  ],
+  "files": ["generators"],
   "scripts": {
     "mochaFor": "mocha",
     "mocha": "npm run mochaFor -- 'generators/**/__tests__/*.js'",

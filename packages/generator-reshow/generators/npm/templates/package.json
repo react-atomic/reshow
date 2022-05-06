@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
-    "reshow-unit": "*"
+    "reshow-unit-dom": "*"
   },
   "main": "./build/cjs/src/index.js",
   "module": "./build/es/src/index.js",
