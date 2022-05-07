@@ -3,9 +3,9 @@ import Return from "reshow-return";
 import { toJS } from "reshow-flux";
 import { REAL_TIME_DATA_KEY, T_TRUE } from "reshow-constant";
 import get from "get-object-value";
+import callfunc from "call-func";
 import { AjaxPage } from "organism-react-ajax";
 import { doc, win } from "win-doc";
-import callfunc from "call-func";
 import { oneItemArrayToString } from "with-array";
 
 import updateCanonicalUrl, {
@@ -90,8 +90,12 @@ class Reshow extends PureComponent {
     // Server site version also need update Canonical
     initCanonicalUrl(this.props);
     if (win().Reshow) {
-      win().Reshow.isLoad = T_TRUE;
+      setTimeout(() => (win().Reshow.isLoad = T_TRUE));
     }
+  }
+
+  componentWillUnmount() {
+    isInit = false;
   }
 
   componentDidCatch(error, info) {
