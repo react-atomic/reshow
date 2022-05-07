@@ -30,4 +30,11 @@ describe("Test resolveExt", () => {
     const actual = resolveExt(path, extMap);
     expect(actual).to.equal("./xxx.mjs");
   });
+
+  it("test with loader", () => {
+    const path = "foo-loader!../index";
+    const extMap = { "": ".mjs" };
+    const actual = resolveExt(path, extMap);
+    expect(actual).to.equal("foo-loader!../index.mjs");
+  });
 });
