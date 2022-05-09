@@ -3383,9 +3383,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.118:
-  version "1.4.136"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.136.tgz#b6a3595a9c29d6d8f60e092d40ac24f997e4e7ef"
-  integrity sha512-GnITX8rHnUrIVnTxU9UlsTnSemHUA2iF+6QrRqxFbp/mf0vfuSc/goEyyQhUX3TUUCE3mv/4BNuXOtaJ4ur0eA==
+  version "1.4.137"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.137.tgz#186180a45617283f1c012284458510cd99d6787f"
+  integrity sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4243,9 +4243,9 @@ globals@^11.1.0, globals@^11.7.0:
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
 
 globals@^13.6.0, globals@^13.9.0:
-  version "13.13.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-13.13.0.tgz#ac32261060d8070e2719dd6998406e27d2b5727b"
-  integrity sha512-EQ7Q18AJlPwp3vUDL4mKA0KXrXyNIQyWon6T6XQiBQF0XHvRsiCSrWmmeATpUzdJN2HhWZU6Pdl0a9zdep5p6A==
+  version "13.14.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-13.14.0.tgz#daf3ff9b4336527cf56e98330b6f64bea9aff9df"
+  integrity sha512-ERO68sOYwm5UuLvSJTY7w7NP2c8S4UcXs3X1GBX8cwOr+ShOcDBbCY5mH4zxz0jsYCdJ8ve8Mv9n2YGJMB1aeg==
   dependencies:
     type-fest "^0.20.2"
 
@@ -6038,9 +6038,9 @@ organism-react-ajax@*:
     win-doc "*"
 
 organism-react-animate@*:
-  version "0.10.6"
-  resolved "https://registry.yarnpkg.com/organism-react-animate/-/organism-react-animate-0.10.6.tgz#3e470ac22ca413e2619d9eefc6ec804cd0ff115a"
-  integrity sha512-rZNcHA0hph7TbVIPhCiXQySrniELPREFc8v+BaBTm5T1t83btFioJBkjLLRt8j1MSFu3iKv7MaTzlO25jewqLQ==
+  version "0.10.13"
+  resolved "https://registry.yarnpkg.com/organism-react-animate/-/organism-react-animate-0.10.13.tgz#6b37ad386ee7089ed14ef2b7a15a0c771240de67"
+  integrity sha512-GS3hfGU891H4qX5MO5I0qmJTS/wbvwB4p6DrAjFY0Elel/isQ/iHECCzWSFUlWgACtZCvVxewz3hcgS6CKAgsQ==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -6991,9 +6991,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.17.17"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.17.tgz#b0415ff86a1628c4507452ba24779f01372c8c36"
-  integrity sha512-BIAopmJIyqqVnY9gmlnaE6AMSi5O/4W/HJN+QFl6Z6m+/YRN4SJpJjXUxIU1/oY5luF4AEaLJBg279wRykukLg==
+  version "0.17.19"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.19.tgz#14ece9a6986b5f3a32edbaba003d7fb3694807ee"
+  integrity sha512-XZ9sSiUZqXDmtQJmWCz5ln3PVNmGr4MD8nkK4IUG0BX5H3CS6a7MLpLmles5YJz7uvgn6nog+Refj1z1qp5t+Q==
   dependencies:
     array.dedup "*"
     array.merge "*"
@@ -7030,9 +7030,9 @@ reshow-return@*:
     win-doc "*"
 
 reshow-runtime@*, reshow-runtime@>=0.17.4:
-  version "0.17.7"
-  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.17.7.tgz#f0fb0d5cd44b226d4097867031f87943530164a9"
-  integrity sha512-U0PFRpIR9/RTS++XjE50V0CN1YK7UhfhYbd0l1wA54BZIozn/abUvyWRTvkSrV7sqr149hZG1Z91t1m2LjEQ8Q==
+  version "0.17.8"
+  resolved "https://registry.yarnpkg.com/reshow-runtime/-/reshow-runtime-0.17.8.tgz#048d5e3d2d67fe371a60dd71332e3ef4beafa276"
+  integrity sha512-aVUPjtS/35Ib2Pp5Cvpi1S7Yk5vQjMGrpR+a7EjgfqPK1d6iWFasi/g6TCtknQ2UvaipX5hrvh1m/o2VHYWjNA==
   dependencies:
     regenerator-runtime "^0.13.4"
     reshow-constant "*"
@@ -7315,9 +7315,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2, signal-exit@^3.0.3:
   integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
 
 sinon@*:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-13.0.2.tgz#c6a8ddd655dc1415bbdc5ebf0e5b287806850c3a"
-  integrity sha512-KvOrztAVqzSJWMDoxM4vM+GPys1df2VBoXm+YciyB/OLMamfS3VXh3oGh5WtrAGSzrgczNWFFY22oKb7Fi5eeA==
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-14.0.0.tgz#203731c116d3a2d58dc4e3cbe1f443ba9382a031"
+  integrity sha512-ugA6BFmE+WrJdh0owRZHToLd32Uw3Lxq6E6LtNRU+xTVBefx632h03Q7apXWRsRdZAJ41LB8aUfn2+O4jsDNMw==
   dependencies:
     "@sinonjs/commons" "^1.8.3"
     "@sinonjs/fake-timers" "^9.1.2"
