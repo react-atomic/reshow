@@ -1,4 +1,5 @@
 const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
+const { KEYS } = require("reshow-constant");
 
 /**
  * update-esm-export Generator
@@ -79,7 +80,9 @@ module.exports = class extends YoGenerator {
         if (this.options.n) {
           const diff = {};
           KEYS(exports).forEach((key) => {
-            if (exports[key] !== nextExports[key]) {
+            if (
+              JSON.stringify(exports[key]) !== JSON.stringify(nextExports[key])
+            ) {
               diff[key] = {
                 prev: exports[key],
                 next: nextExports[key],
