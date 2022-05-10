@@ -1,16 +1,24 @@
 // Stores
 export { default as pageStore } from "./stores/pageStore";
 export { default as realTimeStore } from "./stores/realTimeStore";
-export { default as localStorageStore } from "./stores/localStorageStore";
-export { default as sessionStorageStore } from "./stores/sessionStorageStore";
 export { default as messageStore } from "./stores/messageStore";
+export {
+  localStorageStore,
+  localValueStore,
+  sessionStorageStore,
+  sessionValueStore,
+} from "./stores/clientStorageStore";
 
 // dispatch
 export { default as dispatch } from "./dispatch";
 
 // hooks
-export { default as useSessionStorage } from "./hooks/useSessionStorage";
-export { default as useLocalStorage } from "./hooks/useLocalStorage";
+export {
+  useLocalStorage,
+  useLocalValue,
+  useSessionStorage,
+  useSessionValue,
+} from "./hooks/useStorage";
 
 // Ajax
 export { AjaxLink as ReLink, AjaxForm as ReForm } from "organism-react-ajax";
