@@ -1,16 +1,11 @@
-import { useEffect, useReducer } from "react";
-import callfunc from "call-func";
+import { useEffect } from "react";
 import { T_FALSE, T_TRUE } from "reshow-constant";
+import useEnable from "./useEnable";
 
 const useLoaded = (onChange) => {
-  const [isLoad, setIsLoad] = useReducer(
-    () => T_TRUE,
-    T_FALSE,
-    (bool) => callfunc(onChange, [bool]) ?? bool
-  );
+  const [isLoad, setIsLoad] = useEnable(T_TRUE, T_FALSE, onChange);
   useEffect(() => {
     setIsLoad();
-    callfunc(onChange, [T_TRUE]);
   }, []);
   return isLoad;
 };
