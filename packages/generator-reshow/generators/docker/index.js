@@ -35,7 +35,7 @@ module.exports = class extends YoGenerator {
 
     const prompts = [
       ...commonPrompt.mainName(this),
-      ...commonPrompt.desc(this),
+      ...commonPrompt.desc(this, {keyword: false}),
       ...commonPrompt.repository(this, {
         defaultRepositoryName: "[REPOSITORY_NAME]",
         defaultRepositoryOrgName: "[REPOSITORY_ORG_NAME]",

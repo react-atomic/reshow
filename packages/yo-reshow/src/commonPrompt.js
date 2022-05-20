@@ -3,20 +3,25 @@ const YoHelper = require("./YoHelper");
 
 const commonPrompt = {
   mainName,
-  desc: (oGen) => [
-    {
-      type: "input",
-      name: "description",
-      message: "Please input this description?",
-      default: "",
-    },
-    {
-      type: "input",
-      name: "keyword",
-      message: "Please input keyword?",
-      default: "",
-    },
-  ],
+  desc: (oGen, { keyword = true } = {}) => {
+    const nextPrompts = [
+      {
+        type: "input",
+        name: "description",
+        message: "Please input this description?",
+        default: "",
+      },
+    ];
+    if (keyword) {
+      nextPrompts.push({
+        type: "input",
+        name: "keyword",
+        message: "Please input keyword?",
+        default: "",
+      });
+    }
+    return nextPrompts;
+  },
   author: (oGen) => [
     {
       type: "input",
