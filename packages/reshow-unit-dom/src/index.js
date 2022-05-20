@@ -28,11 +28,14 @@ const hideConsoleError = (toThrow) => {
   }
 };
 
-const getSinon = () => {
+/**
+ * @see https://sinonjs.org/releases/latest/sandbox/
+ */
+const getSinon = (options) => {
   if (sinonWrapper.current) {
     sinonWrapper.current.restore();
   }
-  sinonWrapper.current = sinon.createSandbox();
+  sinonWrapper.current = sinon.createSandbox(options);
   return sinonWrapper.current;
 };
 
