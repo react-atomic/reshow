@@ -1,6 +1,6 @@
 {
   "name": "generator-reshow",
-  "version": "0.17.5",
+  "version": "0.17.6",
   "description": "Yeoman generator for reshow. (app, generator, ...etc)",
   "author": "Hill <hill@kimo.com>",
   "repository": {
