@@ -11,9 +11,6 @@ jobs:
     parameters:
       docker-tag:
         type: string
-      folder-prefix:
-        type: string
-        default: "<%= folderPrefix %>"
     executor: docker-publisher
     steps:
       - checkout
@@ -26,14 +23,16 @@ jobs:
       - run:
           name: Gen Docker file
           command: |
+            FOLDER_PREFIX=$(support/FOLDER_PREFIX.sh)
             ./build.sh << parameters.docker-tag >>
-            ls -la << parameters.folder-prefix >><< parameters.docker-tag >>
+            ls -la ${FOLDER_PREFIX}<< parameters.docker-tag >>
       - run:
           name: build Docker image
           command: |
+            FOLDER_PREFIX=$(support/FOLDER_PREFIX.sh)
             IMAGE_NAME=$(support/targetImage.sh)
             BUILD_VERSION=<< parameters.docker-tag >>
-            BUILD_FOLDER=<< parameters.folder-prefix >><< parameters.docker-tag >>
+            BUILD_FOLDER=${FOLDER_PREFIX}<< parameters.docker-tag >>
             BUILD_ARG=""
             docker build ${BUILD_ARG} -f ${BUILD_FOLDER}/Dockerfile \
               -t $IMAGE_NAME:${BUILD_VERSION} \
