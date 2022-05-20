@@ -2,7 +2,7 @@
 
 > Docker generator 
 
-## Usage
+## Environment Variables 
 
-```
-```
+* DOCKER_LOGIN
+* DOCKER_PASSWORD
