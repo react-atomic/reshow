@@ -1,9 +1,8 @@
 # `docker`
 
-> TODO: description 
+> Docker generator 
 
 ## Usage
 
 ```
-npx yonpx docker
 ```

@@ -19,6 +19,8 @@ describe("!! npm !!", () => {
         appNamee: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
+        repositoryName: "foo-repository-name",
+        repositoryOrgName: "foo-repository-org-name",
       },
     });
   });

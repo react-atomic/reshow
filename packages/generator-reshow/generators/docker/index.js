@@ -35,7 +35,7 @@ module.exports = class extends YoGenerator {
 
     const prompts = [
       ...commonPrompt.mainName(this),
-      ...commonPrompt.desc(this, {keyword: false}),
+      ...commonPrompt.desc(this, { keyword: false }),
       ...commonPrompt.repository(this, {
         defaultRepositoryName: "[REPOSITORY_NAME]",
         defaultRepositoryOrgName: "[REPOSITORY_ORG_NAME]",
@@ -71,15 +71,24 @@ module.exports = class extends YoGenerator {
     const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
       promptChain(promptChainLocator(nextPrompts))
     );
-    handleAnswers(answers);
+    handleAnswers(answers, (payload) => {
+      // add more payload
+      payload.folderPrefixGitIgnore = payload.folderPrefix
+        ? payload.folderPrefix + "*"
+        : "";
+      let imgName = payload.mainName;
+      if (payload.dockerImageName) {
+        imgName = payload.dockerImageName;
+        if (payload.dockerOrgName) {
+          imgName = `${payload.dockerOrgName}/${payload.dockerImageName}`;
+        }
+      }
+      payload.sourceImage = imgName; 
+      payload.targetImage = imgName; 
+    });
   }
 
   writing() {
-    this.payload.folderPrefixGitIgnore = this.payload.folderPrefix
-      ? this.payload.folderPrefix + "*"
-      : "";
-
-    this.env.options.nodePackageManager = "yarn";
     const { cp, chMainName } = YoHelper(this);
 
     // handle change to new folder
