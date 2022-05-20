@@ -5,7 +5,9 @@ DIR="$(
 )"
 sourceImage=$(${DIR}/../support/sourceImage.sh)
 pid=$$
+folderName=${PWD##*/}
 
-cli='env docker run --rm -it';
-cli+=" --name ${sourceImage}-${pid} ${sourceImage}";
-bash -c "$cli";
+cli='env docker run --rm -it'
+cli+=" --name ${folderName}_${pid} ${sourceImage}"
+echo $cli
+bash -c "$cli"
