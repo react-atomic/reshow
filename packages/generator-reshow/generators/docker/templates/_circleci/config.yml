@@ -20,12 +20,14 @@ jobs:
       - run:
           name: Log time
           command: date
-      - run:
-          name: Gen Docker file
-          command: |
-            FOLDER_PREFIX=$(support/FOLDER_PREFIX.sh)
-            ./build.sh << parameters.docker-tag >>
-            ls -la ${FOLDER_PREFIX}<< parameters.docker-tag >>
+      - run: FOLDER_PREFIX=$(support/FOLDER_PREFIX.sh)
+          FOLDER=${FOLDER_PREFIX}<< parameters.docker-tag >>
+          ./build.sh << parameters.docker-tag >>
+          ls -la ${FOLDER}
+          echo "###"
+          echo "# --- Dockerfile Content ---"
+          echo "###"
+          cat ${FOLDER}/Dockerfile
       - run:
           name: build Docker image
           command: |
