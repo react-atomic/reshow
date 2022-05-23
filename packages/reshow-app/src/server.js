@@ -17,6 +17,11 @@ const readStream = async (stream, { Buffer }) => {
   }
 };
 
+const processExit = () => {
+  process.stdout.write(SEPARATOR);
+  process.exit();
+};
+
 const getPipeWritable = ({ process }) => {
   const writable = new Stream.PassThrough();
   writable.setEncoding("utf8");
@@ -33,14 +38,12 @@ const getPipeWritable = ({ process }) => {
     output.error = error;
   });
   const completed = new Promise((resolve) => {
-    writable.on("finish", () => {
+    const handleResolve = () => {
       resolve();
-      process.exit();
-    });
-    writable.on("error", () => {
-      resolve();
-      process.exit();
-    });
+      processExit();
+    };
+    writable.on("finish", handleResolve);
+    writable.on("error", handleResolve);
   });
   return { writable, completed, output };
 };
@@ -48,12 +51,13 @@ const getPipeWritable = ({ process }) => {
 const render = {
   renderToString: (result, { process }) => {
     const len = result.length;
+    const buf = 1024;
     let last = 0;
     while (last < len) {
-      process.stdout.write(result.substr(last, 4096));
-      last += 4096;
+      process.stdout.write(result.substr(last, buf));
+      last += buf;
     }
-    process.exit();
+    processExit();
   },
   renderToPipeableStream: (result, { process }) => {
     const { writable, output } = getPipeWritable({ process });
