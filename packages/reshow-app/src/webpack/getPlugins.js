@@ -7,7 +7,7 @@ import getWorkbox from "./getWorkbox";
 import getHTML from "./getHTML";
 import getBundleAnalyzerPlugin from "./getBundleAnalyzerPlugin";
 import NginxPushPlugin from "./NginxPushPlugin";
-import Refresh from "./refresh";
+import Refresh from "./refresh/index";
 import { PRODUCTION } from "./const";
 
 const { AggressiveMergingPlugin, LimitChunkCountPlugin } = webpack.optimize;
