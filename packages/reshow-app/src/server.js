@@ -19,7 +19,7 @@ const readStream = async (stream, { Buffer }) => {
 
 const processExit = () => {
   process.stdout.write(SEPARATOR);
-  process.exit();
+  process.exit(0);
 };
 
 const getPipeWritable = ({ process }) => {

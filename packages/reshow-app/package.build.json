@@ -1,5 +1,5 @@
 {
-  "version": "0.17.58",
+  "version": "0.17.60",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -65,7 +65,8 @@
     "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json",
     "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- '{,!(node_modules)/**}/__tests__/*.js'",
-    "test": "npm run mocha"
+    "test": "npm run mocha",
+    "prepublishOnly": "npm t"
   },
   "files": [
     "README.md",
