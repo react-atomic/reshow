@@ -1,5 +1,5 @@
 {
-  "version": "0.17.61",
+  "version": "0.17.62",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "@swc/core": "1.2.173",
+    "@swc/core": "1.2.189",
     "ansi-html-community": "0.0.8",
     "array.polyfill": "*",
     "babel-loader": "^8.x",
