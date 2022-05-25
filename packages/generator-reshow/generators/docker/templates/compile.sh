@@ -70,6 +70,9 @@ build() {
   if [ ! -z "$VERSION" ]; then
     BUILD_ARG="$BUILD_ARG --build-arg VERSION=${VERSION}"
   fi
+  if [ ! -z "$ALT_VERSION" ]; then
+    BUILD_ARG="$BUILD_ARG --build-arg ALT_VERSION=${ALT_VERSION}"
+  fi
   echo build: ${DIR}/${DOCKER_FILE}
   if [ "x" != "x$NO_CACHE" ]; then
     echo nocache: ${NO_CACHE}
