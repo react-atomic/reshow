@@ -2,7 +2,7 @@
 
 
 
-Reshow (A simplified React cross-component state management)
+reshow.js (A simplified React cross-component state management)
 ===============
    * GIT
       * https://github.com/react-atomic/reshow
