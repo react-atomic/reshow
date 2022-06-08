@@ -1,12 +1,21 @@
 [![CircleCI](https://circleci.com/gh/react-atomic/reshow/tree/main.svg?style=svg)](https://circleci.com/gh/react-atomic/reshow/tree/main)
 
+
+
 Reshow (A simplified React cross-component state management)
 ===============
-   * react atomic ui for atom 
    * GIT
       * https://github.com/react-atomic/reshow
    * NPM
       * https://www.npmjs.com/package/reshow
+
+## 2022 new feature
+* React 18
+* Webpack5
+* ESM support
+* CRA like generate system.
+   * https://github.com/react-atomic/reshow/tree/main/packages/generator-reshow 
+
 
 ## Reshow new context api in codesandbox
 * https://codesandbox.io/s/kw61lwzlwv
