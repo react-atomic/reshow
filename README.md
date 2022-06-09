@@ -12,7 +12,7 @@ reshow.js (A simplified React cross-component state management)
 ## 🍬🍬🍬 2022 new feature 🍬🍬🍬
 * React 18 streaming render support
 * Webpack5
-* ESM support
+* ESM support (Native ES Modules in Node.js)
 * CRA like generate system.
    * https://github.com/react-atomic/reshow/tree/main/packages/generator-reshow 
 
