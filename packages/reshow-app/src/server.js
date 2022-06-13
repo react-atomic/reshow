@@ -17,7 +17,7 @@ const readStream = async (stream, { Buffer }) => {
   }
 };
 
-const processExit = () => {
+const processExit = (process) => {
   process.stdout.write(SEPARATOR);
   process.exit(0);
 };
@@ -40,7 +40,7 @@ const getPipeWritable = ({ process }) => {
   const completed = new Promise((resolve) => {
     const handleResolve = () => {
       resolve();
-      processExit();
+      processExit(process);
     };
     writable.on("finish", handleResolve);
     writable.on("error", handleResolve);
@@ -57,7 +57,7 @@ const render = {
       process.stdout.write(result.substr(last, buf));
       last += buf;
     }
-    processExit();
+    processExit(process);
   },
   renderToPipeableStream: (result, { process }) => {
     const { writable, output } = getPipeWritable({ process });

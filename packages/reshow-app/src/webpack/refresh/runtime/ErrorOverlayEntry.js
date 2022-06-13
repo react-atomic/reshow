@@ -3,7 +3,7 @@
 /* global __resourceQuery */
 
 import formatWebpackMessages from "./formatWebpackMessages";
-import ErrorOverlay from "../overlay";
+import ErrorOverlay from "../overlay/index";
 import {
   error as registerErrorHandler,
   unhandledRejection as registerUnhandledRejectionHandler,

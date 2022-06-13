@@ -56,7 +56,7 @@ module.exports = class extends YoGenerator {
         type: "input",
         name: "folderPrefix",
         message: "Please input your folder-prefix?",
-        default: "",
+        default: "ver-",
       },
       /*
       {
