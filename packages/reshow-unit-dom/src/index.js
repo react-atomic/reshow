@@ -34,6 +34,7 @@ const hideConsoleError = (toThrow) => {
 const getSinon = (options) => {
   if (sinonWrapper.current) {
     sinonWrapper.current.restore();
+    sinonWrapper.current = null;
   }
   sinonWrapper.current = sinon.createSandbox(options);
   return sinonWrapper.current;
