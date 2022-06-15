@@ -3880,9 +3880,9 @@ reshow-runtime@*, reshow-runtime@>=0.17.4:
     reshow-constant "*"
 
 reshow-unit-dom@*:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.0.12.tgz#49d848f12d96b8c96da9a6fa8e6601b5a2120c15"
-  integrity sha512-a0NY8SKqxWw2LPFBXtSubr89K6cbsoXR2lZjEFGPbfK0FBdHz+3zoVDlETYZgroQm+6a3xpKUQiTZeKHP491cw==
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.1.4.tgz#c8c31896bd1279c81a6fd0a2a2e6b756e3bf3529"
+  integrity sha512-PZPuRyVp42hxh3zH4x0KwCvQVWqKklE/rUjcZuGxesdBinJ0KVhxUaBPZoZzr+vw5Hrqo/IKtYagO5VOYZjWaQ==
   dependencies:
     chai "*"
     global-jsdom "*"
@@ -3910,9 +3910,9 @@ reshow-unit@^0.17.x:
     win-doc "*"
 
 reshow@^0.17.x:
-  version "0.17.16"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.16.tgz#07ba4ab0cdded4790a7d75cbb989941286a90648"
-  integrity sha512-aLu+p4m4N/HKrez5Qr66BL9T4If/hx/jrGzDQyZWA/JrIMqUCukP2H6KGaSzA0O0f/3YgHjAkVIvDhdcE5+w4w==
+  version "0.17.17"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.17.tgz#f0292d7aa53681a5307d37551115a69d8104c62b"
+  integrity sha512-/uA5qV+XbGepRCyuGT7aH+u42AyxFAFURzd2LlU0n/caqUY4hO68P8vQPeFttBlZKOVT7p/6oPbt4lpZCHueOw==
   dependencies:
     call-func "*"
     get-storage "*"

@@ -55,7 +55,7 @@
     "mochaFor": "STRICT_MODE=1 mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test && npm run format"
   },
   "files": [
     "build",

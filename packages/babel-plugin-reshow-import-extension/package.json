@@ -39,7 +39,11 @@
     "test": "npm run mocha",
     "prepublishOnly": "echo 'build'"
   },
-  "files": ["package.json", "README.md", "src"],
+  "files": [
+    "package.json",
+    "README.md",
+    "src"
+  ],
   "engines": {
     "node": ">=14"
   }
