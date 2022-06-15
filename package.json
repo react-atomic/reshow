@@ -1,5 +1,5 @@
 {
-  "version": "0.17.16",
+  "version": "0.17.17",
   "name": "reshow",
   "repository": {
     "type": "git",
@@ -55,7 +55,7 @@
     "mochaFor": "STRICT_MODE=1 mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",
-    "prepublishOnly": "npm run test && npm run format"
+    "prepublishOnly": "npm run test"
   },
   "files": [
     "build",

@@ -4,9 +4,7 @@
 
 import formatWebpackMessages from "./formatWebpackMessages";
 import ErrorOverlay from "../overlay/index";
-import {
-  unhandledRejection as registerUnhandledRejectionHandler,
-} from "./errorEventHandlers";
+import { unhandledRejection as registerUnhandledRejectionHandler } from "./errorEventHandlers";
 
 // Setup error states
 let isHotReload = false;

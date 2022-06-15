@@ -96,4 +96,4 @@ const unhandledRejection = createWindowEventHandler(
   createRejectionHandler
 );
 
-export {  unhandledRejection };
+export { unhandledRejection };

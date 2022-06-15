@@ -55,13 +55,10 @@ class Reshow extends PureComponent {
    */
   resetGlobalPath(path) {
     const { themes, defaultThemePath, themePath } = this.props;
-    if (!themes[path]) {
-      path = defaultThemePath || themePath;
-    }
     if (themes[path]) {
       globalStore.path = path;
     } else {
-      return themePath;
+      return defaultThemePath || themePath;
     }
     return globalStore.path;
   }
