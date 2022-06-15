@@ -25,6 +25,7 @@ class ClientRoute extends Reshow {
     ajax: false,
     goAnchorDelay: 1500,
     fallback: "div",
+    onHashChange: handleAnchor,
   };
 
   getPath() {
@@ -38,9 +39,9 @@ class ClientRoute extends Reshow {
   }
 
   getUrlChangeState(url) {
-    const { onUrlChange, goAnchorDelay } = this.props;
+    const { onUrlChange, onHashChange, goAnchorDelay } = this.props;
     const thisUrlChangeFunc = onUrlChange ? onUrlChange : defaultOnUrlChange;
-    return thisUrlChangeFunc(url)(handleAnchor)(goAnchorDelay);
+    return thisUrlChangeFunc(url)(onHashChange)(goAnchorDelay);
   }
 
   componentDidMount() {
