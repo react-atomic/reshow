@@ -1,5 +1,5 @@
 const Refresh = require("react-refresh/runtime");
-const ErrorOverlay = require("../overlay");
+const ErrorOverlay = require("../overlay/index");
 
 /**
  * Extracts exports from a webpack module object.

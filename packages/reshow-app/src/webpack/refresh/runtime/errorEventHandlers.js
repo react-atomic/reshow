@@ -90,10 +90,10 @@ function createWindowEventHandler(eventType, createHandler) {
   return register;
 }
 
-const error = createWindowEventHandler("error", createErrorHandler);
+// const error = createWindowEventHandler("error", createErrorHandler);
 const unhandledRejection = createWindowEventHandler(
   "unhandledrejection",
   createRejectionHandler
 );
 
-export { error, unhandledRejection };
+export {  unhandledRejection };

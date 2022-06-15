@@ -5,7 +5,6 @@
 import formatWebpackMessages from "./formatWebpackMessages";
 import ErrorOverlay from "../overlay/index";
 import {
-  error as registerErrorHandler,
   unhandledRejection as registerUnhandledRejectionHandler,
 } from "./errorEventHandlers";
 
@@ -74,10 +73,10 @@ function compileMessageHandler(message) {
 }
 
 // Registers handlers for runtime errors
-registerErrorHandler(function handleError(error) {
-  hasRuntimeErrors = true;
-  ErrorOverlay.handleRuntimeError(error);
-});
+// registerErrorHandler(function handleError(error) {
+//   hasRuntimeErrors = true;
+//   ErrorOverlay.handleRuntimeError(error);
+// });
 
 registerUnhandledRejectionHandler(function handleUnhandledPromiseRejection(
   error

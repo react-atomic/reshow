@@ -34,7 +34,7 @@ function RuntimeErrorStack(document, root, props) {
 
     const functionName = document.createElement("code");
     functionName.innerHTML =
-      "&emsp;" + currentStack.functionName || "(anonymous function)";
+      "&emsp;" + (currentStack.functionName || "(anonymous function)");
     functionName.style.color = "#" + theme.yellow;
     functionName.style.fontFamily = [
       '"Operator Mono SSm"',
