@@ -3910,9 +3910,9 @@ reshow-unit@^0.17.x:
     win-doc "*"
 
 reshow@^0.17.x:
-  version "0.17.17"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.17.tgz#f0292d7aa53681a5307d37551115a69d8104c62b"
-  integrity sha512-/uA5qV+XbGepRCyuGT7aH+u42AyxFAFURzd2LlU0n/caqUY4hO68P8vQPeFttBlZKOVT7p/6oPbt4lpZCHueOw==
+  version "0.17.18"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.18.tgz#bd7ae35c04b379fba18fe4ea7dc17569398b5d92"
+  integrity sha512-fcaNp/4YCaoe6uTjbuYGbBvZuW08StMpA3cnJ/GKjeOLpTncWU5wJdUpGOtgerNEU8Vmn9Qt94WcqyxG0iB/7Q==
   dependencies:
     call-func "*"
     get-storage "*"
