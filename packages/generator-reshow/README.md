@@ -9,3 +9,9 @@ npx yonpx reshow my-app
 cd my-app
 npm start
 ```
+
+## GIT
+https://github.com/react-atomic/reshow/tree/main/packages/generator-reshow
+
+## NPM
+https://www.npmjs.com/package/generator-reshow
