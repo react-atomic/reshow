@@ -1,5 +1,5 @@
 {
-  "version": "0.17.13",
+  "version": "0.17.14",
   "name": "reshow-url",
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "organism-react-ajax": "*",
     "reshow": "^0.17.x",
     "reshow-flux": "^0.17.x",
-    "reshow-runtime": "*"
+    "reshow-runtime": "*",
+    "win-doc": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",

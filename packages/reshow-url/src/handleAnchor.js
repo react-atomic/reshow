@@ -1,5 +1,6 @@
 import getOffset from "getoffset";
 import smoothScrollTo from "smooth-scroll-to";
+import { doc } from "win-doc";
 
 let goAnchorTimer;
 
@@ -22,9 +23,12 @@ const goToAnchor = (anchor) => (goAnchorDelay) => {
 };
 
 const getAnchorPath = (path) => {
+  if (!path) {
+    path = doc().URL;
+  }
   const pathArr = path.split("/#/");
   if (null != pathArr[1]) {
-    path = '/'+ pathArr[1];  
+    path = "/" + pathArr[1];
   }
   let anchor;
   const hashStart = path.indexOf("#");
