@@ -30,7 +30,7 @@ const getAnchorPath = (path) => {
   if (null != pathArr[1]) {
     path = "/" + pathArr[1];
   }
-  let anchor;
+  let anchor = "";
   const hashStart = path.indexOf("#");
   const anchorStart = -1 !== hashStart ? hashStart : path.indexOf("%23");
   if (-1 !== anchorStart) {
