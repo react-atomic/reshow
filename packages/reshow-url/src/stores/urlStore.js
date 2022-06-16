@@ -1,5 +1,5 @@
 import { createReducer } from "reshow-flux-base";
-import { KEYS } from "reshow-constant";
+import { KEYS, IS_ARRAY } from "reshow-constant";
 import { ajaxDispatch, ajaxStore } from "organism-react-ajax";
 import get from "get-object-value";
 import setUrl, { getUrl, unsetUrl } from "seturl";
@@ -92,6 +92,15 @@ const handleUrl = () => {
         if (!url) {
           console.error("Not assign url", action);
         }
+        break;
+      case "anchor":
+        let anchor;
+        if (IS_ARRAY(params)) {
+          anchor = params["anchor"];
+        } else {
+          anchor = params;
+        }
+        url = "#" + anchor;
         break;
       case "query":
       default:
