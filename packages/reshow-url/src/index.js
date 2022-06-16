@@ -6,4 +6,9 @@ export { default as UrlReturn } from "../ui/organisms/UrlReturn";
 export { default as ClientRoute } from "../ui/organisms/ClientRoute";
 
 // Library
-export { default as handleAnchor, goToAnchor } from "./handleAnchor";
+export {
+  default as handleAnchor,
+  goToAnchor,
+  disableHandleAnchor,
+  getAnchorPath,
+} from "./handleAnchor";

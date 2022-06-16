@@ -11,15 +11,17 @@ const goToAnchor = (anchor) => (goAnchorDelay) => {
   }
   clearTimeout(goAnchorTimer);
   goAnchorTimer = setTimeout(() => {
-    const dom = document.body.querySelector(anchor);
-    if (dom) {
-      const pos = getOffset(dom);
-      smoothScrollTo(pos.top);
-    }
+    try {
+      const dom = document.body.querySelector(anchor);
+      if (dom) {
+        const pos = getOffset(dom);
+        smoothScrollTo(pos.top);
+      }
+    } catch (e) {}
   }, goAnchorDelay);
 };
 
-const handleAnchor = (path) => (goAnchorDelay) => {
+const getAnchorPath = (path) => {
   let anchor;
   const hashStart = path.indexOf("#");
   const anchorStart = -1 !== hashStart ? hashStart : path.indexOf("%23");
@@ -27,6 +29,11 @@ const handleAnchor = (path) => (goAnchorDelay) => {
     anchor = urlDecode(path.substring(anchorStart));
     path = path.substring(0, anchorStart);
   }
+  return { anchor, path };
+};
+
+const handleAnchor = (rawPath) => (goAnchorDelay) => {
+  const { anchor, path } = getAnchorPath(rawPath);
   if (anchor) {
     goToAnchor(anchor)(goAnchorDelay);
   }
@@ -37,5 +44,7 @@ const handleAnchor = (path) => (goAnchorDelay) => {
   }
 };
 
-export { goToAnchor };
+const disableHandleAnchor = (path) => () => path;
+
+export { goToAnchor, disableHandleAnchor, getAnchorPath };
 export default handleAnchor;
