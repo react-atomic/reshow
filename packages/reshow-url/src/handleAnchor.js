@@ -22,6 +22,10 @@ const goToAnchor = (anchor) => (goAnchorDelay) => {
 };
 
 const getAnchorPath = (path) => {
+  const pathArr = path.split("/#/");
+  if (null != pathArr[1]) {
+    path = '/'+ pathArr[1];  
+  }
   let anchor;
   const hashStart = path.indexOf("#");
   const anchorStart = -1 !== hashStart ? hashStart : path.indexOf("%23");

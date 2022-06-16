@@ -50,7 +50,7 @@ describe("Test Url Return", () => {
   it("test get query", async () => {
     render(<FakeComponent urlKey="foo" />);
     await act(() => urlDispatch({ type: "query", params: { foo: "bar" } }), 5);
-    expect(uFake.el.props["foo"]).to.equal("bar");
+    await waitFor(()=>expect(uFake.el.props["foo"]).to.equal("bar"));
   });
 
   it("test trigger by history", async () => {
