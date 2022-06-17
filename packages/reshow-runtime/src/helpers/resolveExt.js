@@ -1,4 +1,7 @@
 export default (filePath, extMap) => {
+  if (!filePath) {
+    return filePath;
+  }
   if (0 !== filePath.indexOf(".") && -1 === filePath.indexOf("!.")) {
     return filePath; // not local import
   }
