@@ -10,7 +10,8 @@ reshow.js (A simplified React cross-component state management)
       * https://www.npmjs.com/package/reshow
 
 ## 🍬🍬🍬 2022 new feature 🍬🍬🍬
-* React 18 streaming render support
+* React 18: streaming server-rendering [SSR]
+* Prettier + ESLint8  🎉 🎉
 * Webpack5
 * ESM support (Native ES Modules in Node.js)
 * CRA like generate system.
