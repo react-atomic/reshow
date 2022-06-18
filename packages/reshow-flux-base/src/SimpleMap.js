@@ -3,11 +3,22 @@ import { OBJECT } from "reshow-constant";
 
 class SimpleMap {
   _state = {};
+  _update = false;
 
-  constructor(obj) {
+  constructor(obj, needUpdate) {
     if (obj) {
       this._state = obj;
     }
+    if (needUpdate) {
+      this._update = needUpdate;
+    }
+  }
+
+  renew(state) {
+    if (this._update) {
+      this._state = state;
+    }
+    return new SimpleMap(state);
   }
 
   get(k) {
@@ -18,13 +29,13 @@ class SimpleMap {
 
   set(k, v) {
     const state = { ...this._state, [k]: toJS(v) };
-    return new SimpleMap(state);
+    return this.renew(state);
   }
 
   delete(k) {
     const state = { ...this._state };
     delete state[k];
-    return new SimpleMap(state);
+    return this.renew(state);
   }
 
   merge(arr) {
@@ -32,7 +43,7 @@ class SimpleMap {
       ...this._state,
       ...toJS(arr),
     };
-    return new SimpleMap(state);
+    return this.renew(state);
   }
 
   toJS() {
