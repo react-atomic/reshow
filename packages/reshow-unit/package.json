@@ -1,5 +1,5 @@
 {
-  "version": "0.17.19",
+  "version": "0.17.20",
   "name": "reshow-unit",
   "repository": {
     "type": "git",
@@ -8,13 +8,7 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit",
   "description": "Reshow Unit Test Pack",
-  "keywords": [],
-  "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.js",
-  "exports": {
-    "require": "./build/cjs/src/index.js",
-    "import": "./build/es/src/index.mjs"
-  },
+  "keywords": ["@testing-library"],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -32,6 +26,12 @@
     "react": "^18.x",
     "react-dom": "^18.x"
   },
+  "exports": {
+    "require": "./build/cjs/src/index.js",
+    "import": "./build/es/src/index.mjs"
+  },
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.js",
   "scripts": {
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",
     "clean": "find ./build -name '*.*' | xargs rm -rf",

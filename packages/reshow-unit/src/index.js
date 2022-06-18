@@ -32,8 +32,15 @@ if (STRICT_MODE) {
   console.log("STRICT_MODE: on");
 }
 
-// https://github.com/testing-library/react-testing-library/issues/1025
-global.IS_REACT_ACT_ENVIRONMENT = true;
+/**
+ * Fix The current testing environment is not configured to support act(…)
+ *
+ * @see https://github.com/testing-library/react-testing-library/issues/1025
+ * @see https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html
+ */
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+
+
 // https://testing-library.com/docs/queries/about/#screen
 const screen = () => getQueriesForElement(doc(), queries);
 const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
