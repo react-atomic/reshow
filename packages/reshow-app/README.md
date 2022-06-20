@@ -7,8 +7,12 @@ Reshow app skeleton share files
 
 
 ## transform-runtime (how to set reshow-transform-runtime versions?)
+* Latest version check here
+   * https://www.npmjs.com/package/@babel/runtime
+* Other doc
    * https://www.npmjs.com/package/@babel/plugin-transform-runtime
    * https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-runtime
+
 
 ## link babel config
 ln -s ./node_modules/reshow-app/.babelrc
