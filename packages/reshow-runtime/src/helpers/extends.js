@@ -1,10 +1,11 @@
-var _extends =
+import { HAS } from "reshow-constant";
+const _extends =
   Object.assign ||
   function (target) {
-    for (var i = 1, j = arguments.length; i < j; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
+    for (let i = 1, j = arguments.length; i < j; i++) {
+      const source = arguments[i];
+      for (let key in source) {
+        if (HAS(source, key)) {
           target[key] = source[key];
         }
       }

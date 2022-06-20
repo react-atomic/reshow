@@ -18,5 +18,5 @@ export const HAS = (obj, key) =>
   !!(obj && Object.prototype.hasOwnProperty.call(obj, key));
 
 // reshow specific
-export const REAL_TIME_URL = "--real-time-url--";
-export const REAL_TIME_DATA_KEY = "--real-time-data-key--";
+export const REAL_TIME_URL = "--rtime-url--";
+export const REAL_TIME_DATA_KEY = "--rtime-data--";

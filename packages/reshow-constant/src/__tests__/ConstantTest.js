@@ -126,9 +126,9 @@ describe("Test FUNCTION", () => {
 
 describe("Test Reshow Specific", () => {
   it("test REAL_TIME_URL", () => {
-    expect(REAL_TIME_URL).to.equal("--real-time-url--");
+    expect(REAL_TIME_URL).to.equal("--rtime-url--");
   });
   it("test REAL_TIME_DATA_KEY", () => {
-    expect(REAL_TIME_DATA_KEY).to.equal("--real-time-data-key--");
+    expect(REAL_TIME_DATA_KEY).to.equal("--rtime-data--");
   });
 });
