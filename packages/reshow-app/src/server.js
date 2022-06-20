@@ -4,14 +4,19 @@ import build from "reshow-build";
 import Stream from "readable-stream";
 
 const SEPARATOR = "\r\n\r\n";
+let init = false;
 
-const readStream = async (stream, { Buffer }) => {
+const readStream = async (stream, { process, Buffer }) => {
   const reader = stream.getReader();
   const arr = [];
   while (true) {
     const { done, value } = await reader.read();
     if (done) {
       return Buffer.concat(arr).toString("utf-8");
+    }
+    if (!init) {
+      init = true;
+      process.stdout.write(SEPARATOR);
     }
     arr.push(Buffer.from(value));
   }
@@ -26,7 +31,6 @@ const getPipeWritable = ({ process }) => {
   const writable = new Stream.PassThrough();
   writable.setEncoding("utf8");
   const output = { result: "", error: undefined };
-  let init = false;
   writable.on("data", (chunk) => {
     if (!init) {
       init = true;
@@ -65,7 +69,7 @@ const render = {
   },
   renderToReadableStream: (oPromise, { process, Buffer }) => {
     oPromise.then(async (stream) => {
-      const result = await readStream(stream, { Buffer });
+      const result = await readStream(stream, { process, Buffer });
       render.renderToString(result, { process });
     });
   },
@@ -89,7 +93,7 @@ const server =
       flag: "r",
     });
     const result = ReactServer[renderTo](build(app)(JSON.parse(inputData)));
-    if ("renderToPipeableStream" !== renderTo) {
+    if ("renderToString" === renderTo) {
       process.stdout.write(SEPARATOR);
     }
     render[renderTo](result, { process, Buffer });
