@@ -1,5 +1,4 @@
 import callfunc from "call-func";
-import get from "get-object-value";
 
 const storeLocator = (props) => props?.store;
 

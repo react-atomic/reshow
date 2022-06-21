@@ -1,5 +1,4 @@
 import { createReducer } from "reshow-flux-base";
-import get from "get-object-value";
 import { localStorage, sessionStorage, Storage } from "get-storage";
 import { win } from "win-doc";
 

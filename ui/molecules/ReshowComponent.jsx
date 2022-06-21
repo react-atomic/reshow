@@ -1,7 +1,6 @@
 import build from "reshow-build";
 import { connectOptions, getReturn } from "reshow-return";
 import { useConnect } from "reshow-flux";
-import get from "get-object-value";
 
 import pageStore from "../../src/stores/pageStore";
 import { globalStore } from "../../src/stores/globalStore";

@@ -8,7 +8,9 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-unit",
   "description": "Reshow Unit Test Pack",
-  "keywords": ["@testing-library"],
+  "keywords": [
+    "@testing-library"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {

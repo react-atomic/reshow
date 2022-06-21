@@ -40,7 +40,6 @@ if (STRICT_MODE) {
  */
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-
 // https://testing-library.com/docs/queries/about/#screen
 const screen = () => getQueriesForElement(doc(), queries);
 const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
