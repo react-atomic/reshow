@@ -15,6 +15,11 @@ const forEachMap = (maybeMap, cb) => {
     maybeMap.forEach(cb);
   } else {
     if (STRING === typeof maybeMap) {
+      /**
+       * Use with mergeMap
+       * will set string with key type such as
+       * { type: "this-string" }
+       */
       cb(maybeMap, "type");
     } else {
       KEYS(maybeMap).forEach((k) => cb(maybeMap[k], k));
