@@ -176,7 +176,7 @@ describe("Test Return", () => {
     count = spy.callCount;
     expect(count > 1, 1).to.be.true;
     await act(() => dispatch({ foo: "bar" }));
-    await waitFor(()=>expect(count < spy.callCount, 2).to.be.true);
+    await waitFor(() => expect(count < spy.callCount, 2).to.be.true);
     count = spy.callCount;
     await act(() => dispatch({ bar: "bar" }));
     expect(count === spy.callCount, 3).to.be.true;

@@ -1,11 +1,5 @@
 import { expect } from "chai";
-import {
-  act,
-  render,
-  getRoleHtml,
-  cleanIt,
-  waitFor,
-} from "reshow-unit";
+import { act, render, getRoleHtml, cleanIt, waitFor } from "reshow-unit";
 
 import { popupDispatch, PopupPool } from "organism-react-popup";
 

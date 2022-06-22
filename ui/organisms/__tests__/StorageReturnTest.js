@@ -54,7 +54,7 @@ describe("Test Storage Return", () => {
   it("test get session storage", async () => {
     const wrap = render(<FakeComponent storage={sessionStorageStore} />);
     const uString = "test456";
-    await act(()=>dispatch("session", { data: uString }), 5);
+    await act(() => dispatch("session", { data: uString }), 5);
     expect(uFake.el.props.data).to.equal(uString);
   });
 });

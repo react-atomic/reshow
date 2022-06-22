@@ -68,16 +68,17 @@ describe("Test RealTimeReturn", () => {
 
   it("test realtime reset", async () => {
     uWrap = render(<FakeComponent realTimeReset={true} />);
-    await act(() =>
-      dispatch({
-        type: "realTime",
-        params: { [REAL_TIME_DATA_KEY]: { data: "bar" } },
-      }),
+    await act(
+      () =>
+        dispatch({
+          type: "realTime",
+          params: { [REAL_TIME_DATA_KEY]: { data: "bar" } },
+        }),
       5
     );
     expect(uFake.el.props.data).to.equal("bar");
     dispatch("realTime");
-    await act(()=>dispatch({ data: "foo" }), 5);
+    await act(() => dispatch({ data: "foo" }), 5);
     expect(uFake.el.props.data).to.be.null;
   });
 });

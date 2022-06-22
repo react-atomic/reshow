@@ -17,6 +17,8 @@ describe("Test Reshow Component", () => {
     const wrapper = render(
       <Reshow themes={{ hello: <div>Hello World!</div> }} themePath="hello" />
     );
-    await waitFor(()=>expect(wrapper.html()).to.equal("<div>Hello World!</div>"));
+    await waitFor(() =>
+      expect(wrapper.html()).to.equal("<div>Hello World!</div>")
+    );
   });
 });

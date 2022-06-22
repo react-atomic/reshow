@@ -71,15 +71,17 @@ describe("Test Section", () => {
     const wrap = render(<FakeComponent immutable />);
     await act(
       () =>
-        dispatch(fromJS({
-          section: {
-            test: {
-              shouldRender: true,
-              aaa: { bbb: "ccc" },
+        dispatch(
+          fromJS({
+            section: {
+              test: {
+                shouldRender: true,
+                aaa: { bbb: "ccc" },
+              },
             },
-          },
-          I18N: { ddd: "fff" },
-        })),
+            I18N: { ddd: "fff" },
+          })
+        ),
       3
     );
     expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
