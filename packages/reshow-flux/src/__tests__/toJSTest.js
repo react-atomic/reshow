@@ -57,4 +57,10 @@ describe("Test toJS with immuteable", () => {
     expect(foo1).to.deep.equal({ foo: "bar" });
     expect(foo2).to.deep.equal({ foo: "bar1" });
   });
+
+  it("should restore all to js object", () => {
+    const foo1 = Map({ a: { foo1: "bar1" }, b: Map({ foo2: "bar2" }) });
+    const foo2 = toJS(foo1);
+    expect(foo2).to.deep.equal({ a: { foo1: "bar1" }, b: { foo2: "bar2" } });
+  });
 });
