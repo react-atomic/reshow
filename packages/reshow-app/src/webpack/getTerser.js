@@ -32,6 +32,9 @@ const getTerser = () =>
         topLevel: true,
         safari10: true,
       },
+      format: {
+        comments: false,
+      }
     },
   });
 
