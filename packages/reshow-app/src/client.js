@@ -1,4 +1,3 @@
-import "setimmediate";
 import "array.polyfill";
 import "es6-promise/auto"; // for webpack promise fixed
 import React from "react";
@@ -30,18 +29,16 @@ let bInitWorker = false;
 const client = (rawApp, { selector = "#app", serviceWorkerURL } = {}) => {
   const app = build(rawApp);
   win().Reshow = { render, app, update };
-  setImmediate(() => {
-    const data = UNDEFINED !== typeof REACT_DATA ? REACT_DATA : {};
-    const attachDom = doc().querySelector(selector);
-    if (attachDom) {
-      render(app(data), attachDom);
-    }
-    if (!bInitWorker) {
-      serviceWorkerURL = serviceWorkerURL ?? data.serviceWorkerURL;
-      initWorker({ serviceWorkerURL });
-      bInitWorker = true;
-    }
-  });
+  const data = UNDEFINED !== typeof REACT_DATA ? REACT_DATA : {};
+  const attachDom = doc().querySelector(selector);
+  if (attachDom) {
+    render(app(data), attachDom);
+  }
+  if (!bInitWorker) {
+    serviceWorkerURL = serviceWorkerURL ?? data.serviceWorkerURL;
+    initWorker({ serviceWorkerURL });
+    bInitWorker = true;
+  }
 };
 
 export default client;
