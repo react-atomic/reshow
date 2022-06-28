@@ -15,6 +15,7 @@ const getOutput = ({ path, confs, server }) => {
   } else {
     output.chunkFilename = "[id].[fullhash:7].bundle.js";
     output.hotUpdateChunkFilename = "[id].[fullhash:7].hot.js";
+    output.hotUpdateMainFilename = "[runtime].[fullhash:7].hot.js";
   }
   return output;
 };
