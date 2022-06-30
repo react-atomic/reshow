@@ -34,7 +34,7 @@ const getTerser = () =>
       },
       format: {
         comments: false,
-      }
+      },
     },
   });
 

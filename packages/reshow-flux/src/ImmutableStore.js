@@ -33,6 +33,7 @@ const MAP_SIZE = (maybeMap) =>
 /**
  * Why not just use immutable mergeMap?
  * Because after merge can not use === to compare
+ * https://github.com/react-atomic/reshow/issues/123
  */
 const mergeMap = (state, maybeMap) => {
   try {
