@@ -78,7 +78,7 @@ describe("useImmutable Test", () => {
     expect(gState.get("type")).to.be.undefined;
     await act(() => gSet("foo"), 5);
     expect(wrap.html()).to.equal("<div>bar</div>");
-    expect(gState.get("type")).to.equal("foo");
+    await waitFor(() => expect(gState.get("type")).to.equal("foo"));
   });
 
   /**
