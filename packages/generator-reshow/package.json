@@ -1,18 +1,18 @@
 {
+  "version": "0.17.23",
   "name": "generator-reshow",
-  "version": "0.17.22",
-  "description": "Yeoman generator for reshow. (app, generator, ...etc)",
-  "author": "Hill <hill@kimo.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/react-atomic/reshow",
     "directory": "packages/generator-reshow"
   },
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/generator-reshow",
+  "description": "Yeoman generator for reshow. (app, generator, ...etc)",
   "keywords": [
     "yeoman-generator"
   ],
+  "author": "Hill <hill@kimo.com>",
   "license": "ISC",
-  "main": "",
   "dependencies": {
     "yo-reshow": "*"
   },
