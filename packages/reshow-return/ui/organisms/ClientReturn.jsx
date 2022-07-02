@@ -3,22 +3,26 @@ import { useLoaded } from "reshow-hooks";
 import { hasWin, win } from "win-doc";
 import { connectOptions } from "reshow-return";
 
+const hydrate = win().Reshow?.hydrate;
+
 /**
  * Example: https://github.com/react-atomic/reshow/blob/main/packages/reshow-url/ui/organisms/UrlReturn.jsx
  */
-const ClientReturn = (comp, cleanProps) => (props) => {
-  const hydrate = win().Reshow?.hydrate;
-  if (hydrate || !hasWin()) {
-    const isLoad = useLoaded();
-    if (isLoad) {
-      return build(comp)(props);
+const ClientReturnHoc = (comp, cleanProps) => {
+  const ClientReturn = (props) => {
+    if (hydrate || !hasWin()) {
+      const isLoad = useLoaded();
+      if (isLoad) {
+        return build(comp)(props);
+      } else {
+        const { children, backfillProps, ...restProps } = props;
+        return build(children)(connectOptions.reset(restProps, cleanProps));
+      }
     } else {
-      const { children, backfillProps, ...otherProps } = props;
-      return build(children)(connectOptions.reset(otherProps, cleanProps));
+      return build(comp)(props);
     }
-  } else {
-    return build(comp)(props);
-  }
+  };
+  return ClientReturn;
 };
 
-export default ClientReturn;
+export default ClientReturnHoc;
