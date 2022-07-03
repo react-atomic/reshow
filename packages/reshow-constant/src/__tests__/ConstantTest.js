@@ -16,6 +16,7 @@ import {
   KEYS,
   IS_ARRAY,
   OBJ_SIZE,
+  NEW_OBJ,
   HAS,
   REAL_TIME_URL,
   REAL_TIME_DATA_KEY,
@@ -104,6 +105,13 @@ describe("Test FUNCTION", () => {
       expect(OBJ_SIZE({ foo: "bar" })).to.equal(1);
     });
   });
+
+  describe("Test NEW_OBJ", () => {
+    it("basic", () => {
+      expect(NEW_OBJ()).to.deep.equal({});
+    });
+  });
+
   describe("Test HAS", () => {
     it("test hasOwnProperty", () => {
       expect(HAS({ foo: "bar" }, "foo")).to.be.true;
