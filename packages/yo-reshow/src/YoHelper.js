@@ -66,11 +66,11 @@ const RUN_CP = (oGen) => (src, dest, options, bOverwrite) => {
  *
  * https://github.com/yeoman/environment/blob/main/lib/util/log.js
  */
-const RUN_SAY = (oGen) => (message) => {
+const RUN_SAY = (oGen) => (message, options = { maxLength: 30 }) => {
   if (STRING !== typeof message) {
     oGen.log(JSON.stringify(message, null, "\t"));
   } else {
-    oGen.log(YoSay(message, { maxLength: 30 }));
+    oGen.log(YoSay(message, options));
   }
 };
 
