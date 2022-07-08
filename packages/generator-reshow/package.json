@@ -8,9 +8,7 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/generator-reshow",
   "description": "Yeoman generator for reshow. (app, generator, ...etc)",
-  "keywords": [
-    "yeoman-generator"
-  ],
+  "keywords": ["yeoman-generator"],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
@@ -19,19 +17,19 @@
   "devDependencies": {
     "yo-unit": "*"
   },
-  "files": [
-    "generators"
-  ],
   "scripts": {
     "mochaFor": "mocha",
     "mocha": "npm run mochaFor -- 'generators/**/__tests__/*.js'",
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"
   },
+  "bugs": {
+    "url": "https://github.com/react-atomic/reshow/issues"
+  },
   "engines": {
     "node": ">=12"
   },
-  "bugs": {
-    "url": "https://github.com/react-atomic/reshow/issues"
-  }
+  "files": [
+    "generators"
+  ]
 }
