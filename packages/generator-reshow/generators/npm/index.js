@@ -85,6 +85,10 @@ module.exports = class extends YoGenerator {
         data.files = data.files.filter((f) => f !== "build");
         data.files.push("src");
       }
+      if (!this.payload.isUseWebpack) {
+        delete data.scripts["webpack"];
+        delete data.scripts["clean:webpack"];
+      }
       return data;
     });
   }
