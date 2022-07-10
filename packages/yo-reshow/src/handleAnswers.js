@@ -1,4 +1,5 @@
-const handleRepository = (payload) => {
+const handleRepository = (oGen) => {
+  const { payload } = oGen;
   if (!payload.repositoryName) {
     payload.repositoryName = payload.mainName;
   }
@@ -8,9 +9,16 @@ const handleRepository = (payload) => {
     url,
   };
   if (payload.babelRootMode) {
-    payload.repository.directory = `packages/${payload.mainName}`;
-    payload.repositoryHomepage =
-      url + `/tree/main/packages/${payload.mainName}`;
+    let pkgPath = `packages/${payload.mainName}`;
+    if (payload.repositoryName) {
+      const destFolder = oGen.destinationRoot();
+      const findRepositoryName = destFolder.lastIndexOf(payload.repositoryName);
+      if (-1 !== findRepositoryName) {
+        pkgPath = destFolder.substring(findRepositoryName+payload.repositoryName.length+1);
+      }
+    }
+    payload.repository.directory = pkgPath;
+    payload.repositoryHomepage = url + `/tree/main/${pkgPath}`;
   } else {
     payload.repositoryHomepage = url;
   }
@@ -37,7 +45,7 @@ const handleAnswers =
       oGen.payload.npmDependencies["reshow-app"] = "*";
     }
 
-    handleRepository(oGen.payload);
+    handleRepository(oGen);
     cb(oGen.payload);
   };
 

@@ -1,9 +1,11 @@
 const FS = require("fs");
 const PATH = require("path");
+const { STRING, FUNCTION, OBJ_SIZE } = require("reshow-constant");
+
+const getDestFolderName = require("./getDestFolderName");
 const isFile = require("./isFile");
 const isDir = require("./isDir");
 const unlink = require("./unlink");
-const { STRING, FUNCTION, OBJ_SIZE } = require("reshow-constant");
 
 // for app
 const YoSay = require("yosay");
@@ -77,7 +79,6 @@ const RUN_SAY = (oGen) => (message, options = { maxLength: 30 }) => {
 const YoHelper = (oGen) => {
   const mkdir = (dir) => mkdirp(oGen.destinationPath(dir));
   const chdir = (dir) => oGen.destinationRoot(dir);
-  const getDestFolderName = () => PATH.basename(oGen.destinationRoot());
   const cp = RUN_CP(oGen);
   const say = RUN_SAY(oGen);
 
@@ -128,10 +129,10 @@ const YoHelper = (oGen) => {
     say,
     cp,
     mkdir,
-    getDestFolderName,
+    getDestFolderName: () => getDestFolderName(oGen),
     chdir,
     chMainName: (name = oGen.mainName) => {
-      if (name !== getDestFolderName()) {
+      if (name !== getDestFolderName(oGen)) {
         chdir(name);
       }
     },

@@ -4,6 +4,7 @@ const { YoGenerator, YoHelper } = require("../index");
 
 class FakeGenerator extends YoGenerator {
   async prompting() {
+    const { handleAnswers } = YoHelper(this);
     const prompts = [
       {
         type: "confirm",
@@ -13,7 +14,11 @@ class FakeGenerator extends YoGenerator {
       },
     ];
     const answers = await this.prompt(prompts);
-    this.fakeName = answers.fakeName;
+    const destArr = this.destinationRoot().split('/');
+    answers.babelRootMode = true;
+    answers.repositoryName = destArr.slice(-3)[0];
+    answers.repositoryOrgName = "fake-org";
+    handleAnswers(answers);
   }
 
   writing() {
@@ -22,7 +27,7 @@ class FakeGenerator extends YoGenerator {
   }
 }
 
-describe("Chdir test", () => {
+describe("handleAnswers test", () => {
   let runResult;
   before(async () => {
     runResult = await YoTest({
@@ -40,9 +45,9 @@ describe("Chdir test", () => {
     }
   });
 
-  it("test chdir", () => {
+  it("test auto repository directory", () => {
     const { generator } = runResult;
-    const expected = generator.contextRoot + "/abc";
-    expect(generator.destinationPath()).to.equal(expected);
+    const payload = generator.payload;
+    expect(payload.repositoryHomepage).to.equal(`${payload.repository.url}/tree/main/${payload.repository.directory}`);
   });
 });
