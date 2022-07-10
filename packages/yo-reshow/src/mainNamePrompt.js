@@ -1,4 +1,4 @@
-const callfunc = require("call-func");
+const { default: callfunc } = require("call-func");
 const YoHelper = require("./YoHelper");
 
 const defaultI18n = {
@@ -12,11 +12,11 @@ const defaultI18n = {
 
 const mainNamePrompt = (oGen, i18n) => {
   const { say, getDestFolderName, getAllAns, exit } = YoHelper(oGen);
-  i18n = {...defaultI18n, ...i18n};
+  i18n = { ...defaultI18n, ...i18n };
 
   /**
    * How to use argument?
-   * @see https://yeoman.io/authoring/user-interactions.html#arguments 
+   * @see https://yeoman.io/authoring/user-interactions.html#arguments
    */
   oGen.argument("argMainName", { type: String, required: false });
   const { argMainName, namespace } = oGen.options;
@@ -24,12 +24,14 @@ const mainNamePrompt = (oGen, i18n) => {
 
   const prompts = [];
   if (!argMainName) {
-    say(callfunc(i18n.tip, [{namespace}]));
+    say(callfunc(i18n.tip, [{ namespace }]));
     prompts.push(
       {
         type: "confirm",
         name: "isReady",
-        message: callfunc(i18n.isReady, [{destFolderName: getDestFolderName()}]),
+        message: callfunc(i18n.isReady, [
+          { destFolderName: getDestFolderName() },
+        ]),
         default: false,
       },
       {

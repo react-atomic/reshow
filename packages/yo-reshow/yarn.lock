@@ -1072,11 +1072,12 @@ caching-transform@^4.0.0:
     write-file-atomic "^3.0.0"
 
 call-func@*:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.0.tgz#61eea53977950d804db5756b45c63077c735aa6e"
-  integrity sha512-yXRToF6k44kMf4Q3PwBUW9WTyPlX5u1YgevEXe9WbkUXlTcCb1QVFrW9nQd/NY7ZwlsSQ/L6/yOXQ6EM8PThVw==
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.3.tgz#7bea8156913b29a3ee144423abbdb3322a7ca296"
+  integrity sha512-n/mXeiXBmQ2PKK2os9F8Yf5D9bBhQrjVzbQihbodxAbq8SrpZm3O8W0SJiPOX0OSUZYUgwPrQiv5H5pl3o1ysg==
   dependencies:
     reshow-constant "*"
+    reshow-runtime "*"
 
 callsites@^3.0.0:
   version "3.1.0"
