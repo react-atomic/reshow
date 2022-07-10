@@ -63,7 +63,7 @@ const commonPrompt = {
     {
       type: "confirm",
       name: "babelRootMode",
-      message: "Do you plan use monorepo (sub-package) ?",
+      message: "will you push this under a monorepo (sub-package) ?",
       default: false,
       when: (response) => {
         const { getAllAns } = YoHelper(oGen);
