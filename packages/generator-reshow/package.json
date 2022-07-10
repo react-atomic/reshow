@@ -1,5 +1,5 @@
 {
-  "version": "0.17.26",
+  "version": "0.17.28",
   "name": "generator-reshow",
   "repository": {
     "type": "git",
@@ -8,7 +8,9 @@
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/generator-reshow",
   "description": "Yeoman generator for reshow. (app, generator, ...etc)",
-  "keywords": ["yeoman-generator"],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {

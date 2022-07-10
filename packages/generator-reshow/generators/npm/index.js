@@ -65,6 +65,10 @@ module.exports = class extends YoGenerator {
     // cp("yarn.lock");
 
     updateJSON("package.json", null, this.payload, (data) => {
+      const keywords = this.payload.keyword?.split(",");
+      if (keywords && keywords.length) {
+        data.keywords = keywords.map((s) => s.trim());
+      }
       data.repository = this.payload.repository;
       data.homepage = this.payload.repositoryHomepage;
       data.dependencies = {
