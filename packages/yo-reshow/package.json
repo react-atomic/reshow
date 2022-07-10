@@ -16,6 +16,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
+    "call-func": "*",
     "mkdirp": "1.0.4",
     "object-nested": "*",
     "parse-ini-string": "*",

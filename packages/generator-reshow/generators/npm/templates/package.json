@@ -8,7 +8,8 @@
   "author": "<%= authorName %> <<%= authorEmail %>>",
   "license": "ISC",
   "dependencies": {
-    "reshow-constant": "*"
+    "reshow-constant": "*",
+    "reshow-runtime": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
