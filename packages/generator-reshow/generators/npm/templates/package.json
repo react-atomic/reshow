@@ -14,8 +14,12 @@
     "@babel/cli": "^7.x",
     "reshow-unit-dom": "*"
   },
+  "exports": {
+    "require": "./build/cjs/src/index.js",
+    "import": "./build/es/src/index.mjs"
+  },
   "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.js",
+  "module": "./build/es/src/index.mjs",
   "bin": {
     "<%= mainName %>": "./build/cjs/src/index.js"
   },
@@ -34,6 +38,5 @@
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"],
-  "engines": { "node": ">=14" }
+  "files": ["build", "package.json", "README.md"]
 }
