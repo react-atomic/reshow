@@ -1071,6 +1071,14 @@ caching-transform@^4.0.0:
     package-hash "^4.0.0"
     write-file-atomic "^3.0.0"
 
+call-func@*:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.3.tgz#7bea8156913b29a3ee144423abbdb3322a7ca296"
+  integrity sha512-n/mXeiXBmQ2PKK2os9F8Yf5D9bBhQrjVzbQihbodxAbq8SrpZm3O8W0SJiPOX0OSUZYUgwPrQiv5H5pl3o1ysg==
+  dependencies:
+    reshow-constant "*"
+    reshow-runtime "*"
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -4972,10 +4980,11 @@ yeoman-test@*:
     temp-dir "^2.0.0"
 
 yo-reshow@*:
-  version "0.17.6"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.17.6.tgz#4a8ec0485fbd421dbf3f92fbcd885c61fc88d61d"
-  integrity sha512-yhOuUq3qXXOMuvg0XTU+hS7iRBzv8r74nZooiITijEC9noekHK777Z+7uWldrD3Xy9kOR0c7WE34pH3p8b9XjA==
+  version "0.17.10"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.17.10.tgz#d098afaef344b5022a5ad632687f2494c136c94e"
+  integrity sha512-dAhD+wEHDZxsMSnxWYb3/XV6rTSK/aZEqRpB+EM0FaSKin3PX729/jDsCqtkj05bx+3aEO/jkl3SNcM7shAF6Q==
   dependencies:
+    call-func "*"
     mkdirp "1.0.4"
     object-nested "*"
     parse-ini-string "*"
