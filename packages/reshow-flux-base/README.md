@@ -13,27 +13,24 @@
 
 ## Usage
 
+Accepts a reducer of type `(state, action) => newState`, and returns the current store with a dispatch method.
+
 ```js
 import { createReducer } from "reshow-flux-base";
 const [store, dispatch] = createReducer(reducer, initial[Arg|Function]);
+
+/**
+ * reducer -> (state, action) => newState
+ */
+
 ```
 
-Accepts a reducer of type `(state, action) => newState`, and returns the current store with a dispatch method.
-
-Store will have three method.
-1. getState
-1. addListener
-1. removeListener
-
-getState -> Return current state.
-
-addListener -> You could register any callback function such as react useState.
-
-removeListener -> Remove register callback, such as unmount a component.
-
+### `Store` will have three method.
 | *Methods* | *Explain* |
 | --- | --- |
 | getState | Return current state. |
+| addListener |You could register any callback function such as react useState. |
+| removeListener | Remove register callback, such as unmount a component. |
 
 
 ## `Full App Example`
