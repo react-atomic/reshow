@@ -2495,9 +2495,9 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@*:
-  version "0.17.22"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.22.tgz#4eccd3c3ea26776c3b0c425cb6b0d7f72f3f0789"
-  integrity sha512-Heo7xDXXdRM2BiHt8IEQrhBiwFXAGVKEmZY/CqeHKxZvDMchUWysevKRo4+5vf0wKy+t59r2e2hJuvuk9/FUZg==
+  version "0.17.23"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.23.tgz#82dca195eb28d5843e7244c9323a71a1b2b00cdb"
+  integrity sha512-7iJaPLFfTKnBN+D9htsgGGbWH+YgxHBetaW6NWYoaQPFDf83Lu3dwmFycG8KmFTbIryDfpf4hljjjPBU/3YpLw==
   dependencies:
     "@testing-library/react" "^13.x"
     "@testing-library/user-event" "^14.x"
