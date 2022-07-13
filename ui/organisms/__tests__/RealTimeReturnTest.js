@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 
 import { expect } from "chai";
-import { act, render, cleanIt } from "reshow-unit";
+import { act, render, waitFor, cleanIt } from "reshow-unit";
 import { REAL_TIME_DATA_KEY } from "reshow-constant";
 
 import { RealTimeReturn, Return, dispatch } from "../../../src/index";
@@ -41,15 +41,15 @@ describe("Test RealTimeReturn", () => {
 
   it("dispatch Page State first", async () => {
     uWrap = render(<FakeComponent />);
-    await act(() => dispatch({ data: "foo" }), 3);
-    expect(uFake.el.props.data).to.equal("foo");
+    await act(() => dispatch({ data: "foo" }));
+    await waitFor(() => expect(uFake.el.props.data).to.equal("foo"));
     await act(() => {
       dispatch({
         type: "realTime",
         params: { [REAL_TIME_DATA_KEY]: { data: "bar" } },
       });
     }, 3);
-    expect(uFake.el.props.data).to.equal("bar");
+    await waitFor(() => expect(uFake.el.props.data).to.equal("bar"));
   });
 
   it("dispatch Realtime State first and not reset", async () => {
@@ -62,7 +62,7 @@ describe("Test RealTimeReturn", () => {
     );
     expect(uFake.el.props.data).to.equal("bar");
     dispatch("realTime");
-    act(() => dispatch({ data: "foo" }));
+    await act(() => dispatch({ data: "foo" }));
     expect(uFake.el.props.data).to.equal("bar");
   });
 

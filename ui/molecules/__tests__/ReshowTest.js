@@ -8,9 +8,9 @@ import { waitFor, render, cleanIt } from "reshow-unit";
 
 describe("Test Reshow Component", () => {
   afterEach(() => {
-    cleanIt();
     dispatch("config/reset");
     globalStore.path = null;
+    cleanIt();
   });
 
   it("Reshow simple test", async () => {

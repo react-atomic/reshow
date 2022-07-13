@@ -52,24 +52,25 @@ const cleanIt = (props) => {
   cleanup();
 };
 
-const act = (cb, milliseconds = 1, debug) => {
+const act = async (cb, milliseconds = 1, debug) => {
   const start = getTimestamp();
   let timer;
-  const wait = (resolve) => {
-    const now = getTimestamp();
-    debug && console.log({ during: now - start, debug, start, now });
-    if (milliseconds + start > now) {
-      clearTimeout(timer);
-      timer = setTimeout(() => wait(resolve), 1);
-    } else {
-      resolve();
-    }
-  };
-  return new Promise((resolve) =>
-    rtlAct(() => {
-      cb();
-      wait(resolve);
-    })
+  await rtlAct(
+    () =>
+      new Promise((resolve, reject) => {
+        cb();
+        const wait = (resolve) => {
+          const now = getTimestamp();
+          debug && console.log({ during: now - start, debug, start, now });
+          if (milliseconds + start > now) {
+            clearTimeout(timer);
+            timer = setTimeout(() => wait(resolve), 1);
+          } else {
+            resolve();
+          }
+        };
+        wait(resolve);
+      })
   );
 };
 

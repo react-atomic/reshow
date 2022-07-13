@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { expect } from "chai";
 import { fromJS } from "reshow-flux";
-import { act, render, cleanIt } from "reshow-unit";
+import { act, render, waitFor, cleanIt } from "reshow-unit";
 
 import { Section, dispatch } from "../../../src/index";
 import { globalStore } from "../../../src/stores/globalStore";
@@ -57,8 +57,10 @@ describe("Test Section", () => {
         }),
       3
     );
-    expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
-    expect(uFake.el.props.I18N).to.deep.equal({ ddd: "fff" });
+    waitFor(() => {
+      expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
+      expect(uFake.el.props.I18N).to.deep.equal({ ddd: "fff" });
+    });
   });
 
   it("Section is not existed", async () => {
@@ -84,13 +86,15 @@ describe("Test Section", () => {
         ),
       3
     );
-    expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
-    expect(uFake.el.props.I18N.toJS()).to.deep.equal({ ddd: "fff" });
+    await waitFor(() => {
+      expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
+      expect(uFake.el.props.I18N.toJS()).to.deep.equal({ ddd: "fff" });
+    });
   });
 
-  it("Section is not existed with immutable", () => {
+  it("Section is not existed with immutable", async () => {
     const wrap = render(<FakeComponent name="xxx" immutable />);
-    act(() => dispatch({ section: null }));
+    await act(() => dispatch({ section: null }));
     expect("undefined" === typeof uFake.el).to.be.true;
   });
 
@@ -155,7 +159,7 @@ describe("Test Section", () => {
         }),
       5
     );
-    expect(uFake.el.getAttribute("name")).to.equal("test2");
+    waitFor(() => expect(uFake.el.getAttribute("name")).to.equal("test2"));
   });
 
   it("not pass name if one of child already have name", async () => {
@@ -192,7 +196,9 @@ describe("Test Section", () => {
         }),
       3
     );
-    expect(uFake.el1.getAttribute("name")).to.be.null;
-    expect(uFake.el2.getAttribute("name")).to.equal("test2");
+    waitFor(() => {
+      expect(uFake.el1.getAttribute("name")).to.be.null;
+      expect(uFake.el2.getAttribute("name")).to.equal("test2");
+    });
   });
 });
