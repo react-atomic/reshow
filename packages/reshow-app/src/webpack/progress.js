@@ -9,7 +9,6 @@ const defaultTips = [
 
 fs.writeFile("webpack.pid", process.pid + "", () => {});
 let spinner;
-let spinnTimer;
 let secTimer;
 
 const init = ({ confs }) => {
@@ -26,27 +25,17 @@ const init = ({ confs }) => {
     }, 100);
   }
 
-  if (!spinnTimer) {
-    spinnTimer = setInterval(() => {
-      if (tips.length) {
-        curTip = tips.shift();
-        spinner.text = `${curTip} [${curSec}]`;
-      }
-    }, confs.interval || 5000);
-  }
-
   if (!secTimer) {
     secTimer = setInterval(() => {
       curSec++;
+      if (tips.length && curSec % 5 === 0) {
+        curTip = tips.shift();
+      }
       spinner.text = `${curTip} [${curSec}]`;
     }, 1000);
   }
 
   return () => {
-    if (spinnTimer) {
-      clearInterval(spinnTimer);
-      spinnTimer = null;
-    }
     if (secTimer) {
       clearInterval(secTimer);
       secTimer = null;

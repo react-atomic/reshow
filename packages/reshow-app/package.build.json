@@ -1,5 +1,5 @@
 {
-  "version": "0.17.71",
+  "version": "0.17.72",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -9,12 +9,6 @@
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-app",
   "description": "Reshow App Files",
   "keywords": [],
-  "exports": {
-    "./client": "./client.js",
-    "./server": "./server.js",
-    "./webpack.client": "./webpack.client.js",
-    "./webpack.server": "./webpack.server.js"
-  },
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
@@ -59,6 +53,12 @@
     "which-typed-array": "1.1.7",
     "win-doc": "*",
     "workbox-webpack-plugin": "*"
+  },
+  "exports": {
+    "./client": "./client.js",
+    "./server": "./server.js",
+    "./webpack.client": "./webpack.client.js",
+    "./webpack.server": "./webpack.server.js"
   },
   "scripts": {
     "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json",
