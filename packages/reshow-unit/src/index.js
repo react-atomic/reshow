@@ -52,12 +52,12 @@ const cleanIt = (props) => {
   cleanup();
 };
 
-const act = async (cb, milliseconds = 1, debug) => {
+const act = (cb, milliseconds = 1, debug) => {
   const start = getTimestamp();
   let timer;
   const wait = (resolve) => {
     const now = getTimestamp();
-    debug && console.log({ debug, start, now }, now - start);
+    debug && console.log({ during: now - start, debug, start, now });
     if (milliseconds + start > now) {
       clearTimeout(timer);
       timer = setTimeout(() => wait(resolve), 1);
@@ -65,12 +65,11 @@ const act = async (cb, milliseconds = 1, debug) => {
       resolve();
     }
   };
-  await rtlAct(
-    () =>
-      new Promise((resolve, reject) => {
-        cb();
-        wait(resolve);
-      })
+  return new Promise((resolve) =>
+    rtlAct(() => {
+      cb();
+      wait(resolve);
+    })
   );
 };
 
@@ -99,6 +98,14 @@ const simulateEvent = (...p) => {
   return userEvent.setup(...p);
 };
 
+const sleep = (cb, delay) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      cb();
+      resolve();
+    }, delay);
+  });
+
 export {
   waitFor,
   waitForElementToBeRemoved,
@@ -106,6 +113,7 @@ export {
   render,
   screen,
   simulateEvent,
+  sleep,
   getRoleHtml,
   getSinon,
   cleanIt,
