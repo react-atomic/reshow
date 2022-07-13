@@ -31,6 +31,8 @@ addListener -> You could register any callback function such as react useState.
 
 removeListener -> Remove register callback, such as unmount a component.
 
+## `Full App Example`
+
 ```js
 const initialState = {count: 0};
 
