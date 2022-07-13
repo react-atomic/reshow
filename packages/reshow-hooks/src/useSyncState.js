@@ -4,15 +4,17 @@ import callfunc from "call-func";
 const useSyncState = (initState, setter = useState) => {
   const lastState = useRef();
   const [state, setState] = setter(() => {
-    const thisInitState = callfunc(initState);
-    lastState.current = thisInitState;
-    return thisInitState;
+    lastState.current = callfunc(initState);
+    return lastState.current;
   });
   const setSyncState = (nextState) => {
-    lastState.current = callfunc(nextState, [lastState.current]);
-    setState(lastState.current);
+    const change = callfunc(nextState, [lastState.current]);
+    if (lastState.current !== change) {
+      lastState.current = change;
+      setState(lastState.current);
+    }
   };
-  return [state, setSyncState, ()=>lastState.current];
+  return [state, setSyncState, () => lastState.current];
 };
 
 export default useSyncState;
