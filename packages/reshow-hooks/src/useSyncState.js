@@ -10,8 +10,7 @@ const useSyncState = (initState, setter = useState) => {
   const setSyncState = (nextState) => {
     const change = callfunc(nextState, [lastState.current]);
     if (lastState.current !== change) {
-      lastState.current = change;
-      setState(lastState.current);
+      lastState.current = setState(change) || change;
     }
   };
   return [state, setSyncState, () => lastState.current];
