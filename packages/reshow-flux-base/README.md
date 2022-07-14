@@ -25,7 +25,7 @@ const [store, dispatch] = createReducer(reducer, initial[Arg|Function]);
 
 ```
 
-### `Store` will have three method.
+### `Store` methods.
 | *Methods* | *Explain* |
 | --- | --- |
 | getState | Return current state. |
