@@ -1,4 +1,4 @@
-Reshow app skeleton share files
+Reshow app skeleton share files (Webpack Atomic)
 ===
 * GIT
    * https://github.com/react-atomic/reshow/tree/main/packages/reshow-app
@@ -14,8 +14,7 @@ Reshow app skeleton share files
    * https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-runtime
 
 
-## link babel config
-ln -s ./node_modules/reshow-app/.babelrc
+
 
 ## for develop
 * In reshow-app/build run 
