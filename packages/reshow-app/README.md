@@ -11,7 +11,7 @@ Reshow app skeleton share files (Webpack Atomic)
 https://github.com/react-atomic/react-atomic-ui/blob/main/webpack.config.js
 
 * Link App
-https://github.com/react-atomic/react-atomic-ui/blob/main/src/client.js
+https://github.com/react-atomic/react-atomic-ui/blob/main/src/client.js#L1-L5
 
 
 ## transform-runtime (how to set reshow-transform-runtime versions?)
