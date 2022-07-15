@@ -22,7 +22,7 @@ const getVendor = (chunkConfig) => ({
 
 const getLibVendor = (chunkConfig) => ({
   ...chunkConfig,
-  test: /[\/]node_modules[\/](reshow|react-atomic|organism-react)/,
+  test: /[\/]node_modules[\/](reshow|react-atomic|organism-react|ricon|class-lib|need-css|keyframe-css|easing-lib|hyphenate-style-name)/,
   name: "lib",
   priority: -10,
 });
