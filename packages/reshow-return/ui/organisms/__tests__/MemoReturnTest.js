@@ -4,7 +4,7 @@ import { act, render, getSinon as sinon } from "reshow-unit";
 import MemoReturn from "../MemoReturn";
 import build from "reshow-build";
 
-describe("Test OnlyReturn", () => {
+describe("Test MemoReturn", () => {
   it("basic test", () => {
     const Comp = (props) => <MemoReturn>{() => "div"}</MemoReturn>;
     const wrap = render(<Comp />);
@@ -39,7 +39,7 @@ describe("Test OnlyReturn", () => {
     expect(count2 < spy2.callCount, "3").to.be.true;
   });
 
-  it("render time test (children)", async () => {
+  it("render times test (children)", async () => {
     const spy1 = sinon().spy(() => {});
     const spy2 = sinon().spy(() => "div");
     let gSet;
