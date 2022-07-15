@@ -1,5 +1,6 @@
 import { isValidElement, cloneElement, createElement, Children } from "react";
 import {
+  OBJ_SIZE,
   STRING,
   FUNCTION,
   T_NULL,
@@ -43,9 +44,11 @@ const buildReact = (component, props, child) => {
   if (!component) {
     return T_NULL;
   }
-  const { children, ...otherProps } = props || {};
-  const params = [component, otherProps];
-  child = child || children;
+  const isValidComp = isValidElement(component);
+  if (isValidComp && !OBJ_SIZE(props) && null == child) {
+    return component;
+  }
+  const params = [component, props];
   if (child != T_NULL) {
     params.push(child);
   }
@@ -53,12 +56,10 @@ const buildReact = (component, props, child) => {
     STRING === typeof component &&
     component !== component.replace(/[^a-z]/g, "")
   ) {
-    return buildReact(<span>{component}</span>, otherProps);
+    const { children, ...restProps } = props;
+    return buildReact(<span>{component}</span>, restProps);
   } else {
-    return (isValidElement(component) ? cloneElement : createElement).apply(
-      T_NULL,
-      params
-    );
+    return (isValidComp ? cloneElement : createElement).apply(T_NULL, params);
   }
 };
 
