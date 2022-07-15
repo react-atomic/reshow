@@ -5,6 +5,14 @@ Reshow app skeleton share files (Webpack Atomic)
 * NPM
    * https://www.npmjs.com/package/reshow-app
 
+## Usage
+
+* Link webpack
+https://github.com/react-atomic/react-atomic-ui/blob/main/webpack.config.js
+
+* Link App
+https://github.com/react-atomic/react-atomic-ui/blob/main/src/client.js
+
 
 ## transform-runtime (how to set reshow-transform-runtime versions?)
 * Latest version check here
@@ -12,8 +20,6 @@ Reshow app skeleton share files (Webpack Atomic)
 * Other doc
    * https://www.npmjs.com/package/@babel/plugin-transform-runtime
    * https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-runtime
-
-
 
 
 ## for develop
