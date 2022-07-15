@@ -1,6 +1,4 @@
-import { PRODUCTION } from "./const";
-
-const getModule = ({ mode, HOT_UPDATE }) => {
+const getModule = () => {
   const module = {
     rules: [
       {

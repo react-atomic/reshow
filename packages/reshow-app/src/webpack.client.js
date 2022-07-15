@@ -42,7 +42,7 @@ const myWebpack = (root, main, lazyConfs) => {
       HOT_UPDATE,
       ENABLE_SW,
     }),
-    module: getModule({ mode, HOT_UPDATE }),
+    module: getModule(),
     resolve: getResolve({ confs, root }),
     resolveLoader: getResolveLoader({ root }),
     externals: confs.externals,
