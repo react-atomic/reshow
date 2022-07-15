@@ -62,39 +62,41 @@ const buildReact = (component, props, child) => {
   }
 };
 
-const build = (component, componentOption) => (props, child) => {
-  if (!component) {
-    return T_NULL;
-  }
-
-  const { wrap, doCallFunction } = componentOption || {};
-  if (wrap) {
-    if (FUNCTION !== typeof component && !isValidElement(component)) {
-      child = component;
-      component = wrap;
+const build =
+  (component, componentOption) =>
+  (props = {}, child) => {
+    if (!component) {
+      return T_NULL;
     }
-  }
 
-  if (component.map) {
-    // need locate before removeEmpty
-    props.key = T_UNDEFINED;
-  }
-  props = removeEmpty(props, T_TRUE);
+    const { wrap, doCallFunction } = componentOption || {};
+    if (wrap) {
+      if (FUNCTION !== typeof component && !isValidElement(component)) {
+        child = component;
+        component = wrap;
+      }
+    }
 
-  const run = (comp) =>
-    (isValidElement(comp) ? buildReact : buildFunc)(
-      comp,
-      props,
-      child,
-      componentOption
-    );
+    if (component.map) {
+      // need locate before removeEmpty
+      props.key = T_UNDEFINED;
+    }
+    props = removeEmpty(props, T_TRUE);
 
-  return component.map
-    ? Children.map(
-        component.map((comp) => run(comp)),
-        (c) => c
-      )
-    : run(component);
-};
+    const run = (comp) =>
+      (isValidElement(comp) ? buildReact : buildFunc)(
+        comp,
+        props,
+        child,
+        componentOption
+      );
+
+    return component.map
+      ? Children.map(
+          component.map((comp) => run(comp)),
+          (c) => c
+        )
+      : run(component);
+  };
 
 export default build;
