@@ -14,9 +14,9 @@ describe("test useDebounce", () => {
       return null;
     };
     render(<Comp />);
-    await sleep(()=>{
+    await sleep(() => {
       expect(spy.called).to.be.true;
-      expect(spy.callCount<=2).to.be.true;
-    }, 10); 
+      expect(spy.callCount <= 2).to.be.true;
+    }, 10);
   });
 });

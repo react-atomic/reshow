@@ -22,6 +22,6 @@ const getModule = () => {
 export default getModule;
 
 /**
- * Babel loader version 
+ * Babel loader version
  * https://github.com/react-atomic/reshow/blob/eb148172b810948e72499310e532308c4f83c339/packages/reshow-app/src/webpack/getModule.js
  */

@@ -5,18 +5,12 @@ import { render, act, cleanIt, getSinon as sinon } from "reshow-unit";
 import usePrevious from "../usePrevious";
 
 describe("test usePrevious", () => {
-
-  afterEach(()=>cleanIt());
+  afterEach(() => cleanIt());
 
   it("basic test", async () => {
     let hackGlobal;
     let i = 0;
-    const expectedPrev = [
-      undefined,
-      undefined,
-      "foo",
-      "bar"
-    ];
+    const expectedPrev = [undefined, undefined, "foo", "bar"];
 
     const FOO = (props) => {
       const prev = usePrevious(props.v);
@@ -28,7 +22,7 @@ describe("test usePrevious", () => {
     };
 
     let gSet;
-    const Comp = props => {
+    const Comp = (props) => {
       const [state, setState] = useState("foo");
       gSet = setState;
       return <FOO v={state} />;
@@ -42,9 +36,9 @@ describe("test usePrevious", () => {
     expect(hackGlobal(), 2).to.deep.equal({ v: "bar", prev: "bar" });
   });
 
-  it("test call times", async ()=>{
+  it("test call times", async () => {
     const spy = sinon().spy();
-    const FOO = ({v}) => {
+    const FOO = ({ v }) => {
       const prev = usePrevious(v);
       if (v !== prev) {
         spy();
@@ -53,7 +47,7 @@ describe("test usePrevious", () => {
     };
 
     let gSet;
-    const Comp = props => {
+    const Comp = (props) => {
       const [state, setState] = useState("foo");
       gSet = setState;
       return <FOO v={state} />;
@@ -67,9 +61,9 @@ describe("test usePrevious", () => {
     expect(spy.callCount <= 3).to.be.true;
   });
 
-  it("test call times with init", async ()=>{
+  it("test call times with init", async () => {
     const spy = sinon().spy();
-    const FOO = ({v}) => {
+    const FOO = ({ v }) => {
       const prev = usePrevious(v, "foo");
       if (v !== prev) {
         spy();
@@ -78,7 +72,7 @@ describe("test usePrevious", () => {
     };
 
     let gSet;
-    const Comp = props => {
+    const Comp = (props) => {
       const [state, setState] = useState("foo");
       gSet = setState;
       return <FOO v={state} />;
@@ -87,5 +81,4 @@ describe("test usePrevious", () => {
     await render(<Comp />);
     expect(spy.callCount === 0).to.be.true;
   });
-
 });

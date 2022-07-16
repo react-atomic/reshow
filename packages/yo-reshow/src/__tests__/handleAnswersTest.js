@@ -14,7 +14,7 @@ class FakeGenerator extends YoGenerator {
       },
     ];
     const answers = await this.prompt(prompts);
-    const destArr = this.destinationRoot().split('/');
+    const destArr = this.destinationRoot().split("/");
     answers.babelRootMode = true;
     answers.repositoryName = destArr.slice(-3)[0];
     answers.repositoryOrgName = "fake-org";
@@ -48,6 +48,8 @@ describe("handleAnswers test", () => {
   it("test auto repository directory", () => {
     const { generator } = runResult;
     const payload = generator.payload;
-    expect(payload.repositoryHomepage).to.equal(`${payload.repository.url}/tree/main/${payload.repository.directory}`);
+    expect(payload.repositoryHomepage).to.equal(
+      `${payload.repository.url}/tree/main/${payload.repository.directory}`
+    );
   });
 });

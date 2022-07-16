@@ -6,12 +6,8 @@ import { render } from "reshow-unit";
 import build from "../index";
 
 describe("Test build array", () => {
-
-  it("test build aray without props", ()=>{
-    const arr = [
-      <div />,
-      <div />
-    ];
+  it("test build aray without props", () => {
+    const arr = [<div />, <div />];
     const wrap = render(build(arr)());
     console.log(wrap.html());
   });

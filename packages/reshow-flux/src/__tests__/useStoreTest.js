@@ -82,6 +82,7 @@ describe("useStore Test without heeding", () => {
   beforeEach(() => {
     reducer = createReducer((state, action) => action, { foo: "bar" });
   });
+
   it("test default", () => {
     const [store, dispatch] = reducer;
     const Comp = (props) => {
@@ -91,6 +92,7 @@ describe("useStore Test without heeding", () => {
     const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div>bar</div>");
   });
+
   it("test apply dispatch", async () => {
     const [store, dispatch] = reducer;
     const Comp = (props) => {
@@ -102,6 +104,7 @@ describe("useStore Test without heeding", () => {
     await act(() => dispatch({ bar: "aaa" }), 5);
     expect(wrap.html()).to.equal("<div>aaa</div>");
   });
+
   it("test ImmutableStore", async () => {
     const [store, dispatch] = ImmutableStore();
     const Comp = (props) => {

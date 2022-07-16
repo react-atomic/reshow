@@ -14,7 +14,9 @@ const handleRepository = (oGen) => {
       const destFolder = oGen.destinationRoot();
       const findRepositoryName = destFolder.lastIndexOf(payload.repositoryName);
       if (-1 !== findRepositoryName) {
-        pkgPath = destFolder.substring(findRepositoryName+payload.repositoryName.length+1);
+        pkgPath = destFolder.substring(
+          findRepositoryName + payload.repositoryName.length + 1
+        );
       }
     }
     payload.repository.directory = pkgPath;

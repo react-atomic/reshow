@@ -27,9 +27,20 @@ const useStore = (store, heeding) => {
   }
   const subscribe = useCallback(
     (notify) => {
-      const myHeeding = heeding || ((emit) => emit.current.notify());
-      const myListener = (state, action, prevState) => {
-        lastEmit.current = { state, action, prevState, notify };
+      const myHeeding =
+        heeding ||
+        ((emit) => {
+          emit.current.state = emit.current.storeState;
+          emit.current.notify();
+        });
+      const myListener = (storeState, action, prevStoreState) => {
+        lastEmit.current = {
+          ...lastEmit.current,
+          storeState,
+          action,
+          prevStoreState,
+          notify,
+        };
         myHeeding(lastEmit);
       };
       store.addListener(myListener);
