@@ -19,7 +19,7 @@ const useStore = (store, heeding) => {
     lastEmit.current = {
       /**
        * Pass empty {} to heeding, that easy use
-       * if(emit.current){return initState;}
+       * if(!emit.current){return initState;}
        * inside heeding.
        */
       state: heeding ? heeding({}) : store.getState(),
