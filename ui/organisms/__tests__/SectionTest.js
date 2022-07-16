@@ -95,7 +95,9 @@ describe("Test Section", () => {
   it("Section is not existed with immutable", async () => {
     const wrap = render(<FakeComponent name="xxx" immutable />);
     await act(() => dispatch({ section: null }));
-    expect("undefined" === typeof uFake.el).to.be.true;
+    await waitFor(() => {
+      expect("undefined" === typeof uFake.el).to.be.true;
+    });
   });
 
   it("pass name to child", async () => {
@@ -127,7 +129,9 @@ describe("Test Section", () => {
         }),
       5
     );
-    expect(uFake.el.getAttribute("name")).to.equal("test");
+    await waitFor(() => {
+      expect(uFake.el.getAttribute("name")).to.equal("test");
+    });
   });
 
   it("not pass name if child already have name", async () => {

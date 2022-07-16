@@ -78,7 +78,10 @@ class Reshow extends PureComponent {
   }
 
   constructor(props) {
-    update(props);
+    if (null == isInit) {
+      update(props);
+      isInit = false;
+    }
     super(props);
     this.state = { hasError: false };
     this.getPath = this.getPath.bind(this);

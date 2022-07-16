@@ -61,7 +61,7 @@ describe("Test RealTimeReturn", () => {
       })
     );
     expect(uFake.el.props.data).to.equal("bar");
-    dispatch("realTime");
+    await act(() => dispatch("realTime"));
     await act(() => dispatch({ data: "foo" }));
     expect(uFake.el.props.data).to.equal("bar");
   });
@@ -77,7 +77,7 @@ describe("Test RealTimeReturn", () => {
       5
     );
     expect(uFake.el.props.data).to.equal("bar");
-    dispatch("realTime");
+    await act(() => dispatch("realTime"));
     await act(() => dispatch({ data: "foo" }), 5);
     expect(uFake.el.props.data).to.be.null;
   });
