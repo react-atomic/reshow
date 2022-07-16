@@ -78,19 +78,20 @@ class Reshow extends PureComponent {
   }
 
   constructor(props) {
+    update(props);
     super(props);
-    if (isInit) {
-      console.warn("The best practice is avoid multi Reshow Component.");
-      this.state = { hasError: T_TRUE };
-    } else {
-      update(props);
-      this.state = { hasError: false };
-      isInit = 1;
-    }
+    this.state = { hasError: false };
     this.getPath = this.getPath.bind(this);
   }
 
   componentDidMount() {
+    if (isInit) {
+      console.warn("The best practice is avoid multi Reshow Component.");
+      this.state = { hasError: T_TRUE };
+    } else {
+      isInit = true;
+    }
+
     // Server site version also need update Canonical
     initCanonicalUrl(this.props);
     if (win().Reshow) {
@@ -114,14 +115,22 @@ class Reshow extends PureComponent {
 
   render() {
     const { hasError } = this.state;
-    const { baseUrl, staticVersion, fallback, themes, ajax, webSocketUrl } =
-      this.props;
+    const {
+      baseUrl,
+      staticVersion,
+      themePath,
+      themes,
+      fallback,
+      ajax,
+      webSocketUrl,
+    } = this.props;
 
     return (
       <Return
         store={pageStore}
         baseUrl={baseUrl}
         staticVersion={staticVersion}
+        themePath={themePath}
         initStates={["baseUrl", "staticVersion", "webSocketUrl", "themePath"]}
       >
         {(data) => (
