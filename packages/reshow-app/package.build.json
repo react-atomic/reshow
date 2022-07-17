@@ -1,5 +1,5 @@
 {
-  "version": "0.17.75",
+  "version": "0.17.76",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
     "reshow-unit": "^0.17.x",
     "reshow-url": "^0.17.x",
     "reshow-worker": "*",
-    "swc-loader": "^0.2.3",
+    "swc-loader": "0.2.3",
     "terser-webpack-plugin": "^5.3.x",
     "web-streams-polyfill": "3.2.0",
     "webpack": "^5.71.x",
