@@ -98,7 +98,7 @@ module.exports = class extends YoGenerator {
             willClean: exports,
             modify: diff,
           };
-          this.log({ allDiff });
+          this.log({ ...allDiff });
           return null;
         } else {
           json.exports = nextExports;
