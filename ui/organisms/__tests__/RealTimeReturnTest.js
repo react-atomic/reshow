@@ -63,7 +63,7 @@ describe("Test RealTimeReturn", () => {
     expect(uFake.el.props.data).to.equal("bar");
     await act(() => dispatch("realTime"));
     await act(() => dispatch({ data: "foo" }));
-    expect(uFake.el.props.data).to.equal("bar");
+    await waitFor(() => expect(uFake.el.props.data).to.equal("bar"));
   });
 
   it("test realtime reset", async () => {
@@ -79,6 +79,6 @@ describe("Test RealTimeReturn", () => {
     expect(uFake.el.props.data).to.equal("bar");
     await act(() => dispatch("realTime"));
     await act(() => dispatch({ data: "foo" }), 5);
-    expect(uFake.el.props.data).to.be.null;
+    await waitFor(() => expect(uFake.el.props.data).to.be.null);
   });
 });

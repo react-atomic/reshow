@@ -16,6 +16,7 @@ import { globalStore } from "../../src/stores/globalStore";
 import pageStore from "../../src/stores/pageStore";
 
 let isInit;
+let lastUrl;
 
 const update = (params) => {
   const realTimeData = get(params, [REAL_TIME_DATA_KEY]);
@@ -25,11 +26,10 @@ const update = (params) => {
     : "config/" + (reset ? "re" : "") + "set";
   dispatch(type, toJS(params));
   const oDoc = doc();
-  if (oDoc.URL) {
+  if (oDoc.URL && lastUrl !== oDoc.URL) {
+    lastUrl = oDoc.URL;
     const htmlTitle = get(params, ["htmlTitle"]);
-    if (htmlTitle) {
-      oDoc.title = oneItemArrayToString(htmlTitle);
-    }
+    oDoc.title = oneItemArrayToString(htmlTitle) || "";
     const canonical = get(params, ["data", "canonical"]);
     if (canonical) {
       updateCanonicalUrl(canonical, params);

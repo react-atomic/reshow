@@ -57,7 +57,7 @@ describe("Test Section", () => {
         }),
       3
     );
-    waitFor(() => {
+    await waitFor(() => {
       expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
       expect(uFake.el.props.I18N).to.deep.equal({ ddd: "fff" });
     });
@@ -94,7 +94,7 @@ describe("Test Section", () => {
 
   it("Section is not existed with immutable", async () => {
     const wrap = render(<FakeComponent name="xxx" immutable />);
-    await act(() => dispatch({ section: null }));
+    await act(() => dispatch({ section: null }), 5);
     await waitFor(() => {
       expect("undefined" === typeof uFake.el).to.be.true;
     });
@@ -163,7 +163,9 @@ describe("Test Section", () => {
         }),
       5
     );
-    waitFor(() => expect(uFake.el.getAttribute("name")).to.equal("test2"));
+    await waitFor(() =>
+      expect(uFake.el.getAttribute("name")).to.equal("test2")
+    );
   });
 
   it("not pass name if one of child already have name", async () => {
@@ -200,7 +202,7 @@ describe("Test Section", () => {
         }),
       3
     );
-    waitFor(() => {
+    await waitFor(() => {
       expect(uFake.el1.getAttribute("name")).to.be.null;
       expect(uFake.el2.getAttribute("name")).to.equal("test2");
     });
