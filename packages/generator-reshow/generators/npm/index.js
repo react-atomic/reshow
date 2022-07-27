@@ -53,7 +53,7 @@ module.exports = class extends YoGenerator {
 
   writing() {
     this.env.options.nodePackageManager = "yarn";
-    const { cp, chMainName, updateJSON } = YoHelper(this);
+    const { cp, chMainName, syncJSON } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
@@ -62,9 +62,8 @@ module.exports = class extends YoGenerator {
     cp("src", null, this.payload);
     cp("README.md", null, this.payload);
     cp("Test.js", "src/__tests__/Test.js", this.payload);
-    // cp("yarn.lock");
 
-    updateJSON("package.json", null, this.payload, (data) => {
+    syncJSON("package.json", null, this.payload, (data) => {
       const keywords = this.payload.keyword?.split(",");
       if (keywords && keywords.length) {
         data.keywords = keywords.map((s) => s.trim());

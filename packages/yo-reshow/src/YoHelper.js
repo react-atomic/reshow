@@ -127,6 +127,19 @@ const YoHelper = (oGen) => {
     },
   };
 
+  const syncJSON = (src, dest, options, cb) => {
+    if (src != null) {
+      dest = cp(src, dest, options);
+    }
+    cb = cb || ((json) => json);
+    const json = oGen.readDestinationJSON(dest);
+    const nextJson = cb(json);
+    if (nextJson) {
+      const result = oGen.writeDestinationJSON(dest, nextJson);
+      return nextJson;
+    }
+  };
+
   return {
     say,
     cp,
@@ -139,15 +152,10 @@ const YoHelper = (oGen) => {
       }
     },
 
+    syncJSON,
     updateJSON: (src, dest, options, cb) => {
-      if (src != null) {
-        dest = cp(src, dest, options);
-      }
-      cb = cb || ((json) => json);
-      const json = oGen.readDestinationJSON(dest);
-      const nextJson = cb(json);
+      const nextJson = syncJSON(src, dest, options, cb);
       if (nextJson) {
-        const result = oGen.writeDestinationJSON(dest, nextJson);
         FS.writeFileSync(dest, result);
         return nextJson;
       }
