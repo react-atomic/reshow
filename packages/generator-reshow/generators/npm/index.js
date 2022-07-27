@@ -61,6 +61,7 @@ module.exports = class extends YoGenerator {
     // handle copy file
     cp("src", null, this.payload);
     cp("README.md", null, this.payload);
+    cp(".gitignore", null, this.payload);
     cp("Test.js", "src/__tests__/Test.js", this.payload);
 
     syncJSON("package.json", null, this.payload, (data) => {
