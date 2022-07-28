@@ -77,6 +77,7 @@ module.exports = class extends YoGenerator {
       };
       if (!this.payload.isUseBabel) {
         delete data.devDependencies["@babel/cli"];
+        delete data.exports;
         delete data.module;
         delete data.scripts.clean;
         delete data.scripts.build;
