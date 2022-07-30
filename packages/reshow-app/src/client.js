@@ -12,6 +12,7 @@ import { UNDEFINED } from "reshow-constant";
 const render = (oApp, dom) => {
   if (dom.innerHTML) {
     win().Reshow.hydrate = true;
+    win().Reshow.dom = dom;
     ReactDOM.hydrateRoot(dom, oApp, {
       onRecoverableError: (err) => {
         console.log(err);
