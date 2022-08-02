@@ -33,7 +33,8 @@ if (STRICT_MODE) {
 }
 
 /**
- * Fix The current testing environment is not configured to support act(…)
+ * Fix!!
+ * `The current testing environment is not configured to support act(…)`
  *
  * @see https://github.com/testing-library/react-testing-library/issues/1025
  * @see https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html
