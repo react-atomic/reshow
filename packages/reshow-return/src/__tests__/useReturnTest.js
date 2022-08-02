@@ -1,7 +1,7 @@
 import { expect } from "chai";
+import { render } from "reshow-unit";
 import { Map, fromJS } from "reshow-flux";
 import { createReducer } from "reshow-flux-base";
-import { render } from "reshow-unit";
 
 import useReturn from "../useReturn";
 
