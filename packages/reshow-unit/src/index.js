@@ -6,6 +6,7 @@ import {
 } from "reshow-unit-dom";
 import { doc } from "win-doc";
 import { getTimestamp } from "get-random-id";
+import { getDefault } from "get-object-value";
 
 import {
   act as rtlAct,
@@ -97,7 +98,7 @@ const render = (OrigDom, options, ...p) => {
 
 // https://testing-library.com/docs/user-event/intro
 const simulateEvent = (...p) => {
-  return userEvent.setup(...p);
+  return getDefault(userEvent).setup(...p);
 };
 
 const sleep = (cb, delay) =>
