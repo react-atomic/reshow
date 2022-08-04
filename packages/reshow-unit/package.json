@@ -1,5 +1,5 @@
 {
-  "version": "0.17.24",
+  "version": "0.17.26",
   "name": "reshow-unit",
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "process": "0.11.10",
     "react-test-renderer": "^18.x",
     "reshow-build": "*",
+    "reshow-runtime": "*",
     "reshow-unit-dom": "*",
     "win-doc": "*"
   },
@@ -34,7 +35,7 @@
     "import": "./build/es/src/index.mjs"
   },
   "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.js",
+  "module": "./build/es/src/index.mjs",
   "scripts": {
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",
     "clean": "find ./build -name '*.*' | xargs rm -rf",
