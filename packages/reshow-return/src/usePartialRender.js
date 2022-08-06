@@ -1,15 +1,16 @@
 import { useState, useMemo } from "react";
 import { useReduceStore, Map } from "reshow-flux";
 import build from "reshow-build";
+import callfunc from "call-func";
 
 import Return from "../ui/organisms/Return";
 
 const usePartialRender = (initRenderKeys, initChildren) => {
   const [renderStore, setPartialRender] = useReduceStore(null, () =>
-    Map(initChildren)
+    Map(callfunc(initChildren))
   );
 
-  const [renderKeys, setRenderKeys] = useState(() => initRenderKeys);
+  const [renderKeys, setRenderKeys] = useState(() => callfunc(initRenderKeys));
 
   const renderItems = useMemo(() => {
     const buildReturn = build(build(Return)({ store: renderStore }));
