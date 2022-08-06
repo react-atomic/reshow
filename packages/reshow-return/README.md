@@ -18,7 +18,7 @@ Reshow Return
 
 ## `useParticalRender`
 
-Help u partical update component, you don't need redesign your big component structure.
+Help u partical update component, don't need redesign a complex component structure.
 
 ```js
   const list = {
