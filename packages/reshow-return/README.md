@@ -16,4 +16,19 @@ Reshow Return
 </Return>
 ```
 
+## `useParticalRender`
 
+Help u partical update component, you don't need redesign your big component structure.
+
+```js
+  const list = {
+    foo: <div className="foo" />,
+    bar: <div className="bar" />
+  };
+  const [renderComponent, particalRender, setRenderKeys] = useParticalRender(
+    Object.keys(list),
+    list
+  );
+
+```
+* [Codesandbox](https://codesandbox.io/s/react-partical-render-mo3yu2?file=/src/App.js)
