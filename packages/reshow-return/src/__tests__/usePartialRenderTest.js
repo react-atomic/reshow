@@ -2,19 +2,19 @@ import { expect } from "chai";
 import { render, waitFor, act, getSinon } from "reshow-unit";
 import { useEffect } from "react";
 
-import useParticalRender from "../useParticalRender";
+import usePartialRender from "../usePartialRender";
 
-describe("Test useParticalRender", () => {
+describe("Test usePartialRender", () => {
   it("smoke test", async () => {
     const spy = getSinon().spy();
     const Comp = () => {
-      const [renderItems, particalRender, setRenderKeys] = useParticalRender([
+      const [renderItems, partialRender, setRenderKeys] = usePartialRender([
         "foo",
         "bar",
       ]);
 
       useEffect(() => {
-        particalRender({
+        partialRender({
           foo: <span>aaa</span>,
           bar: <span>bbb</span>,
         });
@@ -35,7 +35,7 @@ describe("Test useParticalRender", () => {
 
   it("test init children", async () => {
     const Comp = () => {
-      const [renderItems, particalRender, setRenderKeys] = useParticalRender(
+      const [renderItems, partialRender, setRenderKeys] = usePartialRender(
         ["foo", "bar"],
         { foo: <span />, bar: <i /> }
       );
@@ -51,7 +51,7 @@ describe("Test useParticalRender", () => {
 
   it("test empty children", async () => {
     const Comp = () => {
-      const [renderItems, particalRender, setRenderKeys] = useParticalRender();
+      const [renderItems, partialRender, setRenderKeys] = usePartialRender();
 
       return <div>{renderItems}</div>;
     };

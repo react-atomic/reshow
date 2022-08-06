@@ -4,8 +4,8 @@ import build from "reshow-build";
 
 import Return from "../ui/organisms/Return";
 
-const useParticalRender = (initRenderKeys, initChildren) => {
-  const [renderStore, setParticalRender] = useReduceStore(null, () =>
+const usePartialRender = (initRenderKeys, initChildren) => {
+  const [renderStore, setPartialRender] = useReduceStore(null, () =>
     Map(initChildren)
   );
 
@@ -20,7 +20,8 @@ const useParticalRender = (initRenderKeys, initChildren) => {
       )
     );
   }, [renderKeys]);
-  return [renderItems, setParticalRender, setRenderKeys];
+
+  return [renderItems, setPartialRender, setRenderKeys];
 };
 
-export default useParticalRender;
+export default usePartialRender;

@@ -1,6 +1,6 @@
 /* hooks */
 export { default as useClientReturn } from "./useClientReturn";
-export { default as useParticalRender } from "./useParticalRender";
+export { default as usePartialRender } from "./usePartialRender";
 export { default as useReturn } from "./useReturn";
 
 export { default as connectOptions, stateKeyLocator } from "./connectOptions";

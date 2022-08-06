@@ -16,19 +16,19 @@ Reshow Return
 </Return>
 ```
 
-## `useParticalRender`
+## `usePartialRender`
 
-Help u partical update component, don't need redesign a complex component structure.
+Help u partial update component, don't need redesign a complex component structure.
 
 ```js
   const list = {
     foo: <div className="foo" />,
     bar: <div className="bar" />
   };
-  const [renderComponent, particalRender, setRenderKeys] = useParticalRender(
+  const [renderComponent, partialRender, setRenderKeys] = usePartialRender(
     Object.keys(list),
     list
   );
 
 ```
-* [Codesandbox](https://codesandbox.io/s/react-partical-render-mo3yu2?file=/src/App.js)
+* [Codesandbox](https://codesandbox.io/s/react-partial-render-mo3yu2?file=/src/App.js)
