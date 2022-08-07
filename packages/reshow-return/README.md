@@ -21,6 +21,7 @@ Reshow Return
 Help u partial update component, don't need redesign a complex component structure.
 
 ```js
+  import { usePartialRender } from "reshow-return";
   const list = {
     foo: <div className="foo" />,
     bar: <div className="bar" />
