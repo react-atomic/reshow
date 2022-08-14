@@ -53,7 +53,7 @@ module.exports = class extends YoGenerator {
 
   writing() {
     this.env.options.nodePackageManager = "yarn";
-    const { cp, chMainName, syncJSON } = YoHelper(this);
+    const { cp, mkdir, chMainName, syncJSON } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
@@ -89,6 +89,39 @@ module.exports = class extends YoGenerator {
         data.scripts.mocha = "npm run mochaFor -- 'src/**/__tests__/*.js'";
         data.files = data.files.filter((f) => f !== "build");
         data.files.push("src");
+      }
+      if (this.payload.babelUI) {
+        delete data.bin;
+        data.scripts["build:cjs"] = data.scripts["build:ui:cjs"];
+        data.scripts["build:es"] = data.scripts["build:ui:es"];
+        data.scripts["mocha"] = data.scripts["mocha:ui"];
+        if (this.payload.babelRootMode) {
+          [
+            "build:cjs:src",
+            "build:cjs:ui",
+            "build:es:src",
+            "build:es:ui",
+          ].forEach((key) => {
+            data.scripts[key] += " --root-mode upward";
+          });
+        }
+        ["build:ui:cjs", "build:ui:es", "mocha:ui"].forEach((key) => {
+          delete data.scripts[key];
+        });
+        mkdir("ui");
+      } else {
+        // clean babelUI script
+        [
+          "build:cjs:src",
+          "build:cjs:ui",
+          "build:ui:cjs",
+          "build:es:src",
+          "build:es:ui",
+          "build:ui:es",
+          "mocha:ui",
+        ].forEach((key) => {
+          delete data.scripts[key];
+        });
       }
       if (!this.payload.isUseWebpack) {
         delete data.scripts["webpack"];

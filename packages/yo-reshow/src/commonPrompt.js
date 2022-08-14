@@ -75,6 +75,19 @@ const commonPrompt = {
     },
     {
       type: "confirm",
+      name: "babelUI",
+      message: "Is is a babel UI library?",
+      default: false,
+      when: (response) => {
+        const { getAllAns } = YoHelper(oGen);
+        const allAns = getAllAns(response);
+        if (allAns.isUseBabel) {
+          return true;
+        }
+      },
+    },
+    {
+      type: "confirm",
       name: "isUseWebpack",
       message: "Do you use webpack ?",
       default: false,
