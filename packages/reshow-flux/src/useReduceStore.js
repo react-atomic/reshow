@@ -17,8 +17,7 @@ const useReduceStore = (reduce, initialState) => {
   const lastReducer = useRef();
   if (!lastReducer.current) {
     reduce = reduce || defaultReducer;
-    initialState = initialState || Map();
-    lastReducer.current = createReducer(reduce, initialState);
+    lastReducer.current = createReducer(reduce, initialState || Map());
   }
   return lastReducer.current;
 };

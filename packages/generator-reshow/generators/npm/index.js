@@ -91,7 +91,6 @@ module.exports = class extends YoGenerator {
         data.files.push("src");
       }
       if (this.payload.babelUI) {
-        delete data.bin;
         data.scripts["build:cjs"] = data.scripts["build:ui:cjs"];
         data.scripts["build:es"] = data.scripts["build:ui:es"];
         data.scripts["mocha"] = data.scripts["mocha:ui"];
@@ -105,9 +104,14 @@ module.exports = class extends YoGenerator {
             data.scripts[key] += " --root-mode upward";
           });
         }
+        delete data.bin;
         ["build:ui:cjs", "build:ui:es", "mocha:ui"].forEach((key) => {
           delete data.scripts[key];
         });
+        data.devDependencies["react"] = "^18.x";
+        data.devDependencies["react-dom"] = "^18.x";
+        data.devDependencies["reshow-unit"] = "*";
+        delete data.devDependencies["reshow-unit-dom"];
         mkdir("ui");
       } else {
         // clean babelUI script
