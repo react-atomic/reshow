@@ -8,10 +8,10 @@ import ImmutableStore from "./ImmutableStore";
  *
  *
  * ## Base usage
- * const [state, setState] = useState(initialState);
+ * const [state, setState] = useImmutable(initialState);
  *
- * call setState will trigger re-render
- *
+ * call setState will trigger re-render.
+ * could use setState for partial update.
  */
 const useImmutable = (initialState) => {
   const lastReduce = useRef();
