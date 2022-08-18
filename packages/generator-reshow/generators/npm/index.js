@@ -53,16 +53,14 @@ module.exports = class extends YoGenerator {
 
   writing() {
     this.env.options.nodePackageManager = "yarn";
-    const { cp, mkdir, chMainName, syncJSON } = YoHelper(this);
+    const { cp, chMainName, syncJSON } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
 
     // handle copy file
-    cp("src", null, this.payload);
     cp("README.md", null, this.payload);
     cp(".gitignore", null, this.payload);
-    cp("Test.js", "src/__tests__/Test.js", this.payload);
 
     syncJSON("package.json", null, this.payload, (data) => {
       const keywords = this.payload.keyword?.split(",");
@@ -111,9 +109,15 @@ module.exports = class extends YoGenerator {
         data.devDependencies["react"] = "^18.x";
         data.devDependencies["react-dom"] = "^18.x";
         data.devDependencies["reshow-unit"] = "*";
+        data.devDependencies["react-atomic-atom"] = "*";
         delete data.devDependencies["reshow-unit-dom"];
-        mkdir("ui");
+        cp("ui");
+        cp("babel.config.js");
+        cp("ui-src", "src");
+        cp("IndexTest.js", "ui/pages/__tests__/IndexTest.js", this.payload);
       } else {
+        cp("src", null, this.payload);
+        cp("Test.js", "src/__tests__/Test.js", this.payload);
         // clean babelUI script
         [
           "build:cjs:src",
