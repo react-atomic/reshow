@@ -1,5 +1,5 @@
 {
-  "version": "0.17.79",
+  "version": "0.17.80",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "html-entities": "1.2.1",
     "html-webpack-plugin": "^5.5.x",
     "is-arguments": "1.1.1",
+    "is-generator-function": "1.0.10",
     "is-typed-array": "1.1.8",
     "local-web-server": "5.2.0",
     "ora": "^5.x",
