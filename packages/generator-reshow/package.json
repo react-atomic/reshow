@@ -20,7 +20,7 @@
     "yo-unit": "*"
   },
   "scripts": {
-    "mochaFor": "mocha",
+    "mochaFor": "mocha --timeout 2500",
     "mocha": "npm run mochaFor -- 'generators/**/__tests__/*.js'",
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"
