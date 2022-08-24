@@ -4994,9 +4994,9 @@ yeoman-test@*:
     temp-dir "^2.0.0"
 
 yo-reshow@*:
-  version "0.17.15"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.17.15.tgz#f8b14b94d85859aefc816787e2d03c513872a7bd"
-  integrity sha512-bgzEz8h1iEzOUQ3yYSHWgPBsKtG3hClC4vgX/4vcFR557zGeWRcPqZPOWdScHLFufNo1bnlXsvFXO9ADC6t7Gg==
+  version "0.17.16"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.17.16.tgz#b07bb354263856d27f16781fb66e87834d4b7169"
+  integrity sha512-LkK+I3uwmJV7mTdIrLGsrOhqg95SFC8FFbdNrhYO3gB6LGni/PAxMfvQCXlOPuvg6+o76PRMXH4Ai3IVjSaiKA==
   dependencies:
     call-func "*"
     mkdirp "1.0.4"

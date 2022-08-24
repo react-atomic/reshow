@@ -136,7 +136,7 @@ const YoHelper = (oGen) => {
     const nextJson = cb(json);
     if (nextJson) {
       const result = oGen.writeDestinationJSON(dest, nextJson);
-      return nextJson;
+      return { json: nextJson, text: result };
     }
   };
 
@@ -154,10 +154,10 @@ const YoHelper = (oGen) => {
 
     syncJSON,
     updateJSON: (src, dest, options, cb) => {
-      const nextJson = syncJSON(src, dest, options, cb);
-      if (nextJson) {
-        FS.writeFileSync(dest, nextJson);
-        return nextJson;
+      const { json, text } = syncJSON(src, dest, options, cb);
+      if (text) {
+        FS.writeFileSync(dest, text);
+        return { json, text };
       }
     },
 
