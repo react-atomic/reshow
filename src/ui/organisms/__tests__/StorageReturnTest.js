@@ -2,14 +2,14 @@ import React, { PureComponent } from "react";
 import { expect } from "chai";
 import { act, render, cleanIt } from "reshow-unit";
 
-import { globalStore } from "../../../src/stores/globalStore";
+import { globalStore } from "../../../stores/globalStore";
 
 import {
   Return,
   localStorageStore,
   sessionStorageStore,
   dispatch,
-} from "../../../src/index";
+} from "../../../index";
 
 class TestEl extends PureComponent {
   show = 0;

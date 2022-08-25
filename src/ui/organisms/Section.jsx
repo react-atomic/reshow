@@ -3,7 +3,7 @@ import { build } from "react-atomic-molecule";
 import { useConnect, forEachMap } from "reshow-flux";
 
 import { connectOptions } from "../molecules/ReshowComponent";
-import pageStore from "../../src/stores/pageStore";
+import pageStore from "../../stores/pageStore";
 
 const { pathStates, ...otherOptions } = connectOptions;
 otherOptions.initStates = ["section", "I18N"];

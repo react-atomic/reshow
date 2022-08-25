@@ -4,10 +4,10 @@ import { build, SemanticUI } from "react-atomic-molecule";
 import { toJS } from "reshow-flux";
 import get from "get-object-value";
 
-// src
+// Local import
 import { Return } from "../molecules/ReshowComponent";
-import messageStore from "../../src/stores/messageStore";
-import { dispatch } from "../../src/index";
+import messageStore from "../../stores/messageStore";
+import { dispatch } from "../../index";
 
 const handleDismiss = (e) => {
   const id = e?.data?.id;

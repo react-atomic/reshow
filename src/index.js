@@ -24,12 +24,12 @@ export {
 export { AjaxLink as ReLink, AjaxForm as ReForm } from "organism-react-ajax";
 
 // Message Component
-export { default as ReshowMessage } from "../ui/organisms/ReshowMessage";
+export { default as ReshowMessage } from "./ui/organisms/ReshowMessage";
 
 // Component
-export { Return } from "../ui/molecules/ReshowComponent";
-export { default as RealTimeReturn } from "../ui/organisms/RealTimeReturn";
-export { default as Section } from "../ui/organisms/Section";
+export { Return } from "./ui/molecules/ReshowComponent";
+export { default as RealTimeReturn } from "./ui/organisms/RealTimeReturn";
+export { default as Section } from "./ui/organisms/Section";
 
 // Base Component
-export { default, update } from "../ui/molecules/Reshow";
+export { default, update } from "./ui/molecules/Reshow";

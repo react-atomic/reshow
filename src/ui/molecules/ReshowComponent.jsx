@@ -2,8 +2,8 @@ import build from "reshow-build";
 import { connectOptions, getReturn } from "reshow-return";
 import { useConnect } from "reshow-flux";
 
-import pageStore from "../../src/stores/pageStore";
-import { globalStore } from "../../src/stores/globalStore";
+import pageStore from "../../stores/pageStore";
+import { globalStore } from "../../stores/globalStore";
 
 const storeLocator = (props) => props?.store || pageStore;
 const initStates = ["data", "I18N"];

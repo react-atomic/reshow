@@ -8,12 +8,10 @@ import { AjaxPage } from "organism-react-ajax";
 import { doc, win } from "win-doc";
 import { oneItemArrayToString } from "with-array";
 
-import updateCanonicalUrl, {
-  initCanonicalUrl,
-} from "../../src/updateCanonicalUrl";
-import dispatch from "../../src/dispatch";
-import { globalStore } from "../../src/stores/globalStore";
-import pageStore from "../../src/stores/pageStore";
+import updateCanonicalUrl, { initCanonicalUrl } from "../../updateCanonicalUrl";
+import dispatch from "../../dispatch";
+import { globalStore } from "../../stores/globalStore";
+import pageStore from "../../stores/pageStore";
 
 let isInit;
 let lastUrl;

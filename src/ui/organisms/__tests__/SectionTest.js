@@ -3,8 +3,8 @@ import { expect } from "chai";
 import { fromJS } from "reshow-flux";
 import { act, render, waitFor, cleanIt } from "reshow-unit";
 
-import { Section, dispatch } from "../../../src/index";
-import { globalStore } from "../../../src/stores/globalStore";
+import { Section, dispatch } from "../../../index";
+import { globalStore } from "../../../stores/globalStore";
 
 class TestEl extends PureComponent {
   render() {

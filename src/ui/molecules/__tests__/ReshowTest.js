@@ -1,7 +1,7 @@
 import React from "react";
 import Reshow from "../Reshow";
-import { globalStore } from "../../../src/stores/globalStore";
-import dispatch from "../../../src/dispatch";
+import { globalStore } from "../../../stores/globalStore";
+import dispatch from "../../../dispatch";
 
 import { expect } from "chai";
 import { waitFor, render, cleanIt } from "reshow-unit";

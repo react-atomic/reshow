@@ -10,7 +10,7 @@ import {
 } from "reshow-constant";
 
 import { connectOptions } from "../molecules/ReshowComponent";
-import realTimeStore from "../../src/stores/realTimeStore";
+import realTimeStore from "../../stores/realTimeStore";
 
 const calculateState = (prevState, options) => {
   /**

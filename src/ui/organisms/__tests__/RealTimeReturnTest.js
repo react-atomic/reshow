@@ -4,7 +4,7 @@ import { expect } from "chai";
 import { act, render, waitFor, cleanIt } from "reshow-unit";
 import { REAL_TIME_DATA_KEY } from "reshow-constant";
 
-import { RealTimeReturn, Return, dispatch } from "../../../src/index";
+import { RealTimeReturn, Return, dispatch } from "../../../index";
 
 class TestEl extends PureComponent {
   render() {
@@ -79,6 +79,7 @@ describe("Test RealTimeReturn", () => {
     expect(uFake.el.props.data).to.equal("bar");
     await act(() => dispatch("realTime"));
     await act(() => dispatch({ data: "foo" }), 5);
+    await act(() => {});
     await waitFor(() => expect(uFake.el.props.data).to.be.null);
   });
 });

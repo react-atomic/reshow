@@ -4,7 +4,7 @@ import { act, render, getRoleHtml, cleanIt, waitFor } from "reshow-unit";
 import { popupDispatch, PopupPool } from "organism-react-popup";
 
 import ReshowMessage from "../ReshowMessage";
-import { dispatch } from "../../../src/index";
+import { dispatch } from "../../../index";
 
 describe("Test ReshowMessage", (done) => {
   afterEach(() => {
