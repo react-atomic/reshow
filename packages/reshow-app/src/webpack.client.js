@@ -37,18 +37,18 @@ const myWebpack = (root, main, lazyConfs) => {
       path,
       stop,
       mode,
-      confs,
       BUNDLE,
       HOT_UPDATE,
       ENABLE_SW,
+      confs,
     }),
     module: getModule(),
-    resolve: getResolve({ confs, root }),
+    resolve: getResolve({ root, confs }),
     resolveLoader: getResolveLoader({ root }),
     externals: confs.externals,
   };
   if (HOT_UPDATE) {
-    result.devServer = getHotServer({ confs, path });
+    result.devServer = getHotServer({ root, confs });
   }
   return result;
 };
