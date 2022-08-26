@@ -12,6 +12,7 @@ const YoSay = require("yosay");
 const mkdirp = require("mkdirp");
 const globSync = require("./globSync");
 const handleAnswers = require("./handleAnswers");
+const handleKeywords = require("./handleKeywords");
 const {
   getDotYo,
   promptResetDefault,
@@ -133,7 +134,7 @@ const YoHelper = (oGen) => {
     }
     cb = cb || ((json) => json);
     const json = oGen.readDestinationJSON(dest);
-    const nextJson = cb(json);
+    const nextJson = cb(json, options);
     if (nextJson) {
       const result = oGen.writeDestinationJSON(dest, nextJson);
       return { json: nextJson, text: result };
@@ -195,6 +196,7 @@ const YoHelper = (oGen) => {
 
     getAllAns: (customAns) => ({ ...customAns, ...lastAns }),
     handleAnswers: handleAnswers(oGen),
+    handleKeywords,
   };
 };
 

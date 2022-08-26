@@ -36,6 +36,11 @@ module.exports = class extends YoGenerator {
     this.composeWith(require.resolve("../compile-sh"), {
       webpackEnabled: true,
     });
+    this.composeWith(require.resolve("../package-json"), {
+      ...answers,
+      isApp: true,
+      isUseWebpack: true,
+    });
   }
 
   writing() {

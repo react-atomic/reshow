@@ -20,7 +20,7 @@ const handleRepository = (oGen) => {
       }
     }
     payload.repository.directory = pkgPath;
-    payload.repositoryHomepage = url + `/tree/main/${pkgPath}`;
+    payload.repositoryHomepage = `${url}/tree/main/${pkgPath}`;
   } else {
     payload.repositoryHomepage = url;
   }

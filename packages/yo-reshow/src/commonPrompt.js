@@ -75,7 +75,7 @@ const commonPrompt = {
     },
     {
       type: "confirm",
-      name: "babelUI",
+      name: "isUseBabelUI",
       message: "Is is a babel UI library?",
       default: false,
       when: (response) => {
