@@ -1,4 +1,4 @@
-import usePage from "../../src/usePage";
+import usePage from "../../usePage";
 
 const Page2 = (props) => {
   usePage({ ...props, pageName: "Page2" });

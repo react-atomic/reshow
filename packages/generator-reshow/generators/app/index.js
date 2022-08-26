@@ -51,23 +51,24 @@ module.exports = class extends YoGenerator {
     chMainName(this.mainName);
 
     // handle copy file
-    mkdir("ui/organisms");
-    cp("ui");
     cp("src");
     cp("data");
     cp(".gitignore");
     cp("screen.sh");
-    cp("index.html");
-    cp("package.json");
+    cp("index.tpl");
     cp("README.md");
-    cp("webpack.config.js");
+    cp("webpack.config.mjs");
+    cp("babel.config.js");
+    cp(".yo");
+    cp("PageTest.js", "src/ui/pages/__tests__/PageTest.js");
+    mkdir("src/ui/organisms");
   }
 
   async end() {
     if (!this.options.skipInstall) {
       const { say, onExit } = YoHelper(this);
       await this.spawnCommand("./compile.sh", ["s", "open"]);
-      sonExit(() => ay("Check the web browser, it should autoload now."));
+      onExit(() => say("Check the web browser, it should autoload now."));
     }
   }
 };

@@ -9,7 +9,7 @@ module.exports = class extends YoGenerator {
     const payload = {
       mainName: "",
       description: "",
-      babelRootMode: false,
+      babelRootMode: "",
       ...this.payload,
       ...this.options,
       ...getDotYo(this.options),
@@ -46,9 +46,11 @@ module.exports = class extends YoGenerator {
             ...npmDependencies,
           };
           delete data.devDependencies;
+          delete data.version;
           data.scripts["prepublishOnly"] = "exit 1;";
           data.scripts.build = "npm run clean && npm run build:es";
         } else {
+          delete data.private;
           data.dependencies = {
             ...data.dependencies,
             ...npmDependencies,
@@ -60,11 +62,9 @@ module.exports = class extends YoGenerator {
           }
           delete data.exports;
           delete data.module;
-          delete data.scripts.clean;
           delete data.scripts["build:cjs"];
           data.main = "./src/index.js";
           data.bin[this.mainName] = "./src/index.js";
-          data.scripts.mocha = "npm run mochaFor -- 'src/**/__tests__/*.js'";
           data.files = data.files.filter((f) => f !== "build");
           data.files.push("src");
         }
@@ -85,7 +85,9 @@ module.exports = class extends YoGenerator {
         if (!isApp && !isUseBabel) {
           delete data.scripts["build:es"];
           delete data.scripts.build;
+          delete data.scripts.clean;
           data.scripts.test = "npm run mocha";
+          data.scripts.mocha = "npm run mochaFor -- 'src/**/__tests__/*.{js,mjs}'";
         }
         return data;
       }
