@@ -1,6 +1,6 @@
-const PageHeader = require("../components/PageHeader");
-const RuntimeErrorStack = require("../components/RuntimeErrorStack");
-const Spacer = require("../components/Spacer");
+import PageHeader from "../components/PageHeader";
+import RuntimeErrorStack from "../components/RuntimeErrorStack";
+import Spacer from "../components/Spacer";
 
 /**
  * @typedef {Object} RuntimeErrorContainerProps
@@ -26,4 +26,4 @@ function RuntimeErrorContainer(document, root, props) {
   Spacer(document, root, { space: "1rem" });
 }
 
-module.exports = RuntimeErrorContainer;
+export default RuntimeErrorContainer;

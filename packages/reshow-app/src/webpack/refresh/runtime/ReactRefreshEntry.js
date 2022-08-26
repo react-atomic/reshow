@@ -1,6 +1,6 @@
-if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
-  const Refresh = require("react-refresh/runtime");
+import Refresh from "react-refresh/runtime";
 
+if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
   // Inject refresh runtime into global
   Refresh.injectIntoGlobalHook(window);
 

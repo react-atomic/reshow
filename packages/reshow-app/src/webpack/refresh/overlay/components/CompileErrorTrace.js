@@ -1,7 +1,8 @@
-const ansiHTML = require("ansi-html-community");
-const { Html5Entities } = require("html-entities");
-const theme = require("../theme");
-const formatFilename = require("../utils/formatFilename");
+import ansiHTML from "ansi-html-community";
+import { Html5Entities } from "html-entities";
+import theme from "../theme";
+import formatFilename from "../utils/formatFilename";
+
 
 ansiHTML.setColors(theme);
 
@@ -49,4 +50,4 @@ function CompileErrorTrace(document, root, props) {
   root.appendChild(stackContainer);
 }
 
-module.exports = CompileErrorTrace;
+export default CompileErrorTrace;

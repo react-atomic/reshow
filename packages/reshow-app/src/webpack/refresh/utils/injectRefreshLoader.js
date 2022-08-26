@@ -1,8 +1,8 @@
 import path from "path";
-const resolvedLoader = require.resolve("../loader");
 
 const injectRefreshLoader = (moduleData, injectOptions) => {
   const { match, options } = injectOptions;
+  const resolvedLoader = require.resolve("../loader");
 
   if (
     // Include and exclude user-specified files

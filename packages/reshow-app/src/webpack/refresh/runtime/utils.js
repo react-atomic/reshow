@@ -1,5 +1,5 @@
-const Refresh = require("react-refresh/runtime");
-const ErrorOverlay = require("../overlay/index");
+import Refresh from "react-refresh/runtime";
+import { debounce } from "call-func";
 
 /**
  * Extracts exports from a webpack module object.
@@ -60,34 +60,6 @@ function getReactRefreshBoundarySignature(moduleExports) {
   }
 
   return signature;
-}
-
-/**
- * Creates a helper that performs a delayed React refresh.
- * @returns {enqueueUpdate} A debounced React refresh function.
- */
-function createDebounceUpdate() {
-  /**
-   * A cached setTimeout handler.
-   * @type {number | void}
-   */
-  let refreshTimeout = undefined;
-
-  /**
-   * Performs react refresh on a delay and clears the error overlay.
-   * @returns {void}
-   */
-  function enqueueUpdate() {
-    if (refreshTimeout === undefined) {
-      refreshTimeout = setTimeout(function () {
-        refreshTimeout = undefined;
-        Refresh.performReactRefresh();
-        ErrorOverlay.clearRuntimeErrors();
-      }, 30);
-    }
-  }
-
-  return enqueueUpdate;
 }
 
 /**
@@ -191,7 +163,11 @@ function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
   return false;
 }
 
-const enqueueUpdate = createDebounceUpdate();
+const enqueueUpdate = debounce((callback) => {
+  Refresh.performReactRefresh();
+  callback();
+}, 0);
+
 function executeRuntime(
   moduleExports,
   moduleId,
@@ -246,10 +222,14 @@ function executeRuntime(
           /*Need force update*/
           webpackHot.invalidate();
         } else {
-          enqueueUpdate(function updateCallback() {
-            if (typeof refreshOverlay !== "undefined" && refreshOverlay) {
-              refreshOverlay.clearRuntimeErrors();
-            }
+          enqueueUpdate({
+            args: [
+              () => {
+                if (typeof refreshOverlay !== "undefined" && refreshOverlay) {
+                  refreshOverlay.clearRuntimeErrors();
+                }
+              },
+            ],
           });
         }
       }
@@ -257,11 +237,4 @@ function executeRuntime(
   }
 }
 
-export default Object.freeze({
-  enqueueUpdate,
-  executeRuntime,
-  getModuleExports,
-  isReactRefreshBoundary,
-  shouldInvalidateReactRefreshBoundary,
-  registerExportsForReactRefresh,
-});
+export default Object.freeze({ executeRuntime, getModuleExports });

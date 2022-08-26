@@ -644,19 +644,19 @@ exports.promisify = function promisify(original) {
     throw new TypeError('The "original" argument must be of type Function');
 
   if (kCustomPromisifiedSymbol && original[kCustomPromisifiedSymbol]) {
-    var fn = original[kCustomPromisifiedSymbol];
-    if (typeof fn !== "function") {
+    var ffn = original[kCustomPromisifiedSymbol];
+    if (typeof ffn !== "function") {
       throw new TypeError(
         'The "util.promisify.custom" argument must be of type Function'
       );
     }
-    Object.defineProperty(fn, kCustomPromisifiedSymbol, {
-      value: fn,
+    Object.defineProperty(ffn, kCustomPromisifiedSymbol, {
+      value: ffn,
       enumerable: false,
       writable: false,
       configurable: true,
     });
-    return fn;
+    return ffn;
   }
 
   function fn() {

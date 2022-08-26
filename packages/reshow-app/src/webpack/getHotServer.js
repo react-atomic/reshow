@@ -3,7 +3,7 @@ const getHotServer = ({ confs, path }) => ({
   allowedHosts: "all",
   port: confs.hotPort ?? 8080,
   liveReload: false,
-  hot: true,
+  hot: 'only',
   devMiddleware: {
     publicPath: confs.assetsRoot || "",
     writeToDisk: true,

@@ -1,10 +1,10 @@
 import memoize from "memoize-one";
-const RuntimeErrorFooter = require("./components/RuntimeErrorFooter");
-const RuntimeErrorHeader = require("./components/RuntimeErrorHeader");
-const CompileErrorContainer = require("./containers/CompileErrorContainer");
-const RuntimeErrorContainer = require("./containers/RuntimeErrorContainer");
-const theme = require("./theme");
-const removeAllChildren = require("./utils/removeAllChildren");
+import RuntimeErrorFooter from "./components/RuntimeErrorFooter";
+import RuntimeErrorHeader from "./components/RuntimeErrorHeader";
+import CompileErrorContainer from "./containers/CompileErrorContainer";
+import RuntimeErrorContainer from "./containers/RuntimeErrorContainer";
+import theme from "./theme";
+import removeAllChildren from "./utils/removeAllChildren";
 
 /**
  * @callback RenderFn
@@ -329,7 +329,7 @@ function handleRuntimeError(error) {
   debouncedShowRuntimeErrors(currentRuntimeErrors);
 }
 
-module.exports = Object.freeze({
+export default Object.freeze({
   clearCompileError,
   clearRuntimeErrors,
   handleRuntimeError,

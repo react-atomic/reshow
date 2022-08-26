@@ -34,4 +34,4 @@ const myWebpack = (root, main, lazyConfs) => {
   return result;
 };
 
-module.exports = myWebpack;
+export default myWebpack;

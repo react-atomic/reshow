@@ -9,8 +9,11 @@ try {
   NOT_DEFINED;
 } catch (e) {
   const initiator = e.stack.split("\n").slice(1)[0];
+  const folder = /(?<path>[^\(\s]+):[0-9]+:[0-9]+/
+    .exec(initiator)
+    .groups.path.replace("file://", "");
   dir = resolve(
-    dirname(/(?<path>[^\(\s]+):[0-9]+:[0-9]+/.exec(initiator).groups.path),
+    dirname(folder),
     "../../../../../src/webpack/refresh/utils/__tests__/"
   );
 }

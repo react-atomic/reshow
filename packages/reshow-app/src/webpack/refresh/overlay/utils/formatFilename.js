@@ -20,4 +20,4 @@ function formatFilename(filename) {
   return filename;
 }
 
-module.exports = formatFilename;
+export default formatFilename;

@@ -16,4 +16,4 @@ function removeAllChildren(element, skip) {
   }
 }
 
-module.exports = removeAllChildren;
+export default removeAllChildren;

@@ -49,9 +49,8 @@ const myWebpack = (root, main, lazyConfs) => {
   };
   if (HOT_UPDATE) {
     result.devServer = getHotServer({ confs, path });
-    result.cache = false;
   }
   return result;
 };
 
-module.exports = myWebpack;
+export default myWebpack;

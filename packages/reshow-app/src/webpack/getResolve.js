@@ -1,6 +1,7 @@
 import reshowRuntimeAlias from "./reshowRuntimeAlias";
+import { resolve } from "path";
 
-const getNRoot = (root) => root + "/node_modules";
+const getNRoot = (root) => resolve(root, "node_modules");
 
 const getResolve = ({ confs, root }) => {
   const nroot = getNRoot(root);
@@ -27,11 +28,11 @@ const getResolve = ({ confs, root }) => {
 
   const results = {
     // symlinks for reslove react hook complain.
-    symlinks: false,
+    symlinks: true,
     extensions: [".mjs", ".js", ".jsx"],
     fallback,
+    alias,
   };
-  results.alias = alias;
   return results;
 };
 

@@ -1,5 +1,5 @@
-const theme = require("../theme");
-const Spacer = require("./Spacer");
+import theme from "../theme";
+import Spacer from "./Spacer";
 
 /**
  * @typedef {Object} RuntimeErrorFooterProps
@@ -88,4 +88,4 @@ function RuntimeErrorFooter(document, root, props) {
   }
 }
 
-module.exports = RuntimeErrorFooter;
+export default RuntimeErrorFooter;
