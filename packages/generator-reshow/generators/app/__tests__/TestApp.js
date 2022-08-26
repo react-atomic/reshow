@@ -30,11 +30,11 @@ describe("generator-reshow:app", () => {
   });
 
   it("should have folder", () => {
-    assert.file(["src", "ui"]);
+    assert.file(["src", "src/ui"]);
   });
 
   it("should have file", () => {
-    assert.file(["compile.sh", "index.html"]);
+    assert.file(["compile.sh", "index.tpl"]);
   });
 
   it("should have content", () => {

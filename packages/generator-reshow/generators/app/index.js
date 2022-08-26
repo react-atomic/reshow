@@ -59,7 +59,6 @@ module.exports = class extends YoGenerator {
     cp("README.md");
     cp("webpack.config.mjs");
     cp("babel.config.js");
-    cp(".yo");
     cp("PageTest.js", "src/ui/pages/__tests__/PageTest.js");
     mkdir("src/ui/organisms");
   }

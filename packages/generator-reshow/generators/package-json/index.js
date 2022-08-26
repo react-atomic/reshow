@@ -69,8 +69,6 @@ module.exports = class extends YoGenerator {
           data.files.push("src");
         }
         if (isUseBabelUI) {
-          data.scripts["build:cjs"] = data.scripts["build:ui:cjs"];
-          data.scripts["build:es"] = data.scripts["build:ui:es"];
           delete data.bin;
           data.devDependencies["react"] = "^18.x";
           data.devDependencies["react-dom"] = "^18.x";
@@ -81,13 +79,16 @@ module.exports = class extends YoGenerator {
         if (!isUseWebpack) {
           delete data.scripts["webpack"];
           delete data.scripts["clean:webpack"];
+        } else {
+          cp(".yo");
         }
         if (!isApp && !isUseBabel) {
           delete data.scripts["build:es"];
           delete data.scripts.build;
           delete data.scripts.clean;
           data.scripts.test = "npm run mocha";
-          data.scripts.mocha = "npm run mochaFor -- 'src/**/__tests__/*.{js,mjs}'";
+          data.scripts.mocha =
+            "npm run mochaFor -- 'src/**/__tests__/*.{js,mjs}'";
         }
         return data;
       }

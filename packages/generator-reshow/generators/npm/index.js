@@ -63,10 +63,9 @@ module.exports = class extends YoGenerator {
     cp("README.md", null, this.payload);
     cp(".gitignore", null, this.payload);
     if (this.payload.isUseBabelUI) {
-      cp("ui");
       cp("babel.config.js");
       cp("ui-src", "src");
-      cp("IndexTest.js", "ui/pages/__tests__/IndexTest.js", this.payload);
+      cp("UITest.js", "src/ui/pages/__tests__/IndexTest.js", this.payload);
     } else {
       cp("src", null, this.payload);
       cp("Test.js", "src/__tests__/Test.js", this.payload);
