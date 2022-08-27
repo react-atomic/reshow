@@ -1,8 +1,8 @@
 [![CircleCI](https://circleci.com/gh/react-atomic/reshow/tree/main.svg?style=svg)](https://circleci.com/gh/react-atomic/reshow/tree/main)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Freact-atomic%2Freshow.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Freact-atomic%2Freshow?ref=badge_shield)
 
-`reshow.js`(A simplified React cross-component state management)
-===============
+# `reshow.js`
+> A simplified React cross-component state management
    * `GIT`
       * https://github.com/react-atomic/reshow
    * `NPM`
