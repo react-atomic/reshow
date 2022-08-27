@@ -10,7 +10,6 @@ import { UNDEFINED } from "reshow-constant";
 const render = (oApp, dom) => {
   if (dom.innerHTML) {
     win().Reshow.hydrate = true;
-    win().Reshow.dom = dom;
     ReactDOM.hydrateRoot(dom, oApp, {
       onRecoverableError: (err) => {
         console.log(err);
@@ -27,12 +26,10 @@ let bInitWorker = false;
 
 const client = (rawApp, { selector = "#app", serviceWorkerURL } = {}) => {
   const app = build(rawApp);
-  win().Reshow = { render, app, update };
+  const dom = doc().querySelector(selector);
+  win().Reshow = { render, app, update, dom };
   const data = UNDEFINED !== typeof REACT_DATA ? REACT_DATA : {};
-  const attachDom = doc().querySelector(selector);
-  if (attachDom) {
-    render(app(data), attachDom);
-  }
+  dom && render(app(data), dom);
   if (!bInitWorker) {
     serviceWorkerURL = serviceWorkerURL ?? data.serviceWorkerURL;
     initWorker({ serviceWorkerURL });
