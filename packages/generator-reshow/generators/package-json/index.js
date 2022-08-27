@@ -67,13 +67,14 @@ module.exports = class extends YoGenerator {
           data.bin[this.mainName] = "./src/index.js";
           data.files = data.files.filter((f) => f !== "build");
           data.files.push("src");
+        } else {
+          data.devDependencies["react-atomic-atom"] = "*";
         }
         if (isUseBabelUI) {
           delete data.bin;
           data.devDependencies["react"] = "^18.x";
           data.devDependencies["react-dom"] = "^18.x";
           data.devDependencies["reshow-unit"] = "*";
-          data.devDependencies["react-atomic-atom"] = "*";
           delete data.devDependencies["reshow-unit-dom"];
         }
         if (!isUseWebpack) {

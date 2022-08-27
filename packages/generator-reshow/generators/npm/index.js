@@ -55,6 +55,7 @@ module.exports = class extends YoGenerator {
   writing() {
     this.env.options.nodePackageManager = "yarn";
     const { cp, chMainName, syncJSON } = YoHelper(this);
+    const { isUseBabel, isUseBabelUI } = this.payload || {};
 
     // handle change to new folder
     chMainName(this.mainName);
@@ -62,10 +63,15 @@ module.exports = class extends YoGenerator {
     // handle copy file
     cp("README.md", null, this.payload);
     cp(".gitignore", null, this.payload);
-    if (this.payload.isUseBabelUI) {
+    if (isUseBabel) {
       cp("babel.config.js");
-      cp("ui-src", "src");
-      cp("UITest.js", "src/ui/pages/__tests__/IndexTest.js", this.payload);
+      if (isUseBabelUI) {
+        cp("ui-src", "src");
+        cp("UITest.js", "src/ui/pages/__tests__/IndexTest.js", this.payload);
+      } else {
+        cp("lib-src", "src");
+        cp("LIBTest.js", "src/__tests__/LibTest.js", this.payload);
+      }
     } else {
       cp("src", null, this.payload);
       cp("Test.js", "src/__tests__/Test.js", this.payload);
