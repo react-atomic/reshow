@@ -42,7 +42,6 @@ module.exports = class extends YoGenerator {
             react: "^18.x",
             "react-dom": "^18.x",
             "reshow-app": "*",
-            ricon: "*",
             ...npmDependencies,
           };
           delete data.devDependencies;
