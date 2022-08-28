@@ -32,10 +32,7 @@ Test for https://react-atomic-ui.js.org/
 ## Example Usage
 * Demo Url:
    * https://react-atomic-ui.js.org/
-* How to use router?
-   * https://github.com/react-atomic/reshow/wiki/Router-possible-solution
-
-
+   * https://github.com/react-atomic/react-atomic-ui
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Freact-atomic%2Freshow.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Freact-atomic%2Freshow?ref=badge_large)
