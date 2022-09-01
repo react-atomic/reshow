@@ -2,8 +2,8 @@ import Reshow, { dispatch } from "reshow";
 import { ajaxDispatch } from "organism-react-ajax";
 import { doc } from "win-doc";
 
-import handleAnchor from "../../src/handleAnchor";
-import urlStore from "../../src/stores/urlStore";
+import handleAnchor from "../../handleAnchor";
+import urlStore from "../../stores/urlStore";
 
 const defaultOnUrlChange = (url) => (handleAnchor) => (goAnchorDelay) => {
   const separator = "/";

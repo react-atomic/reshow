@@ -1,8 +1,9 @@
-import React, { PureComponent } from "react";
-import { urlStore, urlDispatch, UrlReturn } from "../../../src/index";
-
+import { PureComponent } from "react";
 import { expect } from "chai";
 import { act, render, cleanIt, jsdom, waitFor } from "reshow-unit";
+
+import urlStore, { urlDispatch } from "../../../stores/urlStore";
+import UrlReturn from "../UrlReturn";
 
 describe("Test Url Return", () => {
   beforeEach(() => {

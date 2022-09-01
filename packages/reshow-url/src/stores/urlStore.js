@@ -5,6 +5,7 @@ import get from "get-object-value";
 import setUrl, { getUrl, unsetUrl } from "seturl";
 import { win, doc } from "win-doc";
 import arrayDedup from "array.dedup";
+import { getAnchorPath } from "../handleAnchor";
 
 /**
  * Calling history.pushState() or history.replaceState() won't trigger a popstate event.
@@ -61,6 +62,16 @@ const registerEvent = (oWin) => {
   }
 };
 
+const getInputAnchor = (params) => {
+  let anchor;
+  if (IS_ARRAY(params)) {
+    anchor = params["anchor"];
+  } else {
+    anchor = params;
+  }
+  return anchor;
+};
+
 const handleUrl = () => {
   const Group = {};
 
@@ -94,13 +105,15 @@ const handleUrl = () => {
         }
         break;
       case "anchor":
-        let anchor;
-        if (IS_ARRAY(params)) {
-          anchor = params["anchor"];
-        } else {
-          anchor = params;
-        }
-        url = "#" + anchor;
+        url = "#" + getInputAnchor(params);
+        break;
+      case "resetAnchor":
+        const unsetAnchor = getInputAnchor(params);
+        const { anchorArr } = getAnchorPath();
+        url =
+          anchorArr
+            .filter((anchorItem) => anchorItem !== unsetAnchor)
+            .join("#");
         break;
       case "query":
       default:

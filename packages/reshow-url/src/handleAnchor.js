@@ -25,6 +25,10 @@ const goToAnchor = (anchor) => (goAnchorDelay) => {
 const getAnchorPath = (path) => {
   if (!path) {
     path = doc().URL;
+  } else {
+    if (0 === path.indexOf("#")) {
+      path = "/" + path;
+    }
   }
   const pathArr = path.split("/#/");
   if (null != pathArr[1]) {
@@ -37,7 +41,13 @@ const getAnchorPath = (path) => {
     anchor = urlDecode(path.substring(anchorStart));
     path = path.substring(0, anchorStart);
   }
-  return { anchor, path };
+  const anchorArr = anchor.split("#");
+  return {
+    anchor,
+    path,
+    anchorArr,
+    lastAnchor: "#" + anchorArr[anchorArr.length - 1],
+  };
 };
 
 const handleAnchor = (rawPath) => (goAnchorDelay) => {
