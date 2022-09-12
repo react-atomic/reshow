@@ -1,13 +1,48 @@
+// @ts-check
+
 import callfunc from "call-func";
 import { UNDEFINED, T_UNDEFINED } from "reshow-constant";
 
-const emitter = () => {
+/**
+ * @typedef {object} emiter
+ * @property {function} reset
+ * @property {function} add
+ * @property {function} remove
+ * @property {function} emit
+ */
+
+/**
+ * @template T
+ * @typedef {T} state
+ */
+
+/**
+ * @returns emiter
+ */
+const getMitt = () => {
   const pool = [];
   return {
+    /**
+     * @returns {array}
+     */
     reset: () => pool.splice(0, pool.length),
+    /**
+     * @param {function} handler
+     * @returns {number}
+     */
     add: (handler) => pool.unshift(handler),
-    // >>> 0 for change indexOf return -1 to 4294967295
+    /**
+     * >>> 0 for change indexOf return -1 to 4294967295
+     * @param {function} handler
+     * @returns {array}
+     */
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
+    /**
+     * @template T
+     * @param {state<T>} state
+     * @param {object} action
+     * @param {state<T>} prevState
+     */
     emit: (state, action, prevState) => {
       const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
       setTimeout(() => {
@@ -23,6 +58,12 @@ const emitter = () => {
 /**
  * Transpile dispatch("your-type", {foo: "bar"})
  * to dispatch({type: "your-type", params: {foo: "bar"}})
+ *
+ * @template T
+ * @param {string|object|function} action
+ * @param {object} params
+ * @param {state<T>} prevState
+ * @returns {object} lazy actions
  */
 const refineAction = (action, params, prevState) => {
   action = action || {};
@@ -33,9 +74,30 @@ const refineAction = (action, params, prevState) => {
   return callfunc(action, [prevState]);
 };
 
+/**
+ * @typedef {object} store
+ * @property {function} reset
+ * @property {function} getState
+ * @property {function} addListener
+ * @property {function} removeListener
+ */
+
+/**
+ * @template T
+ * @param {function} reduce
+ * @param {state<T>|function} initState
+ * @returns {[store, dispatch]}
+ */
 const createReducer = (reduce, initState) => {
   const state = { current: callfunc(initState || {}) };
-  const mitt = emitter();
+  const mitt = getMitt();
+  /**
+   * @template T
+   * @function dispatch
+   * @param {string|object|function} action
+   * @param {object} actionParams
+   * @returns {state<T>} endingState
+   */
   const dispatch = (action, actionParams) => {
     const startingState = state.current;
     action = refineAction(action, actionParams, startingState);
