@@ -1,5 +1,5 @@
 {
-  "version": "0.17.36",
+  "version": "0.17.37",
   "name": "generator-reshow",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "yo-unit": "*"
   },
   "scripts": {
-    "mochaFor": "mocha --timeout 2500",
+    "mochaFor": "mocha --timeout 3000",
     "mocha": "npm run mochaFor -- 'generators/**/__tests__/*.js'",
     "test": "npm run mocha",
     "prepublishOnly": "npm run test"

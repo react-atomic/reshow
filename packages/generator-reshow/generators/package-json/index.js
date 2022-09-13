@@ -74,6 +74,8 @@ module.exports = class extends YoGenerator {
           data.devDependencies["react"] = "^18.x";
           data.devDependencies["react-dom"] = "^18.x";
           data.devDependencies["reshow-unit"] = "*";
+          data.scripts["build:type"] =
+            "npx -p typescript tsc src/index.js src/**/*.js src/ui/**/*.jsx --jsx react-jsx --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types";
           delete data.devDependencies["reshow-unit-dom"];
         }
         if (!isUseWebpack) {

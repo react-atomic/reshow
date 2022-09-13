@@ -31,14 +31,16 @@
     "start": "ws",
     "format": "prettier-eslint --write 'src/**/*.js'",
     "clean:webpack": "find ./assets -name '*.*' | xargs rm -rf && rm -rf workbox-*.js",
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "clean": "find ./build ./types -name '*.*' | xargs rm -rf",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --ignore /**/__tests__<%= babelRootMode %>",
     "build:es": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs<%= babelRootMode %>",
-    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "build:type": "npx -p typescript tsc src/index.js src/**/*.js --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types",
+    "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
     "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/{cjs,es}/**/__tests__/*.{js,mjs}'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
-  "files": ["build", "package.json", "README.md"]
+  "types": "./types/index.d.ts",
+  "files": ["types", "build", "package.json", "README.md"]
 }
