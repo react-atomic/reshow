@@ -4,8 +4,8 @@ export type StateType = {
     set: Function;
 };
 export type MaybeMapType = StateType | any;
-export type forEachCb = (Value: any, Key: number | string) => any;
-export type ReducerType = (state: StateType, action: MaybeMapType) => any;
+export type forEachCb = (Value: any, Key: number | string) => void;
+export type ReducerType = (state: StateType, action: MaybeMapType) => StateType;
 /**
  * @param {ReducerType} reduce
  * @param {MaybeMapType|function} initState
@@ -16,6 +16,7 @@ declare function ImmutableStore(reduce: ReducerType, initState: MaybeMapType | F
  * @callback ReducerType
  * @param {StateType} state
  * @param {MaybeMapType} action
+ * @returns {StateType}
  */
 /**
  * @type ReducerType
@@ -35,6 +36,7 @@ import { fromJS } from "immutable";
  *
  * @param {StateType} state
  * @param {MaybeMapType} maybeMap
+ * @returns {StateType}
  */
 export function mergeMap(state: StateType, maybeMap: MaybeMapType): StateType;
 import { Map } from "immutable";

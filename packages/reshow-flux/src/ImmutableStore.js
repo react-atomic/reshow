@@ -6,21 +6,21 @@ import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
 
-
 /**
- * @typedef {object} StateType 
- * @property {function} get 
- * @property {function} set 
+ * @typedef {object} StateType
+ * @property {function} get
+ * @property {function} set
  */
 
 /**
- * @typedef {StateType|Object} MaybeMapType 
+ * @typedef {StateType|Object} MaybeMapType
  */
 
 /**
  * @callback forEachCb
- * @param {any} Value 
- * @param {number|string} Key 
+ * @param {any} Value
+ * @param {number|string} Key
+ * @returns {void}
  */
 
 /**
@@ -57,6 +57,7 @@ const forEachMap = (maybeMap, cb) => {
 
 /**
  * @param {MaybeMapType} maybeMap
+ * @returns {number}
  */
 const MAP_SIZE = (maybeMap) =>
   isMap(maybeMap) ? maybeMap.size : OBJ_SIZE(maybeMap);
@@ -68,6 +69,7 @@ const MAP_SIZE = (maybeMap) =>
  *
  * @param {StateType} state
  * @param {MaybeMapType} maybeMap
+ * @returns {StateType}
  */
 const mergeMap = (state, maybeMap) => {
   try {
@@ -79,9 +81,10 @@ const mergeMap = (state, maybeMap) => {
 };
 
 /**
- * @callback ReducerType 
+ * @callback ReducerType
  * @param {StateType} state
  * @param {MaybeMapType} action
+ * @returns {StateType}
  */
 
 /**
@@ -91,7 +94,7 @@ const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
  * @param {ReducerType} reduce
- * @param {MaybeMapType|function} initState 
+ * @param {MaybeMapType|function} initState
  * @returns {[store, dispatch]}
  */
 const ImmutableStore = (reduce, initState) => {
@@ -99,7 +102,7 @@ const ImmutableStore = (reduce, initState) => {
   initState = mergeMap(Map(), callfunc(initState));
   const [store, dispatch] = createReducer(reduce, initState);
   /**
-   * @param {string} k 
+   * @param {string} k
    */
   store.getMap = (k) => getMap(store.getState(), k);
   return [store, dispatch];
