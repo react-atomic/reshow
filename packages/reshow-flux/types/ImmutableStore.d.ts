@@ -9,8 +9,9 @@ export type ReducerType = (state: StateType, action: MaybeMapType) => any;
 /**
  * @param {ReducerType} reduce
  * @param {MaybeMapType|function} initState
+ * @returns {[store, dispatch]}
  */
-declare function ImmutableStore(reduce: ReducerType, initState: MaybeMapType | Function): any[];
+declare function ImmutableStore(reduce: ReducerType, initState: MaybeMapType | Function): [any, (action: string | object | Function, actionParams?: object) => any];
 /**
  * @callback ReducerType
  * @param {StateType} state

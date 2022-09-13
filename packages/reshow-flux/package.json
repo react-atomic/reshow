@@ -1,15 +1,13 @@
 {
+  "version": "0.17.27",
   "name": "reshow-flux",
-  "version": "0.17.25",
-  "description": "The smallest react flux and Fast hook alternative",
-  "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.mjs",
-  "exports": {
-    "require": "./build/cjs/src/index.js",
-    "import": "./build/es/src/index.mjs"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/reshow-flux"
   },
-  "repository": "react-atomic/reshow",
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux",
+  "description": "The smallest react flux and Fast hook alternative",
   "keywords": [
     "state",
     "global-state",
@@ -41,8 +39,14 @@
     "react-dom": "18.x",
     "reshow-unit": "^0.17.x"
   },
+  "exports": {
+    "require": "./build/cjs/src/index.js",
+    "import": "./build/es/src/index.mjs"
+  },
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.mjs",
   "scripts": {
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "clean": "find ./build ./types -name '*.*' | xargs rm -rf",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --ignore /**/__tests__ --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs --root-mode upward",
     "build:type": "npx -p typescript tsc src/index.js src/**/*.js --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types",

@@ -92,6 +92,7 @@ const defaultReducer = (state, action) => mergeMap(state, action);
 /**
  * @param {ReducerType} reduce
  * @param {MaybeMapType|function} initState 
+ * @returns {[store, dispatch]}
  */
 const ImmutableStore = (reduce, initState) => {
   reduce = reduce || defaultReducer;

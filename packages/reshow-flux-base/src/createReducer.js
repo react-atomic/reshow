@@ -74,9 +74,8 @@ const refineAction = (action, params, prevState) => {
   return callfunc(action, [prevState]);
 };
 
-
 /**
- * @typedef {Object} StoreType 
+ * @typedef {Object} StoreType
  */
 
 /**
@@ -89,13 +88,11 @@ const createReducer = (reduce, initState) => {
   const state = { current: callfunc(initState || {}) };
   const mitt = getMitt();
   /**
-   * @template T
-   * @function dispatch
    * @param {string|object|function} action
    * @param {object} actionParams
    * @returns {state<T>} endingState
    */
-  const dispatch = (action, actionParams) => {
+  const dispatch = (action, actionParams = T_UNDEFINED) => {
     const startingState = state.current;
     action = refineAction(action, actionParams, startingState);
     const endingState = reduce(startingState, action);
