@@ -20,7 +20,7 @@ do_build() {
   DEST_FOLDER=${DIR}/${FOLDER_PREFIX}${BUILD_VERSION}
   mkdir -p ${DEST_FOLDER}
 
-  for file in $COPY_FILES; do [ -e "$file" ] && cp $file ${DEST_FOLDER}; done
+  for file in $COPY_FILES; do [ -e "$file" ] && cp -a $file ${DEST_FOLDER}; done
   for file in $DOCKER_FILES; do
     if [ -e "$file" ]; then
       cp $file ${DEST_FOLDER}

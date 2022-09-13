@@ -56,8 +56,8 @@ const getMitt = () => {
 };
 
 /**
- * Transpile dispatch("your-type", {foo: "bar"})
- * to dispatch({type: "your-type", params: {foo: "bar"}})
+ * Transpile dispatch("your-action-type", {foo: "bar"})
+ * to dispatch({type: "your-action-type", params: {foo: "bar"}})
  *
  * @template T
  * @param {string|object|function} action
@@ -74,19 +74,16 @@ const refineAction = (action, params, prevState) => {
   return callfunc(action, [prevState]);
 };
 
+
 /**
- * @typedef {object} store
- * @property {function} reset
- * @property {function} getState
- * @property {function} addListener
- * @property {function} removeListener
+ * @typedef {Object} StoreType 
  */
 
 /**
  * @template T
  * @param {function} reduce
  * @param {state<T>|function} initState
- * @returns {[store, dispatch]}
+ * @returns {[StoreType, dispatch]}
  */
 const createReducer = (reduce, initState) => {
   const state = { current: callfunc(initState || {}) };

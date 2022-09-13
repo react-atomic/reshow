@@ -6,29 +6,20 @@ export type emiter = {
     emit: Function;
 };
 export type state<T> = T;
-export type store = {
-    reset: Function;
-    getState: Function;
-    addListener: Function;
-    removeListener: Function;
-};
+export type StoreType = any;
 /**
- * @typedef {object} store
- * @property {function} reset
- * @property {function} getState
- * @property {function} addListener
- * @property {function} removeListener
+ * @typedef {Object} StoreType
  */
 /**
  * @template T
  * @param {function} reduce
  * @param {state<T>|function} initState
- * @returns {[store, dispatch]}
+ * @returns {[StoreType, dispatch]}
  */
-declare function createReducer<T>(reduce: Function, initState: Function | T): [store, <T_1>(action: string | object | Function, actionParams: object) => T_1];
+declare function createReducer<T>(reduce: Function, initState: Function | T): [StoreType, <T_1>(action: string | object | Function, actionParams: object) => T_1];
 /**
- * Transpile dispatch("your-type", {foo: "bar"})
- * to dispatch({type: "your-type", params: {foo: "bar"}})
+ * Transpile dispatch("your-action-type", {foo: "bar"})
+ * to dispatch({type: "your-action-type", params: {foo: "bar"}})
  *
  * @template T
  * @param {string|object|function} action
