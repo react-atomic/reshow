@@ -15,7 +15,7 @@ echo ""
 echo $INSTALL
 echo ""
 echo "###"
-echo "# Will build package"
+echo "# Will install build tool"
 echo "###"
 echo ""
 echo $BUILD_DEPS
