@@ -1,9 +1,9 @@
 import { StatsWriterPlugin } from "webpack-stats-plugin";
 import get from "get-object-value";
-const keys = Object.keys;
-const isArray = Array.isArray;
+import { resolve } from "path";
+import { KEYS, IS_ARRAY } from "reshow-constant";
 
-const getStatsJson = ({ assetsStore }) => {
+const getStatsJson = ({ assetsStore, path }) => {
   // https://github.com/FormidableLabs/webpack-stats-plugin
   return new StatsWriterPlugin({
     filename: "stats.json",
@@ -12,16 +12,17 @@ const getStatsJson = ({ assetsStore }) => {
       const { hash, outputOptions } = get(opts, ["compiler"], {});
       const publicPath = outputOptions?.publicPath;
       const chunks = {};
-      keys(files).forEach((key) => {
-        const name = isArray(files[key]) ? files[key][0] : files[key];
-        chunks[key] = [
-          {
-            name,
-            publicPath: publicPath + name + "?" + hash.substring(0, 7),
-          },
-        ];
+      const assets = {};
+      KEYS(files).forEach((key) => {
+        const name = IS_ARRAY(files[key]) ? files[key][0] : files[key];
+        chunks[key] = [name];
+        assets[name] = {
+          name,
+          publicPath: publicPath + name + "?" + hash.substring(0, 7),
+          path: resolve(path, name),
+        };
       });
-      assetsStore.current = { chunks, publicPath, status: "done" };
+      assetsStore.current = { chunks, assets, publicPath, status: "done" };
       return JSON.stringify(assetsStore.current, null, 2);
     },
   });

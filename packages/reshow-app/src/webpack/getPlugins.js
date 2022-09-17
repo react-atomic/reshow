@@ -43,7 +43,7 @@ const getPlugins = ({
     maxChunks = 1;
   } else {
     plugins.push(
-      getStatsJson({ assetsStore }),
+      getStatsJson({ assetsStore, path }),
       new NginxPushPlugin(confs, assetsStore)
     );
   }
