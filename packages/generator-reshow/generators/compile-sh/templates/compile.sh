@@ -102,7 +102,7 @@ develop() {
   stop
   echo "Develop Mode"
   npm run build
-  [ ! -z "$webpack" ] && CONFIG=$conf $webpack && [ ! -z "$serverEnabled" ] CONFIG=$conf $webpack $WEBPACK_SERVER_CONFIG
+  [ ! -z "$webpack" ] && CONFIG=$conf $webpack && [ ! -z "$serverEnabled" ] && CONFIG=$conf $webpack $WEBPACK_SERVER_CONFIG
 }
 
 watch() {
