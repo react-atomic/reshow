@@ -67,8 +67,8 @@ class NginxPushPlugin {
                 // get all assets
                 const assets = keys(this.assetsStore.current?.chunks || {}).map(
                   (key) => {
-                    const item = this.assetsStore.current.chunks[key];
-                    return item[0].publicPath;
+                    const name = this.assetsStore.current.chunks[key][0];
+                    return this.assetsStore.current.assets[name].publicPath;
                   }
                 );
                 resolve(assets);
