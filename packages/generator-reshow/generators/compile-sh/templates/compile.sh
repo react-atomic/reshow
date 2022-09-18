@@ -24,6 +24,7 @@ else
   if [ -z "$serverEnabled" ]; then
     conf+='"indexTpl":"'${DIR}/index.tpl'",'
     conf+='"indexHtml":"'${DIR}/index.html'",'
+    conf+='"bustMode":"name",'
   fi
   conf+='"swDest":"'${SWJS}'",'
   # conf+='"swDebug":true,'
@@ -118,13 +119,18 @@ hot() {
 }
 
 nodeTest(){
-    echo '{"themePath":"hello"}' | node ./server.js
+    theme=$1
+    if [ -z "$theme" ]; then
+      theme="Hello"
+    fi
+    echo "Theme Path: ${theme}"
+    echo '{"themePath":"'${theme}'"}' | node ./server.js
     echo ""
 }
 
 case "$1" in
   node)
-    nodeTest
+    nodeTest $2
     ;;
   p)
     production
