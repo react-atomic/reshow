@@ -69,6 +69,24 @@ describe("Test Section", () => {
     expect("undefined" === typeof uFake.el).to.be.true;
   });
 
+  it("Section with empty child", () => {
+    act(
+      () =>
+        dispatch({
+          section: {
+            test: {
+              shouldRender: true,
+              aaa: { bbb: "ccc" },
+            },
+          },
+          I18N: { ddd: "fff" },
+        }),
+      3
+    );
+    const wrap = render(<Section name="test"></Section>);
+    expect(wrap.html()).to.be.empty;
+  });
+
   it("Section is existed with immutable", async () => {
     const wrap = render(<FakeComponent immutable />);
     await act(

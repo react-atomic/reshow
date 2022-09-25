@@ -63,6 +63,7 @@ describe("Test RealTimeReturn", () => {
     expect(uFake.el.props.data).to.equal("bar");
     await act(() => dispatch("realTime"));
     await act(() => dispatch({ data: "foo" }));
+    await act(() => {});
     await waitFor(() => expect(uFake.el.props.data).to.equal("bar"));
   });
 

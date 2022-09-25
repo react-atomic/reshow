@@ -11,7 +11,7 @@ otherOptions.initStates = ["section", "I18N"];
 const Section = (props) => {
   const { immutable: propsImmutable, children, ...otherProps } = props;
   const { section, ...state } = useConnect(otherOptions)(props);
-  if (!section) {
+  if (!section || !children) {
     return null;
   }
   const name = props.name;

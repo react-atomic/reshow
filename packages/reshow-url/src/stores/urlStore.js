@@ -110,10 +110,9 @@ const handleUrl = () => {
       case "resetAnchor":
         const unsetAnchor = getInputAnchor(params);
         const { anchorArr } = getAnchorPath();
-        url =
-          anchorArr
-            .filter((anchorItem) => anchorItem !== unsetAnchor)
-            .join("#");
+        url = anchorArr
+          .filter((anchorItem) => anchorItem !== unsetAnchor)
+          .join("#");
         break;
       case "query":
       default:

@@ -3,7 +3,6 @@ import { Html5Entities } from "html-entities";
 import theme from "../theme";
 import formatFilename from "../utils/formatFilename";
 
-
 ansiHTML.setColors(theme);
 
 const entities = new Html5Entities();
