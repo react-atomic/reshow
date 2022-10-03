@@ -64,13 +64,13 @@ const buildReact = (component, props, child) => {
 };
 
 const build =
-  (component, componentOption) =>
-  (props = {}, child) => {
+  (component, componentOption = {}) =>
+  (props = {}, child = T_UNDEFINED) => {
     if (!component) {
       return T_NULL;
     }
 
-    const { wrap, doCallFunction } = componentOption || {};
+    const { wrap } = componentOption || {};
     if (wrap) {
       if (FUNCTION !== typeof component && !isValidElement(component)) {
         child = component;

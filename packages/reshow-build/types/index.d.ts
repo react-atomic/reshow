@@ -1,2 +1,2 @@
 export default build;
-declare function build(component: any, componentOption: any): (props: {}, child: any) => any;
+declare function build(component: any, componentOption?: {}): (props?: {}, child?: undefined) => any;
