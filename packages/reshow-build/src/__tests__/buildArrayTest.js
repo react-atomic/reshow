@@ -9,7 +9,7 @@ describe("Test build array", () => {
   it("test build aray without props", () => {
     const arr = [<div />, <div />];
     const wrap = render(build(arr)());
-    console.log(wrap.html());
+    expect(wrap.html()).to.equal("<div></div><div></div>");
   });
 
   it("test with multi children", () => {
