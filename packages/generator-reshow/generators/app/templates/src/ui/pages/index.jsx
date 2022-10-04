@@ -1,5 +1,3 @@
-//@ts-check
-
 import { lazy } from "react";
 import { ReshowMessage, Return } from "reshow";
 import { ClientRoute } from "reshow-url";
