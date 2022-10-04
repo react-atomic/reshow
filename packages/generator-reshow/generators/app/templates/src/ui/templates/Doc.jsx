@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+//@ts-check
+
 import { getDocTemplate } from "organism-react-navigation";
 import Menu from "../molecules/Menu";
 

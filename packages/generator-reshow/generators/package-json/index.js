@@ -1,4 +1,7 @@
-const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
+const { YoGenerator, YoHelper } = require("yo-reshow");
+
+const getUIBuildTypeScript = (filePattern) =>
+  `npx -p typescript tsc src/*.js ${filePattern} --jsx react-jsx --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types`;
 
 /**
  * package-json Generator
@@ -46,8 +49,9 @@ module.exports = class extends YoGenerator {
           };
           delete data.devDependencies;
           delete data.version;
-          data.scripts["prepublishOnly"] = "exit 1;";
+          data.scripts.prepublishOnly = "exit 1;";
           data.scripts.build = "npm run clean && npm run build:es";
+          data.scripts["build:type"] = getUIBuildTypeScript("src/ui/**/*.jsx");
         } else {
           delete data.private;
           data.dependencies = {
@@ -74,8 +78,9 @@ module.exports = class extends YoGenerator {
           data.devDependencies["react"] = "^18.x";
           data.devDependencies["react-dom"] = "^18.x";
           data.devDependencies["reshow-unit"] = "*";
-          data.scripts["build:type"] =
-            "npx -p typescript tsc src/index.js src/**/*.js src/ui/**/*.jsx --jsx react-jsx --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types";
+          data.scripts["build:type"] = getUIBuildTypeScript(
+            "src/**/*.js src/ui/**/*.jsx"
+          );
           delete data.devDependencies["reshow-unit-dom"];
         }
         if (!isUseWebpack) {

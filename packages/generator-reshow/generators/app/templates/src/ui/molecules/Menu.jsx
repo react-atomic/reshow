@@ -1,9 +1,14 @@
+//@ts-check
+
 import { VerticalMenu } from "pmvc_react_admin";
 import { SideMenu } from "organism-react-navigation";
 import { pageStore, ReLink } from "reshow";
 import { KEYS } from "reshow-constant";
 
-const Menu = (props) => {
+/**
+ * @returns {React.ReactElement}
+ */
+const Menu = () => {
   const thisMenus = {};
   const themes = pageStore.getMap("themes");
   KEYS(themes).forEach((item) => {
