@@ -1,2 +1,3 @@
 export default build;
-declare function build(component: any, componentOption?: {}): (props?: {}, child?: undefined) => any;
+export type Component = any;
+declare function build(component: Component, componentOption?: object): (props?: object, child?: Component) => React.ReactElement | React.ReactElement[];

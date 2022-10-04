@@ -1,3 +1,4 @@
+// @ts-check
 import { isValidElement, cloneElement, createElement, Children } from "react";
 import {
   OBJ_SIZE,
@@ -7,9 +8,22 @@ import {
   T_TRUE,
   TYPE_ERROR,
   T_UNDEFINED,
+  IS_ARRAY
 } from "reshow-constant";
 import { removeEmpty } from "array.merge";
 
+/**
+ * @typedef Component 
+ * @type any 
+ */
+
+/**
+ * @param {function} component
+ * @param {object} props
+ * @param {Component} child
+ * @param {object} componentOption
+ * @returns {React.ReactElement}
+ */
 const buildFunc = (component, props, child, componentOption) => {
   // anonymous function will call directly
   const { wrap, doCallFunction } = componentOption || {};
@@ -40,7 +54,13 @@ const buildFunc = (component, props, child, componentOption) => {
   }
 };
 
-const buildReact = (component, props, child) => {
+/**
+ * @param {Component} component
+ * @param {object} props
+ * @param {Component} child
+ * @returns {React.ReactElement}
+ */
+const buildReact = (component, props = {}, child = T_UNDEFINED) => {
   if (!component) {
     return T_NULL;
   }
@@ -64,7 +84,16 @@ const buildReact = (component, props, child) => {
 };
 
 const build =
+  /**
+   * @param {Component} component
+   * @param {object} componentOption
+   */
   (component, componentOption = {}) =>
+  /**
+   * @param {object} props 
+   * @param {Component} child 
+   * @returns {React.ReactElement|React.ReactElement[]}
+   */
   (props = {}, child = T_UNDEFINED) => {
     if (!component) {
       return T_NULL;
@@ -78,12 +107,15 @@ const build =
       }
     }
 
-    if (component.map) {
+    if (IS_ARRAY(component)) {
       // need locate before removeEmpty
       props.key = T_UNDEFINED;
     }
     props = removeEmpty(props, T_TRUE);
 
+    /**
+     * @param {Component} comp
+     */
     const run = (comp) =>
       (isValidElement(comp) ? buildReact : buildFunc)(
         comp,
@@ -92,7 +124,7 @@ const build =
         componentOption
       );
 
-    return component.map
+    return IS_ARRAY(component)
       ? Children.map(
           component.map((comp) => run(comp)),
           (c) => c
