@@ -3,7 +3,7 @@ import { useReduceStore, Map } from "reshow-flux";
 import build from "reshow-build";
 import callfunc from "call-func";
 
-import Return from "../ui/organisms/Return";
+import Return from "./ui/organisms/Return";
 
 const usePartialRender = (initRenderKeys, initChildren) => {
   const [renderStore, setPartialRender] = useReduceStore(null, () =>

@@ -1,6 +1,6 @@
 import { useConnect as useConn } from "reshow-flux";
 import MemoReturn from "../organisms/MemoReturn";
-import connectOptions from "../../src/connectOptions";
+import connectOptions from "../../connectOptions";
 
 const getReturn = ({
   displayName = "Return",
