@@ -1,5 +1,8 @@
 export default ClientRoute;
-declare class ClientRoute {
+/**
+ * @extends {Reshow}
+ */
+declare class ClientRoute extends Reshow {
     static defaultProps: {
         ajax: boolean;
         goAnchorDelay: number;
@@ -7,6 +10,10 @@ declare class ClientRoute {
         onHashChange: (rawPath: any) => (goAnchorDelay: any) => any;
     };
     getPath(): any;
-    getUrlChangeState(url: any): any;
-    componentDidMount(): void;
+    /**
+     * @param {string} url
+     * @returns {Object}
+     */
+    getUrlChangeState(url: string): any;
 }
+import Reshow from "reshow";

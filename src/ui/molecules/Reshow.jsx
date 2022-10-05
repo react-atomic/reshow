@@ -37,7 +37,7 @@ const update = (params) => {
 
 class Reshow extends PureComponent {
   static defaultProps = {
-    fallback: false,
+    fallback: null,
   };
 
   static getDerivedStateFromError(error) {
@@ -114,6 +114,9 @@ class Reshow extends PureComponent {
     this.setState({ hasError: T_TRUE });
   }
 
+  /**
+   * @returns {React.ReactElement}
+   */
   render() {
     const { hasError } = this.state;
     const {

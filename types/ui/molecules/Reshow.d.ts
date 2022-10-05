@@ -1,7 +1,7 @@
 export default Reshow;
 declare class Reshow extends PureComponent<any, any, any> {
     static defaultProps: {
-        fallback: boolean;
+        fallback: any;
     };
     static getDerivedStateFromError(error: any): {
         hasError: true;
@@ -22,7 +22,10 @@ declare class Reshow extends PureComponent<any, any, any> {
     componentDidMount(): void;
     componentWillUnmount(): void;
     componentDidCatch(error: any, info: any): void;
-    render(): JSX.Element;
+    /**
+     * @returns {React.ReactElement}
+     */
+    render(): React.ReactElement;
 }
 export function update(params: any): void;
 import { PureComponent } from "react";

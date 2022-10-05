@@ -1,25 +1,42 @@
+//@ts-check
+
 import Reshow, { dispatch } from "reshow";
 import { ajaxDispatch } from "organism-react-ajax";
 import { doc } from "win-doc";
 
 import handleAnchor from "../../handleAnchor";
-import urlStore from "../../stores/urlStore";
 
-const defaultOnUrlChange = (url) => (handleAnchor) => (goAnchorDelay) => {
-  const separator = "/";
-  const params = url.split(separator);
-  const last = params.length - 1;
-  const lastPath = params[last];
-  const next = {
-    pvid: url,
-    themePath: null,
+/**
+ * @param {string} url
+ */
+const defaultOnUrlChange =
+  (url) =>
+  /**
+   * @param {function} handleAnchor
+   */
+  (handleAnchor) =>
+  /**
+   * @param {number} goAnchorDelay
+   * @returns {Object}
+   */
+  (goAnchorDelay) => {
+    const separator = "/";
+    const params = url.split(separator);
+    const last = params.length - 1;
+    const lastPath = params[last];
+    const next = {
+      pvid: url,
+      themePath: null,
+    };
+    if (lastPath) {
+      next.themePath = handleAnchor(lastPath)(goAnchorDelay);
+    }
+    return next;
   };
-  if (lastPath) {
-    next.themePath = handleAnchor(lastPath)(goAnchorDelay);
-  }
-  return next;
-};
 
+/**
+ * @extends {Reshow}
+ */
 class ClientRoute extends Reshow {
   static defaultProps = {
     ajax: false,
@@ -41,6 +58,10 @@ class ClientRoute extends Reshow {
     }
   }
 
+  /**
+   * @param {string} url
+   * @returns {Object}
+   */
   getUrlChangeState(url) {
     const { onUrlChange, onHashChange, goAnchorDelay } = this.props;
     const thisUrlChangeFunc = onUrlChange ? onUrlChange : defaultOnUrlChange;
