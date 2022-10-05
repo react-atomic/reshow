@@ -8,13 +8,13 @@ import {
   T_TRUE,
   TYPE_ERROR,
   T_UNDEFINED,
-  IS_ARRAY
+  IS_ARRAY,
 } from "reshow-constant";
 import { removeEmpty } from "array.merge";
 
 /**
- * @typedef Component 
- * @type any 
+ * @typedef Component
+ * @type any
  */
 
 /**
@@ -83,16 +83,16 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
   }
 };
 
+/**
+ * @param {Component} component
+ * @param {object} componentOption
+ */
 const build =
-  /**
-   * @param {Component} component
-   * @param {object} componentOption
-   */
   (component, componentOption = {}) =>
   /**
-   * @param {object} props 
-   * @param {Component} child 
-   * @returns {React.ReactElement|React.ReactElement[]}
+   * @param {object} props
+   * @param {Component} child
+   * @returns {React.ReactElement}
    */
   (props = {}, child = T_UNDEFINED) => {
     if (!component) {
@@ -124,12 +124,18 @@ const build =
         componentOption
       );
 
-    return IS_ARRAY(component)
-      ? Children.map(
-          component.map((comp) => run(comp)),
-          (c) => c
-        )
-      : run(component);
+    if (IS_ARRAY(component)) {
+      return (
+        <>
+          {Children.map(
+            component.map((comp) => run(comp)),
+            (c) => c
+          )}
+        </>
+      );
+    } else {
+      return run(component);
+    }
   };
 
 export default build;

@@ -68,6 +68,7 @@ describe("Test build with key", () => {
   it("with multi child", () => {
     const comp = <div />;
     const buildComp = build([comp, comp])({ key: "foo" });
-    expect(buildComp[0].key !== buildComp[1].key).be.true;
+    expect(buildComp.props.children[0].key !== buildComp.props.children[1].key)
+      .be.true;
   });
 });
