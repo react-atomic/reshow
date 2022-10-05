@@ -1,3 +1,5 @@
+//@ts-check
+
 import { lazy } from "react";
 import { ReshowMessage, Return } from "reshow";
 import { ClientRoute } from "reshow-url";
@@ -11,6 +13,10 @@ const themes = {
   Page2: lazy(() => import("../pages/Page2")),
 };
 
+/**
+ * @param {object} props
+ * @returns {React.ReactElement}
+ */
 const Index = (props) => (
   <>
     <Return initStates={["tplProps", "pageName"]}>
@@ -20,7 +26,7 @@ const Index = (props) => (
         </Doc>
       )}
     </Return>
-    <PageLoadProgressHandler ajax={true} />
+    <PageLoadProgressHandler ajax />
     <ReshowMessage />
     <PopupPool />
   </>
