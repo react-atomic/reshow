@@ -5,20 +5,16 @@ import build from "reshow-build";
 import { win } from "win-doc";
 
 /**
- * @typedef {object} IntersectionObserverProps
- * @property {React.ReactElement|string} component
- * @property {IntersectionObserverCallback} onIntersect
- * @property {object} [options=null]
+ * @param {React.ReactElement|string} component
+ * @param {IntersectionObserverCallback} onIntersect
+ * @param {object} options
+ * @returns {React.ReactElement}
  */
-
-/**
- * @param {IntersectionObserverProps} param
- */
-const useIntersectionObserver = ({
+const useIntersectionObserver = (
   component,
   onIntersect,
-  options = { threshold: [0, 1] },
-}) => {
+  options = {}
+) => {
   const lastEl = useRef();
   const el = build(component)({ ref: lastEl });
   useEffect(() => {

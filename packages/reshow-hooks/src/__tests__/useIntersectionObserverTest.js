@@ -18,10 +18,7 @@ describe("test useIntersectionObserver", () => {
   });
   it("basic test", () => {
     const Comp = () => {
-      return useIntersectionObserver({
-        component: "div",
-        onIntersect: () => {},
-      });
+      return useIntersectionObserver("div", ()=>{});
     };
     const wrap = render(<Comp />);
     expect(wrap.html()).to.equal("<div></div>");
