@@ -1,5 +1,5 @@
 {
-  "version": "0.17.26",
+  "version": "0.17.28",
   "name": "reshow-unit",
   "repository": {
     "type": "git",
@@ -38,16 +38,19 @@
   "module": "./build/es/src/index.mjs",
   "scripts": {
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.jsx'",
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "clean": "find ./build ./types -name '*.*' | xargs rm -rf",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --ignore /**/__tests__ --root-mode upward",
     "build:es": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs --root-mode upward",
-    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "build:type": "npx -p typescript tsc src/*.js --jsx react-jsx --target es6 --moduleResolution node --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types",
+    "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
     "mochaFor": "STRICT_MODE=on mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
+  "types": "./types/index.d.ts",
   "files": [
+    "types",
     "build",
     "package.json",
     "README.md"

@@ -1,3 +1,5 @@
+//@ts-check
+
 import {
   jsdom,
   cleanIt as domCleanIt,
@@ -44,8 +46,16 @@ globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 // https://testing-library.com/docs/queries/about/#screen
 const screen = () => getQueriesForElement(doc(), queries);
+
+/**
+ * @param {string} role
+ * @returns {string}
+ */
 const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
 
+/**
+ * @param {Object} props
+ */
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
   if (!withoutJsdom) {
@@ -54,13 +64,19 @@ const cleanIt = (props) => {
   cleanup();
 };
 
-const act = async (cb, milliseconds = 1, debug) => {
+/**
+ * @param {function} cb
+ */
+const act = async (cb, milliseconds = 1, debug = false) => {
   const start = getTimestamp();
   let timer;
   await rtlAct(
     () =>
-      new Promise((resolve, reject) => {
+      new Promise((resolve) => {
         cb();
+        /**
+         * @param {function} resolve
+         */
         const wait = (resolve) => {
           const now = getTimestamp();
           debug && console.log({ during: now - start, debug, start, now });
@@ -76,13 +92,29 @@ const act = async (cb, milliseconds = 1, debug) => {
   );
 };
 
-// rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
-const render = (OrigDom, options, ...p) => {
+
+/**
+ * @typedef {Object} RenderResult 
+ * @property {function} html
+ * @property {function} instance
+ */
+
+/**
+ * rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
+ *
+ * @param {import("react").ReactElement} OrigDom 
+ * @param {object} options
+ * @returns {import("@testing-library/react").RenderResult & RenderResult} 
+ */
+const render = (OrigDom, options = {}) => {
   let instance = options?.instance;
   let Dom = OrigDom;
   let uInstance;
   if (instance) {
     if (true === instance) {
+      /**
+       * @param {React.ReactElement} el
+       */
       instance = (el) => (uInstance = el);
     }
     Dom = build(OrigDom)({ ref: instance });
@@ -90,17 +122,27 @@ const render = (OrigDom, options, ...p) => {
   if (STRICT_MODE) {
     Dom = build(StrictMode)(null, Dom);
   }
-  const result = rtlRender(Dom, options, ...p);
-  result.html = () => result.container.innerHTML;
-  result.instance = () => uInstance;
+  const result = {
+    ...rtlRender(Dom, options),
+    html: () => result.container.innerHTML,
+    instance: () => uInstance,
+  };
   return result;
 };
 
 // https://testing-library.com/docs/user-event/intro
+/**
+ * @param {ConstructorParameters<any>} p
+ */
 const simulateEvent = (...p) => {
   return getDefault(userEvent).setup(...p);
 };
 
+/**
+ * @param {function} cb
+ * @param {number} delay
+ * @returns {Promise}
+ */
 const sleep = (cb, delay) =>
   new Promise((resolve) => {
     setTimeout(() => {

@@ -473,6 +473,11 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
+"@types/mocha@*":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-10.0.0.tgz#3d9018c575f0e3f7386c1de80ee66cc21fbb7a52"
+  integrity sha512-rADY+HtTOA52l9VZWtgQfn4p+UDVM2eDVkMZT1I6syp0YKxW2F9v+0pbRZLsvskhQv/vMb6ZfCay81GHbz5SHg==
+
 "@types/prettier@^2.6.0":
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.1.tgz#dfd20e2dc35f027cdd6c1908e80a5ddc7499670e"
@@ -1114,9 +1119,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.251:
-  version "1.4.273"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.273.tgz#2a0276553172874617665807a40bea95711c2b9f"
-  integrity sha512-iEx72lv4P85PJ8HA9KEAss4o6ESK+hcxzM1cksZDo0H8KekaI+cloQyxOCASmHQO9ogmGyEELtBzxqqdeNwIgQ==
+  version "1.4.274"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.274.tgz#74369ac6f020c3cea7c77ec040ddf159fe226233"
+  integrity sha512-Fgn7JZQzq85I81FpKUNxVLAzoghy8JZJ4NIue+YfUYBbu1AkpgzFvNwzF/ZNZH9ElkmJD0TSWu1F2gTpw/zZlg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -1432,9 +1437,9 @@ get-package-type@^0.1.0:
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
 get-random-id@*:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/get-random-id/-/get-random-id-0.2.1.tgz#4682a47696a055e0ff34bb92f8a88192fedc940d"
-  integrity sha512-MzXdx0u/BbQ6u572qVyrddIcxD/xQRe1zty22LNFVti7gPn4xQCnWo0BlBLLnIvmHLoHc8nHrFkPg561GnTUUQ==
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/get-random-id/-/get-random-id-0.3.0.tgz#a8cfb01c9ef65aaad97666fa780a7daa3a6b8b2c"
+  integrity sha512-RfOpJYnF0j9p3zv4pXndxK/4lkcHS9nFzECmdwEqnb3u535iP4YLSzGDvmIZmqwt3cgDJYmdKtmFUQpxsQ4YCA==
   dependencies:
     call-func "*"
 
@@ -2510,10 +2515,11 @@ reshow-runtime@*:
     reshow-constant "*"
 
 reshow-unit-dom@*:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.1.4.tgz#c8c31896bd1279c81a6fd0a2a2e6b756e3bf3529"
-  integrity sha512-PZPuRyVp42hxh3zH4x0KwCvQVWqKklE/rUjcZuGxesdBinJ0KVhxUaBPZoZzr+vw5Hrqo/IKtYagO5VOYZjWaQ==
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.2.0.tgz#94f17e320c07d6bdc40bf9284f55f734a18e5bb0"
+  integrity sha512-zL5NZgTZKLmKLAawlCR2Ctd90VL+G9QJ4CDUKFfilFsEYq+77nhGYkUyu+Q1yX2vaqKwhVjxonbv5jFCxUq3+A==
   dependencies:
+    "@types/mocha" "*"
     chai "*"
     global-jsdom "*"
     jsdom "^19.0.0"
@@ -2526,9 +2532,9 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@*:
-  version "0.17.26"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.26.tgz#ed0e34d62691a1502774219c32f78fc02f4b481f"
-  integrity sha512-7JIdwxllx30+mzY6GEnCsBr4eswKiVgINCZ+8PNQ4yE7xtRU03qLOpAQk43vUjSU5phEtUfInGKa5zyoWNZubA==
+  version "0.17.28"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.28.tgz#4c490dd1ef40b6fc5ddf4f7d84dc65ececa84b7e"
+  integrity sha512-4BvSSi4NgqG7CHdVzXh6x/oS9fyfBLIQHwgZiA9MkZb+tHOQKyxE/iWkiuQpX61bwWBZLGPpIuA6971h4q0lOw==
   dependencies:
     "@testing-library/react" "^13.x"
     "@testing-library/user-event" "^14.x"
