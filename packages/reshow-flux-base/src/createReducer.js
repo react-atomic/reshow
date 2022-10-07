@@ -75,14 +75,18 @@ const refineAction = (action, params, prevState) => {
 };
 
 /**
- * @typedef {Object} StoreType
+ * @typedef {Object} Store
+ * @property {function} reset
+ * @property {function} getState 
+ * @property {function} addListener 
+ * @property {function} removeListener
  */
 
 /**
  * @template T
  * @param {function} reduce
  * @param {state<T>|function} initState
- * @returns {[StoreType, dispatch]}
+ * @returns {[Store, dispatch]}
  */
 const createReducer = (reduce, initState) => {
   const state = { current: callfunc(initState || {}) };

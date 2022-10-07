@@ -93,19 +93,26 @@ const mergeMap = (state, maybeMap) => {
 const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
+ * @typedef {Object} ImmutableStore
+ * @property {function} getMap
+ */
+
+/**
  * @param {ReducerType} reduce
  * @param {MaybeMapType|function} initState
- * @returns {[store, dispatch]}
+ * @returns {[store & ImmutableStore, dispatch]}
  */
 const ImmutableStore = (reduce, initState) => {
   reduce = reduce || defaultReducer;
   initState = mergeMap(Map(), callfunc(initState));
   const [store, dispatch] = createReducer(reduce, initState);
+  return [{
+    ...store,
   /**
    * @param {string} k
    */
-  store.getMap = (k) => getMap(store.getState(), k);
-  return [store, dispatch];
+    getMap: (k) => getMap(store.getState(), k)
+  }, dispatch];
 };
 
 export default ImmutableStore;

@@ -6,12 +6,19 @@ export type StateType = {
 export type MaybeMapType = StateType | any;
 export type forEachCb = (Value: any, Key: number | string) => void;
 export type ReducerType = (state: StateType, action: MaybeMapType) => StateType;
+export type ImmutableStore = {
+    getMap: Function;
+};
+/**
+ * @typedef {Object} ImmutableStore
+ * @property {function} getMap
+ */
 /**
  * @param {ReducerType} reduce
  * @param {MaybeMapType|function} initState
- * @returns {[store, dispatch]}
+ * @returns {[store & ImmutableStore, dispatch]}
  */
-declare function ImmutableStore(reduce: ReducerType, initState: MaybeMapType | Function): [any, (action: string | object | Function, actionParams?: object) => any];
+declare function ImmutableStore(reduce: ReducerType, initState: MaybeMapType | Function): [import("reshow-flux-base/types/createReducer").Store & ImmutableStore, (action: string | object | Function, actionParams?: object) => any];
 /**
  * @callback ReducerType
  * @param {StateType} state
