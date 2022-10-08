@@ -1,5 +1,11 @@
 // @ts-check
-import { isValidElement, cloneElement, createElement, Children } from "react";
+import {
+  isValidElement,
+  cloneElement,
+  createElement,
+  Children,
+  Fragment,
+} from "react";
 import {
   OBJ_SIZE,
   STRING,
@@ -107,31 +113,29 @@ const build =
       }
     }
 
-    if (IS_ARRAY(component)) {
-      // need locate before removeEmpty
-      props.key = T_UNDEFINED;
-    }
-    props = removeEmpty(props, T_TRUE);
-
     /**
      * @param {Component} comp
      */
-    const run = (comp) =>
-      (isValidElement(comp) ? buildReact : buildFunc)(
+    const run = (comp) => {
+      props = removeEmpty(props, T_TRUE);
+      return (isValidElement(comp) ? buildReact : buildFunc)(
         comp,
         props,
         child,
         componentOption
       );
+    };
 
     if (IS_ARRAY(component)) {
+      const key = props.key;
+      props.key = T_UNDEFINED;
       return (
-        <>
+        <Fragment key={key}>
           {Children.map(
             component.map((comp) => run(comp)),
             (c) => c
           )}
-        </>
+        </Fragment>
       );
     } else {
       return run(component);
