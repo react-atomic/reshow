@@ -36,7 +36,7 @@
     "build:es": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs<%= babelRootMode %>",
     "build:type": "npx -p typescript tsc src/*.js src/**/*.js --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types",
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
-    "mochaFor": "mocha -r global-jsdom/register",
+    "mochaFor": "STRICT_MODE=on mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/{cjs,es}/**/__tests__/*.{js,mjs}'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"

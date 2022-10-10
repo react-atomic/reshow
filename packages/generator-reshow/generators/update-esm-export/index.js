@@ -76,7 +76,8 @@ module.exports = class extends YoGenerator {
 
     const pkgFile = isFile(pkgjson);
     if (pkgFile) {
-      updateJSON(null, pkgFile, null, ({ exports = {}, ...json }) => {
+      updateJSON(null, pkgFile, null, (json = {}) => {
+        const { exports } = json;
         if (this.options.n) {
           const diff = {};
           KEYS(exports).forEach((key) => {
