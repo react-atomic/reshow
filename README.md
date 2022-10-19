@@ -16,7 +16,7 @@ Test for https://react-atomic-ui.js.org/
 
 
 ## 🍬🍬🍬 2022 new feature 🍬🍬🍬
-* JSDoc for TypeScript support
+* JSDoc for [TypeScript](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) support
 * React 18: streaming server-rendering [SSR]
 * Prettier + ESLint8  🎉 🎉
 * Webpack5 + swc-loader
