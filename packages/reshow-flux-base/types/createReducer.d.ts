@@ -25,7 +25,7 @@ export type Store = {
  * @param {state<T>|function} initState
  * @returns {[Store, dispatch]}
  */
-declare function createReducer<T>(reduce: Function, initState: Function | T): [Store, (action: string | object | Function, actionParams?: object) => T];
+declare function createReducer<T>(reduce: Function, initState?: Function | T): [Store, (action: string | object | Function, actionParams?: object) => T];
 /**
  * Transpile dispatch("your-action-type", {foo: "bar"})
  * to dispatch({type: "your-action-type", params: {foo: "bar"}})
@@ -36,4 +36,4 @@ declare function createReducer<T>(reduce: Function, initState: Function | T): [S
  * @param {state<T>} prevState
  * @returns {object} lazy actions
  */
-export function refineAction<T>(action: string | object | Function, params: object, prevState: T): object;
+export function refineAction<T>(action: string | object | Function, params?: object, prevState?: T): object;

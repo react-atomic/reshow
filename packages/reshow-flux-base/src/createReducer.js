@@ -65,7 +65,11 @@ const getMitt = () => {
  * @param {state<T>} prevState
  * @returns {object} lazy actions
  */
-const refineAction = (action, params, prevState) => {
+const refineAction = (
+  action,
+  params = T_UNDEFINED,
+  prevState = T_UNDEFINED
+) => {
   action = action || {};
   if (action.trim) {
     action = { type: action };
@@ -77,8 +81,8 @@ const refineAction = (action, params, prevState) => {
 /**
  * @typedef {Object} Store
  * @property {function} reset
- * @property {function} getState 
- * @property {function} addListener 
+ * @property {function} getState
+ * @property {function} addListener
  * @property {function} removeListener
  */
 
@@ -88,8 +92,8 @@ const refineAction = (action, params, prevState) => {
  * @param {state<T>|function} initState
  * @returns {[Store, dispatch]}
  */
-const createReducer = (reduce, initState) => {
-  const state = { current: callfunc(initState || {}) };
+const createReducer = (reduce, initState = () => ({})) => {
+  const state = { current: callfunc(initState) };
   const mitt = getMitt();
   /**
    * @param {string|object|function} action
@@ -111,7 +115,7 @@ const createReducer = (reduce, initState) => {
     return endingState;
   };
   const store = {
-    reset: () => mitt.reset() && callfunc(initState || {}),
+    reset: () => mitt.reset() && callfunc(initState),
     getState: () => state.current,
     addListener: mitt.add,
     removeListener: mitt.remove,
