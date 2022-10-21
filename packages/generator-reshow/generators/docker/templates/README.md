@@ -5,6 +5,13 @@
 
 > <%= description %> 
 
+## GIT
+   * <%= repositoryUrl %>
+
+## Docker hub
+   * <%= dockerOrgName %>/<%= dockerImageName %>
+   * https://hub.docker.com/r/<%= dockerOrgName %>/<%= dockerImageName %>
+
 ## Usage
 
 ```

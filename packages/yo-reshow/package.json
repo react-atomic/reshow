@@ -1,5 +1,5 @@
 {
-  "version": "0.17.22",
+  "version": "0.17.23",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
     "yo-unit": "*"
   },
   "scripts": {
-    "clean": "find ./build -name '*.*' | xargs rm -rf",
     "mochaFor": "mocha --timeout 2500",
     "mocha": "npm run mochaFor -- 'src/**/__tests__/*.js'",
     "test": "npm run mocha",

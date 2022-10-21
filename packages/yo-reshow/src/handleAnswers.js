@@ -10,6 +10,7 @@ const handleRepository = (oGen) => {
     type: "git",
     url,
   };
+  payload.repositoryUrl = url;
   if (payload.babelRootMode) {
     let pkgPath = `packages/${payload.mainName}`;
     if (payload.repositoryName) {

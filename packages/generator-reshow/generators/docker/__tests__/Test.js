@@ -29,7 +29,7 @@ describe("!! docker !!", () => {
   });
 
   it("should have folder", () => {
-    //    assert.file(["src", "ui"]);
+     assert.file(["bin", ".circleci"]);
   });
 
   it("should have file", () => {
