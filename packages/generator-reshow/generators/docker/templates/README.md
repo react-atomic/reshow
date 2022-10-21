@@ -5,11 +5,11 @@
 
 > <%= description %> 
 
-## GIT
+## `GIT`
    * <%= repositoryUrl %>
 
-## Docker hub
-   * <%= dockerOrgName %>/<%= dockerImageName %>
+## `Docker hub`
+   * Docker Image: <%= dockerOrgName %>/<%= dockerImageName %>
    * https://hub.docker.com/r/<%= dockerOrgName %>/<%= dockerImageName %>
 
 ## Usage
