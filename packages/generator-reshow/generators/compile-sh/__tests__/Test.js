@@ -16,7 +16,6 @@ describe("!! compile-sh !!", () => {
       source: __dirname + "/../.",
       params: {
         isReady: true,
-        mainName: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
       },

@@ -16,7 +16,6 @@ describe("!! package-json !!", () => {
       source: __dirname + "/../.",
       options: {
         isReady: true,
-        mainName: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
         authorName: "foo-name",
