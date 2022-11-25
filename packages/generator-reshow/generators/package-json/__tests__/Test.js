@@ -14,11 +14,13 @@ describe("!! package-json !!", () => {
   before(async () => {
     runResult = await YoTest({
       source: __dirname + "/../.",
-      params: {
+      options: {
         isReady: true,
-        appNamee: "foo",
+        mainName: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
+        authorName: "foo-name",
+        authorEmail: "foo@foo.com",
       },
     });
   });

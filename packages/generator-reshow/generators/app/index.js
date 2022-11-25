@@ -30,6 +30,7 @@ module.exports = class extends YoGenerator {
     const prompts = [
       ...commonPrompt.mainName(this),
       ...commonPrompt.desc(this),
+      ...commonPrompt.author(this),
     ];
     const answers = await this.prompt(prompts);
     handleAnswers(answers);

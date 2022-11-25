@@ -13,6 +13,8 @@ module.exports = class extends YoGenerator {
       mainName: "",
       description: "",
       babelRootMode: "",
+      authorName: "",
+      authorEmail: "",
       ...this.payload,
       ...this.options,
       ...getDotYo(this.options),

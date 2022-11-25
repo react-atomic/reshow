@@ -16,7 +16,6 @@ describe("!! docker !!", () => {
       source: __dirname + "/../.",
       params: {
         isReady: true,
-        appNamee: "foo",
         description: "foo-desc",
       },
     });

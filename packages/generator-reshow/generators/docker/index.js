@@ -83,8 +83,8 @@ module.exports = class extends YoGenerator {
           imgName = `${payload.dockerOrgName}/${payload.dockerImageName}`;
         }
       }
-      payload.sourceImage = imgName; 
-      payload.targetImage = imgName; 
+      payload.localImage = imgName;
+      payload.remoteImage = imgName;
     });
   }
 

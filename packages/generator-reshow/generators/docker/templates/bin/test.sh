@@ -1,13 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
 DIR="$(
   cd "$(dirname "$0")"
   pwd -P
 )"
-sourceImage=$(${DIR}/../support/sourceImage.sh)
+
+localImage=$(${DIR}/../support/localImage.sh)
 pid=$$
 folderName=${PWD##*/}
 
 cli='env docker run --rm -it'
-cli+=" --name ${folderName}_${pid} ${sourceImage}"
+cli+=" --name ${folderName}-${pid} ${localImage}"
 echo $cli
 bash -c "$cli"

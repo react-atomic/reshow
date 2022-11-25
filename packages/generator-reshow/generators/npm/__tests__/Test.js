@@ -16,7 +16,7 @@ describe("!! npm !!", () => {
       source: __dirname + "/../.",
       params: {
         isReady: true,
-        appNamee: "foo",
+        mainName: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
         repositoryName: "foo-repository-name",

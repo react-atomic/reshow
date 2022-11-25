@@ -16,7 +16,6 @@ describe("!! generator !!", () => {
       source: __dirname + "/../.",
       params: {
         isReady: true,
-        mainNamee: "foo",
         description: "foo-desc",
         keyword: "foo-keyword",
       },
