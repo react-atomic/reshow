@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 ###
 # Environment ${INSTALL_VERSION} pass from Dockerfile

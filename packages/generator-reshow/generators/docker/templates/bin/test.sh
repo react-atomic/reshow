@@ -12,4 +12,4 @@ folderName=${PWD##*/}
 cli='env docker run --rm -it'
 cli+=" --name ${folderName}-${pid} ${localImage}"
 echo $cli
-bash -c "$cli"
+sh -c "$cli"

@@ -22,4 +22,4 @@ cli+=" -w $DIR"
 cli+=" --name ${localImage}-${pid} ${localImage}:${VERSION}"
 cli+=" sh ${C}"
 
-bash -c "$cli"
+sh -c "$cli"
