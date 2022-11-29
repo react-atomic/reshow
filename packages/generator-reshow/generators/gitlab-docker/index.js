@@ -26,7 +26,6 @@ module.exports = class extends YoGenerator {
    */
   async prompting() {
     const {
-      say,
       handleAnswers,
       promptChainAll,
     } = YoHelper(this);
