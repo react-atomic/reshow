@@ -51,6 +51,7 @@ module.exports = class extends YoGenerator {
     handleAnswers(answers);
     this.composeWith(require.resolve("../docker"), {
       ...answers,
+      description: answers.description || "",
       fromGitlab: true,
     });
   }
