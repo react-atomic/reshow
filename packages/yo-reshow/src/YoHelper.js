@@ -13,13 +13,9 @@ const mkdirp = require("mkdirp");
 const globSync = require("./globSync");
 const handleAnswers = require("./handleAnswers");
 const handleKeywords = require("./handleKeywords");
-const {
-  getDotYo,
-  promptResetDefault,
-  promptFilterByOptions,
-} = require("./getDotYo");
+const { getDotYo, promptResetDefault, promptFilterByOptions } = require("./getDotYo");
 
-let lastAns;
+const lastAns = { current: {} };
 const exitCb = { current: null };
 const onExit = (cb) => cb && (exitCb.current = cb);
 process.once("exit", () => {
@@ -95,33 +91,30 @@ const YoHelper = (oGen) => {
         ...oGen.options,
         ...getDotYo(oGen.options),
       };
-      const { nextAnswer, nextPrompts } = promptFilterByOptions(
-        prompts,
-        options
-      );
-      return cb(nextPrompts).then((props) => ({ ...props, ...nextAnswer }));
+      const { nextAnswer, nextPrompts } = promptFilterByOptions(prompts, options);
+      return cb(nextPrompts, nextAnswer).then((props) => ({ ...props, ...nextAnswer }));
     },
 
     promptChainLocator: (prompts) => (index) => prompts.shift(),
 
-    promptChain: (promptLocator, cb) => {
+    promptChain: (promptLocator, cb, nextAnswer = {}) => {
       cb = cb || (() => true);
       let i = 0;
-      lastAns = {};
+      lastAns.current = nextAnswer;
       const go = (thisPrompt) => {
         return thisPrompt
           ? oGen.prompt(thisPrompt).then((props) => {
-              lastAns = { ...lastAns, ...props };
-              const isContinue = cb(lastAns);
+              lastAns.current = { ...lastAns.current, ...props };
+              const isContinue = cb(lastAns.current);
               if (isContinue) {
                 i++;
-                return go(promptLocator(i, lastAns));
+                return go(promptLocator(i, lastAns.current));
               } else {
                 return oGen.prompt([]);
               }
             })
-          : OBJ_SIZE(lastAns)
-          ? lastAns
+          : OBJ_SIZE(lastAns.current)
+          ? lastAns.current
           : oGen.prompt([]);
       };
       return go(promptLocator(i, lastAns));
@@ -178,23 +171,20 @@ const YoHelper = (oGen) => {
       }
     },
     glob: (srcPath, ...p) => {
-      const actualSrc = isDir(srcPath)
-        ? srcPath
-        : oGen.templatePath(srcPath || "");
+      const actualSrc = isDir(srcPath) ? srcPath : oGen.templatePath(srcPath || "");
       globSync(actualSrc, ...p);
     },
 
     promptResetDefault,
     ...chainUtil,
-    promptChainAll: (
-      prompts,
-      { locator = chainUtil.promptChainLocator, callback } = {}
-    ) =>
-      chainUtil.mergePromptOrOption(prompts, (nextPrompts) =>
-        chainUtil.promptChain(locator(nextPrompts), callback)
-      ),
-
-    getAllAns: (customAns) => ({ ...customAns, ...lastAns }),
+    promptChainAll: (prompts, { locator = chainUtil.promptChainLocator, callback } = {}) => {
+      return chainUtil.mergePromptOrOption(prompts, (nextPrompts, nextAnswer) => {
+        return chainUtil.promptChain(locator(nextPrompts), callback, nextAnswer);
+      });
+    },
+    getAllAns: (customAns) => {
+      return { ...customAns, ...lastAns.current };
+    },
     handleAnswers: handleAnswers(oGen),
     handleKeywords,
   };

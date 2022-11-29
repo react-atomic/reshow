@@ -1,0 +1,14 @@
+image: alpine
+
+stages:
+  - test
+
+default:
+  tags:
+    - swarm-cluster
+    - docker
+
+test:
+  stage: test
+  script:
+    - cat /etc/alpine-release

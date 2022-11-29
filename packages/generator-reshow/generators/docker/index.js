@@ -25,13 +25,7 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const {
-      say,
-      handleAnswers,
-      mergePromptOrOption,
-      promptChainLocator,
-      promptChain,
-    } = YoHelper(this);
+    const { say, handleAnswers, promptChainAll } = YoHelper(this);
 
     const prompts = [
       ...commonPrompt.mainName(this),
@@ -68,14 +62,10 @@ module.exports = class extends YoGenerator {
       */
     ];
 
-    const answers = await mergePromptOrOption(prompts, (nextPrompts) =>
-      promptChain(promptChainLocator(nextPrompts))
-    );
+    const answers = await promptChainAll(prompts);
     handleAnswers(answers, (payload) => {
       // add more payload
-      payload.folderPrefixGitIgnore = payload.folderPrefix
-        ? payload.folderPrefix + "*"
-        : "";
+      payload.folderPrefixGitIgnore = payload.folderPrefix ? payload.folderPrefix + "*" : "";
       let imgName = payload.mainName;
       if (payload.dockerImageName) {
         imgName = payload.dockerImageName;
@@ -95,10 +85,12 @@ module.exports = class extends YoGenerator {
     chMainName();
 
     // handle copy file
+    if (!this.payload.fromGitlab) {
+      cp("_circleci", ".circleci", this.payload);
+      cp("Dockerfile", null, this.payload);
+      cp("README.md", null, this.payload);
+    }
     cp(".env.build", null, this.payload);
-    cp("Dockerfile", null, this.payload);
-    cp("README.md", null, this.payload);
-    cp("_circleci", ".circleci", this.payload);
     cp("_gitignore", ".gitignore", this.payload);
     cp("build.sh", null, this.payload);
     cp("compile.sh", null, this.payload);
