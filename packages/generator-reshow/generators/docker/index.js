@@ -86,10 +86,10 @@ module.exports = class extends YoGenerator {
 
     // handle copy file
     if (!this.options.fromGitlab) {
-      cp("_circleci", ".circleci", this.payload);
       cp("Dockerfile", null, this.payload);
       cp("README.md", null, this.payload);
     }
+    cp("_circleci", ".circleci", this.payload);
     cp(".env.build", null, this.payload);
     cp("_gitignore", ".gitignore", this.payload);
     cp("build.sh", null, this.payload);
