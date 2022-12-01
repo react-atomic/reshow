@@ -5,7 +5,6 @@ DIR="$(
   pwd -P
 )"
 
-VERSION=$(${DIR}/../support/VERSION.sh)
 localImage=$(${DIR}/../support/localImage.sh)
 
 C=''
@@ -19,7 +18,7 @@ pid=$$
 cli='env docker run --rm -it'
 cli+=" -v $DIR:$DIR"
 cli+=" -w $DIR"
-cli+=" --name ${localImage}-${pid} ${localImage}:${VERSION}"
+cli+=" --name ${localImage}-${pid} ${localImage}"
 cli+=" sh ${C}"
 
 sh -c "$cli"
