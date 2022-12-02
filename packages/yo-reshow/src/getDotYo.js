@@ -34,7 +34,7 @@ const getDotYo = ({ bGetHomeYo = true, pwd = process.cwd() } = {}) => {
 const promptResetDefault = (prompts, yoData = getDotYo()) => {
   prompts.forEach((oPrompt) => {
     const hasYoData = yoData[oPrompt.name];
-    if (hasYoData) {
+    if (null != hasYoData) {
       oPrompt.default = hasYoData;
     }
   });
@@ -45,7 +45,7 @@ const promptFilterByOptions = (prompts, yoData = getDotYo()) => {
   const nextAnswer = {};
   const nextPrompts = prompts.filter((oPrompt) => {
     const hasYoData = yoData[oPrompt.name];
-    if (hasYoData) {
+    if (null != hasYoData) {
       nextAnswer[oPrompt.name] = hasYoData;
       return false;
     } else {
