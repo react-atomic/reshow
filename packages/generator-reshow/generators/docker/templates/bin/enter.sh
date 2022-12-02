@@ -4,6 +4,7 @@ DIR="$(
   cd "$(dirname "$0")"
   pwd -P
 )"
+MY_PWD=$(pwd)
 
 localImage=$(${DIR}/../support/localImage.sh)
 
@@ -16,8 +17,8 @@ done
 pid=$$
 
 cli='env docker run --rm -it'
-cli+=" -v $DIR:$DIR"
-cli+=" -w $DIR"
+cli+=" -v $MY_PWD:$MY_PWD"
+cli+=" -w $MY_PWD"
 cli+=" --name ${localImage}-${pid} ${localImage}"
 cli+=" sh ${C}"
 
