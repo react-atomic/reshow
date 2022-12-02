@@ -18,3 +18,7 @@ RUN echo "v1"
 
 FROM base AS v2
 RUN echo "v2"
+
+COPY ./docker/entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["server"]

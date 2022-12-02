@@ -50,8 +50,10 @@ module.exports = class extends YoGenerator {
     const answers = await promptChainAll(prompts);
     handleAnswers(answers);
     this.composeWith(require.resolve("../docker"), {
+      repositoryName: "",
+      repositoryOrgName: "",
+      description: "",
       ...answers,
-      description: answers.description || "",
       fromGitlab: true,
     });
   }
