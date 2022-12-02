@@ -97,5 +97,6 @@ module.exports = class extends YoGenerator {
     cp("install-packages.sh", null, this.payload);
     cp("support", null, this.payload);
     cp("bin", null, this.payload);
+    cp("docker", null, this.payload);
   }
 };
