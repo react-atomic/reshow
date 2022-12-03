@@ -1,17 +1,17 @@
 stages:
   - info
-  - build
   - test
+  - build
   - deploy
 
 variables:
-  LATEST_TAG: v2
+  LATEST_TAG: 0.0.0
   LAST_IMAGE_STORE: ./last-image
 
 .parallel:
   parallel:
     matrix:
-      - dockerTag: [v1, v2]
+      - dockerTag: [0.0.0]
 
 default:
   before_script:
@@ -31,27 +31,33 @@ info-section:
     - date
     - echo "$CI_PIPELINE_ID"
 
+pre-test:
+  stage: test
+  image: $CI_TERRATEST
+  script:
+    - go test -v ./test
+
 build-docker-image:
   extends: .parallel
   stage: build
   script:
-    - IMAGE_NAME=$CI_REGISTRY_IMAGE:$CI_PIPELINE_ID
+    - IMAGE_NAME=$CI_REGISTRY_IMAGE:$dockerTag-$CI_PIPELINE_ID
     - echo $IMAGE_NAME > $LAST_IMAGE_STORE
     - echo $IMAGE_NAME
     - echo 'Start build docker images:' $dockerTag
-    - DOCKER_BUILDKIT=1 docker build -f Dockerfile --target $dockerTag -t $IMAGE_NAME-$dockerTag .
+    - DOCKER_BUILDKIT=1 docker build -f Dockerfile --target $dockerTag -t $IMAGE_NAME .
     - docker images | head -10 || trap '' PIPE
-    - docker push $IMAGE_NAME-$dockerTag
+    - docker push $IMAGE_NAME
   artifacts:
     paths:
       - $LAST_IMAGE_STORE
 
-test:
+e2e-test:
   stage: test
   needs: ["build-docker-image"]
   trigger:
     include:
-      - local: .gitlab-trigger.yml 
+      - local: .gitlab-trigger.yml
 
 put-to-stable:
   extends: .parallel
@@ -59,14 +65,14 @@ put-to-stable:
   rules:
     - when: manual
   script:
-    - STABLE_NAME=$CI_REGISTRY_IMAGE:stable
+    - STABLE_NAME=$CI_REGISTRY_IMAGE:$dockerTag
     - echo 'Put Image to Stable:' $dockerTag
     - IMAGE_NAME=$(cat $LAST_IMAGE_STORE)
-    - docker pull $IMAGE_NAME-$dockerTag
-    - docker tag $IMAGE_NAME-$dockerTag $STABLE_NAME-$dockerTag
-    - docker push $STABLE_NAME-$dockerTag
+    - docker pull $IMAGE_NAME
+    - docker tag $IMAGE_NAME $STABLE_NAME
+    - docker push $STABLE_NAME
     - |
       if [ "x$LATEST_TAG" == "x$dockerTag" ]; then
-        docker tag $IMAGE_NAME-$dockerTag $CI_REGISTRY_IMAGE:latest
+        docker tag $$IMAGE_NAME $CI_REGISTRY_IMAGE:latest
         docker push $CI_REGISTRY_IMAGE:latest
       fi
