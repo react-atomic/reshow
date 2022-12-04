@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
-
 DIR="$(
   cd "$(dirname "$0")"
   pwd -P
 )"
 
-localImage=$(${DIR}/../support/localImage.sh)
-pid=$$
-folderName=${PWD##*/}
+TERRATEST=$(${DIR}/../support/TERRATEST.sh)
 
-cli='env docker run --rm -it'
-cli+=" --name ${folderName}-${pid} ${localImage}"
-echo $cli
-sh -c "$cli"
+docker run --rm -v $DIR/../:/app/test \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -w /app/test \
+  $TERRATEST \
+  go test -v ./test
+
+
