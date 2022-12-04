@@ -5,13 +5,13 @@ stages:
   - deploy
 
 variables:
-  LATEST_TAG: 0.0.0
+  LATEST_TAG: <%= verPrefix %>0.0.0
   LAST_IMAGE_STORE: ./last-image
 
 .parallel:
   parallel:
     matrix:
-      - dockerTag: [0.0.0]
+      - dockerTag: [<%= verPrefix %>0.0.0]
 
 default:
   before_script:

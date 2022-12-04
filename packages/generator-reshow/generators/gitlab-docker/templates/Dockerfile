@@ -10,14 +10,8 @@ RUN apk update && apk add bash bc \
   && INSTALL_VERSION=$VERSION install-packages \
   && rm /usr/local/bin/install-packages;
 
-FROM base AS v0
-RUN echo "v0"
-
-FROM base AS v1
-RUN echo "v1"
-
-FROM base AS v2
-RUN echo "v2"
+FROM base AS <%= verPrefix %>0.0.0
+RUN echo "<%= verPrefix %>0.0.0"
 
 COPY ./docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

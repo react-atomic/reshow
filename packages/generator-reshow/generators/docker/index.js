@@ -48,8 +48,8 @@ module.exports = class extends YoGenerator {
       },
       {
         type: "input",
-        name: "folderPrefix",
-        message: "Please input your folder-prefix?",
+        name: "verPrefix",
+        message: "Please input your version-prefix, will use with folder name and version?",
         default: "ver-",
       },
       /*
@@ -65,7 +65,7 @@ module.exports = class extends YoGenerator {
     const answers = await promptChainAll(prompts);
     handleAnswers(answers, (payload) => {
       // add more payload
-      payload.folderPrefixGitIgnore = payload.folderPrefix ? payload.folderPrefix + "*" : "";
+      payload.verPrefixGitIgnore = payload.verPrefix ? payload.verPrefix + "*" : "";
       let imgName = payload.mainName;
       if (payload.dockerImageName) {
         imgName = payload.dockerImageName;

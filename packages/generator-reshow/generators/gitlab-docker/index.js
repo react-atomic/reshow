@@ -45,6 +45,12 @@ module.exports = class extends YoGenerator {
         message: "Please input your docker-org-name?",
         default: "[DOCKER_ORG_NAME]",
       },
+      {
+        type: "input",
+        name: "verPrefix",
+        message: "Please input your version-prefix, will use with folder name and version?",
+        default: "ver-",
+      },
     ];
 
     const answers = await promptChainAll(prompts);
