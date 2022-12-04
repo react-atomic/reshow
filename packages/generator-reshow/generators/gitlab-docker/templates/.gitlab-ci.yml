@@ -2,6 +2,7 @@ stages:
   - info
   - test
   - build
+  - uat
   - deploy
 
 variables:
@@ -53,7 +54,7 @@ build-docker-image:
       - $LAST_IMAGE_STORE
 
 e2e-test:
-  stage: test
+  stage: uat
   needs: ["build-docker-image"]
   trigger:
     include:
@@ -73,6 +74,6 @@ put-to-stable:
     - docker push $STABLE_NAME
     - |
       if [ "x$LATEST_TAG" == "x$dockerTag" ]; then
-        docker tag $$IMAGE_NAME $CI_REGISTRY_IMAGE:latest
+        docker tag $IMAGE_NAME $CI_REGISTRY_IMAGE:latest
         docker push $CI_REGISTRY_IMAGE:latest
       fi
