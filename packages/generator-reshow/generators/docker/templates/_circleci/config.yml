@@ -26,7 +26,7 @@ jobs:
             VER_PREFIX=$(support/VER_PREFIX.sh)
             DOCKER_FILES=$(support/DOCKER_FILES.sh)
             BUILD_FOLDER=${VER_PREFIX}<< parameters.docker-tag >>
-            ./build.sh << parameters.docker-tag >>
+            ./support/build-multi.sh << parameters.docker-tag >>
             ls -la ${BUILD_FOLDER}
             for file in $DOCKER_FILES; do
               echo ""

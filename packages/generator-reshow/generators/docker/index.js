@@ -98,7 +98,6 @@ module.exports = class extends YoGenerator {
     cp("_circleci", ".circleci", this.payload);
     cp(".env.build", null, this.payload);
     cp("_gitignore", ".gitignore", this.payload);
-    cp("build.sh", null, this.payload);
     cp("compile.sh", null, this.payload);
     cp("install-packages.sh", null, this.payload);
     cp("support", null, this.payload);

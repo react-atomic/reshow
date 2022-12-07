@@ -5,9 +5,9 @@ DIR="$(
   pwd -P
 )"
 
-FOLDER_PREFIX=$(${DIR}/support/FOLDER_PREFIX.sh)
-COPY_FILES=$(${DIR}/support/COPY_FILES.sh)
-DOCKER_FILES=$(${DIR}/support/DOCKER_FILES.sh)
+FOLDER_PREFIX=$(${DIR}/FOLDER_PREFIX.sh)
+COPY_FILES=$(${DIR}/COPY_FILES.sh)
+DOCKER_FILES=$(${DIR}/DOCKER_FILES.sh)
 BUILD_VERSION=$1
 
 if [ -z "$BUILD_VERSION" ]; then
@@ -17,7 +17,7 @@ fi
 
 do_build() {
   echo 'building --- Version: ' $BUILD_VERSION '-->'
-  DEST_FOLDER=${DIR}/${FOLDER_PREFIX}${BUILD_VERSION}
+  DEST_FOLDER=${DIR}/../${FOLDER_PREFIX}${BUILD_VERSION}
   mkdir -p ${DEST_FOLDER}
 
   for file in $COPY_FILES; do [ -e "$file" ] && cp -a $file ${DEST_FOLDER}; done
