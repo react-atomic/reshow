@@ -36,7 +36,7 @@ pre-test:
   stage: test
   image: $CI_TERRATEST
   script:
-    - go test -v ./test
+    - go test -v ./tests
 
 build-docker-image:
   extends: .parallel

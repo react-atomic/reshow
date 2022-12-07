@@ -87,6 +87,6 @@ module.exports = class extends YoGenerator {
     cp("support", null, this.payload);
     cp("bin", null, this.payload);
     cp("docker", null, this.payload);
-    cp("test", null, this.payload);
+    cp("tests", null, this.payload);
   }
 };
