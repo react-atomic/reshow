@@ -1,5 +1,5 @@
 {
-  "version": "0.17.0",
+  "version": "0.17.1",
   "name": "yo-unit",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "reshow-unit-dom": "*",
     "yeoman-assert": "*",
     "yeoman-environment": "*",
-    "yeoman-test": "*"
+    "yeoman-test": "^6.x"
   },
   "main": "./src/index.js",
   "scripts": {

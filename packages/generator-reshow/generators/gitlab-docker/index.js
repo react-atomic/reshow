@@ -1,4 +1,5 @@
 const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
+const commonDockerPrompt = require("../docker/commonDockerPrompt");
 
 /**
  * gitlab-docker Generator
@@ -33,24 +34,7 @@ module.exports = class extends YoGenerator {
     const prompts = [
       ...commonPrompt.mainName(this),
       ...commonPrompt.desc(this),
-      {
-        type: "input",
-        name: "dockerImageName",
-        message: "Please input your docker-image-name?",
-        default: "[DOCKER_IMAGE_NAME]",
-      },
-      {
-        type: "input",
-        name: "dockerOrgName",
-        message: "Please input your docker-org-name?",
-        default: "[DOCKER_ORG_NAME]",
-      },
-      {
-        type: "input",
-        name: "verPrefix",
-        message: "Please input your version-prefix, will use with folder name and version?",
-        default: "ver-",
-      },
+      ...commonDockerPrompt(this),
     ];
 
     const answers = await promptChainAll(prompts);
