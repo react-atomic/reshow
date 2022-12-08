@@ -4,6 +4,7 @@ DIR="$(
   cd "$(dirname "$0")"
   pwd -P
 )"
+
 localImage=$(${DIR}/support/localImage.sh)
 remoteImage=$(${DIR}/support/remoteImage.sh)
 archiveFile=$DIR/archive.tar
@@ -18,14 +19,13 @@ tag() {
   tag=$1
   if [ -z "$tag" ]; then
     if [ -z "$VERSION" ]; then
-      tag=latest
+      tag=${remoteImage}:latest
     else
-      tag=$VERSION
+      tag=${remoteImage}:$VERSION
     fi
   fi
   echo "* <!-- Start to tag: ${tag}"
-  echo $tag
-  docker tag ${localImage} ${remoteImage}:$tag
+  docker tag ${localImage} $tag
   list
   echo "* Finish tag -->"
 }
