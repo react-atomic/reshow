@@ -25,7 +25,7 @@ jobs:
           command: |
             VER_PREFIX=$(support/VER_PREFIX.sh)
             DOCKER_FILES=$(support/DOCKER_FILES.sh)
-            BUILD_FOLDER=${VER_PREFIX}<< parameters.docker-tag >>
+            BUILD_FOLDER=${VER_PREFIX}-<< parameters.docker-tag >>
             ./support/build-multi.sh << parameters.docker-tag >>
             ls -la ${BUILD_FOLDER}
             for file in $DOCKER_FILES; do
@@ -41,9 +41,9 @@ jobs:
           name: build Docker image
           command: |
             VER_PREFIX=$(support/VER_PREFIX.sh)
-            IMAGE_NAME=$(support/targetImage.sh)
+            IMAGE_NAME=$(support/remoteImage.sh)
             BUILD_VERSION=<< parameters.docker-tag >>
-            BUILD_FOLDER=${VER_PREFIX}<< parameters.docker-tag >>
+            BUILD_FOLDER=${VER_PREFIX}-<< parameters.docker-tag >>
             BUILD_ARG=""
             docker build ${BUILD_ARG} -f ${BUILD_FOLDER}/Dockerfile \
               -t $IMAGE_NAME:${BUILD_VERSION} \
