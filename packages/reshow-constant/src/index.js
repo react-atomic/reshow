@@ -27,7 +27,11 @@ export const OBJ_SIZE = (o) => (o ? KEYS(o).length : 0);
  * @returns {object}
  */
 export const NEW_OBJ = () => Object.create(null);
+
 /**
+ * Object.hasOwn()
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn#problematic_cases_for_hasownproperty
+ *
  * @param {object} obj
  * @param {string} key
  * @returns {boolean}
