@@ -15,12 +15,15 @@ for i in "$@"; do
 done
 
 pid=$$
+containerName=${localImage//\//-}-${pid}
+
+echo $containerName
 
 cli='env docker run --rm -it'
 cli+=" -v $DIR/../docker/entrypoint.sh:/entrypoint.sh"
 cli+=" -v $MY_PWD:$MY_PWD"
 cli+=" -w $MY_PWD"
-cli+=" --name ${localImage}-${pid} ${localImage}"
+cli+=" --name ${containerName} ${localImage}"
 cli+=" sh ${C}"
 
 sh -c "$cli"
