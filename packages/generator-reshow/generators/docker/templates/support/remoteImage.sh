@@ -8,7 +8,11 @@ DIR="$(
 ENV=${DIR}/../.env.build
 
 if [ -z "$remoteImage" ]; then
-  remoteImage=$(awk -F "=" '/^remoteImage/ {print $2}' $ENV)
+  if [ -z "$DOCKER_HUB" ]; then
+    remoteImage=$(awk -F "=" '/^remoteImage/ {print $2}' $ENV)
+  else
+    remoteImage=$(awk -F "=" '/^dockerHubImage/ {print $2}' $ENV)
+  fi
 fi
 
 echo $remoteImage
