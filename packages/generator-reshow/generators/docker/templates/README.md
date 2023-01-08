@@ -3,14 +3,16 @@
 
 # `<%= mainName %>`
 
-> <%= description %> 
+> <%= description %>
 
 ## `GIT`
-   * <%= repositoryUrl %>
+
+- <%= repositoryUrl %>
 
 ## `Docker hub`
-   * Docker Image: <%= dockerOrgName %>/<%= dockerImageName %>
-   * https://hub.docker.com/r/<%= dockerOrgName %>/<%= dockerImageName %>
+
+- Docker Image: <%= dockerOrgName %>/<%= dockerImageName %>
+- https://hub.docker.com/r/<%= dockerOrgName %>/<%= dockerImageName %>
 
 ## Usage
 
