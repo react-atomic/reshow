@@ -16,9 +16,9 @@
   "license": "MIT",
   "dependencies": {
     "call-func": "*",
-    "win-doc": "*",
     "reshow-build": "*",
-    "reshow-constant": "*"
+    "reshow-constant": "*",
+    "win-doc": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.x",
