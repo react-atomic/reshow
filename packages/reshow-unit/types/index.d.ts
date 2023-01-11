@@ -29,6 +29,9 @@ export function screen(): {
     findByLabelText<T_4 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_4>;
     findAllByLabelText<T_5 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_5[]>;
     getByPlaceholderText<T_6 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_6;
+    /**
+     * @param {function} cb
+     */
     getAllByPlaceholderText<T_7 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_7[];
     queryByPlaceholderText<T_8 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_8;
     queryAllByPlaceholderText<T_9 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_9[];

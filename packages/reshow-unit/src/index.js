@@ -1,35 +1,19 @@
 //@ts-check
 
-import {
-  jsdom,
-  cleanIt as domCleanIt,
-  hideConsoleError,
-  getSinon,
-} from "reshow-unit-dom";
+import { jsdom, cleanIt as domCleanIt, hideConsoleError, getSinon } from "reshow-unit-dom";
 import { doc } from "win-doc";
 import { getTimestamp } from "get-random-id";
 import { getDefault } from "get-object-value";
 
-import {
-  act as rtlAct,
-  render as rtlRender,
-  cleanup,
-  getQueriesForElement,
-  queries,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { act as rtlAct, render as rtlRender, cleanup, getQueriesForElement, queries, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
-import process from "process";
+import { env } from "process";
 import build from "reshow-build";
 import { StrictMode } from "react";
 
-const envStrictMode = process.env.STRICT_MODE;
-const STRICT_MODE =
-  -1 !== "|true|false|null|0|".indexOf(envStrictMode)
-    ? JSON.parse(envStrictMode)
-    : envStrictMode;
+const envStrictMode = env.STRICT_MODE;
+const STRICT_MODE = -1 !== "|true|false|null|0|".indexOf(envStrictMode) ? JSON.parse(envStrictMode) : envStrictMode;
 
 if (STRICT_MODE) {
   console.log("STRICT_MODE: on");
@@ -45,7 +29,7 @@ if (STRICT_MODE) {
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 // https://testing-library.com/docs/queries/about/#screen
-const screen = () => getQueriesForElement(doc(), queries);
+const screen = () => getQueriesForElement(doc()?.body, queries);
 
 /**
  * @param {string} role
@@ -92,9 +76,8 @@ const act = async (cb, milliseconds = 1, debug = false) => {
   );
 };
 
-
 /**
- * @typedef {Object} RenderResult 
+ * @typedef {Object} RenderResult
  * @property {function} html
  * @property {function} instance
  */
@@ -102,9 +85,9 @@ const act = async (cb, milliseconds = 1, debug = false) => {
 /**
  * rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
  *
- * @param {import("react").ReactElement} OrigDom 
+ * @param {import("react").ReactElement} OrigDom
  * @param {object} options
- * @returns {import("@testing-library/react").RenderResult & RenderResult} 
+ * @returns {import("@testing-library/react").RenderResult & RenderResult}
  */
 const render = (OrigDom, options = {}) => {
   let instance = options?.instance;
@@ -151,17 +134,4 @@ const sleep = (cb, delay) =>
     }, delay);
   });
 
-export {
-  waitFor,
-  waitForElementToBeRemoved,
-  act,
-  render,
-  screen,
-  simulateEvent,
-  sleep,
-  getRoleHtml,
-  getSinon,
-  cleanIt,
-  jsdom,
-  hideConsoleError,
-};
+export { waitFor, waitForElementToBeRemoved, act, render, screen, simulateEvent, sleep, getRoleHtml, getSinon, cleanIt, jsdom, hideConsoleError };
