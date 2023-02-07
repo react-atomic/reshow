@@ -4,21 +4,21 @@
 # Environment ${INSTALL_VERSION} pass from Dockerfile
 ###
 
-INSTALL=""
-
 BUILD_DEPS=""
 
-echo "###"
-echo "# Will install"
-echo "###"
-echo ""
-echo $INSTALL
-echo ""
+INSTALL=""
+
 echo "###"
 echo "# Will install build tool"
 echo "###"
 echo ""
 echo $BUILD_DEPS
+echo ""
+echo "###"
+echo "# Will install"
+echo "###"
+echo ""
+echo $INSTALL
 echo ""
 
 apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL
