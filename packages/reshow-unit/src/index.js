@@ -1,11 +1,23 @@
 //@ts-check
 
-import { jsdom, cleanIt as domCleanIt, hideConsoleError, getSinon } from "reshow-unit-dom";
+import {
+  jsdom,
+  cleanIt as domCleanIt,
+  hideConsoleError,
+  getSinon,
+} from "reshow-unit-dom";
 import { doc } from "win-doc";
 import { getTimestamp } from "get-random-id";
 import { getDefault } from "get-object-value";
 
-import { act as rtlAct, render as rtlRender, cleanup, getQueriesForElement, queries, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
+import { waitFor, waitForElementToBeRemoved } from "@testing-library/dom";
+import {
+  act as rtlAct,
+  render as rtlRender,
+  cleanup,
+  getQueriesForElement,
+  queries,
+} from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
 import { env } from "process";
@@ -13,7 +25,10 @@ import build from "reshow-build";
 import { StrictMode } from "react";
 
 const envStrictMode = env.STRICT_MODE;
-const STRICT_MODE = -1 !== "|true|false|null|0|".indexOf(envStrictMode) ? JSON.parse(envStrictMode) : envStrictMode;
+const STRICT_MODE =
+  -1 !== "|true|false|null|0|".indexOf(envStrictMode)
+    ? JSON.parse(envStrictMode)
+    : envStrictMode;
 
 if (STRICT_MODE) {
   console.log("STRICT_MODE: on");
@@ -134,4 +149,17 @@ const sleep = (cb, delay) =>
     }, delay);
   });
 
-export { waitFor, waitForElementToBeRemoved, act, render, screen, simulateEvent, sleep, getRoleHtml, getSinon, cleanIt, jsdom, hideConsoleError };
+export {
+  waitFor,
+  waitForElementToBeRemoved,
+  act,
+  render,
+  screen,
+  simulateEvent,
+  sleep,
+  getRoleHtml,
+  getSinon,
+  cleanIt,
+  jsdom,
+  hideConsoleError,
+};
