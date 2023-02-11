@@ -9,6 +9,7 @@ localImage=$(${DIR}/support/localImage.sh)
 remoteImage=$(${DIR}/support/remoteImage.sh)
 archiveFile=$DIR/archive.tar
 VERSION=$(${DIR}/support/VERSION.sh)
+ALT_VERSION=$(${DIR}/support/ALT_VERSION.sh)
 DOCKER_FILE=${DOCKER_FILE:-Dockerfile}
 
 list() {
