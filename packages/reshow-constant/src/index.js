@@ -9,40 +9,6 @@ export const OBJECT = "object";
 export const STRING = "string";
 
 /**
- * cast type
- */
-/**
- * @param {any} v
- * @returns {function}
- */
-export const castToFunc = (v) => v;
-/**
- * @param {any} v
- * @returns {number}
- */
-export const castToNum = (v) => v;
-/**
- * @param {any} v
- * @returns {object}
- */
-export const castToObject = (v) => v;
-/**
- * @param {any} v
- * @returns {string}
- */
-export const castToStr = (v) => v;
-/**
- * @param {any} v
- * @returns {any[]}
- */
-export const castToArr = (v) => v;
-/**
- * @param {any} v
- * @returns {boolean}
- */
-export const castToBool = (v) => v;
-
-/**
  * @type undefined
  */
 export const T_UNDEFINED = void 0;

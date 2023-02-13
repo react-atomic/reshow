@@ -5,12 +5,6 @@ export const FUNCTION: "function";
 export const NUMBER: "number";
 export const OBJECT: "object";
 export const STRING: "string";
-export function castToFunc(v: any): Function;
-export function castToNum(v: any): number;
-export function castToObject(v: any): object;
-export function castToStr(v: any): string;
-export function castToArr(v: any): any[];
-export function castToBool(v: any): boolean;
 /**
  * @type undefined
  */
