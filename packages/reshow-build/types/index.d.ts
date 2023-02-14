@@ -1,7 +1,14 @@
 export default build;
 export type Component = any;
+export type PropsWithKey = React.PropsWithChildren & {
+    key?: string;
+};
+export type ComponentOption = {
+    wrap?: React.ReactElement;
+    doCallFunction?: boolean;
+};
 /**
  * @param {Component} component
- * @param {object} componentOption
+ * @param {ComponentOption} componentOption
  */
-declare function build(component: Component, componentOption?: object): (props?: object, child?: Component) => React.ReactElement;
+declare function build(component: Component, componentOption?: ComponentOption): (props?: PropsWithKey, child?: Component) => React.ReactElement;

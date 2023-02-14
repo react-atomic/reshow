@@ -24,10 +24,21 @@ import { removeEmpty } from "array.merge";
  */
 
 /**
+ * @typedef PropsWithKey
+ * @type React.PropsWithChildren & {key?: string}
+ */
+
+/**
+ * @typedef {object} ComponentOption
+ * @property {React.ReactElement} [wrap]
+ * @property {boolean} [doCallFunction]
+ */
+
+/**
  * @param {function} component
- * @param {object} props
+ * @param {PropsWithKey} props
  * @param {Component} child
- * @param {object} componentOption
+ * @param {ComponentOption} componentOption
  * @returns {React.ReactElement}
  */
 const buildFunc = (component, props, child, componentOption) => {
@@ -40,7 +51,7 @@ const buildFunc = (component, props, child, componentOption) => {
   ) {
     try {
       if (child != T_NULL) {
-        props.children = child;
+        props.children = /** @type React.ReactElement*/ (child);
       }
       const el = component(props);
       return isValidElement(el)
@@ -62,7 +73,7 @@ const buildFunc = (component, props, child, componentOption) => {
 
 /**
  * @param {Component} component
- * @param {object} props
+ * @param {PropsWithKey} props
  * @param {Component} child
  * @returns {React.ReactElement}
  */
@@ -91,12 +102,12 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
 
 /**
  * @param {Component} component
- * @param {object} componentOption
+ * @param {ComponentOption} componentOption
  */
 const build =
   (component, componentOption = {}) =>
   /**
-   * @param {object} props
+   * @param {PropsWithKey} props
    * @param {Component} child
    * @returns {React.ReactElement}
    */
