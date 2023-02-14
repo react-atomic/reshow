@@ -6,7 +6,11 @@ import { HAS, FUNCTION } from "reshow-constant";
  */
 
 /**
- * @param {React.ReactElement} el
+ * @typedef {React.ReactElement|HTMLElement} Element
+ */
+
+/**
+ * @param {Element} el
  * @param {RefCbType} refCb
  */
 const assignEl = (el, refCb) => {
@@ -18,7 +22,7 @@ const assignEl = (el, refCb) => {
 };
 
 /**
- * @param {React.ReactElement} el
+ * @param {Element} el
  * @param {RefCbType[]} refArr
  */
 export const mergeRef = (el, refArr = []) =>
