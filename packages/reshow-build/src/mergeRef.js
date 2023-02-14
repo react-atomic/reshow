@@ -21,7 +21,5 @@ const assignEl = (el, refCb) => {
  * @param {React.ReactElement} el
  * @param {RefCbType[]} refArr
  */
-const mergeRef = (el, refArr = []) =>
+export const mergeRef = (el, refArr = []) =>
   refArr.forEach((ref) => ref && assignEl(el, ref));
-
-export default mergeRef;

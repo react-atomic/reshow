@@ -154,3 +154,4 @@ const build =
   };
 
 export default build;
+export { mergeRef } from "./mergeRef";

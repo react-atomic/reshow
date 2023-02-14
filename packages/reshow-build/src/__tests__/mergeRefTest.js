@@ -2,7 +2,7 @@ import { useRef, PureComponent, forwardRef, useImperativeHandle } from "react";
 import { expect } from "chai";
 import { render } from "reshow-unit";
 
-import mergeRef from "../mergeRef";
+import { mergeRef } from "../mergeRef";
 
 describe("Test merge ref", () => {
   it("test hook", () => {
@@ -12,7 +12,7 @@ describe("Test merge ref", () => {
         el: () => lastEl.current,
       };
       useImperativeHandle(ref, () => expose, []);
-      return <Comp refCb={lastEl} />;
+      return <Comp refCb={lastEl} {...props} />;
     });
     let childRef;
     const Comp = (props) => {

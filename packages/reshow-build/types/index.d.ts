@@ -1,4 +1,5 @@
 export default build;
+export { mergeRef } from "./mergeRef";
 export type Component = any;
 export type PropsWithKey = React.PropsWithChildren & {
     key?: string;
