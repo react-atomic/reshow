@@ -24,8 +24,7 @@ import { removeEmpty } from "array.merge";
  */
 
 /**
- * @typedef PropsWithKey
- * @type React.PropsWithChildren & {key?: string}
+ * @typedef {object} BuildProps
  */
 
 /**
@@ -36,7 +35,7 @@ import { removeEmpty } from "array.merge";
 
 /**
  * @param {function} component
- * @param {PropsWithKey} props
+ * @param {BuildProps} props
  * @param {Component} child
  * @param {ComponentOption} componentOption
  * @returns {React.ReactElement}
@@ -73,7 +72,7 @@ const buildFunc = (component, props, child, componentOption) => {
 
 /**
  * @param {Component} component
- * @param {PropsWithKey} props
+ * @param {BuildProps} props
  * @param {Component} child
  * @returns {React.ReactElement}
  */
@@ -107,7 +106,7 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
 const build =
   (component, componentOption = {}) =>
   /**
-   * @param {PropsWithKey} props
+   * @param {BuildProps} props
    * @param {Component} child
    * @returns {React.ReactElement}
    */
