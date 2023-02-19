@@ -1,3 +1,8 @@
+//@ts-check
+/**
+ * @typedef {import("mocha")}
+ */
+
 import { expect } from "chai";
 
 import ImmutableStore, { Map, mergeMap } from "../ImmutableStore";

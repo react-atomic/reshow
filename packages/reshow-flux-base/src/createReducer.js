@@ -1,47 +1,90 @@
 // @ts-check
 
 import callfunc from "call-func";
-import { UNDEFINED, T_UNDEFINED } from "reshow-constant";
+import { UNDEFINED, T_UNDEFINED, STRING } from "reshow-constant";
 
 /**
+ * @template StateType
+ * @typedef {StateType} State
+ */
+
+/**
+ * @typedef {object} Payload
+ */
+
+/**
+ * @typedef {object} ActionObject
+ * @property {string} [type]
+ * @property {Payload} [params]
+ */
+
+/**
+ * @typedef {string|ActionObject|function(State<any>):ActionObject} ActionType
+ */
+
+/**
+ * @typedef {function(State<any>?, ActionObject?, State<any>?):State<any>} FluxHandler
+ */
+
+/**
+ * @callback EmitterResetCall
+ * @returns {FluxHandler[]}
+ */
+
+/**
+ * @callback EmitterAddCall
+ * @param {FluxHandler} handler
+ * @returns {number}
+ */
+
+/**
+ * @callback EmitterRemoveCall
+ * @param {FluxHandler} handler
+ * @returns {FluxHandler[]}
+ */
+
+/**
+ * @template StateType
+ * @callback EmitterEmitCall
+ * @param {State<StateType>} state
+ * @param {ActionObject} action
+ * @param {State<StateType>} prevState
+ */
+
+/**
+ * @template StateType
  * @typedef {object} emiter
- * @property {function} reset
- * @property {function} add
- * @property {function} remove
- * @property {function} emit
+ * @property {EmitterResetCall} reset
+ * @property {EmitterAddCall} add
+ * @property {EmitterRemoveCall} remove
+ * @property {EmitterEmitCall<StateType>} emit
  */
 
 /**
- * @template T
- * @typedef {T} state
- */
-
-/**
+ * @template StateType
  * @returns emiter
  */
 const getMitt = () => {
+  /**
+   * @type FluxHandler[]
+   */
   const pool = [];
   return {
     /**
-     * @returns {array}
+     * @type EmitterResetCall
      */
     reset: () => pool.splice(0, pool.length),
     /**
-     * @param {function} handler
-     * @returns {number}
+     * @type EmitterAddCall
      */
     add: (handler) => pool.unshift(handler),
     /**
      * >>> 0 for change indexOf return -1 to 4294967295
-     * @param {function} handler
-     * @returns {array}
+     * @type EmitterRemoveCall
      */
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     /**
-     * @template T
-     * @param {state<T>} state
-     * @param {object} action
-     * @param {state<T>} prevState
+     * @type EmitterEmitCall<StateType>
      */
     emit: (state, action, prevState) => {
       const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
@@ -59,54 +102,66 @@ const getMitt = () => {
  * Transpile dispatch("your-action-type", {foo: "bar"})
  * to dispatch({type: "your-action-type", params: {foo: "bar"}})
  *
- * @template T
- * @param {string|object|function} action
- * @param {object} params
- * @param {state<T>} prevState
- * @returns {object} lazy actions
+ * @template StateType
+ * @param {ActionType} action
+ * @param {Payload} [params]
+ * @param {State<StateType>} [prevState]
+ * @returns {ActionObject} lazy actions
  */
-const refineAction = (
-  action,
-  params = T_UNDEFINED,
-  prevState = T_UNDEFINED
-) => {
+export const refineAction = (action, params, prevState) => {
   action = action || {};
-  if (action.trim) {
-    action = { type: action };
+  if (STRING === typeof action) {
+    action = /** @type ActionObject*/ ({ type: action });
     params && (action.params = params);
   }
   return callfunc(action, [prevState]);
 };
 
 /**
- * @typedef {Object} Store
- * @property {function} reset
- * @property {function} getState
- * @property {function} addListener
- * @property {function} removeListener
+ * @template StateType
+ * @typedef {function():State<StateType>} GetState
  */
 
 /**
- * @template T
- * @param {function} reduce
- * @param {state<T>|function} initState
- * @returns {[Store, dispatch]}
+ * @template StateType
+ * @typedef {object} StoreObject
+ * @property {function():State<StateType>} reset
+ * @property {GetState<StateType>} getState
+ * @property {emiter<StateType>["add"]} addListener
+ * @property {emiter<StateType>["remove"]} removeListener
  */
-const createReducer = (reduce, initState = () => ({})) => {
+
+/**
+ * @template StateType
+ * @typedef {State<StateType>|function():State<StateType>} InitStateType
+ */
+
+/**
+ * @template StateType
+ * @typedef {function(State<StateType>, ActionObject): State<any>} ReducerType
+ */
+
+/**
+ * @template StateType
+ * @param {ReducerType<StateType>} reducer
+ * @param {InitStateType<StateType>} [initState]
+ * @returns {[StoreObject<StateType>, dispatch]}
+ */
+const createReducer = (reducer, initState) => {
   const state = { current: callfunc(initState) };
   const mitt = getMitt();
   /**
-   * @param {string|object|function} action
-   * @param {object} actionParams
-   * @returns {state<T>} endingState
+   * @param {ActionType} action
+   * @param {Payload} [actionParams]
+   * @returns {State<StateType>} endingState
    */
-  const dispatch = (action, actionParams = T_UNDEFINED) => {
+  const dispatch = (action, actionParams) => {
     const startingState = state.current;
     action = refineAction(action, actionParams, startingState);
-    const endingState = reduce(startingState, action);
+    const endingState = reducer(startingState, action);
     if (endingState === T_UNDEFINED) {
       console.trace();
-      throw `reduce() return ${UNDEFINED}.`;
+      throw `reducer() return ${UNDEFINED}.`;
     }
     if (startingState !== endingState) {
       state.current = endingState;
@@ -115,7 +170,12 @@ const createReducer = (reduce, initState = () => ({})) => {
     return endingState;
   };
   const store = {
-    reset: () => mitt.reset() && callfunc(initState),
+    reset: () => {
+      if (mitt.reset()) {
+        state.current = callfunc(initState);
+      }
+      return state.current;
+    },
     getState: () => state.current,
     addListener: mitt.add,
     removeListener: mitt.remove,
@@ -124,4 +184,3 @@ const createReducer = (reduce, initState = () => ({})) => {
 };
 
 export default createReducer;
-export { refineAction };

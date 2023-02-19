@@ -1,3 +1,8 @@
+// @ts-check
+/**
+ * @typedef {import("mocha")}
+ */
+
 import { expect } from "chai";
 import SimpleMap from "../SimpleMap";
 

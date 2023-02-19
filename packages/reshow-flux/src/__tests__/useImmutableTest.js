@@ -1,3 +1,9 @@
+//@ts-check
+/**
+ * @typedef {import("mocha")}
+ * @typedef {import("../ImmutableStore").StateMap} StateMap
+ */
+
 import { expect } from "chai";
 import { act, render, waitFor, cleanIt } from "reshow-unit";
 
@@ -8,8 +14,8 @@ describe("useImmutable Test", () => {
   afterEach(() => cleanIt());
 
   it("basic test", () => {
-    const Comp = (props) => {
-      const [state, setState] = useImmutable({ foo: "bar" });
+    const Comp = () => {
+      const [state] = useImmutable({ foo: "bar" });
       return <div>{state.get("foo")}</div>;
     };
     const wrap = render(<Comp />);
@@ -18,7 +24,7 @@ describe("useImmutable Test", () => {
 
   it("test basic set", async () => {
     let gSet;
-    const Comp = (props) => {
+    const Comp = () => {
       const [state, setState] = useImmutable({ foo: "bar" });
       gSet = setState;
       return <div>{state.get("foo")}</div>;
@@ -31,7 +37,7 @@ describe("useImmutable Test", () => {
 
   it("test set empty", async () => {
     let gSet;
-    const Comp = (props) => {
+    const Comp = () => {
       const [state, setState] = useImmutable({ foo: "bar" });
       gSet = setState;
       return <div>{state.get("foo")}</div>;
@@ -45,8 +51,11 @@ describe("useImmutable Test", () => {
   ["", Map(), {}].forEach((v) => {
     it(`test set empty with [${v}]`, async () => {
       let gSet;
+      /**
+       * @type StateMap
+       */
       let gState;
-      const Comp = (props) => {
+      const Comp = () => {
         const [state, setState] = useImmutable({ foo: "bar" });
         gSet = setState;
         gState = state;
@@ -66,8 +75,11 @@ describe("useImmutable Test", () => {
    */
   it("test string will set to type", async () => {
     let gSet;
+    /**
+     * @type StateMap
+     */
     let gState;
-    const Comp = (props) => {
+    const Comp = () => {
       const [state, setState] = useImmutable({ foo: "bar" });
       gSet = setState;
       gState = state;
@@ -87,8 +99,11 @@ describe("useImmutable Test", () => {
    */
   it("test string with callback function", async () => {
     let gSet;
+    /**
+     * @type StateMap
+     */
     let gState;
-    const Comp = (props) => {
+    const Comp = () => {
       const [state, setState] = useImmutable({ foo: "bar" });
       gSet = setState;
       gState = state;
@@ -116,7 +131,7 @@ describe("useImmutable Test", () => {
   ].forEach((v) => {
     it(`test set with ${v.desc}`, async () => {
       let gSet;
-      const Comp = (props) => {
+      const Comp = () => {
         const [state, setState] = useImmutable(v.init);
         gSet = setState;
         return <div>{state.get("foo")}</div>;

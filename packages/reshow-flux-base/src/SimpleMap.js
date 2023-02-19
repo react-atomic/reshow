@@ -1,6 +1,9 @@
 // @ts-check
-import { toJS } from "get-object-value";
+import get, { toJS } from "get-object-value";
 import { OBJECT } from "reshow-constant";
+
+const toSimpleMap = (/** @type any */ v) =>
+  OBJECT === typeof v && null !== v ? new SimpleMap(v) : v;
 
 class SimpleMap {
   _state = {};
@@ -35,9 +38,14 @@ class SimpleMap {
    * @returns {any}
    */
   get(k) {
-    return OBJECT === typeof this._state[k] && null !== this._state[k]
-      ? new SimpleMap(this._state[k])
-      : this._state[k];
+    return toSimpleMap(this._state[k]);
+  }
+
+  /**
+   * @param {(string | number)[]} path
+   */
+  getIn(path) {
+    return toSimpleMap(get(this._state, path));
   }
 
   /**

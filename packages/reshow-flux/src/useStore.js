@@ -1,4 +1,14 @@
-import { useSyncExternalStore, useCallback, useRef } from "react";
+// @ts-check
+
+import { useSyncExternalStore, useRef } from "react";
+
+/**
+ * @typedef {object} Emitter
+ */
+
+/**
+ * @typedef {import("reshow-flux-base/types/createReducer").FluxHandler} FluxHandler
+ */
 
 /**
  * How to use?
@@ -11,10 +21,15 @@ import { useSyncExternalStore, useCallback, useRef } from "react";
  *    useEffect(()=>dispatch({foo: "bar"}), []);
  *    return <div>{state.get("foo")}</div>;
  *  }
+ *
+ * @template StateType
+ * @param {import("reshow-flux-base/types/createReducer").StoreObject<StateType>} store
+ * @param {function(Emitter):Function} [heeding]
  */
-
 const useStore = (store, heeding) => {
-  const lastEmit = useRef();
+  const lastProps = useRef(null);
+  lastProps.current = { store, heeding };
+  const lastEmit = useRef(null);
   if (!lastEmit.current) {
     lastEmit.current = {
       /**
@@ -25,29 +40,30 @@ const useStore = (store, heeding) => {
       state: heeding ? heeding({}) : store.getState(),
     };
   }
-  const subscribe = useCallback(
-    (notify) => {
-      const myHeeding =
-        heeding ||
-        ((emit) => {
-          emit.current.state = emit.current.storeState;
-          emit.current.notify();
-        });
-      const myListener = (storeState, action, prevStoreState) => {
-        lastEmit.current = {
-          ...lastEmit.current,
-          storeState,
-          action,
-          prevStoreState,
-          notify,
-        };
-        myHeeding(lastEmit);
+  const subscribe = (/** @type function*/ notify) => {
+    const { store, heeding } = lastProps.current;
+    const myHeeding =
+      heeding ||
+      ((/** @type Emitter*/ emit) => {
+        emit.current.state = emit.current.storeState;
+        emit.current.notify();
+      });
+    /**
+     * @type FluxHandler
+     */
+    const myListener = (storeState, action, prevStoreState) => {
+      lastEmit.current = {
+        ...lastEmit.current,
+        storeState,
+        action,
+        prevStoreState,
+        notify,
       };
-      store.addListener(myListener);
-      return () => store.removeListener(myListener);
-    },
-    [store, heeding]
-  );
+      myHeeding(lastEmit);
+    };
+    store.addListener(myListener);
+    return () => store.removeListener(myListener);
+  };
   const getState = () => lastEmit.current.state;
   return useSyncExternalStore(subscribe, getState, getState);
 };

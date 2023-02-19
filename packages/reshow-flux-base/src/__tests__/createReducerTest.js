@@ -1,3 +1,8 @@
+// @ts-check
+/**
+ * @typedef {import("mocha")}
+ */
+
 import { expect } from "chai";
 import sinon from "sinon";
 import createReducer from "../createReducer";
@@ -5,7 +10,7 @@ import createReducer from "../createReducer";
 describe("Test createReducer", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, {});
+    reducer = createReducer((state, action) => state && action, {});
   });
 
   describe("Test dispatch", () => {
@@ -29,7 +34,7 @@ describe("Test createReducer", () => {
       const [store, dispatch] = reducer;
       dispatch(() => "xxx");
       expect(store.getState()).to.deep.equal("xxx");
-      dispatch((prev) => prev + "yyy");
+      dispatch((/** @type any*/ prev) => prev + "yyy");
       expect(store.getState()).to.deep.equal("xxxyyy");
     });
   });
@@ -45,10 +50,31 @@ describe("Test createReducer", () => {
     });
   });
 
+  it("Test lazy initState with number", () => {
+    const [store, dispatch] = createReducer(
+      (state, action) => state && action && 111,
+      () => 111
+    );
+    dispatch(null);
+    expect(store.getState()).to.equal(111);
+  });
+
+  it("Test lazy initState with object", () => {
+    const [store, dispatch] = createReducer(
+      (state, action) => state && action,
+      () => ({foo: "bar"})
+    );
+    dispatch(null);
+    expect(store.getState()).to.deep.equal({});
+  });
+
   it("Test reset", () => {
-    const [store, dispatch] = createReducer((state, action) => action, "foo");
-    const resetVal = store.reset();
-    expect(resetVal).to.equal("foo");
+    const [store, dispatch] = createReducer(
+      (state, action) => state && action && "foo",
+      "foo"
+    );
+    dispatch(null);
+    expect(store.getState()).to.equal("foo");
   });
 
   it("Test reset event", (done) => {

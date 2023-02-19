@@ -7,13 +7,15 @@ import callfunc from "call-func";
 import toJS from "./toJS";
 
 /**
- * @typedef {object} StateType
- * @property {function} get
- * @property {function} set
+ * @typedef {object} StateMap
+ * @property {function((number|string)[]):any} getIn
+ * @property {function(any):any} get
+ * @property {function(any, any):any} set
+ * @property {function():any} toJS
  */
 
 /**
- * @typedef {StateType|Object} MaybeMapType
+ * @typedef {StateMap|object} MaybeMapType
  */
 
 /**
@@ -24,7 +26,7 @@ import toJS from "./toJS";
  */
 
 /**
- * @param {StateType} state
+ * @param {StateMap} state
  * @param {string} k
  * @returns {object}
  */
@@ -67,9 +69,9 @@ const MAP_SIZE = (maybeMap) =>
  * Because after merge can not use === to compare
  * https://github.com/react-atomic/reshow/issues/123
  *
- * @param {StateType} state
+ * @param {StateMap} state
  * @param {MaybeMapType} maybeMap
- * @returns {StateType}
+ * @returns {StateMap}
  */
 const mergeMap = (state, maybeMap) => {
   try {
@@ -82,9 +84,9 @@ const mergeMap = (state, maybeMap) => {
 
 /**
  * @callback ReducerType
- * @param {StateType} state
+ * @param {StateMap} state
  * @param {MaybeMapType} action
- * @returns {StateType}
+ * @returns {StateMap}
  */
 
 /**
@@ -93,26 +95,30 @@ const mergeMap = (state, maybeMap) => {
 const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
- * @typedef {Object} ImmutableStore
- * @property {function} getMap
+ * @template StateType
+ * @typedef {object&import("reshow-flux-base/types/createReducer").StoreObject<StateType>} ImmutableStoreObject
+ * @property {function(string):any} getMap
  */
 
 /**
- * @param {ReducerType} reduce
- * @param {MaybeMapType|function} initState
- * @returns {[store & ImmutableStore, dispatch]}
+ * @template StateType
+ * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateMap
  */
-const ImmutableStore = (reduce, initState) => {
-  reduce = reduce || defaultReducer;
+
+/**
+ * @template StateType
+ * @param {ReducerType} reducer
+ * @param {InitStateMap<StateType>} [initState]
+ * @returns {[ImmutableStoreObject<StateType>, dispatch]}
+ */
+const ImmutableStore = (reducer, initState) => {
+  reducer = reducer || defaultReducer;
   initState = mergeMap(Map(), callfunc(initState));
-  const [store, dispatch] = createReducer(reduce, initState);
-  return [{
-    ...store,
-  /**
-   * @param {string} k
-   */
-    getMap: (k) => getMap(store.getState(), k)
-  }, dispatch];
+  const [store, dispatch] = createReducer(reducer, initState);
+  /** @type ImmutableStoreObject<StateType> */ (store).getMap = (
+    /** @type string */ k
+  ) => getMap(store.getState(), k);
+  return [store, dispatch];
 };
 
 export default ImmutableStore;

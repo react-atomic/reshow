@@ -18,6 +18,10 @@ declare class SimpleMap {
      */
     get(k: string): any;
     /**
+     * @param {(string | number)[]} path
+     */
+    getIn(path: (string | number)[]): any;
+    /**
      * @param {string} k
      * @param {any} v
      * @returns {SimpleMap}

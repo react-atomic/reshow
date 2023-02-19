@@ -1,29 +1,36 @@
 export default ImmutableStore;
-export type StateType = {
-    get: Function;
-    set: Function;
+export type StateMap = {
+    getIn: (arg0: (number | string)[]) => any;
+    get: (arg0: any) => any;
+    set: (arg0: any, arg1: any) => any;
+    toJS: () => any;
 };
-export type MaybeMapType = StateType | any;
+export type MaybeMapType = StateMap | object;
 export type forEachCb = (Value: any, Key: number | string) => void;
-export type ReducerType = (state: StateType, action: MaybeMapType) => StateType;
-export type ImmutableStore = {
-    getMap: Function;
-};
+export type ReducerType = (state: StateMap, action: MaybeMapType) => StateMap;
+export type ImmutableStoreObject<StateType> = object & import("reshow-flux-base/types/createReducer").StoreObject<StateType>;
+export type InitStateMap<StateType> = MaybeMapType | import("reshow-flux-base/types/createReducer").InitStateType<StateType>;
 /**
- * @typedef {Object} ImmutableStore
- * @property {function} getMap
+ * @template StateType
+ * @typedef {object&import("reshow-flux-base/types/createReducer").StoreObject<StateType>} ImmutableStoreObject
+ * @property {function(string):any} getMap
  */
 /**
- * @param {ReducerType} reduce
- * @param {MaybeMapType|function} initState
- * @returns {[store & ImmutableStore, dispatch]}
+ * @template StateType
+ * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateMap
  */
-declare function ImmutableStore(reduce: ReducerType, initState: MaybeMapType | Function): [import("reshow-flux-base/types/createReducer").Store & ImmutableStore, (action: string | object | Function, actionParams?: object) => any];
+/**
+ * @template StateType
+ * @param {ReducerType} reducer
+ * @param {InitStateMap<StateType>} [initState]
+ * @returns {[ImmutableStoreObject<StateType>, dispatch]}
+ */
+declare function ImmutableStore<StateType>(reducer: ReducerType, initState?: any): [any, (action: import("reshow-flux-base/types/createReducer").ActionType, actionParams?: object) => any];
 /**
  * @callback ReducerType
- * @param {StateType} state
+ * @param {StateMap} state
  * @param {MaybeMapType} action
- * @returns {StateType}
+ * @returns {StateMap}
  */
 /**
  * @type ReducerType
@@ -41,11 +48,11 @@ import { fromJS } from "immutable";
  * Because after merge can not use === to compare
  * https://github.com/react-atomic/reshow/issues/123
  *
- * @param {StateType} state
+ * @param {StateMap} state
  * @param {MaybeMapType} maybeMap
- * @returns {StateType}
+ * @returns {StateMap}
  */
-export function mergeMap(state: StateType, maybeMap: MaybeMapType): StateType;
+export function mergeMap(state: StateMap, maybeMap: MaybeMapType): StateMap;
 import { Map } from "immutable";
 import { Set } from "immutable";
 export { equal, fromJS, Map, Set };

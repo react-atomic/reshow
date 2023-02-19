@@ -1,6 +1,13 @@
+// @ts-check
+
 import { useRef } from "react";
 import useStore from "./useStore";
 import ImmutableStore from "./ImmutableStore";
+
+/**
+ * @template StateType
+ * @typedef {import("./ImmutableStore").InitStateMap<StateType>} InitStateMap
+ */
 
 /**
  * useState alternative but implement by Immutable.
@@ -12,9 +19,12 @@ import ImmutableStore from "./ImmutableStore";
  *
  * call setState will trigger re-render.
  * could use setState for partial update.
+ *
+ * @template StateType
+ * @param {InitStateMap<StateType>} [initialState]
  */
 const useImmutable = (initialState) => {
-  const lastReduce = useRef();
+  const lastReduce = useRef(null);
   if (!lastReduce.current) {
     lastReduce.current = ImmutableStore(null, initialState);
   }
