@@ -107,7 +107,7 @@ const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
  * @template StateType
- * @param {ReducerType} reducer
+ * @param {ReducerType} [reducer]
  * @param {InitStateMap<StateType>} [initState]
  * @returns {[ImmutableStoreObject<StateType>, dispatch]}
  */
