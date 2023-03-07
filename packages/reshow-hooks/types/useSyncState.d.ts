@@ -1,3 +1,8 @@
 export default useSyncState;
-declare function useSyncState(initState: any, setter?: typeof useState): ((nextState: any) => void)[];
-import { useState } from "react";
+/**
+ * @template AnyState
+ * @param {any} initState
+ * @param {function(function):any[]} [setter]
+ * @returns {[AnyState, setSyncState, function():AnyState]}
+ */
+declare function useSyncState<AnyState>(initState: any, setter?: (arg0: Function) => any[]): [AnyState, (nextState: AnyState) => void, () => AnyState];
