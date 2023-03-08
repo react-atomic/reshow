@@ -1,10 +1,18 @@
+//@ts-check
+
 import get from "get-object-value";
-import callfunc from "call-func";
 import { toJS } from "reshow-flux";
 import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
 
-const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
+const getImmutable =
+  (/** @type boolean */ immutable) => (/** @type any */ data) =>
+    !immutable ? toJS(data) : data;
 
+/**
+ * @param {object} props
+ * @param {object} [more]
+ * @returns {object}
+ */
 const reset = (props, more) => {
   const cleanKeys = [
     "immutable",
@@ -33,22 +41,43 @@ const reset = (props, more) => {
   return props;
 };
 
-const stateValueGetter = (state) => (k) =>
-  state.get ? state.get(k) : get(state, [k]);
+/**
+ * @param {any} state
+ */
+const stateValueGetter =
+  (state) =>
+  /**
+   * @param {any} k
+   * @returns {any}
+   */
+  (k) => {
+    if (null != state) {
+      return state.get ? state.get(k) : get(state, [k]);
+    }
+  };
 
+/**
+ * @param {any[]|object} initStates
+ * @returns {[any[], function(string):any]}
+ */
 const stateKeyLocator = (initStates) => {
   let keys;
   let getNewKey;
   if (IS_ARRAY(initStates)) {
     keys = initStates;
-    getNewKey = (key) => key;
+    getNewKey = (/** @type any*/ key) => key;
   } else {
     keys = initStates ? KEYS(initStates) : [];
-    getNewKey = (key) => (null != initStates[key] ? initStates[key] : key);
+    getNewKey = (/** @type any*/ key) => (null != initStates[key] ? initStates[key] : key);
   }
   return [keys, getNewKey];
 };
 
+/**
+ * @param {any} prevState
+ * @param {any} options
+ * @returns {any}
+ */
 const calculateState = (prevState, options) => {
   /**
    * Why not support multi stores?

@@ -3,6 +3,20 @@ declare namespace connectOptions {
     export { calculateState };
     export { reset };
 }
-export function stateKeyLocator(initStates: any): (any[] | ((key: any) => any))[];
+/**
+ * @param {any[]|object} initStates
+ * @returns {[any[], function(string):any]}
+ */
+export function stateKeyLocator(initStates: any[] | object): [any[], (arg0: string) => any];
+/**
+ * @param {any} prevState
+ * @param {any} options
+ * @returns {any}
+ */
 declare function calculateState(prevState: any, options: any): any;
-declare function reset(props: any, more: any): any;
+/**
+ * @param {object} props
+ * @param {object} [more]
+ * @returns {object}
+ */
+declare function reset(props: object, more?: object): object;
