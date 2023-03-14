@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "name": "reshow-unit-dom",
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
     "global-jsdom": "*",
     "jsdom": "^19.0.0",
     "mocha": "^9.x",
-    "nyc": "*",
+    "nyc": "15.1.0",
+    "mocha-junit-reporter": "2.2.0",
     "prettier": "*",
     "prettier-eslint": "*",
     "prettier-eslint-cli": "*",
