@@ -37,6 +37,14 @@ describe("Test createReducer", () => {
       dispatch((/** @type any*/ prev) => prev + "yyy");
       expect(store.getState()).to.deep.equal("xxxyyy");
     });
+    it("it could dispatch boolean", ()=>{
+      const [store, dispatch] = createReducer((_state, action) => ({foo: action}), {foo: true});
+      expect(store.getState()).to.deep.equal({foo: true});
+      dispatch(false);
+      expect(store.getState()).to.deep.equal({foo: false});
+      dispatch(true);
+      expect(store.getState()).to.deep.equal({foo: true});
+    });
   });
 
   it("Emit with custom event", (done) => {

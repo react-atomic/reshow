@@ -1,4 +1,4 @@
-export function refineAction<StateType>(action: ActionType, params?: Payload, prevState?: StateType): ActionObject;
+export function refineAction<StateType>(action: DispatchAction, params?: Payload, prevState?: StateType): ActionObject;
 export default createReducer;
 export type State<StateType> = StateType;
 export type Payload = object;
@@ -6,7 +6,7 @@ export type ActionObject = {
     type?: string;
     params?: Payload;
 };
-export type ActionType = string | ActionObject | ((arg0: State<any>) => ActionObject);
+export type DispatchAction = string | boolean | ActionObject | ((arg0: State<any>) => ActionObject);
 export type FluxHandler = (arg0: State<any> | null, arg1: ActionObject | null, arg2: State<any> | null) => State<any>;
 export type EmitterResetCall = () => FluxHandler[];
 export type EmitterAddCall = (handler: FluxHandler) => number;
@@ -53,4 +53,4 @@ export type ReducerType<StateType> = (arg0: State<StateType>, arg1: ActionObject
  * @param {InitStateType<StateType>} [initState]
  * @returns {[StoreObject<StateType>, dispatch]}
  */
-declare function createReducer<StateType>(reducer: ReducerType<StateType>, initState?: InitStateType<StateType>): [StoreObject<StateType>, (action: ActionType, actionParams?: Payload) => StateType];
+declare function createReducer<StateType>(reducer: ReducerType<StateType>, initState?: InitStateType<StateType>): [StoreObject<StateType>, (action: DispatchAction, actionParams?: Payload) => StateType];

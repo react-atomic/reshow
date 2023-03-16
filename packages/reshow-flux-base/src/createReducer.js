@@ -19,7 +19,7 @@ import { UNDEFINED, T_UNDEFINED, STRING } from "reshow-constant";
  */
 
 /**
- * @typedef {string|ActionObject|function(State<any>):ActionObject} ActionType
+ * @typedef {string|boolean|ActionObject|function(State<any>):ActionObject} DispatchAction
  */
 
 /**
@@ -103,13 +103,13 @@ const getMitt = () => {
  * to dispatch({type: "your-action-type", params: {foo: "bar"}})
  *
  * @template StateType
- * @param {ActionType} action
+ * @param {DispatchAction} action
  * @param {Payload} [params]
  * @param {State<StateType>} [prevState]
  * @returns {ActionObject} lazy actions
  */
 export const refineAction = (action, params, prevState) => {
-  action = action || {};
+  action = action ?? {};
   if (STRING === typeof action) {
     action = /** @type ActionObject*/ ({ type: action });
     params && (action.params = params);
@@ -151,7 +151,7 @@ const createReducer = (reducer, initState) => {
   const state = { current: callfunc(initState) };
   const mitt = getMitt();
   /**
-   * @param {ActionType} action
+   * @param {DispatchAction} action
    * @param {Payload} [actionParams]
    * @returns {State<StateType>} endingState
    */

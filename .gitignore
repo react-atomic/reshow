@@ -7,3 +7,4 @@ build
 .*.sw?
 packages/generator-reshow/generators/**/yarn.lock
 webpack.pid
+test_output
