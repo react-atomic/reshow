@@ -9,6 +9,10 @@ const getImmutable =
     !immutable ? toJS(data) : data;
 
 /**
+ * @typedef {any[]|object} InitStatesProps
+ */
+
+/**
  * @param {object} props
  * @param {object} [more]
  * @returns {object}
@@ -57,7 +61,7 @@ const stateValueGetter =
   };
 
 /**
- * @param {any[]|object} initStates
+ * @param {InitStatesProps} initStates
  * @returns {[any[], function(string):any]}
  */
 const stateKeyLocator = (initStates) => {

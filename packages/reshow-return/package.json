@@ -1,5 +1,5 @@
 {
-  "version": "0.17.32",
+  "version": "0.17.33",
   "name": "reshow-return",
   "repository": {
     "type": "git",
@@ -49,7 +49,8 @@
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
     "mochaFor": "STRICT_MODE=1 mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
-    "test": "npm run build && npm run mocha",
+    "test": "npm run build && npm run mochaFor -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test_output/mocha.xml 'build/es/**/__tests__/*.mjs'",
+    "test:run": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
   "types": "./types/index.d.ts",
