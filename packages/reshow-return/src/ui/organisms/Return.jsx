@@ -13,10 +13,10 @@ import connectOptions from "../../connectOptions";
 
 /**
  * @typedef {object} ReturnProps
- * @property {import("../../../../reshow-flux-base/src/createReducer").StoreObject<any>} store
+ * @property {import("reshow-flux-base").StoreObject} store
  * @property {import("../../connectOptions").InitStatesProps} initStates
- * @property {import("react").ReactChild} children 
- * @property {boolean} backfillProps
+ * @property {import("react").ReactChild} [children] 
+ * @property {boolean} [backfillProps]
  */
 
 

@@ -6,10 +6,10 @@ export type GetReturnOptions = {
     options?: object;
 };
 export type ReturnProps = {
-    store: string;
+    store: import("reshow-flux-base").StoreObject;
     initStates: import("../../connectOptions").InitStatesProps;
-    children: import("react").ReactChild;
-    backfillProps: boolean;
+    children?: import("react").ReactChild;
+    backfillProps?: boolean;
 };
 /**
  * @param {ReturnProps} props
@@ -27,10 +27,10 @@ declare namespace Return {
  */
 /**
  * @typedef {object} ReturnProps
- * @property {string} store
+ * @property {import("reshow-flux-base").StoreObject} store
  * @property {import("../../connectOptions").InitStatesProps} initStates
- * @property {import("react").ReactChild} children
- * @property {boolean} backfillProps
+ * @property {import("react").ReactChild} [children]
+ * @property {boolean} [backfillProps]
  */
 /**
  * @param {GetReturnOptions} props
