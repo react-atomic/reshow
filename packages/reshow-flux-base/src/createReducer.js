@@ -111,7 +111,9 @@ const getMitt = () => {
 export const refineAction = (action, params, prevState) => {
   action = action ?? {};
   if (STRING === typeof action) {
-    action = /** @type ActionObject*/ ({ type: action });
+    /** @type ActionObject*/ action = action
+      ? { type: /** @type string */ (action) }
+      : {};
     params && (action.params = params);
   }
   return callfunc(action, [prevState]);

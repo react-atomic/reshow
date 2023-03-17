@@ -25,7 +25,7 @@ export type InitStateMap<StateType> = MaybeMapType | import("reshow-flux-base/ty
  * @param {InitStateMap<StateType>} [initState]
  * @returns {[ImmutableStoreObject<StateType>, dispatch]}
  */
-declare function ImmutableStore<StateType>(reducer?: ReducerType, initState?: any): [any, (action: import("reshow-flux-base/types/createReducer").ActionType, actionParams?: object) => any];
+declare function ImmutableStore<StateType>(reducer?: ReducerType, initState?: any): [any, (action: import("reshow-flux-base/types/createReducer").DispatchAction, actionParams?: object) => any];
 /**
  * @callback ReducerType
  * @param {StateMap} state

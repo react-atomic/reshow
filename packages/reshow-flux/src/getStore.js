@@ -1,7 +1,15 @@
+// @ts-check
+
 import callfunc from "call-func";
 
+/**
+ * @param {object} props
+ */
 const storeLocator = (props) => props?.store;
 
+/**
+ * @returns {object}
+ */
 const getStore = ({ props, options }) => {
   const allProps = { ...options, ...props };
   const store = callfunc(options?.storeLocator || storeLocator, [allProps]);

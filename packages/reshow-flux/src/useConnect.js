@@ -1,3 +1,5 @@
+// @ts-check
+
 import { useState, useEffect, useDebugValue } from "react";
 import { useMounted } from "reshow-hooks";
 import { T_TRUE } from "reshow-constant";
@@ -28,17 +30,39 @@ const handleShouldComponentUpdate = ({
   }
 };
 
+/**
+ * @typedef {object} UseConnectWithStore
+ * @property {import("reshow-flux-base").StoreObject} store
+ * @property {any} storeSyncState
+ */
+
+/**
+ * @typedef {object} UseConnectOption
+ * @property {Function} calculateState
+ * @property {boolean} [shouldComponentUpdate]
+ * @property {string} [displayName]
+ */
+
 const useConnect =
-  (inputOptions = {}) =>
-  (props) => {
+  /**
+   * @param {UseConnectOption} inputOptions
+   */
+  (inputOptions) =>
+  (/** @type any */ props) => {
+
+    /**
+     * @type UseConnectWithStore & UseConnectOption
+     */
     const options = getStore({ options: inputOptions, props });
     const {
       calculateState,
       shouldComponentUpdate,
       displayName = "useConnect",
     } = options;
+
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
+      __init__: false,
       props,
       state: calculateState({}, options),
     }));
@@ -47,7 +71,7 @@ const useConnect =
 
     useEffect(
       () => {
-        const handleChange = (storeSyncState) => {
+        const handleChange = (/** @type any */ storeSyncState) => {
           if (T_TRUE === isMount()) {
             /**
              * Why storeSyncState?
