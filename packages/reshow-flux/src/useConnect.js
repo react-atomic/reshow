@@ -33,7 +33,7 @@ const handleShouldComponentUpdate = ({
 /**
  * @typedef {object} UseConnectWithStore
  * @property {import("reshow-flux-base").StoreObject} store
- * @property {any} storeSyncState
+ * @property {any} [storeSyncState]
  */
 
 /**
@@ -61,7 +61,7 @@ const useConnect =
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
       props,
-      state: calculateState({}, options),
+      state: calculateState(options?.store.getState() ?? {}, options),
       __init__: T_FALSE,
     }));
 

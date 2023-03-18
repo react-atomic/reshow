@@ -1,7 +1,7 @@
 export default useConnect;
 export type UseConnectWithStore = {
     store: import("reshow-flux-base").StoreObject;
-    storeSyncState: any;
+    storeSyncState?: any;
 };
 export type UseConnectOption = {
     calculateState: Function;
@@ -11,7 +11,7 @@ export type UseConnectOption = {
 /**
  * @typedef {object} UseConnectWithStore
  * @property {import("reshow-flux-base").StoreObject} store
- * @property {any} storeSyncState
+ * @property {any} [storeSyncState]
  */
 /**
  * @typedef {object} UseConnectOption

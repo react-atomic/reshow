@@ -35,8 +35,12 @@ jobs:
             npm config set scripts-prepend-node-path auto \
             && yarn --ignore-engines \
             && cd << parameters.test-dir >> \
-            && yarn --ignore-engines \
-            && yarn test
+            && yarn --ignore-engines
+            if grep -q '"test:report":' ./package.json; then
+              yarn run test:report
+            else
+              yarn test
+            fi
       - store_test_results:
           path: << parameters.test-dir >>/test_output
 
