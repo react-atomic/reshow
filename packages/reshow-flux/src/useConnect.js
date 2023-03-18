@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useDebugValue } from "react";
 import { useMounted } from "reshow-hooks";
-import { T_TRUE } from "reshow-constant";
+import { T_TRUE, T_FALSE } from "reshow-constant";
 
 import getStore from "./getStore";
 
@@ -24,8 +24,8 @@ const handleShouldComponentUpdate = ({
   } else {
     return {
       props,
-      __init__: T_TRUE,
       state: nextState,
+      __init__: T_TRUE,
     };
   }
 };
@@ -47,9 +47,7 @@ const useConnect =
   /**
    * @param {UseConnectOption} inputOptions
    */
-  (inputOptions) =>
-  (/** @type any */ props) => {
-
+  (inputOptions) => (/** @type any */ props) => {
     /**
      * @type UseConnectWithStore & UseConnectOption
      */
@@ -62,9 +60,9 @@ const useConnect =
 
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
-      __init__: false,
       props,
       state: calculateState({}, options),
+      __init__: T_FALSE,
     }));
 
     const isMount = useMounted();
