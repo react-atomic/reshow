@@ -3,4 +3,5 @@ export { default as useImmutable } from "./useImmutable";
 export { default as useReduceStore } from "./useReduceStore";
 export { default as useStore } from "./useStore";
 export { default as toJS } from "./toJS";
+export type CalculateStateCallback = import("./useConnect").CalculateStateCallback;
 export { default as ImmutableStore, equal, forEachMap, fromJS, mergeMap, Map, Set } from "./ImmutableStore";

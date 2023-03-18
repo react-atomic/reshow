@@ -3,8 +3,9 @@ export type UseConnectWithStore = {
     store: import("reshow-flux-base").StoreObject;
     storeSyncState?: any;
 };
+export type CalculateStateCallback = (arg0: object, arg1: object) => object;
 export type UseConnectOption = {
-    calculateState: Function;
+    calculateState: CalculateStateCallback;
     shouldComponentUpdate?: boolean;
     displayName?: string;
 };
@@ -14,8 +15,11 @@ export type UseConnectOption = {
  * @property {any} [storeSyncState]
  */
 /**
+ * @typedef {function(object, object): object} CalculateStateCallback
+ */
+/**
  * @typedef {object} UseConnectOption
- * @property {Function} calculateState
+ * @property {CalculateStateCallback} calculateState
  * @property {boolean} [shouldComponentUpdate]
  * @property {string} [displayName]
  */

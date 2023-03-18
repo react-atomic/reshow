@@ -37,8 +37,12 @@ const handleShouldComponentUpdate = ({
  */
 
 /**
+ * @typedef {function(object, object): object} CalculateStateCallback
+ */
+
+/**
  * @typedef {object} UseConnectOption
- * @property {Function} calculateState
+ * @property {CalculateStateCallback} calculateState
  * @property {boolean} [shouldComponentUpdate]
  * @property {string} [displayName]
  */
@@ -61,7 +65,7 @@ const useConnect =
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
       props,
-      state: calculateState(options?.store.getState() ?? {}, options),
+      state: calculateState({}, options),
       __init__: T_FALSE,
     }));
 

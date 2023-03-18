@@ -10,11 +10,11 @@ declare namespace connectOptions {
  */
 export function stateKeyLocator(initStates: InitStatesProps): [any[], (arg0: string) => any];
 /**
- * @param {any} prevState
- * @param {any} options
- * @returns {any}
+ * @param {object} prevState
+ * @param {object} options
+ * @returns {object}
  */
-declare function calculateState(prevState: any, options: any): any;
+declare function calculateState(prevState: object, options: object): object;
 /**
  * @typedef {any[]|object} InitStatesProps
  */

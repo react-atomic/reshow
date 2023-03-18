@@ -1,3 +1,9 @@
+//@ts-check
+
+/**
+ * @typedef {import("./useConnect").CalculateStateCallback} CalculateStateCallback
+ */
+
 export { default as useConnect } from "./useConnect";
 export { default as useImmutable } from "./useImmutable";
 export { default as useReduceStore } from "./useReduceStore";

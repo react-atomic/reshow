@@ -72,15 +72,16 @@ const stateKeyLocator = (initStates) => {
     getNewKey = (/** @type any*/ key) => key;
   } else {
     keys = initStates ? KEYS(initStates) : [];
-    getNewKey = (/** @type any*/ key) => (null != initStates[key] ? initStates[key] : key);
+    getNewKey = (/** @type any*/ key) =>
+      null != initStates[key] ? initStates[key] : key;
   }
   return [keys, getNewKey];
 };
 
 /**
- * @param {any} prevState
- * @param {any} options
- * @returns {any}
+ * @param {object} prevState
+ * @param {object} options
+ * @returns {object}
  */
 const calculateState = (prevState, options) => {
   /**
