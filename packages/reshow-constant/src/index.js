@@ -28,7 +28,7 @@ export const IS_ARRAY = Array.isArray;
  */
 export const OBJ_SIZE = (o) => (o ? KEYS(o).length : 0);
 /**
- * @returns {object}
+ * @returns {any}
  */
 export const NEW_OBJ = () => Object.create(null);
 

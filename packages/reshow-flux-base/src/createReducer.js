@@ -1,7 +1,7 @@
 // @ts-check
 
 import callfunc from "call-func";
-import { UNDEFINED, T_UNDEFINED, STRING } from "reshow-constant";
+import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
 
 /**
  * @template StateType
@@ -109,14 +109,20 @@ const getMitt = () => {
  * @returns {ActionObject} lazy actions
  */
 export const refineAction = (action, params, prevState) => {
-  action = action ?? {};
-  if (STRING === typeof action) {
-    /** @type ActionObject*/ action = action
-      ? { type: /** @type string */ (action) }
-      : {};
-    params && (action.params = params);
+  let nextAction = NEW_OBJ();
+  if (null != action) {
+    if (STRING === typeof action) {
+      nextAction = {
+        type: action,
+      };
+      if (params) {
+        nextAction.params = params;
+      }
+    } else {
+      nextAction = action;
+    }
   }
-  return callfunc(action, [prevState]);
+  return callfunc(nextAction, [prevState]);
 };
 
 /**

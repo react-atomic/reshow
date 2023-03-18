@@ -20,7 +20,7 @@ export const TYPE_ERROR: "TypeError";
 export const KEYS: (o: object) => string[];
 export const IS_ARRAY: (arg: any) => arg is any[];
 export function OBJ_SIZE(o: object): number;
-export function NEW_OBJ(): object;
+export function NEW_OBJ(): any;
 export function HAS(obj: object, key: string): boolean;
 export const REAL_TIME_URL: "--rtime-url--";
 export const REAL_TIME_DATA_KEY: "--rtime-data--";
