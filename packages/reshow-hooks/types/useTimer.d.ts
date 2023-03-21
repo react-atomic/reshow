@@ -1,2 +1,6 @@
 export default useTimer;
-declare function useTimer(interval: any): ((func: any, delay: any) => void)[];
+/**
+ * @param {boolean} [interval]
+ * @returns {[Function, Function]}
+ */
+declare function useTimer(interval?: boolean): [Function, Function];
