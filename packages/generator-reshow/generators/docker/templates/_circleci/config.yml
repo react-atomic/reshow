@@ -9,7 +9,7 @@ executors:
 jobs:
   test:
     docker:
-      - image: allops/terratest
+      - image: allfunc/terratest
     steps:
       - checkout
       - setup_remote_docker:
