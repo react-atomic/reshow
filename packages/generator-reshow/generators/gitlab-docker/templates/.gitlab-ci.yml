@@ -36,7 +36,11 @@ pre-test:
   stage: test
   image: $CI_TERRATEST
   script:
-    - go test -v ./tests
+    - go test -v ./tests | tee test_output.log
+    - terratest_log_parser -testlog test_output.log -outputdir test_output
+  artifacts:
+    reports:
+      junit: ./test_output/report.xml
 
 build-docker-image:
   extends: .parallel
