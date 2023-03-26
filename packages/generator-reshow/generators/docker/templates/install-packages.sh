@@ -8,6 +8,8 @@ BUILD_DEPS=""
 
 INSTALL=""
 
+UPGRADE=""
+
 echo "###"
 echo "# Will install build tool"
 echo "###"
@@ -20,8 +22,13 @@ echo "###"
 echo ""
 echo $INSTALL
 echo ""
+echo "###"
+echo "# Will upgradee"
+echo "###"
+echo ""
+echo $UPGRADE
 
-apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL
+apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL --upgrade $UPGRADE
 
 #/* put your install code here */#
 
