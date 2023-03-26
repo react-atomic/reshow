@@ -6,7 +6,8 @@ DIR="$(
 
 TERRATEST=$(${DIR}/../support/TERRATEST.sh)
 
-docker run --rm --platform linux/amd64 -v $DIR/../:/app/test \
+docker run --rm \
+  -v $DIR/../:/app/test \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -w /app/test \
   $TERRATEST \
