@@ -1,12 +1,5 @@
 // @ts-check
 import {
-  isValidElement,
-  cloneElement,
-  createElement,
-  Children,
-  Fragment,
-} from "react";
-import {
   OBJ_SIZE,
   STRING,
   FUNCTION,
@@ -17,6 +10,8 @@ import {
   IS_ARRAY,
 } from "reshow-constant";
 import { removeEmpty } from "array.merge";
+import * as React from "react";
+const { isValidElement, cloneElement, createElement, Children, Fragment } = React;
 
 /**
  * @typedef Component

@@ -1,7 +1,9 @@
 //@ts-check
+
+import * as React from "react";
+
 /**
  * @typedef {import("mocha")}
- * @typedef {import("../ImmutableStore").StateMap} StateMap
  */
 
 import { expect } from "chai";
@@ -48,13 +50,10 @@ describe("useImmutable Test", () => {
     expect(wrap.html()).to.equal("<div>bar</div>");
   });
 
-  ["", Map(), {}].forEach((v) => {
-    it(`test set empty with [${v}]`, async () => {
+  [Map(), {}].forEach((v) => {
+    it(`test set empty with '${v}'`, async () => {
       let gSet;
-      /**
-       * @type StateMap
-       */
-      let gState;
+      let gState = {};
       const Comp = () => {
         const [state, setState] = useImmutable({ foo: "bar" });
         gSet = setState;
@@ -69,16 +68,29 @@ describe("useImmutable Test", () => {
     });
   });
 
+  it(`test with empty string`, async () => {
+    let gSet;
+    let gState = {};
+    const Comp = () => {
+      const [state, setState] = useImmutable({ foo: "bar" });
+      gSet = setState;
+      gState = state;
+      return <div>{state.get("foo")}</div>;
+    };
+    const wrap = render(<Comp />);
+    expect(wrap.html()).to.equal("<div>bar</div>");
+    await act(() => gSet(""), 5);
+    expect(gState.toJS()).to.deep.equal({ foo: "bar", type: "" });
+    expect(wrap.html()).to.equal("<div>bar</div>");
+  });
+
   /**
    * dispatch will change string to type,
    * so it will store to key of type.
    */
   it("test string will set to type", async () => {
     let gSet;
-    /**
-     * @type StateMap
-     */
-    let gState;
+    let gState = {};
     const Comp = () => {
       const [state, setState] = useImmutable({ foo: "bar" });
       gSet = setState;
@@ -99,10 +111,7 @@ describe("useImmutable Test", () => {
    */
   it("test string with callback function", async () => {
     let gSet;
-    /**
-     * @type StateMap
-     */
-    let gState;
+    let gState = {};
     const Comp = () => {
       const [state, setState] = useImmutable({ foo: "bar" });
       gSet = setState;

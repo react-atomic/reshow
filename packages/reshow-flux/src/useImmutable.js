@@ -6,7 +6,7 @@ import ImmutableStore from "./ImmutableStore";
 
 /**
  * @template StateType
- * @typedef {import("./ImmutableStore").InitStateMap<StateType>} InitStateMap
+ * @typedef {import("./ImmutableStore").InitStateWithMap<StateType>} InitStateWithMap
  */
 
 /**
@@ -21,10 +21,10 @@ import ImmutableStore from "./ImmutableStore";
  * could use setState for partial update.
  *
  * @template StateType
- * @param {InitStateMap<StateType>} [initialState]
+ * @param {InitStateWithMap<StateType>} [initialState]
  */
 const useImmutable = (initialState) => {
-  const lastReduce = useRef(null);
+  const lastReduce = useRef(/** @type any */ (null));
   if (!lastReduce.current) {
     lastReduce.current = ImmutableStore(null, initialState);
   }

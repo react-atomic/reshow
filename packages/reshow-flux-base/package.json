@@ -1,5 +1,5 @@
 {
-  "version": "0.17.28",
+  "version": "0.17.30",
   "name": "reshow-flux-base",
   "repository": {
     "type": "git",
@@ -42,8 +42,8 @@
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
     "mochaFor": "mocha",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
-    "test": "npm run build && npm run mochaFor -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test_output/mocha.xml 'build/es/**/__tests__/*.mjs'",
-    "test:run": "npm run build && npm run mocha",
+    "test:report": "npm run build && npm run mochaFor -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test_output/mocha.xml 'build/es/**/__tests__/*.mjs'",
+    "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
   "types": "./types/index.d.ts",

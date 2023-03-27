@@ -1,8 +1,8 @@
 export default useImmutable;
-export type InitStateMap<StateType> = import("./ImmutableStore").InitStateMap<StateType>;
+export type InitStateWithMap<StateType> = import("./ImmutableStore").InitStateWithMap<StateType>;
 /**
  * @template StateType
- * @typedef {import("./ImmutableStore").InitStateMap<StateType>} InitStateMap
+ * @typedef {import("./ImmutableStore").InitStateWithMap<StateType>} InitStateWithMap
  */
 /**
  * useState alternative but implement by Immutable.
@@ -16,6 +16,6 @@ export type InitStateMap<StateType> = import("./ImmutableStore").InitStateMap<St
  * could use setState for partial update.
  *
  * @template StateType
- * @param {InitStateMap<StateType>} [initialState]
+ * @param {InitStateWithMap<StateType>} [initialState]
  */
 declare function useImmutable<StateType>(initialState?: any): any[];

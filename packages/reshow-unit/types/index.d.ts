@@ -137,9 +137,9 @@ export function sleep(cb: Function, delay: number): Promise<any>;
 export function getRoleHtml(role: string): string;
 import { getSinon } from "reshow-unit-dom";
 /**
- * @param {Object} props
+ * @param {Object} [props]
  */
-export function cleanIt(props: any): void;
+export function cleanIt(props?: any): void;
 import { jsdom } from "reshow-unit-dom";
 import { hideConsoleError } from "reshow-unit-dom";
 import { queries } from "@testing-library/dom";

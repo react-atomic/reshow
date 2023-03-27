@@ -21,7 +21,7 @@ import toJS from "./toJS";
 /**
  * @callback forEachCb
  * @param {any} Value
- * @param {number|string} Key
+ * @param {unknown} Key
  * @returns {void}
  */
 
@@ -83,14 +83,14 @@ const mergeMap = (state, maybeMap) => {
 };
 
 /**
- * @callback ReducerType
+ * @callback ReducerTypeWithMap
  * @param {StateMap} state
- * @param {MaybeMapType} action
+ * @param {import("reshow-flux-base").ActionObject} action
  * @returns {StateMap}
  */
 
 /**
- * @type ReducerType
+ * @type ReducerTypeWithMap
  */
 const defaultReducer = (state, action) => mergeMap(state, action);
 
@@ -102,13 +102,14 @@ const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
  * @template StateType
- * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateMap
+ * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateWithMap
  */
 
 /**
  * @template StateType
- * @param {ReducerType} [reducer]
- * @param {InitStateMap<StateType>} [initState]
+ * @param {ReducerTypeWithMap|null} [reducer]
+ * @param {InitStateWithMap<StateType>} [initState]
+ *
  * @returns {[ImmutableStoreObject<StateType>, dispatch]}
  */
 const ImmutableStore = (reducer, initState) => {

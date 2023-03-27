@@ -6,10 +6,10 @@ export type StateMap = {
     toJS: () => any;
 };
 export type MaybeMapType = StateMap | object;
-export type forEachCb = (Value: any, Key: number | string) => void;
-export type ReducerType = (state: StateMap, action: MaybeMapType) => StateMap;
+export type forEachCb = (Value: any, Key: unknown) => void;
+export type ReducerTypeWithMap = (state: StateMap, action: import("reshow-flux-base").ActionObject) => StateMap;
 export type ImmutableStoreObject<StateType> = object & import("reshow-flux-base/types/createReducer").StoreObject<StateType>;
-export type InitStateMap<StateType> = MaybeMapType | import("reshow-flux-base/types/createReducer").InitStateType<StateType>;
+export type InitStateWithMap<StateType> = MaybeMapType | import("reshow-flux-base/types/createReducer").InitStateType<StateType>;
 /**
  * @template StateType
  * @typedef {object&import("reshow-flux-base/types/createReducer").StoreObject<StateType>} ImmutableStoreObject
@@ -17,25 +17,26 @@ export type InitStateMap<StateType> = MaybeMapType | import("reshow-flux-base/ty
  */
 /**
  * @template StateType
- * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateMap
+ * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateWithMap
  */
 /**
  * @template StateType
- * @param {ReducerType} [reducer]
- * @param {InitStateMap<StateType>} [initState]
+ * @param {ReducerTypeWithMap|null} [reducer]
+ * @param {InitStateWithMap<StateType>} [initState]
+ *
  * @returns {[ImmutableStoreObject<StateType>, dispatch]}
  */
-declare function ImmutableStore<StateType>(reducer?: ReducerType, initState?: any): [any, (action: import("reshow-flux-base/types/createReducer").DispatchAction, actionParams?: object) => any];
+declare function ImmutableStore<StateType>(reducer?: ReducerTypeWithMap | null, initState?: any): [any, (action: import("reshow-flux-base/types/createReducer").DispatchAction, actionParams?: import("reshow-flux-base/types/createReducer").Payload) => any];
 /**
- * @callback ReducerType
+ * @callback ReducerTypeWithMap
  * @param {StateMap} state
- * @param {MaybeMapType} action
+ * @param {import("reshow-flux-base").ActionObject} action
  * @returns {StateMap}
  */
 /**
- * @type ReducerType
+ * @type ReducerTypeWithMap
  */
-export const defaultReducer: ReducerType;
+export const defaultReducer: ReducerTypeWithMap;
 import { is as equal } from "immutable";
 /**
  * @param {MaybeMapType} maybeMap

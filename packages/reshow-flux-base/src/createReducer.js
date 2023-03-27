@@ -9,7 +9,7 @@ import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
  */
 
 /**
- * @typedef {object} Payload
+ * @typedef {Object.<string, any>} Payload
  */
 
 /**
@@ -19,7 +19,7 @@ import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
  */
 
 /**
- * @typedef {string|boolean|ActionObject|function(State<any>):ActionObject} DispatchAction
+ * @typedef {string|boolean|ActionObject|Payload|function(State<any>):ActionObject} DispatchAction
  */
 
 /**

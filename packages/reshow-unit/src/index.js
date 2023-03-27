@@ -24,7 +24,7 @@ import { env } from "process";
 import build from "reshow-build";
 import { StrictMode } from "react";
 
-const envStrictMode = env.STRICT_MODE;
+const envStrictMode = /** @type string*/ (env.STRICT_MODE);
 const STRICT_MODE =
   -1 !== "|true|false|null|0|".indexOf(envStrictMode)
     ? JSON.parse(envStrictMode)
@@ -53,7 +53,7 @@ const screen = () => getQueriesForElement(doc()?.body, queries);
 const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
 
 /**
- * @param {Object} props
+ * @param {Object} [props]
  */
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
@@ -118,7 +118,7 @@ const render = (OrigDom, options = {}) => {
     Dom = build(OrigDom)({ ref: instance });
   }
   if (STRICT_MODE) {
-    Dom = build(StrictMode)(null, Dom);
+    Dom = build(StrictMode)(undefined, Dom);
   }
   const result = {
     ...rtlRender(Dom, options),
@@ -145,7 +145,7 @@ const sleep = (cb, delay) =>
   new Promise((resolve) => {
     setTimeout(() => {
       cb();
-      resolve();
+      resolve(null);
     }, delay);
   });
 
