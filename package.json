@@ -1,5 +1,5 @@
 {
-  "version": "0.17.28",
+  "version": "0.17.29",
   "name": "reshow",
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "reshow-runtime": ">=0.17.4",
     "seturl": "*",
     "smooth-scroll-to": "*",
+    "superagent": "8.0.9",
     "with-array": "*"
   },
   "devDependencies": {

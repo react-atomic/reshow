@@ -11,7 +11,8 @@ import {
 } from "reshow-constant";
 import { removeEmpty } from "array.merge";
 import * as React from "react";
-const { isValidElement, cloneElement, createElement, Children, Fragment } = React;
+const { isValidElement, cloneElement, createElement, Children, Fragment } =
+  React;
 
 /**
  * @typedef Component

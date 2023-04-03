@@ -13,7 +13,11 @@ const mkdirp = require("mkdirp");
 const globSync = require("./globSync");
 const handleAnswers = require("./handleAnswers");
 const handleKeywords = require("./handleKeywords");
-const { getDotYo, promptResetDefault, promptFilterByOptions } = require("./getDotYo");
+const {
+  getDotYo,
+  promptResetDefault,
+  promptFilterByOptions,
+} = require("./getDotYo");
 
 const lastAns = { current: {} };
 const exitCb = { current: null };
@@ -91,8 +95,14 @@ const YoHelper = (oGen) => {
         ...oGen.options,
         ...getDotYo(oGen.options),
       };
-      const { nextAnswer, nextPrompts } = promptFilterByOptions(prompts, options);
-      return cb(nextPrompts, nextAnswer).then((props) => ({ ...props, ...nextAnswer }));
+      const { nextAnswer, nextPrompts } = promptFilterByOptions(
+        prompts,
+        options
+      );
+      return cb(nextPrompts, nextAnswer).then((props) => ({
+        ...props,
+        ...nextAnswer,
+      }));
     },
 
     promptChainLocator: (prompts) => (index) => prompts.shift(),
@@ -171,16 +181,28 @@ const YoHelper = (oGen) => {
       }
     },
     glob: (srcPath, ...p) => {
-      const actualSrc = isDir(srcPath) ? srcPath : oGen.templatePath(srcPath || "");
+      const actualSrc = isDir(srcPath)
+        ? srcPath
+        : oGen.templatePath(srcPath || "");
       globSync(actualSrc, ...p);
     },
 
     promptResetDefault,
     ...chainUtil,
-    promptChainAll: (prompts, { locator = chainUtil.promptChainLocator, callback } = {}) => {
-      return chainUtil.mergePromptOrOption(prompts, (nextPrompts, nextAnswer) => {
-        return chainUtil.promptChain(locator(nextPrompts), callback, nextAnswer);
-      });
+    promptChainAll: (
+      prompts,
+      { locator = chainUtil.promptChainLocator, callback } = {}
+    ) => {
+      return chainUtil.mergePromptOrOption(
+        prompts,
+        (nextPrompts, nextAnswer) => {
+          return chainUtil.promptChain(
+            locator(nextPrompts),
+            callback,
+            nextAnswer
+          );
+        }
+      );
     },
     getAllAns: (customAns) => {
       return { ...customAns, ...lastAns.current };

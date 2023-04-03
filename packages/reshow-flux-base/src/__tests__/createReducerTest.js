@@ -37,13 +37,16 @@ describe("Test createReducer", () => {
       dispatch((/** @type any*/ prev) => prev + "yyy");
       expect(store.getState()).to.deep.equal("xxxyyy");
     });
-    it("it could dispatch boolean", ()=>{
-      const [store, dispatch] = createReducer((_state, action) => ({foo: action}), {foo: true});
-      expect(store.getState()).to.deep.equal({foo: true});
+    it("it could dispatch boolean", () => {
+      const [store, dispatch] = createReducer(
+        (_state, action) => ({ foo: action }),
+        { foo: true }
+      );
+      expect(store.getState()).to.deep.equal({ foo: true });
       dispatch(false);
-      expect(store.getState()).to.deep.equal({foo: false});
+      expect(store.getState()).to.deep.equal({ foo: false });
       dispatch(true);
-      expect(store.getState()).to.deep.equal({foo: true});
+      expect(store.getState()).to.deep.equal({ foo: true });
     });
   });
 
@@ -70,7 +73,7 @@ describe("Test createReducer", () => {
   it("Test lazy initState with object", () => {
     const [store, dispatch] = createReducer(
       (state, action) => state && action,
-      () => ({foo: "bar"})
+      () => ({ foo: "bar" })
     );
     dispatch(null);
     expect(store.getState()).to.deep.equal({});

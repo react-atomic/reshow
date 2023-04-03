@@ -15,10 +15,9 @@ import connectOptions from "../../connectOptions";
  * @typedef {object} ReturnProps
  * @property {import("reshow-flux-base").StoreObject} store
  * @property {import("../../connectOptions").InitStatesProps} initStates
- * @property {import("react").ReactChild} [children] 
+ * @property {import("react").ReactChild} [children]
  * @property {boolean} [backfillProps]
  */
-
 
 /**
  * @param {GetReturnOptions} props

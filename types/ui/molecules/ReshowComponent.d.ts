@@ -9,7 +9,7 @@ declare const myConnectOptions: {
     reset: typeof connectOptions.reset;
 };
 declare const ReshowReturn: {
-    (props: any): JSX.Element;
+    (props: import("reshow-return/types/ui/organisms/Return").ReturnProps): JSX.Element;
     displayName: string;
 };
 import { connectOptions } from "reshow-return";
