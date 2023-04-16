@@ -51,6 +51,7 @@ workflows:
               test-dir:
                 - "./"
                 - "packages/generator-reshow"
+                - "packages/reshow-app"
                 - "packages/reshow-build"
                 - "packages/reshow-constant"
                 - "packages/reshow-flux-base"
