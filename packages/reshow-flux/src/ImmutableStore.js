@@ -1,23 +1,38 @@
 // @ts-check
 
 import { Map, Set, fromJS, is as equal } from "immutable";
-import { createReducer } from "reshow-flux-base";
+import { createReducer, StoreObject } from "reshow-flux-base";
 import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
 
 /**
+ * @typedef {number|string} MapKeyType
+ */
+
+/**
  * @interface
  */
 export class StateMap {
-  /** @type {function((number|string)[]):any}*/
+  /** @type {function(MapKeyType[]):any}*/
   getIn;
-  /** @type {function(any):any}*/
+  /** @type {function(MapKeyType):any}*/
   get;
-  /** @type {function(any, any):any}*/
+  /** @type {function(MapKeyType, any):any}*/
   set;
   /** @type {function():any}*/
   toJS;
+}
+
+/**
+ * @template StateType
+ * @class ImmutableStoreObject
+ * @extends {StoreObject<StateType>}
+ * @interface
+ */
+class ImmutableStoreObject extends StoreObject {
+  /** @type {function(MapKeyType):any} */
+  getMap;
 }
 
 /**
@@ -28,7 +43,7 @@ export class StateMap {
  */
 
 /**
- * @typedef {StateMap|object} MaybeMapType
+ * @typedef { StateMap | {[key: MapKeyType]: any} } MaybeMapType
  */
 
 /**
@@ -40,7 +55,7 @@ export class StateMap {
 
 /**
  * @param {StateMap} state
- * @param {string} k
+ * @param {MapKeyType} k
  * @returns {object}
  */
 const getMap = (state, k) => toJS(state.get(k)) ?? {};
@@ -48,7 +63,7 @@ const isMap = Map.isMap;
 
 /**
  * @param {MaybeMapType} maybeMap
- * @param {forEachCb} cb
+ * @param {function(unknown, unknown):unknown} cb
  */
 const forEachMap = (maybeMap, cb) => {
   if (!MAP_SIZE(maybeMap)) {
@@ -89,7 +104,7 @@ const MAP_SIZE = (maybeMap) =>
 const mergeMap = (state, maybeMap) => {
   try {
     forEachMap(maybeMap, (v, k) => {
-      state = state.set(k, v);
+      state = state.set(/** @type {MapKeyType} */ (k), v);
     });
   } catch (e) {}
   return state;
@@ -102,30 +117,19 @@ const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
  * @template StateType
- * @typedef {object&import("reshow-flux-base").StoreObject<StateType>} ImmutableStoreObject
- * @property {function(string):any} getMap
- */
-
-/**
- * @template StateType
- * @typedef {MaybeMapType|import("reshow-flux-base").InitStateType<StateType>} InitStateWithMap
- */
-
-/**
- * @template StateType
  * @param {ReducerTypeWithMap|null} [reducer]
- * @param {InitStateWithMap<StateType>} [initState]
+ * @param {import("reshow-flux-base").InitStateType<StateType>} [initState]
  *
  * @returns {[ImmutableStoreObject<StateType>, dispatch]}
  */
 const ImmutableStore = (reducer, initState) => {
   reducer = reducer || defaultReducer;
-  initState = mergeMap(Map(), callfunc(initState));
-  const [store, dispatch] = createReducer(reducer, initState);
+  const stateMap = mergeMap(Map(), callfunc(initState));
+  const [store, dispatch] = createReducer(reducer, stateMap);
   /** @type ImmutableStoreObject<StateType> */ (store).getMap = (
-    /** @type string */ k
+    /** @type MapKeyType */ k
   ) => getMap(store.getState(), k);
-  return [store, dispatch];
+  return [/** @type ImmutableStoreObject<StateType> */ (store), dispatch];
 };
 
 export default ImmutableStore;

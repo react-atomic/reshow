@@ -1,9 +1,4 @@
 export default useImmutable;
-export type InitStateWithMap<StateType> = import("./ImmutableStore").InitStateWithMap<StateType>;
-/**
- * @template StateType
- * @typedef {import("./ImmutableStore").InitStateWithMap<StateType>} InitStateWithMap
- */
 /**
  * useState alternative but implement by Immutable.
  * https://reactjs.org/docs/hooks-reference.html#usestate
@@ -16,6 +11,6 @@ export type InitStateWithMap<StateType> = import("./ImmutableStore").InitStateWi
  * could use setState for partial update.
  *
  * @template StateType
- * @param {InitStateWithMap<StateType>} [initialState]
+ * @param {import("reshow-flux-base").InitStateType<StateType>} [initialState]
  */
-declare function useImmutable<StateType>(initialState?: any): any[];
+declare function useImmutable<StateType>(initialState?: import("reshow-flux-base").InitStateType<StateType>): any[];

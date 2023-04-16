@@ -2865,9 +2865,9 @@ reshow-constant@*:
   integrity sha512-ZzMUsidjnlr3uYC6O2ThqhqiIaUOeghpjUlJ0TWh/PzOzklyzB7CngDP0sjcVqx3C4XS4u9O7dKO2cGVDWwKSA==
 
 reshow-flux-base@*:
-  version "0.17.34"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.34.tgz#859da4e16eaa0d58b567b1ff2dcc589e0a1dbbfb"
-  integrity sha512-EXVI/W01/0Kzuxjoc29Gx6NzbCgt2t+k6G8ETcHkvvTsbLL4qSfpEn9Z4FCYGMwMMpakMIVk4qfMMvKaChxyVg==
+  version "0.17.36"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.36.tgz#2095d3e9668352d35cdf4fcb9a0c17e8e4557f87"
+  integrity sha512-/XMbhs3WfpCUMBvEZMuyeOEAnchqc9FQgBP54EyaKCKL3Iu60PCIhdt6+X6hiwdZ/E6aouq4KhlXXATuU+ipgQ==
   dependencies:
     call-func "*"
     get-object-value "*"

@@ -77,12 +77,18 @@ export class StoreObject {
 
 /**
  * @template StateType
- * @typedef {object} emiter
- * @property {EmitterResetCall} reset
- * @property {EmitterAddCall} add
- * @property {EmitterRemoveCall} remove
- * @property {EmitterEmitCall<StateType>} emit
+ * @interface
  */
+class emiter {
+  /** @type {EmitterResetCall} */
+  reset;
+  /** @type {EmitterAddCall} */
+  add;
+  /** @type {EmitterRemoveCall} */
+  remove;
+  /** @type {EmitterEmitCall<StateType>} */
+  emit;
+}
 
 /**
  * @template StateType

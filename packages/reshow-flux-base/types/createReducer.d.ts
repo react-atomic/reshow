@@ -41,13 +41,52 @@ export type EmitterResetCall = () => FluxHandler[];
 export type EmitterAddCall = (handler: FluxHandler) => number;
 export type EmitterRemoveCall = (handler: FluxHandler) => FluxHandler[];
 export type EmitterEmitCall<StateType> = (state: State<StateType>, action: ActionObject, prevState: State<StateType>) => any;
-export type emiter<StateType> = {
-    reset: EmitterResetCall;
-    add: EmitterAddCall;
-    remove: EmitterRemoveCall;
-    emit: EmitterEmitCall<StateType>;
-};
 export type ReducerType<StateType> = (arg0: State<StateType>, arg1: ActionObject) => State<any>;
+/**
+ * @template StateType
+ * @typedef {State<StateType>|function():State<StateType>} InitStateType
+ */
+/**
+ * @typedef {string|boolean|ActionObject|Payload|function(State<any>):ActionObject} DispatchAction
+ */
+/**
+ * @typedef {function(State<any>?, ActionObject?, State<any>?):State<any>} FluxHandler
+ */
+/**
+ * @callback EmitterResetCall
+ * @returns {FluxHandler[]}
+ */
+/**
+ * @callback EmitterAddCall
+ * @param {FluxHandler} handler
+ * @returns {number}
+ */
+/**
+ * @callback EmitterRemoveCall
+ * @param {FluxHandler} handler
+ * @returns {FluxHandler[]}
+ */
+/**
+ * @template StateType
+ * @callback EmitterEmitCall
+ * @param {State<StateType>} state
+ * @param {ActionObject} action
+ * @param {State<StateType>} prevState
+ */
+/**
+ * @template StateType
+ * @interface
+ */
+declare class emiter<StateType> {
+    /** @type {EmitterResetCall} */
+    reset: EmitterResetCall;
+    /** @type {EmitterAddCall} */
+    add: EmitterAddCall;
+    /** @type {EmitterRemoveCall} */
+    remove: EmitterRemoveCall;
+    /** @type {EmitterEmitCall<StateType>} */
+    emit: EmitterEmitCall<StateType>;
+}
 /**
  * @template StateType
  * @typedef {function(State<StateType>, ActionObject): State<any>} ReducerType

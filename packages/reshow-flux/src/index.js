@@ -12,11 +12,6 @@
  * @typedef {import("./ImmutableStore").ReducerTypeWithMap} ReducerTypeWithMap
  */
 
-/**
- * @template StateType
- * @typedef {import("./ImmutableStore").InitStateWithMap<StateType>} InitStateWithMap
- */
-
 export { default as useConnect } from "./useConnect";
 export { default as useImmutable } from "./useImmutable";
 export { default as useReduceStore } from "./useReduceStore";

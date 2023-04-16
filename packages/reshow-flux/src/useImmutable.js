@@ -5,11 +5,6 @@ import useStore from "./useStore";
 import ImmutableStore from "./ImmutableStore";
 
 /**
- * @template StateType
- * @typedef {import("./ImmutableStore").InitStateWithMap<StateType>} InitStateWithMap
- */
-
-/**
  * useState alternative but implement by Immutable.
  * https://reactjs.org/docs/hooks-reference.html#usestate
  *
@@ -21,7 +16,7 @@ import ImmutableStore from "./ImmutableStore";
  * could use setState for partial update.
  *
  * @template StateType
- * @param {InitStateWithMap<StateType>} [initialState]
+ * @param {import("reshow-flux-base").InitStateType<StateType>} [initialState]
  */
 const useImmutable = (initialState) => {
   const lastReduce = useRef(/** @type any */ (null));
