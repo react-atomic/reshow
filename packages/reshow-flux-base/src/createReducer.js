@@ -13,10 +13,14 @@ import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
  */
 
 /**
- * @typedef {object} ActionObject
- * @property {string} [type]
- * @property {Payload} [params]
+ * @interface
  */
+export class ActionObject {
+  /** @type {string=} */
+  type;
+  /** @type {Payload=} */
+  params;
+}
 
 /**
  * @typedef {string|boolean|ActionObject|Payload|function(State<any>):ActionObject} DispatchAction
@@ -127,17 +131,18 @@ export const refineAction = (action, params, prevState) => {
 
 /**
  * @template StateType
- * @typedef {function():State<StateType>} GetState
+ * @interface
  */
-
-/**
- * @template StateType
- * @typedef {object} StoreObject
- * @property {function():State<StateType>} reset
- * @property {GetState<StateType>} getState
- * @property {emiter<StateType>["add"]} addListener
- * @property {emiter<StateType>["remove"]} removeListener
- */
+export class StoreObject {
+  /** @type {function():State<StateType>} */
+  reset;
+  /** @type {function():State<StateType>} */
+  getState;
+  /** @type {emiter<StateType>["add"]} */
+  addListener;
+  /** @type {emiter<StateType>["remove"]} */
+  removeListener;
+}
 
 /**
  * @template StateType
@@ -165,15 +170,15 @@ const createReducer = (reducer, initState) => {
    */
   const dispatch = (action, actionParams) => {
     const startingState = state.current;
-    action = refineAction(action, actionParams, startingState);
-    const endingState = reducer(startingState, action);
+    const thisAction = refineAction(action, actionParams, startingState);
+    const endingState = reducer(startingState, thisAction);
     if (endingState === T_UNDEFINED) {
       console.trace();
       throw `reducer() return ${UNDEFINED}.`;
     }
     if (startingState !== endingState) {
       state.current = endingState;
-      mitt.emit(endingState, action, startingState);
+      mitt.emit(endingState, thisAction, startingState);
     }
     return endingState;
   };
