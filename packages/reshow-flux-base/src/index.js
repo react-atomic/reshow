@@ -1,7 +1,16 @@
 //@ts-check
 
 /**
- * @typedef {import("./createReducer").StoreObject<any>} StoreObject
+ * @template StateType
+ * @typedef {import("./createReducer").StoreObject<StateType>} StoreObject
+ */
+
+/**
+ * @template StateType
+ * @typedef {import("./createReducer").InitStateType<StateType>} InitStateType
+ */
+
+/**
  * @typedef {import("./createReducer").ActionObject} ActionObject
  */
 

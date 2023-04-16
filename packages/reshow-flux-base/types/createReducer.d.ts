@@ -14,7 +14,6 @@ export class ActionObject {
     /** @type {Payload=} */
     params: Payload | undefined;
 }
-export function refineAction<StateType>(action: DispatchAction, params?: Payload, prevState?: StateType): ActionObject;
 /**
  * @template StateType
  * @interface
@@ -29,11 +28,13 @@ export class StoreObject<StateType> {
     /** @type {emiter<StateType>["remove"]} */
     removeListener: emiter<StateType>["remove"];
 }
+export function refineAction<StateType>(action: DispatchAction, params?: Payload, prevState?: StateType): ActionObject;
 export default createReducer;
 export type State<StateType> = StateType;
 export type Payload = {
     [x: string]: any;
 };
+export type InitStateType<StateType> = State<StateType> | (() => State<StateType>);
 export type DispatchAction = string | boolean | ActionObject | Payload | ((arg0: State<any>) => ActionObject);
 export type FluxHandler = (arg0: State<any> | null, arg1: ActionObject | null, arg2: State<any> | null) => State<any>;
 export type EmitterResetCall = () => FluxHandler[];
@@ -46,12 +47,7 @@ export type emiter<StateType> = {
     remove: EmitterRemoveCall;
     emit: EmitterEmitCall<StateType>;
 };
-export type InitStateType<StateType> = State<StateType> | (() => State<StateType>);
 export type ReducerType<StateType> = (arg0: State<StateType>, arg1: ActionObject) => State<any>;
-/**
- * @template StateType
- * @typedef {State<StateType>|function():State<StateType>} InitStateType
- */
 /**
  * @template StateType
  * @typedef {function(State<StateType>, ActionObject): State<any>} ReducerType

@@ -23,6 +23,26 @@ export class ActionObject {
 }
 
 /**
+ * @template StateType
+ * @interface
+ */
+export class StoreObject {
+  /** @type {function():State<StateType>} */
+  reset;
+  /** @type {function():State<StateType>} */
+  getState;
+  /** @type {emiter<StateType>["add"]} */
+  addListener;
+  /** @type {emiter<StateType>["remove"]} */
+  removeListener;
+}
+
+/**
+ * @template StateType
+ * @typedef {State<StateType>|function():State<StateType>} InitStateType
+ */
+
+/**
  * @typedef {string|boolean|ActionObject|Payload|function(State<any>):ActionObject} DispatchAction
  */
 
@@ -128,26 +148,6 @@ export const refineAction = (action, params, prevState) => {
   }
   return callfunc(nextAction, [prevState]);
 };
-
-/**
- * @template StateType
- * @interface
- */
-export class StoreObject {
-  /** @type {function():State<StateType>} */
-  reset;
-  /** @type {function():State<StateType>} */
-  getState;
-  /** @type {emiter<StateType>["add"]} */
-  addListener;
-  /** @type {emiter<StateType>["remove"]} */
-  removeListener;
-}
-
-/**
- * @template StateType
- * @typedef {State<StateType>|function():State<StateType>} InitStateType
- */
 
 /**
  * @template StateType

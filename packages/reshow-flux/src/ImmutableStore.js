@@ -7,11 +7,24 @@ import callfunc from "call-func";
 import toJS from "./toJS";
 
 /**
- * @typedef {object} StateMap
- * @property {function((number|string)[]):any} getIn
- * @property {function(any):any} get
- * @property {function(any, any):any} set
- * @property {function():any} toJS
+ * @interface
+ */
+export class StateMap {
+  /** @type {function((number|string)[]):any}*/
+  getIn;
+  /** @type {function(any):any}*/
+  get;
+  /** @type {function(any, any):any}*/
+  set;
+  /** @type {function():any}*/
+  toJS;
+}
+
+/**
+ * @callback ReducerTypeWithMap
+ * @param {StateMap} state
+ * @param {import("reshow-flux-base").ActionObject} action
+ * @returns {StateMap}
  */
 
 /**
@@ -83,26 +96,19 @@ const mergeMap = (state, maybeMap) => {
 };
 
 /**
- * @callback ReducerTypeWithMap
- * @param {StateMap} state
- * @param {import("reshow-flux-base").ActionObject} action
- * @returns {StateMap}
- */
-
-/**
  * @type ReducerTypeWithMap
  */
 const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
  * @template StateType
- * @typedef {object&import("reshow-flux-base/types/createReducer").StoreObject<StateType>} ImmutableStoreObject
+ * @typedef {object&import("reshow-flux-base").StoreObject<StateType>} ImmutableStoreObject
  * @property {function(string):any} getMap
  */
 
 /**
  * @template StateType
- * @typedef {MaybeMapType|import("reshow-flux-base/types/createReducer").InitStateType<StateType>} InitStateWithMap
+ * @typedef {MaybeMapType|import("reshow-flux-base").InitStateType<StateType>} InitStateWithMap
  */
 
 /**
