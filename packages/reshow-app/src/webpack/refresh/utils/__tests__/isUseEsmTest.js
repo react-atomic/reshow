@@ -6,7 +6,7 @@ import isUseEsm, { pkgType } from "../isUseEsm";
 let dir;
 
 try {
-  NOT_DEFINED;
+  _NOT_DEFINED;
 } catch (e) {
   const initiator = e.stack.split("\n").slice(1)[0];
   const folder = /(?<path>[^\(\s]+):[0-9]+:[0-9]+/

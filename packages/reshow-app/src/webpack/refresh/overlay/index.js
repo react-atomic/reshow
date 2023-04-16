@@ -68,7 +68,7 @@ let currentMode = null;
  * @param {IframeProps} props
  * @returns {HTMLIFrameElement}
  */
-function IframeRoot(document, root, props) {
+function createIframeRoot(document, props) {
   const iframe = document.createElement("iframe");
   iframe.id = "react-refresh-overlay";
   iframe.src = "about:blank";
@@ -151,7 +151,7 @@ function ensureRootExists(renderFn) {
   }
 
   // Create the iframe root, and, the overlay root inside it when it is ready.
-  iframeRoot = IframeRoot(document, document.body, {
+  iframeRoot = createIframeRoot(document, {
     onIframeLoad: function onIframeLoad() {
       rootDocument = iframeRoot.contentDocument;
       root = OverlayRoot(rootDocument, rootDocument.body);
@@ -305,11 +305,16 @@ const debouncedShowRuntimeErrors = memoize(showRuntimeErrors);
 
 /**
  * Detects if an error is a Webpack compilation error.
+ * https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/overlay/index.js#L316-L318
  * @param {Error} error The error of interest.
  * @returns {boolean} If the error is a Webpack compilation error.
  */
-function isWebpackCompileError(error) {
-  return /Module [A-z ]+\(from/.test(error.message);
+function isWebpackCompileError({ message }) {
+  return (
+    /Module [A-Za-z ]+\(from/.test(message) ||
+    /Module not found: Error:/.test(message) ||
+    /Module build failed: Error:/.test(message)
+  );
 }
 
 /**
@@ -330,6 +335,7 @@ function handleRuntimeError(error) {
 }
 
 export default Object.freeze({
+  isWebpackCompileError,
   clearCompileError,
   clearRuntimeErrors,
   handleRuntimeError,

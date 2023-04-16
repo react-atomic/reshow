@@ -22,6 +22,7 @@
     "build": "npm run clean && npm run build:dev",
     "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/{,!(node_modules)/**}/__tests__/*.js'",
+    "test:report": "npm run build && npm run mochaFor -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test_output/mocha.xml 'build/{,!(node_modules)/**}/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "echo should not publish && exit 1;"
   }
