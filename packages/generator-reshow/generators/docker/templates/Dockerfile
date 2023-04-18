@@ -1,6 +1,6 @@
 ARG VERSION=${VERSION:-[VERSION]}
 
-FROM alpine:3.15
+FROM alpine:3.17
 
 ARG VERSION
 
