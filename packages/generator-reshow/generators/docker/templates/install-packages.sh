@@ -28,7 +28,7 @@ echo "###"
 echo ""
 echo $UPGRADE
 
-apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL --upgrade $UPGRADE
+apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL --upgrade $UPGRADE || exit 2
 
 #/* put your install code here */#
 
