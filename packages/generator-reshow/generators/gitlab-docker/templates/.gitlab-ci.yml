@@ -6,13 +6,13 @@ stages:
   - deploy
 
 variables:
-  LATEST_TAG: <%= verPrefix %>0.0.0
+  LATEST_TAG: 0.0.0
   LAST_IMAGE_STORE: ./last-image
 
 .parallel:
   parallel:
     matrix:
-      - dockerTag: [<%= verPrefix %>0.0.0]
+      - dockerTag: [0.0.0]
 
 default:
   before_script:
@@ -50,7 +50,8 @@ build-docker-image:
     - echo $IMAGE_NAME > $LAST_IMAGE_STORE
     - echo $IMAGE_NAME
     - echo 'Start build docker images:' $dockerTag
-    - DOCKER_BUILDKIT=1 docker build -f Dockerfile --target $dockerTag -t $IMAGE_NAME .
+    # - DOCKER_BUILDKIT=1 docker build -f Dockerfile --target $dockerTag -t $IMAGE_NAME .
+    - DOCKER_BUILDKIT=1 docker build -f Dockerfile -t $IMAGE_NAME .
     - docker images | head -10 || trap '' PIPE
     - docker push $IMAGE_NAME
   artifacts:
