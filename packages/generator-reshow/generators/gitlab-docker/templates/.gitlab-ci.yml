@@ -19,9 +19,7 @@ default:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   after_script:
     - docker logout
-  tags:
-    - swarm-cluster
-    - docker
+  tags: <%= tagJson %> 
 
 # https://docs.gitlab.com/ee/ci/yaml/index.html
 info-section:
@@ -63,7 +61,7 @@ e2e-test:
   needs: ["build-docker-image"]
   trigger:
     include:
-      - local: .gitlab-trigger.yml
+      - local: .gitlab/.gitlab-trigger.yml
 
 put-to-stable:
   extends: .parallel

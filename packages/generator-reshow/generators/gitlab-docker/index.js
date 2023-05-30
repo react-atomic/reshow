@@ -26,15 +26,17 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const {
-      handleAnswers,
-      promptChainAll,
-    } = YoHelper(this);
+    const { handleAnswers, promptChainAll } = YoHelper(this);
 
     const prompts = [
       ...commonPrompt.mainName(this),
       ...commonPrompt.desc(this),
       ...commonDockerPrompt(this),
+      {
+        type: "input",
+        name: "tags",
+        message: "Please input your gitlab tags and separate by comma",
+      },
     ];
 
     const answers = await promptChainAll(prompts);
@@ -51,15 +53,24 @@ module.exports = class extends YoGenerator {
   writing() {
     this.env.options.nodePackageManager = "yarn";
     this.options.skipInstall = true;
-    const { cp,  chMainName } = YoHelper(this);
+    const { cp, chMainName } = YoHelper(this);
 
     // handle change to new folder
     chMainName(this.mainName);
+
+    if (this.payload.tags) {
+      let tags = this.payload.tags;
+      if (tags.split) {
+        tags = this.payload.tags.split(",");
+        this.payload.tags = tags;
+      }
+      this.payload.tagJson = JSON.stringify(tags.map((item) => item.trim()));
+    }
 
     // handle copy file
     cp("Dockerfile", null, this.payload);
     cp("README.md", null, this.payload);
     cp(".gitlab-ci.yml", null, this.payload);
-    cp(".gitlab-trigger.yml", null, this.payload);
+    cp(".gitlab/.gitlab-trigger.yml", null, this.payload);
   }
 };
