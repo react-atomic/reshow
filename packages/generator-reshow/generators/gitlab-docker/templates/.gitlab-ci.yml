@@ -27,8 +27,8 @@ info-section:
   stage: info
   script:
     - echo "Display Information"
+    - export
     - date
-    - echo "$CI_PIPELINE_ID"
 
 pre-test:
   stage: test
