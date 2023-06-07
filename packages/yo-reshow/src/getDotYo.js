@@ -5,8 +5,11 @@ const { nest } = require("object-nested");
 const isFile = require("./isFile");
 const fileGetContents = require("./fileGetContents");
 
-const searchDotYo = (path) => {
+const searchDotYo = (path, isRoot) => {
   const dirs = path.split("/");
+  if (isRoot) {
+    dirs.pop();
+  }
   while (dirs.length !== 0) {
     const curDotYo = "/" + PATH.join(...dirs, ".yo");
     if (isFile(curDotYo)) {
@@ -19,16 +22,24 @@ const searchDotYo = (path) => {
 const getIni = (f) => nest(ini(fileGetContents(f)), "_");
 
 const getDotYo = ({ bGetHomeYo = true, pwd = process.cwd() } = {}) => {
-  const dotYo = searchDotYo(pwd);
-  let data = dotYo ? getIni(dotYo) : {};
   const homeYo = PATH.join(OS.homedir(), ".yo");
+  let homeData;
   if (isFile(homeYo) && bGetHomeYo) {
-    data = {
-      ...getIni(homeYo),
-      ...data,
-    };
+    homeData = getIni(homeYo);
   }
-  return data;
+  const rootYo = searchDotYo(pwd, true);
+  let rootData;
+  if (isFile(rootYo)) {
+    rootData = getIni(rootYo);
+  }
+  const dotYo = searchDotYo(pwd);
+  const data = dotYo ? getIni(dotYo) : {};
+  const finalData = {
+    ...homeData,
+    ...rootData,
+    ...data,
+  };
+  return finalData;
 };
 
 const promptResetDefault = (prompts, yoData = getDotYo()) => {

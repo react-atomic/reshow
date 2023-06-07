@@ -54,7 +54,7 @@ module.exports = class extends YoGenerator {
 
   writing() {
     this.env.options.nodePackageManager = "yarn";
-    const { cp, chMainName, syncJSON } = YoHelper(this);
+    const { cp, chMainName } = YoHelper(this);
     const { isUseBabel, isUseBabelUI } = this.payload || {};
 
     // handle change to new folder
