@@ -18,6 +18,7 @@ describe("!! gitlab-docker !!", () => {
         isReady: true,
         description: "foo-desc",
         keyword: "foo-keyword",
+        tags: "",
       },
     });
   });
@@ -33,7 +34,7 @@ describe("!! gitlab-docker !!", () => {
   });
 
   it("should have file", () => {
-    assert.file([".gitlab-ci.yml", ".gitlab-trigger.yml"]);
+    assert.file([".gitlab-ci.yml", ".gitlab/.gitlab-trigger.yml"]);
   });
 
   it("should have content", () => {

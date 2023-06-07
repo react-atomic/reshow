@@ -65,6 +65,8 @@ module.exports = class extends YoGenerator {
         this.payload.tags = tags;
       }
       this.payload.tagJson = JSON.stringify(tags.map((item) => item.trim()));
+    } else {
+      this.payload.tagJson = "";
     }
 
     // handle copy file
