@@ -23,7 +23,7 @@ const sinonWrapper = { current: null };
 
 /**
  * @param {string} html
- * @param {any} options
+ * @param {any} [options]
  */
 const jsdom = (html, options) => {
   if (jsdomWrapper.current) {
@@ -34,7 +34,7 @@ const jsdom = (html, options) => {
 };
 
 /**
- * @param {boolean|Function} toThrow
+ * @param {boolean|Function} [toThrow]
  */
 const hideConsoleError = (toThrow) => {
   if (!consoleWrapper.current) {
@@ -52,7 +52,7 @@ const hideConsoleError = (toThrow) => {
 
 /**
  * @see https://sinonjs.org/releases/latest/sandbox/
- * @param {any} options
+ * @param {any} [options]
  */
 const getSinon = (options) => {
   if (sinonWrapper.current) {

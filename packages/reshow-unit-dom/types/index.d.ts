@@ -12,15 +12,15 @@ export type CleanItProps = {
 export function cleanIt(props?: CleanItProps): void;
 /**
  * @param {string} html
- * @param {any} options
+ * @param {any} [options]
  */
-export function jsdom(html: string, options: any): any;
+export function jsdom(html: string, options?: any): any;
 /**
- * @param {boolean|Function} toThrow
+ * @param {boolean|Function} [toThrow]
  */
-export function hideConsoleError(toThrow: boolean | Function): void;
+export function hideConsoleError(toThrow?: boolean | Function): void;
 /**
  * @see https://sinonjs.org/releases/latest/sandbox/
- * @param {any} options
+ * @param {any} [options]
  */
-export function getSinon(options: any): any;
+export function getSinon(options?: any): any;
