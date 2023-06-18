@@ -1,7 +1,11 @@
 package test
 
 import (
+	"bytes"
+	"fmt"
+	"os/exec"
 	"testing"
+
 	"github.com/gruntwork-io/terratest/modules/docker"
 	"github.com/stretchr/testify/assert"
 )
@@ -9,8 +13,12 @@ import (
 func TestSmoke(t *testing.T) {
 	// website::tag::1:: Configure the tag to use on the Docker image.
 	tag := "docker-smoke"
+	VERSION, err := exec.Command("../support/VERSION.sh").Output()
+	if err == nil {
+	}
 	buildOptions := &docker.BuildOptions{
-		Tags: []string{tag},
+		Tags:      []string{tag},
+		BuildArgs: []string{fmt.Sprintf("VERSION=%s", bytes.TrimRight(VERSION, "\n"))},
 	}
 
 	// website::tag::2:: Build the Docker image.
