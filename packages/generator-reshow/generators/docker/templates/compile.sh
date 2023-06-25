@@ -89,7 +89,7 @@ build() {
   if [ 'x' != "x$NO_CACHE" ]; then
     echo nocache: ${NO_CACHE}
   fi
-  docker build ${BUILD_ARG} ${NO_CACHE} -f ${DIR}/${DOCKER_FILE} -t $localImage ${DIR}
+  docker build --progress=plain ${BUILD_ARG} ${NO_CACHE} -f ${DIR}/${DOCKER_FILE} -t $localImage ${DIR}
   list
 }
 
