@@ -36,7 +36,7 @@ class URL {
     let value;
     if (0 === key.indexOf(":")) {
       const locKey = this.getLocKey(key);
-      value = get(this.loc, [locKey]);
+      value = get(this.loc, [locKey], "");
       if ("pathname" === locKey) {
         value = value.split("/");
       }

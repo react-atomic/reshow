@@ -51,9 +51,9 @@ class ClientRoute extends Reshow {
     )?.themePath;
     const themes = this.props.themes;
     if (themes[themePath]) {
-      setTimeout(() =>
+      setTimeout(() =>{
         dispatch({ themePath: themePath ?? this.getGlobalPath() })
-      );
+      });
       return themePath;
     }
   }
@@ -65,7 +65,8 @@ class ClientRoute extends Reshow {
   getUrlChangeState(url) {
     const { onUrlChange, onHashChange, goAnchorDelay } = this.props;
     const thisUrlChangeFunc = onUrlChange ? onUrlChange : defaultOnUrlChange;
-    return thisUrlChangeFunc(url)(onHashChange)(goAnchorDelay);
+    const nextState = thisUrlChangeFunc(url)(onHashChange)(goAnchorDelay);
+    return nextState;
   }
 
   componentDidMount() {

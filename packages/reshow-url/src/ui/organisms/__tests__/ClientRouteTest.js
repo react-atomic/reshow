@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { expect } from "chai";
-import { render, cleanIt, jsdom } from "reshow-unit";
+import { render, cleanIt, jsdom, act } from "reshow-unit";
 import { pageStore } from "reshow";
 
 import ClientRoute from "../ClientRoute";
@@ -25,10 +25,10 @@ describe("Test ClientRoute", () => {
   });
 
   it("test should reset default theme to store", () => {
-    const vDom = <ClientRoute defaultThemePath="foo" themes={{ foo: "div" }} />;
-    render(vDom);
-    setTimeout(() => {
-      expect(pageStore.getState().get("themePath")).to.equal("foo");
-    });
+    const vDom = <ClientRoute defaultThemePath="bar" themes={{ foo: "div", bar: "span" }} />;
+    const wrap = render(vDom);
+    const actual = wrap.html();
+    act();
+    expect(actual).to.have.string("span");
   });
 });
