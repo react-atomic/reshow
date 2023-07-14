@@ -66,7 +66,7 @@ const cleanIt = (props) => {
 /**
  * @param {function} cb
  */
-const act = async (cb, milliseconds = 1, debug = false) => {
+const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
   const start = getTimestamp();
   let timer;
   await rtlAct(

@@ -7,7 +7,7 @@ import { waitForElementToBeRemoved } from "@testing-library/dom/types/wait-for-e
 /**
  * @param {function} cb
  */
-export function act(cb: Function, milliseconds?: number, debug?: boolean): Promise<void>;
+export function act(cb?: Function, milliseconds?: number, debug?: boolean): Promise<void>;
 /**
  * @typedef {Object} RenderResult
  * @property {function} html
