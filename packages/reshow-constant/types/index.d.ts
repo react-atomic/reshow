@@ -19,7 +19,7 @@ export const UNDEFINED: "undefined";
 export const TYPE_ERROR: "TypeError";
 export const KEYS: (o: object) => string[];
 export const IS_ARRAY: (arg: any) => arg is any[];
-export function OBJ_SIZE(o: object): number;
+export function OBJ_SIZE(o?: object): number;
 export function NEW_OBJ(): any;
 export function HAS(obj: object, key: string): boolean;
 export const REAL_TIME_URL: "--rtime-url--";
