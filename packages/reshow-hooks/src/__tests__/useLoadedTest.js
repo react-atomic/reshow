@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { render, cleanIt, waitFor, getSinon } from "reshow-unit";
+import { render, cleanIt, getSinon } from "reshow-unit";
 
 import useLoaded from "../useLoaded";
 

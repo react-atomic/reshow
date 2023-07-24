@@ -1,5 +1,6 @@
 //@ts-check
 
+import { T_UNDEFINED } from "reshow-constant";
 import { useEffect, useRef, useMemo } from "react";
 import callfunc from "call-func";
 
@@ -20,7 +21,7 @@ const useTimer = (interval) => {
   const stop = () => {
     if (timer.current) {
       callfunc(act.stop, [timer.current]);
-      timer.current = null;
+      timer.current = T_UNDEFINED;
     }
   };
 

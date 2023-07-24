@@ -12,7 +12,7 @@ describe("test useSyncChange", () => {
       return <div>{lastFoo.current}</div>;
     };
     let gSet;
-    const Comp = (props) => {
+    const Comp = (_props) => {
       const [state, setState] = useState();
       gSet = setState;
       return <FOO foo={state} />;
