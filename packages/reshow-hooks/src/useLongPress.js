@@ -21,11 +21,11 @@ const useLongPress = (callback, payload = {}) => {
   const [timerRun, timerStop] = useTimer();
 
   return useMemo(() => {
-    const start = () => {
+    const start = (/**@type React.MouseEvent*/ e) => {
       const { threshold = 500, onStart } = lastPayload.current;
-      callfunc(onStart);
+      callfunc(onStart, [e]);
       timerRun(() => {
-        callfunc(callback);
+        callfunc(callback, [e]);
       }, threshold);
     };
     const cancel = () => {
