@@ -4,6 +4,7 @@ import { expect } from "chai";
 import { render, waitFor, act, getSinon } from "reshow-unit";
 import * as React from "react";
 const { useEffect, useState } = React;
+import { Map } from "reshow-flux";
 
 import usePartialRender from "../usePartialRender";
 
@@ -97,11 +98,27 @@ describe("Test usePartialRender", () => {
       gCount++;
       gSetCall((/** @type number*/ c) => ++c);
     });
-    await act(() => {});
+    await act();
     await waitFor(() => {
       expect(wrap.html()).to.equal(
         `<div data-call="1"><span>1</span><i></i></div>`
       );
+    });
+  });
+
+  it("test use keySeq", async () => {
+    const list = Map({
+      foo: <span />,
+      bar: <i />,
+    });
+    const Comp = () => {
+      const [renderItems] = usePartialRender(list.keySeq(), list);
+      return <>{renderItems}</>;
+    };
+    const wrap = render(<Comp />);
+    await act();
+    await waitFor(() => {
+      expect(wrap.html()).to.equal(`<span></span><i></i>`);
     });
   });
 });

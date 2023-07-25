@@ -476,9 +476,9 @@
   integrity sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==
 
 "@types/eslint@^8.4.2":
-  version "8.44.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-8.44.0.tgz#55818eabb376e2272f77fbf5c96c43137c3c1e53"
-  integrity sha512-gsF+c/0XOguWgaOgvFs+xnnRqt9GwgTvIks36WpE6ueeI4KCEHHd8K/CKHqhOqrJKsYH8m27kRzQEvWXAwXUTw==
+  version "8.44.1"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-8.44.1.tgz#d1811559bb6bcd1a76009e3f7883034b78a0415e"
+  integrity sha512-XpNDc4Z5Tb4x+SW1MriMVeIsMoONHCkWFMkR/aPJbzEsxqHy+4Glu/BqTdPrApfDeMaXbtNh6bseNgl5KaWrSg==
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
@@ -2875,9 +2875,9 @@ reshow-flux@*:
     reshow-runtime "*"
 
 reshow-hooks@*:
-  version "0.17.28"
-  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.28.tgz#0f858eb6b2a057ab8ea69d077cb70953d2c025a0"
-  integrity sha512-95AGH5Jl0cUgrY/HYCXRz+sz9bP5iy6nllr6giB+LYnUdSuqjYeS0/ajddxcFZo7OxJSR5CXv+QdljdtqYlSjg==
+  version "0.17.29"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.29.tgz#e8bf621bf262d2e833d340e10349292113b20754"
+  integrity sha512-1IypJl2HE437J1htfMA07Wi4cN3nd875c0vHAyNIuAKwSMrCIY9FaLj+yjIGDzqkP/FN2m7j9kGAlmyQ+iEjiw==
   dependencies:
     call-func "*"
     reshow-build "*"

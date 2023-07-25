@@ -11,13 +11,7 @@ export type ReturnProps = {
     children?: import("react").ReactChild;
     backfillProps?: boolean;
 };
-/**
- * @param {ReturnProps} props
- */
-declare function Return(props: ReturnProps): import("react/jsx-runtime").JSX.Element;
-declare namespace Return {
-    export { displayName };
-}
+declare const Return: React.ElementType<any>;
 /**
  * @typedef {object} GetReturnOptions
  * @property {string} [displayName]
@@ -34,8 +28,7 @@ declare namespace Return {
  */
 /**
  * @param {GetReturnOptions} props
+ * @returns {React.ElementType}
  */
-export function getReturn({ displayName, useConnect, cleanProps, options, }?: GetReturnOptions): {
-    (props: ReturnProps): import("react/jsx-runtime").JSX.Element;
-    displayName: string;
-};
+export function getReturn({ displayName, useConnect, cleanProps, options, }?: GetReturnOptions): React.ElementType;
+import * as React from "react";

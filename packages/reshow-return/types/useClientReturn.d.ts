@@ -1,2 +1,5 @@
 export default useClientReturn;
-declare function useClientReturn(...p: any[]): any;
+/**
+ * @type {import('./useReturn').UseReturnType}
+ */
+declare const useClientReturn: import('./useReturn').UseReturnType;

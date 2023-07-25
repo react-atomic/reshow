@@ -1,2 +1,6 @@
 export default useLoaded;
-declare function useLoaded(onChange: any): any;
+/**
+ * @param {function} [onChange]
+ * @returns {boolean}
+ */
+declare function useLoaded(onChange?: Function): boolean;

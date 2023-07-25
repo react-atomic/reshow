@@ -1,5 +1,9 @@
 export default ClientReturnHoc;
 /**
- * Example: https://github.com/react-atomic/reshow/blob/main/packages/reshow-url/ui/organisms/UrlReturn.jsx
+ * Example:
+ * https://github.com/react-atomic/reshow/blob/main/packages/reshow-url/src/ui/organisms/UrlReturn.jsx
+ * @param {React.ReactNode} comp
+ * @param {string[]} cleanProps
+ * @returns {React.ElementType}
  */
-declare function ClientReturnHoc(comp: any, cleanProps: any): (props: any) => import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
+declare function ClientReturnHoc(comp: any, cleanProps: string[]): React.ElementType;

@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { useReduceStore, Map, mergeMap } from "reshow-flux";
 import build from "reshow-build";
 import callfunc from "call-func";
-import { IS_ARRAY } from "reshow-constant";
 
 import Return from "./ui/organisms/Return";
 
@@ -15,8 +14,8 @@ import Return from "./ui/organisms/Return";
 
 /**
  * @template ChildrenType
- * @param {string[]} [initRenderKeys]
- * @param {{[key: string]: React.ReactElement}} [initChildren]
+ * @param {string[]|Immutable.Seq} [initRenderKeys]
+ * @param {{[key: string]: React.ReactElement}|Immutable.Map<string,React.ReactElement>} [initChildren]
  * @returns {[React.ReactElement[], DispatchType<ChildrenType>, DispatchType<any>]}
  */
 const usePartialRender = (initRenderKeys, initChildren) => {
@@ -34,7 +33,7 @@ const usePartialRender = (initRenderKeys, initChildren) => {
      * renderKeys could use array like data structure.
      * such as immutable.js
      */
-    return (IS_ARRAY(renderKeys) ? renderKeys : []).map(
+    return (renderKeys || []).map(
       /**
        * @param {string} name
        */

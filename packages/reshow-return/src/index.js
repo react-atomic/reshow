@@ -1,3 +1,5 @@
+//@ts-check
+
 /* hooks */
 export { default as useClientReturn } from "./useClientReturn";
 export { default as usePartialRender } from "./usePartialRender";

@@ -2,6 +2,7 @@
 import { useConnect as useConn } from "reshow-flux";
 import MemoReturn from "../organisms/MemoReturn";
 import connectOptions from "../../connectOptions";
+import * as React from "react";
 
 /**
  * @typedef {object} GetReturnOptions
@@ -21,6 +22,7 @@ import connectOptions from "../../connectOptions";
 
 /**
  * @param {GetReturnOptions} props
+ * @returns {React.ElementType}
  */
 const getReturn = ({
   displayName = "Return",
@@ -34,7 +36,7 @@ const getReturn = ({
    */
   const Return = (props) => {
     const { children, backfillProps, ...otherProps } = props;
-    const state = useConnect(props);
+    const state = /** @type function*/(useConnect)(props);
     const nextProps = backfillProps
       ? {
           ...state,
