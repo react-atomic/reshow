@@ -29,11 +29,7 @@ export type forEachCb = (Value: any, Key: unknown) => void;
  *
  * @returns {[ImmutableStoreObject<StateType>, dispatch]}
  */
-declare function ImmutableStore<StateType>(reducer?: ReducerTypeWithMap | null, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject<StateType>, (action: import("reshow-flux-base/types/createReducer").DispatchAction, actionParams?: import("reshow-flux-base/types/createReducer").Payload) => StateMap];
-/**
- * @type ReducerTypeWithMap
- */
-export const defaultReducer: ReducerTypeWithMap;
+declare function ImmutableStore<StateType>(reducer?: ReducerTypeWithMap | null, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject<StateType>, import("reshow-flux-base/types/createReducer").DispatchType<StateMap>];
 import { is as equal } from "immutable";
 /**
  * @param {MaybeMapType} maybeMap

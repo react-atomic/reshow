@@ -11,6 +11,11 @@ import { useSyncExternalStore, useRef } from "react";
  */
 
 /**
+ * @template StateType
+ * @typedef {import("reshow-flux-base").StoreObject<StateType>} StoreObject
+ */
+
+/**
  * How to use?
  *
  *  import { useEffect } from "react";
@@ -23,13 +28,20 @@ import { useSyncExternalStore, useRef } from "react";
  *  }
  *
  * @template StateType
- * @param {import("reshow-flux-base/types/createReducer").StoreObject<StateType>} store
+ * @param {StoreObject<StateType>} store
  * @param {function(Emitter):Function} [heeding]
+ * @returns {StateType}
  */
 const useStore = (store, heeding) => {
-  const lastProps = useRef(null);
+  /**
+   * @type any
+   */
+  const lastProps = useRef();
   lastProps.current = { store, heeding };
-  const lastEmit = useRef(null);
+  /**
+   * @type any
+   */
+  const lastEmit = useRef();
   if (!lastEmit.current) {
     lastEmit.current = {
       /**

@@ -28,26 +28,28 @@ export class StoreObject<StateType> {
     /** @type {emiter<StateType>["remove"]} */
     removeListener: emiter<StateType>["remove"];
 }
-export function refineAction<StateType>(action: DispatchAction, params?: Payload, prevState?: StateType): ActionObject;
+export function refineAction<StateType>(action: DispatchAction<StateType>, params?: Payload, prevState?: StateType): ActionObject;
 export default createReducer;
 export type State<StateType> = StateType;
 export type Payload = {
     [x: string]: any;
 };
 export type InitStateType<StateType> = State<StateType> | (() => State<StateType>);
-export type DispatchAction = string | boolean | ActionObject | Payload | ((arg0: State<any>) => ActionObject);
+export type DispatchAction<StateType> = string | boolean | null | ActionObject | Payload | ((arg0: State<StateType>) => ActionObject);
 export type FluxHandler = (arg0: State<any> | null, arg1: ActionObject | null, arg2: State<any> | null) => State<any>;
 export type EmitterResetCall = () => FluxHandler[];
 export type EmitterAddCall = (handler: FluxHandler) => number;
 export type EmitterRemoveCall = (handler: FluxHandler) => FluxHandler[];
 export type EmitterEmitCall<StateType> = (state: State<StateType>, action: ActionObject, prevState: State<StateType>) => any;
 export type ReducerType<StateType> = (arg0: State<StateType>, arg1: ActionObject) => State<any>;
+export type DispatchType<StateType> = (action: DispatchAction<StateType>, actionParams?: Payload) => State<StateType>;
 /**
  * @template StateType
  * @typedef {State<StateType>|function():State<StateType>} InitStateType
  */
 /**
- * @typedef {string|boolean|ActionObject|Payload|function(State<any>):ActionObject} DispatchAction
+ * @template StateType
+ * @typedef {string|boolean|null|ActionObject|Payload|function(State<StateType>):ActionObject} DispatchAction
  */
 /**
  * @typedef {function(State<any>?, ActionObject?, State<any>?):State<any>} FluxHandler
@@ -93,8 +95,15 @@ declare class emiter<StateType> {
  */
 /**
  * @template StateType
+ * @callback DispatchType
+ * @param {DispatchAction<StateType>} action
+ * @param {Payload} [actionParams]
+ * @returns {State<StateType>} endingState
+ */
+/**
+ * @template StateType
  * @param {ReducerType<StateType>} reducer
  * @param {InitStateType<StateType>} [initState]
- * @returns {[StoreObject<StateType>, dispatch]}
+ * @returns {[StoreObject<StateType>, DispatchType<StateType>]}
  */
-declare function createReducer<StateType>(reducer: ReducerType<StateType>, initState?: InitStateType<StateType>): [StoreObject<StateType>, (action: DispatchAction, actionParams?: Payload) => StateType];
+declare function createReducer<StateType>(reducer: ReducerType<StateType>, initState?: InitStateType<StateType>): [StoreObject<StateType>, DispatchType<StateType>];

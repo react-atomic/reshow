@@ -43,7 +43,8 @@ export class StoreObject {
  */
 
 /**
- * @typedef {string|boolean|ActionObject|Payload|function(State<any>):ActionObject} DispatchAction
+ * @template StateType
+ * @typedef {string|boolean|null|ActionObject|Payload|function(State<StateType>):ActionObject} DispatchAction
  */
 
 /**
@@ -133,7 +134,7 @@ const getMitt = () => {
  * to dispatch({type: "your-action-type", params: {foo: "bar"}})
  *
  * @template StateType
- * @param {DispatchAction} action
+ * @param {DispatchAction<StateType>} action
  * @param {Payload} [params]
  * @param {State<StateType>} [prevState]
  * @returns {ActionObject} lazy actions
@@ -162,17 +163,23 @@ export const refineAction = (action, params, prevState) => {
 
 /**
  * @template StateType
+ * @callback DispatchType
+ * @param {DispatchAction<StateType>} action
+ * @param {Payload} [actionParams]
+ * @returns {State<StateType>} endingState
+ */
+
+/**
+ * @template StateType
  * @param {ReducerType<StateType>} reducer
  * @param {InitStateType<StateType>} [initState]
- * @returns {[StoreObject<StateType>, dispatch]}
+ * @returns {[StoreObject<StateType>, DispatchType<StateType>]}
  */
 const createReducer = (reducer, initState) => {
   const state = { current: callfunc(initState) };
   const mitt = getMitt();
   /**
-   * @param {DispatchAction} action
-   * @param {Payload} [actionParams]
-   * @returns {State<StateType>} endingState
+   * @type {DispatchType<StateType>}
    */
   const dispatch = (action, actionParams) => {
     const startingState = state.current;

@@ -1,6 +1,7 @@
+// @ts-check
+
 import { useRef } from "react";
 import { createReducer } from "reshow-flux-base";
-import { Map, defaultReducer } from "./ImmutableStore";
 
 /**
  * useReducer alternative for External store.
@@ -12,12 +13,19 @@ import { Map, defaultReducer } from "./ImmutableStore";
  * const [store, dispatch] = useReduceStore(reduceCallback, initial[Map|Function]);
  *
  * Call dispatch will not trigger re-render.
+ *
+ *
+ * @template StateType
+ * @param {import('reshow-flux-base').ReducerType<StateType>} reducer
+ * @param {import('reshow-flux-base').InitStateType<StateType>} [initialState]
  */
-const useReduceStore = (reduce, initialState) => {
+const useReduceStore = (reducer, initialState) => {
+  /**
+   * @type any
+   */
   const lastReducer = useRef();
   if (!lastReducer.current) {
-    reduce = reduce || defaultReducer;
-    lastReducer.current = createReducer(reduce, initialState || Map());
+    lastReducer.current = createReducer(reducer, initialState);
   }
   return lastReducer.current;
 };

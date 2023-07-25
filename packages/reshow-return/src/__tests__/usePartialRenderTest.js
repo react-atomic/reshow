@@ -1,6 +1,9 @@
+// @ts-check
+
 import { expect } from "chai";
 import { render, waitFor, act, getSinon } from "reshow-unit";
-import { useEffect, useState } from "react";
+import * as React from "react";
+const { useEffect, useState } = React;
 
 import usePartialRender from "../usePartialRender";
 
@@ -8,7 +11,7 @@ describe("Test usePartialRender", () => {
   it("smoke test", async () => {
     const spy = getSinon().spy();
     const Comp = () => {
-      const [renderItems, partialRender, setRenderKeys] = usePartialRender([
+      const [renderItems, partialRender, _setRenderKeys] = usePartialRender([
         "foo",
         "bar",
       ]);
@@ -39,10 +42,7 @@ describe("Test usePartialRender", () => {
         foo: <span />,
         bar: <i />,
       };
-      const [renderItems, partialRender, setRenderKeys] = usePartialRender(
-        Object.keys(list),
-        list
-      );
+      const [renderItems] = usePartialRender(Object.keys(list), list);
 
       return <div>{renderItems}</div>;
     };
@@ -55,7 +55,7 @@ describe("Test usePartialRender", () => {
 
   it("test empty children", async () => {
     const Comp = () => {
-      const [renderItems, partialRender, setRenderKeys] = usePartialRender();
+      const [renderItems] = usePartialRender();
 
       return <div>{renderItems}</div>;
     };
@@ -75,7 +75,7 @@ describe("Test usePartialRender", () => {
         bar: <i />,
       };
       const [call, setCall] = useState(0);
-      const [renderItems, partialRender, setRenderKeys] = usePartialRender(
+      const [renderItems, partialRender] = usePartialRender(
         Object.keys(list),
         list
       );
@@ -95,7 +95,7 @@ describe("Test usePartialRender", () => {
     });
     await act(() => {
       gCount++;
-      gSetCall((c) => ++c);
+      gSetCall((/** @type number*/ c) => ++c);
     });
     await act(() => {});
     await waitFor(() => {

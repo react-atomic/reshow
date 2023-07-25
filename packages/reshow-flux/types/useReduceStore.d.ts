@@ -9,5 +9,10 @@ export default useReduceStore;
  * const [store, dispatch] = useReduceStore(reduceCallback, initial[Map|Function]);
  *
  * Call dispatch will not trigger re-render.
+ *
+ *
+ * @template StateType
+ * @param {import('reshow-flux-base').ReducerType<StateType>} reducer
+ * @param {import('reshow-flux-base').InitStateType<StateType>} [initialState]
  */
-declare function useReduceStore(reduce: any, initialState: any): undefined;
+declare function useReduceStore<StateType>(reducer: import("reshow-flux-base").ReducerType<StateType>, initialState?: import("reshow-flux-base").InitStateType<StateType>): any;

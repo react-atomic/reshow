@@ -133,4 +133,4 @@ const ImmutableStore = (reducer, initState) => {
 };
 
 export default ImmutableStore;
-export { defaultReducer, equal, forEachMap, fromJS, mergeMap, Map, Set };
+export { equal, forEachMap, fromJS, mergeMap, Map, Set };

@@ -6,7 +6,7 @@ export type GetReturnOptions = {
     options?: object;
 };
 export type ReturnProps = {
-    store: import("reshow-flux-base").StoreObject;
+    store: import("reshow-flux-base").StoreObject<any>;
     initStates: import("../../connectOptions").InitStatesProps;
     children?: import("react").ReactChild;
     backfillProps?: boolean;
@@ -14,7 +14,7 @@ export type ReturnProps = {
 /**
  * @param {ReturnProps} props
  */
-declare function Return(props: ReturnProps): JSX.Element;
+declare function Return(props: ReturnProps): import("react/jsx-runtime").JSX.Element;
 declare namespace Return {
     export { displayName };
 }
@@ -36,6 +36,6 @@ declare namespace Return {
  * @param {GetReturnOptions} props
  */
 export function getReturn({ displayName, useConnect, cleanProps, options, }?: GetReturnOptions): {
-    (props: ReturnProps): JSX.Element;
+    (props: ReturnProps): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
