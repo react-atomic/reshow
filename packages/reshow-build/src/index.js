@@ -15,8 +15,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
   React;
 
 /**
- * @typedef Component
- * @type any
+ * @typedef {React.ComponentType|React.ReactNode|function} Component
  */
 
 /**
@@ -25,7 +24,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
 
 /**
  * @typedef {object} ComponentOption
- * @property {React.ReactElement} [wrap]
+ * @property {Component} [wrap]
  * @property {boolean} [doCallFunction]
  */
 
@@ -86,17 +85,17 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
   }
   if (
     STRING === typeof component &&
-    component !== component.replace(/[^a-z]/g, "")
+    component !== /**@type string*/ (component).replace(/[^a-z]/g, "")
   ) {
     const { children, ...restProps } = props;
-    return buildReact(<span>{component}</span>, restProps);
+    return buildReact(<span>{/**@type string*/ (component)}</span>, restProps);
   } else {
     return (isValidComp ? cloneElement : createElement).apply(T_NULL, params);
   }
 };
 
 /**
- * @param {Component} component
+ * @param {Component} [component]
  * @param {ComponentOption} componentOption
  */
 const build =
@@ -125,7 +124,7 @@ const build =
     const run = (comp) => {
       props = removeEmpty(props, T_TRUE);
       return (isValidElement(comp) ? buildReact : buildFunc)(
-        comp,
+        /**@type any*/ (comp),
         props,
         child,
         componentOption

@@ -1,4 +1,7 @@
-import { createElement, cloneElement, isValidElement, Children } from "react";
+// @ts-check
+
+import * as React from "react";
+const { createElement, cloneElement } = React;
 import { expect } from "chai";
 import { render } from "reshow-unit";
 
@@ -20,7 +23,7 @@ describe("Test build react", () => {
   });
   it("should have same behavior with cloneElement", () => {
     expect(render(build(<div />)(null, "span")).html()).to.equal(
-      render(cloneElement(<div />, null, "span")).html()
+      render(cloneElement(<div />, undefined, "span")).html()
     );
   });
 });

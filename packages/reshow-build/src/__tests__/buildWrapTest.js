@@ -1,4 +1,6 @@
-import React, { PureComponent, isValidElement, Children } from "react";
+//@ts-check
+
+import * as React from "react";
 
 import { expect } from "chai";
 import { render } from "reshow-unit";

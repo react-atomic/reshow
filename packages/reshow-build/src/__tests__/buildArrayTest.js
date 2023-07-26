@@ -1,4 +1,6 @@
-import { isValidElement, Children } from "react";
+// @ts-check
+import * as React from "react";
+const { Children } = React;
 
 import { expect } from "chai";
 import { render } from "reshow-unit";
@@ -84,6 +86,9 @@ describe("Test build array", () => {
   });
 
   it("test with sub array", () => {
+    /**
+     * @param {{children?:any}} props
+     */
     const FakeDom = ({ children }) => {
       const arr = [<i />, ...(Children.map(children, (c) => c) || [])];
       return <div>{build(arr)({ "data-foo": "bar" })}</div>;

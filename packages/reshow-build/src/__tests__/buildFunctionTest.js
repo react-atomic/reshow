@@ -1,17 +1,20 @@
-import { isValidElement } from "react";
+//@ts-check
+
+import * as React from "react";
+const { isValidElement } = React;
 import { expect } from "chai";
 import build from "../index";
 
 describe("Test build function", () => {
   it("test function", (done) => {
-    build((props) => {
+    build((/**@type any*/ props) => {
       expect(props.foo).to.equal("bar");
       done();
     })({ foo: "bar" });
   });
 
   it("test with force call", (done) => {
-    const func = (props) => {
+    const func = (/**@type any*/ props) => {
       expect(props.foo).to.equal("bar");
       done();
     };
@@ -20,7 +23,7 @@ describe("Test build function", () => {
 
   it("test function with error", () => {
     const run = () => {
-      build((props) => {
+      build((/**@type any*/ props) => {
         expect(props.foo).to.equal("bar111");
       })({ foo: "bar" });
     };
@@ -28,7 +31,7 @@ describe("Test build function", () => {
   });
 
   it("test with stateless function return", () => {
-    const func = (props) => <div {...props} />;
+    const func = (/**@type any*/ props) => <div {...props} />;
     const actual = build(func)({ foo: "barbar" });
     // will return react instance
     expect(actual.props.foo).to.equal("barbar");
@@ -36,13 +39,13 @@ describe("Test build function", () => {
   });
 
   it("test with func and child", () => {
-    const result = build((props) => "div")({ foo: "bar" }, "hello child");
+    const result = build(() => "div")({ foo: "bar" }, "hello child");
     expect(result.props.children).to.equal("hello child");
     expect(result.props.foo).to.equal("bar");
   });
 
   it("test function with wrap return", () => {
-    const actual = build((props) => "foo", { wrap: "div" })({ foo: "barbar" });
+    const actual = build(() => "foo", { wrap: "div" })({ foo: "barbar" });
     expect(actual.type).to.equal("div");
     expect(actual.props.foo).to.equal("barbar");
   });
