@@ -5,8 +5,14 @@ import { useEffect, useRef, useMemo } from "react";
 import callfunc from "call-func";
 
 /**
+ * @callback RunType
+ * @param {function} func
+ * @param {number} [delay]
+ */
+
+/**
  * @param {boolean} [interval]
- * @returns {[Function, Function]}
+ * @returns {[RunType, function]}
  */
 const useTimer = (interval) => {
   const timer = useRef();
@@ -28,8 +34,7 @@ const useTimer = (interval) => {
   useEffect(() => () => stop(), []);
 
   /**
-   * @param {function} func
-   * @param {number} [delay]
+   * @type RunType
    */
   const run = (func, delay) => {
     stop();

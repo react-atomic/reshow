@@ -1,6 +1,12 @@
 export default useTimer;
+export type RunType = (func: Function, delay?: number) => any;
+/**
+ * @callback RunType
+ * @param {function} func
+ * @param {number} [delay]
+ */
 /**
  * @param {boolean} [interval]
- * @returns {[Function, Function]}
+ * @returns {[RunType, function]}
  */
-declare function useTimer(interval?: boolean): [Function, Function];
+declare function useTimer(interval?: boolean): [RunType, Function];

@@ -4,6 +4,10 @@ export type LongPressPayload = {
     onStart?: Function;
     onCancel?: Function;
 };
+export type LongPressExtraEvent = {
+    currentItem: EventTarget;
+};
+export type LongPressEvent = LongPressExtraEvent & React.MouseEvent;
 /**
  * @typedef {object} LongPressPayload
  * @property {number} [threshold]
@@ -11,13 +15,20 @@ export type LongPressPayload = {
  * @property {Function} [onCancel]
  */
 /**
+ * @typedef {object} LongPressExtraEvent
+ * @property {EventTarget} currentItem
+ */
+/**
+ * @typedef {LongPressExtraEvent & React.MouseEvent} LongPressEvent
+ */
+/**
  * @param {Function} callback
  * @param {LongPressPayload} payload
  */
 declare function useLongPress(callback: Function, payload?: LongPressPayload): {
-    onTouchStart: (e: React.MouseEvent) => void;
-    onTouchEnd: () => void;
-    onMouseDown: (e: React.MouseEvent) => void;
-    onMouseUp: () => void;
-    onMouseLeave: () => void;
+    onTouchStart: (e: LongPressEvent) => void;
+    onTouchMove: (e: LongPressEvent) => void;
+    onMouseDown: (e: LongPressEvent) => void;
+    onMouseUp: (e: LongPressEvent) => void;
+    onMouseLeave: (e: LongPressEvent) => void;
 };

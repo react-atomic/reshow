@@ -1,5 +1,9 @@
 // @ts-check
 
+/**
+ * @typedef {import('./useLongPress').LongPressEvent} LongPressEvent
+ */
+
 export { default as useDebounce } from "./useDebounce";
 export { default as useEnable } from "./useEnable";
 export { default as useLoaded } from "./useLoaded";

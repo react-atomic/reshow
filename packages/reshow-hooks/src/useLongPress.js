@@ -12,26 +12,56 @@ import callfunc from "call-func";
  */
 
 /**
+ * @typedef {object} LongPressExtraEvent
+ * @property {EventTarget} currentItem
+ */
+
+/**
+ * @typedef {LongPressExtraEvent & React.MouseEvent} LongPressEvent
+ */
+
+/**
  * @param {Function} callback
  * @param {LongPressPayload} payload
  */
 const useLongPress = (callback, payload = {}) => {
   const lastPayload = useRef(payload);
+  const isStart = useRef(false);
   lastPayload.current = { ...lastPayload.current, ...payload };
   const [timerRun, timerStop] = useTimer();
 
   return useMemo(() => {
-    const start = (/**@type React.MouseEvent*/ e) => {
+    const start = (/**@type LongPressEvent*/ e) => {
+      if (e?.currentTarget) {
+        e.currentItem = e.currentTarget;
+      }
+      if (isStart.current) {
+        return;
+      }
+      isStart.current = true;
       const { threshold = 500, onStart } = lastPayload.current;
       callfunc(onStart, [e]);
       timerRun(() => {
+        done();
         callfunc(callback, [e]);
       }, threshold);
     };
-    const cancel = () => {
-      const { onCancel } = lastPayload.current;
+
+    const done = () => {
+      isStart.current = false;
       timerStop();
-      callfunc(onCancel);
+    };
+
+    const cancel = (/**@type LongPressEvent*/ e) => {
+      if (!isStart.current) {
+        return;
+      }
+      done();
+      if (e?.currentTarget) {
+        e.currentItem = e.currentTarget;
+      }
+      const { onCancel } = lastPayload.current;
+      callfunc(onCancel, [e]);
     };
 
     const mouseHandlers = {
@@ -42,12 +72,14 @@ const useLongPress = (callback, payload = {}) => {
 
     const touchHandlers = {
       onTouchStart: start,
-      onTouchEnd: cancel,
+      onTouchMove: cancel,
     };
+
     return {
       ...mouseHandlers,
       ...touchHandlers,
     };
   }, [callback]);
 };
+
 export default useLongPress;
