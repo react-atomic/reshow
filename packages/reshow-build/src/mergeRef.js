@@ -2,7 +2,7 @@
 import { HAS, FUNCTION } from "reshow-constant";
 
 /**
- * @typedef {React.MutableRefObject|function} RefCbType
+ * @typedef {React.MutableRefObject|function|undefined} RefCbType
  */
 
 /**
@@ -10,7 +10,7 @@ import { HAS, FUNCTION } from "reshow-constant";
  */
 
 /**
- * @param {Element} el
+ * @param {Element|null} el
  * @param {RefCbType} refCb
  */
 const assignEl = (el, refCb) => {
@@ -22,7 +22,7 @@ const assignEl = (el, refCb) => {
 };
 
 /**
- * @param {Element} el
+ * @param {Element|null} el
  * @param {RefCbType[]} refArr
  */
 export const mergeRef = (el, refArr = []) =>

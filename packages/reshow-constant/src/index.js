@@ -37,7 +37,7 @@ export const NEW_OBJ = () => Object.create(null);
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn#problematic_cases_for_hasownproperty
  * https://github.com/react-atomic/reshow/issues/118#issuecomment-1203255559
  *
- * @param {object} obj
+ * @param {object|undefined|null} obj
  * @param {string} key
  * @returns {boolean}
  */
