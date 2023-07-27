@@ -53,10 +53,10 @@ const useLongPress = (callback, payload = {}) => {
     };
 
     const cancel = (/**@type LongPressEvent*/ e) => {
+      done();
       if (!isStart.current) {
         return;
       }
-      done();
       if (e?.currentTarget) {
         e.currentItem = e.currentTarget;
       }
