@@ -39,7 +39,7 @@ const useLongPress = (callback, payload = {}) => {
         return;
       }
       isStart.current = true;
-      const { threshold = 500, onStart } = lastPayload.current;
+      const { threshold = 350, onStart } = lastPayload.current;
       callfunc(onStart, [e]);
       timerRun(() => {
         done();
@@ -67,7 +67,7 @@ const useLongPress = (callback, payload = {}) => {
     const mouseHandlers = {
       onMouseDown: start,
       onMouseUp: cancel,
-      onMouseLeave: cancel,
+      onMouseMove: cancel,
     };
 
     const touchHandlers = {

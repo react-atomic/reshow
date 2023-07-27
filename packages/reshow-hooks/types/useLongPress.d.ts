@@ -30,5 +30,5 @@ declare function useLongPress(callback: Function, payload?: LongPressPayload): {
     onTouchMove: (e: LongPressEvent) => void;
     onMouseDown: (e: LongPressEvent) => void;
     onMouseUp: (e: LongPressEvent) => void;
-    onMouseLeave: (e: LongPressEvent) => void;
+    onMouseMove: (e: LongPressEvent) => void;
 };
