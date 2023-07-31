@@ -16,6 +16,8 @@ import * as React from "react";
  * @typedef {object} ReturnProps
  * @property {import("reshow-flux-base").StoreObject} store
  * @property {import("../../connectOptions").InitStatesProps} initStates
+ * @property {{[key: string]: string[]}} [pathStates]
+ * @property {string[]} [excludeStates]
  * @property {import("react").ReactChild} [children]
  * @property {boolean} [backfillProps]
  */

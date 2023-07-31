@@ -22,6 +22,7 @@ const reset = (props, more) => {
     "immutable",
     "initStates",
     "pathStates",
+    "excludeStates",
     "renewProps",
     "store",
     "storeLocator",
@@ -89,16 +90,21 @@ const calculateState = (prevState, options) => {
    * Because multi stores need handle complex data merge.
    * If that case need create custom calculateState functoin.
    */
-  const { initStates, pathStates, immutable: optImmutable, store } = options;
+  const {
+    initStates,
+    pathStates,
+    excludeStates = [],
+    immutable: optImmutable,
+    store,
+  } = options;
 
   const getStateValue = stateValueGetter(store.getState());
 
   const immutable = optImmutable ?? getStateValue("immutable");
-  const results = {};
-
   const toImmutable = getImmutable(immutable);
-
   const [stateKeys, newKey] = stateKeyLocator(initStates);
+
+  const results = {};
   stateKeys.forEach((key) => {
     const data = getStateValue(key);
     results[newKey(key)] = toImmutable(data);
@@ -109,7 +115,11 @@ const calculateState = (prevState, options) => {
 
   const resultKeys = KEYS(results);
   let bSame = true;
-  let i = resultKeys.length;
+  let i = excludeStates.length;
+  while (i--) {
+    delete results[excludeStates[i]];
+  }
+  i = resultKeys.length;
   while (i--) {
     const key = resultKeys[i];
     if (results[key] !== prevState[key]) {

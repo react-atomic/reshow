@@ -1,4 +1,7 @@
-import { PureComponent, useState } from "react";
+// @ts-check
+
+import * as React from "react";
+const {PureComponent, useState} = React;
 import { ImmutableStore, mergeMap, fromJS } from "reshow-flux";
 import { expect } from "chai";
 import {
@@ -13,10 +16,14 @@ import {
 import Return from "../Return";
 import MemoReturn from "../MemoReturn";
 
-const [pageStore, dispatch] = ImmutableStore((state, action) => {
+const [pageStore, dispatch] = ImmutableStore(
+/**
+ * @type import('reshow-flux').ReducerTypeWithMap
+ */
+  (state, action) => {
   switch (action.type) {
     case "config/reset":
-      return fromJS(action.params) || state.clear();
+      return /**@type any*/(fromJS(action.params) || state.clear());
     default:
       return mergeMap(state, action);
   }
@@ -36,11 +43,15 @@ describe("Test Return", () => {
       pathStates: { I13N: ["data", "I13N"] },
     };
 
-    constructor(props) {
+    constructor(/**@type any*/props) {
       super(props);
       uFake = this;
     }
 
+    /**
+     * @param {any} k
+     * @param {any} v 
+     */
     setNew(k, v) {
       this.setState({ [k]: v });
     }
@@ -67,7 +78,7 @@ describe("Test Return", () => {
   });
 
   it("assign props", async () => {
-    const wrap = render(<FakeComponent />);
+    render(<FakeComponent />);
     await act(
       () => dispatch({ data: { foo: "bar", I13N: { aaa: "bbb" } } }),
       5
@@ -82,7 +93,7 @@ describe("Test Return", () => {
   });
 
   it("test Immutable path state", async () => {
-    const wrap = render(<FakeComponent immutable />);
+    render(<FakeComponent immutable />);
     await act(() => {
       dispatch(
         fromJS({
@@ -114,7 +125,7 @@ describe("Test Return", () => {
   it("test child with function", async () => {
     const vDom = (
       <Return store={pageStore} initStates={["data"]}>
-        {(props) => {
+        {(/**@type any*/props) => {
           return <div role="dom">{props.data}</div>;
         }}
       </Return>
@@ -131,7 +142,7 @@ describe("Test Return", () => {
       foo: "foo",
       bar: "bar",
     });
-    const wrap = render(
+    render(
       <FakeComponent
         store={pageStore}
         initStates={["foo", "bar"]}
@@ -148,7 +159,7 @@ describe("Test Return", () => {
       foo: "foo",
       bar: "bar",
     });
-    const wrap = render(
+    render(
       <FakeComponent store={pageStore} initStates={["foo", "bar"]} foo="foo1" />
     );
     const uFakeEl = uFake.el;
@@ -156,12 +167,12 @@ describe("Test Return", () => {
   });
 
   it("test Return render times", async () => {
-    const spy = sinon().spy((props) => (
+    const spy = sinon().spy((/**@type any*/props) => (
       <div data-state={props.foo} data-props={props.bar} />
     ));
     let gSet;
-    const Comp = (props) => {
-      const [state, setState] = useState({});
+    const Comp = () => {
+      const [state, setState] = useState({bar: undefined});
       gSet = setState;
       return (
         <MemoReturn props={state.bar}>
@@ -174,18 +185,18 @@ describe("Test Return", () => {
     const wrap = render(<Comp />);
     let count;
     count = spy.callCount;
-    expect(count > 1, 1).to.be.true;
+    expect(count > 1, "1").to.be.true;
     await act(() => dispatch({ foo: "bar" }));
-    await waitFor(() => expect(count < spy.callCount, 2).to.be.true);
+    await waitFor(() => expect(count < spy.callCount, "2").to.be.true);
     count = spy.callCount;
     await act(() => dispatch({ bar: "bar" }));
-    expect(count === spy.callCount, 3).to.be.true;
+    expect(count === spy.callCount, "3").to.be.true;
     count = spy.callCount;
-    await act(() => gSet((prev) => ({ ...prev, bar: { bar: "b" } })));
-    expect(count < spy.callCount, 4).to.be.true;
+    await act(() => gSet((/**@type any*/prev) => ({ ...prev, bar: { bar: "b" } })));
+    expect(count < spy.callCount, "4").to.be.true;
     count = spy.callCount;
-    await act(() => gSet((prev) => ({ ...prev, foo: { bar: "b" } })));
-    expect(count === spy.callCount, 5).to.be.true;
+    await act(() => gSet((/**@type any*/prev) => ({ ...prev, foo: { bar: "b" } })));
+    expect(count === spy.callCount, "5").to.be.true;
     expect(wrap.html()).to.equal(`<div data-state="bar" data-props="b"></div>`);
   });
 });

@@ -13,6 +13,8 @@ export class StateMap {
     set: (arg0: MapKeyType, arg1: any) => any;
     /** @type {function():any}*/
     toJS: () => any;
+    /** @type {function():any}*/
+    clear: () => any;
 }
 export default ImmutableStore;
 export type MapKeyType = number | string;

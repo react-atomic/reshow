@@ -22,6 +22,8 @@ export class StateMap {
   set;
   /** @type {function():any}*/
   toJS;
+  /** @type {function():any}*/
+  clear;
 }
 
 /**
