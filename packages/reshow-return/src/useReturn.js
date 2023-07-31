@@ -4,8 +4,9 @@ import connectOptions from "./connectOptions";
 
 /**
  * @typedef {object} UseReturnPayLoad
- * @param {{[key: string]: string[]}} [pathStates]
- * @param {boolean} [immutable]
+ * @property {{[key: string]: string[]}} [pathStates]
+ * @property {string[]} [excludeStates]
+ * @property {boolean} [immutable]
  */
 
 /**
@@ -21,12 +22,13 @@ import connectOptions from "./connectOptions";
 const useReturn = (
   initStates,
   store,
-  { pathStates, immutable = true } = {}
+  { pathStates, excludeStates, immutable = true } = {}
 ) => {
   const state = useConnect(connectOptions)({
     store,
     initStates,
     pathStates,
+    excludeStates,
     immutable,
   });
   return state;
