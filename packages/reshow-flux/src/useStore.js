@@ -7,12 +7,15 @@ import { useSyncExternalStore, useRef } from "react";
  */
 
 /**
- * @typedef {import("reshow-flux-base/types/createReducer").FluxHandler} FluxHandler
+ * @template StateType
+ * @template ActionType
+ * @typedef {import("reshow-flux-base/types/createReducer").FluxHandler<StateType, ActionType>} FluxHandler
  */
 
 /**
  * @template StateType
- * @typedef {import("reshow-flux-base").StoreObject<StateType>} StoreObject
+ * @template ActionType
+ * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
  */
 
 /**
@@ -28,7 +31,8 @@ import { useSyncExternalStore, useRef } from "react";
  *  }
  *
  * @template StateType
- * @param {StoreObject<StateType>} store
+ * @template ActionType
+ * @param {StoreObject<StateType, ActionType>} store
  * @param {function(Emitter):Function} [heeding]
  * @returns {StateType}
  */
@@ -61,7 +65,7 @@ const useStore = (store, heeding) => {
         emit.current.notify();
       });
     /**
-     * @type FluxHandler
+     * @type FluxHandler<StateType, ActionType>
      */
     const myListener = (storeState, action, prevStoreState) => {
       lastEmit.current = {

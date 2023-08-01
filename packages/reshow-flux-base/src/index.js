@@ -7,12 +7,14 @@
 
 /**
  * @template StateType
- * @typedef {import("./createReducer").ReducerType<StateType>} ReducerType
+ * @template ActionType
+ * @typedef {import("./createReducer").ReducerType<StateType, ActionType>} ReducerType
  */
 
 /**
  * @template StateType
- * @typedef {import("./createReducer").DispatchType<StateType>} DispatchType
+ * @template ActionType
+ * @typedef {import("./createReducer").DispatchType<StateType, ActionType>} DispatchType
  */
 
 export {

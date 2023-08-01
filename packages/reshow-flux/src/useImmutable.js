@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import useStore from "./useStore";
 import ImmutableStore, { StateMap } from "./ImmutableStore";
+import { ActionObject } from "reshow-flux-base";
 
 /**
  * @template StateType
@@ -22,7 +23,7 @@ import ImmutableStore, { StateMap } from "./ImmutableStore";
  *
  * @template StateType
  * @param {InitStateType<StateType>} [initialState]
- * @returns {[StateMap, import("reshow-flux-base").DispatchType<StateType>]}
+ * @returns {[StateMap, import("reshow-flux-base").DispatchType<StateMap, ActionObject>]}
  */
 const useImmutable = (initialState) => {
   const lastReduce = useRef(/** @type any */ (null));

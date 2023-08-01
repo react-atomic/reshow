@@ -16,7 +16,8 @@ import { createReducer } from "reshow-flux-base";
  *
  *
  * @template StateType
- * @param {import('reshow-flux-base').ReducerType<StateType>} reducer
+ * @template ActionType
+ * @param {import('reshow-flux-base').ReducerType<StateType, ActionType>} reducer
  * @param {import('reshow-flux-base').InitStateType<StateType>} [initialState]
  */
 const useReduceStore = (reducer, initialState) => {

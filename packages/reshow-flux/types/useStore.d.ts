@@ -1,16 +1,19 @@
 export default useStore;
 export type Emitter = object;
-export type FluxHandler = import("reshow-flux-base/types/createReducer").FluxHandler;
-export type StoreObject<StateType> = import("reshow-flux-base").StoreObject<StateType>;
+export type FluxHandler<StateType, ActionType> = import("reshow-flux-base/types/createReducer").FluxHandler<StateType, ActionType>;
+export type StoreObject<StateType, ActionType> = import("reshow-flux-base").StoreObject<StateType, ActionType>;
 /**
  * @typedef {object} Emitter
  */
 /**
- * @typedef {import("reshow-flux-base/types/createReducer").FluxHandler} FluxHandler
+ * @template StateType
+ * @template ActionType
+ * @typedef {import("reshow-flux-base/types/createReducer").FluxHandler<StateType, ActionType>} FluxHandler
  */
 /**
  * @template StateType
- * @typedef {import("reshow-flux-base").StoreObject<StateType>} StoreObject
+ * @template ActionType
+ * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
  */
 /**
  * How to use?
@@ -25,8 +28,9 @@ export type StoreObject<StateType> = import("reshow-flux-base").StoreObject<Stat
  *  }
  *
  * @template StateType
- * @param {StoreObject<StateType>} store
+ * @template ActionType
+ * @param {StoreObject<StateType, ActionType>} store
  * @param {function(Emitter):Function} [heeding]
  * @returns {StateType}
  */
-declare function useStore<StateType>(store: import("reshow-flux-base").StoreObject<StateType>, heeding?: (arg0: Emitter) => Function): StateType;
+declare function useStore<StateType, ActionType>(store: import("reshow-flux-base").StoreObject<StateType, ActionType>, heeding?: (arg0: Emitter) => Function): StateType;

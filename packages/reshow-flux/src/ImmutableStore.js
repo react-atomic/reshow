@@ -1,7 +1,7 @@
 // @ts-check
 
 import { Map, Set, fromJS, is as equal } from "immutable";
-import { createReducer, StoreObject } from "reshow-flux-base";
+import { createReducer, StoreObject, ActionObject } from "reshow-flux-base";
 import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
@@ -27,9 +27,8 @@ export class StateMap {
 }
 
 /**
- * @template StateType
  * @class ImmutableStoreObject
- * @extends {StoreObject<StateType>}
+ * @extends {StoreObject<StateMap, ActionObject>}
  * @interface
  */
 class ImmutableStoreObject extends StoreObject {
@@ -40,7 +39,7 @@ class ImmutableStoreObject extends StoreObject {
 /**
  * @callback ReducerTypeWithMap
  * @param {StateMap} state
- * @param {import("reshow-flux-base").ActionObject} action
+ * @param {ActionObject} action
  * @returns {StateMap}
  */
 
@@ -122,16 +121,20 @@ const defaultReducer = (state, action) => mergeMap(state, action);
  * @param {ReducerTypeWithMap|null} [reducer]
  * @param {import("reshow-flux-base").InitStateType<StateType>} [initState]
  *
- * @returns {[ImmutableStoreObject<StateType>, dispatch]}
+ * @returns {[ImmutableStoreObject, dispatch]}
  */
 const ImmutableStore = (reducer, initState) => {
   reducer = reducer || defaultReducer;
   const stateMap = mergeMap(Map(), callfunc(initState));
   const [store, dispatch] = createReducer(reducer, stateMap);
-  /** @type ImmutableStoreObject<StateType> */ (store).getMap = (
-    /** @type MapKeyType */ k
-  ) => getMap(store.getState(), k);
-  return [/** @type ImmutableStoreObject<StateType> */ (store), dispatch];
+  /**
+   * @type ImmutableStoreObject
+   */
+  const nextStore = {
+    ...store,
+    getMap: (/** @type MapKeyType */ k) => getMap(store.getState(), k),
+  };
+  return [nextStore, dispatch];
 };
 
 export default ImmutableStore;
