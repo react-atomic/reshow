@@ -6,6 +6,11 @@ export type UseReturnPayLoad = {
     excludeStates?: string[];
     immutable?: boolean;
     renewProps?: boolean;
+    shouldComponentUpdate?: (arg0: {
+        prev: any;
+        nextProps: any;
+        nextState: any;
+    }) => boolean;
 };
 export type UseReturnType = (initStates: import('./connectOptions').InitStatesProps, store: import("reshow-flux-base").StoreObject<any, any>, payload?: UseReturnPayLoad) => any;
 /**
@@ -14,6 +19,7 @@ export type UseReturnType = (initStates: import('./connectOptions').InitStatesPr
  * @property {string[]} [excludeStates]
  * @property {boolean} [immutable]
  * @property {boolean} [renewProps]
+ * @property {function({prev:any, nextProps:any, nextState:any}):boolean} [shouldComponentUpdate]
  */
 /**
  * @callback UseReturnType

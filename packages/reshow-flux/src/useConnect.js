@@ -14,19 +14,19 @@ const handleShouldComponentUpdate = ({
   props,
 }) => {
   const nextState = calculateState(prev.state, options);
-  const bUpdate =
-    !shouldComponentUpdate ||
-    shouldComponentUpdate({ prev, nextProps: props, nextState });
+  const bUpdate = shouldComponentUpdate
+    ? shouldComponentUpdate({ prev, nextProps: props, nextState })
+    : nextState !== prev.state;
 
-  if (!bUpdate || (props === prev.props && nextState === prev.state)) {
-    prev.__init__ = T_TRUE;
-    return prev;
-  } else {
+  if (bUpdate) {
     return {
       props,
       state: nextState,
       __init__: T_TRUE,
     };
+  } else {
+    prev.__init__ = T_TRUE;
+    return prev;
   }
 };
 

@@ -19,13 +19,14 @@ const getImmutable =
  */
 const reset = (props, more) => {
   const cleanKeys = [
+    "excludeStates",
     "immutable",
     "initStates",
     "pathStates",
-    "excludeStates",
     "renewProps",
     "store",
     "storeLocator",
+    "shouldComponentUpdate",
     ...(more || []),
   ];
   let i = cleanKeys.length;
