@@ -31,8 +31,9 @@ export type Payload = {
     [x: string]: any;
 };
 export type InitStateType<StateType> = StateType | (() => StateType);
-export type DispatchAction<StateType, ActionType> = string | boolean | null | ActionObject | Payload | ((arg0: StateType) => ActionType);
-export type FluxHandler<StateType, ActionType> = (arg0: StateType | null, arg1: ActionType | null, arg2: StateType | null) => any;
+export type DispatchCallback<StateType, ActionType> = (State: StateType) => ActionType;
+export type DispatchAction<StateType, ActionType> = ActionType | DispatchCallback<StateType, ActionType>;
+export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: ActionType, PrevState: StateType) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
 export type EmitterAddCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => number;
 export type EmitterRemoveCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => FluxHandler<StateType, ActionType>[];
@@ -46,12 +47,23 @@ export type DispatchType<StateType, ActionType> = (action: DispatchAction<StateT
 /**
  * @template StateType
  * @template ActionType
- * @typedef {string|boolean|null|ActionObject|Payload|function(StateType):ActionType} DispatchAction
+ * @callback DispatchCallback
+ * @param {StateType} State
+ * @returns {ActionType}
  */
 /**
  * @template StateType
  * @template ActionType
- * @typedef {function(StateType?, ActionType?, StateType?):any} FluxHandler
+ * @typedef {ActionType|DispatchCallback<StateType, ActionType>} DispatchAction
+ */
+/**
+ * @template StateType
+ * @template ActionType
+ * @callback FluxHandler
+ * @param {StateType} NextState
+ * @param {ActionType} Action
+ * @param {StateType} PrevState
+ * @returns{any}
  */
 /**
  * @template StateType

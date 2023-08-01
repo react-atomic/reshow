@@ -5,13 +5,15 @@ export type UseReturnPayLoad = {
     };
     excludeStates?: string[];
     immutable?: boolean;
+    renewProps?: boolean;
 };
-export type UseReturnType = (initStates: import('./connectOptions').InitStatesProps, store: import("reshow-flux-base").StoreObject<any>, payload?: UseReturnPayLoad) => any;
+export type UseReturnType = (initStates: import('./connectOptions').InitStatesProps, store: import("reshow-flux-base").StoreObject<any, any>, payload?: UseReturnPayLoad) => any;
 /**
  * @typedef {object} UseReturnPayLoad
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {string[]} [excludeStates]
  * @property {boolean} [immutable]
+ * @property {boolean} [renewProps]
  */
 /**
  * @callback UseReturnType

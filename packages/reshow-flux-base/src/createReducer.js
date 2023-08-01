@@ -41,13 +41,25 @@ export class StoreObject {
 /**
  * @template StateType
  * @template ActionType
- * @typedef {string|boolean|null|ActionObject|Payload|function(StateType):ActionType} DispatchAction
+ * @callback DispatchCallback
+ * @param {StateType} State
+ * @returns {ActionType}
  */
 
 /**
  * @template StateType
  * @template ActionType
- * @typedef {function(StateType?, ActionType?, StateType?):any} FluxHandler
+ * @typedef {ActionType|DispatchCallback<StateType, ActionType>} DispatchAction
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ * @callback FluxHandler
+ * @param {StateType} NextState
+ * @param {ActionType} Action
+ * @param {StateType} PrevState
+ * @returns{any}
  */
 
 /**

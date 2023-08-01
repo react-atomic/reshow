@@ -6,7 +6,7 @@ export type GetReturnOptions = {
     options?: object;
 };
 export type ReturnProps = {
-    store: import("reshow-flux-base").StoreObject<any>;
+    store: import("reshow-flux-base").StoreObject<any, any>;
     initStates: import("../../connectOptions").InitStatesProps;
     pathStates?: {
         [key: string]: string[];

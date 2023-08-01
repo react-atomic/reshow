@@ -9,14 +9,15 @@ import Return from "./ui/organisms/Return";
 
 /**
  * @template StateType
- * @typedef {import('reshow-flux-base').DispatchType<StateType>} DispatchType
+ * @template ActionType
+ * @typedef {import('reshow-flux-base').DispatchType<StateType, ActionType>} DispatchType
  */
 
 /**
  * @template ChildrenType
  * @param {string[]|Immutable.Seq} [initRenderKeys]
  * @param {{[key: string]: React.ReactElement}|Immutable.Map<string,React.ReactElement>} [initChildren]
- * @returns {[React.ReactElement[], DispatchType<ChildrenType>, DispatchType<any>]}
+ * @returns {[React.ReactElement[], DispatchType<any, ChildrenType>, DispatchType<any, string[]>]}
  */
 const usePartialRender = (initRenderKeys, initChildren) => {
   const [renderStore, setPartialRender] = useReduceStore(

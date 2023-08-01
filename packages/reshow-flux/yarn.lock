@@ -1207,9 +1207,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.477:
-  version "1.4.478"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.478.tgz#687198cfcef9b854a79a229feaa6cd8961206290"
-  integrity sha512-qjTA8djMXd+ruoODDFGnRCRBpID+AAfYWCyGtYTNhsuwxI19s8q19gbjKTwRS5z/LyVf5wICaIiPQGLekmbJbA==
+  version "1.4.479"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.479.tgz#ec9f676f23d3a0b0e429bc454d25e0b3253d2118"
+  integrity sha512-ABv1nHMIR8I5n3O3Een0gr6i0mfM+YcTZqjHy3pAYaOjgFG+BMquuKrSyfYf5CbEkLr9uM05RA3pOk4udNB/aQ==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2856,9 +2856,9 @@ reshow-constant@*:
   integrity sha512-yxvaLKOy2lrcBf4+CkJKZgzhHtepoSsH+pokeBhZQ09pVx187ZCy0APYL+ohtfGV7TwfxgRXQJpOhxOPwNZ2kQ==
 
 reshow-flux-base@*:
-  version "0.17.42"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.42.tgz#1bde2cb09e2ed09ad1739617efe3e176ec1cf2cf"
-  integrity sha512-21er8xNoIg1BVBQn3tiM+mhYoOkwpcFdG988YY6SYgE1UUev6nfrlaVe6mSH3b2GQECZ1aLOq/4l2oOjG3M5BQ==
+  version "0.17.43"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.43.tgz#4a46302ee14d44859603ccd8068aaf23a6aa6933"
+  integrity sha512-DWL2+22D+MmGNfzyB52dq6i195R9w3TtVCYoZJTWhaaSkXEsnn9fYfsRm6zjW7y2ar4x9wey7PMzAdi8EDWGpQ==
   dependencies:
     call-func "*"
     get-object-value "*"

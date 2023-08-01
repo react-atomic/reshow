@@ -516,9 +516,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.2.17"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.17.tgz#baa565b17ddb649c2dac85b5eaf9e9a1fe0f3b4e"
-  integrity sha512-u+e7OlgPPh+aryjOm5UJMX32OvB2E3QASOAqVMY6Ahs90djagxwv2ya0IctglNbNTexC12qCSMZG47KPfy1hAA==
+  version "18.2.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.18.tgz#c8b233919eef1bdc294f6f34b37f9727ad677516"
+  integrity sha512-da4NTSeBv/P34xoZPhtcLkmZuJ+oYaCxHmyHzwaDQo9RQPBeXV+06gEk2FpqEcsX9XrnNLvRpVh6bdavDSjtiQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -1207,9 +1207,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.477:
-  version "1.4.477"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.477.tgz#05669aa6f161ee9076a6805457e9bd9fe6d0dfd1"
-  integrity sha512-shUVy6Eawp33dFBFIoYbIwLHrX0IZ857AlH9ug2o4rvbWmpaCUdBpQ5Zw39HRrfzAFm4APJE9V+E2A/WB0YqJw==
+  version "1.4.479"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.479.tgz#ec9f676f23d3a0b0e429bc454d25e0b3253d2118"
+  integrity sha512-ABv1nHMIR8I5n3O3Een0gr6i0mfM+YcTZqjHy3pAYaOjgFG+BMquuKrSyfYf5CbEkLr9uM05RA3pOk4udNB/aQ==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2856,9 +2856,9 @@ reshow-constant@*:
   integrity sha512-yxvaLKOy2lrcBf4+CkJKZgzhHtepoSsH+pokeBhZQ09pVx187ZCy0APYL+ohtfGV7TwfxgRXQJpOhxOPwNZ2kQ==
 
 reshow-flux-base@*:
-  version "0.17.39"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.39.tgz#918c9aa52222fb330f2b9da50337abc553966f99"
-  integrity sha512-gxIYzMmj1OgTDzUl39eZonVGEk8oEMwpeFbisEDnObtwtr68ip9mQdJQc2uvvgyOfvtTHa3FT7aoj8Pe70lFfw==
+  version "0.17.43"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.43.tgz#4a46302ee14d44859603ccd8068aaf23a6aa6933"
+  integrity sha512-DWL2+22D+MmGNfzyB52dq6i195R9w3TtVCYoZJTWhaaSkXEsnn9fYfsRm6zjW7y2ar4x9wey7PMzAdi8EDWGpQ==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -2866,9 +2866,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.17.41"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.41.tgz#5166b160e9190bd3e423d6de490e3559b0d4ea21"
-  integrity sha512-FEKwirAWlCEqXoaAspqotYBVA5d69Z3M6/UQUbj/3CFINTPqtMu5oaP6g8i9QDXCK1uFjxIM5z9UpD5h4jA1NQ==
+  version "0.17.43"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.43.tgz#a962b76af3ad09744ee6725e6f1321351e838d7e"
+  integrity sha512-9oJb24O3xOlsdhPE+HLAYi4WAxm7SA9jVF68nOlSDk1UvPTDTpS+n8F8n4O2MWQR8UKZxaRPFoYVt/VEjvcOQg==
   dependencies:
     array.dedup "*"
     array.merge "*"

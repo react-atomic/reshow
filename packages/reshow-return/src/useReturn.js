@@ -7,6 +7,7 @@ import connectOptions from "./connectOptions";
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {string[]} [excludeStates]
  * @property {boolean} [immutable]
+ * @property {boolean} [renewProps]
  */
 
 /**
@@ -22,7 +23,7 @@ import connectOptions from "./connectOptions";
 const useReturn = (
   initStates,
   store,
-  { pathStates, excludeStates, immutable = true } = {}
+  { pathStates, excludeStates, immutable = true, renewProps = true } = {}
 ) => {
   const state = useConnect(connectOptions)({
     store,
@@ -30,6 +31,7 @@ const useReturn = (
     pathStates,
     excludeStates,
     immutable,
+    renewProps,
   });
   return state;
 };
