@@ -15,11 +15,16 @@ export class ActionObject {
 }
 
 /**
+ * @template ActionType
+ * @typedef {ActionObject|ActionType} RefineAction
+ */
+
+/**
  * @template StateType
  * @template ActionType
  * @callback FluxHandler
  * @param {StateType} NextState
- * @param {ActionType} Action
+ * @param {RefineAction<ActionType>} Action
  * @param {StateType} PrevState
  * @returns{any}
  */
@@ -52,7 +57,7 @@ export class ActionObject {
  * @template ActionType
  * @callback EmitterEmitCall
  * @param {StateType} state
- * @param {ActionType} action
+ * @param {RefineAction<ActionType>} action
  * @param {StateType} prevState
  */
 

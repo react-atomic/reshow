@@ -2,6 +2,12 @@
  * @typedef {number|string} MapKeyType
  */
 /**
+ * @typedef { StateMap | {[key: MapKeyType]: any} | string } MaybeMapType
+ */
+/**
+ * @typedef {ActionObject|MaybeMapType} ImmutableAction
+ */
+/**
  * @interface
  */
 export class StateMap {
@@ -18,12 +24,13 @@ export class StateMap {
 }
 export default ImmutableStore;
 export type MapKeyType = number | string;
-export type ReducerTypeWithMap = (state: StateMap, action: ActionObject) => StateMap;
-export type MaybeMapType = StateMap | {
+export type MaybeMapType = string | StateMap | {
     [key: string]: any;
     [key: number]: any;
 };
-export type forEachCb = (Value: any, Key: unknown) => void;
+export type ImmutableAction = ActionObject | MaybeMapType;
+export type ReducerTypeWithMap = (state: StateMap, action: ImmutableAction) => StateMap;
+export type forEachCb = (Value: any, Key: any) => any;
 /**
  * @template StateType
  * @param {ReducerTypeWithMap|null} [reducer]
@@ -31,13 +38,16 @@ export type forEachCb = (Value: any, Key: unknown) => void;
  *
  * @returns {[ImmutableStoreObject, dispatch]}
  */
-declare function ImmutableStore<StateType>(reducer?: ReducerTypeWithMap | null, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject, import("reshow-flux-base/types/createReducer").DispatchType<StateMap, ActionObject>];
+declare function ImmutableStore<StateType>(reducer?: ReducerTypeWithMap | null, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject, import("reshow-flux-base/types/createReducer").DispatchType<StateMap, string | StateMap | {
+    [key: string]: any;
+    [key: number]: any;
+}>];
 import { is as equal } from "immutable";
 /**
  * @param {MaybeMapType} maybeMap
- * @param {function(unknown, unknown):unknown} cb
+ * @param {forEachCb} cb
  */
-export function forEachMap(maybeMap: MaybeMapType, cb: (arg0: unknown, arg1: unknown) => unknown): void;
+export function forEachMap(maybeMap: MaybeMapType, cb: forEachCb): void;
 import { fromJS } from "immutable";
 /**
  * Why not just use immutable mergeMap?
@@ -54,10 +64,10 @@ import { Set } from "immutable";
 import { ActionObject } from "reshow-flux-base";
 /**
  * @class ImmutableStoreObject
- * @extends {StoreObject<StateMap, ActionObject>}
+ * @extends {StoreObject<StateMap, ImmutableAction>}
  * @interface
  */
-declare class ImmutableStoreObject extends StoreObject<StateMap, ActionObject> {
+declare class ImmutableStoreObject extends StoreObject<StateMap, ImmutableAction> {
     constructor();
     /** @type {function(MapKeyType):any} */
     getMap: (arg0: MapKeyType) => any;

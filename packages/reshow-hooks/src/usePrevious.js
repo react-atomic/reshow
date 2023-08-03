@@ -1,5 +1,6 @@
 //@ts-check
-import { useRef } from "react";
+import useRefInitCallback from "./useRefInitCallback";
+import callfunc from "call-func";
 
 /**
  * Check more info
@@ -8,9 +9,11 @@ import { useRef } from "react";
  * @param {any} [init]
  */
 const usePrevious = (value, init) => {
-  const data = useRef({ cur: init, prev: null });
+  const data = useRefInitCallback(() => {
+    return { cur: callfunc(init), prev: null };
+  });
   data.current = {
-    prev: data.current.cur,
+    prev: data.current?.cur,
     cur: value,
   };
   return data.current.prev;

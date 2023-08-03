@@ -1,3 +1,6 @@
+// @ts-check
+
+import * as React from "react";
 import { expect } from "chai";
 import { act, render, waitFor } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
@@ -9,12 +12,12 @@ import ImmutableStore from "../ImmutableStore";
 describe("useStore Test", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, {});
+    reducer = createReducer((_state, action) => action, {});
   });
 
   it("test default", () => {
-    const [store, dispatch] = reducer;
-    const Comp = (props) => {
+    const [store] = reducer;
+    const Comp = () => {
       const state = useStore(store, () => "foo");
       return <div>{state}</div>;
     };
@@ -24,7 +27,7 @@ describe("useStore Test", () => {
 
   it("test apply dispatch", async () => {
     const [store, dispatch] = reducer;
-    const Comp = (props) => {
+    const Comp = () => {
       const state = useStore(store, (emit) => {
         if (emit.current) {
           emit.current.state = "bar";
@@ -52,7 +55,7 @@ describe("useStore Test", () => {
     });
 
     const [store, dispatch] = reducer;
-    const Comp = (props) => {
+    const Comp = () => {
       const state = useStore(store, heeding);
       return <div>{state}</div>;
     };
@@ -80,12 +83,12 @@ describe("useStore Test", () => {
 describe("useStore Test without heeding", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, { foo: "bar" });
+    reducer = createReducer((_state, action) => action, { foo: "bar" });
   });
 
   it("test default", () => {
-    const [store, dispatch] = reducer;
-    const Comp = (props) => {
+    const [store] = reducer;
+    const Comp = () => {
       const state = useStore(store);
       return <div>{state.foo}</div>;
     };
@@ -95,7 +98,7 @@ describe("useStore Test without heeding", () => {
 
   it("test apply dispatch", async () => {
     const [store, dispatch] = reducer;
-    const Comp = (props) => {
+    const Comp = () => {
       const state = useStore(store);
       return <div>{state.bar}</div>;
     };
@@ -107,7 +110,7 @@ describe("useStore Test without heeding", () => {
 
   it("test ImmutableStore", async () => {
     const [store, dispatch] = ImmutableStore();
-    const Comp = (props) => {
+    const Comp = () => {
       const state = useStore(store);
       return <div>{state.get("foo")}</div>;
     };

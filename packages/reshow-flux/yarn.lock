@@ -839,9 +839,9 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     get-intrinsic "^1.0.2"
 
 call-func@*:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.6.tgz#4bb83295bf3e6de8627782baf1a228ca30eef806"
-  integrity sha512-Z+Ud67Fhechaos4Dvwk4Y/15ns6x7WUYXKifS+KPg/jiHLZ4KdnsygtVp9+RF0rYmfaNXYq2ehWyceaoJJJhCQ==
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.8.tgz#74590f063a7110e580defa57b63c3f7769ad894d"
+  integrity sha512-HtexdvxBTd/ovUvMkTqE0QKNpSom2TwWkiYmx6ONQLGWYhThWfOf6BY8N92T+WWgjju+Rf2c9DzYfdLzNspK4w==
   dependencies:
     reshow-constant "*"
     reshow-runtime "*"
@@ -872,9 +872,9 @@ camelcase@^6.0.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001517:
-  version "1.0.30001518"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001518.tgz#b3ca93904cb4699c01218246c4d77a71dbe97150"
-  integrity sha512-rup09/e3I0BKjncL+FesTayKtPrdwKhUufQFd3riFw1hHg8JmIFoInYfB102cFcY/pPgGmdyl/iy+jgiDi2vdA==
+  version "1.0.30001519"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001519.tgz#3e7b8b8a7077e78b0eb054d69e6edf5c7df35601"
+  integrity sha512-0QHgqR+Jv4bxHMp8kZ1Kn8CH55OikjKJ6JmKkZYP1F3D7w+lnFXF70nG5eNfsZS89jadi5Ywy5UCSKLAglIRkg==
 
 chai@*:
   version "4.3.7"
@@ -1207,9 +1207,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.477:
-  version "1.4.479"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.479.tgz#ec9f676f23d3a0b0e429bc454d25e0b3253d2118"
-  integrity sha512-ABv1nHMIR8I5n3O3Een0gr6i0mfM+YcTZqjHy3pAYaOjgFG+BMquuKrSyfYf5CbEkLr9uM05RA3pOk4udNB/aQ==
+  version "1.4.482"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.482.tgz#77c5ed37b93d4dda860e27538e0e2a01d6a19e02"
+  integrity sha512-h+UqpfmEr1Qkk0zp7ej/jid7CXoq4m4QzW6wNTb0ELJ/BZCpA4wgUylBIMGCe621tnr4l5VmoHjdoSx2lbnNJA==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2682,9 +2682,9 @@ prettier-eslint-cli@*:
     yargs "^13.1.1"
 
 prettier@*:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.0.tgz#e7b19f691245a21d618c68bc54dc06122f6105ae"
-  integrity sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.1.tgz#65271fc9320ce4913c57747a70ce635b30beaa40"
+  integrity sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==
 
 prettier@^2.5.1:
   version "2.8.8"
@@ -2851,14 +2851,14 @@ reshow-build@*:
     reshow-constant "*"
 
 reshow-constant@*:
-  version "0.17.8"
-  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.17.8.tgz#a872742c49b65185cc742390a9f500364e8b2596"
-  integrity sha512-yxvaLKOy2lrcBf4+CkJKZgzhHtepoSsH+pokeBhZQ09pVx187ZCy0APYL+ohtfGV7TwfxgRXQJpOhxOPwNZ2kQ==
+  version "0.17.9"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.17.9.tgz#391945bc2348cceec1e8584f8da54ef576289ca1"
+  integrity sha512-fBKXboJyyDxLK59+tC+RFwV8LtZdDnHvPP6gGtI6vKAXpML0WMYZrzFZFrfdjCla1UbIZIsKrAHB/EYb+9w0og==
 
 reshow-flux-base@*:
-  version "0.17.43"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.43.tgz#4a46302ee14d44859603ccd8068aaf23a6aa6933"
-  integrity sha512-DWL2+22D+MmGNfzyB52dq6i195R9w3TtVCYoZJTWhaaSkXEsnn9fYfsRm6zjW7y2ar4x9wey7PMzAdi8EDWGpQ==
+  version "0.17.45"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.45.tgz#85a1aec404b43ad816ef5ede9e74e2c5de21368c"
+  integrity sha512-kaQQDbblD1grY+jZSOUzvTwgt7HJQ+pWKpjXv/AnlxBwzqeSU0V8zNlkGqR6Sz1GV3L8oYTVI/9fD+3Da6zxzA==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -2866,9 +2866,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-hooks@*:
-  version "0.17.40"
-  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.40.tgz#03dbc0be28b45276fca23b02dc380ff7365601ba"
-  integrity sha512-Fx/JkTTrz7PoPVGJ+0XjOotyOQhoFJUhTQZiBILIU9agOBa7D3OhQjC3GCmXfxguM1E/GDTwmmcJxNBCt0p3zQ==
+  version "0.17.41"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.41.tgz#763c1d1b48974339142cc2df5ec916996ae299cb"
+  integrity sha512-nsC+Z/n9+CHvHngFXYryMnrJYwKq8fzVq2DE+OsnT+rLYRFeB2jxFL8pc3ozQ+pGugx0Xbx0TsJx6FWnTlcO3w==
   dependencies:
     call-func "*"
     reshow-build "*"

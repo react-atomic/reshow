@@ -1,13 +1,9 @@
-import { Component } from "react";
+// @ts-check
+
+import * as React from "react";
+const { Component } = React;
 import { expect } from "chai";
-import {
-  act,
-  render,
-  screen,
-  hideConsoleError,
-  cleanIt,
-  waitFor,
-} from "reshow-unit";
+import { act, render, hideConsoleError, cleanIt, waitFor } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
 
 import useConnect from "../useConnect";
@@ -15,15 +11,15 @@ import useConnect from "../useConnect";
 describe("Test Connect Hook", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action);
+    reducer = createReducer((_state, action) => action);
   });
 
   it("basic test", async () => {
     const [store, dispatch] = reducer;
-    const Foo = (props) => {
+    const Foo = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, opt) => {
+        calculateState: () => {
           return store.getState();
         },
       })(props);
@@ -50,10 +46,10 @@ describe("Test Connect Hook", () => {
      * https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render
      */
     let init = 0;
-    const Foo = (props) => {
+    const Foo = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, opt) => {
+        calculateState: () => {
           return store.getState();
         },
       })(props);
@@ -65,16 +61,17 @@ describe("Test Connect Hook", () => {
     };
 
     class VDom extends Component {
-      componentDidCatch(error, errorInfo) {
+      componentDidCatch(/**@type any*/ error, /**@type any*/ errorInfo) {
         console.log({ error, errorInfo });
       }
       render() {
         return <Foo />;
       }
     }
-    let wrap;
-    await act(() => (wrap = render(<VDom />)), 5);
-    expect(wrap.html()).to.equal('<div class="bar"></div>');
+    await act();
+    const wrap = render(<VDom />);
+    const html = wrap.html();
+    expect(html).to.equal('<div class="bar"></div>');
     wrap.unmount();
   });
 });
@@ -82,7 +79,7 @@ describe("Test Connect Hook", () => {
 describe("Test Connect Hook with store", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action);
+    reducer = createReducer((_state, action) => action);
     hideConsoleError();
   });
 
@@ -91,10 +88,10 @@ describe("Test Connect Hook with store", () => {
   });
 
   it("test store not defined", () => {
-    const [store, dispatch] = reducer;
-    const Foo = (props) => {
+    const [store] = reducer;
+    const Foo = (/**@type any*/ props) => {
       const state = useConnect({
-        calculateState: (prevState, opt) => {
+        calculateState: () => {
           return store.getState();
         },
       })(props);

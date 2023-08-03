@@ -11,11 +11,15 @@ export class ActionObject {
     params: Payload | undefined;
 }
 /**
+ * @template ActionType
+ * @typedef {ActionObject|ActionType} RefineAction
+ */
+/**
  * @template StateType
  * @template ActionType
  * @callback FluxHandler
  * @param {StateType} NextState
- * @param {ActionType} Action
+ * @param {RefineAction<ActionType>} Action
  * @param {StateType} PrevState
  * @returns{any}
  */
@@ -44,7 +48,7 @@ export class ActionObject {
  * @template ActionType
  * @callback EmitterEmitCall
  * @param {StateType} state
- * @param {ActionType} action
+ * @param {RefineAction<ActionType>} action
  * @param {StateType} prevState
  */
 /**
@@ -80,8 +84,9 @@ export class StoreObject<StateType, ActionType> {
 export type Payload = {
     [x: string]: any;
 };
-export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: ActionType, PrevState: StateType) => any;
+export type RefineAction<ActionType> = ActionObject | ActionType;
+export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefineAction<ActionType>, PrevState: StateType) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
 export type EmitterAddCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => number;
 export type EmitterRemoveCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => FluxHandler<StateType, ActionType>[];
-export type EmitterEmitCall<StateType, ActionType> = (state: StateType, action: ActionType, prevState: StateType) => any;
+export type EmitterEmitCall<StateType, ActionType> = (state: StateType, action: RefineAction<ActionType>, prevState: StateType) => any;

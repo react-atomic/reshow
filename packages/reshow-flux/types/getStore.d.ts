@@ -1,4 +1,5 @@
 export default getStore;
+export type StoreObject<StateType, ActionType> = import("reshow-flux-base").StoreObject<StateType, ActionType>;
 /**
  * @returns {object}
  */

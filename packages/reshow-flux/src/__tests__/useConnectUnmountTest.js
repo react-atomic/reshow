@@ -1,4 +1,6 @@
-import React, { PureComponent } from "react";
+//@ts-check
+import * as React from "react";
+const { PureComponent } = React;
 
 import { expect } from "chai";
 import { render, act } from "reshow-unit";
@@ -11,7 +13,7 @@ describe("useConnect Unmount Test", () => {
   const sandbox = sinon.createSandbox();
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, {});
+    reducer = createReducer((_state, action) => action, {});
   });
 
   afterEach(() => {
@@ -20,10 +22,10 @@ describe("useConnect Unmount Test", () => {
 
   it("basic test", async () => {
     const [store, dispatch] = reducer;
-    const Foo = (props) => {
+    const Foo = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {
+        calculateState: () => {
           return store.getState();
         },
       })(props);
@@ -34,9 +36,9 @@ describe("useConnect Unmount Test", () => {
 
     class FakeComponent extends PureComponent {
       state = { show: true };
-      constructor(props) {
+      constructor(/**@type any*/ props) {
         super(props);
-        oFake.set = (k, v) => {
+        oFake.set = (/**@type any*/ k, /**@type any*/ v) => {
           this.setState({ [k]: v });
         };
       }
@@ -50,7 +52,7 @@ describe("useConnect Unmount Test", () => {
       }
     }
 
-    const wrap = render(<FakeComponent />);
+    render(<FakeComponent />);
     sandbox.spy(store, "removeListener");
     console.log("before unmount", store.removeListener.callCount);
     expect(store.removeListener.callCount).to.equal(0);

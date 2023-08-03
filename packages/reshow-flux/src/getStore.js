@@ -3,7 +3,16 @@
 import callfunc from "call-func";
 
 /**
+ * @template StateType
+ * @template ActionType
+ * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
  * @param {object} props
+ * @returns{StoreObject<StateType, ActionType>}
  */
 const storeLocator = (props) => props?.store;
 

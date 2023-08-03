@@ -1,4 +1,7 @@
-import { useState, Component } from "react";
+// @ts-check
+
+import * as React from "react";
+const { Component } = React;
 import { createReducer } from "reshow-flux-base";
 import { expect } from "chai";
 import { act, render, screen } from "reshow-unit";
@@ -8,15 +11,15 @@ import useConnect from "../useConnect";
 describe("Test Connect hook for more test", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, {});
+    reducer = createReducer((_state, action) => action, {});
   });
 
   it("could register with store", async () => {
     const [store, dispatch] = reducer;
-    const FakeComponent = (props) => {
+    const FakeComponent = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {
+        calculateState: () => {
           return {
             foo: store.getState().foo,
           };
@@ -35,11 +38,11 @@ describe("Test Connect hook for more test", () => {
     let calculateTimes = 0;
     let wrap;
     const [store, dispatch] = reducer;
-    const FakeComponent = (props) => {
+    const FakeComponent = (/**@type any*/ props) => {
       let state;
       state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {
+        calculateState: () => {
           const state = store.getState();
           calculateTimes++;
           return { aaa: state.aaa };
@@ -66,14 +69,14 @@ describe("Test Connect hook for more test", () => {
   it("could work withProps", async () => {
     let getStoresProps = null;
     let calculateStateProps = null;
-    const [store, dispatch] = reducer;
-    const FakeComponent = (props) => {
+    const [store] = reducer;
+    const FakeComponent = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: (props) => {
           getStoresProps = props;
           return store;
         },
-        calculateState: (prevState, props) => {
+        calculateState: (_prevState, props) => {
           calculateStateProps = { ...props };
           return { foo: props.foo };
         },
@@ -85,9 +88,9 @@ describe("Test Connect hook for more test", () => {
     class Parent extends Component {
       state = {};
 
-      constructor(props) {
+      constructor(/**@type any*/ props) {
         super(props);
-        changeFoo = (v) => {
+        changeFoo = (/**@type any*/ v) => {
           this.setState({ foo: v });
         };
       }
@@ -113,11 +116,11 @@ describe("Test Connect hook for more test", () => {
   });
 
   it("could work with empty calculateState", () => {
-    const [store, dispatch] = reducer;
-    const FakeComponent = (props) => {
+    const [store] = reducer;
+    const FakeComponent = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {},
+        calculateState: () => {},
       })(props);
       return <div role="udom" data-foo={state.foo} data-bar={props.bar} />;
     };

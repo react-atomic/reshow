@@ -1,10 +1,11 @@
-export function refineAction<StateType, ActionType>(action: DispatchAction<StateType, ActionType>, params?: Payload, prevState?: StateType): ActionType;
+export function refineAction<StateType, ActionType>(action: DispatchAction<StateType, ActionType>, params?: Payload, prevState?: StateType): RefineAction<ActionType>;
 export default createReducer;
 export type FluxHandler<StateType, ActionType> = import('./type').FluxHandler<StateType, ActionType>;
+export type RefineAction<ActionType> = import('./type').RefineAction<ActionType>;
 export type Payload = import('./type').Payload;
 export type DispatchCallback<StateType, ActionType> = (State: StateType) => ActionType;
 export type DispatchAction<StateType, ActionType> = ActionType | DispatchCallback<StateType, ActionType>;
-export type ReducerType<StateType, ActionType> = (StateArg: StateType, ActionArg: ActionType) => StateType;
+export type ReducerType<StateType, ActionType> = (StateArg: StateType, ActionArg: RefineAction<ActionType>) => StateType;
 export type InitStateType<StateType> = StateType | (() => StateType);
 export type DispatchType<StateType, ActionType> = (action: DispatchAction<StateType, ActionType>, actionParams?: Payload) => StateType;
 /**
@@ -12,7 +13,7 @@ export type DispatchType<StateType, ActionType> = (action: DispatchAction<StateT
  * @template ActionType
  * @callback ReducerType
  * @param {StateType} StateArg
- * @param {ActionType} ActionArg
+ * @param {RefineAction<ActionType>} ActionArg
  * @returns {StateType}
  */
 /**

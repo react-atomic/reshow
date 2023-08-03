@@ -7,9 +7,12 @@ import callfunc from "call-func";
  * @template AnyState
  * @param {any} initState
  * @param {function(function):any[]} [setter]
- * @returns {[AnyState, setSyncState, function():AnyState]}
+ * @returns {[AnyState, setSyncState, function():AnyState|undefined]}
  */
 const useSyncState = (initState, setter = useState) => {
+  /**
+   * @type React.MutableRefObject<AnyState|undefined>
+   */
   const lastState = useRef();
   const [state, setState] = setter(() => {
     lastState.current = callfunc(initState);

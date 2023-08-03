@@ -30,7 +30,7 @@ export type StoreObject<StateType, ActionType> = import("reshow-flux-base").Stor
  * @template StateType
  * @template ActionType
  * @param {StoreObject<StateType, ActionType>} store
- * @param {function(Emitter):Function} [heeding]
+ * @param {function(Emitter):any} [heeding]
  * @returns {StateType}
  */
-declare function useStore<StateType, ActionType>(store: import("reshow-flux-base").StoreObject<StateType, ActionType>, heeding?: (arg0: Emitter) => Function): StateType;
+declare function useStore<StateType, ActionType>(store: import("reshow-flux-base").StoreObject<StateType, ActionType>, heeding?: (arg0: Emitter) => any): StateType;

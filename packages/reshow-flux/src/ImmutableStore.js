@@ -11,6 +11,14 @@ import toJS from "./toJS";
  */
 
 /**
+ * @typedef { StateMap | {[key: MapKeyType]: any} | string } MaybeMapType
+ */
+
+/**
+ * @typedef {ActionObject|MaybeMapType} ImmutableAction
+ */
+
+/**
  * @interface
  */
 export class StateMap {
@@ -28,7 +36,7 @@ export class StateMap {
 
 /**
  * @class ImmutableStoreObject
- * @extends {StoreObject<StateMap, ActionObject>}
+ * @extends {StoreObject<StateMap, ImmutableAction>}
  * @interface
  */
 class ImmutableStoreObject extends StoreObject {
@@ -39,19 +47,15 @@ class ImmutableStoreObject extends StoreObject {
 /**
  * @callback ReducerTypeWithMap
  * @param {StateMap} state
- * @param {ActionObject} action
+ * @param {ImmutableAction} action
  * @returns {StateMap}
- */
-
-/**
- * @typedef { StateMap | {[key: MapKeyType]: any} } MaybeMapType
  */
 
 /**
  * @callback forEachCb
  * @param {any} Value
- * @param {unknown} Key
- * @returns {void}
+ * @param {any} Key
+ * @returns {any}
  */
 
 /**
@@ -61,10 +65,15 @@ class ImmutableStoreObject extends StoreObject {
  */
 const getMap = (state, k) => toJS(state.get(k)) ?? {};
 const isMap = Map.isMap;
+/**
+ * @param {any} a
+ * @returns {object}
+ */
+const toMapType = (a) => a;
 
 /**
  * @param {MaybeMapType} maybeMap
- * @param {function(unknown, unknown):unknown} cb
+ * @param {forEachCb} cb
  */
 const forEachMap = (maybeMap, cb) => {
   if (!MAP_SIZE(maybeMap)) {
@@ -81,7 +90,7 @@ const forEachMap = (maybeMap, cb) => {
        */
       cb(maybeMap, "type");
     } else {
-      KEYS(maybeMap).forEach((k) => cb(maybeMap[k], k));
+      KEYS(toMapType(maybeMap)).forEach((k) => cb(maybeMap[k], k));
     }
   }
 };
@@ -104,9 +113,16 @@ const MAP_SIZE = (maybeMap) =>
  */
 const mergeMap = (state, maybeMap) => {
   try {
-    forEachMap(maybeMap, (v, k) => {
-      state = state.set(/** @type {MapKeyType} */ (k), v);
-    });
+    forEachMap(
+      maybeMap,
+      /**
+       * @param {any} v
+       * @param {MapKeyType} k
+       */
+      (v, k) => {
+        state = state.set(k, v);
+      }
+    );
   } catch (e) {}
   return state;
 };

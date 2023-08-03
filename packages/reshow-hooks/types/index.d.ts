@@ -7,4 +7,5 @@ export { default as usePrevious } from "./usePrevious";
 export { default as useSyncChange } from "./useSyncChange";
 export { default as useSyncState } from "./useSyncState";
 export { default as useTimer } from "./useTimer";
+export { default as useRefInitCallback } from "./useRefInitCallback";
 export type LongPressEvent = import('./useLongPress').LongPressEvent;

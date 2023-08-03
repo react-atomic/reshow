@@ -33,7 +33,7 @@ import { useSyncExternalStore, useRef } from "react";
  * @template StateType
  * @template ActionType
  * @param {StoreObject<StateType, ActionType>} store
- * @param {function(Emitter):Function} [heeding]
+ * @param {function(Emitter):any} [heeding]
  * @returns {StateType}
  */
 const useStore = (store, heeding) => {

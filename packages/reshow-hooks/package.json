@@ -1,5 +1,5 @@
 {
-  "version": "0.17.41",
+  "version": "0.17.42",
   "name": "reshow-hooks",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "hooks"
   ],
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "call-func": "*",
     "reshow-build": "*",

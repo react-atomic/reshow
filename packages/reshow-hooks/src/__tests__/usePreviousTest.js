@@ -1,9 +1,9 @@
-//@ts-check
+// @ts-check
 
 import * as React from "react";
 const { useState } = React;
 import { expect } from "chai";
-import { render, act, cleanIt, getSinon as sinon } from "reshow-unit";
+import { render, act, waitFor, cleanIt, getSinon as sinon } from "reshow-unit";
 
 import usePrevious from "../usePrevious";
 
@@ -11,17 +11,16 @@ describe("test usePrevious", () => {
   afterEach(() => cleanIt());
 
   it("basic test", async () => {
-    /** @type {Function} */
-    let hackGlobal = () => {};
+    const myspy = sinon().spy(() => {});
     let i = 0;
     const expectedPrev = [undefined, undefined, "foo", "bar"];
 
     const FOO = (/** @type {any}*/ props) => {
       const prev = usePrevious(props.v);
       expect(prev).to.equal(expectedPrev[i++]);
-      hackGlobal = () => {
-        return { v: props.v, prev };
-      };
+      if (prev !== props.v) {
+        myspy(prev, props.v);
+      }
       return null;
     };
 
@@ -33,11 +32,14 @@ describe("test usePrevious", () => {
     };
 
     render(<Comp />);
-    expect(hackGlobal(), "1").to.deep.equal({ v: "foo", prev: undefined });
     await act(() => {
       gSet("bar");
     });
-    expect(hackGlobal(), "2").to.deep.equal({ v: "bar", prev: "bar" });
+    await waitFor(() => {
+      expect(myspy.firstCall.args, "1").to.deep.equal([undefined, "foo"]);
+      expect(myspy.secondCall.args, "2").to.deep.equal([undefined, "foo"]);
+      expect(myspy.thirdCall.args, "3").to.deep.equal(["foo", "bar"]);
+    });
   });
 
   it("test call times", async () => {

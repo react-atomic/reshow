@@ -33,8 +33,14 @@ const handleShouldComponentUpdate = ({
 /**
  * @template StateType
  * @template ActionType
+ * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
  * @typedef {object} UseConnectWithStore
- * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
+ * @property {StoreObject<StateType, ActionType>} store
  * @property {any} [storeSyncState]
  */
 
@@ -43,21 +49,24 @@ const handleShouldComponentUpdate = ({
  */
 
 /**
+ * @template StateType
+ * @template ActionType
  * @typedef {object} UseConnectOption
  * @property {CalculateStateCallback} calculateState
  * @property {boolean} [shouldComponentUpdate]
+ * @property {function(any):StoreObject<StateType, ActionType>} [storeLocator]
  * @property {string} [displayName]
  */
 
 const useConnect =
   /**
-   * @param {UseConnectOption} inputOptions
+   * @template StateType
+   * @template ActionType
+   * @param {UseConnectOption<StateType, ActionType>} inputOptions
    */
   (inputOptions) => (/** @type any */ props) => {
     /**
-     * @template StateType
-     * @template ActionType
-     * @type UseConnectWithStore<StateType, ActionType> & UseConnectOption
+     * @type UseConnectWithStore<StateType, ActionType> & UseConnectOption<StateType, ActionType>
      */
     const options = getStore({ options: inputOptions, props });
     const {

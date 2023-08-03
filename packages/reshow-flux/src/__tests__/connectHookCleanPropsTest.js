@@ -1,22 +1,26 @@
-import { Component, StrictMode } from "react";
+// @ts-check
+
+import * as React from "react";
+const { Component } = React;
 import { createReducer } from "reshow-flux-base";
 import { expect } from "chai";
 import { act, render, screen } from "reshow-unit";
+import callfunc from "call-func";
 
 import useConnect from "../useConnect";
 
 describe("Connect Hook (clean Props)", () => {
   let reducer;
   beforeEach(() => {
-    reducer = createReducer((state, action) => action, {});
+    reducer = createReducer((_state, action) => action, {});
   });
 
   it("test clean props", async () => {
-    const [store, dispatch] = reducer;
-    const Foo = (props) => {
+    const [store] = reducer;
+    const Foo = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: (prevState, props) => {
+        calculateState: () => {
           return store.getState();
         },
       })(props);
@@ -24,16 +28,22 @@ describe("Connect Hook (clean Props)", () => {
       return <div role="udom" {...{ ...otherProps, ...state }} />;
     };
 
+    /**
+     * @type any
+     */
     const setState = { current: null };
 
     class Bar extends Component {
-      constructor(props) {
+      constructor(/**@type any*/props) {
         super(props);
-        setState.current = (...p) => {
-          this.setState(...p);
+        setState.current = (/**@type any[]*/ ...p) => {
+          callfunc(this.setState, p, this);
         };
       }
       state = {
+        /**
+         * @type any
+         */
         p: null,
       };
       render() {

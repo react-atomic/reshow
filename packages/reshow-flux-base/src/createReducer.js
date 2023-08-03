@@ -11,6 +11,11 @@ import { StoreObject, Emiter } from "./type";
  */
 
 /**
+ * @template ActionType
+ * @typedef {import('./type').RefineAction<ActionType>} RefineAction
+ */
+
+/**
  * @typedef {import('./type').Payload} Payload
  */
 
@@ -67,6 +72,7 @@ const getMitt = () => {
   };
 };
 
+
 /**
  * Transpile dispatch("your-action-type", {foo: "bar"})
  * to dispatch({type: "your-action-type", params: {foo: "bar"}})
@@ -76,7 +82,7 @@ const getMitt = () => {
  * @param {DispatchAction<StateType, ActionType>} action
  * @param {Payload} [params]
  * @param {StateType} [prevState]
- * @returns {ActionType} lazy actions
+ * @returns {RefineAction<ActionType>} lazy actions
  */
 export const refineAction = (action, params, prevState) => {
   let nextAction = NEW_OBJ();
@@ -100,7 +106,7 @@ export const refineAction = (action, params, prevState) => {
  * @template ActionType
  * @callback ReducerType
  * @param {StateType} StateArg
- * @param {ActionType} ActionArg
+ * @param {RefineAction<ActionType>} ActionArg
  * @returns {StateType}
  */
 
