@@ -65,11 +65,6 @@ class ImmutableStoreObject extends StoreObject {
  */
 const getMap = (state, k) => toJS(state.get(k)) ?? {};
 const isMap = Map.isMap;
-/**
- * @param {any} a
- * @returns {object}
- */
-const toMapType = (a) => a;
 
 /**
  * @param {MaybeMapType} maybeMap
@@ -90,7 +85,7 @@ const forEachMap = (maybeMap, cb) => {
        */
       cb(maybeMap, "type");
     } else {
-      KEYS(toMapType(maybeMap)).forEach((k) => cb(maybeMap[k], k));
+      KEYS(/**@type object*/ (maybeMap)).forEach((k) => cb(maybeMap[k], k));
     }
   }
 };
