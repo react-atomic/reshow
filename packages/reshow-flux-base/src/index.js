@@ -17,10 +17,6 @@
  * @typedef {import("./createReducer").DispatchType<StateType, ActionType>} DispatchType
  */
 
-export {
-  default as createReducer,
-  refineAction,
-  StoreObject,
-  ActionObject,
-} from "./createReducer";
+export { default as createReducer, refineAction } from "./createReducer";
+export { StoreObject, ActionObject } from "./type";
 export { default as SimpleMap } from "./SimpleMap";

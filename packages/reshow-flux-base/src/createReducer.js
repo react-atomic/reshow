@@ -2,40 +2,16 @@
 
 import callfunc from "call-func";
 import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
-
-/**
- * @typedef {Object.<string, any>} Payload
- */
-
-/**
- * @interface
- */
-export class ActionObject {
-  /** @type {string=} */
-  type;
-  /** @type {Payload=} */
-  params;
-}
+import { StoreObject, Emiter } from "./type";
 
 /**
  * @template StateType
  * @template ActionType
- * @interface
+ * @typedef {import('./type').FluxHandler<StateType, ActionType>} FluxHandler
  */
-export class StoreObject {
-  /** @type {function():StateType} */
-  reset;
-  /** @type {function():StateType} */
-  getState;
-  /** @type {emiter<StateType, ActionType>["add"]} */
-  addListener;
-  /** @type {emiter<StateType, ActionType>["remove"]} */
-  removeListener;
-}
 
 /**
- * @template StateType
- * @typedef {StateType|function():StateType} InitStateType
+ * @typedef {import('./type').Payload} Payload
  */
 
 /**
@@ -55,65 +31,7 @@ export class StoreObject {
 /**
  * @template StateType
  * @template ActionType
- * @callback FluxHandler
- * @param {StateType} NextState
- * @param {ActionType} Action
- * @param {StateType} PrevState
- * @returns{any}
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterResetCall
- * @returns {FluxHandler<StateType, ActionType>[]}
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterAddCall
- * @param {FluxHandler<StateType, ActionType>} handler
- * @returns {number}
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterRemoveCall
- * @param {FluxHandler<StateType, ActionType>} handler
- * @returns {FluxHandler<StateType, ActionType>[]}
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterEmitCall
- * @param {StateType} state
- * @param {ActionType} action
- * @param {StateType} prevState
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @interface
- */
-class emiter {
-  /** @type {EmitterResetCall<StateType, ActionType>} */
-  reset;
-  /** @type {EmitterAddCall<StateType, ActionType>} */
-  add;
-  /** @type {EmitterRemoveCall<StateType, ActionType>} */
-  remove;
-  /** @type {EmitterEmitCall<StateType, ActionType>} */
-  emit;
-}
-
-/**
- * @template StateType
- * @template ActionType
- * @returns emiter<StateType, ActionType>
+ * @returns Emiter<StateType, ActionType>
  */
 const getMitt = () => {
   /**
@@ -122,20 +40,20 @@ const getMitt = () => {
   const pool = [];
   return {
     /**
-     * @type EmitterResetCall<StateType, ActionType>
+     * @type Emiter['reset']<StateType, ActionType>
      */
     reset: () => pool.splice(0, pool.length),
     /**
-     * @type EmitterAddCall<StateType, ActionType>
+     * @type Emiter['add']<StateType, ActionType>
      */
     add: (handler) => pool.unshift(handler),
     /**
      * >>> 0 for change indexOf return -1 to 4294967295
-     * @type EmitterRemoveCall<StateType, ActionType>
+     * @type Emiter['remove']<StateType, ActionType>
      */
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     /**
-     * @type EmitterEmitCall<StateType, ActionType>
+     * @type Emiter['emit']<StateType, ActionType>
      */
     emit: (state, action, prevState) => {
       const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
@@ -183,7 +101,12 @@ export const refineAction = (action, params, prevState) => {
  * @callback ReducerType
  * @param {StateType} StateArg
  * @param {ActionType} ActionArg
- * @returns {any}
+ * @returns {StateType}
+ */
+
+/**
+ * @template StateType
+ * @typedef {StateType|function():StateType} InitStateType
  */
 
 /**
