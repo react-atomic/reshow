@@ -5,6 +5,7 @@ import connectOptions from "./connectOptions";
 /**
  * @typedef {object} UseReturnPayLoad
  * @property {{[key: string]: string[]}} [pathStates]
+ * @property {boolean} [isHydrate]
  * @property {string[]} [excludeStates]
  * @property {boolean} [immutable]
  * @property {boolean} [renewProps]

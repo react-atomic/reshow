@@ -2,10 +2,8 @@
 
 import build from "reshow-build";
 import { useLoaded } from "reshow-hooks";
-import { hasWin, win } from "win-doc";
 import { connectOptions } from "reshow-return";
-
-const hydrate = () => /**@type any*/ (win()).Reshow?.hydrate;
+import hydrate from "../../hydrate";
 
 /**
  * Example:
@@ -16,10 +14,18 @@ const hydrate = () => /**@type any*/ (win()).Reshow?.hydrate;
  */
 const ClientReturnHoc = (comp, cleanProps) => {
   /**
-   * @param {any} [props]
+   * @typedef {object} ClientReturnType
+   * @property {boolean} [isHydrate]
+   * @property {React.ReactNode} [children]
+   * @property {boolean} [backfillProps]
+   * @property {any} [props]
    */
-  const ClientReturn = (props) => {
-    if (!hasWin() || hydrate()) {
+
+  /**
+   * @param {ClientReturnType} allprops
+   */
+  const ClientReturn = ({ isHydrate, ...props }) => {
+    if (hydrate() || isHydrate) {
       const isLoad = useLoaded();
       if (!isLoad) {
         const { children, backfillProps, ...restProps } = props;

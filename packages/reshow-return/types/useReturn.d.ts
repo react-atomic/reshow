@@ -3,6 +3,7 @@ export type UseReturnPayLoad = {
     pathStates?: {
         [key: string]: string[];
     };
+    isHydrate?: boolean;
     excludeStates?: string[];
     immutable?: boolean;
     renewProps?: boolean;
@@ -16,6 +17,7 @@ export type UseReturnType = (initStates: import('./connectOptions').InitStatesPr
 /**
  * @typedef {object} UseReturnPayLoad
  * @property {{[key: string]: string[]}} [pathStates]
+ * @property {boolean} [isHydrate]
  * @property {string[]} [excludeStates]
  * @property {boolean} [immutable]
  * @property {boolean} [renewProps]
