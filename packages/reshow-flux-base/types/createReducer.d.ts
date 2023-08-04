@@ -1,4 +1,4 @@
-export function refineAction<StateType, ActionType>(action: DispatchAction<StateType, ActionType>, params?: Payload, prevState?: StateType): RefineAction<ActionType>;
+export function refineAction<StateType, ActionType>(action: DispatchAction<StateType, ActionType>, params?: Payload, prevState?: StateType): ActionType;
 export default createReducer;
 export type FluxHandler<StateType, ActionType> = import('./type').FluxHandler<StateType, ActionType>;
 export type RefineAction<ActionType> = import('./type').RefineAction<ActionType>;

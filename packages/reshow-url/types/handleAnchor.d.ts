@@ -1,10 +1,39 @@
 export default handleAnchor;
-export function goToAnchor(anchor: any): (goAnchorDelay: any) => void;
-export function disableHandleAnchor(path: any): () => any;
-export function getAnchorPath(path: any): {
+/**
+ * @param {string} anchor
+ * @returns {function(number?)}
+ */
+export function goToAnchor(anchor: string): (arg0: number | null) => any;
+/**
+ * @param {string} path
+ * @returns {function():string}
+ */
+export function disableHandleAnchor(path: string): () => string;
+/**
+ * @param {string=} path
+ * @returns {AnchorPathType}
+ */
+export function getAnchorPath(path?: string | undefined): AnchorPathType;
+/**
+ * @param {string} rawPath
+ * @returns {function(number?):string}
+ */
+declare function handleAnchor(rawPath: string): (arg0: number | null) => string;
+declare class AnchorPathType {
+    /**
+     * @type string
+     */
     anchor: string;
-    path: any;
+    /**
+     * @type string
+     */
+    path: string;
+    /**
+     * @type string[]
+     */
     anchorArr: string[];
+    /**
+     * @type string
+     */
     lastAnchor: string;
-};
-declare function handleAnchor(rawPath: any): (goAnchorDelay: any) => any;
+}

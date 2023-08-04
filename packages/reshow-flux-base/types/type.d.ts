@@ -11,8 +11,8 @@ export class ActionObject {
     params: Payload | undefined;
 }
 /**
- * @template ActionType
- * @typedef {ActionObject|ActionType} RefineAction
+ * @template [ActionType=ActionObject]
+ * @typedef {ActionType} RefineAction
  */
 /**
  * @template StateType
@@ -84,7 +84,7 @@ export class StoreObject<StateType, ActionType> {
 export type Payload = {
     [x: string]: any;
 };
-export type RefineAction<ActionType> = ActionObject | ActionType;
+export type RefineAction<ActionType = ActionObject> = ActionType;
 export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefineAction<ActionType>, PrevState: StateType) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
 export type EmitterAddCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => number;

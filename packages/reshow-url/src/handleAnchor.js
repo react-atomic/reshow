@@ -1,11 +1,17 @@
+// @ts-check
+
 import getOffset from "getoffset";
 import smoothScrollTo from "smooth-scroll-to";
 import { doc } from "win-doc";
 
 let goAnchorTimer;
 
-const urlDecode = (s) => decodeURIComponent(s);
+const urlDecode = (/**@type string*/ s) => decodeURIComponent(s);
 
+/**
+ * @param {string} anchor
+ * @returns {function(number?)}
+ */
 const goToAnchor = (anchor) => (goAnchorDelay) => {
   if (!goAnchorDelay) {
     goAnchorDelay = 0;
@@ -13,15 +19,38 @@ const goToAnchor = (anchor) => (goAnchorDelay) => {
   clearTimeout(goAnchorTimer);
   goAnchorTimer = setTimeout(() => {
     try {
-      const dom = document.body.querySelector(anchor);
+      const dom = /**@type HTMLElement*/ (document.body.querySelector(anchor));
       if (dom) {
-        const pos = getOffset(dom);
+        const pos = /**@type import('getoffset').OffsetType*/ (getOffset(dom));
         smoothScrollTo(pos.top);
       }
     } catch (e) {}
   }, goAnchorDelay);
 };
 
+class AnchorPathType {
+  /**
+   * @type string
+   */
+  anchor;
+  /**
+   * @type string
+   */
+  path;
+  /**
+   * @type string[]
+   */
+  anchorArr;
+  /**
+   * @type string
+   */
+  lastAnchor;
+}
+
+/**
+ * @param {string=} path
+ * @returns {AnchorPathType}
+ */
 const getAnchorPath = (path) => {
   if (!path) {
     path = doc().URL;
@@ -50,6 +79,10 @@ const getAnchorPath = (path) => {
   };
 };
 
+/**
+ * @param {string} rawPath
+ * @returns {function(number?):string}
+ */
 const handleAnchor = (rawPath) => (goAnchorDelay) => {
   const { anchor, path } = getAnchorPath(rawPath);
   if (anchor) {
@@ -62,6 +95,10 @@ const handleAnchor = (rawPath) => (goAnchorDelay) => {
   }
 };
 
+/**
+ * @param {string} path
+ * @returns {function():string}
+ */
 const disableHandleAnchor = (path) => () => path;
 
 export { goToAnchor, disableHandleAnchor, getAnchorPath };

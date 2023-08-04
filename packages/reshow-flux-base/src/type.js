@@ -15,8 +15,8 @@ export class ActionObject {
 }
 
 /**
- * @template ActionType
- * @typedef {ActionObject|ActionType} RefineAction
+ * @template [ActionType=ActionObject]
+ * @typedef {ActionType} RefineAction
  */
 
 /**
