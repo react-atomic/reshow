@@ -311,7 +311,7 @@ const debouncedShowRuntimeErrors = memoize(showRuntimeErrors);
  */
 function isWebpackCompileError({ message }) {
   return (
-    /Module [A-Za-z ]+\(from/.test(message) ||
+    /Module [a-zA-Z ]+\(from/.test(message) ||
     /Module not found: Error:/.test(message) ||
     /Module build failed: Error:/.test(message)
   );
