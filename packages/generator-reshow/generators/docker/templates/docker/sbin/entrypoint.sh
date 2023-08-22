@@ -2,7 +2,7 @@
 
 # docker entrypoint script
 server() {
-  tail -f /entrypoint.sh
+  tail -f /usr/local/sbin/entrypoint.sh
 }
 
 if [ "$1" = 'server' ]; then

@@ -26,7 +26,7 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const { say, handleAnswers, promptChainAll } = YoHelper(this);
+    const { handleAnswers, promptChainAll } = YoHelper(this);
 
     const prompts = [
       ...commonPrompt.mainName(this),

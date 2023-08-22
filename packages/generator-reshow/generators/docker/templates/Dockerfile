@@ -1,6 +1,6 @@
 ARG VERSION=${VERSION:-[VERSION]}
 
-FROM alpine:3.17
+FROM alpine:3.18
 
 ARG VERSION
 
@@ -10,6 +10,6 @@ RUN apk update && apk add bash bc \
   && INSTALL_VERSION=$VERSION install-packages \
   && rm /usr/local/bin/install-packages;
 
-COPY ./docker/entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY ./docker/sbin /usr/local/sbin
+ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
 CMD ["server"]
