@@ -9,9 +9,16 @@ export const OBJECT = "object";
 export const STRING = "string";
 
 /**
+ * @typedef {T_UNDEFINED|T_NULL|T_FALSE|0} SAFE_UNDEFINED
+ */
+
+/**
  * @type undefined
  */
 export const T_UNDEFINED = void 0;
+/**
+ * @type null
+ */
 export const T_NULL = null;
 export const T_TRUE = true;
 export const T_FALSE = false;
