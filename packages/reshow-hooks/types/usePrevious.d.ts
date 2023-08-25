@@ -4,5 +4,6 @@ export default usePrevious;
  * https://beta.reactjs.org/learn/you-might-not-need-an-effect?#adjusting-some-state-when-a-prop-changes
  * @param {any} value
  * @param {any} [init]
+ * @param {boolean} [isLazy]
  */
-declare function usePrevious(value: any, init?: any): any;
+declare function usePrevious(value: any, init?: any, isLazy?: boolean): any;
