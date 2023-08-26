@@ -36,9 +36,75 @@ describe("test usePrevious", () => {
       gSet("bar");
     });
     await waitFor(() => {
-      expect(myspy.firstCall.args, "1").to.deep.equal([undefined, "foo"]);
-      expect(myspy.secondCall.args, "2").to.deep.equal([undefined, "foo"]);
-      expect(myspy.thirdCall.args, "3").to.deep.equal(["foo", "bar"]);
+      expect(myspy.firstCall.args, "firstCall").to.deep.equal([
+        undefined,
+        "foo",
+      ]);
+      expect(myspy.secondCall.args, "secondCall").to.deep.equal([
+        undefined,
+        "foo",
+      ]);
+      expect(myspy.thirdCall.args, "thirdCall").to.deep.equal(["foo", "bar"]);
+    });
+  });
+
+  it("onlyDiff (true) test", async () => {
+    const myspy = sinon().spy(() => {});
+    const FOO = (/** @type {any}*/ props) => {
+      const prev = usePrevious(props.v, undefined, { onlyDiff: true });
+      myspy(prev, props.v);
+      return null;
+    };
+
+    let gSet;
+    const Comp = (/** @type {any}*/ _props) => {
+      const [state, setState] = useState("foo");
+      gSet = setState;
+      return <FOO v={state} />;
+    };
+    render(<Comp />);
+    await act(() => gSet("bar"));
+    await act(() => gSet("bar"));
+    await act(() => gSet("foo1"));
+    await waitFor(() => {
+      expect(myspy.args).to.deep.equal([
+        [undefined, "foo"],
+        [undefined, "foo"],
+        ["foo", "bar"],
+        ["foo", "bar"],
+        ["bar", "foo1"],
+        ["bar", "foo1"],
+      ]);
+    });
+  });
+
+  it("onlyDiff (false) test", async () => {
+    const myspy = sinon().spy(() => {});
+    const FOO = (/** @type {any}*/ props) => {
+      const prev = usePrevious(props.v, undefined, { onlyDiff: false });
+      myspy(prev, props.v);
+      return null;
+    };
+
+    let gSet;
+    const Comp = (/** @type {any}*/ _props) => {
+      const [state, setState] = useState("foo");
+      gSet = setState;
+      return <FOO v={state} />;
+    };
+    render(<Comp />);
+    await act(() => gSet("bar"));
+    await act(() => gSet("bar"));
+    await act(() => gSet("foo1"));
+    await waitFor(() => {
+      expect(myspy.args).to.deep.equal([
+        [undefined, "foo"],
+        [undefined, "foo"],
+        ["foo", "bar"],
+        ["bar", "bar"],
+        ["bar", "foo1"],
+        ["foo1", "foo1"],
+      ]);
     });
   });
 
