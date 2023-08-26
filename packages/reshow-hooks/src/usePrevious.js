@@ -1,5 +1,5 @@
 //@ts-check
-import useRefInitCallback from "./useRefInitCallback";
+import useRefWithInitCallback from "./useRefWithInitCallback";
 import callfunc from "call-func";
 
 /**
@@ -10,7 +10,7 @@ import callfunc from "call-func";
  * @param {boolean} [isLazy]
  */
 const usePrevious = (value, init, isLazy) => {
-  const data = useRefInitCallback(() => {
+  const data = useRefWithInitCallback(() => {
     return { cur: callfunc(init), prev: null };
   });
   data.current = {

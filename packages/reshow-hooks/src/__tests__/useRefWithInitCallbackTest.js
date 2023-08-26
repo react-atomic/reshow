@@ -2,7 +2,7 @@
 
 import * as React from "react";
 const { useEffect } = React;
-import useRefInitCallback from "../useRefInitCallback";
+import useRefWithInitCallback from "../useRefWithInitCallback";
 import { expect } from "chai";
 import { render, act, waitFor, getSinon as sinon } from "reshow-unit";
 
@@ -11,7 +11,7 @@ describe("test useRefInitCallback", () => {
     const myspy = sinon().spy(() => "");
     const effectSpy = sinon().spy(() => "");
     const Comp = () => {
-      const last = useRefInitCallback(myspy);
+      const last = useRefWithInitCallback(myspy);
       useEffect(() => {
         if (!last.current) {
           effectSpy();

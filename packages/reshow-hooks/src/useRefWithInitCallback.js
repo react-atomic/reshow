@@ -7,7 +7,7 @@ import callfunc from "call-func";
  * @param {ValueType|function():ValueType} [value]
  * @return {React.MutableRefObject<ValueType|undefined>}
  */
-const useRefInitCallback = (value) => {
+const useRefWithInitCallback = (value) => {
   /**
    * @type {React.MutableRefObject<ValueType|undefined>}
    */
@@ -18,4 +18,4 @@ const useRefInitCallback = (value) => {
   return last;
 };
 
-export default useRefInitCallback;
+export default useRefWithInitCallback;
