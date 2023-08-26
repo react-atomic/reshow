@@ -38,7 +38,7 @@ const getReturn = ({
    */
   const Return = (props) => {
     const { children, backfillProps, ...otherProps } = props;
-    const state = /** @type function*/(useConnect)(props);
+    const state = /** @type function*/ (useConnect)(props);
     const nextProps = backfillProps
       ? {
           ...state,
