@@ -91,4 +91,17 @@ const cleanIt = (props) => {
   }
 };
 
-export { cleanIt, jsdom, hideConsoleError, getSinon };
+/**
+ * @param {function} cb
+ * @param {number} delay
+ * @returns {Promise}
+ */
+const sleep = (cb, delay) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      cb && cb();
+      resolve(null);
+    }, delay);
+  });
+
+export { cleanIt, jsdom, hideConsoleError, getSinon, sleep };

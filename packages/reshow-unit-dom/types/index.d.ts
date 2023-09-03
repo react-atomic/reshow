@@ -24,3 +24,9 @@ export function hideConsoleError(toThrow?: boolean | Function): void;
  * @param {any} [options]
  */
 export function getSinon(options?: any): any;
+/**
+ * @param {function} cb
+ * @param {number} delay
+ * @returns {Promise}
+ */
+export function sleep(cb: Function, delay: number): Promise<any>;

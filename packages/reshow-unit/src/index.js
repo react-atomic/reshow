@@ -5,6 +5,7 @@ import {
   cleanIt as domCleanIt,
   hideConsoleError,
   getSinon,
+  sleep,
 } from "reshow-unit-dom";
 import { doc } from "win-doc";
 import { getTimestamp } from "get-random-id";
@@ -135,19 +136,6 @@ const render = (OrigDom, options = {}) => {
 const simulateEvent = (...p) => {
   return getDefault(userEvent).setup(...p);
 };
-
-/**
- * @param {function} cb
- * @param {number} delay
- * @returns {Promise}
- */
-const sleep = (cb, delay) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      cb();
-      resolve(null);
-    }, delay);
-  });
 
 export {
   waitFor,

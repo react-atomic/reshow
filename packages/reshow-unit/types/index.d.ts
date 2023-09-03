@@ -124,12 +124,7 @@ export function screen(): {
  * @param {ConstructorParameters<any>} p
  */
 export function simulateEvent(...p: ConstructorParameters<any>): any;
-/**
- * @param {function} cb
- * @param {number} delay
- * @returns {Promise}
- */
-export function sleep(cb: Function, delay: number): Promise<any>;
+import { sleep } from "reshow-unit-dom";
 /**
  * @param {string} role
  * @returns {string}
@@ -143,4 +138,4 @@ export function cleanIt(props?: any): void;
 import { jsdom } from "reshow-unit-dom";
 import { hideConsoleError } from "reshow-unit-dom";
 import { queries } from "@testing-library/dom";
-export { waitFor, waitForElementToBeRemoved, getSinon, jsdom, hideConsoleError };
+export { waitFor, waitForElementToBeRemoved, sleep, getSinon, jsdom, hideConsoleError };
