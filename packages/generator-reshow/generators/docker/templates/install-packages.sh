@@ -33,5 +33,6 @@ apk add --virtual .build-deps $BUILD_DEPS && apk add $INSTALL --upgrade $UPGRADE
 #/* put your install code here */#
 
 apk del -f .build-deps && rm -rf /var/cache/apk/* || exit 1
+echo $(date +%Y%m%d%S)'-'$TARGETPLATFORM > /build_version
 
 exit 0

@@ -5,10 +5,14 @@
  */
 
 /**
+ * @typedef {import("reshow-constant").SAFE_UNDEFINED} SAFE_UNDEFINED
+ */
+
+/**
  * @interface
  */
 export class ActionObject {
-  /** @type {string=} */
+  /** @type {string|SAFE_UNDEFINED=} */
   type;
   /** @type {Payload=} */
   params;

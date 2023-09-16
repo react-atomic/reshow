@@ -2,11 +2,14 @@
  * @typedef {Object.<string, any>} Payload
  */
 /**
+ * @typedef {import("reshow-constant").SAFE_UNDEFINED} SAFE_UNDEFINED
+ */
+/**
  * @interface
  */
 export class ActionObject {
-    /** @type {string=} */
-    type: string | undefined;
+    /** @type {string|SAFE_UNDEFINED=} */
+    type: (string | SAFE_UNDEFINED) | undefined;
     /** @type {Payload=} */
     params: Payload | undefined;
 }
@@ -84,6 +87,7 @@ export class StoreObject<StateType, ActionType> {
 export type Payload = {
     [x: string]: any;
 };
+export type SAFE_UNDEFINED = import("reshow-constant").SAFE_UNDEFINED;
 export type RefineAction<ActionType = ActionObject> = ActionType;
 export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefineAction<ActionType>, PrevState: StateType) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
