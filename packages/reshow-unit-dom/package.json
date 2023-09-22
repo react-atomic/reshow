@@ -1,5 +1,5 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.2",
   "name": "reshow-unit-dom",
   "repository": {
     "type": "git",
@@ -14,8 +14,8 @@
   "dependencies": {
     "@types/mocha": "*",
     "chai": "*",
-    "global-jsdom": "*",
-    "jsdom": "^19.0.0",
+    "global-jsdom": "9.1.0",
+    "jsdom": "22.1.0",
     "mocha": "^9.x",
     "mocha-junit-reporter": "2.2.0",
     "nyc": "15.1.0",
