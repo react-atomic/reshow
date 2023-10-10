@@ -46,11 +46,14 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.18
+          version: 20.10.24
           docker_layer_caching: true
       - run:
           name: Log time
           command: date
+      - run:
+          name: Get Rate Limit
+          command: ./compile.sh rate
       - run:
           name: Gen Docker file
           command: |
@@ -98,7 +101,7 @@ jobs:
               ./${BUILD_FOLDER}
             ./compile.sh updateDockerHubDesc
       - run:
-          name: logout 
+          name: logout
           command: docker logout
 
 workflows:
