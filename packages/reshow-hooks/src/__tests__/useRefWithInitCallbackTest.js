@@ -1,10 +1,10 @@
 // @ts-check
+import { expect } from "chai";
+import { render, act, waitFor, getSinon as sinon } from "reshow-unit";
 
 import * as React from "react";
 const { useEffect } = React;
 import useRefWithInitCallback from "../useRefWithInitCallback";
-import { expect } from "chai";
-import { render, act, waitFor, getSinon as sinon } from "reshow-unit";
 
 describe("test useRefInitCallback", () => {
   it("basic test", async () => {
