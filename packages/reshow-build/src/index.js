@@ -19,6 +19,10 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
  */
 
 /**
+ * @typedef {import('./mergeRef').RefType} RefType
+ */
+
+/**
  * @typedef {object} BuildProps
  */
 
@@ -33,7 +37,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
  * @param {BuildProps} props
  * @param {Component} child
  * @param {ComponentOption} componentOption
- * @returns {React.ReactElement}
+ * @returns {React.ReactElement?}
  */
 const buildFunc = (component, props, child, componentOption) => {
   // anonymous function will call directly
@@ -69,7 +73,7 @@ const buildFunc = (component, props, child, componentOption) => {
  * @param {Component} component
  * @param {BuildProps} props
  * @param {Component} child
- * @returns {React.ReactElement}
+ * @returns {React.ReactElement?}
  */
 const buildReact = (component, props = {}, child = T_UNDEFINED) => {
   if (!component) {
@@ -103,7 +107,7 @@ const build =
   /**
    * @param {BuildProps} props
    * @param {Component} child
-   * @returns {React.ReactElement}
+   * @returns {React.ReactElement?}
    */
   (props = {}, child = T_UNDEFINED) => {
     if (!component) {
