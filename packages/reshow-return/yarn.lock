@@ -2860,9 +2860,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.17.47"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.47.tgz#d297a120f0dab332c828739a10dd7eaece6a314f"
-  integrity sha512-xCSguqNNOcUZqEwnBddGM6KktXfnp8ooWgQBqgeozKQLi9PeyC2mWHJt6ZwLJCfQT86WIYbkDbeWOCj4aRNo7w==
+  version "0.17.48"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.48.tgz#c12123765f9f74a86e10cdceb65b6d737e8e3445"
+  integrity sha512-b63IMXjJPoSnwo6o1eXHjY6ACkKqhqgshlPCTmBfPO2jlfh0A1FKRS/t6XXZdyXwxKcqATQmWn4LlAqGDwBsFw==
   dependencies:
     array.dedup "*"
     array.merge "*"

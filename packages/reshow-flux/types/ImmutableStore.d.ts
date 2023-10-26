@@ -51,11 +51,12 @@ import { fromJS } from "immutable";
  * Because after merge can not use === to compare
  * https://github.com/react-atomic/reshow/issues/123
  *
- * @param {StateMap} state
+ * @template {StateMap} StateType
+ * @param {StateType} state
  * @param {MaybeMapType} maybeMap
- * @returns {StateMap}
+ * @returns {StateType}
  */
-export function mergeMap(state: StateMap, maybeMap: MaybeMapType): StateMap;
+export function mergeMap<StateType extends StateMap>(state: StateType, maybeMap: MaybeMapType): StateType;
 import { Map } from "immutable";
 import { Set } from "immutable";
 import { ActionObject } from "reshow-flux-base";

@@ -72,7 +72,6 @@ const getMitt = () => {
   };
 };
 
-
 /**
  * Transpile dispatch("your-action-type", {foo: "bar"})
  * to dispatch({type: "your-action-type", params: {foo: "bar"}})

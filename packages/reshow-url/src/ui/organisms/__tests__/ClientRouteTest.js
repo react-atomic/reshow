@@ -25,7 +25,12 @@ describe("Test ClientRoute", () => {
   });
 
   it("test should reset default theme to store", () => {
-    const vDom = <ClientRoute defaultThemePath="bar" themes={{ foo: "div", bar: "span" }} />;
+    const vDom = (
+      <ClientRoute
+        defaultThemePath="bar"
+        themes={{ foo: "div", bar: "span" }}
+      />
+    );
     const wrap = render(vDom);
     const actual = wrap.html();
     act();

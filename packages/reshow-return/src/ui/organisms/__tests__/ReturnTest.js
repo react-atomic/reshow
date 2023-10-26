@@ -1,7 +1,7 @@
 // @ts-check
 
 import * as React from "react";
-const {PureComponent, useState} = React;
+const { PureComponent, useState } = React;
 import { ImmutableStore, mergeMap, fromJS } from "reshow-flux";
 import { expect } from "chai";
 import {
@@ -17,17 +17,18 @@ import Return from "../Return";
 import MemoReturn from "../MemoReturn";
 
 const [pageStore, dispatch] = ImmutableStore(
-/**
- * @type import('reshow-flux').ReducerTypeWithMap
- */
+  /**
+   * @type import('reshow-flux').ReducerTypeWithMap
+   */
   (state, action) => {
-  switch (action.type) {
-    case "config/reset":
-      return /**@type any*/(fromJS(action.params) || state.clear());
-    default:
-      return mergeMap(state, action);
+    switch (action.type) {
+      case "config/reset":
+        return /**@type any*/ (fromJS(action.params) || state.clear());
+      default:
+        return mergeMap(state, action);
+    }
   }
-});
+);
 
 describe("Test Return", () => {
   class TestEl extends PureComponent {
@@ -43,14 +44,14 @@ describe("Test Return", () => {
       pathStates: { I13N: ["data", "I13N"] },
     };
 
-    constructor(/**@type any*/props) {
+    constructor(/**@type any*/ props) {
       super(props);
       uFake = this;
     }
 
     /**
      * @param {any} k
-     * @param {any} v 
+     * @param {any} v
      */
     setNew(k, v) {
       this.setState({ [k]: v });
@@ -125,7 +126,7 @@ describe("Test Return", () => {
   it("test child with function", async () => {
     const vDom = (
       <Return store={pageStore} initStates={["data"]}>
-        {(/**@type any*/props) => {
+        {(/**@type any*/ props) => {
           return <div role="dom">{props.data}</div>;
         }}
       </Return>
@@ -167,12 +168,12 @@ describe("Test Return", () => {
   });
 
   it("test Return render times", async () => {
-    const spy = sinon().spy((/**@type any*/props) => (
+    const spy = sinon().spy((/**@type any*/ props) => (
       <div data-state={props.foo} data-props={props.bar} />
     ));
     let gSet;
     const Comp = () => {
-      const [state, setState] = useState({bar: undefined});
+      const [state, setState] = useState({ bar: undefined });
       gSet = setState;
       return (
         <MemoReturn props={state.bar}>
@@ -192,10 +193,14 @@ describe("Test Return", () => {
     await act(() => dispatch({ bar: "bar" }));
     expect(count === spy.callCount, "3").to.be.true;
     count = spy.callCount;
-    await act(() => gSet((/**@type any*/prev) => ({ ...prev, bar: { bar: "b" } })));
+    await act(() =>
+      gSet((/**@type any*/ prev) => ({ ...prev, bar: { bar: "b" } }))
+    );
     expect(count < spy.callCount, "4").to.be.true;
     count = spy.callCount;
-    await act(() => gSet((/**@type any*/prev) => ({ ...prev, foo: { bar: "b" } })));
+    await act(() =>
+      gSet((/**@type any*/ prev) => ({ ...prev, foo: { bar: "b" } }))
+    );
     expect(count === spy.callCount, "5").to.be.true;
     expect(wrap.html()).to.equal(`<div data-state="bar" data-props="b"></div>`);
   });

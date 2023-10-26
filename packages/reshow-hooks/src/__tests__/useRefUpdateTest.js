@@ -7,28 +7,26 @@ import * as React from "react";
 const { useEffect, useState } = React;
 import useRefUpdate from "../useRefUpdate";
 
-
 describe("test useRefUpdate", () => {
   it("basic test", async () => {
     /**
      * @param {any} props
      */
     const Comp = (props) => {
-      const last = useRefUpdate(props); 
+      const last = useRefUpdate(props);
       return <div>{last.current.state}</div>;
     };
     const Parent = () => {
       const [state, setState] = useState("foo");
-      useEffect(()=>{
+      useEffect(() => {
         setState("bar");
       });
-      return <Comp state={state} />
-    }
+      return <Comp state={state} />;
+    };
     const wrap = render(<Parent />);
     await act();
     await waitFor(() => {
       expect(wrap.html()).to.equal("<div>bar</div>");
     });
   });
-
 });

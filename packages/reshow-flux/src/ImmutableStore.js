@@ -102,9 +102,10 @@ const MAP_SIZE = (maybeMap) =>
  * Because after merge can not use === to compare
  * https://github.com/react-atomic/reshow/issues/123
  *
- * @param {StateMap} state
+ * @template {StateMap} StateType
+ * @param {StateType} state
  * @param {MaybeMapType} maybeMap
- * @returns {StateMap}
+ * @returns {StateType}
  */
 const mergeMap = (state, maybeMap) => {
   try {

@@ -12,8 +12,8 @@ const useRefWithInitCallback = (value) => {
    * @type {React.MutableRefObject<ValueType|undefined>}
    */
   const last = useRef();
-  useState(()=> {
-    last.current = callfunc(value)
+  useState(() => {
+    last.current = callfunc(value);
   });
   return last;
 };

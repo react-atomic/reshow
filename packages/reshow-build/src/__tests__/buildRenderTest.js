@@ -1,6 +1,6 @@
 // @ts-check
 import * as React from "react";
-const {PureComponent} = React; 
+const { PureComponent } = React;
 
 import { expect } from "chai";
 import { render } from "reshow-unit";
@@ -38,7 +38,7 @@ describe("Test build render", () => {
         return <div>{this.props.foo}</div>;
       }
     }
-    const func = (/**@type any*/props) => {
+    const func = (/**@type any*/ props) => {
       return <FakeComponent {...props} />;
     };
     const vDom = build(func)({ foo: "bar3" });
@@ -48,10 +48,9 @@ describe("Test build render", () => {
 
   it("test with anonymous func and child", () => {
     const child = [<div id="1" key="0" />, <div id="2" key="1" />];
-    const buildDom = build((/** @type any*/{ children }) => <div id="root">{children}</div>)(
-      {},
-      child
-    );
+    const buildDom = build((/** @type any*/ { children }) => (
+      <div id="root">{children}</div>
+    ))({}, child);
     const html = render(<div>{buildDom}</div>).html();
     const stateFunc = ({ children }) => <div id="root">{children}</div>;
     const stateFuncBuildDom = build(stateFunc)({}, child);
@@ -63,14 +62,14 @@ describe("Test build render", () => {
   });
 
   it("test with component", () => {
-    const FakeComponent = (/** @type any*/props) => <div>{props.foo}</div>;
+    const FakeComponent = (/** @type any*/ props) => <div>{props.foo}</div>;
     const vDom = build(FakeComponent)({ foo: "bar" });
     const html = render(vDom).html();
     expect(html).to.equal("<div>bar</div>");
   });
 
   it("test with instance", () => {
-    const FakeComponent = (/** @type any*/props) => <div>{props.foo}</div>;
+    const FakeComponent = (/** @type any*/ props) => <div>{props.foo}</div>;
     const vDom = <FakeComponent />;
     const html = render(build(vDom)({ foo: "bar1" })).html();
     expect(html).to.equal("<div>bar1</div>");

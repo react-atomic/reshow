@@ -34,7 +34,7 @@ describe("Connect Hook (clean Props)", () => {
     const setState = { current: null };
 
     class Bar extends Component {
-      constructor(/**@type any*/props) {
+      constructor(/**@type any*/ props) {
         super(props);
         setState.current = (/**@type any[]*/ ...p) => {
           callfunc(this.setState, p, this);
