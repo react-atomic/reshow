@@ -12,7 +12,7 @@
     "performance"
   ],
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.x",
     "reshow-unit-dom": "*"

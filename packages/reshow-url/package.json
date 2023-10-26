@@ -12,14 +12,8 @@
     "url",
     "browser only"
   ],
-  "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.mjs",
-  "exports": {
-    "require": "./build/cjs/src/index.js",
-    "import": "./build/es/src/index.mjs"
-  },
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "array.dedup": "*",
     "organism-react-ajax": "*",
@@ -34,6 +28,12 @@
     "react-dom": "18.x",
     "reshow-unit": "^0.17.x"
   },
+  "exports": {
+    "require": "./build/cjs/src/index.js",
+    "import": "./build/es/src/index.mjs"
+  },
+  "main": "./build/cjs/src/index.js",
+  "module": "./build/es/src/index.mjs",
   "scripts": {
     "clean": "find ./build -name '*.*' | xargs rm -rf",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs/src --ignore /**/__tests__ --root-mode upward",

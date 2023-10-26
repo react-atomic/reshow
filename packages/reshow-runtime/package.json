@@ -1,12 +1,17 @@
 {
   "private": true,
   "name": "reshow-runtime",
-  "repository": "react-atomic/reshow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-atomic/reshow",
+    "directory": "packages/reshow-unit-dom/reshow-runtime"
+  },
+  "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-runtime",
   "keywords": [
     "babel"
   ],
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.x",
     "reshow-unit-dom": "*"

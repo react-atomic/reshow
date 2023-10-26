@@ -12,7 +12,7 @@
     "@testing-library"
   ],
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.x",
     "@babel/core": "^7.20.12",

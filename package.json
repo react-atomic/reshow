@@ -13,7 +13,7 @@
     "reshow"
   ],
   "author": "Hill <hill@kimo.com>",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "call-func": "*",
     "get-storage": "*",
