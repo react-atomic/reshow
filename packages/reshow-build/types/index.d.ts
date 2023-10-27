@@ -8,8 +8,8 @@ export type ComponentOption = {
     doCallFunction?: boolean;
 };
 /**
- * @param {Component} [component]
+ * @param {Component|Component[]} [component]
  * @param {ComponentOption} componentOption
  */
-declare function build(component?: Component, componentOption?: ComponentOption): (props?: BuildProps, child?: Component) => React.ReactElement | null;
+declare function build(component?: Component | Component[], componentOption?: ComponentOption): (props?: BuildProps, child?: Component | Component[]) => React.ReactElement | null;
 import * as React from "react";

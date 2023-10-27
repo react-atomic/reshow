@@ -15,7 +15,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
   React;
 
 /**
- * @typedef {React.ComponentType|React.ReactNode|function} Component
+ * @typedef {React.ComponentType|React.ReactNode|Function} Component
  */
 
 /**
@@ -35,7 +35,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
 /**
  * @param {function} component
  * @param {BuildProps} props
- * @param {Component} child
+ * @param {Component|Component[]} child
  * @param {ComponentOption} componentOption
  * @returns {React.ReactElement?}
  */
@@ -72,7 +72,7 @@ const buildFunc = (component, props, child, componentOption) => {
 /**
  * @param {Component} component
  * @param {BuildProps} props
- * @param {Component} child
+ * @param {Component|Component[]} child
  * @returns {React.ReactElement?}
  */
 const buildReact = (component, props = {}, child = T_UNDEFINED) => {
@@ -99,14 +99,14 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
 };
 
 /**
- * @param {Component} [component]
+ * @param {Component|Component[]} [component]
  * @param {ComponentOption} componentOption
  */
 const build =
   (component, componentOption = {}) =>
   /**
    * @param {BuildProps} props
-   * @param {Component} child
+   * @param {Component|Component[]} child
    * @returns {React.ReactElement?}
    */
   (props = {}, child = T_UNDEFINED) => {
