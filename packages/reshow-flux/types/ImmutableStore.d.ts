@@ -2,7 +2,11 @@
  * @typedef {number|string} MapKeyType
  */
 /**
- * @typedef { StateMap | {[key: MapKeyType]: any} | string } MaybeMapType
+ * Hack for defined this inside MaybeMapType will make null and undefined disapper
+ * @typedef {{[key: MapKeyType]:any}} MaybeMapObject
+ */
+/**
+ * @typedef {string|undefined|null|StateMap|MaybeMapObject} MaybeMapType
  */
 /**
  * @typedef {ActionObject|MaybeMapType} ImmutableAction
@@ -24,21 +28,26 @@ export class StateMap {
 }
 export default ImmutableStore;
 export type MapKeyType = number | string;
-export type MaybeMapType = string | StateMap | {
+/**
+ * Hack for defined this inside MaybeMapType will make null and undefined disapper
+ */
+export type MaybeMapObject = {
     [key: string]: any;
     [key: number]: any;
 };
+export type MaybeMapType = string | undefined | null | StateMap | MaybeMapObject;
 export type ImmutableAction = ActionObject | MaybeMapType;
-export type ReducerTypeWithMap = (state: StateMap, action: ImmutableAction) => StateMap;
+export type ReducerTypeWithMap<StateType = StateMap, ActionType = MaybeMapType> = (state: StateType, action: ActionType) => StateType;
 export type forEachCb = (Value: any, Key: any) => any;
 /**
- * @template StateType
- * @param {ReducerTypeWithMap|null} [reducer]
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
+ * @param {ReducerTypeWithMap<StateType, ActionType>?} [reducer]
  * @param {import("reshow-flux-base").InitStateType<StateType>} [initState]
  *
- * @returns {[ImmutableStoreObject, dispatch]}
+ * @returns {[ImmutableStoreObject<StateType, ActionType>, dispatch]}
  */
-declare function ImmutableStore<StateType>(reducer?: ReducerTypeWithMap | null, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject, import("reshow-flux-base/types/createReducer").DispatchType<StateMap, ImmutableAction>];
+declare function ImmutableStore<StateType = StateMap, ActionType = MaybeMapType>(reducer?: ReducerTypeWithMap<StateType, ActionType>, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject<StateType, ActionType>, import("reshow-flux-base/types/createReducer").DispatchType<StateType, ActionType>];
 import { is as equal } from "immutable";
 /**
  * @param {MaybeMapType} maybeMap
@@ -61,11 +70,13 @@ import { Map } from "immutable";
 import { Set } from "immutable";
 import { ActionObject } from "reshow-flux-base";
 /**
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
  * @class ImmutableStoreObject
- * @extends {StoreObject<StateMap, ImmutableAction>}
+ * @extends {StoreObject<StateType, ActionType>}
  * @interface
  */
-declare class ImmutableStoreObject extends StoreObject<StateMap, ImmutableAction> {
+declare class ImmutableStoreObject<StateType = StateMap, ActionType = MaybeMapType> extends StoreObject<StateType, ActionType> {
     constructor();
     /** @type {function(MapKeyType):any} */
     getMap: (arg0: MapKeyType) => any;

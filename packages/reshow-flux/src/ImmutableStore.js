@@ -11,7 +11,12 @@ import toJS from "./toJS";
  */
 
 /**
- * @typedef { StateMap | {[key: MapKeyType]: any} | string } MaybeMapType
+ * Hack for defined this inside MaybeMapType will make null and undefined disapper
+ * @typedef {{[key: MapKeyType]:any}} MaybeMapObject
+ */
+
+/**
+ * @typedef {string|undefined|null|StateMap|MaybeMapObject} MaybeMapType
  */
 
 /**
@@ -35,8 +40,10 @@ export class StateMap {
 }
 
 /**
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
  * @class ImmutableStoreObject
- * @extends {StoreObject<StateMap, ImmutableAction>}
+ * @extends {StoreObject<StateType, ActionType>}
  * @interface
  */
 class ImmutableStoreObject extends StoreObject {
@@ -45,10 +52,12 @@ class ImmutableStoreObject extends StoreObject {
 }
 
 /**
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
  * @callback ReducerTypeWithMap
- * @param {StateMap} state
- * @param {ImmutableAction} action
- * @returns {StateMap}
+ * @param {StateType} state
+ * @param {ActionType} action
+ * @returns {StateType}
  */
 
 /**
@@ -59,11 +68,17 @@ class ImmutableStoreObject extends StoreObject {
  */
 
 /**
- * @param {StateMap} state
+ * @param {any} state
  * @param {MapKeyType} k
  * @returns {object}
  */
-const getMap = (state, k) => toJS(state.get(k)) ?? {};
+const getMap = (state, k) => {
+  if (state && state.get) {
+    return toJS(state.get(k));
+  } else {
+    return {};
+  }
+};
 const isMap = Map.isMap;
 
 /**
@@ -71,7 +86,7 @@ const isMap = Map.isMap;
  * @param {forEachCb} cb
  */
 const forEachMap = (maybeMap, cb) => {
-  if (!MAP_SIZE(maybeMap)) {
+  if (!maybeMap || !MAP_SIZE(maybeMap)) {
     return;
   }
   if (isMap(maybeMap)) {
@@ -124,23 +139,32 @@ const mergeMap = (state, maybeMap) => {
 };
 
 /**
- * @type ReducerTypeWithMap
+ * @template {StateMap} StateType
+ * @template {MaybeMapType} ActionType
+ * @type ReducerTypeWithMap<StateType, ActionType>
  */
 const defaultReducer = (state, action) => mergeMap(state, action);
 
 /**
- * @template StateType
- * @param {ReducerTypeWithMap|null} [reducer]
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
+ * @param {ReducerTypeWithMap<StateType, ActionType>?} [reducer]
  * @param {import("reshow-flux-base").InitStateType<StateType>} [initState]
  *
- * @returns {[ImmutableStoreObject, dispatch]}
+ * @returns {[ImmutableStoreObject<StateType, ActionType>, dispatch]}
  */
 const ImmutableStore = (reducer, initState) => {
-  reducer = reducer || defaultReducer;
-  const stateMap = mergeMap(Map(), callfunc(initState));
-  const [store, dispatch] = createReducer(reducer, stateMap);
+  const nextReducer = /**@type ReducerTypeWithMap<StateType, ActionType>*/ (
+    reducer || defaultReducer
+  );
+  const stateMap = /**@type StateMap*/ (mergeMap(Map(), callfunc(initState)));
+  const [store, dispatch] = createReducer(
+    nextReducer,
+    /**@type StateType*/ (stateMap)
+  );
+
   /**
-   * @type ImmutableStoreObject
+   * @type ImmutableStoreObject<StateType, ActionType>
    */
   const nextStore = {
     ...store,

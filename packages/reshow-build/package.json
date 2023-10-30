@@ -1,5 +1,5 @@
 {
-  "version": "0.17.25",
+  "version": "0.17.26",
   "name": "reshow-build",
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "reshow-unit": "^0.17.x"
   },
   "exports": {
+    "types": "./types/index.d.ts",
     "require": "./build/cjs/src/index.js",
     "import": "./build/es/src/index.mjs"
   },

@@ -15,10 +15,10 @@ export type InitStateType<StateType> = import("reshow-flux-base").InitStateType<
  * call setState will trigger re-render.
  * could use setState for partial update.
  *
- * @template StateType
+ * @template [StateType=StateMap]
  * @param {InitStateType<StateType>} [initialState]
  * @returns {[StateMap, import("reshow-flux-base").DispatchType<StateMap, ActionObject>]}
  */
-declare function useImmutable<StateType>(initialState?: InitStateType<StateType>): [StateMap, import("reshow-flux-base").DispatchType<StateMap, ActionObject>];
+declare function useImmutable<StateType = StateMap>(initialState?: InitStateType<StateType>): [StateMap, import("reshow-flux-base").DispatchType<StateMap, ActionObject>];
 import { StateMap } from "./ImmutableStore";
 import { ActionObject } from "reshow-flux-base";

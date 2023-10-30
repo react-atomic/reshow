@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { expect } from "chai";
-import { render, cleanIt, waitFor, getSinon } from "reshow-unit";
+import { render, cleanIt } from "reshow-unit";
 
 import useEnable from "../useEnable";
 

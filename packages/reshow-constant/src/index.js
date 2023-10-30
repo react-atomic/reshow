@@ -30,7 +30,7 @@ export const TYPE_ERROR = "TypeError";
 export const KEYS = Object.keys;
 export const IS_ARRAY = Array.isArray;
 /**
- * @param {object|string} [o]
+ * @param {object|string?=} o
  * @returns {number}
  */
 export const OBJ_SIZE = (o) => (o ? KEYS(o).length : 0);

@@ -21,7 +21,7 @@ import { ActionObject } from "reshow-flux-base";
  * call setState will trigger re-render.
  * could use setState for partial update.
  *
- * @template StateType
+ * @template [StateType=StateMap]
  * @param {InitStateType<StateType>} [initialState]
  * @returns {[StateMap, import("reshow-flux-base").DispatchType<StateMap, ActionObject>]}
  */

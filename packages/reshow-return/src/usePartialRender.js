@@ -14,10 +14,14 @@ import Return from "./ui/organisms/Return";
  */
 
 /**
+ * @typedef {string[]|Immutable.Seq} RenderKeysType
+ */
+
+/**
  * @template ChildrenType
- * @param {string[]|Immutable.Seq} [initRenderKeys]
+ * @param {RenderKeysType} [initRenderKeys]
  * @param {{[key: string]: React.ReactElement}|Immutable.Map<string,React.ReactElement>} [initChildren]
- * @returns {[React.ReactElement[], DispatchType<any, ChildrenType>, DispatchType<any, string[]>]}
+ * @returns {[React.ReactElement[], DispatchType<any, ChildrenType>, DispatchType<any, RenderKeysType>]}
  */
 const usePartialRender = (initRenderKeys, initChildren) => {
   const [renderStore, setPartialRender] = useReduceStore(
