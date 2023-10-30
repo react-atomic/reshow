@@ -15,7 +15,7 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@babel/cli@^7.x":
+"@babel/cli@^7.23.0", "@babel/cli@^7.x":
   version "7.23.0"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.23.0.tgz#1d7f37c44d4117c67df46749e0c86e11a58cc64b"
   integrity sha512-17E1oSkGk2IwNILM4jtfAvgjt+ohmpfBky8aLerUfYZhiPNg7ca+CRCxZn8QDxwNhV/upsc2VHBCqGFIR+iBfA==
@@ -44,7 +44,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.23.2.tgz#6a12ced93455827037bfb5ed8492820d60fc32cc"
   integrity sha512-0S9TQMmDHlqAZ2ITT95irXKfxN9bncq8ZCoJhun3nHL/lLUxd2NKBJYoNGWH7S0hz6fRQwWlAWn/ILM0C70KZQ==
 
-"@babel/core@*", "@babel/core@^7.20.12", "@babel/core@^7.7.5", "@babel/core@^7.7.7", "@babel/core@^7.x":
+"@babel/core@*", "@babel/core@^7.20.12", "@babel/core@^7.23.0", "@babel/core@^7.7.5", "@babel/core@^7.7.7":
   version "7.23.2"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.23.2.tgz#ed10df0d580fff67c5f3ee70fd22e2e4c90a9f94"
   integrity sha512-n7s51eWdaWZ3vGT2tD4T7J6eJs3QoBXydv7vkUM06Bf1cbVD2Kc2UrkzhiQwobfV7NwOnQXYL7UBJ5VPU+RGoQ==
@@ -605,7 +605,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/plugin-transform-logical-assignment-operators@^7.22.11":
+"@babel/plugin-transform-logical-assignment-operators@*", "@babel/plugin-transform-logical-assignment-operators@^7.22.11":
   version "7.22.11"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-logical-assignment-operators/-/plugin-transform-logical-assignment-operators-7.22.11.tgz#24c522a61688bde045b7d9bc3c2597a4d948fc9c"
   integrity sha512-qQwRTP4+6xFCDV5k7gZBF3C31K34ut0tbEcTKxlX/0KXxm9GLcO14p570aWxFvVzx6QAfPgq7gaeIHXJC8LswQ==
@@ -1338,9 +1338,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.2.32"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.32.tgz#7ec787730c45ee9a3c0ed150b19e95c31fe4608a"
-  integrity sha512-F0FVIZQ1x5Gxy/VYJb7XcWvCcHR28Sjwt1dXLspdIatfPq1MVACfnBDwKe6ANLxQ64riIJooXClpUR6oxTiepg==
+  version "18.2.33"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.33.tgz#055356243dc4350a9ee6c6a2c07c5cae12e38877"
+  integrity sha512-v+I7S+hu3PIBoVkKGpSYYpiBT1ijqEzWpzQD62/jm4K74hPpSP7FF9BnKG6+fg2+62weJYkkBWDJlZt5JO/9hg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -1416,9 +1416,9 @@ acorn-jsx@^5.3.2:
   integrity sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==
 
 acorn@^8.9.0:
-  version "8.10.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.10.0.tgz#8be5b3907a67221a81ab23c7889c4c5526b62ec5"
-  integrity sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==
+  version "8.11.2"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.2.tgz#ca0d78b51895be5390a5903c5b3bdcdaf78ae40b"
+  integrity sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==
 
 agent-base@6:
   version "6.0.2"
@@ -1731,9 +1731,9 @@ call-bind@^1.0.0, call-bind@^1.0.2, call-bind@^1.0.4:
     set-function-length "^1.1.1"
 
 call-func@*, call-func@^0.3.6:
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.8.tgz#74590f063a7110e580defa57b63c3f7769ad894d"
-  integrity sha512-HtexdvxBTd/ovUvMkTqE0QKNpSom2TwWkiYmx6ONQLGWYhThWfOf6BY8N92T+WWgjju+Rf2c9DzYfdLzNspK4w==
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/call-func/-/call-func-0.3.9.tgz#343771fd28a980d838b25ca7e5140a832a23b8b1"
+  integrity sha512-HyJUPPC6wG0e/LSepXW0HWTbi9G6KdFP/3pTWJwQLQRVAD97+XThpw8CXRKEjEw7k+zYAh2qCqb8UHc5H+Vh7w==
   dependencies:
     reshow-constant "*"
     reshow-runtime "*"
@@ -1764,9 +1764,9 @@ camelcase@^6.0.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001541:
-  version "1.0.30001554"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001554.tgz#ba80d88dff9acbc0cd4b7535fc30e0191c5e2e2a"
-  integrity sha512-A2E3U//MBwbJVzebddm1YfNp7Nud5Ip+IPn4BozBmn4KqVX7AvluoIDFWjsv5OkGnKUXQVmMSoMKLa3ScCblcQ==
+  version "1.0.30001558"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001558.tgz#d2c6e21fdbfe83817f70feab902421a19b7983ee"
+  integrity sha512-/Et7DwLqpjS47JPEcz6VnxU9PwcIdVi0ciLXRWBQdj1XFye68pSQYpV0QtPTfUKWuOaEig+/Vez2l74eDc1tPQ==
 
 chai@*:
   version "4.3.10"
@@ -2168,9 +2168,9 @@ easing-lib@*:
     win-doc "*"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.567"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.567.tgz#c92e8fbc2bd15df3068d92571733a218a5413add"
-  integrity sha512-8KR114CAYQ4/r5EIEsOmOMqQ9j0MRbJZR3aXD/KFA8RuKzyoUB4XrUCg+l8RUGqTVQgKNIgTpjaG8YHRPAbX2w==
+  version "1.4.569"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.569.tgz#1298b67727187ffbaac005a7425490d157f3ad03"
+  integrity sha512-LsrJjZ0IbVy12ApW3gpYpcmHS3iRxH4bkKOW98y1/D+3cvDUWGcbzbsFinfUS8knpcZk/PG/2p/RnkMCYN7PVg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2536,9 +2536,9 @@ get-intrinsic@^1.0.2, get-intrinsic@^1.1.1, get-intrinsic@^1.1.3, get-intrinsic@
     hasown "^2.0.0"
 
 get-object-value@*, get-object-value@^0.6.5:
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.6.8.tgz#2f8b0e5ef7264adb227d5c57617d33ea9614d5b4"
-  integrity sha512-25odx19wWgtDZ9EXr1qb9qGLmE6FXX1k1rhMsuBSaE22gbb7bHwTUBnWIbxYjSIbSphjiUrJodaV1SpGBPvdBg==
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/get-object-value/-/get-object-value-0.6.9.tgz#69c5a070c0cd98196db720dd71ba74077bfa2888"
+  integrity sha512-3fr9lkf3xxQ4yHUaJMuPwFrNldUlkzSb8qFzKM505ZIbTLy3F4OXZL6d0OBLS5W51am+d66kJFq3qq0RDYotdA==
   dependencies:
     call-func "*"
     reshow-constant "*"
@@ -3693,9 +3693,9 @@ organism-react-animate@*:
     win-doc "*"
 
 organism-react-popup@*:
-  version "0.17.13"
-  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.17.13.tgz#5a44242e67f9e26387a1916a68ae359a94ee1705"
-  integrity sha512-qG+tHT0ymufETdjxOY3fLdUpgFSsq1Blvs7owrKowzxha35qfWMEWLfeMnjvTY/GGEcVtsqTgudOuSbQzglb3A==
+  version "0.17.14"
+  resolved "https://registry.yarnpkg.com/organism-react-popup/-/organism-react-popup-0.17.14.tgz#97b413a96e23a3b2714ecfd87a0b7607d17f4e60"
+  integrity sha512-NGdhmNpTWgWaG+17Hwvh3ut7uKuy5WZ3TZds+WOLB5xOx7dU+wfxCD9cD9HCi26DSoXw2LzMCKCtHeGF76JRFw==
   dependencies:
     array.merge "*"
     call-func "*"
@@ -3971,17 +3971,18 @@ randombytes@^2.1.0:
     safe-buffer "^5.1.0"
 
 react-atomic-atom@*:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-4.0.0.tgz#ff6fa0bc9feddf1d91b1c9e30f62ca94ddea11de"
-  integrity sha512-cyqMrltxLw8Cc6v1RvPpN7wouziL3KZAdULu+Dks3TVHTLRJv8bW7wQBW6mbPnFBVSG8ULeVsffH9h4vmNE4OA==
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-4.0.1.tgz#31f0a0ac07a814e4419290c3fdd5939c2c7e3419"
+  integrity sha512-BxsERZwVmpzZfgsR+upsx4vnZQ7uOxCTIGVYs8K5Z9z9eOL8x6lP5LfMY6/+elATsEi8cehhmdQ+5+89WrJQuQ==
   dependencies:
-    "@babel/cli" "^7.x"
-    "@babel/core" "^7.x"
+    "@babel/cli" "^7.23.0"
+    "@babel/core" "^7.23.0"
     "@babel/plugin-proposal-export-default-from" "*"
     "@babel/plugin-syntax-dynamic-import" "*"
     "@babel/plugin-transform-arrow-functions" "*"
     "@babel/plugin-transform-class-properties" "*"
     "@babel/plugin-transform-classes" "*"
+    "@babel/plugin-transform-logical-assignment-operators" "*"
     "@babel/plugin-transform-nullish-coalescing-operator" "*"
     "@babel/plugin-transform-object-assign" "*"
     "@babel/plugin-transform-object-rest-spread" "*"
@@ -4165,22 +4166,22 @@ requires-port@^1.0.0:
   integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
 
 reshow-build@*, reshow-build@^0.17.16:
-  version "0.17.24"
-  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.17.24.tgz#1ab47f3405fbb8e5f91added456311fda17dbb29"
-  integrity sha512-qOofSRMGcrfboVK+sEVfXg6YSzJsuFbwi/87fVdW9t0AHZECKCDDsEKG5CnFdW1B8fdkRsXOWFiUi0jrHez+UQ==
+  version "0.17.26"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-0.17.26.tgz#a1614d5b77e43d3ffe4ea128d7e001420677bdbe"
+  integrity sha512-Zgyi1+lkfiThDAelsKhSWcUvjrGB22ms+Gi99QH107jT3vO8JIT/yObc0m6SuIY56g+nqHxbLFGmPs1DKHUkJQ==
   dependencies:
     array.merge "*"
     reshow-constant "*"
 
 reshow-constant@*, reshow-constant@^0.17.4:
-  version "0.17.10"
-  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.17.10.tgz#38fc2118320b8d0cf84aa59afd7a520cc5d1228d"
-  integrity sha512-G1/F8KvBr2RFL9rtquIaUNa/7BvRjFZxQ2mcy4SWLWoWwNIkgNg0Sp/5MGRQDOuLqcla2QUTg+hk+SRnYgHTVQ==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/reshow-constant/-/reshow-constant-0.17.11.tgz#cf298d7c6f79a0d00b2d26d89a7ab7e325adf12b"
+  integrity sha512-rFcJmDbvDEkaE9T2zHkgRvbjQ3iXPSpBqqwmjvpASuzZyWXTEs9nSLx9e8WxI2eHBlluoA3ybnzr/zBmAOrpOg==
 
 reshow-flux-base@*:
-  version "0.17.47"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.47.tgz#ace2f45f802e639c26de425e31f3388559d26371"
-  integrity sha512-Kqxi5vBaXXgXLI2mYFs80904q8uT8CTYA0pwmUHO+oyJA9ubuN3fqYc2RaQQFqTLh8p6R3UuAMoszm+6ttw7KA==
+  version "0.17.48"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.17.48.tgz#5c786ce8c5b716807e5286f2e2840571fc46300d"
+  integrity sha512-8Qn4UZtOk9C44+YXsehIbWLVjrQ0NllpPPXYptXruUaFBofLN1Jqk2DICeh6zC93RWtzNt3rLivol5jSyPw5tA==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -4188,9 +4189,9 @@ reshow-flux-base@*:
     reshow-runtime "*"
 
 reshow-flux@*, reshow-flux@^0.17.x:
-  version "0.17.47"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.47.tgz#d297a120f0dab332c828739a10dd7eaece6a314f"
-  integrity sha512-xCSguqNNOcUZqEwnBddGM6KktXfnp8ooWgQBqgeozKQLi9PeyC2mWHJt6ZwLJCfQT86WIYbkDbeWOCj4aRNo7w==
+  version "0.17.52"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.17.52.tgz#b10bc3068101eb16a83f530decd712d8a22c3fb3"
+  integrity sha512-CxnU9eAXn691ADsO7GfQSzZVFxWbQlPprcYzZb4wZy2qYJFWSVOMRN4/UL9fpFoBuIQmI4+ctM3l588c7r0NvQ==
   dependencies:
     array.dedup "*"
     array.merge "*"
@@ -4204,9 +4205,9 @@ reshow-flux@*, reshow-flux@^0.17.x:
     reshow-runtime "*"
 
 reshow-hooks@*:
-  version "0.17.47"
-  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.47.tgz#816d15eccc0085dad7cc9169dd9f6730fec343a0"
-  integrity sha512-3ThKTiQj4suUS4cQXd7mM+3v06+fKG2sWDnQ7hcLY8R66A4RP1ErxUgqymmKY2lVbzTXP7uzQC29IvYOcODyNw==
+  version "0.17.50"
+  resolved "https://registry.yarnpkg.com/reshow-hooks/-/reshow-hooks-0.17.50.tgz#cf1eceb90f28a03033470f875d81d3bfd2ee3418"
+  integrity sha512-fKLnvU1J/DOK4SlRVHwE1HUzzF7OauPDBDCgJgd4jbWp9FDR5/OzKkb8OwKZuWQkqgKXAVTumzEVXVmwDDxBSQ==
   dependencies:
     call-func "*"
     reshow-build "*"
@@ -4214,9 +4215,9 @@ reshow-hooks@*:
     win-doc "*"
 
 reshow-return@*:
-  version "0.17.44"
-  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.44.tgz#f968e257feecfae4ecd1ce3393f5443f85ac3674"
-  integrity sha512-XqZj8b85rQPNQ3klT23K+EDRH6wx6uS/pmjpIzgzOc2QALBJ6KDCjL/YGNGLptLTt3rmFj+pUnO3Fj8Ovq/2Lw==
+  version "0.17.48"
+  resolved "https://registry.yarnpkg.com/reshow-return/-/reshow-return-0.17.48.tgz#d2e013eb62c5659e17a3932aa72634ba65de5a25"
+  integrity sha512-BDI5YaPtVjgFrlQZ/nnNvavbcjX+BsH3vrS83qMm7t4rJX5Q17Mmsi3ZLY4NgqeB6/mEPiVWx0Ns5cZFE8vPuA==
   dependencies:
     call-func "*"
     get-object-value "*"
@@ -4236,9 +4237,9 @@ reshow-runtime@*, reshow-runtime@>=0.17.4, reshow-runtime@^0.17.15:
     reshow-constant "*"
 
 reshow-unit-dom@*:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.3.3.tgz#c2c6ccda9e4ba64fc7c89851cbe35a1567c383fa"
-  integrity sha512-mUnNzZcci4smAd0ZhDl/3HK0riDKId++AGb0Py8GgGm9PtPfcpkDYqWQaA3uKw2Yn1KgUhO4vYZGWFku33sOEw==
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.3.4.tgz#8205b94c20447f4040362eab888c158924495df0"
+  integrity sha512-V+m4YdcD1rBmK9G+nbC5Kz7wO6asp04OC89o5fGbW7X2c4H9NGr+WjsokPgw/8D5xUYYSEf0U8fx4vQbOgcGzw==
   dependencies:
     "@types/mocha" "*"
     chai "*"
@@ -4254,9 +4255,9 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@^0.17.x:
-  version "0.17.34"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.34.tgz#9ea31f8ecbd3eae248a83bc9c92afef7c4c75aed"
-  integrity sha512-+LpNHQbwCfIXrhHeHDazMJeUs7xzEDIOzUwK6A0esiLNvo2mJe/RNCOcdj/6IjuRvaIqlAolsZnTyRMHbCaseg==
+  version "0.17.35"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.17.35.tgz#a335bad02bf989730a94b67dc8c941c847bc1b6e"
+  integrity sha512-SsAT8Q7YRukxrkEnUBo8kWkofZ17wOn77no2sKl1iXcfKsl/mFvPCyCWFU/9fzXSce8K5Mddm9rfF+wL7pTYsQ==
   dependencies:
     "@babel/cli" "^7.x"
     "@babel/core" "^7.20.12"
@@ -4273,9 +4274,9 @@ reshow-unit@^0.17.x:
     win-doc "*"
 
 reshow@^0.17.x:
-  version "0.17.29"
-  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.29.tgz#c8e638c5f80e84ae665e5f81020344cfabc67282"
-  integrity sha512-TUURTOQ5kM5aQ9txQ0zo7zbimCkZlEhKO0yRHJxWgblyEedzrz2kx1/4FLeW36T8y3zLnUZrhsXotEc1+h6i2g==
+  version "0.17.31"
+  resolved "https://registry.yarnpkg.com/reshow/-/reshow-0.17.31.tgz#9c4c3c8eb007fcc010dd97c61fd89b40ae931172"
+  integrity sha512-85WcjBBNqJRVN4FMSnsMQ8ICPVabAkMRZ5foX2HBJyyg4niX7WPvvI5LtUEZdDqgV+KH4KwP9oYIre8B8hbqkA==
   dependencies:
     call-func "*"
     get-storage "*"
@@ -4932,9 +4933,9 @@ which@2.0.2, which@^2.0.1:
     isexe "^2.0.0"
 
 win-doc@*, win-doc@^0.3.2:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/win-doc/-/win-doc-0.3.3.tgz#4e0c2b39eabbbbcd6512afffe4b90cda38c57c17"
-  integrity sha512-TcIHnGL1wHzdozgIsEhDaMxpVvYtKDjG0/1M4pREfoswif2ysCRR3Zrhhfu99p4IAsbfN1V4SLKFcynGQwE3Ng==
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/win-doc/-/win-doc-0.3.4.tgz#0312f18e7bc3840ebfcc50de5d9b6c4d8e40815a"
+  integrity sha512-HsSXPOZkRIZVuC295mSd7Z1XsdZ4DctqW+A0goEo/QZfixuhmoJc7QjkCBqCCo0dF1GBQd4FLmQEUtLd8oBbdA==
   dependencies:
     reshow-constant "*"
     reshow-runtime "*"
