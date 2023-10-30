@@ -8,9 +8,6 @@ declare const myConnectOptions: {
     calculateState: typeof connectOptions.calculateState;
     reset: typeof connectOptions.reset;
 };
-declare const ReshowReturn: {
-    (props: import("reshow-return/types/ui/organisms/Return").ReturnProps): JSX.Element;
-    displayName: string;
-};
+declare const ReshowReturn: import("react").ElementType<any>;
 import { connectOptions } from "reshow-return";
 export { myConnectOptions as connectOptions, ReshowReturn as Return };
