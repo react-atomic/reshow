@@ -17,6 +17,7 @@
     "reshow-unit-dom": "*"
   },
   "exports": {
+    "types": "./types/index.d.ts",
     "require": "./build/cjs/src/index.js",
     "import": "./build/es/src/index.mjs"
   },
