@@ -1,5 +1,6 @@
 /**
  * !! Important !! if update this file, need take care ie10 inherit
+ * @see https://github.com/wesleytodd/setprototypeof/blob/master/index.js
  */
 
 import _defaults from "./defaults";
