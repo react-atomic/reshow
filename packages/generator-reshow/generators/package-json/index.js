@@ -81,7 +81,7 @@ module.exports = class extends YoGenerator {
           data.devDependencies["react-dom"] = "^18.x";
           data.devDependencies["reshow-unit"] = "*";
           data.scripts["build:type"] = getUIBuildTypeScript(
-            "src/**/*.js src/ui/**/*.jsx"
+            "src/ui/**/*.jsx"
           );
           delete data.devDependencies["reshow-unit-dom"];
         }
