@@ -28,7 +28,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
 
 /**
  * @typedef {object} ComponentOption
- * @property {Component} [wrap]
+ * @property {Component} [altWrap] This will only be used when the original component is not a valid element.
  * @property {boolean} [doCallFunction]
  */
 
@@ -41,7 +41,7 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
  */
 const buildFunc = (component, props, child, componentOption) => {
   // anonymous function will call directly
-  const { wrap, doCallFunction } = componentOption || {};
+  const { altWrap, doCallFunction } = componentOption || {};
   if (
     (FUNCTION === typeof component &&
       (!component.name || "children" === component.name)) ||
@@ -54,8 +54,8 @@ const buildFunc = (component, props, child, componentOption) => {
       const el = component(props);
       return isValidElement(el)
         ? el
-        : wrap
-        ? buildReact(wrap, props, el)
+        : altWrap
+        ? buildReact(altWrap, props, el)
         : buildReact(el, props);
     } catch (e) {
       if (e.name === TYPE_ERROR) {
@@ -114,11 +114,11 @@ const build =
       return T_NULL;
     }
 
-    const { wrap } = componentOption || {};
-    if (wrap) {
+    const { altWrap } = componentOption || {};
+    if (altWrap) {
       if (FUNCTION !== typeof component && !isValidElement(component)) {
         child = component;
-        component = wrap;
+        component = altWrap;
       }
     }
 

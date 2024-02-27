@@ -4,7 +4,10 @@ export type Component = React.ComponentType | React.ReactNode | Function;
 export type RefType = import('./mergeRef').RefType;
 export type BuildProps = object;
 export type ComponentOption = {
-    wrap?: Component;
+    /**
+     * This will only be used when the original component is not a valid element.
+     */
+    altWrap?: Component;
     doCallFunction?: boolean;
 };
 /**

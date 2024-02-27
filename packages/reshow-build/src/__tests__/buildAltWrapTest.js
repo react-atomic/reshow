@@ -7,19 +7,19 @@ import { render } from "reshow-unit";
 
 import build from "../index";
 
-describe("Test wrap", () => {
-  it("test build with wrap", () => {
+describe("Test altWrap", () => {
+  it("test build with altWrap", () => {
     const FakeDom = () => {
-      return build("test", { wrap: <div /> })();
+      return build("test", { altWrap: <div /> })();
     };
     const wrap = render(<FakeDom />);
     expect(wrap.html()).to.equal("<div>test</div>");
   });
 
-  it("test wrap after function call", () => {
+  it("test altWrap after function call", () => {
     const FakeDom = () => {
       return build(() => "after-func-call", {
-        wrap: "div",
+        altWrap: "div",
         doCallFunction: true,
       })({ "data-foo": "bar" });
     };
@@ -27,7 +27,7 @@ describe("Test wrap", () => {
     expect(wrap.html()).to.equal('<div data-foo="bar">after-func-call</div>');
   });
 
-  it("test wrap after function call and unset props", () => {
+  it("test altWrap after function call and unset props", () => {
     const FakeDom = () => {
       return build(
         (props) => {
@@ -35,7 +35,7 @@ describe("Test wrap", () => {
           return "after-func-call";
         },
         {
-          wrap: "div",
+          altWrap: "div",
           doCallFunction: true,
         }
       )({ "data-foo": "foo", "data-bar": "bar" });

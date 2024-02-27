@@ -34,20 +34,20 @@ describe("Test build function", () => {
     const func = (/**@type any*/ props) => <div {...props} />;
     const actual = build(func)({ foo: "barbar" });
     // will return react instance
-    expect(actual.props.foo).to.equal("barbar");
+    expect(actual?.props.foo).to.equal("barbar");
     expect(isValidElement(actual)).to.be.true;
   });
 
   it("test with func and child", () => {
     const result = build(() => "div")({ foo: "bar" }, "hello child");
-    expect(result.props.children).to.equal("hello child");
-    expect(result.props.foo).to.equal("bar");
+    expect(result?.props.children).to.equal("hello child");
+    expect(result?.props.foo).to.equal("bar");
   });
 
   it("test function with wrap return", () => {
-    const actual = build(() => "foo", { wrap: "div" })({ foo: "barbar" });
-    expect(actual.type).to.equal("div");
-    expect(actual.props.foo).to.equal("barbar");
+    const actual = build(() => "foo", { altWrap: "div" })({ foo: "barbar" });
+    expect(actual?.type).to.equal("div");
+    expect(actual?.props.foo).to.equal("barbar");
   });
 
   it("test with empty", () => {
@@ -65,13 +65,14 @@ describe("Test build with key", () => {
   it("with one child", () => {
     const comp = <div />;
     const buildComp = build(comp)({ key: "foo" });
-    expect(buildComp.key).to.equal("foo");
+    expect(buildComp?.key).to.equal("foo");
   });
 
   it("with multi child", () => {
     const comp = <div />;
     const buildComp = build([comp, comp])({ key: "foo" });
-    expect(buildComp.props.children[0].key !== buildComp.props.children[1].key)
-      .be.true;
+    expect(
+      buildComp?.props.children[0].key !== buildComp?.props.children[1].key
+    ).be.true;
   });
 });
