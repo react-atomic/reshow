@@ -53,7 +53,9 @@ const buildFunc = (component, props, child, componentOption) => {
       }
       const el = component(props);
       return isValidElement(el)
-        ? el
+        ? null !== props.key
+          ? buildReact(el, { key: props.key })
+          : el
         : altWrap
         ? buildReact(altWrap, props, el)
         : buildReact(el, props);
