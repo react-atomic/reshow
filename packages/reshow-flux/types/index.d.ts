@@ -5,5 +5,6 @@ export { default as useStore } from "./useStore";
 export { default as toJS } from "./toJS";
 export type CalculateStateCallback = import("./useConnect").CalculateStateCallback;
 export type StateMap = import("./ImmutableStore").StateMap;
-export type ReducerTypeWithMap = import("./ImmutableStore").ReducerTypeWithMap;
+export type MaybeMapType = import("./ImmutableStore").MaybeMapType;
+export type ReducerTypeWithMap<StateType = import("./ImmutableStore").StateMap, ActionType = import("./ImmutableStore").MaybeMapType> = import("./ImmutableStore").ReducerTypeWithMap<StateType, ActionType>;
 export { default as ImmutableStore, equal, forEachMap, fromJS, mergeMap, Map, Set } from "./ImmutableStore";

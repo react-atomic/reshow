@@ -9,7 +9,13 @@
  */
 
 /**
- * @typedef {import("./ImmutableStore").ReducerTypeWithMap} ReducerTypeWithMap
+ * @typedef {import("./ImmutableStore").MaybeMapType} MaybeMapType
+ */
+
+/**
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
+ * @typedef {import("./ImmutableStore").ReducerTypeWithMap<StateType, ActionType>} ReducerTypeWithMap
  */
 
 export { default as useConnect } from "./useConnect";
