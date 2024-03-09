@@ -1,4 +1,5 @@
 export type CallableWrapper = object;
+export type SinonSandbox = import("sinon").SinonSandbox;
 export type CleanItProps = {
     debug?: any;
 };
@@ -20,13 +21,17 @@ export function jsdom(html: string, options?: any): any;
  */
 export function hideConsoleError(toThrow?: boolean | Function): void;
 /**
+ * @typedef {import("sinon").SinonSandbox} SinonSandbox
+ */
+/**
  * @see https://sinonjs.org/releases/latest/sandbox/
  * @param {any} [options]
+ * @returns {SinonSandbox}
  */
-export function getSinon(options?: any): any;
+export function getSinon(options?: any): SinonSandbox;
 /**
  * @param {function} cb
  * @param {number} delay
- * @returns {Promise}
+ * @returns {Promise<null>}
  */
-export function sleep(cb: Function, delay: number): Promise<any>;
+export function sleep(cb: Function, delay: number): Promise<null>;

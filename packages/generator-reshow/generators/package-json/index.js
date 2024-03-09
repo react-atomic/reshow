@@ -1,7 +1,7 @@
 const { YoGenerator, YoHelper } = require("yo-reshow");
 
 const getUIBuildTypeScript = (filePattern) =>
-  `npx -p typescript tsc src/*.js ${filePattern} --jsx react-jsx --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types`;
+  `npx -p typescript tsc src/*.js ${filePattern} --jsx react-jsx --lib esnext,dom --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types`;
 
 /**
  * package-json Generator

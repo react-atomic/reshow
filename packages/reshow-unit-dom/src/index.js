@@ -51,8 +51,13 @@ const hideConsoleError = (toThrow) => {
 };
 
 /**
+ * @typedef {import("sinon").SinonSandbox} SinonSandbox
+ */
+
+/**
  * @see https://sinonjs.org/releases/latest/sandbox/
  * @param {any} [options]
+ * @returns {SinonSandbox}
  */
 const getSinon = (options) => {
   if (sinonWrapper.current) {
@@ -60,7 +65,7 @@ const getSinon = (options) => {
     sinonWrapper.current = null;
   }
   sinonWrapper.current = sinon.createSandbox(options);
-  return sinonWrapper.current;
+  return /**@type SinonSandbox*/ (sinonWrapper.current);
 };
 
 /**
@@ -94,7 +99,7 @@ const cleanIt = (props) => {
 /**
  * @param {function} cb
  * @param {number} delay
- * @returns {Promise}
+ * @returns {Promise<null>}
  */
 const sleep = (cb, delay) =>
   new Promise((resolve) => {
