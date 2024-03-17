@@ -1,10 +1,10 @@
 // @ts-check
 
 import * as React from "react";
+import * as sinon from "sinon";
 import { expect } from "chai";
 import { act, render, waitFor } from "reshow-unit";
 import { createReducer } from "reshow-flux-base";
-import sinon from "sinon";
 
 import useStore from "../useStore";
 import ImmutableStore from "../ImmutableStore";

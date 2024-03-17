@@ -4,8 +4,9 @@
  */
 
 import { expect } from "chai";
-import sinon from "sinon";
+import * as sinon from "sinon";
 import createReducer from "../createReducer";
+import { ActionObject } from "../type";
 
 describe("Test createReducer", () => {
   let reducer;
@@ -47,6 +48,29 @@ describe("Test createReducer", () => {
       expect(store.getState()).to.deep.equal({ foo: false });
       dispatch(true);
       expect(store.getState()).to.deep.equal({ foo: true });
+    });
+  });
+
+  describe("Test dispatch more type", () => {
+    it("dispatch with number also could include string", () => {
+      const [store, dispatch] = createReducer(
+        (_state, /**@type number*/ action) => ({ foo: action }),
+        { foo: 1 }
+      );
+      expect(store.getState()).to.deep.equal({ foo: 1 });
+      dispatch("");
+      expect(store.getState()).to.deep.equal({ foo: { type: "" } });
+    });
+    it("dispatch with string", () => {
+      const [store, dispatch] = createReducer(
+        (_state, /**@type ActionObject*/ action) => {
+          return { foo: action.type };
+        },
+        { foo: "bar" }
+      );
+      expect(store.getState()).to.deep.equal({ foo: "bar" });
+      dispatch("");
+      expect(store.getState()).to.deep.equal({ foo: "" });
     });
   });
 

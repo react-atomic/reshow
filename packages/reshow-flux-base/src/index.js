@@ -14,7 +14,7 @@
 /**
  * @template StateType
  * @template ActionType
- * @typedef {import("./createReducer").DispatchType<StateType, ActionType>} DispatchType
+ * @typedef {import("./createReducer").DispatchFunction<StateType, ActionType>} DispatchFunction
  */
 
 export { default as createReducer, refineAction } from "./createReducer";

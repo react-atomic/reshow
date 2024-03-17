@@ -8,23 +8,33 @@
  * @interface
  */
 export class ActionObject {
-    /** @type {string|SAFE_UNDEFINED=} */
-    type: (string | SAFE_UNDEFINED) | undefined;
-    /** @type {Payload=} */
-    params: Payload | undefined;
+    /** @type {string} */
+    type: string;
+    /** @type {?Payload=} */
+    params: (Payload | null) | undefined;
 }
 /**
- * @template [ActionType=ActionObject]
- * @typedef {ActionType} RefineAction
+ * @template [ActionType = ActionObject]
+ * @typedef {ActionType|ActionObject} RefinedAction
  */
 /**
  * @template StateType
  * @template ActionType
+ *
  * @callback FluxHandler
  * @param {StateType} NextState
- * @param {RefineAction<ActionType>} Action
+ * @param {RefinedAction<ActionType>} Action
  * @param {StateType} PrevState
  * @returns{any}
+ */
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @callback EmitterEmitCall
+ * @param {StateType} state
+ * @param {RefinedAction<ActionType>} action
+ * @param {StateType} prevState
  */
 /**
  * @template StateType
@@ -45,14 +55,6 @@ export class ActionObject {
  * @callback EmitterRemoveCall
  * @param {FluxHandler<StateType, ActionType>} handler
  * @returns {FluxHandler<StateType, ActionType>[]}
- */
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterEmitCall
- * @param {StateType} state
- * @param {RefineAction<ActionType>} action
- * @param {StateType} prevState
  */
 /**
  * @template StateType
@@ -88,9 +90,9 @@ export type Payload = {
     [x: string]: any;
 };
 export type SAFE_UNDEFINED = import("reshow-constant").SAFE_UNDEFINED;
-export type RefineAction<ActionType = ActionObject> = ActionType;
-export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefineAction<ActionType>, PrevState: StateType) => any;
+export type RefinedAction<ActionType = ActionObject> = ActionType | ActionObject;
+export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefinedAction<ActionType>, PrevState: StateType) => any;
+export type EmitterEmitCall<StateType, ActionType> = (state: StateType, action: RefinedAction<ActionType>, prevState: StateType) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
 export type EmitterAddCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => number;
 export type EmitterRemoveCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => FluxHandler<StateType, ActionType>[];
-export type EmitterEmitCall<StateType, ActionType> = (state: StateType, action: RefineAction<ActionType>, prevState: StateType) => any;

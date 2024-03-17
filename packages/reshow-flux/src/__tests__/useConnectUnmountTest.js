@@ -4,7 +4,7 @@ const { PureComponent } = React;
 
 import { expect } from "chai";
 import { render, act } from "reshow-unit";
-import sinon from "sinon";
+import * as sinon from "sinon";
 import { createReducer } from "reshow-flux-base";
 
 import useConnect from "../useConnect";

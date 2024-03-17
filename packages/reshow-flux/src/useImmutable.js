@@ -23,7 +23,7 @@ import { ActionObject } from "reshow-flux-base";
  *
  * @template [StateType=StateMap]
  * @param {InitStateType<StateType>} [initialState]
- * @returns {[StateMap, import("reshow-flux-base").DispatchType<StateMap, ActionObject>]}
+ * @returns {[StateMap, import("reshow-flux-base").DispatchFunction<StateMap, ActionObject>]}
  */
 const useImmutable = (initialState) => {
   const lastReduce = useRef(/** @type any */ (null));

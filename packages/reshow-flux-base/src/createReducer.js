@@ -2,7 +2,7 @@
 
 import callfunc from "call-func";
 import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
-import { StoreObject, Emiter } from "./type";
+import { StoreObject, Emiter, ActionObject } from "./type";
 
 /**
  * @template StateType
@@ -12,7 +12,7 @@ import { StoreObject, Emiter } from "./type";
 
 /**
  * @template ActionType
- * @typedef {import('./type').RefineAction<ActionType>} RefineAction
+ * @typedef {import('./type').RefinedAction<ActionType>} RefinedAction
  */
 
 /**
@@ -22,6 +22,7 @@ import { StoreObject, Emiter } from "./type";
 /**
  * @template StateType
  * @template ActionType
+ *
  * @callback DispatchCallback
  * @param {StateType} State
  * @returns {ActionType}
@@ -30,7 +31,7 @@ import { StoreObject, Emiter } from "./type";
 /**
  * @template StateType
  * @template ActionType
- * @typedef {ActionType|DispatchCallback<StateType, ActionType>} DispatchAction
+ * @typedef {string|ActionType|DispatchCallback<StateType, ActionType>} DispatchAction
  */
 
 /**
@@ -78,10 +79,11 @@ const getMitt = () => {
  *
  * @template StateType
  * @template ActionType
+ *
  * @param {DispatchAction<StateType, ActionType>} action
  * @param {Payload} [params]
  * @param {StateType} [prevState]
- * @returns {RefineAction<ActionType>} lazy actions
+ * @returns {ActionObject|ActionType} lazy actions
  */
 export const refineAction = (action, params, prevState) => {
   let nextAction = NEW_OBJ();
@@ -103,9 +105,10 @@ export const refineAction = (action, params, prevState) => {
 /**
  * @template StateType
  * @template ActionType
+ *
  * @callback ReducerType
- * @param {StateType} StateArg
- * @param {RefineAction<ActionType>} ActionArg
+ * @param {StateType} ReducerState
+ * @param {ActionType} ReducerAction
  * @returns {StateType}
  */
 
@@ -117,7 +120,8 @@ export const refineAction = (action, params, prevState) => {
 /**
  * @template StateType
  * @template ActionType
- * @callback DispatchType
+ *
+ * @callback DispatchFunction
  * @param {DispatchAction<StateType, ActionType>} action
  * @param {Payload} [actionParams]
  * @returns {StateType} endingState
@@ -126,27 +130,28 @@ export const refineAction = (action, params, prevState) => {
 /**
  * @template StateType
  * @template ActionType
+ *
  * @param {ReducerType<StateType, ActionType>} reducer
  * @param {InitStateType<StateType>} [initState]
- * @returns {[StoreObject<StateType, ActionType>, DispatchType<StateType, ActionType>]}
+ * @returns {[StoreObject<StateType, ActionType>, DispatchFunction<StateType, ActionType>]}
  */
 const createReducer = (reducer, initState) => {
   const state = { current: callfunc(initState) };
   const mitt = getMitt();
   /**
-   * @type {DispatchType<StateType, ActionType>}
+   * @type {DispatchFunction<StateType, ActionType>}
    */
   const dispatch = (action, actionParams) => {
     const startingState = state.current;
-    const thisAction = refineAction(action, actionParams, startingState);
-    const endingState = reducer(startingState, thisAction);
+    const refinedAction = refineAction(action, actionParams, startingState);
+    const endingState = reducer(startingState, /**@type any*/ (refinedAction));
     if (endingState === T_UNDEFINED) {
       console.trace();
       throw `reducer() return ${UNDEFINED}.`;
     }
     if (startingState !== endingState) {
       state.current = endingState;
-      mitt.emit(endingState, thisAction, startingState);
+      mitt.emit(endingState, refinedAction, startingState);
     }
     return endingState;
   };

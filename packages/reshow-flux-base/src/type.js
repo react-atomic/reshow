@@ -12,25 +12,36 @@
  * @interface
  */
 export class ActionObject {
-  /** @type {string|SAFE_UNDEFINED=} */
+  /** @type {string} */
   type;
-  /** @type {Payload=} */
+  /** @type {?Payload=} */
   params;
 }
 
 /**
- * @template [ActionType=ActionObject]
- * @typedef {ActionType} RefineAction
+ * @template [ActionType = ActionObject]
+ * @typedef {ActionType|ActionObject} RefinedAction
  */
 
 /**
  * @template StateType
  * @template ActionType
+ *
  * @callback FluxHandler
  * @param {StateType} NextState
- * @param {RefineAction<ActionType>} Action
+ * @param {RefinedAction<ActionType>} Action
  * @param {StateType} PrevState
  * @returns{any}
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @callback EmitterEmitCall
+ * @param {StateType} state
+ * @param {RefinedAction<ActionType>} action
+ * @param {StateType} prevState
  */
 
 /**
@@ -54,15 +65,6 @@ export class ActionObject {
  * @callback EmitterRemoveCall
  * @param {FluxHandler<StateType, ActionType>} handler
  * @returns {FluxHandler<StateType, ActionType>[]}
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterEmitCall
- * @param {StateType} state
- * @param {RefineAction<ActionType>} action
- * @param {StateType} prevState
  */
 
 /**
