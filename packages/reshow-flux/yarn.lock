@@ -857,9 +857,9 @@ camelcase@^6.0.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001587:
-  version "1.0.30001597"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001597.tgz#8be94a8c1d679de23b22fbd944232aa1321639e6"
-  integrity sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==
+  version "1.0.30001598"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001598.tgz#88e20ae1a1969d904dae97d538154a275893afef"
+  integrity sha512-j8mQRDziG94uoBfeFuqsJUNECW37DXpnvhcMJMdlH2u3MRkq1sAI0LJcXP1i/Py0KbSIC4UDj8YHPrTn5YsL+Q==
 
 chai@^4.x:
   version "4.4.1"
@@ -1206,9 +1206,9 @@ dom-accessibility-api@^0.5.9:
   integrity sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==
 
 electron-to-chromium@^1.4.668:
-  version "1.4.707"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.707.tgz#77904f87432b8b50b8b8b654ba3940d2bef48d63"
-  integrity sha512-qRq74Mo7ChePOU6GHdfAJ0NREXU8vQTlVlfWz3wNygFay6xrd/fY2J7oGHwrhFeU30OVctGLdTh/FcnokTWpng==
+  version "1.4.708"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.708.tgz#d54d3b47cb44ae6b190067439c42135456907893"
+  integrity sha512-iWgEEvREL4GTXXHKohhh33+6Y8XkPI5eHihDmm8zUk5Zo7HICEW+wI/j5kJ2tbuNUCXJ/sNXa03ajW635DiJXA==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2857,9 +2857,9 @@ reshow-constant@*:
   integrity sha512-rFcJmDbvDEkaE9T2zHkgRvbjQ3iXPSpBqqwmjvpASuzZyWXTEs9nSLx9e8WxI2eHBlluoA3ybnzr/zBmAOrpOg==
 
 reshow-flux-base@*:
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.18.1.tgz#b95d57fb2707b0b5f96de470a94e152dc99ed316"
-  integrity sha512-Jf2EsK3Ut+ksmgKgnScyogO10zf/RUXojTTrM7KnvT7kg6HYpkPGWLiCTJC1UOPNuXzv0mykCxHAEaQAe+pbYw==
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.18.2.tgz#4c209d25351db04dfb01328c5b5048689d7a1855"
+  integrity sha512-rxLbFf2RFocgVrWhadFHtv0/32fuRPJyq/IF9Wv0SKXAcFDA3TC+QiqfSGqEaz2thHO84gUIH/0HjeFKOFbnkg==
   dependencies:
     call-func "*"
     get-object-value "*"

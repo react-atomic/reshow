@@ -54,6 +54,7 @@ class ImmutableStoreObject extends StoreObject {
 /**
  * @template [StateType=StateMap]
  * @template [ActionType=MaybeMapType]
+ *
  * @callback ReducerTypeWithMap
  * @param {StateType} state
  * @param {ActionType} action
@@ -148,12 +149,13 @@ const defaultReducer = (state, action) => mergeMap(state, action);
 /**
  * @template [StateType=StateMap]
  * @template [ActionType=MaybeMapType]
+ *
  * @param {ReducerTypeWithMap<StateType, ActionType>?} [reducer]
  * @param {import("reshow-flux-base").InitStateType<StateType>} [initState]
  *
  * @returns {[ImmutableStoreObject<StateType, ActionType>, dispatch]}
  */
-const ImmutableStore = (reducer, initState) => {
+export default function ImmutableStore(reducer, initState) {
   const nextReducer = /**@type ReducerTypeWithMap<StateType, ActionType>*/ (
     reducer || defaultReducer
   );
@@ -171,7 +173,6 @@ const ImmutableStore = (reducer, initState) => {
     getMap: (/** @type MapKeyType */ k) => getMap(store.getState(), k),
   };
   return [nextStore, dispatch];
-};
+}
 
-export default ImmutableStore;
 export { equal, forEachMap, fromJS, mergeMap, Map, Set };
