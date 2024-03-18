@@ -10,7 +10,7 @@ import Return from "./ui/organisms/Return";
 /**
  * @template StateType
  * @template ActionType
- * @typedef {import('reshow-flux-base').DispatchType<StateType, ActionType>} DispatchType
+ * @typedef {import('reshow-flux-base').DispatchFunction<StateType, ActionType>} DispatchType
  */
 
 /**

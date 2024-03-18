@@ -14,7 +14,7 @@ import connectOptions from "./connectOptions";
 
 /**
  * @callback UseReturnType
- * @param {import('./connectOptions').InitStatesProps} initStates
+ * @param {import('./connectOptions').InitStatesType} initStates
  * @param {import("reshow-flux-base").StoreObject} store
  * @param {UseReturnPayLoad} [payload]
  */

@@ -7,13 +7,13 @@ import { T_TRUE, T_FALSE } from "reshow-constant";
 import getStore from "./getStore";
 
 const handleShouldComponentUpdate = ({
-  options,
+  calOptions,
   shouldComponentUpdate,
   calculateState,
   prev,
   props,
 }) => {
-  const nextState = calculateState(prev.state, options);
+  const nextState = calculateState(prev.state, calOptions);
   const bUpdate = shouldComponentUpdate
     ? shouldComponentUpdate({ prev, nextProps: props, nextState })
     : nextState !== prev.state;
@@ -31,6 +31,10 @@ const handleShouldComponentUpdate = ({
 };
 
 /**
+ * @typedef {Record<string, any>} StateObject
+ */
+
+/**
  * @template StateType
  * @template ActionType
  * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
@@ -41,11 +45,19 @@ const handleShouldComponentUpdate = ({
  * @template ActionType
  * @typedef {object} UseConnectWithStore
  * @property {StoreObject<StateType, ActionType>} store
- * @property {any} [storeSyncState]
  */
 
 /**
- * @typedef {function(object, object): object} CalculateStateCallback
+ * @callback CalculateStateCallback
+ * @param {StateObject} prevState
+ * @param {any} calculateOptions
+ * @returns {StateObject}
+ */
+
+/**
+ * @callback GetStateCallback
+ * @param {StateObject} props
+ * @returns {StateObject}
  */
 
 /**
@@ -63,8 +75,9 @@ const useConnect =
    * @template StateType
    * @template ActionType
    * @param {UseConnectOption<StateType, ActionType>} inputOptions
+   * @returns {GetStateCallback}
    */
-  (inputOptions) => (/** @type any */ props) => {
+  (inputOptions) => (props) => {
     /**
      * @type UseConnectWithStore<StateType, ActionType> & UseConnectOption<StateType, ActionType>
      */
@@ -74,11 +87,12 @@ const useConnect =
       shouldComponentUpdate,
       displayName = "useConnect",
     } = options;
+    const calOptions = /**@type any*/ (options);
 
     useDebugValue(displayName);
     const [data, setData] = useState(() => ({
       props,
-      state: calculateState({}, options),
+      state: calculateState({}, calOptions),
       __init__: T_FALSE,
     }));
 
@@ -94,12 +108,12 @@ const useConnect =
              * It's useful for synchronous programing to get correct data,
              * when it pass from reducer directly.
              */
-            options.storeSyncState = storeSyncState;
+            calOptions.storeSyncState = storeSyncState;
             setData((prev) =>
               handleShouldComponentUpdate({
-                options,
-                shouldComponentUpdate,
+                calOptions,
                 calculateState,
+                shouldComponentUpdate,
                 prev,
                 props,
               })

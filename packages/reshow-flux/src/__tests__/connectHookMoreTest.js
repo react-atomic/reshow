@@ -120,7 +120,7 @@ describe("Test Connect hook for more test", () => {
     const FakeComponent = (/**@type any*/ props) => {
       const state = useConnect({
         storeLocator: () => store,
-        calculateState: () => {},
+        calculateState: () => ({}),
       })(props);
       return <div role="udom" data-foo={state.foo} data-bar={props.bar} />;
     };

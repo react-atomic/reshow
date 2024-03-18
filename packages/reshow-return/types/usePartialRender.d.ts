@@ -1,10 +1,10 @@
 export default usePartialRender;
-export type DispatchType<StateType, ActionType> = import('reshow-flux-base').DispatchType<StateType, ActionType>;
+export type DispatchType<StateType, ActionType> = import('reshow-flux-base').DispatchFunction<StateType, ActionType>;
 export type RenderKeysType = string[] | import("immutable").Seq<any, any>;
 /**
  * @template StateType
  * @template ActionType
- * @typedef {import('reshow-flux-base').DispatchType<StateType, ActionType>} DispatchType
+ * @typedef {import('reshow-flux-base').DispatchFunction<StateType, ActionType>} DispatchType
  */
 /**
  * @typedef {string[]|Immutable.Seq} RenderKeysType

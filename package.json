@@ -1,5 +1,5 @@
 {
-  "version": "0.17.31",
+  "version": "0.18.0",
   "name": "reshow",
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
     "with-array": "*"
   },
   "devDependencies": {
-    "lerna": "^5.x",
+    "lerna": "^7.0.0",
     "react": "^18.x",
     "react-dom": "^18.x",
     "reshow-unit": "*"

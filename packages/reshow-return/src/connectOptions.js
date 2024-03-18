@@ -3,14 +3,7 @@
 import get from "get-object-value";
 import { toJS } from "reshow-flux";
 import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
-
-const getImmutable =
-  (/** @type boolean */ immutable) => (/** @type any */ data) =>
-    !immutable ? toJS(data) : data;
-
-/**
- * @typedef {any[]|object} InitStatesProps
- */
+import { StoreObject } from "reshow-flux-base";
 
 /**
  * @param {object} props
@@ -63,10 +56,22 @@ const stateValueGetter =
   };
 
 /**
- * @param {InitStatesProps} initStates
- * @returns {[any[], function(string):any]}
+ * @typedef {Record<string, string>} InitStateObject
  */
-const stateKeyLocator = (initStates) => {
+
+/**
+ * @typedef {Record<string, any>} StateObject
+ */
+
+/**
+ * @typedef { string[] | InitStateObject } InitStatesType
+ */
+
+/**
+ * @param {InitStatesType} initStates
+ * @returns {[initStates extends string[] ? initStates : (keyof InitStateObject)[], function(string):string]}
+ */
+export const stateKeyLocator = (initStates) => {
   let keys;
   let getNewKey;
   if (IS_ARRAY(initStates)) {
@@ -81,11 +86,30 @@ const stateKeyLocator = (initStates) => {
 };
 
 /**
- * @param {object} prevState
- * @param {object} options
- * @returns {object}
+ * @param {boolean} immutable
+ * @returns {function(any):any}
  */
-const calculateState = (prevState, options) => {
+const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
+
+/**
+ * @typedef {Object<string, string[]>} PathStates
+ */
+
+/**
+ * @typedef {object} calculateOptions
+ * @property {InitStatesType} initStates
+ * @property {StoreObject} store
+ * @property {PathStates=} pathStates
+ * @property {string[]=} excludeStates
+ * @property {boolean=} immutable
+ */
+
+/**
+ * @param {StateObject} prevState
+ * @param {calculateOptions} calculateOptions
+ * @returns {StateObject}
+ */
+const calculateState = (prevState, calculateOptions) => {
   /**
    * Why not support multi stores?
    * Because multi stores need handle complex data merge.
@@ -97,22 +121,29 @@ const calculateState = (prevState, options) => {
     excludeStates = [],
     immutable: optImmutable,
     store,
-  } = options;
+  } = calculateOptions;
 
   const getStateValue = stateValueGetter(store.getState());
 
   const immutable = optImmutable ?? getStateValue("immutable");
   const toImmutable = getImmutable(immutable);
-  const [stateKeys, newKey] = stateKeyLocator(initStates);
+  const [stateKeys, toNewKey] = stateKeyLocator(initStates);
 
   const results = {};
-  stateKeys.forEach((key) => {
-    const data = getStateValue(key);
-    results[newKey(key)] = toImmutable(data);
-  });
-  KEYS(pathStates || {}).forEach(
-    (key) => (results[key] = get(results, pathStates[key]))
+  stateKeys.forEach(
+    /**
+     * @param {string} key
+     */
+    (key) => {
+      const data = getStateValue(key);
+      results[toNewKey(key)] = toImmutable(data);
+    }
   );
+  if (pathStates) {
+    KEYS(pathStates || {}).forEach(
+      (key) => (results[key] = get(results, pathStates[key]))
+    );
+  }
 
   const resultKeys = KEYS(results);
   let bSame = true;
@@ -132,11 +163,7 @@ const calculateState = (prevState, options) => {
   return bSame ? prevState : results;
 };
 
-const connectOptions = {
+export default {
   calculateState,
   reset,
 };
-
-export default connectOptions;
-
-export { stateKeyLocator };

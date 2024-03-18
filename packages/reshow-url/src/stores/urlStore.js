@@ -24,7 +24,7 @@ class URL {
     this.loc = { ...loc };
   }
 
-  getHref(loc) {
+  getHref(_loc) {
     return this.loc.href;
   }
 

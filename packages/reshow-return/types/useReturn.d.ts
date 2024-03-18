@@ -13,7 +13,7 @@ export type UseReturnPayLoad = {
         nextState: any;
     }) => boolean;
 };
-export type UseReturnType = (initStates: import('./connectOptions').InitStatesProps, store: import("reshow-flux-base").StoreObject<any, any>, payload?: UseReturnPayLoad) => any;
+export type UseReturnType = (initStates: import('./connectOptions').InitStatesType, store: import("reshow-flux-base").StoreObject<any, any>, payload?: UseReturnPayLoad) => any;
 /**
  * @typedef {object} UseReturnPayLoad
  * @property {{[key: string]: string[]}} [pathStates]
@@ -25,7 +25,7 @@ export type UseReturnType = (initStates: import('./connectOptions').InitStatesPr
  */
 /**
  * @callback UseReturnType
- * @param {import('./connectOptions').InitStatesProps} initStates
+ * @param {import('./connectOptions').InitStatesType} initStates
  * @param {import("reshow-flux-base").StoreObject} store
  * @param {UseReturnPayLoad} [payload]
  */

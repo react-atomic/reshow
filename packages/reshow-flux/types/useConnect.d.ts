@@ -1,16 +1,20 @@
 export default useConnect;
+export type StateObject = Record<string, any>;
 export type StoreObject<StateType, ActionType> = import("reshow-flux-base").StoreObject<StateType, ActionType>;
 export type UseConnectWithStore<StateType, ActionType> = {
     store: StoreObject<StateType, ActionType>;
-    storeSyncState?: any;
 };
-export type CalculateStateCallback = (arg0: object, arg1: object) => object;
+export type CalculateStateCallback = (prevState: StateObject, calculateOptions: any) => StateObject;
+export type GetStateCallback = (props: StateObject) => StateObject;
 export type UseConnectOption<StateType, ActionType> = {
     calculateState: CalculateStateCallback;
     shouldComponentUpdate?: boolean;
     storeLocator?: (arg0: any) => StoreObject<StateType, ActionType>;
     displayName?: string;
 };
+/**
+ * @typedef {Record<string, any>} StateObject
+ */
 /**
  * @template StateType
  * @template ActionType
@@ -21,10 +25,17 @@ export type UseConnectOption<StateType, ActionType> = {
  * @template ActionType
  * @typedef {object} UseConnectWithStore
  * @property {StoreObject<StateType, ActionType>} store
- * @property {any} [storeSyncState]
  */
 /**
- * @typedef {function(object, object): object} CalculateStateCallback
+ * @callback CalculateStateCallback
+ * @param {StateObject} prevState
+ * @param {any} calculateOptions
+ * @returns {StateObject}
+ */
+/**
+ * @callback GetStateCallback
+ * @param {StateObject} props
+ * @returns {StateObject}
  */
 /**
  * @template StateType
@@ -35,4 +46,4 @@ export type UseConnectOption<StateType, ActionType> = {
  * @property {function(any):StoreObject<StateType, ActionType>} [storeLocator]
  * @property {string} [displayName]
  */
-declare function useConnect<StateType, ActionType>(inputOptions: UseConnectOption<StateType, ActionType>): (props: any) => any;
+declare function useConnect<StateType, ActionType>(inputOptions: UseConnectOption<StateType, ActionType>): GetStateCallback;

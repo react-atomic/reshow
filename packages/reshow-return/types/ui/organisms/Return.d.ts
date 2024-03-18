@@ -7,7 +7,7 @@ export type GetReturnOptions = {
 };
 export type ReturnProps = {
     store: import("reshow-flux-base").StoreObject<any, any>;
-    initStates: import("../../connectOptions").InitStatesProps;
+    initStates: import("../../connectOptions").InitStatesType;
     pathStates?: {
         [key: string]: string[];
     };
@@ -15,7 +15,7 @@ export type ReturnProps = {
     children?: import("react").ReactChild;
     backfillProps?: boolean;
 };
-declare const Return: React.ElementType<any>;
+declare const Return: React.ElementType<any, keyof React.JSX.IntrinsicElements>;
 /**
  * @typedef {object} GetReturnOptions
  * @property {string} [displayName]
@@ -26,7 +26,7 @@ declare const Return: React.ElementType<any>;
 /**
  * @typedef {object} ReturnProps
  * @property {import("reshow-flux-base").StoreObject} store
- * @property {import("../../connectOptions").InitStatesProps} initStates
+ * @property {import("../../connectOptions").InitStatesType} initStates
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {string[]} [excludeStates]
  * @property {import("react").ReactChild} [children]
