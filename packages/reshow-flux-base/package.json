@@ -1,5 +1,5 @@
 {
-  "version": "0.18.2",
+  "version": "1.0.0",
   "name": "reshow-flux-base",
   "repository": {
     "type": "git",
@@ -7,7 +7,7 @@
     "directory": "packages/reshow-flux-base"
   },
   "homepage": "https://github.com/react-atomic/reshow/tree/main/packages/reshow-flux-base",
-  "description": "Pure flux dispatch mechanism",
+  "description": "Simplify state management with no dependencies, yet powerful.",
   "keywords": [
     "state",
     "global-state",
@@ -18,12 +18,6 @@
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
-  "dependencies": {
-    "call-func": "*",
-    "get-object-value": "*",
-    "reshow-constant": "*",
-    "reshow-runtime": "*"
-  },
   "devDependencies": {
     "@babel/cli": "^7.x",
     "reshow-unit-dom": "*"

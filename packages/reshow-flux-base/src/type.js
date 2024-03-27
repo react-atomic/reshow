@@ -1,22 +1,8 @@
 // @ts-check
 
 /**
- * @typedef {Object.<string, any>} Payload
+ * @typedef {Object<string, any>} Payload
  */
-
-/**
- * @typedef {import("reshow-constant").SAFE_UNDEFINED} SAFE_UNDEFINED
- */
-
-/**
- * @interface
- */
-export class ActionObject {
-  /** @type {string} */
-  type;
-  /** @type {?Payload=} */
-  params;
-}
 
 /**
  * @template [ActionType = ActionObject]
@@ -69,32 +55,71 @@ export class ActionObject {
 
 /**
  * @template StateType
- * @template ActionType
- * @interface
+ * @typedef {StateType|function():StateType} InitStateType
  */
-export class Emiter {
-  /** @type {EmitterResetCall<StateType, ActionType>} */
-  reset;
-  /** @type {EmitterAddCall<StateType, ActionType>} */
-  add;
-  /** @type {EmitterRemoveCall<StateType, ActionType>} */
-  remove;
-  /** @type {EmitterEmitCall<StateType, ActionType>} */
-  emit;
-}
 
 /**
  * @template StateType
  * @template ActionType
- * @interface
+ *
+ * @callback ReducerType
+ * @param {StateType} ReducerState
+ * @param {ActionType} ReducerAction
+ * @returns {StateType}
  */
-export class StoreObject {
-  /** @type {function():StateType} */
-  reset;
-  /** @type {function():StateType} */
-  getState;
-  /** @type {Emiter<StateType, ActionType>["add"]} */
-  addListener;
-  /** @type {Emiter<StateType, ActionType>["remove"]} */
-  removeListener;
-}
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @callback DispatchCallback
+ * @param {StateType} State
+ * @returns {ActionType}
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {string|ActionType|DispatchCallback<StateType, ActionType>} DispatchAction
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @callback DispatchFunction
+ * @param {DispatchAction<StateType, ActionType>} action
+ * @param {Payload} [actionParams]
+ * @returns {StateType} endingState
+ */
+
+/**
+ * @typedef {object} ActionObject
+ * @property {string} type
+ * @property {?Payload=} params
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {object} Emiter
+ * @property {EmitterResetCall<StateType, ActionType>} reset
+ * @property {EmitterAddCall<StateType, ActionType>} add
+ * @property {EmitterRemoveCall<StateType, ActionType>} remove
+ * @property {EmitterEmitCall<StateType, ActionType>} emit
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {object} StoreObject
+ * @property {function():StateType} reset
+ * @property {function():StateType} getState
+ * @property {Emiter<StateType, ActionType>["add"]} addListener
+ * @property {Emiter<StateType, ActionType>["remove"]} removeListener
+ */
+
+export default {};

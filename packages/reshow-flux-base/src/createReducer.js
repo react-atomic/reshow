@@ -1,8 +1,47 @@
 // @ts-check
 
-import callfunc from "call-func";
-import { UNDEFINED, T_UNDEFINED, STRING, NEW_OBJ } from "reshow-constant";
-import { StoreObject, Emiter, ActionObject } from "./type";
+/**
+ * @template StateType
+ *
+ * @typedef {import('./type').InitStateType<StateType>} InitStateType
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import('./type').ReducerType<StateType, ActionType>} ReducerType
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import('./type').DispatchFunction<StateType, ActionType>} DispatchFunction
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import('./type').DispatchAction<StateType, ActionType>} DispatchAction
+ */
+
+/**
+ * @typedef {import('./type').ActionObject} ActionObject
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ * @typedef {import('./type').StoreObject<StateType, ActionType>} StoreObject
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ * @typedef {import('./type').Emiter<StateType, ActionType>} Emiter
+ */
 
 /**
  * @template StateType
@@ -20,23 +59,16 @@ import { StoreObject, Emiter, ActionObject } from "./type";
  */
 
 /**
+ * @param {any} maybeFunction
+ * @returns {function(any=):any}
+ */
+const callfunc = (maybeFunction) => (args) =>
+  "function" === typeof maybeFunction ? maybeFunction(args) : maybeFunction;
+
+/**
  * @template StateType
  * @template ActionType
  *
- * @callback DispatchCallback
- * @param {StateType} State
- * @returns {ActionType}
- */
-
-/**
- * @template StateType
- * @template ActionType
- * @typedef {string|ActionType|DispatchCallback<StateType, ActionType>} DispatchAction
- */
-
-/**
- * @template StateType
- * @template ActionType
  * @returns Emiter<StateType, ActionType>
  */
 const getMitt = () => {
@@ -46,20 +78,20 @@ const getMitt = () => {
   const pool = [];
   return {
     /**
-     * @type Emiter['reset']<StateType, ActionType>
+     * @type Emiter<StateType, ActionType>['reset']
      */
     reset: () => pool.splice(0, pool.length),
     /**
-     * @type Emiter['add']<StateType, ActionType>
+     * @type Emiter<StateType, ActionType>['add']
      */
     add: (handler) => pool.unshift(handler),
     /**
      * >>> 0 for change indexOf return -1 to 4294967295
-     * @type Emiter['remove']<StateType, ActionType>
+     * @type Emiter<StateType, ActionType>['remove']
      */
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     /**
-     * @type Emiter['emit']<StateType, ActionType>
+     * @type Emiter<StateType, ActionType>['emit']
      */
     emit: (state, action, prevState) => {
       const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
@@ -86,9 +118,9 @@ const getMitt = () => {
  * @returns {ActionObject|ActionType} lazy actions
  */
 export const refineAction = (action, params, prevState) => {
-  let nextAction = NEW_OBJ();
+  let nextAction = Object.create(null);
   if (null != action) {
-    if (STRING === typeof action) {
+    if ("string" === typeof action) {
       nextAction = {
         type: action,
       };
@@ -99,33 +131,8 @@ export const refineAction = (action, params, prevState) => {
       nextAction = action;
     }
   }
-  return callfunc(nextAction, [prevState]);
+  return callfunc(nextAction)(prevState);
 };
-
-/**
- * @template StateType
- * @template ActionType
- *
- * @callback ReducerType
- * @param {StateType} ReducerState
- * @param {ActionType} ReducerAction
- * @returns {StateType}
- */
-
-/**
- * @template StateType
- * @typedef {StateType|function():StateType} InitStateType
- */
-
-/**
- * @template StateType
- * @template ActionType
- *
- * @callback DispatchFunction
- * @param {DispatchAction<StateType, ActionType>} action
- * @param {Payload} [actionParams]
- * @returns {StateType} endingState
- */
 
 /**
  * @template StateType
@@ -135,8 +142,8 @@ export const refineAction = (action, params, prevState) => {
  * @param {InitStateType<StateType>} [initState]
  * @returns {[StoreObject<StateType, ActionType>, DispatchFunction<StateType, ActionType>]}
  */
-const createReducer = (reducer, initState) => {
-  const state = { current: callfunc(initState) };
+export const createReducer = (reducer, initState) => {
+  const state = { current: callfunc(initState)() };
   const mitt = getMitt();
   /**
    * @type {DispatchFunction<StateType, ActionType>}
@@ -145,9 +152,9 @@ const createReducer = (reducer, initState) => {
     const startingState = state.current;
     const refinedAction = refineAction(action, actionParams, startingState);
     const endingState = reducer(startingState, /**@type any*/ (refinedAction));
-    if (endingState === T_UNDEFINED) {
+    if (endingState === undefined) {
       console.trace();
-      throw `reducer() return ${UNDEFINED}.`;
+      throw `reducer() return undefined.`;
     }
     if (startingState !== endingState) {
       state.current = endingState;
@@ -158,7 +165,7 @@ const createReducer = (reducer, initState) => {
   const store = {
     reset: () => {
       if (mitt.reset()) {
-        state.current = callfunc(initState);
+        state.current = callfunc(initState)();
       }
       return state.current;
     },
@@ -168,5 +175,3 @@ const createReducer = (reducer, initState) => {
   };
   return [store, dispatch];
 };
-
-export default createReducer;

@@ -1,5 +1,9 @@
 export default useImmutable;
+export type ActionObject = import("reshow-flux-base").ActionObject;
 export type InitStateType<StateType> = import("reshow-flux-base").InitStateType<StateType>;
+/**
+ * @typedef {import("reshow-flux-base").ActionObject} ActionObject
+ */
 /**
  * @template StateType
  * @typedef {import("reshow-flux-base").InitStateType<StateType>} InitStateType
@@ -21,4 +25,3 @@ export type InitStateType<StateType> = import("reshow-flux-base").InitStateType<
  */
 declare function useImmutable<StateType = StateMap>(initialState?: InitStateType<StateType>): [StateMap, import("reshow-flux-base").DispatchFunction<StateMap, ActionObject>];
 import { StateMap } from "./ImmutableStore";
-import { ActionObject } from "reshow-flux-base";

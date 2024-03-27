@@ -3,10 +3,13 @@
  * @typedef {import("mocha")}
  */
 
+/**
+ * @typedef {import("../type").ActionObject} ActionObject
+ */
+
 import { expect } from "chai";
 import * as sinon from "sinon";
-import createReducer from "../createReducer";
-import { ActionObject } from "../type";
+import { createReducer } from "../createReducer";
 
 describe("Test createReducer", () => {
   let reducer;

@@ -1,13 +1,24 @@
 // @ts-check
 
 import { Map, Set, fromJS, is as equal } from "immutable";
-import { createReducer, StoreObject, ActionObject } from "reshow-flux-base";
+import { createReducer } from "reshow-flux-base";
 import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
 
 /**
  * @typedef {number|string} MapKeyType
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
+ */
+
+/**
+ * @typedef {import("reshow-flux-base").ActionObject} ActionObject
  */
 
 /**
@@ -40,16 +51,16 @@ export class StateMap {
 }
 
 /**
+ * @typedef {object} StoreObjectWithMap
+ * @property {function(MapKeyType):any} getMap
+ */
+
+/**
  * @template [StateType=StateMap]
  * @template [ActionType=MaybeMapType]
- * @class ImmutableStoreObject
- * @extends {StoreObject<StateType, ActionType>}
- * @interface
+ *
+ * @typedef {StoreObject<StateType, ActionType>&StoreObjectWithMap} ImmutableStoreObject
  */
-class ImmutableStoreObject extends StoreObject {
-  /** @type {function(MapKeyType):any} */
-  getMap;
-}
 
 /**
  * @template [StateType=StateMap]

@@ -2,21 +2,33 @@
 
 /**
  * @template StateType
- * @typedef {import("./createReducer").InitStateType<StateType>} InitStateType
+ *
+ * @typedef {import("./type").InitStateType<StateType>} InitStateType
  */
 
 /**
  * @template StateType
  * @template ActionType
- * @typedef {import("./createReducer").ReducerType<StateType, ActionType>} ReducerType
+ *
+ * @typedef {import("./type").ReducerType<StateType, ActionType>} ReducerType
  */
 
 /**
  * @template StateType
  * @template ActionType
- * @typedef {import("./createReducer").DispatchFunction<StateType, ActionType>} DispatchFunction
+ *
+ * @typedef {import("./type").DispatchFunction<StateType, ActionType>} DispatchFunction
  */
 
-export { default as createReducer, refineAction } from "./createReducer";
-export { StoreObject, ActionObject } from "./type";
-export { default as SimpleMap } from "./SimpleMap";
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import("./type").StoreObject<StateType, ActionType>} StoreObject
+ */
+
+/**
+ * @typedef {import("./type").ActionObject} ActionObject
+ */
+
+export { createReducer, refineAction } from "./createReducer";

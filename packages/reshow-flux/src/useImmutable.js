@@ -3,7 +3,10 @@
 import { useRef } from "react";
 import useStore from "./useStore";
 import ImmutableStore, { StateMap } from "./ImmutableStore";
-import { ActionObject } from "reshow-flux-base";
+
+/**
+ * @typedef {import("reshow-flux-base").ActionObject} ActionObject
+ */
 
 /**
  * @template StateType

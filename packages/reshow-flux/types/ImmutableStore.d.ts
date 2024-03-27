@@ -12,6 +12,15 @@ export default function ImmutableStore<StateType = StateMap, ActionType = MaybeM
  * @typedef {number|string} MapKeyType
  */
 /**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
+ */
+/**
+ * @typedef {import("reshow-flux-base").ActionObject} ActionObject
+ */
+/**
  * Hack for defined this inside MaybeMapType will make null and undefined disapper
  * @typedef {{[key: MapKeyType]:any}} MaybeMapObject
  */
@@ -37,6 +46,8 @@ export class StateMap {
     clear: () => any;
 }
 export type MapKeyType = number | string;
+export type StoreObject<StateType, ActionType> = import("reshow-flux-base").StoreObject<StateType, ActionType>;
+export type ActionObject = import("reshow-flux-base").ActionObject;
 /**
  * Hack for defined this inside MaybeMapType will make null and undefined disapper
  */
@@ -46,20 +57,12 @@ export type MaybeMapObject = {
 };
 export type MaybeMapType = string | undefined | null | StateMap | MaybeMapObject;
 export type ImmutableAction = ActionObject | MaybeMapType;
+export type StoreObjectWithMap = {
+    getMap: (arg0: MapKeyType) => any;
+};
+export type ImmutableStoreObject<StateType = StateMap, ActionType = MaybeMapType> = StoreObject<StateType, ActionType> & StoreObjectWithMap;
 export type ReducerTypeWithMap<StateType = StateMap, ActionType = MaybeMapType> = (state: StateType, action: ActionType) => StateType;
 export type forEachCb = (Value: any, Key: any) => any;
-/**
- * @template [StateType=StateMap]
- * @template [ActionType=MaybeMapType]
- * @class ImmutableStoreObject
- * @extends {StoreObject<StateType, ActionType>}
- * @interface
- */
-declare class ImmutableStoreObject<StateType = StateMap, ActionType = MaybeMapType> extends StoreObject<StateType, ActionType> {
-    constructor();
-    /** @type {function(MapKeyType):any} */
-    getMap: (arg0: MapKeyType) => any;
-}
 import { is as equal } from "immutable";
 /**
  * @param {MaybeMapType} maybeMap
@@ -80,6 +83,4 @@ import { fromJS } from "immutable";
 export function mergeMap<StateType extends StateMap>(state: StateType, maybeMap: MaybeMapType): StateType;
 import { Map } from "immutable";
 import { Set } from "immutable";
-import { ActionObject } from "reshow-flux-base";
-import { StoreObject } from "reshow-flux-base";
 export { equal, fromJS, Map, Set };

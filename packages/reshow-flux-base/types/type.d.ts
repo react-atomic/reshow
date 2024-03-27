@@ -1,98 +1,32 @@
-/**
- * @typedef {Object.<string, any>} Payload
- */
-/**
- * @typedef {import("reshow-constant").SAFE_UNDEFINED} SAFE_UNDEFINED
- */
-/**
- * @interface
- */
-export class ActionObject {
-    /** @type {string} */
-    type: string;
-    /** @type {?Payload=} */
-    params: (Payload | null) | undefined;
-}
-/**
- * @template [ActionType = ActionObject]
- * @typedef {ActionType|ActionObject} RefinedAction
- */
-/**
- * @template StateType
- * @template ActionType
- *
- * @callback FluxHandler
- * @param {StateType} NextState
- * @param {RefinedAction<ActionType>} Action
- * @param {StateType} PrevState
- * @returns{any}
- */
-/**
- * @template StateType
- * @template ActionType
- *
- * @callback EmitterEmitCall
- * @param {StateType} state
- * @param {RefinedAction<ActionType>} action
- * @param {StateType} prevState
- */
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterResetCall
- * @returns {FluxHandler<StateType, ActionType>[]}
- */
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterAddCall
- * @param {FluxHandler<StateType, ActionType>} handler
- * @returns {number}
- */
-/**
- * @template StateType
- * @template ActionType
- * @callback EmitterRemoveCall
- * @param {FluxHandler<StateType, ActionType>} handler
- * @returns {FluxHandler<StateType, ActionType>[]}
- */
-/**
- * @template StateType
- * @template ActionType
- * @interface
- */
-export class Emiter<StateType, ActionType> {
-    /** @type {EmitterResetCall<StateType, ActionType>} */
-    reset: EmitterResetCall<StateType, ActionType>;
-    /** @type {EmitterAddCall<StateType, ActionType>} */
-    add: EmitterAddCall<StateType, ActionType>;
-    /** @type {EmitterRemoveCall<StateType, ActionType>} */
-    remove: EmitterRemoveCall<StateType, ActionType>;
-    /** @type {EmitterEmitCall<StateType, ActionType>} */
-    emit: EmitterEmitCall<StateType, ActionType>;
-}
-/**
- * @template StateType
- * @template ActionType
- * @interface
- */
-export class StoreObject<StateType, ActionType> {
-    /** @type {function():StateType} */
-    reset: () => StateType;
-    /** @type {function():StateType} */
-    getState: () => StateType;
-    /** @type {Emiter<StateType, ActionType>["add"]} */
-    addListener: Emiter<StateType, ActionType>["add"];
-    /** @type {Emiter<StateType, ActionType>["remove"]} */
-    removeListener: Emiter<StateType, ActionType>["remove"];
-}
+declare const _default: {};
+export default _default;
 export type Payload = {
     [x: string]: any;
 };
-export type SAFE_UNDEFINED = import("reshow-constant").SAFE_UNDEFINED;
 export type RefinedAction<ActionType = ActionObject> = ActionType | ActionObject;
 export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefinedAction<ActionType>, PrevState: StateType) => any;
 export type EmitterEmitCall<StateType, ActionType> = (state: StateType, action: RefinedAction<ActionType>, prevState: StateType) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
 export type EmitterAddCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => number;
 export type EmitterRemoveCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => FluxHandler<StateType, ActionType>[];
+export type InitStateType<StateType> = StateType | (() => StateType);
+export type ReducerType<StateType, ActionType> = (ReducerState: StateType, ReducerAction: ActionType) => StateType;
+export type DispatchCallback<StateType, ActionType> = (State: StateType) => ActionType;
+export type DispatchAction<StateType, ActionType> = string | ActionType | DispatchCallback<StateType, ActionType>;
+export type DispatchFunction<StateType, ActionType> = (action: DispatchAction<StateType, ActionType>, actionParams?: Payload) => StateType;
+export type ActionObject = {
+    type: string;
+    params?: (Payload | null) | undefined;
+};
+export type Emiter<StateType, ActionType> = {
+    reset: EmitterResetCall<StateType, ActionType>;
+    add: EmitterAddCall<StateType, ActionType>;
+    remove: EmitterRemoveCall<StateType, ActionType>;
+    emit: EmitterEmitCall<StateType, ActionType>;
+};
+export type StoreObject<StateType, ActionType> = {
+    reset: () => StateType;
+    getState: () => StateType;
+    addListener: Emiter<StateType, ActionType>["add"];
+    removeListener: Emiter<StateType, ActionType>["remove"];
+};
