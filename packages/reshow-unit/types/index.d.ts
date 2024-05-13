@@ -16,11 +16,11 @@ export function act(cb?: Function, milliseconds?: number, debug?: boolean): Prom
 /**
  * rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
  *
- * @param {import("react").ReactElement} OrigDom
+ * @param {React.ReactElement} OrigDom
  * @param {object} options
  * @returns {import("@testing-library/react").RenderResult & RenderResult}
  */
-export function render(OrigDom: import("react").ReactElement, options?: object): import("@testing-library/react").RenderResult & RenderResult;
+export function render(OrigDom: React.ReactElement, options?: object): import("@testing-library/react").RenderResult & RenderResult;
 export function screen(): {
     getByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").SelectorMatcherOptions): T;
     getAllByLabelText<T_1 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").SelectorMatcherOptions): T_1[];
@@ -28,6 +28,10 @@ export function screen(): {
     queryAllByLabelText<T_3 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").SelectorMatcherOptions): T_3[];
     findByLabelText<T_4 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/dom").waitForOptions): Promise<T_4>;
     findAllByLabelText<T_5 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/dom").waitForOptions): Promise<T_5[]>;
+    /**
+     * @param {string} role
+     * @returns {string}
+     */
     getByPlaceholderText<T_6 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").MatcherOptions): T_6;
     getAllByPlaceholderText<T_7 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").MatcherOptions): T_7[];
     queryByPlaceholderText<T_8 extends HTMLElement = HTMLElement>(id: import("@testing-library/dom").Matcher, options?: import("@testing-library/dom").MatcherOptions): T_8;

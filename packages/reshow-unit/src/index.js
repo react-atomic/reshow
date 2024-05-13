@@ -13,7 +13,6 @@ import { getDefault } from "get-object-value";
 
 import { waitFor, waitForElementToBeRemoved } from "@testing-library/dom";
 import {
-  act as rtlAct,
   render as rtlRender,
   cleanup,
   getQueriesForElement,
@@ -23,7 +22,7 @@ import {
 import userEvent from "@testing-library/user-event";
 import { env } from "process";
 import build from "reshow-build";
-import { StrictMode } from "react";
+import { StrictMode, act as rtlAct } from "react";
 
 const envStrictMode = /** @type string*/ (env.STRICT_MODE);
 const STRICT_MODE =
@@ -101,7 +100,7 @@ const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
 /**
  * rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
  *
- * @param {import("react").ReactElement} OrigDom
+ * @param {React.ReactElement} OrigDom
  * @param {object} options
  * @returns {import("@testing-library/react").RenderResult & RenderResult}
  */
@@ -116,10 +115,10 @@ const render = (OrigDom, options = {}) => {
        */
       instance = (el) => (uInstance = el);
     }
-    Dom = build(OrigDom)({ ref: instance });
+    Dom = /** @type React.ReactElement*/ (build(OrigDom)({ ref: instance }));
   }
   if (STRICT_MODE) {
-    Dom = build(StrictMode)(undefined, Dom);
+    Dom = /** @type React.ReactElement*/ (build(StrictMode)(undefined, Dom));
   }
   const result = {
     ...rtlRender(Dom, options),
