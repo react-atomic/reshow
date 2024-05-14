@@ -1,7 +1,9 @@
 //@ts-check
 
 /**
- * @typedef {import("./useConnect").CalculateStateCallback} CalculateStateCallback
+ * @template StateType
+ *
+ * @typedef {import("./useConnect").CalculateStateCallback<StateType>} CalculateStateCallback
  */
 
 /**

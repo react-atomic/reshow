@@ -1,20 +1,16 @@
 export default useConnect;
-export type StateObject = Record<string, any>;
 export type StoreObject<StateType, ActionType> = import("reshow-flux-base").StoreObject<StateType, ActionType>;
 export type UseConnectWithStore<StateType, ActionType> = {
     store: StoreObject<StateType, ActionType>;
 };
-export type CalculateStateCallback = (prevState: StateObject, calculateOptions: any) => StateObject;
-export type GetStateCallback = (props: StateObject) => StateObject;
+export type CalculateStateCallback<StateType> = (prevState: StateType | any, calculateOptions: any) => StateType;
+export type GetStateCallback<StateType> = (props: any) => StateType;
 export type UseConnectOption<StateType, ActionType> = {
-    calculateState: CalculateStateCallback;
+    calculateState: CalculateStateCallback<StateType>;
     shouldComponentUpdate?: boolean;
     storeLocator?: (arg0: any) => StoreObject<StateType, ActionType>;
     displayName?: string;
 };
-/**
- * @typedef {Record<string, any>} StateObject
- */
 /**
  * @template StateType
  * @template ActionType
@@ -27,23 +23,28 @@ export type UseConnectOption<StateType, ActionType> = {
  * @property {StoreObject<StateType, ActionType>} store
  */
 /**
+ * @template StateType
+ *
  * @callback CalculateStateCallback
- * @param {StateObject} prevState
+ * @param {StateType|any} prevState
  * @param {any} calculateOptions
- * @returns {StateObject}
+ * @returns {StateType}
  */
 /**
+ * @template StateType
+ *
  * @callback GetStateCallback
- * @param {StateObject} props
- * @returns {StateObject}
+ * @param {any} props
+ * @returns {StateType}
  */
 /**
  * @template StateType
  * @template ActionType
+ *
  * @typedef {object} UseConnectOption
- * @property {CalculateStateCallback} calculateState
+ * @property {CalculateStateCallback<StateType>} calculateState
  * @property {boolean} [shouldComponentUpdate]
  * @property {function(any):StoreObject<StateType, ActionType>} [storeLocator]
  * @property {string} [displayName]
  */
-declare function useConnect<StateType, ActionType>(inputOptions: UseConnectOption<StateType, ActionType>): GetStateCallback;
+declare function useConnect<StateType, ActionType>(inputOptions: UseConnectOption<StateType, ActionType>): GetStateCallback<StateType>;

@@ -13,8 +13,11 @@ import * as React from "react";
  */
 
 /**
+ * @template StateType
+ * @template ActionType
+ *
  * @typedef {object} ReturnProps
- * @property {import("reshow-flux-base").StoreObject} store
+ * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {import("../../connectOptions").InitStatesType} initStates
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {string[]} [excludeStates]
@@ -34,7 +37,10 @@ const getReturn = ({
 } = {}) => {
   useConnect = useConnect || useConn({ ...connectOptions, ...options });
   /**
-   * @param {ReturnProps} props
+   * @template StateType
+   * @template ActionType
+   *
+   * @param {ReturnProps<StateType, ActionType>} props
    */
   const Return = (props) => {
     const { children, backfillProps, ...otherProps } = props;

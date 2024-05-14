@@ -868,9 +868,9 @@ camelcase@^6.0.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001587:
-  version "1.0.30001617"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001617.tgz#809bc25f3f5027ceb33142a7d6c40759d7a901eb"
-  integrity sha512-mLyjzNI9I+Pix8zwcrpxEbGlfqOkF9kM3ptzmKNw5tizSyYwMe+nGLTqMK9cO+0E+Bh6TsBxNAaHWEM8xwSsmA==
+  version "1.0.30001618"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001618.tgz#fad74fa006aef0f01e8e5c0a5540c74d8d36ec6f"
+  integrity sha512-p407+D1tIkDvsEAPS22lJxLQQaG8OTBEqo0KhzfABGk0TU4juBNDSfH0hyAp/HRyx+M8L17z/ltyhxh27FTfQg==
 
 chai@^4.x:
   version "4.4.1"
@@ -1049,9 +1049,9 @@ convert-source-map@^2.0.0:
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
 
 core-js@^3.24.1:
-  version "3.37.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.37.0.tgz#d8dde58e91d156b2547c19d8a4efd5c7f6c426bb"
-  integrity sha512-fu5vHevQ8ZG4og+LXug8ulUtVxjOcEYvifJr7L5Bfq9GOztVqsKd9/59hUk2ZSbCrS3BqUr3EpaYGIYzq7g3Ug==
+  version "3.37.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.37.1.tgz#d21751ddb756518ac5a00e4d66499df981a62db9"
+  integrity sha512-Xn6qmxrQZyB0FFY8E3bgRXei3lWDJHhvI+u0q9TKIYM49G8pAr0FgnnrFRAmsbptZL1yxRADVXn+x5AGsbBfyw==
 
 cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
@@ -1222,9 +1222,9 @@ dom-accessibility-api@^0.5.9:
   integrity sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==
 
 electron-to-chromium@^1.4.668:
-  version "1.4.766"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.766.tgz#09fa302a4d0201e6aafc4da815d6b40e93b75c8d"
-  integrity sha512-QkqagkSWWIngOO+f/DkMtTfzX/hpESMljeYzwZvOzmk2G6oEiG1JxE2hVXY6/XoVXMkILaJ6ASUnrMPiEA7x9A==
+  version "1.4.767"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.767.tgz#b885cfefda5a2e7a7ee356c567602012294ed260"
+  integrity sha512-nzzHfmQqBss7CE3apQHkHjXW77+8w3ubGCIoEijKCJebPufREaFETgGXWTkh32t259F3Kcq+R8MZdFdOJROgYw==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2871,9 +2871,9 @@ reshow-flux-base@*:
   integrity sha512-n+PNqP274AjvcP6KipyvCIbHAB8mFdusXnKIbx45tb7sQnjXBgpx6STCAVv3N8qXRU97fEr1NapUKTf14NlTHg==
 
 reshow-flux@*:
-  version "0.18.7"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.18.7.tgz#3b532450c61b05ae6a29d233b943fae16078c73f"
-  integrity sha512-BgmjvKDYuCMtcP9fnTZiCmq2Je0K/A68uxQBriNp/7RodXzWMmWaBbYS5cIlAob4hPPn/GZd/HU+ItUXrUe55Q==
+  version "0.18.8"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.18.8.tgz#73a46bf7271a1779346c88078840ddfd6e6a50e9"
+  integrity sha512-W1GKQSr/CcNflIaXNnRCERx7U8YbVQLeB/kQGYGZn6g6bbaT+5+Qy+4Dys7w7ScXanKnVTicSG2Ait865f8sog==
   dependencies:
     array.dedup "*"
     array.merge "*"

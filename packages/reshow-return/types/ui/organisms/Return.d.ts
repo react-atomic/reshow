@@ -5,8 +5,8 @@ export type GetReturnOptions = {
     cleanProps?: string[];
     options?: object;
 };
-export type ReturnProps = {
-    store: import("reshow-flux-base").StoreObject<any, any>;
+export type ReturnProps<StateType, ActionType> = {
+    store: import("reshow-flux-base").StoreObject<StateType, ActionType>;
     initStates: import("../../connectOptions").InitStatesType;
     pathStates?: {
         [key: string]: string[];
@@ -24,8 +24,11 @@ declare const Return: React.ElementType<any, keyof React.JSX.IntrinsicElements>;
  * @property {object} [options]
  */
 /**
+ * @template StateType
+ * @template ActionType
+ *
  * @typedef {object} ReturnProps
- * @property {import("reshow-flux-base").StoreObject} store
+ * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {import("../../connectOptions").InitStatesType} initStates
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {string[]} [excludeStates]

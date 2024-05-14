@@ -3,7 +3,6 @@
 import get from "get-object-value";
 import { toJS } from "reshow-flux";
 import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
-import { StoreObject } from "reshow-flux-base";
 
 /**
  * @param {object} props
@@ -60,10 +59,6 @@ const stateValueGetter =
  */
 
 /**
- * @typedef {Record<string, any>} StateObject
- */
-
-/**
  * @typedef { string[] | InitStateObject } InitStatesType
  */
 
@@ -96,18 +91,24 @@ const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
  */
 
 /**
+ * @template StateType
+ * @template ActionType
+ *
  * @typedef {object} calculateOptions
  * @property {InitStatesType} initStates
- * @property {StoreObject} store
+ * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {PathStates=} pathStates
  * @property {string[]=} excludeStates
  * @property {boolean=} immutable
  */
 
 /**
- * @param {StateObject} prevState
- * @param {calculateOptions} calculateOptions
- * @returns {StateObject}
+ * @template StateType
+ * @template ActionType
+ *
+ * @param {StateType} prevState
+ * @param {calculateOptions<StateType, ActionType>} calculateOptions
+ * @returns {StateType}
  */
 const calculateState = (prevState, calculateOptions) => {
   /**
@@ -160,7 +161,7 @@ const calculateState = (prevState, calculateOptions) => {
     }
   }
 
-  return bSame ? prevState : results;
+  return /**@type StateType*/ (bSame ? prevState : results);
 };
 
 export default {

@@ -4,19 +4,28 @@ import useReturn from "./useReturn";
 import hydrate from "./hydrate";
 
 /**
- * @type {import('./useReturn').UseReturnType}
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import('./useReturn').UseReturnType<StateType, ActionType>} UseReturnType
  */
-const useClientReturn = (...p) => {
-  if (hydrate() || p[2]?.isHydrate) {
-    const state = useReturn(...p);
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @type {UseReturnType<StateType, ActionType>}
+ */
+const useClientReturn = (p1, p2, p3) => {
+  if (hydrate() || p3?.isHydrate) {
+    const p2Any = /**@type any*/ (p2);
+    const state = useReturn(p1, p2Any, p3);
     const isLoad = useLoaded();
-    if (isLoad) {
-      return state;
-    } else {
-      return {};
-    }
+    return /**@type StateType*/ (isLoad ? state : {});
   } else {
-    return useReturn(...p);
+    const p2Any = /**@type any*/ (p2);
+    const anyState = /**@type any*/ (useReturn(p1, p2Any, p3));
+    return /**@type StateType*/ (anyState);
   }
 };
 

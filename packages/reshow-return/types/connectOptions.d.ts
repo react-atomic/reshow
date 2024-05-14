@@ -5,14 +5,13 @@ declare namespace _default {
 }
 export default _default;
 export type InitStateObject = Record<string, string>;
-export type StateObject = Record<string, any>;
 export type InitStatesType = string[] | InitStateObject;
 export type PathStates = {
     [x: string]: string[];
 };
-export type calculateOptions = {
+export type calculateOptions<StateType, ActionType> = {
     initStates: InitStatesType;
-    store: StoreObject<any, any>;
+    store: import("reshow-flux-base").StoreObject<StateType, ActionType>;
     pathStates?: PathStates | undefined;
     excludeStates?: string[] | undefined;
     immutable?: boolean | undefined;
@@ -21,23 +20,28 @@ export type calculateOptions = {
  * @typedef {Object<string, string[]>} PathStates
  */
 /**
+ * @template StateType
+ * @template ActionType
+ *
  * @typedef {object} calculateOptions
  * @property {InitStatesType} initStates
- * @property {StoreObject} store
+ * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {PathStates=} pathStates
  * @property {string[]=} excludeStates
  * @property {boolean=} immutable
  */
 /**
- * @param {StateObject} prevState
- * @param {calculateOptions} calculateOptions
- * @returns {StateObject}
+ * @template StateType
+ * @template ActionType
+ *
+ * @param {StateType} prevState
+ * @param {calculateOptions<StateType, ActionType>} calculateOptions
+ * @returns {StateType}
  */
-declare function calculateState(prevState: StateObject, calculateOptions: calculateOptions): StateObject;
+declare function calculateState<StateType, ActionType>(prevState: StateType, calculateOptions: calculateOptions<StateType, ActionType>): StateType;
 /**
  * @param {object} props
  * @param {object} [more]
  * @returns {object}
  */
 declare function reset(props: object, more?: object): object;
-import { StoreObject } from "reshow-flux-base";

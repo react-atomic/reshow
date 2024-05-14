@@ -3,7 +3,7 @@ export { default as useImmutable } from "./useImmutable";
 export { default as useReduceStore } from "./useReduceStore";
 export { default as useStore } from "./useStore";
 export { default as toJS } from "./toJS";
-export type CalculateStateCallback = import("./useConnect").CalculateStateCallback;
+export type CalculateStateCallback<StateType> = import("./useConnect").CalculateStateCallback<StateType>;
 export type StateMap = import("./ImmutableStore").StateMap;
 export type MaybeMapType = import("./ImmutableStore").MaybeMapType;
 export type ReducerTypeWithMap<StateType = import("./ImmutableStore").StateMap, ActionType = import("./ImmutableStore").MaybeMapType> = import("./ImmutableStore").ReducerTypeWithMap<StateType, ActionType>;

@@ -31,10 +31,6 @@ const handleShouldComponentUpdate = ({
 };
 
 /**
- * @typedef {Record<string, any>} StateObject
- */
-
-/**
  * @template StateType
  * @template ActionType
  * @typedef {import("reshow-flux-base").StoreObject<StateType, ActionType>} StoreObject
@@ -48,23 +44,28 @@ const handleShouldComponentUpdate = ({
  */
 
 /**
+ * @template StateType
+ *
  * @callback CalculateStateCallback
- * @param {StateObject} prevState
+ * @param {StateType|any} prevState
  * @param {any} calculateOptions
- * @returns {StateObject}
+ * @returns {StateType}
  */
 
 /**
+ * @template StateType
+ *
  * @callback GetStateCallback
- * @param {StateObject} props
- * @returns {StateObject}
+ * @param {any} props
+ * @returns {StateType}
  */
 
 /**
  * @template StateType
  * @template ActionType
+ *
  * @typedef {object} UseConnectOption
- * @property {CalculateStateCallback} calculateState
+ * @property {CalculateStateCallback<StateType>} calculateState
  * @property {boolean} [shouldComponentUpdate]
  * @property {function(any):StoreObject<StateType, ActionType>} [storeLocator]
  * @property {string} [displayName]
@@ -74,8 +75,9 @@ const useConnect =
   /**
    * @template StateType
    * @template ActionType
+   *
    * @param {UseConnectOption<StateType, ActionType>} inputOptions
-   * @returns {GetStateCallback}
+   * @returns {GetStateCallback<StateType>}
    */
   (inputOptions) => (props) => {
     /**
@@ -131,7 +133,7 @@ const useConnect =
       props.renewProps ? [props] : []
     );
 
-    return data.state || {};
+    return /**@type StateType*/ (data.state || {});
   };
 
 export default useConnect;

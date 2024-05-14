@@ -13,14 +13,22 @@ import connectOptions from "./connectOptions";
  */
 
 /**
+ * @template StateType
+ * @template ActionType
+ *
  * @callback UseReturnType
  * @param {import('./connectOptions').InitStatesType} initStates
- * @param {import("reshow-flux-base").StoreObject} store
+ * @param {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @param {UseReturnPayLoad} [payload]
+ *
+ * @returns {StateType}
  */
 
 /**
- * @type UseReturnType
+ * @template StateType
+ * @template ActionType
+ *
+ * @type UseReturnType<StateType, ActionType>
  */
 const useReturn = (
   initStates,
@@ -42,7 +50,7 @@ const useReturn = (
     shouldComponentUpdate,
     immutable,
   });
-  return state;
+  return /**@type StateType*/ (state);
 };
 
 export default useReturn;
