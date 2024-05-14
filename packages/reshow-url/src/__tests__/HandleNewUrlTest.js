@@ -1,9 +1,8 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { expect } from "chai";
 import { render, cleanIt, jsdom } from "reshow-unit";
 jsdom(null, { url: "http://localhost" });
 import { AjaxPage, ajaxDispatch } from "organism-react-ajax";
-import urlStore from "../stores/urlStore";
 
 describe("Test Handle New Url", () => {
   after(() => {

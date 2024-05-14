@@ -1,3 +1,5 @@
+//@ts-check
+
 import { createReducer } from "reshow-flux-base";
 import { KEYS, IS_ARRAY } from "reshow-constant";
 import { ajaxDispatch, ajaxStore } from "organism-react-ajax";
@@ -12,26 +14,39 @@ import { getAnchorPath } from "../handleAnchor";
  * The popstate event is only triggered by performing a browser action, such as clicking on the back button
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
+ * @param {string} url
  */
 const updateUrl = (url) =>
   win().history.pushState && win().history.pushState("", "", url);
 
 const urlChange = "urlChange";
 
-class URL {
+class MyURL {
   loc = {};
+  /**
+   * @param {Location=} loc
+   */
   constructor(loc) {
-    this.loc = { ...loc };
+    if (loc) {
+      this.loc = { ...loc };
+    }
   }
 
-  getHref(_loc) {
+  getHref() {
     return this.loc.href;
   }
 
+  /**
+   * @param {string} key
+   * @returns {string}
+   */
   getLocKey(key) {
-    return key.substr(1);
+    return key.substring(1);
   }
 
+  /**
+   * @param {string} key
+   */
   get(key) {
     let value;
     if (0 === key.indexOf(":")) {
@@ -55,6 +70,9 @@ const onUrlChange = () => {
   ajaxDispatch(urlChange);
 };
 
+/**
+ * @param {Window} oWin
+ */
 const registerEvent = (oWin) => {
   if (oWin && oWin.addEventListener) {
     oWin.addEventListener("popstate", onUrlChange, true);
@@ -62,6 +80,9 @@ const registerEvent = (oWin) => {
   }
 };
 
+/**
+ * @param {any[]} params
+ */
 const getInputAnchor = (params) => {
   let anchor;
   if (IS_ARRAY(params)) {
@@ -85,10 +106,10 @@ const handleUrl = () => {
         registerEvent(win());
       }
     });
-    return new URL({});
+    return new MyURL();
   };
 
-  const reduce = (state, action) => {
+  const reduce = (/**@type any*/ state, /**@type any*/ action) => {
     const oDoc = doc();
     if (!oDoc.URL) {
       return state;
@@ -119,7 +140,9 @@ const handleUrl = () => {
         url = oDoc.URL;
         const urlKeys = KEYS(params || []);
         if (Group.name !== group && Group.urlKeys) {
-          Group.urlKeys.forEach((key) => (url = unsetUrl(key, url)));
+          Group.urlKeys.forEach(
+            (/**@type string*/ key) => (url = unsetUrl(key, url))
+          );
           Group.urlKeys = null;
         }
         if (group) {
@@ -137,10 +160,10 @@ const handleUrl = () => {
     }
     if (url !== oDoc.URL) {
       updateUrl(url);
-      return new URL(oDoc.location); // need put after updateUrl for new url effect
+      return new MyURL(oDoc.location); // need put after updateUrl for new url effect
     } else {
       if (url !== state.getHref()) {
-        return new URL(oDoc.location);
+        return new MyURL(oDoc.location);
       }
       return state;
     }
@@ -151,7 +174,8 @@ const handleUrl = () => {
 
 const oUrl = handleUrl();
 const [store, urlDispatch] = createReducer(oUrl.reduce, oUrl.init);
-store.registerEvent = registerEvent;
 
-export default store;
-export { urlDispatch, URL };
+const myStore = { ...store, registerEvent };
+
+export default myStore;
+export { urlDispatch, MyURL };

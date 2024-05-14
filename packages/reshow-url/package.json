@@ -1,5 +1,5 @@
 {
-  "version": "0.18.0",
+  "version": "0.18.1",
   "name": "reshow-url",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "@babel/cli": "^7.x",
     "react": "18.x",
     "react-dom": "18.x",
-    "reshow-unit": "^0.17.x"
+    "reshow-unit": "*"
   },
   "exports": {
     "types": "./types/index.d.ts",
