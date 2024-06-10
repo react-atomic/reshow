@@ -8,7 +8,9 @@ import { useRef } from "react";
  */
 const useRefUpdate = (value) => {
   const last = /** @type any*/ (useRef());
-  last.current = value;
+  if (last.current !== value) {
+    last.current = value;
+  }
   return last;
 };
 
