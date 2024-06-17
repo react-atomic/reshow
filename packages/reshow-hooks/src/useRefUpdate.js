@@ -1,17 +1,22 @@
 // @ts-check
 import { useRef } from "react";
+import callFunc from "call-func";
 
 /**
  * @template ValueType
  * @param {ValueType|function():ValueType} [value]
+ * @param {function(ValueType):ValueType} [cookCb]
  * @return {React.MutableRefObject<ValueType|undefined>}
  */
-const useRefUpdate = (value) => {
+const useRefUpdate = (value, cookCb = (v) => v) => {
   const last = /** @type any*/ (useRef());
-  if (last.current !== value) {
-    last.current = value;
+  const lastCook = /** @type any*/ (useRef());
+  const nextValue = callFunc(value);
+  if (last.current !== nextValue) {
+    last.current = nextValue;
+    lastCook.current = callFunc(cookCb, [value]);
   }
-  return last;
+  return lastCook;
 };
 
 export default useRefUpdate;
