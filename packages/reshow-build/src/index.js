@@ -52,13 +52,12 @@ const buildFunc = (component, props, child, componentOption) => {
         props.children = /** @type React.ReactElement*/ (child);
       }
       const el = component(props);
-      return isValidElement(el)
-        ? null !== props.key
-          ? buildReact(el, { key: props.key })
-          : el
-        : altWrap
-        ? buildReact(altWrap, props, el)
-        : buildReact(el, props);
+      if (isValidElement(el)) {
+        const elKey = el.key || props.key;
+        return null != elKey ? buildReact(el, { key: elKey }) : el;
+      } else {
+        return altWrap ? buildReact(altWrap, props, el) : buildReact(el, props);
+      }
     } catch (e) {
       if (e.name === TYPE_ERROR) {
         return buildReact(component, props, child);

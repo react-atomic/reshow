@@ -75,4 +75,29 @@ describe("Test build with key", () => {
       buildComp?.props.children[0].key !== buildComp?.props.children[1].key
     ).be.true;
   });
+
+  it("with custom key", () => {
+    const buildComp = build(() => <div key="div-key" />, {
+      doCallFunction: true,
+    })({ key: "foo" });
+    expect(buildComp?.key).to.equal("div-key");
+  });
+
+  it("with custom key=null (for trace spec behavior)", () => {
+    const buildComp = build(() => <div key={null} />, { doCallFunction: true })(
+      { key: "foo" }
+    );
+    expect(buildComp?.key).to.equal("null");
+  });
+
+  it("with custom key=undefined", () => {
+    const buildComp = build(() => <div />, { doCallFunction: true })({
+      key: "foo",
+    });
+    expect(buildComp?.key).to.equal("foo");
+    const buildComp2 = build(() => <div key={undefined} />, {
+      doCallFunction: true,
+    })({ key: "foo" });
+    expect(buildComp2?.key).to.equal("foo");
+  });
 });
