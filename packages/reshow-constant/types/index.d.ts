@@ -1,4 +1,10 @@
 /**
+ * Add this type in top of your file, or if commonly used in some types file.
+ *
+ * @template T
+ * @typedef {[T, React.Dispatch<React.SetStateAction<T>>]} useState
+ */
+/**
  * Basic type
  */
 export const FUNCTION: "function";
@@ -30,4 +36,8 @@ export function NEW_OBJ(): any;
 export function HAS(obj: object | undefined | null, key: string): boolean;
 export const REAL_TIME_URL: "--rtime-url--";
 export const REAL_TIME_DATA_KEY: "--rtime-data--";
+/**
+ * Add this type in top of your file, or if commonly used in some types file.
+ */
+export type useState<T> = [T, React.Dispatch<React.SetStateAction<T>>];
 export type SAFE_UNDEFINED = undefined | null | false | 0;

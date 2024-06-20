@@ -1,6 +1,13 @@
 // @ts-check
 
 /**
+ * Add this type in top of your file, or if commonly used in some types file.
+ *
+ * @template T
+ * @typedef {[T, React.Dispatch<React.SetStateAction<T>>]} useState
+ */
+
+/**
  * Basic type
  */
 export const FUNCTION = "function";
