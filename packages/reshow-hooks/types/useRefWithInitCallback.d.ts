@@ -4,4 +4,4 @@ export default useRefWithInitCallback;
  * @param {ValueType|function():ValueType} [value]
  * @return {React.MutableRefObject<ValueType|undefined>}
  */
-declare function useRefWithInitCallback<ValueType>(value?: ValueType | (() => ValueType)): import("react").MutableRefObject<ValueType>;
+declare function useRefWithInitCallback<ValueType>(value?: ValueType | (() => ValueType)): React.MutableRefObject<ValueType | undefined>;

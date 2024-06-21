@@ -5,4 +5,4 @@ export default useSyncState;
  * @param {function(function):any[]} [setter]
  * @returns {[AnyState, setSyncState, function():AnyState|undefined]}
  */
-declare function useSyncState<AnyState>(initState: any, setter?: (arg0: Function) => any[]): [AnyState, (nextState: AnyState) => void, () => AnyState];
+declare function useSyncState<AnyState>(initState: any, setter?: (arg0: Function) => any[]): [AnyState, (nextState: AnyState) => void, () => AnyState | undefined];

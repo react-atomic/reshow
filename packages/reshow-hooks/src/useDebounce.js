@@ -1,12 +1,25 @@
-import { useRef } from "react";
-import { debounce } from "call-func";
+// @ts-check
 
+import { debounce } from "call-func";
+import useRefUpdate from "./useRefUpdate";
+
+/**
+ * @typedef {import("call-func").DebounceExecutor} DebounceExecutor
+ */
+
+/**
+ * @param {Function} func
+ * @param {number=} defaultDelay
+ * @param {any=} scope
+ * @returns {Function}
+ */
 const useDebounce = (func, defaultDelay, scope) => {
-  const _debounce = useRef();
-  if (!_debounce.current) {
-    _debounce.current = debounce(func, defaultDelay);
-  }
-  return (...args) => _debounce.current({ scope, args });
+  /**
+   * @type {React.MutableRefObject<DebounceExecutor|undefined>}
+   */
+  const _debounce = useRefUpdate(debounce(func, defaultDelay));
+  return (/**@type any[]*/ ...args) =>
+    _debounce.current && _debounce.current({ scope, args });
 };
 
 export default useDebounce;

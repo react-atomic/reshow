@@ -9,4 +9,4 @@ export { default as useSyncState } from "./useSyncState";
 export { default as useTimer } from "./useTimer";
 export { default as useRefWithInitCallback } from "./useRefWithInitCallback";
 export { default as useRefUpdate } from "./useRefUpdate";
-export type LongPressEvent = import('./useLongPress').LongPressEvent;
+export type LongPressEvent = import("./useLongPress").LongPressEvent;
