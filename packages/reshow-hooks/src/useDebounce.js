@@ -35,8 +35,8 @@ const useDebounce = (func, delay, scope) => {
       delay,
       scope,
     };
-    return debounce((/**@type any[]*/ ...args) => {
-      callFunc(lastProps.current.func, [args], lastProps.current.scope);
+    return debounce((/**@type any[]*/ args) => {
+      callFunc(lastProps.current.func, args, lastProps.current.scope);
     }, delay);
   });
 
@@ -65,7 +65,7 @@ const useDebounce = (func, delay, scope) => {
   );
 
   return (/**@type any[]*/ ...args) =>
-    _debounce({ args, delay: lastProps.current.delay });
+    _debounce({ args: [args], delay: lastProps.current.delay });
 };
 
 export default useDebounce;
