@@ -77,7 +77,7 @@ const buildFunc = (component, props, child, componentOption) => {
  * @returns {React.ReactElement?}
  */
 const buildReact = (component, props = {}, child = T_UNDEFINED) => {
-  if (!component) {
+  if (T_NULL == component) {
     return T_NULL;
   }
   const isValidComp = isValidElement(component);
@@ -89,8 +89,10 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
     params.push(child);
   }
   if (
-    STRING === typeof component &&
-    component !== /**@type string*/ (component).replace(/[^a-z]/g, "")
+    (STRING === typeof component &&
+      component !== /**@type string*/ (component).replace(/[^a-z]/g, "")) ||
+    !component ||
+    T_TRUE === component
   ) {
     const { children, ...restProps } = props;
     return buildReact(<span>{/**@type string*/ (component)}</span>, restProps);
@@ -111,7 +113,7 @@ const build =
    * @returns {React.ReactElement?}
    */
   (props = {}, child = T_UNDEFINED) => {
-    if (!component) {
+    if (T_NULL == component) {
       return T_NULL;
     }
 
