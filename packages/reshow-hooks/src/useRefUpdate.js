@@ -6,7 +6,7 @@ import callFunc from "call-func";
  * @template ValueType
  * @param {ValueType|function():ValueType} [value]
  * @param {function(ValueType):ValueType} [cookCb]
- * @return {React.MutableRefObject<ValueType|undefined>}
+ * @return {React.MutableRefObject<ValueType>}
  */
 const useRefUpdate = (value, cookCb = (v) => v) => {
   const last = /** @type any*/ (useRef());
