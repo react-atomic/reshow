@@ -1,12 +1,14 @@
+//@ts-check
+
 import { expect } from "chai";
 
 import {
   UNDEFINED,
   FUNCTION,
   OBJECT,
-  DEFAULT,
   STRING,
   SYMBOL,
+  DEFAULT,
   SCRIPT,
   TYPE_ERROR,
   T_UNDEFINED,
@@ -23,6 +25,20 @@ import {
 } from "../index";
 
 describe("Test Constant", () => {
+  it("test default", () => {
+    expect(DEFAULT).to.equal("default");
+  });
+
+  it("test script", () => {
+    expect(SCRIPT).to.equal("script");
+  });
+
+  it("test TYPE_ERROR", () => {
+    expect(TYPE_ERROR).to.equal("TypeError");
+  });
+});
+
+describe("Test Basic Type", () => {
   it("test undefined", () => {
     expect(UNDEFINED).to.equal("undefined");
   });
@@ -35,24 +51,12 @@ describe("Test Constant", () => {
     expect(OBJECT).to.equal("object");
   });
 
-  it("test default", () => {
-    expect(DEFAULT).to.equal("default");
-  });
-
   it("test string", () => {
     expect(STRING).to.equal("string");
   });
 
   it("test symbol", () => {
     expect(SYMBOL).to.equal("symbol");
-  });
-
-  it("test script", () => {
-    expect(SCRIPT).to.equal("script");
-  });
-
-  it("test TYPE_ERROR", () => {
-    expect(TYPE_ERROR).to.equal("TypeError");
   });
 });
 

@@ -17,6 +17,13 @@ export const FUNCTION = "function";
 export const NUMBER = "number";
 export const OBJECT = "object";
 export const STRING = "string";
+export const SYMBOL = "symbol";
+export const UNDEFINED = "undefined";
+
+// string
+export const DEFAULT = "default";
+export const SCRIPT = "script";
+export const TYPE_ERROR = "TypeError";
 
 /**
  * @typedef {T_UNDEFINED|T_NULL|T_FALSE|0} SAFE_UNDEFINED
@@ -32,11 +39,6 @@ export const T_UNDEFINED = void 0;
 export const T_NULL = null;
 export const T_TRUE = true;
 export const T_FALSE = false;
-export const DEFAULT = "default";
-export const SYMBOL = "symbol";
-export const SCRIPT = "script";
-export const UNDEFINED = "undefined";
-export const TYPE_ERROR = "TypeError";
 export const KEYS = Object.keys;
 export const IS_ARRAY = Array.isArray;
 /**
@@ -55,7 +57,7 @@ export const NEW_OBJ = () => Object.create(null);
  * https://github.com/react-atomic/reshow/issues/118#issuecomment-1203255559
  *
  * @param {object|undefined|null} obj
- * @param {string} key
+ * @param {?string=} key
  * @returns {boolean}
  */
 export const HAS = (obj, key) =>
