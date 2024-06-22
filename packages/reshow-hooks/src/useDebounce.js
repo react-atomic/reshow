@@ -1,7 +1,8 @@
 // @ts-check
 
 import { debounce } from "call-func";
-import useRefUpdate from "./useRefUpdate";
+import { useRef } from "react";
+import useSyncChange from "./useSyncChange";
 
 /**
  * @typedef {import("call-func").DebounceExecutor} DebounceExecutor
@@ -17,7 +18,11 @@ const useDebounce = (func, defaultDelay, scope) => {
   /**
    * @type {React.MutableRefObject<DebounceExecutor|undefined>}
    */
-  const _debounce = useRefUpdate(debounce(func, defaultDelay));
+  const _debounce = useRef();
+  useSyncChange(func, (nextFunc) => {
+    _debounce.current = debounce(nextFunc, defaultDelay);
+  });
+
   return (/**@type any[]*/ ...args) =>
     _debounce.current && _debounce.current({ scope, args });
 };

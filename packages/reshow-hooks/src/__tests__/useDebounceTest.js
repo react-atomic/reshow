@@ -6,7 +6,7 @@ import useDebounce from "../useDebounce";
 describe("test useDebounce", () => {
   it("basic test", async () => {
     const spy = sinon().spy();
-    const Comp = (props) => {
+    const Comp = () => {
       const run = useDebounce(spy, 0);
       for (let i = 0; i < 5; i++) {
         run();
@@ -16,7 +16,7 @@ describe("test useDebounce", () => {
     render(<Comp />);
     await sleep(() => {
       expect(spy.called).to.be.true;
-      expect(spy.callCount <= 2).to.be.true;
+      expect(spy.callCount).lessThanOrEqual(2);
     }, 10);
   });
 });

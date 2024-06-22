@@ -1,7 +1,7 @@
 // @ts-check
 
 import { expect } from "chai";
-import { render, act, waitFor, getSinon as sinon } from "reshow-unit";
+import { render, act, waitFor } from "reshow-unit";
 
 import * as React from "react";
 const { useEffect, useState } = React;
