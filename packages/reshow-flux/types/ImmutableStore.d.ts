@@ -7,7 +7,7 @@
  *
  * @returns {[ImmutableStoreObject<StateType, ActionType>, dispatch]}
  */
-export default function ImmutableStore<StateType = StateMap, ActionType = MaybeMapType>(reducer?: ReducerTypeWithMap<StateType, ActionType>, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject<StateType, ActionType>, import("reshow-flux-base/types/createReducer").DispatchFunction<StateType, ActionType>];
+export default function ImmutableStore<StateType = StateMap, ActionType = MaybeMapType>(reducer?: ReducerTypeWithMap<StateType, ActionType> | null, initState?: import("reshow-flux-base").InitStateType<StateType>): [ImmutableStoreObject<StateType, ActionType>, import("reshow-flux-base/types/createReducer").DispatchFunction<StateType, ActionType>];
 /**
  * @typedef {number|string} MapKeyType
  */
@@ -52,8 +52,7 @@ export type ActionObject = import("reshow-flux-base").ActionObject;
  * Hack for defined this inside MaybeMapType will make null and undefined disapper
  */
 export type MaybeMapObject = {
-    [key: string]: any;
-    [key: number]: any;
+    [key: MapKeyType]: any;
 };
 export type MaybeMapType = string | undefined | null | StateMap | MaybeMapObject;
 export type ImmutableAction = ActionObject | MaybeMapType;
