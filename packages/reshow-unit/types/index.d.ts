@@ -2,8 +2,8 @@ export type RenderResult = {
     html: Function;
     instance: Function;
 };
-import { waitFor } from "@testing-library/dom/types/wait-for";
-import { waitForElementToBeRemoved } from "@testing-library/dom/types/wait-for-element-to-be-removed";
+import { waitFor } from "@testing-library/dom";
+import { waitForElementToBeRemoved } from "@testing-library/dom";
 /**
  * @param {function} cb
  */
@@ -22,58 +22,54 @@ export function act(cb?: Function, milliseconds?: number, debug?: boolean): Prom
  */
 export function render(OrigDom: React.ReactElement, options?: object): import("@testing-library/react").RenderResult & RenderResult;
 export function screen(): {
-    getByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T;
-    getAllByLabelText<T_1 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_1[];
-    queryByLabelText<T_2 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_2;
-    queryAllByLabelText<T_3 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_3[];
-    findByLabelText<T_4 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_4>;
-    findAllByLabelText<T_5 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_5[]>;
-    /**
-     * @param {string} role
-     * @returns {string}
-     */
-    getByPlaceholderText<T_6 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_6;
-    getAllByPlaceholderText<T_7 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_7[];
-    queryByPlaceholderText<T_8 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_8;
-    queryAllByPlaceholderText<T_9 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_9[];
-    findByPlaceholderText<T_10 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_10>;
-    findAllByPlaceholderText<T_11 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_11[]>;
-    getByText<T_12 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_12;
-    getAllByText<T_13 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_13[];
-    queryByText<T_14 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_14;
-    queryAllByText<T_15 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): T_15[];
-    findByText<T_16 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_16>;
-    findAllByText<T_17 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_17[]>;
-    getByAltText<T_18 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_18;
-    getAllByAltText<T_19 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_19[];
-    queryByAltText<T_20 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_20;
-    queryAllByAltText<T_21 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_21[];
-    findByAltText<T_22 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_22>;
-    findAllByAltText<T_23 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_23[]>;
-    getByTitle<T_24 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_24;
-    getAllByTitle<T_25 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_25[];
-    queryByTitle<T_26 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_26;
-    queryAllByTitle<T_27 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_27[];
-    findByTitle<T_28 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_28>;
-    findAllByTitle<T_29 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_29[]>;
-    getByDisplayValue<T_30 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_30;
-    getAllByDisplayValue<T_31 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_31[];
-    queryByDisplayValue<T_32 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_32;
-    queryAllByDisplayValue<T_33 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_33[];
-    findByDisplayValue<T_34 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_34>;
-    findAllByDisplayValue<T_35 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_35[]>;
-    getByRole<T_36 extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): T_36;
-    getAllByRole<T_37 extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): T_37[];
-    queryByRole<T_38 extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): T_38;
-    queryAllByRole<T_39 extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): T_39[];
-    findByRole<T_40 extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_40>;
-    findAllByRole<T_41 extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_41[]>;
-    getByTestId<T_42 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_42;
-    getAllByTestId<T_43 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_43[];
-    queryByTestId<T_44 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_44;
-    queryAllByTestId<T_45 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): T_45[];
-    findByTestId<T_46 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_46>;
-    findAllByTestId<T_47 extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): Promise<T_47[]>;
+    getByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.GetByText<T>>;
+    getAllByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.AllByText<T>>;
+    queryByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.QueryByText<T>>;
+    queryAllByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.AllByText<T>>;
+    findByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByText<T>>;
+    findAllByLabelText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByText<T>>;
+    getByPlaceholderText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.GetByBoundAttribute<T>>;
+    getAllByPlaceholderText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    queryByPlaceholderText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.QueryByBoundAttribute<T>>;
+    queryAllByPlaceholderText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    findByPlaceholderText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByBoundAttribute<T>>;
+    findAllByPlaceholderText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByBoundAttribute<T>>;
+    getByText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.GetByText<T>>;
+    getAllByText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.AllByText<T>>;
+    queryByText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.QueryByText<T>>;
+    queryAllByText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions): ReturnType<queries.AllByText<T>>;
+    findByText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByText<T>>;
+    findAllByText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByText<T>>;
+    getByAltText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.GetByBoundAttribute<T>>;
+    getAllByAltText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    queryByAltText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.QueryByBoundAttribute<T>>;
+    queryAllByAltText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    findByAltText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByBoundAttribute<T>>;
+    findAllByAltText<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByBoundAttribute<T>>;
+    getByTitle<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.GetByBoundAttribute<T>>;
+    getAllByTitle<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    queryByTitle<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.QueryByBoundAttribute<T>>;
+    queryAllByTitle<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    findByTitle<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByBoundAttribute<T>>;
+    findAllByTitle<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByBoundAttribute<T>>;
+    getByDisplayValue<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.GetByBoundAttribute<T>>;
+    getAllByDisplayValue<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    queryByDisplayValue<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.QueryByBoundAttribute<T>>;
+    queryAllByDisplayValue<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    findByDisplayValue<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByBoundAttribute<T>>;
+    findAllByDisplayValue<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByBoundAttribute<T>>;
+    getByRole<T extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): ReturnType<queries.GetByRole<T>>;
+    getAllByRole<T extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): ReturnType<queries.AllByRole<T>>;
+    queryByRole<T extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): ReturnType<queries.QueryByRole<T>>;
+    queryAllByRole<T extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions): ReturnType<queries.AllByRole<T>>;
+    findByRole<T extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByRole<T>>;
+    findAllByRole<T extends HTMLElement = HTMLElement>(role: import("@testing-library/react").ByRoleMatcher, options?: queries.ByRoleOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByRole<T>>;
+    getByTestId<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.GetByBoundAttribute<T>>;
+    getAllByTestId<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    queryByTestId<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.QueryByBoundAttribute<T>>;
+    queryAllByTestId<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions): ReturnType<queries.AllByBoundAttribute<T>>;
+    findByTestId<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindByBoundAttribute<T>>;
+    findAllByTestId<T extends HTMLElement = HTMLElement>(id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions, waitForElementOptions?: import("@testing-library/react").waitForOptions): ReturnType<queries.FindAllByBoundAttribute<T>>;
 } & {
     getByLabelText: (id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions) => HTMLElement;
     getAllByLabelText: (id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").SelectorMatcherOptions) => HTMLElement[];
@@ -141,5 +137,5 @@ import { getSinon } from "reshow-unit-dom";
 export function cleanIt(props?: any): void;
 import { jsdom } from "reshow-unit-dom";
 import { hideConsoleError } from "reshow-unit-dom";
-import { queries } from "@testing-library/react/node_modules/@testing-library/dom";
+import { queries } from "@testing-library/react";
 export { waitFor, waitForElementToBeRemoved, sleep, getSinon, jsdom, hideConsoleError };
