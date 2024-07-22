@@ -21,6 +21,10 @@ export class SimpleMap {
      */
     getIn(path: (string | number)[]): any;
     /**
+     * @param {function(any, any=):void} cb
+     */
+    forEach(cb: (arg0: any, arg1: any | undefined) => void): void;
+    /**
      * @param {string} k
      * @param {any} v
      * @returns {SimpleMap}

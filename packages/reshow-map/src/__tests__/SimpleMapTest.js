@@ -48,4 +48,12 @@ describe("Test SimpleMap", () => {
       bar: "foo",
     });
   });
+
+  it("test forEach", () => {
+    const data = { a: "aa", b: "bb" };
+    const oMap = new SimpleMap(data);
+    oMap.forEach((v, k) => {
+      expect(v).to.equal(data[k]);
+    });
+  });
 });
