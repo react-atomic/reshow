@@ -26,7 +26,7 @@ import Return from "./ui/organisms/Return";
 const usePartialRender = (initRenderKeys, initChildren) => {
   const [renderStore, setPartialRender] = useReduceStore(
     (state, action) => mergeMap(state, action),
-    () => Map(callfunc(initChildren))
+    () => Map(callfunc(initChildren)),
   );
 
   const [renderKeys, setRenderKeys] = useState(() => callfunc(initRenderKeys));
@@ -48,8 +48,8 @@ const usePartialRender = (initRenderKeys, initChildren) => {
           /**
            * @param {any} props
            */
-          (props) => props[props.name] || null
-        )
+          (props) => props[props.name] || null,
+        ),
     );
   }, [renderKeys]);
 

@@ -42,7 +42,7 @@ export default function _wrapRegExp() {
           str,
           substitution.replace(/\$<([^>]+)>/g, function (_, name) {
             return "$" + groups[name];
-          })
+          }),
         );
       }
 

@@ -84,7 +84,7 @@ export const stateKeyLocator = (initStates) => {
  * @param {boolean} immutable
  * @returns {function(any):any}
  */
-const getImmutable = (immutable) => (data) => !immutable ? toJS(data) : data;
+const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
 
 /**
  * @typedef {Object<string, string[]>} PathStates
@@ -138,11 +138,11 @@ const calculateState = (prevState, calculateOptions) => {
     (key) => {
       const data = getStateValue(key);
       results[toNewKey(key)] = toImmutable(data);
-    }
+    },
   );
   if (pathStates) {
     KEYS(pathStates || {}).forEach(
-      (key) => (results[key] = get(results, pathStates[key]))
+      (key) => (results[key] = get(results, pathStates[key])),
     );
   }
 

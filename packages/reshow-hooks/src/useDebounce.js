@@ -45,7 +45,7 @@ const useDebounce = (func, delay, scope) => {
     (v) => {
       lastProps.current.func = v;
     },
-    () => lastProps.current.func
+    () => lastProps.current.func,
   );
 
   useSyncChange(
@@ -53,7 +53,7 @@ const useDebounce = (func, delay, scope) => {
     (v) => {
       lastProps.current.scope = v;
     },
-    lastProps.current.scope
+    lastProps.current.scope,
   );
 
   useSyncChange(
@@ -61,7 +61,7 @@ const useDebounce = (func, delay, scope) => {
     (v) => {
       lastProps.current.delay = v;
     },
-    lastProps.current.delay
+    lastProps.current.delay,
   );
 
   return (/**@type any[]*/ ...args) =>

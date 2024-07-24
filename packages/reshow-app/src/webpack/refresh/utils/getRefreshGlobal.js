@@ -27,7 +27,7 @@ const getRefreshGlobal = (
     returningFunction(returnValue, args = "") {
       return `function(${args}) { return ${returnValue}; }`;
     },
-  }
+  },
 ) => {
   const declaration = RuntimeTemplate.supportsConst() ? "const" : "var";
   const refreshGlobal = getRefreshGlobalScope(RuntimeGlobals);
@@ -40,7 +40,7 @@ const getRefreshGlobal = (
       // they will be swapped in place during module initialisation by the `setup` method below.
       `register: ${RuntimeTemplate.returningFunction("undefined")},`,
       `signature: ${RuntimeTemplate.returningFunction(
-        RuntimeTemplate.returningFunction("type", "type")
+        RuntimeTemplate.returningFunction("type", "type"),
       )},`,
       // Runtime - This should be a singleton and persist throughout the lifetime of the app.
       // This stub ensures calls to `runtime` would not error out.
@@ -49,7 +49,7 @@ const getRefreshGlobal = (
       "runtime: {",
       Template.indent([
         `createSignatureFunctionForTransform: ${RuntimeTemplate.returningFunction(
-          RuntimeTemplate.returningFunction("type", "type")
+          RuntimeTemplate.returningFunction("type", "type"),
         )},`,
         `register: ${RuntimeTemplate.returningFunction("undefined")}`,
       ]),
@@ -71,11 +71,11 @@ const getRefreshGlobal = (
           [
             `${declaration} typeId = currentModuleId + " " + id;`,
             `${refreshGlobal}.runtime.register(type, typeId);`,
-          ]
+          ],
         )}`,
         "",
         `${refreshGlobal}.signature = ${RuntimeTemplate.returningFunction(
-          `${refreshGlobal}.runtime.createSignatureFunctionForTransform()`
+          `${refreshGlobal}.runtime.createSignatureFunctionForTransform()`,
         )};`,
         "",
         `${refreshGlobal}.cleanup = ${RuntimeTemplate.basicFunction(
@@ -91,7 +91,7 @@ const getRefreshGlobal = (
               `${refreshGlobal}.cleanup = prevCleanup;`,
             ]),
             "}",
-          ]
+          ],
         )}`,
       ])}`,
     ]),

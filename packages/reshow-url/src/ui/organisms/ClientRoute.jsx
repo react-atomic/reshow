@@ -47,7 +47,7 @@ class ClientRoute extends Reshow {
 
   getPath() {
     const themePath = this.getUrlChangeState(
-      this.props.url || doc().URL
+      this.props.url || doc().URL,
     )?.themePath;
     const themes = this.props.themes;
     if (themes[themePath]) {

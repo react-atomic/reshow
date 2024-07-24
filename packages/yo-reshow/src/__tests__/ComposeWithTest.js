@@ -28,7 +28,7 @@ class FakeGenerator extends YoGenerator {
     order.push("parent prompting");
 
     this.payload = await mergePromptOrOption(prompts, (nextPrompts) =>
-      this.prompt(nextPrompts)
+      this.prompt(nextPrompts),
     );
   }
 

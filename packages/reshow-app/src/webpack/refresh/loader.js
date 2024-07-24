@@ -34,7 +34,7 @@ function RefreshHotLoader(source, inputSourceMap) {
     reactModule.test(source)
       ? source + "\n\n" + RefreshModuleRuntimeString[type]
       : source,
-    inputSourceMap
+    inputSourceMap,
   );
 }
 

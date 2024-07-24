@@ -43,7 +43,7 @@ class ReactRefreshPlugin {
     }
     const match = webpack.ModuleFilenameHelpers.matchObject.bind(
       undefined,
-      this.options
+      this.options,
     );
 
     // Inject react-refresh context to all Webpack entry points
@@ -66,11 +66,11 @@ class ReactRefreshPlugin {
         // Set factory for EntryDependency which is used to initialise the module
         compilation.dependencyFactories.set(
           webpack.EntryDependency,
-          normalModuleFactory
+          normalModuleFactory,
         );
 
         const refreshGlobal = getRefreshGlobalScope(
-          webpack.RuntimeGlobals || {}
+          webpack.RuntimeGlobals || {},
         );
         const ReactRefreshRuntimeModule = makeRefreshRuntimeModule(webpack);
         compilation.hooks.additionalTreeRuntimeRequirements.tap(
@@ -78,15 +78,15 @@ class ReactRefreshPlugin {
           // Setup react-refresh globals with a Webpack runtime module
           (chunk, runtimeRequirements) => {
             runtimeRequirements.add(
-              webpack.RuntimeGlobals.interceptModuleExecution
+              webpack.RuntimeGlobals.interceptModuleExecution,
             );
             runtimeRequirements.add(webpack.RuntimeGlobals.moduleCache);
             runtimeRequirements.add(refreshGlobal);
             compilation.addRuntimeModule(
               chunk,
-              new ReactRefreshRuntimeModule()
+              new ReactRefreshRuntimeModule(),
             );
-          }
+          },
         );
 
         normalModuleFactory.hooks.afterResolve.tap(
@@ -100,9 +100,9 @@ class ReactRefreshPlugin {
                 esModule: this.options.esModule,
               },
             });
-          }
+          },
         );
-      }
+      },
     );
   }
 }

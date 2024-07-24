@@ -98,7 +98,7 @@ export const getMitt = () => {
       return () =>
         nextExec.reduce(
           (curState, curFunc) => curFunc(curState, action, prevState),
-          state
+          state,
         );
     },
   };

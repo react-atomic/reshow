@@ -93,7 +93,7 @@ function createWindowEventHandler(eventType, createHandler) {
 // const error = createWindowEventHandler("error", createErrorHandler);
 const unhandledRejection = createWindowEventHandler(
   "unhandledrejection",
-  createRejectionHandler
+  createRejectionHandler,
 );
 
 export { unhandledRejection };

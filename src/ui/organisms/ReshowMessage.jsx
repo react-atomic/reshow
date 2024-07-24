@@ -52,7 +52,7 @@ const Body = (props) => {
             onClick: handleClick(dialog),
             name: "reshow-dialog",
           },
-          toJS(dialog)
+          toJS(dialog),
         )}
       </DisplayPopupEl>
     );

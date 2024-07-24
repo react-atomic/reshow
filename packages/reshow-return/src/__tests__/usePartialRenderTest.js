@@ -30,7 +30,7 @@ describe("Test usePartialRender", () => {
     await act(() => {});
     await waitFor(() => {
       expect(wrap.html()).to.equal(
-        "<div><span>aaa</span><span>bbb</span></div>"
+        "<div><span>aaa</span><span>bbb</span></div>",
       );
       // because STRICT_MODE will call two times, else actually 1.
       expect(spy.callCount).to.equal(2);
@@ -78,7 +78,7 @@ describe("Test usePartialRender", () => {
       const [call, setCall] = useState(0);
       const [renderItems, partialRender] = usePartialRender(
         Object.keys(list),
-        list
+        list,
       );
       gSetCall = setCall;
       useEffect(() => {
@@ -91,7 +91,7 @@ describe("Test usePartialRender", () => {
     await act(() => {});
     await waitFor(() => {
       expect(wrap.html()).to.equal(
-        `<div data-call="0"><span>0</span><i></i></div>`
+        `<div data-call="0"><span>0</span><i></i></div>`,
       );
     });
     await act(() => {
@@ -101,7 +101,7 @@ describe("Test usePartialRender", () => {
     await act();
     await waitFor(() => {
       expect(wrap.html()).to.equal(
-        `<div data-call="1"><span>1</span><i></i></div>`
+        `<div data-call="1"><span>1</span><i></i></div>`,
       );
     });
   });

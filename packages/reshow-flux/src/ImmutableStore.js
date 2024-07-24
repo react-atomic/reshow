@@ -144,7 +144,7 @@ const mergeMap = (state, maybeMap) => {
        */
       (v, k) => {
         state = state.set(k, v);
-      }
+      },
     );
   } catch (e) {}
   return state;
@@ -173,7 +173,7 @@ export default function ImmutableStore(reducer, initState) {
   const stateMap = /**@type StateMap*/ (mergeMap(Map(), callfunc(initState)));
   const [store, dispatch] = createReducer(
     nextReducer,
-    /**@type StateType*/ (stateMap)
+    /**@type StateType*/ (stateMap),
   );
 
   /**

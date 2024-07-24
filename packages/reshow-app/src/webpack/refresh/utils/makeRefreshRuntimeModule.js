@@ -27,7 +27,7 @@ const makeRefreshRuntimeModule = (webpack) => {
             `${refreshGlobal}.setup(options.id);`,
             "try {",
             webpack.Template.indent(
-              "originalFactory.call(this, moduleObject, moduleExports, webpackRequire);"
+              "originalFactory.call(this, moduleObject, moduleExports, webpackRequire);",
             ),
             "} finally {",
             webpack.Template.indent([
@@ -65,7 +65,7 @@ const makeRefreshRuntimeModule = (webpack) => {
         getRefreshGlobal(
           webpack.Template,
           webpack.RuntimeGlobals,
-          runtimeTemplate
+          runtimeTemplate,
         ),
       ]);
     }

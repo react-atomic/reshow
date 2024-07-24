@@ -21,7 +21,7 @@ describe("Test useReturn", () => {
   it("test default immutable", () => {
     const [store, dispatch] = createReducer(
       (state, ation) => action,
-      fromJS({ m: {} })
+      fromJS({ m: {} }),
     );
     const Dom = (props) => {
       const state = useReturn(["m"], store);
@@ -34,7 +34,7 @@ describe("Test useReturn", () => {
   it("test default is not immutable", () => {
     const [store, dispatch] = createReducer(
       (state, ation) => action,
-      fromJS({ m: {} })
+      fromJS({ m: {} }),
     );
     const Dom = (props) => {
       const state = useReturn(["m"], store, { immutable: false });

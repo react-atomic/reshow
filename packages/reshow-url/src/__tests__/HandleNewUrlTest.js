@@ -17,7 +17,7 @@ describe("Test Handle New Url", () => {
     };
     ajaxDispatch({ onUrlChange: myUpdate });
     render(
-      <AjaxPage win={window} themes={{ fake: <div /> }} themePath="fake" />
+      <AjaxPage win={window} themes={{ fake: <div /> }} themePath="fake" />,
     );
     window.history.pushState(null, "title", "http://localhost/bbb");
     window.history.pushState(null, "title", "http://localhost/ccc");

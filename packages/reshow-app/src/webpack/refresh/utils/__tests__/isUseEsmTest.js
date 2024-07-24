@@ -14,7 +14,7 @@ try {
     .groups.path.replace("file://", "");
   dir = resolve(
     dirname(folder),
-    "../../../../../src/webpack/refresh/utils/__tests__/"
+    "../../../../../src/webpack/refresh/utils/__tests__/",
   );
 }
 

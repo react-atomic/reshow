@@ -118,7 +118,7 @@ const useConnect =
                 shouldComponentUpdate,
                 prev,
                 props,
-              })
+              }),
             );
           }
         };
@@ -130,7 +130,7 @@ const useConnect =
           options.store.removeListener(handleChange);
         };
       },
-      props.renewProps ? [props] : []
+      props.renewProps ? [props] : [],
     );
 
     return /**@type StateType*/ (data.state || {});

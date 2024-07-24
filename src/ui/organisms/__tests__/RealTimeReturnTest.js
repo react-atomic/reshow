@@ -58,7 +58,7 @@ describe("Test RealTimeReturn", () => {
       dispatch({
         type: "realTime",
         params: { [REAL_TIME_DATA_KEY]: { data: "bar" } },
-      })
+      }),
     );
     expect(uFake.el.props.data).to.equal("bar");
     await act(() => dispatch("realTime"));
@@ -75,7 +75,7 @@ describe("Test RealTimeReturn", () => {
           type: "realTime",
           params: { [REAL_TIME_DATA_KEY]: { data: "bar" } },
         }),
-      5
+      5,
     );
     expect(uFake.el.props.data).to.equal("bar");
     await act(() => dispatch("realTime"));

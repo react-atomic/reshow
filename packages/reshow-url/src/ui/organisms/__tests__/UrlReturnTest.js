@@ -43,7 +43,7 @@ describe("Test Url Return", () => {
     render(<FakeComponent urlKey=":pathname" />);
     await act(
       () => urlDispatch({ type: "url", url: "http://localhost/aaa" }),
-      5
+      5,
     );
     expect(uFake.el.props[":pathname"]).to.deep.equal(["", "aaa"]);
   });

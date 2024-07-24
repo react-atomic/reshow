@@ -5,7 +5,7 @@ function _getRequireWildcardCache(nodeInterop) {
   var cacheBabelInterop = new WeakMap();
   var cacheNodeInterop = new WeakMap();
   return (_getRequireWildcardCache = function _getRequireWildcardCache(
-    nodeInterop
+    nodeInterop,
   ) {
     return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
   })(nodeInterop);

@@ -21,11 +21,11 @@ describe("test useDebounce", () => {
   });
 
   it("test this", async () => {
-    const spy = sinon().spy(function(){
-      expect(this).to.deep.equal({foo: "bar"});
+    const spy = sinon().spy(function () {
+      expect(this).to.deep.equal({ foo: "bar" });
     });
     const Comp = () => {
-      const run = useDebounce(spy, 0, {foo: "bar"});
+      const run = useDebounce(spy, 0, { foo: "bar" });
       for (let i = 0; i < 5; i++) {
         run();
       }
@@ -38,7 +38,7 @@ describe("test useDebounce", () => {
   });
 
   it("test pass parameter", async () => {
-    const spy = sinon().spy((p1, p2)=>{
+    const spy = sinon().spy((p1, p2) => {
       expect(p1).to.equal("foo1");
       expect(p2).to.equal("foo2");
     });

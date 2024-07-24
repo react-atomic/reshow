@@ -47,7 +47,7 @@ describe("Test IE10 Inherit", () => {
 
         var _this = _possibleConstructorReturn(
           this,
-          _getPrototypeOf(B).apply(this, arguments)
+          _getPrototypeOf(B).apply(this, arguments),
         );
         _defineProperty(_assertThisInitialized(_this), "b_static", function () {
           return "b-static";
@@ -79,7 +79,7 @@ describe("Test IE10 Inherit", () => {
       function C() {
         var _this = _possibleConstructorReturn(
           this,
-          _getPrototypeOf(C).apply(this, arguments)
+          _getPrototypeOf(C).apply(this, arguments),
         );
         _defineProperty(_assertThisInitialized(_this), "c_static", function () {
           return "c-static";

@@ -13,7 +13,7 @@ const injectRefreshLoader = (moduleData, injectOptions) => {
     // this is useful when using the plugin as a direct dependency,
     // or when node_modules are specified to be processed.
     !moduleData.resource.includes(
-      path.dirname(require.resolve("react-refresh"))
+      path.dirname(require.resolve("react-refresh")),
     ) &&
     !moduleData.resource.includes(path.join(__dirname, "../runtime")) &&
     // Check to prevent double injection

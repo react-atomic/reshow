@@ -31,7 +31,7 @@ class NginxPushPlugin {
               name: PlugName,
               stage: compilation.constructor.PROCESS_ASSETS_STAGE_REPORT,
             },
-            () => this.emitStats(compilation)
+            () => this.emitStats(compilation),
           );
         } else {
           // Legacy.
@@ -52,7 +52,7 @@ class NginxPushPlugin {
     if (path.resolve(filename) === path.normalize(filename)) {
       this.options.filename = path.relative(
         compiler.options.output.path,
-        filename
+        filename,
       );
     }
   }
@@ -69,11 +69,11 @@ class NginxPushPlugin {
                   (key) => {
                     const name = this.assetsStore.current.chunks[key][0];
                     return this.assetsStore.current.assets[name].publicPath;
-                  }
+                  },
                 );
                 resolve(assets);
               });
-            })
+            }),
         )
         // write assets to nginx
         .then((assets) => this.getNginxConf(assets))

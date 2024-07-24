@@ -27,7 +27,7 @@ describe("Test build array", () => {
     );
     const wrap = render(vDom);
     expect(wrap.html()).to.equal(
-      '<div><div title="foo">1</div><div title="foo">2</div></div>'
+      '<div><div title="foo">1</div><div title="foo">2</div></div>',
     );
   });
 
@@ -53,7 +53,7 @@ describe("Test build array", () => {
     );
     const wrap = render(vDom);
     expect(wrap.html()).to.equal(
-      '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
+      '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>',
     );
   });
 
@@ -81,7 +81,7 @@ describe("Test build array", () => {
     );
     const wrap = render(vDom);
     expect(wrap.html()).to.equal(
-      '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>'
+      '<div><div>foo</div><div foo="[object Object]" bar="[object Object]"></div><div foo="[object Object]" bar="[object Object]"></div><div>bar</div></div>',
     );
   });
 
@@ -102,7 +102,7 @@ describe("Test build array", () => {
     );
     const wrap = render(vDom);
     expect(wrap.html()).to.equal(
-      '<div><i data-foo="bar"></i><span data-foo="bar"></span><span data-foo="bar"></span></div>'
+      '<div><i data-foo="bar"></i><span data-foo="bar"></span><span data-foo="bar"></span></div>',
     );
     const vDom2 = (
       <FakeDom>
@@ -111,7 +111,7 @@ describe("Test build array", () => {
     );
     const wrap2 = render(vDom2);
     expect(wrap2.html()).to.equal(
-      '<div><i data-foo="bar"></i><span data-foo="bar"></span></div>'
+      '<div><i data-foo="bar"></i><span data-foo="bar"></span></div>',
     );
     const vDom3 = <FakeDom />;
     const wrap3 = render(vDom3);

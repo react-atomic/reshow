@@ -15,10 +15,10 @@ describe("Test Reshow Component", () => {
 
   it("Reshow simple test", async () => {
     const wrapper = render(
-      <Reshow themes={{ hello: <div>Hello World!</div> }} themePath="hello" />
+      <Reshow themes={{ hello: <div>Hello World!</div> }} themePath="hello" />,
     );
     await waitFor(() =>
-      expect(wrapper.html()).to.equal("<div>Hello World!</div>")
+      expect(wrapper.html()).to.equal("<div>Hello World!</div>"),
     );
   });
 });

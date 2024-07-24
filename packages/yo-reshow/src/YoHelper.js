@@ -97,7 +97,7 @@ const YoHelper = (oGen) => {
       };
       const { nextAnswer, nextPrompts } = promptFilterByOptions(
         prompts,
-        options
+        options,
       );
       return cb(nextPrompts, nextAnswer).then((props) => ({
         ...props,
@@ -124,8 +124,8 @@ const YoHelper = (oGen) => {
               }
             })
           : OBJ_SIZE(lastAns.current)
-          ? lastAns.current
-          : oGen.prompt([]);
+            ? lastAns.current
+            : oGen.prompt([]);
       };
       return go(promptLocator(i, lastAns));
     },
@@ -191,7 +191,7 @@ const YoHelper = (oGen) => {
     ...chainUtil,
     promptChainAll: (
       prompts,
-      { locator = chainUtil.promptChainLocator, callback } = {}
+      { locator = chainUtil.promptChainLocator, callback } = {},
     ) => {
       return chainUtil.mergePromptOrOption(
         prompts,
@@ -199,9 +199,9 @@ const YoHelper = (oGen) => {
           return chainUtil.promptChain(
             locator(nextPrompts),
             callback,
-            nextAnswer
+            nextAnswer,
           );
-        }
+        },
       );
     },
     getAllAns: (customAns) => {

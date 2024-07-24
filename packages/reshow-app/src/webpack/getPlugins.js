@@ -33,9 +33,9 @@ const getPlugins = ({
       new webpack.ProvidePlugin({
         process: "process/browser.js",
         ReadableStream: require.resolve(
-          root + "/node_modules/reshow-app/webpack/ReadableStream"
+          root + "/node_modules/reshow-app/webpack/ReadableStream",
         ),
-      })
+      }),
     );
   }
   let maxChunks = confs.maxChunks;
@@ -44,7 +44,7 @@ const getPlugins = ({
   } else {
     plugins.push(
       getStatsJson({ assetsStore, path }),
-      new NginxPushPlugin(confs, assetsStore)
+      new NginxPushPlugin(confs, assetsStore),
     );
   }
   if (maxChunks != null) {
@@ -61,7 +61,7 @@ const getPlugins = ({
       new AggressiveMergingPlugin({
         minSizeReduce: 2,
         moveToParents: true,
-      })
+      }),
     );
     processEnv.NODE_ENV = PRODUCTION;
   }
@@ -84,7 +84,7 @@ const getPlugins = ({
   }
   plugins.push(
     // https://webpack.js.org/plugins/environment-plugin/
-    new webpack.EnvironmentPlugin(processEnv)
+    new webpack.EnvironmentPlugin(processEnv),
   );
   return plugins;
 };

@@ -9,7 +9,7 @@ import getDefinitions from "./definitions";
 function resolveAbsoluteRuntime(moduleName, dirname) {
   try {
     return path.dirname(
-      resolve.sync(`${moduleName}/package.json`, { basedir: dirname })
+      resolve.sync(`${moduleName}/package.json`, { basedir: dirname }),
     );
   } catch (err) {
     if (err.code !== "MODULE_NOT_FOUND") throw err;
@@ -20,7 +20,7 @@ function resolveAbsoluteRuntime(moduleName, dirname) {
         code: "BABEL_RUNTIME_NOT_FOUND",
         runtime: moduleName,
         dirname,
-      }
+      },
     );
   }
 }
@@ -45,7 +45,7 @@ export default declare((api, options, dirname) => {
 
   if (typeof useRuntimeRegenerator !== "boolean") {
     throw new Error(
-      "The 'regenerator' option must be undefined, or a boolean."
+      "The 'regenerator' option must be undefined, or a boolean.",
     );
   }
   if (typeof useRuntimeHelpers !== "boolean") {
@@ -53,7 +53,7 @@ export default declare((api, options, dirname) => {
   }
   if (typeof useESModules !== "boolean" && useESModules !== "auto") {
     throw new Error(
-      "The 'useESModules' option must be undefined, or a boolean, or 'auto'."
+      "The 'useESModules' option must be undefined, or a boolean, or 'auto'.",
     );
   }
   if (
@@ -61,7 +61,7 @@ export default declare((api, options, dirname) => {
     typeof absoluteRuntime !== "string"
   ) {
     throw new Error(
-      "The 'absoluteRuntime' option must be undefined, a boolean, or a string."
+      "The 'absoluteRuntime' option must be undefined, a boolean, or a string.",
     );
   }
   if (
@@ -71,7 +71,7 @@ export default declare((api, options, dirname) => {
   ) {
     throw new Error(
       `The 'corejs' option must be undefined, false, 2 or '2', ` +
-        `but got ${JSON.stringify(corejsVersion)}.`
+        `but got ${JSON.stringify(corejsVersion)}.`,
     );
   }
   if (typeof runtimeVersion !== "string") {
@@ -85,12 +85,12 @@ export default declare((api, options, dirname) => {
     if (options.useBuiltIns) {
       throw new Error(
         "The 'useBuiltIns' option has been removed. The @babel/runtime " +
-          "module now uses builtins by default."
+          "module now uses builtins by default.",
       );
     } else {
       throw new Error(
         "The 'useBuiltIns' option has been removed. Use the 'corejs'" +
-          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime."
+          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime.",
       );
     }
   }
@@ -98,12 +98,12 @@ export default declare((api, options, dirname) => {
     if (options.polyfill === false) {
       throw new Error(
         "The 'polyfill' option has been removed. The @babel/runtime " +
-          "module now skips polyfilling by default."
+          "module now skips polyfilling by default.",
       );
     } else {
       throw new Error(
         "The 'polyfill' option has been removed. Use the 'corejs'" +
-          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime."
+          "option with value '2' to polyfill with CoreJS 2.x via @babel/runtime.",
       );
     }
   }
@@ -112,7 +112,7 @@ export default declare((api, options, dirname) => {
       "The 'moduleName' option has been removed. @babel/transform-runtime " +
         "no longer supports arbitrary runtimes. If you were using this to " +
         "set an absolute path for Babel's standard runtimes, please use the " +
-        "'absoluteRuntime' option."
+        "'absoluteRuntime' option.",
     );
   }
 
@@ -130,7 +130,7 @@ export default declare((api, options, dirname) => {
   if (absoluteRuntime !== false) {
     modulePath = resolveAbsoluteRuntime(
       moduleName,
-      path.resolve(dirname, absoluteRuntime === true ? "." : absoluteRuntime)
+      path.resolve(dirname, absoluteRuntime === true ? "." : absoluteRuntime),
     );
   }
 
@@ -164,7 +164,7 @@ export default declare((api, options, dirname) => {
           return this.addDefaultImport(
             `${modulePath}/${helpersDir}/${name}`,
             name,
-            blockHoist
+            blockHoist,
           );
         });
       }
@@ -201,8 +201,8 @@ export default declare((api, options, dirname) => {
           path.replaceWith(
             this.addDefaultImport(
               `${modulePath}/regenerator`,
-              "regeneratorRuntime"
-            )
+              "regeneratorRuntime",
+            ),
           );
           return;
         }
@@ -217,8 +217,8 @@ export default declare((api, options, dirname) => {
         path.replaceWith(
           this.addDefaultImport(
             `${modulePath}/core-js/${definitions.builtins[node.name]}`,
-            node.name
-          )
+            node.name,
+          ),
         );
       },
 
@@ -240,10 +240,10 @@ export default declare((api, options, dirname) => {
           t.callExpression(
             this.addDefaultImport(
               `${modulePath}/core-js/get-iterator`,
-              "getIterator"
+              "getIterator",
             ),
-            [callee.object]
-          )
+            [callee.object],
+          ),
         );
       },
 
@@ -258,10 +258,10 @@ export default declare((api, options, dirname) => {
           t.callExpression(
             this.addDefaultImport(
               `${modulePath}/core-js/is-iterable`,
-              "isIterable"
+              "isIterable",
             ),
-            [path.node.right]
-          )
+            [path.node.right],
+          ),
         );
       },
 
@@ -300,8 +300,8 @@ export default declare((api, options, dirname) => {
           path.replaceWith(
             this.addDefaultImport(
               `${modulePath}/core-js/${methods[prop.name]}`,
-              `${obj.name}$${prop.name}`
-            )
+              `${obj.name}$${prop.name}`,
+            ),
           );
         },
 
@@ -319,11 +319,11 @@ export default declare((api, options, dirname) => {
             t.memberExpression(
               this.addDefaultImport(
                 `${modulePath}/core-js/${definitions.builtins[obj.name]}`,
-                obj.name
+                obj.name,
               ),
               node.property,
-              node.computed
-            )
+              node.computed,
+            ),
           );
         },
       },

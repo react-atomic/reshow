@@ -26,7 +26,7 @@ describe("mergePromptOrOption test", () => {
           },
         ];
         this.payload = await mergePromptOrOption(prompts, (nextPrompts) =>
-          this.prompt(nextPrompts)
+          this.prompt(nextPrompts),
         );
       }
 
@@ -122,7 +122,7 @@ describe("mergePromptOrOption test", () => {
           YoHelper(this);
         const prompts = [];
         this.payload = await mergePromptOrOption(prompts, (nextPrompts) =>
-          promptChain(promptChainLocator(nextPrompts))
+          promptChain(promptChainLocator(nextPrompts)),
         );
       }
 

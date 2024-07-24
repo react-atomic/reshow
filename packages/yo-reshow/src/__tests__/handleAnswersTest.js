@@ -49,7 +49,7 @@ describe("handleAnswers test", () => {
     const { generator } = runResult;
     const payload = generator.payload;
     expect(payload.repositoryHomepage).to.equal(
-      `${payload.repository.url}/tree/main/${payload.repository.directory}`
+      `${payload.repository.url}/tree/main/${payload.repository.directory}`,
     );
   });
 });

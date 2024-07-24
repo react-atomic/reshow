@@ -12,7 +12,7 @@ const importWorker = (win, serviceWorkerURL) => {
         const objWorker = new workerObject();
         initAjaxWorkerEvent(objWorker);
       }
-    }
+    },
   );
   const navigator = win.navigator;
   if ("serviceWorker" in navigator) {

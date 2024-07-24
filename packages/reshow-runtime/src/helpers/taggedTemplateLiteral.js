@@ -23,7 +23,7 @@ const _taggedTemplateLiteral = (strings, raw) => {
       raw: {
         value: Object.freeze(raw),
       },
-    })
+    }),
   );
 };
 

@@ -6,16 +6,19 @@ let isUpdating;
 const lastDispatch = { current: {} };
 
 const getLocalReducer = (name, storage, disableEncode) => {
-  return createReducer((state, action) => {
-    isUpdating = true;
-    lastDispatch.current = {
-      name,
-      action,
-    };
-    const result = state.merge(action);
-    isUpdating = false;
-    return result;
-  }, new Storage(storage, disableEncode));
+  return createReducer(
+    (state, action) => {
+      isUpdating = true;
+      lastDispatch.current = {
+        name,
+        action,
+      };
+      const result = state.merge(action);
+      isUpdating = false;
+      return result;
+    },
+    new Storage(storage, disableEncode),
+  );
 };
 
 const LOCAL_STORAGE = "localStorage";
@@ -25,21 +28,21 @@ const SESSION_VALUE = "sessionValue";
 
 const [localStorageStore, localStorageDispatch] = getLocalReducer(
   LOCAL_STORAGE,
-  localStorage
+  localStorage,
 );
 const [localValueStore, localValueDispatch] = getLocalReducer(
   LOCAL_VALUE,
   localStorage,
-  true
+  true,
 );
 const [sessionStorageStore, sessionStorageDispatch] = getLocalReducer(
   SESSION_STORAGE,
-  sessionStorage
+  sessionStorage,
 );
 const [sessionValueStore, sessionValueDispatch] = getLocalReducer(
   SESSION_VALUE,
   sessionStorage,
-  true
+  true,
 );
 
 export {

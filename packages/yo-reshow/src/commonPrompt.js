@@ -38,7 +38,7 @@ const commonPrompt = {
   ],
   repository: (
     oGen,
-    { defaultRepositoryName, defaultRepositoryOrgName } = {}
+    { defaultRepositoryName, defaultRepositoryOrgName } = {},
   ) => [
     {
       type: "input",

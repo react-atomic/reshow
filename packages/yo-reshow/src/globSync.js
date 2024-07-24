@@ -9,7 +9,7 @@ const globSync = (folderPath, callback, firstLevelOnly) => {
     if (FS.statSync(fullPath).isDirectory()) {
       if (!firstLevelOnly) {
         fileArr.push(
-          ...FS.readdirSync(fullPath).map((v) => PATH.join(relativePath, v))
+          ...FS.readdirSync(fullPath).map((v) => PATH.join(relativePath, v)),
         );
       }
     } else {

@@ -29,14 +29,14 @@ const injectRefreshEntry = (originalEntry) => {
         ...acc,
         [curKey]: injectRefreshEntry(curEntry),
       }),
-      {}
+      {},
     );
   }
   // Dynamic entry points
   if (typeof originalEntry === "function") {
     return (...args) =>
       Promise.resolve(originalEntry(...args)).then((resolvedEntry) =>
-        injectRefreshEntry(resolvedEntry)
+        injectRefreshEntry(resolvedEntry),
       );
   }
 

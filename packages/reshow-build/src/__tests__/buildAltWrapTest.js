@@ -37,7 +37,7 @@ describe("Test altWrap", () => {
         {
           altWrap: "div",
           doCallFunction: true,
-        }
+        },
       )({ "data-foo": "foo", "data-bar": "bar" });
     };
     const wrap = render(<FakeDom />);

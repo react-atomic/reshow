@@ -12,7 +12,7 @@ export default function _objectSpread2(target) {
         ownKeys = ownKeys.concat(
           Object.getOwnPropertySymbols(source).filter(function (sym) {
             return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-          })
+          }),
         );
       }
 
@@ -22,7 +22,7 @@ export default function _objectSpread2(target) {
     } else {
       Object.defineProperties(
         target,
-        Object.getOwnPropertyDescriptors(arguments[i])
+        Object.getOwnPropertyDescriptors(arguments[i]),
       );
     }
   }

@@ -18,7 +18,7 @@ const useEnable = (setTo = true, initVal, onChange) => {
   const reducer = useReducer(
     () => callfunc(onChange, [setTo]) || setTo,
     initVal,
-    (initVal) => callfunc(onChange, [initVal]) ?? initVal
+    (initVal) => callfunc(onChange, [initVal]) ?? initVal,
   );
   return reducer;
 };

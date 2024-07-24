@@ -19,7 +19,7 @@ const useLocalStorage = getUseStorage(localStorageStore, localStorageDispatch);
 const useLocalValue = getUseStorage(localValueStore, localValueDispatch);
 const useSessionStorage = getUseStorage(
   sessionStorageStore,
-  sessionStorageDispatch
+  sessionStorageDispatch,
 );
 const useSessionValue = getUseStorage(sessionValueStore, sessionValueDispatch);
 

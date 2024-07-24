@@ -76,9 +76,9 @@ function compileMessageHandler(message) {
 //   ErrorOverlay.handleRuntimeError(error);
 // });
 
-registerUnhandledRejectionHandler(function handleUnhandledPromiseRejection(
-  error
-) {
-  hasRuntimeErrors = true;
-  ErrorOverlay.handleRuntimeError(error);
-});
+registerUnhandledRejectionHandler(
+  function handleUnhandledPromiseRejection(error) {
+    hasRuntimeErrors = true;
+    ErrorOverlay.handleRuntimeError(error);
+  },
+);

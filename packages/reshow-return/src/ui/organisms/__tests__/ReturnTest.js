@@ -27,7 +27,7 @@ const [pageStore, dispatch] = ImmutableStore(
       default:
         return mergeMap(state, action);
     }
-  }
+  },
 );
 
 describe("Test Return", () => {
@@ -82,7 +82,7 @@ describe("Test Return", () => {
     render(<FakeComponent />);
     await act(
       () => dispatch({ data: { foo: "bar", I13N: { aaa: "bbb" } } }),
-      5
+      5,
     );
     expect(uFake.el.props.data).to.deep.equal({
       foo: "bar",
@@ -99,7 +99,7 @@ describe("Test Return", () => {
       dispatch(
         fromJS({
           data: { foo: "bar", I13N: { a: "b" } },
-        })
+        }),
       );
     }, 5);
     const firstData = uFake.el.props.data;
@@ -149,7 +149,7 @@ describe("Test Return", () => {
         initStates={["foo", "bar"]}
         backfillProps
         foo="foo1"
-      />
+      />,
     );
     const uFakeEl = uFake.el;
     expect(uFakeEl.props).to.deep.equal({ foo: "foo1", bar: "bar" });
@@ -161,7 +161,11 @@ describe("Test Return", () => {
       bar: "bar",
     });
     render(
-      <FakeComponent store={pageStore} initStates={["foo", "bar"]} foo="foo1" />
+      <FakeComponent
+        store={pageStore}
+        initStates={["foo", "bar"]}
+        foo="foo1"
+      />,
     );
     const uFakeEl = uFake.el;
     expect(uFakeEl.props).to.deep.equal({ foo: "foo", bar: "bar" });
@@ -194,12 +198,12 @@ describe("Test Return", () => {
     expect(count === spy.callCount, "3").to.be.true;
     count = spy.callCount;
     await act(() =>
-      gSet((/**@type any*/ prev) => ({ ...prev, bar: { bar: "b" } }))
+      gSet((/**@type any*/ prev) => ({ ...prev, bar: { bar: "b" } })),
     );
     expect(count < spy.callCount, "4").to.be.true;
     count = spy.callCount;
     await act(() =>
-      gSet((/**@type any*/ prev) => ({ ...prev, foo: { bar: "b" } }))
+      gSet((/**@type any*/ prev) => ({ ...prev, foo: { bar: "b" } })),
     );
     expect(count === spy.callCount, "5").to.be.true;
     expect(wrap.html()).to.equal(`<div data-state="bar" data-props="b"></div>`);

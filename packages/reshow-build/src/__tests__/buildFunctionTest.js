@@ -72,7 +72,7 @@ describe("Test build with key", () => {
     const comp = <div />;
     const buildComp = build([comp, comp])({ key: "foo" });
     expect(
-      buildComp?.props.children[0].key !== buildComp?.props.children[1].key
+      buildComp?.props.children[0].key !== buildComp?.props.children[1].key,
     ).be.true;
   });
 
@@ -85,7 +85,7 @@ describe("Test build with key", () => {
 
   it("with custom key=null (for trace spec behavior)", () => {
     const buildComp = build(() => <div key={null} />, { doCallFunction: true })(
-      { key: "foo" }
+      { key: "foo" },
     );
     expect(buildComp?.key).to.equal("null");
   });

@@ -87,7 +87,7 @@ const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
           }
         };
         wait(resolve);
-      })
+      }),
   );
 };
 

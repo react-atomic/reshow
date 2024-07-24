@@ -41,7 +41,7 @@ const mainNamePrompt = (oGen, i18n) => {
             exit(() => say(callfunc(i18n.notReady)));
           }
         },
-      }
+      },
     );
   }
   prompts.push({

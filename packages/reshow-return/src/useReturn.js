@@ -39,7 +39,7 @@ const useReturn = (
     renewProps,
     shouldComponentUpdate,
     immutable = true,
-  } = {}
+  } = {},
 ) => {
   const state = useConnect(connectOptions)({
     store,

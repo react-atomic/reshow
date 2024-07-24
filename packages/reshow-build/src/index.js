@@ -134,7 +134,7 @@ const build =
         /**@type any*/ (comp),
         props,
         child,
-        componentOption
+        componentOption,
       );
     };
 
@@ -145,7 +145,7 @@ const build =
         <Fragment key={key}>
           {Children.map(
             component.map((comp) => run(comp)),
-            (c) => c
+            (c) => c,
           )}
         </Fragment>
       );

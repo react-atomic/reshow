@@ -55,7 +55,7 @@ describe("Test Section", () => {
           },
           I18N: { ddd: "fff" },
         }),
-      3
+      3,
     );
     await waitFor(() => {
       expect(uFake.el.props.aaa).to.deep.equal({ bbb: "ccc" });
@@ -81,7 +81,7 @@ describe("Test Section", () => {
           },
           I18N: { ddd: "fff" },
         }),
-      3
+      3,
     );
     const wrap = render(<Section name="test"></Section>);
     expect(wrap.html()).to.be.empty;
@@ -100,9 +100,9 @@ describe("Test Section", () => {
               },
             },
             I18N: { ddd: "fff" },
-          })
+          }),
         ),
-      3
+      3,
     );
     await waitFor(() => {
       expect(uFake.el.props.aaa.toJS()).to.deep.equal({ bbb: "ccc" });
@@ -145,7 +145,7 @@ describe("Test Section", () => {
             },
           },
         }),
-      5
+      5,
     );
     await waitFor(() => {
       expect(uFake.el.getAttribute("name")).to.equal("test");
@@ -179,10 +179,10 @@ describe("Test Section", () => {
             },
           },
         }),
-      5
+      5,
     );
     await waitFor(() =>
-      expect(uFake.el.getAttribute("name")).to.equal("test2")
+      expect(uFake.el.getAttribute("name")).to.equal("test2"),
     );
   });
 
@@ -218,7 +218,7 @@ describe("Test Section", () => {
             },
           },
         }),
-      3
+      3,
     );
     await waitFor(() => {
       expect(uFake.el1.getAttribute("name")).to.be.null;

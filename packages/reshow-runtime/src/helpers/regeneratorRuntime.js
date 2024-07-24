@@ -118,7 +118,7 @@ export default function _regeneratorRuntime() {
   GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
     toStringTagSymbol,
-    "GeneratorFunction"
+    "GeneratorFunction",
   ); // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
 
@@ -181,7 +181,7 @@ export default function _regeneratorRuntime() {
             },
             function (err) {
               invoke("throw", err, resolve, reject);
-            }
+            },
           );
         }
 
@@ -197,7 +197,7 @@ export default function _regeneratorRuntime() {
             // If a rejected Promise was yielded, throw the rejection back
             // into the async generator function so it can be handled there.
             return invoke("throw", error, resolve, reject);
-          }
+          },
         );
       }
     }
@@ -227,7 +227,7 @@ export default function _regeneratorRuntime() {
           ? previousPromise.then(
               callInvokeWithMethodAndArg, // Avoid propagating failures to Promises returned by later
               // invocations of the iterator.
-              callInvokeWithMethodAndArg
+              callInvokeWithMethodAndArg,
             )
           : callInvokeWithMethodAndArg());
     } // Define the unified helper method that is used to implement .next,
@@ -248,7 +248,7 @@ export default function _regeneratorRuntime() {
     if (PromiseImpl === void 0) PromiseImpl = Promise;
     var iter = new AsyncIterator(
       wrap(innerFn, outerFn, self, tryLocsList),
-      PromiseImpl
+      PromiseImpl,
     );
     return exports.isGeneratorFunction(outerFn)
       ? iter // If outerFn is a generator, return the full iterator.
@@ -359,7 +359,7 @@ export default function _regeneratorRuntime() {
 
         context.method = "throw";
         context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method"
+          "The iterator does not provide a 'throw' method",
         );
       }
 

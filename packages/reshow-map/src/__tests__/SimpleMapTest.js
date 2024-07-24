@@ -32,7 +32,7 @@ describe("Test SimpleMap", () => {
   it("test set with map", () => {
     const oMap = new SimpleMap({ foo: { aaa: "bbb" } });
     expect(oMap.set("foo", new SimpleMap({ eee: "fff" })).toJS()).to.deep.equal(
-      { foo: { eee: "fff" } }
+      { foo: { eee: "fff" } },
     );
   });
 

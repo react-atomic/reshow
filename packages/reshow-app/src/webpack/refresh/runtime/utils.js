@@ -21,7 +21,7 @@ function getModuleExports(moduleId) {
     // which indicates the module is somehow corrupted (e.g. broken Webpacak `module` globals).
     // We will warn the user (as this is likely a mistake) and assume they cannot be refreshed.
     console.warn(
-      "[React Refresh] Failed to get exports for module: " + moduleId + "."
+      "[React Refresh] Failed to get exports for module: " + moduleId + ".",
     );
     return {};
   }
@@ -173,7 +173,7 @@ function executeRuntime(
   moduleId,
   webpackHot,
   refreshOverlay,
-  isTest
+  isTest,
 ) {
   registerExportsForReactRefresh(moduleExports, moduleId);
   if (webpackHot) {
@@ -193,7 +193,7 @@ function executeRuntime(
         function hotDisposeCallback(data) {
           // We have to mutate the data object to get data registered and cached
           data.prevExports = moduleExports;
-        }
+        },
       );
       webpackHot.accept(
         /**
@@ -211,7 +211,7 @@ function executeRuntime(
             }
           }
           __webpack_require__.c[moduleId].hot.accept(hotErrorHandler);
-        }
+        },
       );
 
       if (isHotUpdate) {

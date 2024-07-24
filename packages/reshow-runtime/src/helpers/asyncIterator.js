@@ -45,7 +45,7 @@ function AsyncFromSyncIterator(s) {
       n: null,
       next: function next() {
         return AsyncFromSyncIteratorContinuation(
-          this.n.apply(this.s, arguments)
+          this.n.apply(this.s, arguments),
         );
       },
       return: function _return(value) {
