@@ -44,7 +44,7 @@ describe("Test createReducer", () => {
     it("it could dispatch boolean", () => {
       const [store, dispatch] = createReducer(
         (_state, action) => ({ foo: action }),
-        { foo: true },
+        { foo: true }
       );
       expect(store.getState()).to.deep.equal({ foo: true });
       dispatch(false);
@@ -58,7 +58,7 @@ describe("Test createReducer", () => {
     it("dispatch with number also could include string", () => {
       const [store, dispatch] = createReducer(
         (_state, /**@type number*/ action) => ({ foo: action }),
-        { foo: 1 },
+        { foo: 1 }
       );
       expect(store.getState()).to.deep.equal({ foo: 1 });
       dispatch("");
@@ -69,7 +69,7 @@ describe("Test createReducer", () => {
         (_state, /**@type ActionObject*/ action) => {
           return { foo: action.type };
         },
-        { foo: "bar" },
+        { foo: "bar" }
       );
       expect(store.getState()).to.deep.equal({ foo: "bar" });
       dispatch("");
@@ -89,7 +89,7 @@ describe("Test createReducer", () => {
 
   it("Emit with custom event", (done) => {
     const [store, dispatch] = reducer;
-    const callback = sinon.spy();
+    const callback = sinon.spy(() => null);
     store.addListener(callback);
     dispatch();
     setTimeout(() => {
@@ -101,7 +101,7 @@ describe("Test createReducer", () => {
   it("Test lazy initState with number", () => {
     const [store, dispatch] = createReducer(
       (state, action) => state && action && 111,
-      () => 111,
+      () => 111
     );
     dispatch(null);
     expect(store.getState()).to.equal(111);
@@ -110,7 +110,7 @@ describe("Test createReducer", () => {
   it("Test lazy initState with object", () => {
     const [store, dispatch] = createReducer(
       (state, action) => state && action,
-      () => ({ foo: "bar" }),
+      () => ({ foo: "bar" })
     );
     dispatch(null);
     expect(store.getState()).to.deep.equal({});
@@ -126,7 +126,7 @@ describe("Test createReducer", () => {
 
   it("Test reset event", (done) => {
     const [store, dispatch] = reducer;
-    const callback = sinon.spy();
+    const callback = sinon.spy(() => null);
     store.addListener(callback);
     dispatch();
     setTimeout(() => {

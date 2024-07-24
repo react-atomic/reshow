@@ -66,6 +66,19 @@ const callfunc = (maybeFunction) => (args) =>
   "function" === typeof maybeFunction ? maybeFunction(args) : maybeFunction;
 
 /**
+ * @template T
+ * @param {T} state
+ * @returns {T}
+ */
+const checkReturnState = (state) => {
+  if (state === undefined) {
+    console.trace();
+    throw `reducer() return undefined.`;
+  }
+  return state;
+};
+
+/**
  * @template StateType
  * @template ActionType
  *
@@ -97,8 +110,9 @@ export const getMitt = () => {
       const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
       return () =>
         nextExec.reduce(
-          (curState, curFunc) => curFunc(curState, action, prevState),
-          state,
+          (curState, curFunc) =>
+            checkReturnState(curFunc(curState, action, prevState)),
+          state
         );
     },
   };
@@ -150,11 +164,9 @@ export const createReducer = (reducer, initState) => {
   const dispatch = (action, actionParams) => {
     const startingState = state.current;
     const refinedAction = refineAction(action, actionParams, startingState);
-    const endingState = reducer(startingState, /**@type any*/ (refinedAction));
-    if (endingState === undefined) {
-      console.trace();
-      throw `reducer() return undefined.`;
-    }
+    const endingState = checkReturnState(
+      reducer(startingState, /**@type any*/ (refinedAction))
+    );
     if (startingState !== endingState) {
       state.current = endingState;
       const runEmit = mitt.emit(endingState, refinedAction, startingState);
