@@ -14,7 +14,6 @@ export function getMitt<StateType, ActionType>(): {
     remove: Emiter<StateType, ActionType>["remove"];
     /**
      * @type Emiter<StateType, ActionType>['emit']
-     * @see https://github.com/react-atomic/reshow/issues/96
      */
     emit: Emiter<StateType, ActionType>["emit"];
 };

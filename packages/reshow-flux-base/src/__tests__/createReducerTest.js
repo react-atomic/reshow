@@ -82,7 +82,7 @@ describe("Test createReducer", () => {
       const uMitt = getMitt();
       uMitt.add((state) => state + 1);
       uMitt.add((state) => state + 2);
-      const actual = uMitt.emit("foo");
+      const actual = uMitt.emit("foo")();
       expect(actual).to.equal("foo12");
     });
   });

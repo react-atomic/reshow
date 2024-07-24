@@ -92,15 +92,15 @@ export const getMitt = () => {
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     /**
      * @type Emiter<StateType, ActionType>['emit']
-     * @see https://github.com/react-atomic/reshow/issues/96
      */
-    emit: (state, action, prevState) =>
-      pool
-        .slice(0)
-        .reduce(
+    emit: (state, action, prevState) => {
+      const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
+      return () =>
+        nextExec.reduce(
           (curState, curFunc) => curFunc(curState, action, prevState),
           state
-        ),
+        );
+    },
   };
 };
 
@@ -157,7 +157,8 @@ export const createReducer = (reducer, initState) => {
     }
     if (startingState !== endingState) {
       state.current = endingState;
-      setTimeout(() => mitt.emit(endingState, refinedAction, startingState));
+      const runEmit = mitt.emit(endingState, refinedAction, startingState);
+      setTimeout(runEmit);
     }
     return state.current;
   };
