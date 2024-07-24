@@ -22,7 +22,7 @@ const consoleWrapper = { current: null };
 const sinonWrapper = { current: null };
 
 /**
- * @param {string} html
+ * @param {string=} html
  * @param {any} [options]
  */
 const jsdom = (html, options) => {

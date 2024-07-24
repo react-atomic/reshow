@@ -12,10 +12,10 @@ export type CleanItProps = {
  */
 export function cleanIt(props?: CleanItProps): void;
 /**
- * @param {string} html
+ * @param {string=} html
  * @param {any} [options]
  */
-export function jsdom(html: string, options?: any): any;
+export function jsdom(html?: string | undefined, options?: any): any;
 /**
  * @param {boolean|Function} [toThrow]
  */
