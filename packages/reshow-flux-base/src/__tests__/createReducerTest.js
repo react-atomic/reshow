@@ -9,7 +9,7 @@
 
 import { expect } from "chai";
 import * as sinon from "sinon";
-import { createReducer } from "../createReducer";
+import { createReducer, getMitt } from "../createReducer";
 
 describe("Test createReducer", () => {
   let reducer;
@@ -77,6 +77,16 @@ describe("Test createReducer", () => {
     });
   });
 
+  describe("Test emit reduce", () => {
+    it("test merge string", () => {
+      const uMitt = getMitt();
+      uMitt.add((state) => state + 1);
+      uMitt.add((state) => state + 2);
+      const actual = uMitt.emit("foo");
+      expect(actual).to.equal("foo12");
+    });
+  });
+
   it("Emit with custom event", (done) => {
     const [store, dispatch] = reducer;
     const callback = sinon.spy();
@@ -107,11 +117,10 @@ describe("Test createReducer", () => {
   });
 
   it("Test reset", () => {
-    const [store, dispatch] = createReducer(
-      (state, action) => state && action && "foo",
-      "foo"
-    );
+    const [store, dispatch] = createReducer(() => "bar", "foo");
     dispatch(null);
+    expect(store.getState()).to.equal("bar");
+    store.reset();
     expect(store.getState()).to.equal("foo");
   });
 

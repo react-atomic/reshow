@@ -31,4 +31,4 @@
  * @typedef {import("./type").ActionObject} ActionObject
  */
 
-export { createReducer, refineAction } from "./createReducer";
+export { createReducer, refineAction, getMitt } from "./createReducer";

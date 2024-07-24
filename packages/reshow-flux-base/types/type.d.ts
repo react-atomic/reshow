@@ -4,8 +4,8 @@ export type Payload = {
     [x: string]: any;
 };
 export type RefinedAction<ActionType = ActionObject> = ActionType | ActionObject;
-export type FluxHandler<StateType, ActionType> = (NextState: StateType, Action: RefinedAction<ActionType>, PrevState: StateType) => any;
-export type EmitterEmitCall<StateType, ActionType> = (state: StateType, action: RefinedAction<ActionType>, prevState: StateType) => any;
+export type FluxHandler<StateType, ActionType> = (NextState?: StateType | undefined, Action?: RefinedAction<ActionType> | undefined, PrevState?: StateType | undefined) => any;
+export type EmitterEmitCall<StateType, ActionType> = (state?: StateType | undefined, action?: RefinedAction<ActionType> | undefined, prevState?: StateType | undefined) => any;
 export type EmitterResetCall<StateType, ActionType> = () => FluxHandler<StateType, ActionType>[];
 export type EmitterAddCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => number;
 export type EmitterRemoveCall<StateType, ActionType> = (handler: FluxHandler<StateType, ActionType>) => FluxHandler<StateType, ActionType>[];

@@ -3,4 +3,4 @@ export type ReducerType<StateType, ActionType> = import("./type").ReducerType<St
 export type DispatchFunction<StateType, ActionType> = import("./type").DispatchFunction<StateType, ActionType>;
 export type StoreObject<StateType, ActionType> = import("./type").StoreObject<StateType, ActionType>;
 export type ActionObject = import("./type").ActionObject;
-export { createReducer, refineAction } from "./createReducer";
+export { createReducer, refineAction, getMitt } from "./createReducer";

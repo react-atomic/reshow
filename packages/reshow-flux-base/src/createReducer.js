@@ -71,7 +71,7 @@ const callfunc = (maybeFunction) => (args) =>
  *
  * @returns Emiter<StateType, ActionType>
  */
-const getMitt = () => {
+export const getMitt = () => {
   /**
    * @type FluxHandler<StateType, ActionType>[]
    */
@@ -84,7 +84,7 @@ const getMitt = () => {
     /**
      * @type Emiter<StateType, ActionType>['add']
      */
-    add: (handler) => pool.unshift(handler),
+    add: (handler) => pool.push(handler),
     /**
      * >>> 0 for change indexOf return -1 to 4294967295
      * @type Emiter<StateType, ActionType>['remove']
@@ -92,16 +92,15 @@ const getMitt = () => {
     remove: (handler) => pool.splice(pool.indexOf(handler) >>> 0, 1),
     /**
      * @type Emiter<StateType, ActionType>['emit']
+     * @see https://github.com/react-atomic/reshow/issues/96
      */
-    emit: (state, action, prevState) => {
-      const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
-      setTimeout(() => {
-        let i = nextExec.length;
-        while (i--) {
-          nextExec[i](state, action, prevState);
-        }
-      });
-    },
+    emit: (state, action, prevState) =>
+      pool
+        .slice(0)
+        .reduce(
+          (curState, curFunc) => curFunc(curState, action, prevState),
+          state
+        ),
   };
 };
 
@@ -158,15 +157,14 @@ export const createReducer = (reducer, initState) => {
     }
     if (startingState !== endingState) {
       state.current = endingState;
-      mitt.emit(endingState, refinedAction, startingState);
+      setTimeout(() => mitt.emit(endingState, refinedAction, startingState));
     }
-    return endingState;
+    return state.current;
   };
   const store = {
     reset: () => {
-      if (mitt.reset()) {
-        state.current = callfunc(initState)();
-      }
+      mitt.reset();
+      state.current = callfunc(initState)();
       return state.current;
     },
     getState: () => state.current,

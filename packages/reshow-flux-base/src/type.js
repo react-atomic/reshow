@@ -14,9 +14,9 @@
  * @template ActionType
  *
  * @callback FluxHandler
- * @param {StateType} NextState
- * @param {RefinedAction<ActionType>} Action
- * @param {StateType} PrevState
+ * @param {StateType=} NextState
+ * @param {RefinedAction<ActionType>=} Action
+ * @param {StateType=} PrevState
  * @returns{any}
  */
 
@@ -25,9 +25,9 @@
  * @template ActionType
  *
  * @callback EmitterEmitCall
- * @param {StateType} state
- * @param {RefinedAction<ActionType>} action
- * @param {StateType} prevState
+ * @param {StateType=} state
+ * @param {RefinedAction<ActionType>=} action
+ * @param {StateType=} prevState
  */
 
 /**
