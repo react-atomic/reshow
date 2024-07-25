@@ -1,5 +1,5 @@
 export default usePartialRender;
-export type DispatchType<StateType, ActionType> = import('reshow-flux-base').DispatchFunction<StateType, ActionType>;
+export type DispatchType<StateType, ActionType> = import("reshow-flux-base").DispatchFunction<StateType, ActionType>;
 export type RenderKeysType = string[] | import("immutable").Seq<any, any>;
 /**
  * @template StateType
@@ -16,6 +16,5 @@ export type RenderKeysType = string[] | import("immutable").Seq<any, any>;
  * @returns {[React.ReactElement[], DispatchType<any, ChildrenType>, DispatchType<any, RenderKeysType>]}
  */
 declare function usePartialRender<ChildrenType>(initRenderKeys?: RenderKeysType, initChildren?: {
-    [key: string]: import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
-} | Map<string, import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>>): [import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>[], DispatchType<any, ChildrenType>, DispatchType<any, RenderKeysType>];
-import { Map } from "reshow-flux";
+    [key: string]: React.ReactElement;
+} | Immutable.Map<string, React.ReactElement>): [React.ReactElement[], DispatchType<any, ChildrenType>, DispatchType<any, RenderKeysType>];

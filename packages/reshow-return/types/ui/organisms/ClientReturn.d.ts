@@ -6,4 +6,4 @@ export default ClientReturnHoc;
  * @param {string[]} cleanProps
  * @returns {React.ElementType}
  */
-declare function ClientReturnHoc(comp: any, cleanProps: string[]): React.ElementType;
+declare function ClientReturnHoc(comp: React.ReactNode, cleanProps: string[]): React.ElementType;

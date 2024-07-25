@@ -1,5 +1,5 @@
 export default useClientReturn;
-export type UseReturnType<StateType, ActionType> = import('./useReturn').UseReturnType<StateType, ActionType>;
+export type UseReturnType<StateType, ActionType> = import("./useReturn").UseReturnType<StateType, ActionType>;
 /**
  * @template StateType
  * @template ActionType
