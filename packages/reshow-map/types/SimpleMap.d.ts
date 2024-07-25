@@ -1,9 +1,9 @@
 export class SimpleMap {
     /**
-     * @param {object} obj
-     * @param {boolean} needUpdate
+     * @param {object=} obj
+     * @param {boolean=} needUpdate
      */
-    constructor(obj: object, needUpdate?: boolean);
+    constructor(obj?: object | undefined, needUpdate?: boolean | undefined);
     _state: {};
     _update: boolean;
     /**

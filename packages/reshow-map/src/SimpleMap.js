@@ -10,8 +10,8 @@ export class SimpleMap {
   _update = false;
 
   /**
-   * @param {object} obj
-   * @param {boolean} needUpdate
+   * @param {object=} obj
+   * @param {boolean=} needUpdate
    */
   constructor(obj, needUpdate = false) {
     if (obj) {
