@@ -1063,9 +1063,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.4.820:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.0.tgz#0d3123a9f09189b9c7ab4b5d6848d71b3c1fd0e8"
-  integrity sha512-Vb3xHHYnLseK8vlMJQKJYXJ++t4u1/qJ3vykuVrVjvdiOEhYyT1AuP4x03G8EnPmYvYOhe9T+dADTmthjRQMkA==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.1.tgz#24640bd4dcfaccb6d82bb4c3f4c7311503241581"
+  integrity sha512-FKbOCOQ5QRB3VlIbl1LZQefWIYwszlBloaXcY2rbfpu9ioJnNh3TK03YtIDKDo3WKBi8u+YV4+Fn2CkEozgf4w==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -2272,12 +2272,7 @@ prettier-eslint-cli@8.0.1:
     rxjs "^7.8.1"
     yargs "^17.7.2"
 
-prettier@2.8.8:
-  version "2.8.8"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
-  integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
-
-prettier@^3.0.1:
+prettier@3.3.3, prettier@^3.0.1:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.3.tgz#30c54fe0be0d8d12e6ae61dbb10109ea00d53105"
   integrity sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==
@@ -2375,9 +2370,9 @@ reshow-constant@*:
   integrity sha512-8cVlpvwA9CYN2ZYA7bThRN1EVOxsVR0U8iqCP7LQ2cDJEPdzR/E9+lx21EsaG5YId6WLgmvjdiestgw2IsKJYQ==
 
 reshow-unit-dom@*:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.6.2.tgz#7f2df5f3e2ac250562610d2701d424d87eba8040"
-  integrity sha512-UEiMwyb3dR9SRb0f3MmsSwbcbVGq+qUMEdd4oV4r1kktEswbw/ptglwUBy+jZ6v8LmWpUsUvPuB64uvhd6d/rA==
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/reshow-unit-dom/-/reshow-unit-dom-0.7.0.tgz#c99bdced2e807c858feb8d0f5138993d457ce250"
+  integrity sha512-Jzanx0N7pA5e1i+tytiTFkmJDdf8cPYqBBDTu0TqzUkQtCJQsQGr/eAvcp3gayQazHvnI/ffEEUpqOEZFrs3YA==
   dependencies:
     "@types/chai" "^4.3.16"
     "@types/mocha" "*"
@@ -2389,7 +2384,7 @@ reshow-unit-dom@*:
     mocha "10.2.0"
     mocha-junit-reporter "2.2.0"
     nyc "15.1.0"
-    prettier "2.8.8"
+    prettier "3.3.3"
     prettier-eslint "16.3.0"
     prettier-eslint-cli "8.0.1"
     reshow-constant "*"
@@ -2691,10 +2686,15 @@ type-check@^0.4.0, type-check@~0.4.0:
   dependencies:
     prelude-ls "^1.2.1"
 
-type-detect@4.0.8, type-detect@^4.0.0, type-detect@^4.0.8:
+type-detect@4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
+
+type-detect@^4.0.0, type-detect@^4.0.8:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.1.0.tgz#deb2453e8f08dcae7ae98c626b13dddb0155906c"
+  integrity sha512-Acylog8/luQ8L7il+geoSxhEkazvkslg7PSNKOX59mbB9cOveP5aq9h74Y7YU8yDpJwetzQQrfIwtf4Wp4LKcw==
 
 type-fest@^0.20.2:
   version "0.20.2"
