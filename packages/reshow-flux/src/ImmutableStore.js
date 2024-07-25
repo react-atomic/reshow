@@ -1,10 +1,11 @@
 // @ts-check
 
+import { forEachMap } from "get-object-value";
 import { Map, Set, fromJS, is as equal } from "immutable";
 import { createReducer } from "reshow-flux-base";
-import { OBJ_SIZE, KEYS, STRING } from "reshow-constant";
 import callfunc from "call-func";
 import toJS from "./toJS";
+import { STRING } from "reshow-constant";
 
 /**
  * @typedef {number|string} MapKeyType
@@ -91,38 +92,6 @@ const getMap = (state, k) => {
     return {};
   }
 };
-const isMap = Map.isMap;
-
-/**
- * @param {MaybeMapType} maybeMap
- * @param {forEachCb} cb
- */
-const forEachMap = (maybeMap, cb) => {
-  if (!maybeMap || !MAP_SIZE(maybeMap)) {
-    return;
-  }
-  if (isMap(maybeMap)) {
-    maybeMap.forEach(cb);
-  } else {
-    if (STRING === typeof maybeMap) {
-      /**
-       * Use with mergeMap
-       * will set string with key type such as
-       * { type: "this-string" }
-       */
-      cb(maybeMap, "type");
-    } else {
-      KEYS(/**@type object*/ (maybeMap)).forEach((k) => cb(maybeMap[k], k));
-    }
-  }
-};
-
-/**
- * @param {MaybeMapType} maybeMap
- * @returns {number}
- */
-const MAP_SIZE = (maybeMap) =>
-  isMap(maybeMap) ? maybeMap.size : OBJ_SIZE(maybeMap);
 
 /**
  * Why not just use immutable mergeMap?
@@ -135,18 +104,22 @@ const MAP_SIZE = (maybeMap) =>
  * @returns {StateType}
  */
 const mergeMap = (state, maybeMap) => {
-  try {
-    forEachMap(
-      maybeMap,
-      /**
-       * @param {any} v
-       * @param {MapKeyType} k
-       */
-      (v, k) => {
-        state = state.set(k, v);
-      },
-    );
-  } catch (e) {}
+  if (STRING === typeof maybeMap) {
+    state = state.set("type", maybeMap);
+  } else {
+    try {
+      forEachMap(
+        maybeMap,
+        /**
+         * @param {any} v
+         * @param {MapKeyType} k
+         */
+        (v, k) => {
+          state = state.set(k, v);
+        }
+      );
+    } catch (e) {}
+  }
   return state;
 };
 
@@ -173,7 +146,7 @@ export default function ImmutableStore(reducer, initState) {
   const stateMap = /**@type StateMap*/ (mergeMap(Map(), callfunc(initState)));
   const [store, dispatch] = createReducer(
     nextReducer,
-    /**@type StateType*/ (stateMap),
+    /**@type StateType*/ (stateMap)
   );
 
   /**
@@ -186,4 +159,4 @@ export default function ImmutableStore(reducer, initState) {
   return [nextStore, dispatch];
 }
 
-export { equal, forEachMap, fromJS, mergeMap, Map, Set };
+export { equal, fromJS, mergeMap, Map, Set };

@@ -121,6 +121,7 @@ const useConnect =
               }),
             );
           }
+          return storeSyncState;
         };
         if (!data.__init__ || data.props !== props) {
           handleChange(options.store.getState());

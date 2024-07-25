@@ -63,11 +63,6 @@ export type ImmutableStoreObject<StateType = StateMap, ActionType = MaybeMapType
 export type ReducerTypeWithMap<StateType = StateMap, ActionType = MaybeMapType> = (state: StateType, action: ActionType) => StateType;
 export type forEachCb = (Value: any, Key: any) => any;
 import { is as equal } from "immutable";
-/**
- * @param {MaybeMapType} maybeMap
- * @param {forEachCb} cb
- */
-export function forEachMap(maybeMap: MaybeMapType, cb: forEachCb): void;
 import { fromJS } from "immutable";
 /**
  * Why not just use immutable mergeMap?

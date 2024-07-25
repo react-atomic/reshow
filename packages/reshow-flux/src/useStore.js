@@ -63,6 +63,7 @@ const useStore = (store, heeding) => {
       ((/** @type Emitter*/ emit) => {
         emit.current.state = emit.current.storeState;
         emit.current.notify();
+        return emit.current.state;
       });
     /**
      * @type FluxHandler<StateType, ActionType>
@@ -75,7 +76,7 @@ const useStore = (store, heeding) => {
         prevStoreState,
         notify,
       };
-      myHeeding(lastEmit);
+      return myHeeding(lastEmit);
     };
     store.addListener(myListener);
     return () => store.removeListener(myListener);

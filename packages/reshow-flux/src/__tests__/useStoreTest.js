@@ -32,6 +32,7 @@ describe("useStore Test", () => {
         if (emit.current) {
           emit.current.state = "bar";
           emit.current.notify();
+          return emit.current.state;
         }
       });
       return <div>{state}</div>;

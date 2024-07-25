@@ -30,7 +30,7 @@ describe("Test Connect hook for more test", () => {
     render(<FakeComponent />);
     await act(() => dispatch({ foo: "bar" }), 5);
     expect(screen().getByRole("udom").outerHTML).to.equal(
-      `<div role="udom">bar</div>`,
+      `<div role="udom">bar</div>`
     );
   });
 
@@ -59,7 +59,7 @@ describe("Test Connect hook for more test", () => {
     const dispatchCalculateTimes = calculateTimes;
     expect(dispatchCalculateTimes >= 3).to.be.true;
     expect(screen().getByRole("udom").outerHTML).to.equal(
-      `<div role="udom">Hello dispatcher!</div>`,
+      `<div role="udom">Hello dispatcher!</div>`
     );
     await act(() => wrap.unmount());
     dispatch({ aaa: "Hello Unmount!" });
@@ -109,7 +109,7 @@ describe("Test Connect hook for more test", () => {
     expect(calculateStateProps).to.deep.include({ foo: null });
     await act(() => changeFoo("bar"));
     expect(screen().getByRole("udom").outerHTML).to.equal(
-      `<div role="udom">bar</div>`,
+      `<div role="udom">bar</div>`
     );
     expect(getStoresProps).to.deep.include({ foo: "bar" });
     expect(calculateStateProps).to.deep.include({ foo: "bar" });
@@ -127,7 +127,7 @@ describe("Test Connect hook for more test", () => {
 
     render(<FakeComponent bar="bbb" />);
     expect(screen().getByRole("udom").outerHTML).to.equal(
-      `<div role="udom" data-bar="bbb"></div>`,
+      `<div role="udom" data-bar="bbb"></div>`
     );
   });
 });

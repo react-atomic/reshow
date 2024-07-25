@@ -68,12 +68,14 @@ const callfunc = (maybeFunction) => (args) =>
 /**
  * @template T
  * @param {T} state
+ * @param {string} cause
  * @returns {T}
  */
-const checkReturnState = (state) => {
+const checkReturnState = (state, cause) => {
   if (state === undefined) {
-    console.trace();
-    throw `reducer() return undefined.`;
+    const error = "Reducer change return undefined.";
+    console.error({ error, cause });
+    throw new Error(error, { cause });
   }
   return state;
 };
@@ -111,7 +113,10 @@ export const getMitt = () => {
       return () =>
         nextExec.reduce(
           (curState, curFunc) =>
-            checkReturnState(curFunc(curState, action, prevState)),
+            checkReturnState(
+              curFunc(curState, action, prevState),
+              `FluxHandler: ${curFunc}`
+            ),
           state
         );
     },
@@ -165,7 +170,8 @@ export const createReducer = (reducer, initState) => {
     const startingState = state.current;
     const refinedAction = refineAction(action, actionParams, startingState);
     const endingState = checkReturnState(
-      reducer(startingState, /**@type any*/ (refinedAction))
+      reducer(startingState, /**@type any*/ (refinedAction)),
+      "reducer()"
     );
     if (startingState !== endingState) {
       state.current = endingState;
