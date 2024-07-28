@@ -28,4 +28,20 @@ describe("Test string render", () => {
     };
     expect(run).throw(TypeError);
   });
+
+  for (let i = 1, j = 7; i < j; i++) {
+    it(`test render h${i}`, () => {
+      const vdom = /**@type React.ReactElement*/ (build(`h${i}`)());
+      const actual = render(vdom).html();
+      expect(actual).to.equal(`<h${i}></h${i}>`);
+    });
+  }
+
+  [0, 7, 8, 9].forEach((i) => {
+    it(`test render h${i}`, () => {
+      const vdom = /**@type React.ReactElement*/ (build(`h${i}`)());
+      const actual = render(vdom).html();
+      expect(actual).to.equal(`<span>h${i}</span>`);
+    });
+  });
 });

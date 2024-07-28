@@ -92,7 +92,7 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
     !component ||
     T_TRUE === component ||
     (STRING === typeof component &&
-      component !== /**@type string*/ (component).replace(/[^a-z0-9]/g, ""))
+      component !== /**@type string*/ (component).replace(/[^a-z1-6]/g, ""))
   ) {
     if (null != props.children) {
       throw new TypeError("String component should not have child");
