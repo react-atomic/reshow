@@ -1,5 +1,5 @@
 {
-  "version": "0.19.0",
+  "version": "0.19.1",
   "name": "reshow-flux",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "array.dedup": "*",
     "array.merge": "*",
     "call-func": "*",
-    "get-object-value": "*",
+    "get-object-value": "~0.7.x",
     "immutable": "4.0.0",
     "memoize-one": "*",
     "reshow-build": "*",
