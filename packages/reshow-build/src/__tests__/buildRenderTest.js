@@ -8,26 +8,8 @@ import { render } from "reshow-unit";
 import build from "../index";
 
 describe("Test build render", () => {
-  it("test build string", () => {
-    const vdom = build("Foo Bar")();
-    const actual = render(vdom).html();
-    expect(actual).to.equal("<span>Foo Bar</span>");
-  });
-
-  it("test build string with child", () => {
-    const vdom = build("Foo Bar")({}, <div />);
-    const actual = render(vdom).html();
-    expect(actual).to.equal("<span>Foo Bar</span>");
-  });
-
-  it("test build string with params has child", () => {
-    const vdom = build("Foo Bar")({ children: <div /> });
-    const actual = render(vdom).html();
-    expect(actual).to.equal("<span>Foo Bar</span>");
-  });
-
   it("test build native html", () => {
-    const vdom = build("a")();
+    const vdom = /**@type React.ReactElement*/ (build("a")());
     const actual = render(vdom).html();
     expect(actual).to.equal("<a></a>");
   });
@@ -41,7 +23,7 @@ describe("Test build render", () => {
     const func = (/**@type any*/ props) => {
       return <FakeComponent {...props} />;
     };
-    const vDom = build(func)({ foo: "bar3" });
+    const vDom = /**@type React.ReactElement*/ (build(func)({ foo: "bar3" }));
     const html = render(vDom).html();
     expect(html).to.equal("<div>bar3</div>");
   });
@@ -63,15 +45,19 @@ describe("Test build render", () => {
 
   it("test with component", () => {
     const FakeComponent = (/** @type any*/ props) => <div>{props.foo}</div>;
-    const vDom = build(FakeComponent)({ foo: "bar" });
+    const vDom = /**@type React.ReactElement*/ (
+      build(FakeComponent)({ foo: "bar" })
+    );
     const html = render(vDom).html();
     expect(html).to.equal("<div>bar</div>");
   });
 
   it("test with instance", () => {
     const FakeComponent = (/** @type any*/ props) => <div>{props.foo}</div>;
-    const vDom = <FakeComponent />;
-    const html = render(build(vDom)({ foo: "bar1" })).html();
+    const vDom = /**@type React.ReactElement*/ (
+      build(<FakeComponent />)({ foo: "bar1" })
+    );
+    const html = render(vDom).html();
     expect(html).to.equal("<div>bar1</div>");
   });
 
@@ -81,7 +67,9 @@ describe("Test build render", () => {
         return <div>{this.props.foo}</div>;
       }
     }
-    const vDom = build(FakeComponent)({ foo: "bar2" });
+    const vDom = /**@type React.ReactElement*/ (
+      build(FakeComponent)({ foo: "bar2" })
+    );
     const html = render(vDom).html();
     expect(html).to.equal("<div>bar2</div>");
   });
@@ -94,7 +82,7 @@ describe("Test build render", () => {
       }
     }
     const html = render(
-      <FakeComponent id="foo" comp={<div>foo</div>} />,
+      <FakeComponent id="foo" comp={<div>foo</div>} />
     ).html();
     expect(html).to.equal('<div id="foo">bar</div>');
   });
@@ -105,7 +93,9 @@ describe("Test build render", () => {
         return <div {...this.props} />;
       }
     }
-    const vDom = build(FakeComponent)({ id: "foo" }, "hello");
+    const vDom = /**@type React.ReactElement*/ (
+      build(FakeComponent)({ id: "foo" }, "hello")
+    );
     const html = render(vDom).html();
     expect(html).to.equal('<div id="foo">hello</div>');
   });

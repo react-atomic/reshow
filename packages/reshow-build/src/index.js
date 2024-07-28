@@ -89,13 +89,16 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
     params.push(child);
   }
   if (
-    (STRING === typeof component &&
-      component !== /**@type string*/ (component).replace(/[^a-z]/g, "")) ||
     !component ||
-    T_TRUE === component
+    T_TRUE === component ||
+    (STRING === typeof component &&
+      component !== /**@type string*/ (component).replace(/[^a-z0-9]/g, ""))
   ) {
-    const { children, ...restProps } = props;
-    return buildReact(<span>{/**@type string*/ (component)}</span>, restProps);
+    if (null != props.children) {
+      throw new TypeError("String component should not have child");
+    } else {
+      return buildReact(<span>{/**@type string*/ (component)}</span>, props);
+    }
   } else {
     return (isValidComp ? cloneElement : createElement).apply(T_NULL, params);
   }
@@ -134,7 +137,7 @@ const build =
         /**@type any*/ (comp),
         props,
         child,
-        componentOption,
+        componentOption
       );
     };
 
@@ -145,7 +148,7 @@ const build =
         <Fragment key={key}>
           {Children.map(
             component.map((comp) => run(comp)),
-            (c) => c,
+            (c) => c
           )}
         </Fragment>
       );

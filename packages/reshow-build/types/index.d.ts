@@ -1,7 +1,7 @@
 export default build;
 export { mergeRef } from "./mergeRef";
 export type Component = React.ComponentType | React.ReactNode | Function;
-export type RefType = import('./mergeRef').RefType;
+export type RefType = import("./mergeRef").RefType;
 export type BuildProps = object;
 export type ComponentOption = {
     /**
