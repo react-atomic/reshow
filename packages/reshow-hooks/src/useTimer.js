@@ -1,7 +1,7 @@
 //@ts-check
 
 import { T_UNDEFINED } from "reshow-constant";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useCallback, useMemo } from "react";
 import callfunc from "call-func";
 
 /**
@@ -21,25 +21,25 @@ const useTimer = (interval) => {
       interval
         ? { run: setInterval, stop: clearInterval }
         : { run: setTimeout, stop: clearTimeout },
-    [],
+    []
   );
 
-  const stop = () => {
+  const stop = useCallback(() => {
     if (timer.current) {
       callfunc(act.stop, [timer.current]);
       timer.current = T_UNDEFINED;
     }
-  };
+  }, []);
 
   useEffect(() => () => stop(), []);
 
   /**
    * @type RunType
    */
-  const run = (func, delay) => {
+  const run = useCallback((func, delay) => {
     stop();
     timer.current = callfunc(act.run, [func, delay]);
-  };
+  }, []);
 
   return [run, stop];
 };
