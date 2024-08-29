@@ -1,4 +1,5 @@
-import webpack from "webpack";
+// @ts-check
+
 import getResolve, { getResolveLoader } from "./webpack/getResolve";
 import getEntry from "./webpack/getEntry";
 import getOptimization from "./webpack/getOptimization";
@@ -13,11 +14,19 @@ import progress from "./webpack/progress";
 const { NODE_ENV, CONFIG, BUNDLE, HOT_UPDATE, ENABLE_SW } = process.env;
 const processConfs = CONFIG ? JSON.parse(CONFIG) : {};
 
+/**
+ * @param {string} root
+ * @param {Object<string,string>} main
+ * @param {Object<any, any>} lazyConfs
+ */
 const myWebpack = (root, main, lazyConfs) => {
   const confs = { assetsFolder: "/assets", ...processConfs, ...lazyConfs };
   const stop = progress({ confs });
   const path = root + confs.assetsFolder;
   let mode = DEVELOPMENT;
+  /**
+   * @type {string|boolean}
+   */
   let devtool = "cheap-source-map";
   if (PRODUCTION === NODE_ENV) {
     mode = PRODUCTION;
@@ -27,7 +36,7 @@ const myWebpack = (root, main, lazyConfs) => {
     ...getCache({ mode }),
     mode,
     devtool,
-    entry: getEntry({ root, main, confs }),
+    entry: getEntry({ root, main }),
     output: getOutput({ path, confs }),
     optimization: getOptimization({ mode, confs }),
     plugins: getPlugins({
@@ -44,9 +53,10 @@ const myWebpack = (root, main, lazyConfs) => {
     resolve: getResolve({ root, confs }),
     resolveLoader: getResolveLoader({ root }),
     externals: confs.externals,
+    devServer: undefined,
   };
   if (HOT_UPDATE) {
-    result.devServer = getHotServer({ root, confs });
+    result.devServer = /**@type any*/ (getHotServer({ root, confs }));
   }
   return result;
 };

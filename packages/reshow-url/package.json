@@ -1,5 +1,5 @@
 {
-  "version": "0.18.1",
+  "version": "0.18.2",
   "name": "reshow-url",
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
   "dependencies": {
     "array.dedup": "*",
     "organism-react-ajax": "*",
-    "reshow": "^0.17.x",
-    "reshow-flux": "^0.17.x",
+    "reshow": "*",
+    "reshow-flux": "*",
     "reshow-runtime": "*",
     "win-doc": "*"
   },

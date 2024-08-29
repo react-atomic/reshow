@@ -1,5 +1,5 @@
 {
-  "version": "0.17.94",
+  "version": "0.18.0",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "ansi-html-community": "0.0.8",
     "array.polyfill": "*",
     "call-func": "*",
-    "chalk": "^2.x",
+    "chalk": "5.3.0",
     "core-js": "^3.1.4",
     "error-stack-parser": "2.0.6",
     "es6-promise": "4.2.5",
@@ -37,12 +37,12 @@
     "react-atomic-atom": "*",
     "react-refresh": "*",
     "readable-stream": "3.6.0",
-    "reshow": "^0.17.x",
-    "reshow-build": "^0.17.x",
+    "reshow": "^0.18.x",
+    "reshow-build": "*",
     "reshow-constant": "*",
     "reshow-runtime": "*",
-    "reshow-unit": "^0.17.x",
-    "reshow-url": "^0.17.x",
+    "reshow-unit": "^0.18.x",
+    "reshow-url": "^0.18.x",
     "reshow-worker": "*",
     "swc-loader": "0.2.3",
     "terser-webpack-plugin": "^5.3.x",
@@ -61,9 +61,20 @@
       "require": "./client.js",
       "import": "./client.mjs"
     },
-    "./server": "./server.js",
-    "./webpack.client": "./webpack.client.js",
-    "./webpack.server": "./webpack.server.js"
+    "./server": {
+      "require": "./server.js",
+      "import": "./server.mjs"
+    },
+    "./webpack.client": {
+      "types": "./types/webpack.client.d.ts",
+      "require": "./webpack.client.js",
+      "import": "./webpack.client.mjs"
+    },
+    "./webpack.server": {
+      "types": "./types/webpack.server.d.ts",
+      "require": "./webpack.server.js",
+      "import": "./webpack.server.mjs"
+    }
   },
   "scripts": {
     "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json",
@@ -73,6 +84,7 @@
     "prepublishOnly": "npm t"
   },
   "files": [
+    "types",
     "README.md",
     "client.js",
     "client.mjs",

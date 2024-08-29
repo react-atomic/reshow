@@ -1,4 +1,6 @@
-import webpack from "webpack";
+// @ts-check
+
+import * as webpack from "webpack";
 import chalk from "chalk";
 
 import FinishPlugin from "./FinishPlugin";
@@ -12,8 +14,20 @@ import { PRODUCTION } from "./const";
 
 const { AggressiveMergingPlugin, LimitChunkCountPlugin } = webpack.optimize;
 const assetsStore = { current: null };
-const log = (s) => console.log(chalk.inverse(s));
+const log = (/**@type string*/ s) => console.log(chalk.inverse(s));
 
+/**
+ * @param {object} props
+ * @param {string} props.root
+ * @param {string} props.path
+ * @param {Function} props.stop
+ * @param {string} props.mode
+ * @param {string=} props.BUNDLE
+ * @param {string=} props.HOT_UPDATE
+ * @param {string=} props.ENABLE_SW
+ * @param {boolean=} props.server
+ * @param {Object<any, any>} props.confs
+ */
 const getPlugins = ({
   root,
   path,
@@ -26,16 +40,16 @@ const getPlugins = ({
   server,
 }) => {
   ENABLE_SW = ENABLE_SW || confs.swDebug || false;
-  const processEnv = { ENABLE_SW };
+  const processEnv = { ENABLE_SW: ENABLE_SW || "" };
   const plugins = [];
   if (root) {
     plugins.push(
       new webpack.ProvidePlugin({
         process: "process/browser.js",
         ReadableStream: require.resolve(
-          root + "/node_modules/reshow-app/webpack/ReadableStream",
+          root + "/node_modules/reshow-app/webpack/ReadableStream"
         ),
-      }),
+      })
     );
   }
   let maxChunks = confs.maxChunks;
@@ -44,7 +58,7 @@ const getPlugins = ({
   } else {
     plugins.push(
       getStatsJson({ assetsStore, path }),
-      new NginxPushPlugin(confs, assetsStore),
+      new NginxPushPlugin(confs, assetsStore)
     );
   }
   if (maxChunks != null) {
@@ -60,8 +74,7 @@ const getPlugins = ({
     plugins.push(
       new AggressiveMergingPlugin({
         minSizeReduce: 2,
-        moveToParents: true,
-      }),
+      })
     );
     processEnv.NODE_ENV = PRODUCTION;
   }
@@ -84,7 +97,7 @@ const getPlugins = ({
   }
   plugins.push(
     // https://webpack.js.org/plugins/environment-plugin/
-    new webpack.EnvironmentPlugin(processEnv),
+    new webpack.EnvironmentPlugin(processEnv)
   );
   return plugins;
 };

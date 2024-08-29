@@ -1,5 +1,15 @@
+// @ts-check
+
+/**
+ * @typedef {object} GetOutputProps
+ * @property {string} path 
+ * @property {Object<string,any>} confs
+ * @property {boolean=} server 
+ */
+
 /**
  * https://webpack.js.org/configuration/output/
+ * @param {GetOutputProps} props
  */
 const getOutput = ({ path, confs, server }) => {
   const output = {

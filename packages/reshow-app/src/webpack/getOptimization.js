@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * https://webpack.js.org/plugins/split-chunks-plugin/#splitchunkschunks
  *
@@ -13,6 +15,9 @@ const getChunkConfig = ({ bustMode }) => ({
   reuseExistingChunk: true,
 });
 
+/**
+ * @param {Object<any,any>} chunkConfig
+ */
 const getVendor = (chunkConfig) => ({
   ...chunkConfig,
   test: /[\/]node_modules[\/]/,
@@ -20,6 +25,9 @@ const getVendor = (chunkConfig) => ({
   priority: -20,
 });
 
+/**
+ * @param {Object<any,any>} chunkConfig
+ */
 const getLibVendor = (chunkConfig) => ({
   ...chunkConfig,
   test: /[\/]node_modules[\/](reshow|react-atomic|organism-react|ricon|class-lib|need-css|keyframe-css|easing-lib|hyphenate-style-name)/,
@@ -27,6 +35,13 @@ const getLibVendor = (chunkConfig) => ({
   priority: -10,
 });
 
+
+/**
+ * @param {object} props
+ * @param {string} props.mode
+ * @param {boolean=} props.server
+ * @param {Object<any, any>} props.confs
+ */
 const getOptimization = ({ mode, server, confs }) => {
   const chunkConfig = getChunkConfig(confs);
   const cacheGroups = {};

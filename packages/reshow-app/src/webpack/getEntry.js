@@ -1,8 +1,20 @@
-import fs from "fs";
+// @ts-check
 
-const isExists = (f) => fs.existsSync(f);
+import * as fs from "fs";
 
-const getEntry = ({ main, confs, root, server }) => {
+const isExists = (/**@type string*/ f) => fs.existsSync(f);
+
+/**
+ * @typedef {object} GetEntryProps
+ * @property {Object<string,string>} main
+ * @property {string} root
+ * @property {boolean=} server
+ */
+
+/**
+ * @param {GetEntryProps} props
+ */
+const getEntry = ({ main, root, server }) => {
   if (!main) {
     const entry = {};
     if (server) {

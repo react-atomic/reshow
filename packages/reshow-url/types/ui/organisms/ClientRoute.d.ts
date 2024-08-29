@@ -7,7 +7,7 @@ declare class ClientRoute extends Reshow {
         ajax: boolean;
         goAnchorDelay: number;
         fallback: string;
-        onHashChange: (rawPath: string) => (arg0: number) => string;
+        onHashChange: (rawPath: string) => (arg0: number | null) => string;
     };
     getPath(): any;
     /**
