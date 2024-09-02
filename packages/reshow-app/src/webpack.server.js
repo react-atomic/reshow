@@ -1,4 +1,3 @@
-import webpack from "webpack";
 import getResolve, { getResolveLoader } from "./webpack/getResolve";
 import getEntry from "./webpack/getEntry";
 import getOptimization from "./webpack/getOptimization";

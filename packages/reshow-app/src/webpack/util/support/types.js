@@ -1,12 +1,16 @@
 // Currently in sync with Node.js lib/internal/util/types.js
 // https://github.com/nodejs/node/commit/112cc7c27551254aa2b17098fb774867f05ed0d9
 
-"use strict";
+// @ts-check
 
-var isArgumentsObject = require("is-arguments");
-var isGeneratorFunction = require("is-generator-function");
-var whichTypedArray = require("which-typed-array");
-var isTypedArray = require("is-typed-array");
+import isArgumentsObject from "is-arguments";
+import isGeneratorFunction from "is-generator-function";
+import whichTypedArray from "which-typed-array";
+/**
+ * @param {any} a
+ * @returns {boolean}
+ */
+const isTypedArray = (a) => Array.isArray(a);
 
 function uncurryThis(f) {
   return f.call.bind(f);
@@ -223,7 +227,7 @@ function isSharedArrayBuffer(value) {
 
   if (typeof isSharedArrayBufferToString.working === "undefined") {
     isSharedArrayBufferToString.working = isSharedArrayBufferToString(
-      new SharedArrayBufferCopy(),
+      new SharedArrayBufferCopy()
     );
   }
 

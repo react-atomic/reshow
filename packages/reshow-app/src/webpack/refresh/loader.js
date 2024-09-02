@@ -1,4 +1,3 @@
-import fs from "fs";
 import { refreshUtils } from "./globals";
 import RefreshModuleRuntime from "./runtime/RefreshModuleRuntime";
 import isUseEsm from "./utils/isUseEsm";

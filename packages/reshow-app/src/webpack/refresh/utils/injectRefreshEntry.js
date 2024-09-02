@@ -1,6 +1,10 @@
 /** @typedef {string | string[] | import('webpack').Entry} StaticEntry */
 /** @typedef {StaticEntry | import('webpack').EntryFunc} WebpackEntry */
 
+import { getDirName } from "../../util/getDirName";
+const rootDir = getDirName();
+import path from "path";
+
 /**
  * Injects an entry to the bundle for react-refresh.
  * @param {WebpackEntry} [originalEntry] A Webpack entry object.
@@ -9,9 +13,9 @@
 const injectRefreshEntry = (originalEntry) => {
   const entryInjects = [
     // React-refresh runtime
-    require.resolve("../runtime/ReactRefreshEntry"),
+    path.join(rootDir, "../runtime/ReactRefreshEntry"),
     // Error overlay runtime
-    require.resolve("../runtime/ErrorOverlayEntry"),
+    path.join(rootDir, "../runtime/ErrorOverlayEntry"),
   ];
 
   // Single string entry point
@@ -29,14 +33,14 @@ const injectRefreshEntry = (originalEntry) => {
         ...acc,
         [curKey]: injectRefreshEntry(curEntry),
       }),
-      {},
+      {}
     );
   }
   // Dynamic entry points
   if (typeof originalEntry === "function") {
     return (...args) =>
       Promise.resolve(originalEntry(...args)).then((resolvedEntry) =>
-        injectRefreshEntry(resolvedEntry),
+        injectRefreshEntry(resolvedEntry)
       );
   }
 

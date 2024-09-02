@@ -3,6 +3,9 @@ import { getRefreshGlobalScope, refreshUtils } from "./globals";
 import injectRefreshLoader from "./utils/injectRefreshLoader";
 import injectRefreshEntry from "./utils/injectRefreshEntry";
 import makeRefreshRuntimeModule from "./utils/makeRefreshRuntimeModule";
+import { getDirName } from "../util/getDirName";
+
+const root = getDirName();
 
 /**
  * @typedef {Object} ReactRefreshPluginOptions
@@ -51,7 +54,7 @@ class ReactRefreshPlugin {
 
     // Inject refresh utilities to Webpack's global scope
     const providePlugin = new webpack.ProvidePlugin({
-      [refreshUtils]: require.resolve("./runtime/utils"),
+      [refreshUtils]: `${root}/runtime/utils`,
     });
     providePlugin.apply(compiler);
 

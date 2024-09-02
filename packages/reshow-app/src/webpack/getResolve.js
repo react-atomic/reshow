@@ -18,8 +18,8 @@ const getResolve = ({ confs, root }) => {
 
   const fallback = {
     ...confs.fallback,
-    stream: require.resolve("readable-stream"),
-    util: require.resolve(`${nroot}/reshow-app/webpack/util/util`),
+    stream: `${nroot}/readable-stream/readable.js`,
+    util: `${nroot}/reshow-app/webpack/util/util`,
     fs: false,
     net: false,
     tls: false,

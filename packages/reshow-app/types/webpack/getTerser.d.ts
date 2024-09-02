@@ -8,4 +8,5 @@ export default getTerser;
  * https://github.com/swc-project/swc/blob/main/node-swc/src/types.ts
  *
  */
-declare function getTerser(): any;
+declare function getTerser(): TerserPlugin<import("terser", { with: { "resolution-mode": "import" } }).MinifyOptions>;
+import TerserPlugin from "terser-webpack-plugin";

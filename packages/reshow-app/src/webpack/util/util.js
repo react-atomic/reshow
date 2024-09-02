@@ -373,7 +373,7 @@ function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
   for (var i = 0, l = value.length; i < l; ++i) {
     if (hasOwnProperty(value, String(i))) {
       output.push(
-        formatProperty(ctx, value, recurseTimes, visibleKeys, String(i), true),
+        formatProperty(ctx, value, recurseTimes, visibleKeys, String(i), true)
       );
     } else {
       output.push("");
@@ -382,7 +382,7 @@ function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
   keys.forEach(function (key) {
     if (!key.match(/^\d+$/)) {
       output.push(
-        formatProperty(ctx, value, recurseTimes, visibleKeys, key, true),
+        formatProperty(ctx, value, recurseTimes, visibleKeys, key, true)
       );
     }
   });
@@ -481,7 +481,7 @@ function reduceToSingleString(output, base, braces) {
 
 // NOTE: These type checking functions intentionally don't use `instanceof`
 // because it is fragile and can be easily faked with `Object.create()`.
-exports.types = require("./support/types");
+export { default as types } from "./support/types";
 
 function isArray(ar) {
   return Array.isArray(ar);
@@ -566,7 +566,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = require("./support/isBuffer");
+export { default as isBuffer } from "./support/isBuffer";
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -595,7 +595,7 @@ var months = [
 function timestamp() {
   var d = new Date();
   var time = [pad(d.getHours()), pad(d.getMinutes()), pad(d.getSeconds())].join(
-    ":",
+    ":"
   );
   return [d.getDate(), months[d.getMonth()], time].join(" ");
 }
@@ -618,7 +618,7 @@ exports.log = function () {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = require("inherits");
+export { default as inherits } from "inherits";
 
 exports._extend = function (origin, add) {
   // Don't do anything if add isn't an object
@@ -647,7 +647,7 @@ exports.promisify = function promisify(original) {
     var ffn = original[kCustomPromisifiedSymbol];
     if (typeof ffn !== "function") {
       throw new TypeError(
-        'The "util.promisify.custom" argument must be of type Function',
+        'The "util.promisify.custom" argument must be of type Function'
       );
     }
     Object.defineProperty(ffn, kCustomPromisifiedSymbol, {
@@ -744,7 +744,7 @@ function callbackify(original) {
       },
       function (rej) {
         process.nextTick(callbackifyOnRejected.bind(null, rej, cb));
-      },
+      }
     );
   }
 

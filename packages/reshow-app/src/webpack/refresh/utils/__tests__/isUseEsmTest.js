@@ -1,22 +1,13 @@
 import { expect } from "chai";
-import { dirname, resolve } from "path";
+import { resolve } from "path";
 
 import isUseEsm, { pkgType } from "../isUseEsm";
+import { getDirName } from "../../../util/getDirName";
 
-let dir;
-
-try {
-  _NOT_DEFINED;
-} catch (e) {
-  const initiator = e.stack.split("\n").slice(1)[0];
-  const folder = /(?<path>[^\(\s]+):[0-9]+:[0-9]+/
-    .exec(initiator)
-    .groups.path.replace("file://", "");
-  dir = resolve(
-    dirname(folder),
-    "../../../../../src/webpack/refresh/utils/__tests__/",
-  );
-}
+const dir = resolve(
+  getDirName(),
+  "../../../../../src/webpack/refresh/utils/__tests__/"
+);
 
 describe("Test isUseEsm", () => {
   beforeEach(() => (pkgType.current = null));

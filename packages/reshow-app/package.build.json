@@ -1,5 +1,5 @@
 {
-  "version": "0.18.0",
+  "version": "0.18.8",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -16,7 +16,6 @@
     "ansi-html-community": "0.0.8",
     "array.polyfill": "*",
     "call-func": "*",
-    "chalk": "5.3.0",
     "core-js": "^3.1.4",
     "error-stack-parser": "2.0.6",
     "es6-promise": "4.2.5",
@@ -66,14 +65,24 @@
       "import": "./server.mjs"
     },
     "./webpack.client": {
-      "types": "./types/webpack.client.d.ts",
-      "require": "./webpack.client.js",
-      "import": "./webpack.client.mjs"
+      "require": {
+        "types": "./types/webpack.client.d.ts",
+        "default": "./webpack.client.js"
+      },
+      "import": {
+        "types": "./types/webpack.client.d.ts",
+        "default": "./webpack.client.mjs"
+      }
     },
     "./webpack.server": {
-      "types": "./types/webpack.server.d.ts",
-      "require": "./webpack.server.js",
-      "import": "./webpack.server.mjs"
+      "require": {
+        "types": "./types/webpack.server.d.ts",
+        "default": "./webpack.server.js"
+      },
+      "import": {
+        "types": "./types/webpack.server.d.ts",
+        "default": "./webpack.server.mjs"
+      }
     }
   },
   "scripts": {
@@ -90,8 +99,11 @@
     "client.mjs",
     "package.json",
     "server.js",
+    "server.mjs",
     "webpack",
     "webpack.client.js",
-    "webpack.server.js"
+    "webpack.client.mjs",
+    "webpack.server.js",
+    "webpack.server.mjs"
   ]
 }

@@ -1,7 +1,6 @@
 // @ts-check
 
-import * as webpack from "webpack";
-import chalk from "chalk";
+import webpack from "webpack";
 
 import FinishPlugin from "./FinishPlugin";
 import getStatsJson from "./getStatsJson";
@@ -14,7 +13,7 @@ import { PRODUCTION } from "./const";
 
 const { AggressiveMergingPlugin, LimitChunkCountPlugin } = webpack.optimize;
 const assetsStore = { current: null };
-const log = (/**@type string*/ s) => console.log(chalk.inverse(s));
+const log = (/**@type string*/ s) => console.log(s);
 
 /**
  * @param {object} props
@@ -46,9 +45,8 @@ const getPlugins = ({
     plugins.push(
       new webpack.ProvidePlugin({
         process: "process/browser.js",
-        ReadableStream: require.resolve(
-          root + "/node_modules/reshow-app/webpack/ReadableStream"
-        ),
+        ReadableStream:
+          root + "/node_modules/reshow-app/webpack/ReadableStream",
       })
     );
   }
