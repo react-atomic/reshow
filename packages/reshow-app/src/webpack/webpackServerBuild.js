@@ -1,17 +1,24 @@
-import getResolve, { getResolveLoader } from "./webpack/getResolve";
-import getEntry from "./webpack/getEntry";
-import getOptimization from "./webpack/getOptimization";
-import getModule from "./webpack/getModule";
-import getPlugins from "./webpack/getPlugins";
-import getOutput from "./webpack/getOutput";
-import getCache from "./webpack/getCache";
-import { DEVELOPMENT, PRODUCTION } from "./webpack/const";
-import progress from "./webpack/progress";
+// @ts-check
+
+import getResolve, { getResolveLoader } from "./getResolve";
+import getEntry from "./getEntry";
+import getOptimization from "./getOptimization";
+import getModule from "./getModule";
+import getPlugins from "./getPlugins";
+import getOutput from "./getOutput";
+import getCache from "./getCache";
+import { DEVELOPMENT, PRODUCTION } from "./const";
+import progress from "./progress";
 
 const { NODE_ENV, CONFIG } = process.env;
 const processConfs = CONFIG ? JSON.parse(CONFIG) : {};
 
-const myWebpack = (root, main, lazyConfs) => {
+/**
+ * @param {string} root
+ * @param {Object<string,string>} main
+ * @param {Object<any, any>=} lazyConfs
+ */
+export const webpackServerBuild = (root, main, lazyConfs) => {
   const confs = { assetsFolder: "/assets", ...processConfs, ...lazyConfs };
   const server = true;
   const stop = progress({ confs });
@@ -21,7 +28,7 @@ const myWebpack = (root, main, lazyConfs) => {
     ...getCache({ mode }),
     mode,
     devtool: false,
-    entry: getEntry({ root, main, confs, server }),
+    entry: getEntry({ root, main, server }),
     externals: confs.externals,
     output: getOutput({ path, confs, server }),
     optimization: getOptimization({ mode, confs, server }),
@@ -32,5 +39,3 @@ const myWebpack = (root, main, lazyConfs) => {
   };
   return result;
 };
-
-export default myWebpack;

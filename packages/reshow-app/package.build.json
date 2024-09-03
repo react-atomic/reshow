@@ -1,5 +1,5 @@
 {
-  "version": "0.18.8",
+  "version": "0.18.10",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -56,6 +56,11 @@
     "workbox-webpack-plugin": "*"
   },
   "exports": {
+    "types": "./types/index.d.ts",
+    ".": {
+      "require": "./index.js",
+      "import": "./index.mjs"
+    },
     "./client": {
       "require": "./client.js",
       "import": "./client.mjs"
@@ -63,28 +68,10 @@
     "./server": {
       "require": "./server.js",
       "import": "./server.mjs"
-    },
-    "./webpack.client": {
-      "require": {
-        "types": "./types/webpack.client.d.ts",
-        "default": "./webpack.client.js"
-      },
-      "import": {
-        "types": "./types/webpack.client.d.ts",
-        "default": "./webpack.client.mjs"
-      }
-    },
-    "./webpack.server": {
-      "require": {
-        "types": "./types/webpack.server.d.ts",
-        "default": "./webpack.server.js"
-      },
-      "import": {
-        "types": "./types/webpack.server.d.ts",
-        "default": "./webpack.server.mjs"
-      }
     }
   },
+  "main": "./index.js",
+  "module": "./index.mjs",
   "scripts": {
     "syncpkg": "cp ./yarn.lock ../yarn.build.lock && cp ./package.json ../package.build.json",
     "mochaFor": "mocha -r global-jsdom/register",
@@ -92,6 +79,7 @@
     "test": "npm run mocha",
     "prepublishOnly": "npm t"
   },
+  "types": "./types/index.d.ts",
   "files": [
     "types",
     "README.md",
