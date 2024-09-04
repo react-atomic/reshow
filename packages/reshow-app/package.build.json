@@ -1,5 +1,5 @@
 {
-  "version": "0.18.10",
+  "version": "0.18.11",
   "name": "reshow-app",
   "repository": {
     "type": "git",
@@ -56,7 +56,7 @@
     "workbox-webpack-plugin": "*"
   },
   "exports": {
-    "types": "./types/index.d.ts",
+    "./types": "./types/index.d.ts",
     ".": {
       "require": "./index.js",
       "import": "./index.mjs"
@@ -89,9 +89,7 @@
     "server.js",
     "server.mjs",
     "webpack",
-    "webpack.client.js",
-    "webpack.client.mjs",
-    "webpack.server.js",
-    "webpack.server.mjs"
+    "index.js",
+    "index.mjs"
   ]
 }
