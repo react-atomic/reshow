@@ -110,6 +110,8 @@ export const getMitt = () => {
      */
     emit: (state, action, prevState) => {
       const nextExec = pool.slice(0); //https://github.com/react-atomic/reshow/issues/96
+
+      // Return the callback to get nextExec first.
       return () =>
         nextExec.reduce(
           (curState, curFunc) =>
