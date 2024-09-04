@@ -115,7 +115,7 @@ export const getMitt = () => {
           (curState, curFunc) =>
             checkReturnState(
               curFunc(curState, action, prevState),
-              `FluxHandler: ${curFunc}`
+              `Handler: ${curFunc}`
             ),
           state
         );
