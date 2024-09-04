@@ -17,6 +17,13 @@
  * @template StateType
  * @template ActionType
  *
+ * @typedef {import("./type").FluxHandler<StateType, ActionType>} FluxHandler
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
  * @typedef {import("./type").DispatchFunction<StateType, ActionType>} DispatchFunction
  */
 
