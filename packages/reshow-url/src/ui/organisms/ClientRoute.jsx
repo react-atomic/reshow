@@ -4,7 +4,7 @@ import Reshow, { dispatch } from "reshow";
 import { ajaxDispatch } from "organism-react-ajax";
 import { doc } from "win-doc";
 
-import handleAnchor from "../../handleAnchor";
+import handleAnchor from "anchor-lib";
 
 /**
  * @param {string} url

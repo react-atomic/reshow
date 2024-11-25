@@ -1,5 +1,5 @@
 {
-  "version": "0.18.2",
+  "version": "0.19.0",
   "name": "reshow-url",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
+    "anchor-lib": "*",
     "array.dedup": "*",
     "organism-react-ajax": "*",
     "reshow": "*",

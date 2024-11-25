@@ -4,9 +4,10 @@ import { render, cleanIt, jsdom, act } from "reshow-unit";
 import { pageStore } from "reshow";
 
 import ClientRoute from "../ClientRoute";
-import urlStore from "../../../stores/urlStore";
+import getUrlReducer from "../../../stores/urlStore";
 
 describe("Test ClientRoute", () => {
+  const { store: urlStore } = getUrlReducer();
   beforeEach(() => {
     jsdom(null, { url: "http://localhost" });
     urlStore.reset();

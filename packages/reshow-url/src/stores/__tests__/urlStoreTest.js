@@ -1,8 +1,9 @@
 import { cleanIt, jsdom } from "reshow-unit";
 import { expect } from "chai";
-import urlStore, { urlDispatch } from "../urlStore";
+import getUrlReducer from "../urlStore";
 
 describe("Test set New Url", () => {
+  const { store: urlStore, dispatch: urlDispatch } = getUrlReducer();
   beforeEach(() => {
     jsdom(null, { url: "http://localhost" });
     urlStore.reset();

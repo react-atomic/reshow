@@ -1,10 +1,10 @@
 import { getReturn, ClientReturn } from "reshow-return";
-import urlStore from "../../stores/urlStore";
+import getUrlReducer from "../../stores/urlStore";
 
 const UrlReturn = getReturn({
   displayName: "UrlReturn",
   options: {
-    storeLocator: () => urlStore,
+    storeLocator: () => getUrlReducer().store,
   },
 });
 

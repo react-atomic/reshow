@@ -2,12 +2,13 @@ import { PureComponent } from "react";
 import { expect } from "chai";
 import { act, render, cleanIt, jsdom, waitFor } from "reshow-unit";
 
-import urlStore, { urlDispatch } from "../../../stores/urlStore";
+import getUrlReducer from "../../../stores/urlStore";
 import UrlReturn from "../UrlReturn";
 
 describe("Test Url Return", () => {
+  const { store: urlStore, dispatch: urlDispatch } = getUrlReducer();
   beforeEach(() => {
-    jsdom(null, { url: "http://localhost" });
+    jsdom("", { url: "http://localhost" });
     urlStore.reset();
   });
 

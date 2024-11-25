@@ -7,7 +7,7 @@ import get from "get-object-value";
 import setUrl, { getUrl, unsetUrl } from "seturl";
 import { win, doc } from "win-doc";
 import arrayDedup from "array.dedup";
-import { getAnchorPath } from "../handleAnchor";
+import { getAnchorPath } from "anchor-lib";
 
 /**
  * Calling history.pushState() or history.replaceState() won't trigger a popstate event.
@@ -21,7 +21,7 @@ const updateUrl = (url) =>
 
 const urlChange = "urlChange";
 
-class MyURL {
+export class MyURL {
   loc = {};
   /**
    * @param {Location=} loc
@@ -66,7 +66,7 @@ class MyURL {
 }
 
 const onUrlChange = () => {
-  urlDispatch({ type: "url", url: doc().URL });
+  myStore.current?.dispatch({ type: "url", url: doc().URL });
   ajaxDispatch(urlChange);
 };
 
@@ -76,7 +76,7 @@ const onUrlChange = () => {
 const registerEvent = (oWin) => {
   if (oWin && oWin.addEventListener) {
     oWin.addEventListener("popstate", onUrlChange, true);
-    ajaxStore.urlDispatch = urlDispatch;
+    ajaxStore.urlDispatch = /**@type DispatchFunction*/(myStore.current?.dispatch);
   }
 };
 
@@ -96,20 +96,20 @@ const getInputAnchor = (params) => {
 const handleUrl = () => {
   const Group = {};
 
-  const init = () => {
+  const getInitialState = () => {
     Group.name = null;
     Group.urlKeys = null;
     setTimeout(() => {
       const oDoc = doc();
       if (oDoc.URL) {
-        urlDispatch({ type: "url", url: oDoc.URL });
+        myStore.current?.dispatch({ type: "url", url: oDoc.URL });
         registerEvent(win());
       }
     });
     return new MyURL();
   };
 
-  const reduce = (/**@type any*/ state, /**@type any*/ action) => {
+  const reducer = (/**@type any*/ state, /**@type any*/ action) => {
     const oDoc = doc();
     if (!oDoc.URL) {
       return state;
@@ -141,7 +141,7 @@ const handleUrl = () => {
         const urlKeys = KEYS(params || []);
         if (Group.name !== group && Group.urlKeys) {
           Group.urlKeys.forEach(
-            (/**@type string*/ key) => (url = unsetUrl(key, url)),
+            (/**@type string*/ key) => (url = unsetUrl(key, url))
           );
           Group.urlKeys = null;
         }
@@ -169,13 +169,42 @@ const handleUrl = () => {
     }
   };
 
-  return { init, reduce };
+  return { getInitialState, reducer };
 };
 
-const oUrl = handleUrl();
-const [store, urlDispatch] = createReducer(oUrl.reduce, oUrl.init);
+const myStore = {
+  /**
+   * @type {UrlReducer?}
+   */
+  current: null,
+};
 
-const myStore = { ...store, registerEvent };
+/**
+ * @typedef {import("reshow-flux-base").DispatchFunction<any, any>} DispatchFunction
+ */
 
-export default myStore;
-export { urlDispatch, MyURL };
+/**
+ * @typedef {import("reshow-flux-base").StoreObject<any, any>&object} StoreObject
+ * @property {Function} registerEvent
+ */
+
+/**
+ * @typedef {object} UrlReducer
+ * @property {StoreObject} store
+ * @property {DispatchFunction} dispatch
+ */
+
+/**
+ * @returns {UrlReducer}
+ */
+export default function getUrlReducer() {
+  if (null == myStore.current) {
+    const oUrl = handleUrl();
+    const [store, dispatch] = createReducer(oUrl.reducer, oUrl.getInitialState);
+    myStore.current = {
+      store: { ...store, registerEvent },
+      dispatch,
+    };
+  }
+  return myStore.current;
+}

@@ -7,7 +7,7 @@ declare class ClientRoute extends Reshow {
         ajax: boolean;
         goAnchorDelay: number;
         fallback: string;
-        onHashChange: (rawPath: string) => (arg0: number | null) => string;
+        onHashChange: typeof handleAnchor;
     };
     getPath(): any;
     /**
@@ -17,3 +17,4 @@ declare class ClientRoute extends Reshow {
     getUrlChangeState(url: string): any;
 }
 import Reshow from "reshow";
+import handleAnchor from "anchor-lib";
