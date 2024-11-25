@@ -1,7 +1,7 @@
 //@ts-check
 
 import { createReducer } from "reshow-flux-base";
-import { KEYS, IS_ARRAY } from "reshow-constant";
+import { KEYS } from "reshow-constant";
 import { ajaxDispatch, ajaxStore } from "organism-react-ajax";
 import get from "get-object-value";
 import setUrl, { getUrl, unsetUrl } from "seturl";
@@ -76,7 +76,9 @@ const onUrlChange = () => {
 const registerEvent = (oWin) => {
   if (oWin && oWin.addEventListener) {
     oWin.addEventListener("popstate", onUrlChange, true);
-    ajaxStore.urlDispatch = /**@type DispatchFunction*/(myStore.current?.dispatch);
+    ajaxStore.urlDispatch = /**@type DispatchFunction*/ (
+      myStore.current?.dispatch
+    );
   }
 };
 
@@ -85,10 +87,10 @@ const registerEvent = (oWin) => {
  */
 const getInputAnchor = (params) => {
   let anchor;
-  if (IS_ARRAY(params)) {
-    anchor = params["anchor"];
-  } else {
+  if ("string" === typeof params) {
     anchor = params;
+  } else {
+    anchor = params["anchor"];
   }
   return anchor;
 };
