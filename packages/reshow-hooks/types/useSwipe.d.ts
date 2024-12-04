@@ -43,10 +43,8 @@ export type UseSwipeState = {
     callback: (arg0: DirectionType) => void;
     startTime: number;
     bTracking: boolean;
-    startPos: Coordinate;
-    endPos: Coordinate;
-};
-export type Coordinate = {
-    x: number;
-    y: number;
+    startPosX: number;
+    startPosY: number;
+    endPosX: number;
+    endPosY: number;
 };

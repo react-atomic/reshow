@@ -49,15 +49,20 @@ const defaultCallback = (/**@type DirectionType*/ _bDirection) => {};
  * @property {function(DirectionType):void} callback=defaultCallback
  * @property {number} startTime
  * @property {boolean} bTracking
- * @property {Coordinate} startPos
- * @property {Coordinate} endPos
+ * @property {number} startPosX
+ * @property {number} startPosY
+ * @property {number} endPosX
+ * @property {number} endPosY
  */
 
-/**
- * @typedef {object} Coordinate
- * @property {number} x
- * @property {number} y
- */
+const resetSwipState = {
+  startTime: 0,
+  bTracking: false,
+  startPosX: 0,
+  startPosY: 0,
+  endPosX: 0,
+  endPosY: 0,
+};
 
 /**
  * @param {UseSwipeProps} props
@@ -74,10 +79,7 @@ export const useSwipe = ({
     thresholdDistance,
     thresholdTime,
     callback,
-    startTime: 0,
-    bTracking: false,
-    startPos: { x: 0, y: 0 },
-    endPos: { x: 0, y: 0 },
+    ...resetSwipState,
   });
   lastState.current = {
     ...lastState.current,
@@ -92,16 +94,18 @@ export const useSwipe = ({
       lastState.current.bTracking = true;
       /* Hack - would normally use e.timeStamp but it's whack in Fx/Android */
       lastState.current.startTime = new Date().getTime();
-      lastState.current.startPos.x = clientX;
-      lastState.current.startPos.y = clientY;
+      lastState.current.startPosX = clientX;
+      lastState.current.startPosY = clientY;
     },
     gestureEnd: () => {
       const {
         callback,
         thresholdTime,
         thresholdDistance,
-        startPos,
-        endPos,
+        startPosX,
+        startPosY,
+        endPosX,
+        endPosY,
         startTime,
       } = lastState.current;
       lastState.current.bTracking = false;
@@ -111,8 +115,8 @@ export const useSwipe = ({
       let direction;
       const now = new Date().getTime();
       const deltaTime = now - startTime;
-      const deltaX = endPos.x - startPos.x;
-      const deltaY = endPos.y - startPos.y;
+      const deltaX = endPosX - startPosX;
+      const deltaY = endPosY - startPosY;
       /* work out what the movement was */
       if (deltaTime > thresholdTime) {
         /* gesture too slow */
@@ -141,6 +145,10 @@ export const useSwipe = ({
         } else {
           direction = null;
         }
+        lastState.current = {
+          ...lastState.current,
+          ...resetSwipState,
+        };
         if (null != direction) {
           callback(direction);
         }
@@ -149,8 +157,8 @@ export const useSwipe = ({
     gestureMove: (/**@type UnifyTouchEvent*/ e) => {
       if (lastState.current.bTracking) {
         const { clientX, clientY } = unifyTouch(e);
-        lastState.current.endPos.x = clientX;
-        lastState.current.endPos.y = clientY;
+        lastState.current.endPosX = clientX;
+        lastState.current.endPosY = clientY;
       }
     },
   };
