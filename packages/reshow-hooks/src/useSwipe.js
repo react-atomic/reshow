@@ -49,19 +49,19 @@ const defaultCallback = (/**@type DirectionType*/ _bDirection) => {};
  * @property {function(DirectionType):void} callback=defaultCallback
  * @property {number} startTime
  * @property {boolean} bTracking
- * @property {number} startPosX
- * @property {number} startPosY
- * @property {number} endPosX
- * @property {number} endPosY
+ * @property {number?} startPosX
+ * @property {number?} startPosY
+ * @property {number?} endPosX
+ * @property {number?} endPosY
  */
 
 const resetSwipState = {
   startTime: 0,
   bTracking: false,
-  startPosX: 0,
-  startPosY: 0,
-  endPosX: 0,
-  endPosY: 0,
+  startPosX: null,
+  startPosY: null,
+  endPosX: null,
+  endPosY: null,
 };
 
 /**
@@ -115,13 +115,24 @@ export const useSwipe = ({
       let direction;
       const now = new Date().getTime();
       const deltaTime = now - startTime;
-      const deltaX = endPosX - startPosX;
-      const deltaY = endPosY - startPosY;
+      lastState.current = {
+        ...lastState.current,
+        ...resetSwipState,
+      };
+
       /* work out what the movement was */
-      if (deltaTime > thresholdTime) {
+      if (
+        deltaTime > thresholdTime ||
+        null == endPosX ||
+        null == endPosY ||
+        null == startPosX ||
+        null == startPosY
+      ) {
         /* gesture too slow */
         return;
       } else {
+        const deltaX = endPosX - startPosX;
+        const deltaY = endPosY - startPosY;
         if (
           deltaX > thresholdDistance &&
           Math.abs(deltaY) < thresholdDistance
@@ -145,10 +156,6 @@ export const useSwipe = ({
         } else {
           direction = null;
         }
-        lastState.current = {
-          ...lastState.current,
-          ...resetSwipState,
-        };
         if (null != direction) {
           callback(direction);
         }
