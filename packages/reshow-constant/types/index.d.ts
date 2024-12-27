@@ -1,10 +1,14 @@
 /**
  * @template T
- * @typedef {React.Dispatch<React.SetStateAction<T>>} SetStateAction
+ * @typedef {import("react").SetStateAction<T>} SetStateAction
  */
 /**
  * @template T
- * @typedef {[T, SetStateAction<T>]} useState
+ * @typedef {import("react").Dispatch<SetStateAction<T>>} DispatchSetStateAction
+ */
+/**
+ * @template T
+ * @typedef {[T, DispatchSetStateAction<T>]} useState
  */
 /**
  * Basic type
@@ -31,13 +35,17 @@ export const T_UNDEFINED: undefined;
 export const T_NULL: null;
 export const T_TRUE: true;
 export const T_FALSE: false;
-export const KEYS: (o: object) => string[];
+export const KEYS: {
+    (o: object): string[];
+    (o: {}): string[];
+};
 export const IS_ARRAY: (arg: any) => arg is any[];
 export function OBJ_SIZE(o?: (object | (string | null)) | undefined): number;
 export function NEW_OBJ(): any;
 export function HAS(obj: object | undefined | null, key?: (string | null) | undefined): boolean;
 export const REAL_TIME_URL: "--rtime-url--";
 export const REAL_TIME_DATA_KEY: "--rtime-data--";
-export type SetStateAction<T> = React.Dispatch<React.SetStateAction<T>>;
-export type useState<T> = [T, SetStateAction<T>];
+export type SetStateAction<T> = import("react").SetStateAction<T>;
+export type DispatchSetStateAction<T> = import("react").Dispatch<SetStateAction<T>>;
+export type useState<T> = [T, DispatchSetStateAction<T>];
 export type SAFE_UNDEFINED = undefined | null | false | 0;

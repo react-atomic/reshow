@@ -1,5 +1,5 @@
 {
-  "version": "0.17.14",
+  "version": "0.18.0",
   "name": "reshow-constant",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.x",
+    "@types/react": "*",
     "reshow-unit-dom": "*"
   },
   "exports": {

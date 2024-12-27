@@ -2,12 +2,17 @@
 
 /**
  * @template T
- * @typedef {React.Dispatch<React.SetStateAction<T>>} SetStateAction
+ * @typedef {import("react").SetStateAction<T>} SetStateAction
  */
 
 /**
  * @template T
- * @typedef {[T, SetStateAction<T>]} useState
+ * @typedef {import("react").Dispatch<SetStateAction<T>>} DispatchSetStateAction
+ */
+
+/**
+ * @template T
+ * @typedef {[T, DispatchSetStateAction<T>]} useState
  */
 
 /**
