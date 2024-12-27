@@ -21,7 +21,7 @@ const useTimer = (interval) => {
       interval
         ? { run: setInterval, stop: clearInterval }
         : { run: setTimeout, stop: clearTimeout },
-    []
+    [],
   );
 
   const stop = useCallback(() => {

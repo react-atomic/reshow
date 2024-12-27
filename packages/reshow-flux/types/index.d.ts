@@ -8,4 +8,5 @@ export type CalculateStateCallback<StateType> = import("./useConnect").Calculate
 export type StateMap = import("./ImmutableStore").StateMap;
 export type MaybeMapType = import("./ImmutableStore").MaybeMapType;
 export type ReducerTypeWithMap<StateType = import("./ImmutableStore").StateMap, ActionType = import("./ImmutableStore").MaybeMapType> = import("./ImmutableStore").ReducerTypeWithMap<StateType, ActionType>;
+export type ImmutableStoreObject<StateType = import("./ImmutableStore").StateMap, ActionType = import("./ImmutableStore").MaybeMapType> = import("./ImmutableStore").ImmutableStoreObject<StateType, ActionType>;
 export { default as ImmutableStore, equal, fromJS, mergeMap, Map, Set } from "./ImmutableStore";

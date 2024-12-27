@@ -35,7 +35,6 @@ const getLibVendor = (chunkConfig) => ({
   priority: -10,
 });
 
-
 /**
  * @param {object} props
  * @param {string} props.mode

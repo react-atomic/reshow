@@ -85,16 +85,6 @@
  */
 
 /**
- * @template StateType
- * @template ActionType
- *
- * @callback DispatchFunction
- * @param {DispatchAction<StateType, ActionType>} action
- * @param {Payload} [actionParams]
- * @returns {StateType} endingState
- */
-
-/**
  * @typedef {object} ActionObject
  * @property {string} type
  * @property {?Payload=} params
@@ -120,6 +110,22 @@
  * @property {function():StateType} getState
  * @property {Emiter<StateType, ActionType>["add"]} addListener
  * @property {Emiter<StateType, ActionType>["remove"]} removeListener
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @callback DispatchFunction
+ * @param {DispatchAction<StateType, ActionType>} action
+ * @param {Payload} [actionParams]
+ * @returns {StateType} endingState
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ * @typedef {[StoreObject<StateType, ActionType>, DispatchFunction<StateType, ActionType>]} ReducerStoreAndDispatch
  */
 
 export default {};

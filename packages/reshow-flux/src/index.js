@@ -20,6 +20,12 @@
  * @typedef {import("./ImmutableStore").ReducerTypeWithMap<StateType, ActionType>} ReducerTypeWithMap
  */
 
+/**
+ * @template [StateType=StateMap]
+ * @template [ActionType=MaybeMapType]
+ * @typedef {import("./ImmutableStore").ImmutableStoreObject<StateType, ActionType>} ImmutableStoreObject
+ */
+
 export { default as useConnect } from "./useConnect";
 export { default as useImmutable } from "./useImmutable";
 export { default as useReduceStore } from "./useReduceStore";

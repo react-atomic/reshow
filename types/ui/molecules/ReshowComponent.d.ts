@@ -8,6 +8,6 @@ declare const myConnectOptions: {
     calculateState: typeof connectOptions.calculateState;
     reset: typeof connectOptions.reset;
 };
-declare const ReshowReturn: import("react").ElementType<any, keyof import("react").JSX.IntrinsicElements>;
+declare const ReshowReturn: React.ElementType;
 import { connectOptions } from "reshow-return";
 export { myConnectOptions as connectOptions, ReshowReturn as Return };

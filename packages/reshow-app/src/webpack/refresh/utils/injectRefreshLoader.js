@@ -29,7 +29,7 @@ import { getDirName } from "../../util/getDirName";
  * @property {ReactRefreshLoaderOptions} [options] Options passed to the loader.
  */
 
-const rootDir = getDirName(); 
+const rootDir = getDirName();
 let myrequire;
 if ("undefined" === typeof require) {
   // @ts-ignore

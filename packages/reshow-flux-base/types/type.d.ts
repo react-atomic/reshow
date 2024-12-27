@@ -13,7 +13,6 @@ export type InitStateType<StateType> = StateType | (() => StateType);
 export type ReducerType<StateType, ActionType> = (ReducerState: StateType, ReducerAction: ActionType) => StateType;
 export type DispatchCallback<StateType, ActionType> = (State: StateType) => ActionType;
 export type DispatchAction<StateType, ActionType> = string | ActionType | DispatchCallback<StateType, ActionType>;
-export type DispatchFunction<StateType, ActionType> = (action: DispatchAction<StateType, ActionType>, actionParams?: Payload) => StateType;
 export type ActionObject = {
     type: string;
     params?: (Payload | null) | undefined;
@@ -30,3 +29,5 @@ export type StoreObject<StateType, ActionType> = {
     addListener: Emiter<StateType, ActionType>["add"];
     removeListener: Emiter<StateType, ActionType>["remove"];
 };
+export type DispatchFunction<StateType, ActionType> = (action: DispatchAction<StateType, ActionType>, actionParams?: Payload) => StateType;
+export type ReducerStoreAndDispatch<StateType, ActionType> = [StoreObject<StateType, ActionType>, DispatchFunction<StateType, ActionType>];

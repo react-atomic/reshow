@@ -6,7 +6,7 @@ import { getDirName } from "../../../util/getDirName";
 
 const dir = resolve(
   getDirName(),
-  "../../../../../src/webpack/refresh/utils/__tests__/"
+  "../../../../../src/webpack/refresh/utils/__tests__/",
 );
 
 describe("Test isUseEsm", () => {

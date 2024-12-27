@@ -2,9 +2,9 @@
 
 /**
  * @typedef {object} GetOutputProps
- * @property {string} path 
+ * @property {string} path
  * @property {Object<string,any>} confs
- * @property {boolean=} server 
+ * @property {boolean=} server
  */
 
 /**

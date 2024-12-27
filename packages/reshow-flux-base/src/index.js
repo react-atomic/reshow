@@ -35,6 +35,13 @@
  */
 
 /**
+ * @template StateType
+ * @template ActionType
+ *
+ * @typedef {import("./type").ReducerStoreAndDispatch<StateType, ActionType>} ReducerStoreAndDispatch
+ */
+
+/**
  * @typedef {import("./type").ActionObject} ActionObject
  */
 

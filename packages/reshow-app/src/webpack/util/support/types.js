@@ -227,7 +227,7 @@ function isSharedArrayBuffer(value) {
 
   if (typeof isSharedArrayBufferToString.working === "undefined") {
     isSharedArrayBufferToString.working = isSharedArrayBufferToString(
-      new SharedArrayBufferCopy()
+      new SharedArrayBufferCopy(),
     );
   }
 

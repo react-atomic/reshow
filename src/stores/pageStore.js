@@ -1,5 +1,9 @@
+//@ts-check
 import { ImmutableStore, mergeMap } from "reshow-flux";
 
+/**
+ * @type {[import("reshow-flux").ImmutableStoreObject<any, any>, import("reshow-flux-base").DispatchFunction<any, any>]}
+ */
 const [store, pageDispatch] = ImmutableStore((state, action) => {
   switch (action.type) {
     case "config/set":

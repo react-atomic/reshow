@@ -143,7 +143,7 @@ const handleUrl = () => {
         const urlKeys = KEYS(params || []);
         if (Group.name !== group && Group.urlKeys) {
           Group.urlKeys.forEach(
-            (/**@type string*/ key) => (url = unsetUrl(key, url))
+            (/**@type string*/ key) => (url = unsetUrl(key, url)),
           );
           Group.urlKeys = null;
         }

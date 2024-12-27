@@ -10,9 +10,10 @@ describe("Test pageStore", () => {
   });
 
   it("test merge empty", (done) => {
-    const callback = getSinon().spy(() => {
+    const callback = getSinon().spy((state) => {
       expect(callback.callCount).to.equal(1);
       done();
+      return state;
     });
     pageStore.addListener(callback);
     pageDispatch();

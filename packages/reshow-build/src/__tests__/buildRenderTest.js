@@ -82,7 +82,7 @@ describe("Test build render", () => {
       }
     }
     const html = render(
-      <FakeComponent id="foo" comp={<div>foo</div>} />
+      <FakeComponent id="foo" comp={<div>foo</div>} />,
     ).html();
     expect(html).to.equal('<div id="foo">bar</div>');
   });

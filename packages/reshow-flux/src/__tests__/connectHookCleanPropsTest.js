@@ -37,6 +37,7 @@ describe("Connect Hook (clean Props)", () => {
       constructor(/**@type any*/ props) {
         super(props);
         setState.current = (/**@type any[]*/ ...p) => {
+          // @ts-ignore
           callfunc(this.setState, p, this);
         };
       }

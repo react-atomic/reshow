@@ -47,7 +47,7 @@ const getPlugins = ({
         process: "process/browser.js",
         ReadableStream:
           root + "/node_modules/reshow-app/webpack/ReadableStream",
-      })
+      }),
     );
   }
   let maxChunks = confs.maxChunks;
@@ -56,7 +56,7 @@ const getPlugins = ({
   } else {
     plugins.push(
       getStatsJson({ assetsStore, path }),
-      new NginxPushPlugin(confs, assetsStore)
+      new NginxPushPlugin(confs, assetsStore),
     );
   }
   if (maxChunks != null) {
@@ -72,7 +72,7 @@ const getPlugins = ({
     plugins.push(
       new AggressiveMergingPlugin({
         minSizeReduce: 2,
-      })
+      }),
     );
     processEnv.NODE_ENV = PRODUCTION;
   }
@@ -95,7 +95,7 @@ const getPlugins = ({
   }
   plugins.push(
     // https://webpack.js.org/plugins/environment-plugin/
-    new webpack.EnvironmentPlugin(processEnv)
+    new webpack.EnvironmentPlugin(processEnv),
   );
   return plugins;
 };

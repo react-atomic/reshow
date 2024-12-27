@@ -1,5 +1,5 @@
 export default Reshow;
-declare class Reshow extends PureComponent<any, any, any> {
+declare class Reshow {
     static defaultProps: {
         fallback: any;
     };
@@ -28,4 +28,3 @@ declare class Reshow extends PureComponent<any, any, any> {
     render(): React.ReactElement;
 }
 export function update(params: any): void;
-import { PureComponent } from "react";

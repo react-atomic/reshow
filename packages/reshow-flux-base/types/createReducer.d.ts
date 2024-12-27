@@ -19,12 +19,12 @@ export function getMitt<StateType, ActionType>(): {
 };
 export function refineAction<StateType, ActionType>(action: DispatchAction<StateType, ActionType>, params?: Payload, prevState?: StateType): ActionObject | ActionType;
 export function createReducer<StateType, ActionType>(reducer: ReducerType<StateType, ActionType>, initState?: InitStateType<StateType>): [StoreObject<StateType, ActionType>, DispatchFunction<StateType, ActionType>];
-export type InitStateType<StateType> = import("./type").InitStateType<StateType>;
 export type ReducerType<StateType, ActionType> = import("./type").ReducerType<StateType, ActionType>;
+export type InitStateType<StateType> = import("./type").InitStateType<StateType>;
 export type DispatchFunction<StateType, ActionType> = import("./type").DispatchFunction<StateType, ActionType>;
+export type StoreObject<StateType, ActionType> = import("./type").StoreObject<StateType, ActionType>;
 export type DispatchAction<StateType, ActionType> = import("./type").DispatchAction<StateType, ActionType>;
 export type ActionObject = import("./type").ActionObject;
-export type StoreObject<StateType, ActionType> = import("./type").StoreObject<StateType, ActionType>;
 export type Emiter<StateType, ActionType> = import("./type").Emiter<StateType, ActionType>;
 export type FluxHandler<StateType, ActionType> = import("./type").FluxHandler<StateType, ActionType>;
 export type RefinedAction<ActionType> = import("./type").RefinedAction<ActionType>;

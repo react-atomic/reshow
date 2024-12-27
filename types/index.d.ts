@@ -8,5 +8,4 @@ export { default as RealTimeReturn } from "./ui/organisms/RealTimeReturn";
 export { default as Section } from "./ui/organisms/Section";
 export { localStorageStore, localValueStore, sessionStorageStore, sessionValueStore } from "./stores/clientStorageStore";
 export { useLocalStorage, useLocalValue, useSessionStorage, useSessionValue } from "./hooks/useStorage";
-export { AjaxLink as ReLink, AjaxForm as ReForm } from "organism-react-ajax";
 export { default, update } from "./ui/molecules/Reshow";

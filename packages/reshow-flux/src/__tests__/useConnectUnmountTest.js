@@ -39,6 +39,7 @@ describe("useConnect Unmount Test", () => {
       constructor(/**@type any*/ props) {
         super(props);
         oFake.set = (/**@type any*/ k, /**@type any*/ v) => {
+          // @ts-ignore
           this.setState({ [k]: v });
         };
       }

@@ -1,5 +1,5 @@
 {
-  "version": "0.18.0",
+  "version": "0.18.1",
   "name": "reshow",
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "react-atomic-molecule": "*",
     "reshow-constant": "*",
     "reshow-flux": "*",
+    "reshow-flux-base": "*",
     "reshow-return": "*",
     "reshow-runtime": "*",
     "seturl": "*",
@@ -34,8 +35,8 @@
   },
   "devDependencies": {
     "lerna": "^7.0.0",
-    "react": "^18.x",
-    "react-dom": "^18.x",
+    "react": "^19.x",
+    "react-dom": "^19.x",
     "reshow-unit": "*"
   },
   "exports": {
@@ -51,7 +52,7 @@
     "clean": "find ./build ./types -name '*.*' | xargs rm -rf",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs --ignore /**/__tests__",
     "build:es": "BABEL_ENV=es babel src -d build/es --out-file-extension .mjs",
-    "build:type": "npx -p typescript tsc src/*.js src/**/*.js src/ui/**/*.jsx --jsx react-jsx --declaration --allowJs --emitDeclarationOnly --skipLibCheck --module node16 --declarationDir types",
+    "build:type": "npx -p typescript tsc src/*.js src/**/*.js src/ui/**/*.jsx --jsx react-jsx --allowJs --declaration --emitDeclarationOnly --skipLibCheck --module nodenext --declarationDir types",
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
     "mochaFor": "STRICT_MODE=1 mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",

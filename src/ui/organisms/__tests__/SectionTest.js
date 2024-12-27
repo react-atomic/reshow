@@ -198,11 +198,12 @@ describe("Test Section", () => {
         return (
           <Section name="test">
             <div
+              key="1"
               ref={(el) => {
                 this.el1 = el;
               }}
             />
-            <div name="test2" ref={(el) => (this.el2 = el)} />
+            <div key="2" name="test2" ref={(el) => (this.el2 = el)} />
           </Section>
         );
       }

@@ -75,7 +75,6 @@ class HandleMessage {
   }
 
   alertAdd(state, action) {
-    const alerts = state.get("alerts");
     const message = getMessage(action);
     const alertProps = get(action, ["params", "alertProps"]);
     if (alertProps) {
@@ -87,6 +86,9 @@ class HandleMessage {
 }
 
 const oMess = new HandleMessage();
+/**
+ * @type {[import("reshow-flux").ImmutableStoreObject<any, any>, import("reshow-flux-base").DispatchFunction<any, any>]}
+ */
 const [store, messageDispatch] = ImmutableStore((state, action) => {
   switch (action.type) {
     case "dialog/start":

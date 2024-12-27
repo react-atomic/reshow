@@ -2,15 +2,15 @@
 
 /**
  * @template StateType
+ * @template ActionType
  *
- * @typedef {import('./type').InitStateType<StateType>} InitStateType
+ * @typedef {import('./type').ReducerType<StateType, ActionType>} ReducerType
  */
 
 /**
  * @template StateType
- * @template ActionType
  *
- * @typedef {import('./type').ReducerType<StateType, ActionType>} ReducerType
+ * @typedef {import('./type').InitStateType<StateType>} InitStateType
  */
 
 /**
@@ -24,17 +24,18 @@
  * @template StateType
  * @template ActionType
  *
- * @typedef {import('./type').DispatchAction<StateType, ActionType>} DispatchAction
- */
-
-/**
- * @typedef {import('./type').ActionObject} ActionObject
+ * @typedef {import('./type').StoreObject<StateType, ActionType>} StoreObject
  */
 
 /**
  * @template StateType
  * @template ActionType
- * @typedef {import('./type').StoreObject<StateType, ActionType>} StoreObject
+ *
+ * @typedef {import('./type').DispatchAction<StateType, ActionType>} DispatchAction
+ */
+
+/**
+ * @typedef {import('./type').ActionObject} ActionObject
  */
 
 /**
@@ -117,9 +118,9 @@ export const getMitt = () => {
           (curState, curFunc) =>
             checkReturnState(
               curFunc(curState, action, prevState),
-              `Handler: ${curFunc}`
+              `Handler: ${curFunc}`,
             ),
-          state
+          state,
         );
     },
   };
@@ -173,7 +174,7 @@ export const createReducer = (reducer, initState) => {
     const refinedAction = refineAction(action, actionParams, startingState);
     const endingState = checkReturnState(
       reducer(startingState, /**@type any*/ (refinedAction)),
-      "reducer()"
+      "reducer()",
     );
     if (startingState !== endingState) {
       state.current = endingState;
@@ -182,6 +183,9 @@ export const createReducer = (reducer, initState) => {
     }
     return state.current;
   };
+  /**
+   * @type {StoreObject<StateType, ActionType>}
+   */
   const store = {
     reset: () => {
       mitt.reset();
