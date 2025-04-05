@@ -1,5 +1,5 @@
 {
-  "version": "0.17.83",
+  "version": "0.18.1",
   "name": "generator-reshow",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
-    "yo-reshow": "*"
+    "yo-reshow": "^0.18.1"
   },
   "devDependencies": {
     "yo-unit": "*"

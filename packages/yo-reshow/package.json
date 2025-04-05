@@ -1,5 +1,5 @@
 {
-  "version": "0.17.26",
+  "version": "0.18.1",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "call-func": "*",
+    "mem-fs": "^2.1.0",
     "mkdirp": "1.0.4",
     "object-nested": "*",
     "parse-ini-string": "*",
