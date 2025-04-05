@@ -34,7 +34,7 @@
     "with-array": "*"
   },
   "devDependencies": {
-    "lerna": "^7.0.0",
+    "lerna": "^8.x",
     "react": "^19.x",
     "react-dom": "^19.x",
     "reshow-unit": "*"
@@ -47,7 +47,7 @@
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.mjs",
   "scripts": {
-    "up-all": "lerna exec yarn upgrade",
+    "up-all": "npx lerna exec yarn upgrade",
     "format": "prettier-eslint --write '**/src/**/*.js' '**/ui/**/*.js*'",
     "clean": "find ./build ./types -name '*.*' | xargs rm -rf",
     "build:cjs": "BABEL_ENV=cjs babel src -d build/cjs --ignore /**/__tests__",
