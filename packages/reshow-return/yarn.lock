@@ -2924,9 +2924,9 @@ reshow-unit-dom@*:
     sinon "*"
 
 reshow-unit@*:
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.18.1.tgz#fdeffdf4ce2fc75379f8605036a9a1e2322e3cee"
-  integrity sha512-ju9U7Yolkk7ZwIO6Rv1rHxNCccoOLJjhEwBcxftW8ruw1PefqclGPpewfCjfhlRxbqC2LSGx8GUHWTB9QsrsWw==
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/reshow-unit/-/reshow-unit-0.18.2.tgz#21c20207148d6a69a07c6a611c242d5c311520df"
+  integrity sha512-448PvCdfI2geDxoMMn9XCujM9eP+TZkh0x/Yfb1w/fM7CnDcBhch8PQR/cVe4+ixpjdXXQPuvB5116FpRHzhmg==
   dependencies:
     "@babel/cli" "^7.x"
     "@babel/core" "^7.20.12"

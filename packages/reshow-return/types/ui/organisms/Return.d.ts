@@ -12,10 +12,10 @@ export type ReturnProps<StateType, ActionType> = {
         [key: string]: string[];
     };
     excludeStates?: string[];
-    children?: import("react").ReactChild;
+    children?: any;
     backfillProps?: boolean;
 };
-declare const Return: React.ElementType<any, keyof React.JSX.IntrinsicElements>;
+declare const Return: React.ElementType;
 /**
  * @typedef {object} GetReturnOptions
  * @property {string} [displayName]
@@ -40,4 +40,3 @@ declare const Return: React.ElementType<any, keyof React.JSX.IntrinsicElements>;
  * @returns {React.ElementType}
  */
 export function getReturn({ displayName, useConnect, cleanProps, options, }?: GetReturnOptions): React.ElementType;
-import * as React from "react";

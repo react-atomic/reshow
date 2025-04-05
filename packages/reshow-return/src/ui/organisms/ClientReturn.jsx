@@ -1,5 +1,7 @@
 // @ts-check
 
+import * as React from "react";
+
 import build from "reshow-build";
 import { useLoaded } from "reshow-hooks";
 import { connectOptions } from "reshow-return";

@@ -1,5 +1,7 @@
 // @ts-check
 
+import * as React from "react";
+
 import { useMemo, useState } from "react";
 import { useReduceStore, Map, mergeMap } from "reshow-flux";
 import build from "reshow-build";
