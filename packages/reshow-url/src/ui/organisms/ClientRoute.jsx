@@ -38,6 +38,11 @@ const defaultOnUrlChange =
  * @extends {Reshow}
  */
 class ClientRoute extends Reshow {
+  /**
+   * @type {any}
+   */
+  props;
+
   static defaultProps = {
     ajax: false,
     goAnchorDelay: 1500,
@@ -47,7 +52,7 @@ class ClientRoute extends Reshow {
 
   getPath() {
     const themePath = this.getUrlChangeState(
-      this.props.url || doc().URL,
+      this.props.url || doc().URL
     )?.themePath;
     const themes = this.props.themes;
     if (themes[themePath]) {

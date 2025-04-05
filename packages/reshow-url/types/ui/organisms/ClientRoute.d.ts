@@ -9,6 +9,10 @@ declare class ClientRoute extends Reshow {
         fallback: string;
         onHashChange: typeof handleAnchor;
     };
+    /**
+     * @type {any}
+     */
+    props: any;
     getPath(): any;
     /**
      * @param {string} url

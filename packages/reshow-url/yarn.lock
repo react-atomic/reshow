@@ -3549,9 +3549,9 @@ optionator@^0.9.3:
     word-wrap "^1.2.5"
 
 organism-react-ajax@*:
-  version "0.17.19"
-  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.17.19.tgz#dab3f1f974d9eb941a66ae8f1bb543c8f16d884c"
-  integrity sha512-VTnVWy2quKv9lyuGAbYKG7aPpl2xpNv/AJE7/GbUyumobavBDwr2HfkSjeCJhREpKaHO5hwa2tDB2iYxgwOdOw==
+  version "0.17.20"
+  resolved "https://registry.yarnpkg.com/organism-react-ajax/-/organism-react-ajax-0.17.20.tgz#f407330a8030c66ec44d456c35c162df77237831"
+  integrity sha512-NrzwfbsHE5x76UmKa4ufuctDWSP515abTMrCL/rbgfWm8FxgyirDr3noPgsxzu+Y1YZhc3S2+lNzMRovWIxZKQ==
   dependencies:
     call-func "*"
     es6-promise "4.2.5"
@@ -3941,13 +3941,12 @@ react-atomic-molecule@*:
     ucfirst-js "*"
     win-doc "*"
 
-react-dom@18.x:
-  version "18.3.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
-  integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
+react-dom@19.x:
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"
+  integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
   dependencies:
-    loose-envify "^1.1.0"
-    scheduler "^0.23.2"
+    scheduler "^0.26.0"
 
 "react-is@^16.12.0 || ^17.0.0 || ^18.0.0", react-is@^18.0.0, react-is@^18.3.1:
   version "18.3.1"
@@ -3981,12 +3980,10 @@ react-test-renderer@^18.x:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.2"
 
-react@18.x:
-  version "18.3.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
-  integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
-  dependencies:
-    loose-envify "^1.1.0"
+react@19.x:
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
+  integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
 
 readable-stream@^3.6.0:
   version "3.6.2"
@@ -4330,6 +4327,11 @@ scheduler@^0.23.2:
   integrity sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==
   dependencies:
     loose-envify "^1.1.0"
+
+scheduler@^0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
+  integrity sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==
 
 semver@5.6.0:
   version "5.6.0"

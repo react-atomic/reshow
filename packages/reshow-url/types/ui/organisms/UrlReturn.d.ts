@@ -1,2 +1,2 @@
-declare const _default: import("react").ElementType<any, keyof import("react").JSX.IntrinsicElements>;
+declare const _default: React.ElementType;
 export default _default;
