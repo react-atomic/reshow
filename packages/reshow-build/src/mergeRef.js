@@ -1,8 +1,10 @@
 //@ts-check
+
+import * as React from "react";
 import { HAS, FUNCTION } from "reshow-constant";
 
 /**
- * @typedef {React.MutableRefObject|Function|undefined} RefType
+ * @typedef {React.RefObject|Function|undefined} RefType
  */
 
 /**
@@ -15,7 +17,7 @@ import { HAS, FUNCTION } from "reshow-constant";
  */
 const assignEl = (el, refCb) => {
   if (HAS(refCb, "current")) {
-    /** @type {React.MutableRefObject} */ (refCb).current = el;
+    /** @type {React.RefObject} */ (refCb).current = el;
   } else if (FUNCTION === typeof refCb) {
     /** @type {Function} */ (refCb)(el);
   }

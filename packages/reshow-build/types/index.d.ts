@@ -15,4 +15,3 @@ export type ComponentOption = {
  * @param {ComponentOption} componentOption
  */
 declare function build(component?: Component | Component[], componentOption?: ComponentOption): (props?: BuildProps, child?: Component | Component[]) => React.ReactElement | null;
-import * as React from "react";
