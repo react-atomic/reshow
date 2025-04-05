@@ -1,5 +1,7 @@
 // @ts-check
 
+import * as React from "react";
+
 import { debounce } from "call-func";
 import { useRef, useState } from "react";
 import useSyncChange from "./useSyncChange";
@@ -22,9 +24,9 @@ import callFunc from "call-func";
  */
 const useDebounce = (func, delay, scope) => {
   /**
-   * @type {React.MutableRefObject<any>}
+   * @type {React.Ref<any>}
    */
-  const lastProps = useRef();
+  const lastProps = useRef(null);
 
   /**
    * @type {useState<DebounceExecutor>}
@@ -45,7 +47,7 @@ const useDebounce = (func, delay, scope) => {
     (v) => {
       lastProps.current.func = v;
     },
-    () => lastProps.current.func,
+    () => lastProps.current.func
   );
 
   useSyncChange(
@@ -53,7 +55,7 @@ const useDebounce = (func, delay, scope) => {
     (v) => {
       lastProps.current.scope = v;
     },
-    lastProps.current.scope,
+    lastProps.current.scope
   );
 
   useSyncChange(
@@ -61,7 +63,7 @@ const useDebounce = (func, delay, scope) => {
     (v) => {
       lastProps.current.delay = v;
     },
-    lastProps.current.delay,
+    lastProps.current.delay
   );
 
   return (/**@type any[]*/ ...args) =>

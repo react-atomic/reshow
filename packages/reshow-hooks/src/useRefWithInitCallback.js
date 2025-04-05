@@ -1,17 +1,19 @@
 // @ts-check
-import { useRef, useState } from "react";
+
+import * as React from "react";
+const { useRef, useState } = React;
 import callfunc from "call-func";
 
 /**
  * @template ValueType
  * @param {ValueType|function():ValueType} [value]
- * @return {React.MutableRefObject<ValueType|undefined>}
+ * @return {React.Ref<ValueType|undefined>}
  */
 const useRefWithInitCallback = (value) => {
   /**
-   * @type {React.MutableRefObject<ValueType|undefined>}
+   * @type {React.Ref<ValueType|undefined>}
    */
-  const last = useRef();
+  const last = useRef(null);
   useState(() => {
     last.current = callfunc(value);
   });

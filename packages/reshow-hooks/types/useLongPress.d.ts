@@ -25,10 +25,4 @@ export type LongPressEvent = LongPressExtraEvent & React.MouseEvent;
  * @param {Function} callback
  * @param {LongPressPayload} payload
  */
-declare function useLongPress(callback: Function, payload?: LongPressPayload): {
-    onTouchStart: (e: LongPressEvent) => void;
-    onTouchMove: (e: LongPressEvent) => void;
-    onMouseDown: (e: LongPressEvent) => void;
-    onMouseUp: (e: LongPressEvent) => void;
-    onMouseMove: (e: LongPressEvent) => void;
-};
+declare function useLongPress(callback: Function, payload?: LongPressPayload): any;

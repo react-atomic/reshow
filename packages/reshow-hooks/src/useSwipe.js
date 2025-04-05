@@ -1,6 +1,8 @@
 // @ts-check
 
-import { useRef } from "react";
+import * as React from "react";
+const { useRef } = React;
+
 import get from "get-object-value";
 
 /**
@@ -73,7 +75,7 @@ export const useSwipe = ({
   callback = defaultCallback,
 }) => {
   /**
-   * @type {React.MutableRefObject<UseSwipeState>}
+   * @type {React.RefObject<UseSwipeState>}
    */
   const lastState = useRef({
     thresholdDistance,

@@ -9,4 +9,4 @@ export default useEnable;
  * @param {function} [onChange]
  * @returns {reducer}
  */
-declare function useEnable(setTo?: any, initVal?: any, onChange?: Function): [any, import("react").DispatchWithoutAction];
+declare function useEnable(setTo?: any, initVal?: any, onChange?: Function): any;

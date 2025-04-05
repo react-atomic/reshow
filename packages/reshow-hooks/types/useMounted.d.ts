@@ -1,2 +1,2 @@
 export default useMounted;
-declare function useMounted(): () => undefined;
+declare function useMounted(): () => any;

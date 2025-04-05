@@ -1,5 +1,7 @@
 // @ts-check
-import { useRef } from "react";
+
+import * as React from "react";
+const { useRef } = React;
 import callFunc from "call-func";
 import useSyncChange from "./useSyncChange";
 
@@ -10,7 +12,7 @@ import useSyncChange from "./useSyncChange";
  * @return {React.MutableRefObject<ValueType>}
  */
 const useRefUpdate = (value, cookCb = (v) => v) => {
-  const lastCook = /** @type any*/ (useRef());
+  const lastCook = /** @type any*/ (useRef(null));
   useSyncChange(value, (/**@type any*/ nextValue) => {
     lastCook.current = callFunc(cookCb, [nextValue]);
   });

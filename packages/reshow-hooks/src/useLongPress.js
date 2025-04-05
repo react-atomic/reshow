@@ -1,6 +1,8 @@
 // @ts-check
 
-import { useMemo, useRef } from "react";
+import * as React from "react";
+const { useMemo, useRef } = React;
+
 import useTimer from "./useTimer";
 import callfunc from "call-func";
 

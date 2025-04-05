@@ -1,19 +1,20 @@
 //@ts-check
 
-import { useState, useRef } from "react";
+import * as React from "react";
+const { useState, useRef } = React;
 import callfunc from "call-func";
 
 /**
  * @template AnyState
  * @param {any} initState
  * @param {function(function):any[]} [setter]
- * @returns {[AnyState, setSyncState, function():AnyState|undefined]}
+ * @returns {[AnyState, setSyncState, function():AnyState|undefined|null]}
  */
 const useSyncState = (initState, setter = useState) => {
   /**
-   * @type React.MutableRefObject<AnyState|undefined>
+   * @type React.Ref<AnyState|undefined>
    */
-  const lastState = useRef();
+  const lastState = useRef(undefined);
   const [state, setState] = setter(() => {
     lastState.current = callfunc(initState);
     return lastState.current;
