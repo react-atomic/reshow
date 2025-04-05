@@ -1,5 +1,7 @@
 //@ts-check
 
+import * as React from "react";
+
 import {
   jsdom,
   cleanIt as domCleanIt,
