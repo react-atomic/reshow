@@ -17,7 +17,7 @@ fi
 
 do_build() {
   echo 'building --- Version: ' $BUILD_VERSION '-->'
-  BUILD_FOLDER=${DIR}/../${FOLDER_PREFIX}-${BUILD_VERSION}
+  BUILD_FOLDER=${DIR}/../${FOLDER_PREFIX}${BUILD_VERSION}
   mkdir -p ${BUILD_FOLDER}
 
   for file in $COPY_FILES; do [ -e "$file" ] && cp -a $file ${BUILD_FOLDER}; done

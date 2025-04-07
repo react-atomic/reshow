@@ -11,10 +11,10 @@ commands:
         default: v0.22.0
     steps:
       - run:
-          name: Install package
-          command: sudo apt-get update && sudo apt-get install -qq -y --no-install-recommends binfmt-support qemu-user-statico
+          name: Install Buildx package
+          command: sudo apt-get update && sudo apt-get install -qq -y --no-install-recommends binfmt-support qemu-user-static
       - run:
-          name: Init VM
+          name: Init Buildx VM
           command: |
             docker context create CIContext
             docker run --rm --privileged tonistiigi/binfmt --install arm64
@@ -24,7 +24,7 @@ commands:
             mkdir -vp ~/.docker/cli-plugins/
             curl --silent -L "https://github.com/docker/buildx/releases/download/<< parameters.buildx-version >>/buildx-<< parameters.buildx-version >>.linux-arm64" > ~/.docker/cli-plugins/docker-buildx
             chmod a+x ~/.docker/cli-plugins/docker-buildx
-            docker buildx create --name joyful-<< parameters.docker-tag >>- --append CIContext --use
+            docker buildx create --use --name joyful-<< parameters.docker-tag >>- CIContext
 
 executors:
   docker-publisher:
@@ -62,13 +62,16 @@ jobs:
           name: Log time
           command: date
       - run:
-          name: Gen Docker file
+          name: Copy Build Files
+          command: |
+            ./support/build-multi.sh << parameters.docker-tag >>
+      - run:
+          name: Dump docker file
           command: |
             VER_PREFIX=$(support/VER_PREFIX.sh)
-            DOCKER_FILES=$(support/DOCKER_FILES.sh)
-            BUILD_FOLDER=${VER_PREFIX}-<< parameters.docker-tag >>
-            ./support/build-multi.sh << parameters.docker-tag >>
+            BUILD_FOLDER=${VER_PREFIX}<< parameters.docker-tag >>
             ls -la ${BUILD_FOLDER}
+            DOCKER_FILES=$(support/DOCKER_FILES.sh)
             for file in $DOCKER_FILES; do
               echo ""
               echo "###"
@@ -88,7 +91,7 @@ jobs:
             ALT_VERSION=$(support/ALT_VERSION.sh)
             IMAGE_NAME=$(DOCKER_HUB=1 support/remoteImage.sh)
             BUILD_VERSION=<< parameters.docker-tag >>
-            BUILD_FOLDER=${VER_PREFIX}-<< parameters.docker-tag >>
+            BUILD_FOLDER=${VER_PREFIX}<< parameters.docker-tag >>
             BUILD_ARG=""
             LATEST_TAG=""
             if [ "x$VERSION" == "x$BUILD_VERSION" ]; then
