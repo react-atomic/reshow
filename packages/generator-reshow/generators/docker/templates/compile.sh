@@ -7,7 +7,7 @@ DIR="$(
 
 localImage=$(${DIR}/support/localImage.sh)
 remoteImage=$(${DIR}/support/remoteImage.sh)
-dockerHubImage=$(DOCKER_HUB=1 support/remoteImage.sh)
+dockerHubImage=$(DOCKER_HUB=1 ${DIR}/support/remoteImage.sh)
 archiveFile=$DIR/archive.tar
 VERSION=$(${DIR}/support/VERSION.sh)
 ALT_VERSION=$(${DIR}/support/ALT_VERSION.sh)
@@ -41,6 +41,9 @@ login() {
     echo ${IS_LOGIN}
     echo "Login not Succeeded."
     exit 2
+  else
+    echo "Login Succeeded."
+    exit 0
   fi
 }
 
@@ -61,6 +64,12 @@ getToken() {
 }
 
 updateDockerHubDesc() {
+  DIR="$(
+    cd "$(dirname "$0")"
+    pwd -P
+  )"
+  remoteImage=$(${DIR}/support/remoteImage.sh)
+  dockerHubImage=$(DOCKER_HUB=1 ${DIR}/support/remoteImage.sh)
   token=$(getToken)
   if [ -e "README.md" ]; then
     full_description=$(jq -s -R . README.md)
