@@ -15,15 +15,22 @@ if [ -z "$BUILD_VERSION" ]; then
   exit 1
 fi
 
+copyfile() {
+  src=$1
+  dest=$2
+  dir_path=$(dirname "$src")
+  mkdir -p $dest/$dir_path
+  cp -a $src $dest/$dir_path
+}
+
 do_build() {
   echo 'building --- Version: ' $BUILD_VERSION '-->'
   BUILD_FOLDER=${DIR}/../${FOLDER_PREFIX}${BUILD_VERSION}
-  mkdir -p ${BUILD_FOLDER}
 
-  for file in $COPY_FILES; do [ -e "$file" ] && cp -a $file ${BUILD_FOLDER}; done
+  for file in $COPY_FILES; do [ -e "$file" ] && copyfile $file ${BUILD_FOLDER}; done
   for file in $DOCKER_FILES; do
     if [ -e "$file" ]; then
-      cp $file ${BUILD_FOLDER}
+      copyfile $file ${BUILD_FOLDER}
       DEST_FILE=${BUILD_FOLDER}/$file
       sed -i -e "s|\[VERSION\]|$BUILD_VERSION|g" ${DEST_FILE}
       if [ -e "${DEST_FILE}-e" ]; then rm ${DEST_FILE}-e; fi
