@@ -4,7 +4,6 @@ export type UseReturnPayLoad = {
         [key: string]: string[];
     };
     isHydrate?: boolean;
-    excludeStates?: string[];
     immutable?: boolean;
     renewProps?: boolean;
     shouldComponentUpdate?: (arg0: {
@@ -18,7 +17,6 @@ export type UseReturnType<StateType, ActionType> = (initStates: import("./connec
  * @typedef {object} UseReturnPayLoad
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {boolean} [isHydrate]
- * @property {string[]} [excludeStates]
  * @property {boolean} [immutable]
  * @property {boolean} [renewProps]
  * @property {function({prev:any, nextProps:any, nextState:any}):boolean} [shouldComponentUpdate]

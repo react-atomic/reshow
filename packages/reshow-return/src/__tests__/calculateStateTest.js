@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ImmutableStore, Map, mergeMap, fromJS } from "reshow-flux";
+import { ImmutableStore, Map, mergeMap, fromJS, toJS } from "reshow-flux";
 
 import options from "../connectOptions";
 const { calculateState } = options;
@@ -31,7 +31,7 @@ describe("Test calculateState", () => {
         pathStates: { bar: ["foo", "bar"] },
         immutable: true,
         store: pageStore,
-      },
+      }
     );
     expect(actual.bar instanceof Map).to.be.true;
   });
@@ -43,9 +43,10 @@ describe("Test calculateState", () => {
         pathStates: { bar: ["foo", "bar"] },
         immutable: true,
         store: pageStore,
-      },
+      }
     );
-    expect(acture.bar).to.be.undefined;
+    expect(toJS(acture.bar)).to.deep.equal({ foo1: "bar1" });
+    expect(acture.foo).to.be.undefined;
   });
 
   it("path data with non immutable", () => {
@@ -55,7 +56,7 @@ describe("Test calculateState", () => {
         initStates: ["foo"],
         pathStates: { bar: ["foo", "bar"] },
         store: pageStore,
-      },
+      }
     );
     expect(acture.bar).to.deep.equal({ foo1: "bar1" });
   });

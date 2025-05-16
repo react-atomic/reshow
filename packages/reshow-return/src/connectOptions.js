@@ -11,7 +11,6 @@ import { IS_ARRAY, KEYS, T_UNDEFINED } from "reshow-constant";
  */
 const reset = (props, more) => {
   const cleanKeys = [
-    "excludeStates",
     "immutable",
     "initStates",
     "pathStates",
@@ -48,11 +47,8 @@ const stateValueGetter =
    * @param {any} k
    * @returns {any}
    */
-  (k) => {
-    if (null != state) {
-      return state.get ? state.get(k) : get(state, [k]);
-    }
-  };
+  (k) =>
+    get(state, [k]);
 
 /**
  * @typedef {Record<string, string>} InitStateObject
@@ -73,9 +69,10 @@ export const stateKeyLocator = (initStates) => {
     keys = initStates;
     getNewKey = (/** @type any*/ key) => key;
   } else {
-    keys = initStates ? KEYS(initStates) : [];
+    const nextStates = null == initStates ? {} : initStates;
+    keys = KEYS(nextStates);
     getNewKey = (/** @type any*/ key) =>
-      null != initStates[key] ? initStates[key] : key;
+      null != nextStates[key] ? nextStates[key] : key;
   }
   return [keys, getNewKey];
 };
@@ -98,7 +95,6 @@ const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
  * @property {InitStatesType} initStates
  * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {PathStates=} pathStates
- * @property {string[]=} excludeStates
  * @property {boolean=} immutable
  */
 
@@ -119,7 +115,6 @@ const calculateState = (prevState, calculateOptions) => {
   const {
     initStates,
     pathStates,
-    excludeStates = [],
     immutable: optImmutable,
     store,
   } = calculateOptions;
@@ -130,29 +125,44 @@ const calculateState = (prevState, calculateOptions) => {
   const toImmutable = getImmutable(immutable);
   const [stateKeys, toNewKey] = stateKeyLocator(initStates);
 
-  const results = {};
-  stateKeys.forEach(
-    /**
-     * @param {string} key
-     */
-    (key) => {
-      const data = getStateValue(key);
-      results[toNewKey(key)] = toImmutable(data);
-    },
-  );
-  if (pathStates) {
-    KEYS(pathStates || {}).forEach(
-      (key) => (results[key] = get(results, pathStates[key])),
+  const extracData = (/**@type any[]*/ arrKey) => {
+    const results = {};
+    arrKey.forEach(
+      /**
+       * @param {string} key
+       */
+      (key) => {
+        const data = getStateValue(key);
+        results[toNewKey(key)] = toImmutable(data);
+      }
     );
-  }
+    return results;
+  };
 
-  const resultKeys = KEYS(results);
-  let bSame = true;
-  let i = excludeStates.length;
-  while (i--) {
-    delete results[excludeStates[i]];
+  // Test pathStates all first key exists in stateKeys
+  const additionalKeys = [];
+  let results;
+  if (pathStates) {
+    const pathKeys = KEYS(pathStates);
+    pathKeys.forEach((key) => {
+      const firstKey = pathStates[key][0];
+      if (-1 === stateKeys.indexOf(firstKey)) {
+        additionalKeys.push(firstKey);
+        stateKeys.push(firstKey);
+      }
+    });
+    results = extracData(stateKeys);
+    pathKeys.forEach((key) => (results[key] = get(results, pathStates[key])));
+    let i = additionalKeys.length;
+    while (i--) {
+      delete results[additionalKeys[i]];
+    }
+  } else {
+    results = extracData(stateKeys);
   }
-  i = resultKeys.length;
+  let bSame = true;
+  const resultKeys = KEYS(results);
+  let i = resultKeys.length;
   while (i--) {
     const key = resultKeys[i];
     if (results[key] !== prevState[key]) {

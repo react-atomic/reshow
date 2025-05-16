@@ -11,8 +11,7 @@ export type ReturnProps<StateType, ActionType> = {
     pathStates?: {
         [key: string]: string[];
     };
-    excludeStates?: string[];
-    children?: any;
+    children?: any[] | any;
     backfillProps?: boolean;
 };
 declare const Return: React.ElementType;
@@ -31,8 +30,7 @@ declare const Return: React.ElementType;
  * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {import("../../connectOptions").InitStatesType} initStates
  * @property {{[key: string]: string[]}} [pathStates]
- * @property {string[]} [excludeStates]
- * @property {import("react").ReactChild} [children]
+ * @property {import("react").ReactNode[] | import("react").ReactNode} [children]
  * @property {boolean} [backfillProps]
  */
 /**

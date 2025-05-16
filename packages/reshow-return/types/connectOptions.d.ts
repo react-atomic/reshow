@@ -13,7 +13,6 @@ export type calculateOptions<StateType, ActionType> = {
     initStates: InitStatesType;
     store: import("reshow-flux-base").StoreObject<StateType, ActionType>;
     pathStates?: PathStates | undefined;
-    excludeStates?: string[] | undefined;
     immutable?: boolean | undefined;
 };
 /**
@@ -27,7 +26,6 @@ export type calculateOptions<StateType, ActionType> = {
  * @property {InitStatesType} initStates
  * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {PathStates=} pathStates
- * @property {string[]=} excludeStates
  * @property {boolean=} immutable
  */
 /**
