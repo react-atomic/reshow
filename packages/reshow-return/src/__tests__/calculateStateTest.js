@@ -4,6 +4,9 @@ import { ImmutableStore, Map, mergeMap, fromJS, toJS } from "reshow-flux";
 import options from "../connectOptions";
 const { calculateState } = options;
 
+// Test Data
+const testData = { foo: { bar: { foo1: "bar1" } } };
+
 describe("Test calculateState", () => {
   let pageStore;
   beforeEach(() => {
@@ -19,7 +22,7 @@ describe("Test calculateState", () => {
           }
       }
     });
-    dispatch("config/reset", fromJS({ foo: { bar: { foo1: "bar1" } } }));
+    dispatch("config/reset", fromJS(testData));
     pageStore = store;
   });
 
@@ -60,4 +63,18 @@ describe("Test calculateState", () => {
     );
     expect(acture.bar).to.deep.equal({ foo1: "bar1" });
   });
+
+
+  it("path key same with data key", () => {
+    const acture = calculateState(
+      {},
+      {
+        pathStates: { foo: ["foo", "bar"] },
+        immutable: true,
+        store: pageStore,
+      }
+    );
+    expect(toJS(acture.foo)).to.deep.equal({ foo1: "bar1" });
+  });
+
 });

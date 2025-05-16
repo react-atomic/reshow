@@ -144,10 +144,12 @@ const calculateState = (prevState, calculateOptions) => {
   let results;
   if (pathStates) {
     const pathKeys = KEYS(pathStates);
-    pathKeys.forEach((key) => {
-      const firstKey = pathStates[key][0];
+    pathKeys.forEach((pathKey) => {
+      const firstKey = pathStates[pathKey][0];
       if (-1 === stateKeys.indexOf(firstKey)) {
-        additionalKeys.push(firstKey);
+        if (firstKey !== pathKey) {
+          additionalKeys.push(firstKey);
+        }
         stateKeys.push(firstKey);
       }
     });
