@@ -38,9 +38,6 @@ export type UseReturnType<StateType, ActionType> = (initStates: import("./connec
  * @returns {StateType}
  */
 /**
- * @template StateType
- * @template ActionType
- *
- * @type UseReturnType<StateType, ActionType>
+ * @type UseReturnType<any, any>
  */
-declare const useReturn: UseReturnType<StateType, ActionType>;
+declare const useReturn: UseReturnType<any, any>;

@@ -10,14 +10,10 @@ import useReturn from "../useReturn";
 
 describe("Test useReturn", () => {
   it("basic test", () => {
-    const [store] = createReducer(
-      (/**@type Object<any, any>*/ _state, action) => action,
-      {
-        foo: "bar",
-      }
-    );
+    const [store] = createReducer((_state, action) => action, {
+      foo: "bar",
+    });
     const Dom = () => {
-      /**@type Object<any, any>*/
       const state = useReturn(["foo"], store);
       return state.foo;
     };
@@ -27,11 +23,10 @@ describe("Test useReturn", () => {
 
   it("test default immutable", () => {
     const [store] = createReducer(
-      (/**@type Object<any, any>*/ _state, action) => action,
+      (_state, action) => action,
       fromJS({ m: {} })
     );
     const Dom = () => {
-      /**@type Object<any, any>*/
       const state = useReturn(["m"], store);
       expect(Map.isMap(state.m)).to.be.true;
       return null;
@@ -41,11 +36,10 @@ describe("Test useReturn", () => {
 
   it("test default is not immutable", () => {
     const [store] = createReducer(
-      (/**@type Object<any, any>*/ _state, action) => action,
+      (_state, action) => action,
       fromJS({ m: {} })
     );
     const Dom = () => {
-      /**@type Object<any, any>*/
       const state = useReturn(["m"], store, { immutable: false });
       expect(Map.isMap(state.m)).to.be.false;
       return null;

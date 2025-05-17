@@ -30,10 +30,7 @@ import connectOptions from "./connectOptions";
  */
 
 /**
- * @template StateType
- * @template ActionType
- *
- * @type UseReturnType<StateType, ActionType>
+ * @type UseReturnType<any, any>
  */
 const useReturn = (
   initStates,
@@ -41,7 +38,7 @@ const useReturn = (
   { pathStates, renewProps, shouldComponentUpdate, immutable = true } = {}
 ) => {
   /**
-   * @type {calculateOptions<StateType, ActionType>&UseReturnPayLoad}
+   * @type {calculateOptions<any, any>&UseReturnPayLoad}
    */
   const options = {
     initStates,
@@ -53,7 +50,7 @@ const useReturn = (
   };
 
   const state = useConnect(connectOptions)(options);
-  return /**@type StateType*/ (state);
+  return state;
 };
 
 export default useReturn;
