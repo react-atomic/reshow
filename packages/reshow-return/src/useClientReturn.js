@@ -26,21 +26,16 @@ import hydrate from "./hydrate";
  */
 
 /**
- * @template StateType
- * @template ActionType
- *
- * @type {UseClientReturnType<StateType, ActionType>}
+ * @type {UseClientReturnType<any, any>}
  */
-const useClientReturn = (p1, p2, p3) => {
-  if (hydrate() || p3?.isHydrate) {
-    const p2Any = /**@type any*/ (p2);
-    const state = useReturn(p1, p2Any, p3);
+const useClientReturn = (initStates, store, payload) => {
+  const { isHydrate, ...restpayload } = payload || {};
+  if (hydrate() || isHydrate) {
+    const state = useReturn(initStates, store, restpayload);
     const isLoad = useLoaded();
-    return /**@type StateType*/ (isLoad ? state : {});
+    return isLoad ? state : {};
   } else {
-    const p2Any = /**@type any*/ (p2);
-    const anyState = /**@type any*/ (useReturn(p1, p2Any, p3));
-    return /**@type StateType*/ (anyState);
+    return useReturn(initStates, store, restpayload);
   }
 };
 

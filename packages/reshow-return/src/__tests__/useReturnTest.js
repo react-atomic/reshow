@@ -1,3 +1,6 @@
+// @ts-check
+
+import * as React from "react";
 import { expect } from "chai";
 import { render } from "reshow-unit";
 import { Map, fromJS } from "reshow-flux";
@@ -7,10 +10,14 @@ import useReturn from "../useReturn";
 
 describe("Test useReturn", () => {
   it("basic test", () => {
-    const [store, dispatch] = createReducer((state, ation) => action, {
-      foo: "bar",
-    });
-    const Dom = (props) => {
+    const [store] = createReducer(
+      (/**@type Object<any, any>*/ _state, action) => action,
+      {
+        foo: "bar",
+      }
+    );
+    const Dom = () => {
+      /**@type Object<any, any>*/
       const state = useReturn(["foo"], store);
       return state.foo;
     };
@@ -19,28 +26,30 @@ describe("Test useReturn", () => {
   });
 
   it("test default immutable", () => {
-    const [store, dispatch] = createReducer(
-      (state, ation) => action,
-      fromJS({ m: {} }),
+    const [store] = createReducer(
+      (/**@type Object<any, any>*/ _state, action) => action,
+      fromJS({ m: {} })
     );
-    const Dom = (props) => {
+    const Dom = () => {
+      /**@type Object<any, any>*/
       const state = useReturn(["m"], store);
       expect(Map.isMap(state.m)).to.be.true;
       return null;
     };
-    const wrap = render(<Dom />);
+    render(<Dom />);
   });
 
   it("test default is not immutable", () => {
-    const [store, dispatch] = createReducer(
-      (state, ation) => action,
-      fromJS({ m: {} }),
+    const [store] = createReducer(
+      (/**@type Object<any, any>*/ _state, action) => action,
+      fromJS({ m: {} })
     );
-    const Dom = (props) => {
+    const Dom = () => {
+      /**@type Object<any, any>*/
       const state = useReturn(["m"], store, { immutable: false });
       expect(Map.isMap(state.m)).to.be.false;
       return null;
     };
-    const wrap = render(<Dom />);
+    render(<Dom />);
   });
 });

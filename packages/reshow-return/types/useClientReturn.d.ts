@@ -22,9 +22,6 @@ export type UseClientReturnType<StateType, ActionType> = (initStates: import("./
  *
  */
 /**
- * @template StateType
- * @template ActionType
- *
- * @type {UseClientReturnType<StateType, ActionType>}
+ * @type {UseClientReturnType<any, any>}
  */
-declare const useClientReturn: UseClientReturnType<StateType, ActionType>;
+declare const useClientReturn: UseClientReturnType<any, any>;
