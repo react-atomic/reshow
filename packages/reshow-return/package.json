@@ -1,5 +1,5 @@
 {
-  "version": "0.19.1",
+  "version": "0.19.2",
   "name": "reshow-return",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "call-func": "*",
-    "get-object-value": "*",
+    "get-object-value": ">0.8.0",
     "memoize-one": "*",
     "reshow-build": "*",
     "reshow-constant": "*",

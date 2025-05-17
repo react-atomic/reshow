@@ -1,4 +1,4 @@
-export function stateKeyLocator(initStates: InitStatesType): [InitStatesType extends string[] ? InitStatesType : (keyof InitStateObject)[], (arg0: string) => string];
+export function stateKeyLocator(initStates: InitStatesType | null): [InitStatesType extends string[] ? InitStatesType : (keyof InitStateObject)[], (arg0: string) => string];
 declare namespace _default {
     export { calculateState };
     export { reset };
@@ -10,7 +10,7 @@ export type PathStates = {
     [x: string]: string[];
 };
 export type calculateOptions<StateType, ActionType> = {
-    initStates: InitStatesType;
+    initStates: InitStatesType | null;
     store: import("reshow-flux-base").StoreObject<StateType, ActionType>;
     pathStates?: PathStates | undefined;
     immutable?: boolean | undefined;
@@ -23,7 +23,7 @@ export type calculateOptions<StateType, ActionType> = {
  * @template ActionType
  *
  * @typedef {object} calculateOptions
- * @property {InitStatesType} initStates
+ * @property {InitStatesType?} initStates
  * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {PathStates=} pathStates
  * @property {boolean=} immutable

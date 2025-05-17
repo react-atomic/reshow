@@ -59,7 +59,7 @@ const stateValueGetter =
  */
 
 /**
- * @param {InitStatesType} initStates
+ * @param {InitStatesType?} initStates
  * @returns {[initStates extends string[] ? initStates : (keyof InitStateObject)[], function(string):string]}
  */
 export const stateKeyLocator = (initStates) => {
@@ -92,7 +92,7 @@ const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
  * @template ActionType
  *
  * @typedef {object} calculateOptions
- * @property {InitStatesType} initStates
+ * @property {InitStatesType?} initStates
  * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
  * @property {PathStates=} pathStates
  * @property {boolean=} immutable
