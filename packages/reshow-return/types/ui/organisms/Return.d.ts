@@ -7,7 +7,7 @@ export type GetReturnOptions = {
 };
 export type ReturnProps<StateType, ActionType> = {
     store: import("reshow-flux-base").StoreObject<StateType, ActionType>;
-    initStates: import("../../connectOptions").InitStatesType;
+    initStates?: import("../../connectOptions").InitStatesType;
     pathStates?: {
         [key: string]: string[];
     };
@@ -28,7 +28,7 @@ declare const Return: React.ElementType;
  *
  * @typedef {object} ReturnProps
  * @property {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
- * @property {import("../../connectOptions").InitStatesType} initStates
+ * @property {import("../../connectOptions").InitStatesType} [initStates]
  * @property {{[key: string]: string[]}} [pathStates]
  * @property {import("react").ReactNode[] | import("react").ReactNode} [children]
  * @property {boolean} [backfillProps]

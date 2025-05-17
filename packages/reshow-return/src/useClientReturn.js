@@ -4,17 +4,32 @@ import useReturn from "./useReturn";
 import hydrate from "./hydrate";
 
 /**
- * @template StateType
- * @template ActionType
- *
- * @typedef {import('./useReturn').UseReturnType<StateType, ActionType>} UseReturnType
+ * @typedef {import('./useReturn').UseReturnPayLoad} UseReturnPayLoad
+ */
+
+/**
+ * @typedef {object&UseReturnPayLoad} UseClientReturnPayLoad
+ * @property {boolean} [isHydrate]
  */
 
 /**
  * @template StateType
  * @template ActionType
  *
- * @type {UseReturnType<StateType, ActionType>}
+ * @callback UseClientReturnType
+ * @param {import('./connectOptions').InitStatesType?} initStates
+ * @param {import("reshow-flux-base").StoreObject<StateType, ActionType>} store
+ * @param {UseClientReturnPayLoad} [payload]
+ *
+ * @returns {StateType}
+ *
+ */
+
+/**
+ * @template StateType
+ * @template ActionType
+ *
+ * @type {UseClientReturnType<StateType, ActionType>}
  */
 const useClientReturn = (p1, p2, p3) => {
   if (hydrate() || p3?.isHydrate) {

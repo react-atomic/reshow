@@ -78,10 +78,12 @@ export const stateKeyLocator = (initStates) => {
 };
 
 /**
+ * If not immutable, convert to js object.
+ *
  * @param {boolean} immutable
  * @returns {function(any):any}
  */
-const getImmutable = (immutable) => (data) => (!immutable ? toJS(data) : data);
+const restoreToJS = (immutable) => (data) => (immutable ? data : toJS(data));
 
 /**
  * @typedef {Object<string, string[]>} PathStates
@@ -122,7 +124,7 @@ const calculateState = (prevState, calculateOptions) => {
   const getStateValue = stateValueGetter(store.getState());
 
   const immutable = optImmutable ?? getStateValue("immutable");
-  const toImmutable = getImmutable(immutable);
+  const handleRestoreJS = restoreToJS(immutable);
   const [stateKeys, toNewKey] = stateKeyLocator(initStates);
 
   const extracData = (/**@type any[]*/ arrKey) => {
@@ -133,7 +135,7 @@ const calculateState = (prevState, calculateOptions) => {
        */
       (key) => {
         const data = getStateValue(key);
-        results[toNewKey(key)] = toImmutable(data);
+        results[toNewKey(key)] = handleRestoreJS(data);
       }
     );
     return results;
