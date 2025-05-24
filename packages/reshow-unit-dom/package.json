@@ -1,5 +1,5 @@
 {
-  "version": "0.7.1",
+  "version": "0.7.3",
   "name": "reshow-unit-dom",
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
     "@types/node": "*",
     "@types/sinon": "^17.0.3",
     "chai": "4.4.1",
-    "global-jsdom": "24.0.0",
-    "jsdom": "24.0.0",
+    "global-jsdom": "26.0.0",
+    "jsdom": "26.1.0",
     "mocha": "11.1.0",
     "mocha-junit-reporter": "2.2.0",
     "nyc": "17.1.0",
