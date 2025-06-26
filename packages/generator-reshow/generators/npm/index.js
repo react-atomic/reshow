@@ -62,7 +62,7 @@ module.exports = class extends YoGenerator {
 
     // handle copy file
     cp("README.md", null, this.payload);
-    cp(".gitignore", null, this.payload);
+    cp("_gitignore", ".gitignore", this.payload);
     if (isUseBabel) {
       if (null == babelRootMode) {
         cp("babel.config.js");
