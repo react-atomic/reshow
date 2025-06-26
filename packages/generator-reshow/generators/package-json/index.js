@@ -35,6 +35,7 @@ module.exports = class extends YoGenerator {
           repository,
           repositoryHomepage,
           npmDependencies,
+          mainName,
         }
       ) => {
         handleKeywords(keyword, (arr) => (data.keywords = arr));
@@ -69,7 +70,7 @@ module.exports = class extends YoGenerator {
           delete data.module;
           delete data.scripts["build:cjs"];
           data.main = "./src/index.js";
-          data.bin[this.mainName] = "./src/index.js";
+          data.bin[mainName] = "./src/index.js";
           data.files = data.files.filter((f) => f !== "build");
           data.files.push("src");
         } else {
@@ -80,9 +81,7 @@ module.exports = class extends YoGenerator {
           data.devDependencies["react"] = "^18.x";
           data.devDependencies["react-dom"] = "^18.x";
           data.devDependencies["reshow-unit"] = "*";
-          data.scripts["build:type"] = getUIBuildTypeScript(
-            "src/ui/**/*.jsx"
-          );
+          data.scripts["build:type"] = getUIBuildTypeScript("src/ui/**/*.jsx");
           delete data.devDependencies["reshow-unit-dom"];
         }
         if (!isUseWebpack) {
