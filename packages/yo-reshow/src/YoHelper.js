@@ -158,7 +158,7 @@ const YoHelper = (oGen) => {
 
     syncJSON,
     updateJSON: (src, dest, options, cb) => {
-      const { json, text } = syncJSON(src, dest, options, cb);
+      const { json, text } = syncJSON(src, dest, options, cb) || {};
       if (text) {
         FS.writeFileSync(dest, text);
         return { json, text };

@@ -1,4 +1,4 @@
-const { YoGenerator, YoHelper, commonPrompt } = require("yo-reshow");
+const { YoGenerator, YoHelper } = require("yo-reshow");
 const { KEYS } = require("reshow-constant");
 
 /**
@@ -26,8 +26,7 @@ module.exports = class extends YoGenerator {
    * https://github.com/SBoudrias/Inquirer.js
    */
   async prompting() {
-    const { say, exit, isFile, getDotYo, glob, updateJSON } = YoHelper(this);
-    const pkg = isFile("package.json");
+    const { isFile, getDotYo, glob, updateJSON } = YoHelper(this);
 
     const opts = getDotYo();
     if (!opts.exports) {
@@ -40,6 +39,8 @@ module.exports = class extends YoGenerator {
       moreValArr,
       pkgjson,
       appendArr,
+      typesPrependArr,
+      typesAppendArr,
       requirePrependArr,
       requireAppendArr,
       importPrependArr,
@@ -57,6 +58,7 @@ module.exports = class extends YoGenerator {
             content = `${prepend}${filename}${append}`;
           } else {
             content = {
+              types: `${typesPrependArr[index]}${filename}${typesAppendArr[index]}`,
               require: `${requirePrependArr[index]}${filename}${requireAppendArr[index]}`,
               import: `${importPrependArr[index]}${filename}${importAppendArr[index]}`,
             };
@@ -99,7 +101,7 @@ module.exports = class extends YoGenerator {
             willClean: exports,
             modify: diff,
           };
-          this.log({ ...allDiff });
+          console.dir(allDiff, { depth: null, colors: true });
           return null;
         } else {
           json.exports = nextExports;
