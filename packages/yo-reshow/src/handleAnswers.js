@@ -3,7 +3,7 @@ const handleRepository = (oGen) => {
   if (!payload.repositoryName) {
     payload.repositoryName = payload.mainName;
   }
-  const url = `https://github.com/${
+  const url = `git+https://github.com/${
     payload.repositoryOrgName ? payload.repositoryOrgName + "/" : ""
   }${payload.repositoryName}`;
   payload.repository = {
