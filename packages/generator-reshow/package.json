@@ -1,5 +1,5 @@
 {
-  "version": "0.18.8",
+  "version": "0.18.9",
   "name": "generator-reshow",
   "repository": {
     "type": "git",
@@ -14,11 +14,10 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
-    "mkdirp": "^3.0.1",
-    "yo-reshow": "^0.18.3"
+    "yo-reshow": "^0.18.5"
   },
   "devDependencies": {
-    "yo-unit": "^0.17.5"
+    "yo-unit": "^0.17.7"
   },
   "scripts": {
     "mochaFor": "mocha --timeout 2500",

@@ -3273,7 +3273,7 @@ mkdirp-infer-owner@^2.0.0:
     infer-owner "^1.0.4"
     mkdirp "^1.0.3"
 
-mkdirp@3.0.1, mkdirp@^3.0.0, mkdirp@^3.0.1:
+mkdirp@3.0.1, mkdirp@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-3.0.1.tgz#e44e4c5607fb279c168241713cc6e0fea9adcb50"
   integrity sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==
@@ -5411,10 +5411,10 @@ yeoman-test@^6.x:
     sinon "^10.0.0"
     temp-dir "^2.0.0"
 
-yo-reshow@^0.18.3:
-  version "0.18.4"
-  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.18.4.tgz#5910bbe229887ce9a5ade880f10b632b7cfcef00"
-  integrity sha512-szoF9U83ix96VlvFjv0UFaNjbPpYP8rYWXQPb5de09o4IvUh4/IXIjFjK5n8Uwh+3DuOHJ3ekwcI4GNEHdtBTw==
+yo-reshow@^0.18.5:
+  version "0.18.5"
+  resolved "https://registry.yarnpkg.com/yo-reshow/-/yo-reshow-0.18.5.tgz#b004cf7bcc906ef00811a90cf2916f982f26d57f"
+  integrity sha512-K5F6ZYEZBELiMeb24GhiH5mm80FDRYQsJQLd3OL/xYuGt9b11lbcsaUvxURsPT9a0aOvRyY37B34cI+HgkVI2g==
   dependencies:
     call-func "^0.5.3"
     mem-fs "^4.1.3"
@@ -5425,7 +5425,7 @@ yo-reshow@^0.18.3:
     yeoman-generator "^5.4.2"
     yosay "^3.0.0"
 
-yo-unit@^0.17.5:
+yo-unit@^0.17.7:
   version "0.17.7"
   resolved "https://registry.yarnpkg.com/yo-unit/-/yo-unit-0.17.7.tgz#1214ba19e6c4beaee10517a54754fec4bc5f2631"
   integrity sha512-/owjuV5LDhICypisKzV4jLKI9Aqo4xoGGDqcUxEyeNZ8kernyTx47L5BEuu/cJXKlJVFUkGBR8HauE9GheONOw==
