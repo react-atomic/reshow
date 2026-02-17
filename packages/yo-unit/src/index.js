@@ -9,15 +9,20 @@ const YoTest = ({ source, params, options = {}, build }) => {
   const isStringSource = STRING === typeof source;
   source = isStringSource ? PATH.join(source) : source;
   const sourceName = isStringSource ? source : source.name;
-  return YoTestLib.create(source)
+
+  let chain = YoTestLib.create(source)
     .withPrompts(params)
     .withOptions(options)
     .inTmpDir((dir) => {
       console.log(`Build Dest on: ${dir}`);
       console.log(`Source : ${sourceName}`);
-    })
-    .build(build)
-    .run();
+    });
+
+  if (build) {
+    chain = chain.build(build);
+  }
+
+  return chain.run();
 };
 
 module.exports = {

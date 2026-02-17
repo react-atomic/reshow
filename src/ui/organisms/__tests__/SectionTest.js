@@ -43,7 +43,7 @@ describe("Test Section", () => {
   });
 
   it("Section is existed", async () => {
-    const wrap = render(<FakeComponent />);
+    render(<FakeComponent />);
     await act(
       () =>
         dispatch({
@@ -64,13 +64,13 @@ describe("Test Section", () => {
   });
 
   it("Section is not existed", async () => {
-    const wrap = render(<FakeComponent name="xxx" />);
+    render(<FakeComponent name="xxx" />);
     await act(() => dispatch({ section: null }), 3);
     expect("undefined" === typeof uFake.el).to.be.true;
   });
 
-  it("Section with empty child", () => {
-    act(
+  it("Section with empty child", async () => {
+    await act(
       () =>
         dispatch({
           section: {
@@ -88,7 +88,7 @@ describe("Test Section", () => {
   });
 
   it("Section is existed with immutable", async () => {
-    const wrap = render(<FakeComponent immutable />);
+    render(<FakeComponent immutable />);
     await act(
       () =>
         dispatch(
@@ -111,8 +111,9 @@ describe("Test Section", () => {
   });
 
   it("Section is not existed with immutable", async () => {
-    const wrap = render(<FakeComponent name="xxx" immutable />);
+    render(<FakeComponent name="xxx" immutable />);
     await act(() => dispatch({ section: null }), 5);
+    await act(()=>{});
     await waitFor(() => {
       expect("undefined" === typeof uFake.el).to.be.true;
     });
@@ -126,7 +127,6 @@ describe("Test Section", () => {
         uFake = this;
       }
       render() {
-        const { immutable, name } = this.props;
         return (
           <Section name="test">
             <div ref={(el) => (this.el = el)} />
@@ -134,7 +134,7 @@ describe("Test Section", () => {
         );
       }
     }
-    const wrap = render(<PassName />);
+    render(<PassName />);
     await act(
       () =>
         dispatch({
@@ -160,7 +160,6 @@ describe("Test Section", () => {
         uFake = this;
       }
       render() {
-        const { immutable, name } = this.props;
         return (
           <Section name="test">
             <div name="test2" ref={(el) => (this.el = el)} />
@@ -168,7 +167,7 @@ describe("Test Section", () => {
         );
       }
     }
-    const wrap = render(<NotPassName />);
+    render(<NotPassName />);
     await act(
       () =>
         dispatch({
@@ -194,7 +193,6 @@ describe("Test Section", () => {
         uFake = this;
       }
       render() {
-        const { immutable, name } = this.props;
         return (
           <Section name="test">
             <div
@@ -208,7 +206,7 @@ describe("Test Section", () => {
         );
       }
     }
-    const wrap = render(<NotPassNameMultiChild />);
+    render(<NotPassNameMultiChild />);
     await act(
       () =>
         dispatch({

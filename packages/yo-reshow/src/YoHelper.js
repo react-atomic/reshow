@@ -8,8 +8,8 @@ const isDir = require("./isDir");
 const unlink = require("./unlink");
 
 // for app
-const YoSay = require("yosay");
-const mkdirp = require("mkdirp");
+const YoSay = require("yosay").default;
+const { mkdirp } = require("mkdirp");
 const globSync = require("./globSync");
 const handleAnswers = require("./handleAnswers");
 const handleKeywords = require("./handleKeywords");

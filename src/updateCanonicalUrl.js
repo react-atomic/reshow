@@ -36,7 +36,13 @@ const updateCanonicalUrl = (url, props) => {
       url = loc.protocol + urlArr[1];
     }
     const history = win().history || {};
-    history.replaceState && history.replaceState("", "", newUrl(url));
+    if (history.replaceState) {
+      try {
+        history.replaceState("", "", newUrl(url));
+      } catch (e) {
+        // jsdom and some security contexts block replaceState on certain URLs
+      }
+    }
   } else {
     loc.replace(newUrl(url));
   }

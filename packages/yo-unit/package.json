@@ -1,5 +1,5 @@
 {
-  "version": "0.17.4",
+  "version": "0.17.7",
   "name": "yo-unit",
   "repository": {
     "type": "git",
@@ -12,11 +12,11 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
-    "mem-fs": "^2.1.0",
-    "reshow-constant": "*",
-    "reshow-unit-dom": "*",
+    "mem-fs": "^4.1.3",
+    "reshow-constant": "^0.18.0",
+    "reshow-unit-dom": "^0.7.5",
     "yeoman-assert": "^3.1.1",
-    "yeoman-environment": "^3.19.3",
+    "yeoman-environment": "^3.x",
     "yeoman-test": "^6.x"
   },
   "main": "./src/index.js",
