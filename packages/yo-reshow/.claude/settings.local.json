@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm t:*)",
+      "Bash(node:*)"
+    ]
+  }
+}

@@ -14,10 +14,10 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
-    "yo-reshow": "^0.18.5"
+    "yo-reshow": "^0.19.x"
   },
   "devDependencies": {
-    "yo-unit": "^0.17.7"
+    "yo-unit": "^0.19.x"
   },
   "scripts": {
     "mochaFor": "mocha --timeout 2500",

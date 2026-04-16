@@ -1,5 +1,5 @@
 {
-  "version": "0.19.0",
+  "version": "0.19.2",
   "name": "yo-unit",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
   "module": "./dist/index.js",
   "scripts": {
     "build:clean": "find ./dist -name '*.*' | xargs rm -rf",
-    "build:src": "bun build src/index.ts --outdir dist --target node --external parse-ini-string --external yeoman-generator",
+    "build:src": "bun build src/index.ts --outdir dist --target node --external yeoman-environment --external yeoman-test --external yeoman-assert",
     "build:types": "bun tsc -p ./",
     "build": "npm run build:clean && npm run build:src && npm run build:types",
     "test": "npm run build && bun test --timeout 5000 ./src/__tests__/",

@@ -4,6 +4,7 @@ npm-debug.log
 coverage*
 v8.log
 build
+dist
 .*.sw?
 packages/generator-reshow/generators/**/yarn.lock
 webpack.pid
