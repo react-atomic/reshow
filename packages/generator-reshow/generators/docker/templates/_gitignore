@@ -1,3 +1,0 @@
-archive.tar
-.*.sw?
-/<%= verPrefixGitIgnore %>-

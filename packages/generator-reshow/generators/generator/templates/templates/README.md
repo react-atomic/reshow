@@ -1,9 +1,0 @@
-# `<%= mainName %>`
-
-> <%= description %> 
-
-## Usage
-
-```
-
-```
