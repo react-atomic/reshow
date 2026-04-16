@@ -3,13 +3,12 @@
  * https://github.com/yeoman/generator/blob/main/lib/index.js#L1206
  * https://github.com/yeoman/generator-generator/blob/a4abe0c371ee36476ede29dcd29f8f6c8e3b22e6/app/index.js
  */
+import { expect, describe, it, beforeAll, afterAll } from "bun:test";
+import { YoTest } from "yo-unit";
+import { YoGenerator, YoHelper } from "../index";
 
-const { expect } = require("chai");
-const PATH = require("path");
-const { YoTest, assert } = require("yo-unit");
-const { YoGenerator, YoHelper } = require("../index");
+const order: string[] = [];
 
-const order = [];
 class FakeGenerator extends YoGenerator {
   async prompting() {
     const { mergePromptOrOption } = YoHelper(this);
@@ -22,12 +21,10 @@ class FakeGenerator extends YoGenerator {
       },
     ];
 
-    // use runContext.env.registerStub to avoid CircleCI hang
     const sub = this.composeWith("composed:sub");
-
     order.push("parent prompting");
 
-    this.payload = await mergePromptOrOption(prompts, (nextPrompts) =>
+    (this as any).payload = await mergePromptOrOption(prompts, (nextPrompts: any[]) =>
       this.prompt(nextPrompts),
     );
   }
@@ -47,7 +44,7 @@ class SubGenerator extends YoGenerator {
         default: "subFake",
       },
     ];
-    this.options.payload = await this.prompt(prompts);
+    (this.options as any).payload = await this.prompt(prompts);
     order.push("sub prompting");
   }
 
@@ -57,28 +54,24 @@ class SubGenerator extends YoGenerator {
 }
 
 describe("ComposeWithTest", () => {
-  let runResult;
-  before(async () => {
+  let runResult: any;
+  beforeAll(async () => {
     runResult = await YoTest({
       source: FakeGenerator,
       options: { pwd: __dirname, foo1: "bar1" },
-      params: {
-        fakeName: "fakeValue",
-      },
-      build: (runContext) => {
+      params: { fakeName: "fakeValue" },
+      build: (runContext: any) => {
         runContext.env.registerStub(SubGenerator, "composed:sub");
       },
     });
   });
 
-  after(() => {
-    if (runResult) {
-      runResult.restore();
-    }
+  afterAll(() => {
+    if (runResult) runResult.restore();
   });
 
   it("test composeWith", () => {
-    expect(order).to.deep.equal([
+    expect(order).toEqual([
       "parent prompting",
       "sub prompting",
       "parent writing",

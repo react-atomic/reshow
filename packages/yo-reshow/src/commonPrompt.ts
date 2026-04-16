@@ -1,10 +1,10 @@
-const mainName = require("./mainNamePrompt");
-const YoHelper = require("./YoHelper");
+import mainName from "./mainNamePrompt";
+import YoHelper from "./YoHelper";
 
 const commonPrompt = {
   mainName,
-  desc: (oGen, { keyword = true } = {}) => {
-    const nextPrompts = [
+  desc: (oGen: any, { keyword = true }: { keyword?: boolean } = {}) => {
+    const nextPrompts: any[] = [
       {
         type: "input",
         name: "description",
@@ -22,7 +22,7 @@ const commonPrompt = {
     }
     return nextPrompts;
   },
-  author: (oGen) => [
+  author: (oGen: any) => [
     {
       type: "input",
       name: "authorName",
@@ -37,8 +37,8 @@ const commonPrompt = {
     },
   ],
   repository: (
-    oGen,
-    { defaultRepositoryName, defaultRepositoryOrgName } = {},
+    oGen: any,
+    { defaultRepositoryName, defaultRepositoryOrgName }: { defaultRepositoryName?: string; defaultRepositoryOrgName?: string } = {},
   ) => [
     {
       type: "input",
@@ -53,7 +53,7 @@ const commonPrompt = {
       default: defaultRepositoryOrgName,
     },
   ],
-  babel: (oGen) => [
+  babel: (oGen: any) => [
     {
       type: "confirm",
       name: "isUseBabel",
@@ -65,12 +65,13 @@ const commonPrompt = {
       name: "babelRootMode",
       message: "will you push this under a monorepo (sub-package) ?",
       default: false,
-      when: (response) => {
+      when: (response: any): boolean | undefined => {
         const { getAllAns } = YoHelper(oGen);
         const allAns = getAllAns(response);
         if (allAns.isUseBabel) {
           return true;
         }
+        return undefined;
       },
     },
     {
@@ -78,12 +79,13 @@ const commonPrompt = {
       name: "isUseBabelUI",
       message: "Is is a babel UI library?",
       default: false,
-      when: (response) => {
+      when: (response: any): boolean | undefined => {
         const { getAllAns } = YoHelper(oGen);
         const allAns = getAllAns(response);
         if (allAns.isUseBabel) {
           return true;
         }
+        return undefined;
       },
     },
     {
@@ -95,4 +97,4 @@ const commonPrompt = {
   ],
 };
 
-module.exports = commonPrompt;
+export default commonPrompt;

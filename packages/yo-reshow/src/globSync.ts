@@ -1,10 +1,23 @@
-const FS = require("fs");
-const PATH = require("path");
+import * as FS from "fs";
+import * as PATH from "path";
 
-const globSync = (folderPath, callback, firstLevelOnly) => {
+interface GlobEntry {
+  fullPath: string;
+  relativePath: string;
+  extname: string;
+  filename: string;
+  basename: string;
+  dirname: string;
+}
+
+const globSync = (
+  folderPath: string,
+  callback: (entry: GlobEntry) => void,
+  firstLevelOnly?: boolean
+): void => {
   const fileArr = FS.readdirSync(folderPath);
   while (fileArr.length !== 0) {
-    const relativePath = fileArr.shift();
+    const relativePath = fileArr.shift()!;
     const fullPath = PATH.join(folderPath, relativePath);
     if (FS.statSync(fullPath).isDirectory()) {
       if (!firstLevelOnly) {
@@ -26,4 +39,4 @@ const globSync = (folderPath, callback, firstLevelOnly) => {
   }
 };
 
-module.exports = globSync;
+export default globSync;

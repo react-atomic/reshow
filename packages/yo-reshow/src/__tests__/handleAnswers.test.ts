@@ -1,6 +1,6 @@
-const { expect } = require("chai");
-const { YoTest, assert } = require("yo-unit");
-const { YoGenerator, YoHelper } = require("../index");
+import { expect, describe, it, beforeAll, afterAll } from "bun:test";
+import { YoTest, assert } from "yo-unit";
+import { YoGenerator, YoHelper } from "../index";
 
 class FakeGenerator extends YoGenerator {
   async prompting() {
@@ -22,14 +22,14 @@ class FakeGenerator extends YoGenerator {
   }
 
   writing() {
-    const { cp, chdir } = YoHelper(this);
-    chdir(this.options.chdir);
+    const { chdir } = YoHelper(this);
+    chdir((this.options as any).chdir);
   }
 }
 
 describe("handleAnswers test", () => {
-  let runResult;
-  before(async () => {
+  let runResult: any;
+  beforeAll(async () => {
     runResult = await YoTest({
       source: FakeGenerator,
       options: { chdir: "abc" },
@@ -39,7 +39,7 @@ describe("handleAnswers test", () => {
     });
   });
 
-  after(() => {
+  afterAll(() => {
     if (runResult) {
       runResult.restore();
     }
@@ -48,7 +48,7 @@ describe("handleAnswers test", () => {
   it("test auto repository directory", () => {
     const { generator } = runResult;
     const payload = generator.payload;
-    expect(payload.repositoryHomepage).to.equal(
+    expect(payload.repositoryHomepage).toBe(
       `${payload.repository.url}/tree/main/${payload.repository.directory}`,
     );
   });

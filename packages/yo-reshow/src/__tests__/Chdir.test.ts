@@ -1,6 +1,6 @@
-const { expect } = require("chai");
-const { YoTest, assert } = require("yo-unit");
-const { YoGenerator, YoHelper } = require("../index");
+import { expect, describe, it, beforeAll, afterAll } from "bun:test";
+import { YoTest } from "yo-unit";
+import { YoGenerator, YoHelper } from "../index";
 
 class FakeGenerator extends YoGenerator {
   async prompting() {
@@ -13,36 +13,32 @@ class FakeGenerator extends YoGenerator {
       },
     ];
     const answers = await this.prompt(prompts);
-    this.fakeName = answers.fakeName;
+    (this as any).fakeName = answers.fakeName;
   }
 
   writing() {
-    const { cp, chdir } = YoHelper(this);
-    chdir(this.options.chdir);
+    const { chdir } = YoHelper(this);
+    chdir((this.options as any).chdir);
   }
 }
 
 describe("Chdir test", () => {
-  let runResult;
-  before(async () => {
+  let runResult: any;
+  beforeAll(async () => {
     runResult = await YoTest({
       source: FakeGenerator,
       options: { chdir: "abc" },
-      params: {
-        fakeName: "bar",
-      },
+      params: { fakeName: "bar" },
     });
   });
 
-  after(() => {
-    if (runResult) {
-      runResult.restore();
-    }
+  afterAll(() => {
+    if (runResult) runResult.restore();
   });
 
   it("test chdir", () => {
     const { generator } = runResult;
     const expected = generator.contextRoot + "/abc";
-    expect(generator.destinationPath()).to.equal(expected);
+    expect(generator.destinationPath()).toBe(expected);
   });
 });

@@ -1,15 +1,28 @@
-const handleRepository = (oGen) => {
-  const { payload } = oGen;
+export interface Payload {
+  mainName?: string;
+  description: string;
+  keyword: string;
+  npmDependencies: Record<string, string>;
+  babelRootMode: string;
+  webpackEnabled: string;
+  repositoryName?: string;
+  repositoryOrgName?: string;
+  repositoryUrl?: string;
+  repositoryHomepage?: string;
+  repository?: { type: string; url: string; directory?: string };
+  isUseWebpack?: boolean;
+  [key: string]: unknown;
+}
+
+const handleRepository = (oGen: any): void => {
+  const { payload }: { payload: Payload } = oGen;
   if (!payload.repositoryName) {
     payload.repositoryName = payload.mainName;
   }
   const url = `git+https://github.com/${
     payload.repositoryOrgName ? payload.repositoryOrgName + "/" : ""
   }${payload.repositoryName}`;
-  payload.repository = {
-    type: "git",
-    url,
-  };
+  payload.repository = { type: "git", url };
   payload.repositoryUrl = url;
   if (payload.babelRootMode) {
     let pkgPath = `packages/${payload.mainName}`;
@@ -30,8 +43,8 @@ const handleRepository = (oGen) => {
 };
 
 const handleAnswers =
-  (oGen) =>
-  (answers, cb = () => {}) => {
+  (oGen: any) =>
+  (answers: Record<string, any>, cb: (payload: Payload) => void = () => {}): void => {
     const { mainName, isUseWebpack } = answers;
     oGen.mainName = mainName;
     oGen.payload = {
@@ -49,9 +62,8 @@ const handleAnswers =
       oGen.payload.webpackEnabled = "on";
       oGen.payload.npmDependencies["reshow-app"] = "*";
     }
-
     handleRepository(oGen);
     cb(oGen.payload);
   };
 
-module.exports = handleAnswers;
+export default handleAnswers;
