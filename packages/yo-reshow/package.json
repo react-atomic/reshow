@@ -1,5 +1,5 @@
 {
-  "version": "0.19.1",
+  "version": "0.19.2",
   "name": "yo-reshow",
   "repository": {
     "type": "git",
@@ -38,10 +38,12 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "scripts": {
-    "build": "bun tsc -p ./",
-    "build:types": "bun tsc --noEmit --strict",
-    "test": "bun build:types && bun test --timeout 5000 ./src/__tests__/",
-    "prepublishOnly": "npm run build && npm run test"
+    "build:clean": "find ./dist -name '*.*' | xargs rm -rf",
+    "build:src": "bun build src/index.ts --outdir dist --target node --external parse-ini-string",
+    "build:types": "bun tsc -p ./",
+    "build": "npm run build:clean && npm run build:src && npm run build:types",
+    "test": "npm run build && bun test --timeout 5000 ./src/__tests__/",
+    "prepublishOnly": "npm t"
   },
   "files": [
     "dist",
