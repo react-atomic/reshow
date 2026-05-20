@@ -30,9 +30,8 @@ describe("isElementLike", () => {
   // $$typeof symbol resolves through a different React copy, but the
   // object is structurally a React element. Treat it as element-like so
   // `build(rscElement)()` never passes the element itself as the *type*
-  // to `createElement` (which produces "Element type is invalid … got:
-  // object").
-  it("accepts an element-shaped object with $$typeof and type", () => {
+  // to `createElement` ("Element type is invalid … got: object").
+  it("accepts an element-shaped object with foreign $$typeof", () => {
     const rscLikeElement = {
       $$typeof: Symbol.for("react.some.future.element"),
       type: "div",
@@ -40,6 +39,20 @@ describe("isElementLike", () => {
       key: null,
     };
     expect(isElementLike(rscLikeElement)).to.equal(true);
+  });
+
+  // Regression: Next.js App Router ships server children to client components
+  // as bare `React.lazy` refs (no `.type`, no `.props`). `build()` must pass
+  // them through untouched — wrapping a lazy as the *type* of an element
+  // corrupts the render tree when the lazy resolves to a React element rather
+  // than a component function.
+  it("accepts a bare React.lazy-shaped ref (no `type` property)", () => {
+    const bareLazy = {
+      $$typeof: Symbol.for("react.lazy"),
+      _payload: { _status: -1, _result: null },
+      _init: () => null,
+    };
+    expect(isElementLike(bareLazy)).to.equal(true);
   });
 });
 
@@ -52,13 +65,24 @@ describe("build with element-like input (RSC regression)", () => {
       key: null,
     };
     const result = /**@type any*/ (build(rscLikeElement)());
-    // The bug: build() used to wrap the input as createElement(element, {}),
-    // producing an element whose .type is the original element object.
+    // Bug behavior would set result.type to the original element object.
     expect(typeof result.type).to.not.equal("object");
   });
 
   it("returns a real React element unchanged when no props/child given", () => {
     const el = <div className="x" />;
     expect(build(el)()).to.equal(el);
+  });
+
+  it("returns a bare React.lazy ref unchanged when no props/child given", () => {
+    // Before the fix: build() wrapped lazy as createElement(lazy, {}), placing
+    // the lazy ref in the element's `type` slot. When that lazy resolved to a
+    // React element (not a function) the renderer threw "got: object".
+    const bareLazy = {
+      $$typeof: Symbol.for("react.lazy"),
+      _payload: { _status: -1, _result: null },
+      _init: () => null,
+    };
+    expect(build(bareLazy)()).to.equal(bareLazy);
   });
 });

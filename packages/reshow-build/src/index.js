@@ -15,18 +15,24 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
   React;
 
 /**
- * React 19 / RSC compatibility: an element shipped across the server/client
- * boundary may not satisfy `isValidElement` (different `$$typeof` symbol
- * resolution between React instances), yet it is structurally a React element.
- * Treat any object carrying `$$typeof` and `type` as element-like so we never
- * pass it as the *type* argument to `createElement`.
+ * React 19 / RSC compatibility: any object carrying a React `$$typeof` tag —
+ * elements, lazy refs, forward_ref/memo refs, etc. — should pass through
+ * `build()` untouched in the no-props / no-child path. Wrapping such a value
+ * as the *type* argument to `createElement` corrupts the render tree:
+ *   - Next.js ships server children as `React.lazy` refs that resolve to a
+ *     React element. Rendered directly as a child (`{lazyRef}`) React resolves
+ *     them correctly; rendered as a *type* (`createElement(lazyRef, {})`) the
+ *     resolved value lands in the renderer's type position and throws
+ *     "Element type is invalid … got: object".
+ *   - Element-shaped objects with foreign `$$typeof` symbols (cross-realm RSC)
+ *     have the same risk.
  *
  * @param {any} x
  * @returns {boolean}
  */
 const isElementLike = (x) =>
   isValidElement(x) ||
-  ("object" === typeof x && null !== x && null != x.$$typeof && "type" in x);
+  ("object" === typeof x && null !== x && null != x.$$typeof);
 
 /**
  * @typedef {React.ComponentType|React.ReactNode|Function} Component
@@ -114,7 +120,11 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
       return buildReact(<span>{/**@type string*/ (component)}</span>, props);
     }
   } else {
-    return (isElement ? cloneElement : createElement).apply(T_NULL, params);
+    // cloneElement only accepts true React elements (with .type/.props/.key).
+    // Lazy / forward_ref / memo refs are element-LIKE but not clonable — for
+    // those, fall back to createElement.
+    const canClone = isValidElement(component);
+    return (canClone ? cloneElement : createElement).apply(T_NULL, params);
   }
 };
 

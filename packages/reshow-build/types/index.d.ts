@@ -16,11 +16,17 @@ export type ComponentOption = {
  */
 declare function build(component?: Component | Component[], componentOption?: ComponentOption): (props?: BuildProps, child?: Component | Component[]) => React.ReactElement | null;
 /**
- * React 19 / RSC compatibility: an element shipped across the server/client
- * boundary may not satisfy `isValidElement` (different `$$typeof` symbol
- * resolution between React instances), yet it is structurally a React element.
- * Treat any object carrying `$$typeof` and `type` as element-like so we never
- * pass it as the *type* argument to `createElement`.
+ * React 19 / RSC compatibility: any object carrying a React `$$typeof` tag —
+ * elements, lazy refs, forward_ref/memo refs, etc. — should pass through
+ * `build()` untouched in the no-props / no-child path. Wrapping such a value
+ * as the *type* argument to `createElement` corrupts the render tree:
+ *   - Next.js ships server children as `React.lazy` refs that resolve to a
+ *     React element. Rendered directly as a child (`{lazyRef}`) React resolves
+ *     them correctly; rendered as a *type* (`createElement(lazyRef, {})`) the
+ *     resolved value lands in the renderer's type position and throws
+ *     "Element type is invalid … got: object".
+ *   - Element-shaped objects with foreign `$$typeof` symbols (cross-realm RSC)
+ *     have the same risk.
  *
  * @param {any} x
  * @returns {boolean}
