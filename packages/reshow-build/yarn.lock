@@ -2782,9 +2782,9 @@ require-relative@^0.8.7:
   integrity sha512-AKGr4qvHiryxRb19m3PsLRGuKVAbJLUD7E6eOaHkfKhwc+vSgVOCY5xNvm9EkolBKTOf0GrQAZKLimOCz81Khg==
 
 reshow-build@*:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-1.3.2.tgz#181027cbcbb82bd20f3207a26e1370b2427bc423"
-  integrity sha512-hRLgysmytOqstxc+pAu9XPgqxr3hQGSmoR3JE57qdHW/AxhQGFKOz6j25nu43AOTdi5+kHL9nVqDo/WJQwBdQA==
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/reshow-build/-/reshow-build-1.19.1.tgz#176ab6657b168befde23ab52c098ecbc8b973e1c"
+  integrity sha512-8j7MQOIv7yZRfDk7VnAy5CAT7v+/QGEkNwzuwpGKVxROBQLqPu2uSzBtejUCm4bZE9eAgIufK7gDo/lCEh30CQ==
   dependencies:
     array.merge "*"
     reshow-constant "*"
