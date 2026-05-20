@@ -15,6 +15,20 @@ const { isValidElement, cloneElement, createElement, Children, Fragment } =
   React;
 
 /**
+ * React 19 / RSC compatibility: an element shipped across the server/client
+ * boundary may not satisfy `isValidElement` (different `$$typeof` symbol
+ * resolution between React instances), yet it is structurally a React element.
+ * Treat any object carrying `$$typeof` and `type` as element-like so we never
+ * pass it as the *type* argument to `createElement`.
+ *
+ * @param {any} x
+ * @returns {boolean}
+ */
+const isElementLike = (x) =>
+  isValidElement(x) ||
+  ("object" === typeof x && null !== x && null != x.$$typeof && "type" in x);
+
+/**
  * @typedef {React.ComponentType|React.ReactNode|Function} Component
  */
 
@@ -52,7 +66,7 @@ const buildFunc = (component, props, child, componentOption) => {
         props.children = /** @type React.ReactElement*/ (child);
       }
       const el = component(props);
-      if (isValidElement(el)) {
+      if (isElementLike(el)) {
         const elKey = el.key || props.key;
         return null != elKey ? buildReact(el, { key: elKey }) : el;
       } else {
@@ -80,8 +94,8 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
   if (T_NULL == component) {
     return T_NULL;
   }
-  const isValidComp = isValidElement(component);
-  if (isValidComp && !OBJ_SIZE(props) && null == child) {
+  const isElement = isElementLike(component);
+  if (isElement && !OBJ_SIZE(props) && null == child) {
     return component;
   }
   const params = [component, props];
@@ -100,7 +114,7 @@ const buildReact = (component, props = {}, child = T_UNDEFINED) => {
       return buildReact(<span>{/**@type string*/ (component)}</span>, props);
     }
   } else {
-    return (isValidComp ? cloneElement : createElement).apply(T_NULL, params);
+    return (isElement ? cloneElement : createElement).apply(T_NULL, params);
   }
 };
 
@@ -122,7 +136,7 @@ const build =
 
     const { altWrap } = componentOption || {};
     if (altWrap) {
-      if (FUNCTION !== typeof component && !isValidElement(component)) {
+      if (FUNCTION !== typeof component && !isElementLike(component)) {
         child = component;
         component = altWrap;
       }
@@ -133,7 +147,7 @@ const build =
      */
     const run = (comp) => {
       props = removeEmpty(props, T_TRUE);
-      return (isValidElement(comp) ? buildReact : buildFunc)(
+      return (isElementLike(comp) ? buildReact : buildFunc)(
         /**@type any*/ (comp),
         props,
         child,
@@ -158,4 +172,5 @@ const build =
   };
 
 export default build;
+export { isElementLike };
 export { mergeRef } from "./mergeRef";
