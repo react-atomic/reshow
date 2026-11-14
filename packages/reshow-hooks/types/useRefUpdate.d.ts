@@ -1,8 +1,9 @@
-export default useRefUpdate;
+import * as React from "react";
 /**
  * @template ValueType
- * @param {ValueType|function():ValueType} [value]
- * @param {function(ValueType):ValueType} [cookCb]
+ * @param {ValueType|(() => ValueType)} [value]
+ * @param {(v: ValueType) => ValueType} [cookCb]
  * @return {React.MutableRefObject<ValueType>}
  */
-declare function useRefUpdate<ValueType>(value?: ValueType | (() => ValueType), cookCb?: (arg0: ValueType) => ValueType): React.MutableRefObject<ValueType>;
+declare const useRefUpdate: <ValueType>(value?: ValueType | (() => ValueType), cookCb?: (v: ValueType) => ValueType) => React.MutableRefObject<ValueType>;
+export default useRefUpdate;

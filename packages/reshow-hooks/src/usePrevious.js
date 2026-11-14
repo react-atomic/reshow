@@ -4,7 +4,7 @@ import callfunc from "call-func";
 
 /**
  * @param {boolean|undefined} onlyDiff
- * @param {{current: {prev: any, cur: any}|undefined}} data
+ * @param {{current: {prev: any, cur: any}|undefined|null}} data
  * @param {any} value
  */
 const handleOnlyDiff = (onlyDiff, data, value) => {
@@ -25,6 +25,7 @@ const handleOnlyDiff = (onlyDiff, data, value) => {
  * @param {any} value
  * @param {any} [init]
  * @param {{isLazy?: boolean, onlyDiff?: boolean}} [options]
+ * @returns {any}
  */
 const usePrevious = (value, init, options = {}) => {
   const data = useRefWithInitCallback(() => {

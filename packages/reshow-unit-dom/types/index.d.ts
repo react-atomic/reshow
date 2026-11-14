@@ -1,5 +1,29 @@
-export type CallableWrapper = object;
+export type CallableWrapper<T> = {
+    current?: T | null;
+};
+/**
+ * @param {string=} html
+ * @param {any} [options]
+ */
+declare const jsdom: (html?: string | undefined, options?: any) => () => void;
+/**
+ * @param {boolean|Function} [toThrow]
+ */
+declare const hideConsoleError: (toThrow?: boolean | Function) => void;
+/**
+ * @param {boolean|Function} [toThrow]
+ */
+declare const hideConsoleWarn: (toThrow?: boolean | Function) => void;
 export type SinonSandbox = import("sinon").SinonSandbox;
+/**
+ * @typedef {import("sinon").SinonSandbox} SinonSandbox
+ */
+/**
+ * @see https://sinonjs.org/releases/latest/sandbox/
+ * @param {any} [options]
+ * @returns {SinonSandbox}
+ */
+declare const getSinon: (options?: any) => SinonSandbox;
 export type CleanItProps = {
     debug?: any;
 };
@@ -10,28 +34,11 @@ export type CleanItProps = {
 /**
  * @param {CleanItProps} [props]
  */
-export function cleanIt(props?: CleanItProps): void;
-/**
- * @param {string=} html
- * @param {any} [options]
- */
-export function jsdom(html?: string | undefined, options?: any): any;
-/**
- * @param {boolean|Function} [toThrow]
- */
-export function hideConsoleError(toThrow?: boolean | Function): void;
-/**
- * @typedef {import("sinon").SinonSandbox} SinonSandbox
- */
-/**
- * @see https://sinonjs.org/releases/latest/sandbox/
- * @param {any} [options]
- * @returns {SinonSandbox}
- */
-export function getSinon(options?: any): SinonSandbox;
+declare const cleanIt: (props?: CleanItProps) => void;
 /**
  * @param {function} cb
  * @param {number} delay
  * @returns {Promise<null>}
  */
-export function sleep(cb: Function, delay: number): Promise<null>;
+declare const sleep: (cb: Function, delay: number) => Promise<null>;
+export { cleanIt, jsdom, hideConsoleError, hideConsoleWarn, getSinon, sleep };

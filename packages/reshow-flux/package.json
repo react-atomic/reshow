@@ -35,7 +35,8 @@
     "reshow-runtime": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.x",
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.9",
     "react": "19.x",
     "react-dom": "19.x",
     "reshow-unit": "*"

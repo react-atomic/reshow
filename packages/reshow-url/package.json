@@ -24,7 +24,8 @@
     "win-doc": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.x",
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.9",
     "react": "19.x",
     "react-dom": "19.x",
     "reshow-unit": "*"
@@ -42,7 +43,7 @@
     "build:es": "BABEL_ENV=es babel src -d build/es --out-file-extension .mjs --root-mode upward",
     "build:type": "npx -p typescript tsc src/*.js src/**/*.js src/ui/**/*.jsx --jsx react-jsx --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types",
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
-    "mochaFor": "STRICT_MODE=1 mocha -r global-jsdom/register",
+    "mochaFor": "STRICT_MODE=1 mocha",
     "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
     "test:report": "npm run build && npm run mochaFor -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test_output/mocha.xml 'build/es/**/__tests__/*.mjs'",
     "test": "npm run build && npm run mocha",

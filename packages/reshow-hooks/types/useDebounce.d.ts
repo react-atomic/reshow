@@ -1,4 +1,3 @@
-export default useDebounce;
 export type DebounceExecutor = import("call-func").DebounceExecutor;
 export type useState<T> = import("reshow-constant").useState<T>;
 /**
@@ -14,4 +13,5 @@ export type useState<T> = import("reshow-constant").useState<T>;
  * @param {any=} scope
  * @returns {Function}
  */
-declare function useDebounce(func: Function, delay?: number | undefined, scope?: any | undefined): Function;
+declare const useDebounce: (func: Function, delay?: number | undefined, scope?: any | undefined) => Function;
+export default useDebounce;

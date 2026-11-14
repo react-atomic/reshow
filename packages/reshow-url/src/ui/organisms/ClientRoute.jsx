@@ -35,6 +35,12 @@ const defaultOnUrlChange =
   };
 
 /**
+ * @typedef {object} UrlChangeState
+ * @property {string} pvid
+ * @property {any} themePath
+ */
+
+/**
  * @extends {Reshow}
  */
 class ClientRoute extends Reshow {
@@ -65,7 +71,7 @@ class ClientRoute extends Reshow {
 
   /**
    * @param {string} url
-   * @returns {Object}
+   * @returns {UrlChangeState}
    */
   getUrlChangeState(url) {
     const { onUrlChange, onHashChange, goAnchorDelay } = this.props;

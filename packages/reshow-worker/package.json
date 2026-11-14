@@ -23,7 +23,8 @@
     "worker-loader": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.x",
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.9",
     "reshow-unit-dom": "*"
   },
   "exports": {

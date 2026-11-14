@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 import resolve from "resolve";
 import { declare } from "@babel/helper-plugin-utils";
@@ -30,7 +31,7 @@ function supportsStaticESM(caller) {
 }
 
 export default declare((api, options, dirname) => {
-  api.assertVersion(7);
+  api.assertVersion("^7.0.0-0 || ^8.0.0-0");
 
   const {
     corejs: corejsVersion = false,
@@ -134,6 +135,29 @@ export default declare((api, options, dirname) => {
     );
   }
 
+  /**
+   * Babel 8 may report a helper as available (file.availableHelper) which the
+   * installed runtime does not actually ship yet, e.g. "maybeArrayLike".
+   * Only import a helper when the runtime package really contains it,
+   * otherwise Babel will inline it.
+   */
+  let runtimeDir = null;
+  try {
+    runtimeDir =
+      absoluteRuntime !== false
+        ? modulePath
+        : path.dirname(
+            resolve.sync(`${moduleName}/package.json`, { basedir: dirname }),
+          );
+  } catch (err) {
+    runtimeDir = null;
+  }
+  const helperExists = (helpersDir, name) =>
+    !runtimeDir ||
+    [".js", ".mjs"].some((ext) =>
+      fs.existsSync(path.join(runtimeDir, helpersDir, `${name}${ext}`)),
+    );
+
   return {
     pre(file) {
       if (useRuntimeHelpers) {
@@ -160,6 +184,8 @@ export default declare((api, options, dirname) => {
             esModules && file.path.node.sourceType === "module"
               ? "es/helpers"
               : "helpers";
+
+          if (!helperExists(helpersDir, name)) return;
 
           return this.addDefaultImport(
             `${modulePath}/${helpersDir}/${name}`,

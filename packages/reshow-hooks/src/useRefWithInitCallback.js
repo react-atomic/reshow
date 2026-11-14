@@ -6,14 +6,13 @@ import callfunc from "call-func";
 
 /**
  * @template ValueType
- * @param {ValueType|function():ValueType} [value]
- * @return {React.Ref<ValueType|undefined>}
+ * @param {ValueType|(() => ValueType)} [value]
+ * @return {React.MutableRefObject<ValueType|undefined>}
  */
 const useRefWithInitCallback = (value) => {
-  /**
-   * @type {React.Ref<ValueType|undefined>}
-   */
-  const last = useRef(null);
+  const last = /** @type {React.MutableRefObject<ValueType|undefined>} */ (
+    useRef(null)
+  );
   useState(() => {
     last.current = callfunc(value);
   });

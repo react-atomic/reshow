@@ -24,7 +24,7 @@ import callFunc from "call-func";
  */
 const useDebounce = (func, delay, scope) => {
   /**
-   * @type {React.Ref<any>}
+   * @type {React.MutableRefObject<any>}
    */
   const lastProps = useRef(null);
 

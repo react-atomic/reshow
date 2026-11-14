@@ -1,7 +1,8 @@
-export default useRefWithInitCallback;
+import * as React from "react";
 /**
  * @template ValueType
- * @param {ValueType|function():ValueType} [value]
- * @return {React.Ref<ValueType|undefined>}
+ * @param {ValueType|(() => ValueType)} [value]
+ * @return {React.MutableRefObject<ValueType|undefined>}
  */
-declare function useRefWithInitCallback<ValueType>(value?: ValueType | (() => ValueType)): React.Ref<ValueType | undefined>;
+declare const useRefWithInitCallback: <ValueType>(value?: ValueType | (() => ValueType)) => React.MutableRefObject<ValueType | undefined>;
+export default useRefWithInitCallback;

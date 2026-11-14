@@ -1,4 +1,4 @@
-export default useLongPress;
+import * as React from "react";
 export type LongPressPayload = {
     threshold?: number;
     onStart?: Function;
@@ -25,4 +25,11 @@ export type LongPressEvent = LongPressExtraEvent & React.MouseEvent;
  * @param {Function} callback
  * @param {LongPressPayload} payload
  */
-declare function useLongPress(callback: Function, payload?: LongPressPayload): any;
+declare const useLongPress: (callback: Function, payload?: LongPressPayload) => {
+    onMouseDown: (e: LongPressEvent) => void;
+    onMouseUp: (e: LongPressEvent) => void;
+    onMouseMove: (e: LongPressEvent) => void;
+    onTouchStart: (e: LongPressEvent) => void;
+    onTouchMove: (e: LongPressEvent) => void;
+};
+export default useLongPress;

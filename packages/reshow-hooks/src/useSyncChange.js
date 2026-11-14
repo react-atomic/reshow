@@ -12,7 +12,7 @@ import usePrevious from "./usePrevious";
 
 /**
  * @param {any} value
- * @param {function(any):void} setter
+ * @param {(value: any) => void} setter
  * @param {any=} init
  * @param {Comparator=} comparator
  */

@@ -1,4 +1,3 @@
-export default useEnable;
 /**
  * React useReducer
  * https://reactjs.org/docs/hooks-reference.html#usereducer
@@ -7,6 +6,7 @@ export default useEnable;
  * @param {any} setTo
  * @param {any} [initVal]
  * @param {function} [onChange]
- * @returns {reducer}
+ * @returns {[any, function]}
  */
-declare function useEnable(setTo?: any, initVal?: any, onChange?: Function): any;
+declare const useEnable: (setTo?: any, initVal?: any, onChange?: Function) => [any, Function];
+export default useEnable;

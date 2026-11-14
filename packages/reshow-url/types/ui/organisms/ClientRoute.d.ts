@@ -1,24 +1,34 @@
-export default ClientRoute;
+import Reshow from "reshow";
+import handleAnchor from "anchor-lib";
+export type UrlChangeState = {
+    pvid: string;
+    themePath: any;
+};
+/**
+ * @typedef {object} UrlChangeState
+ * @property {string} pvid
+ * @property {any} themePath
+ */
 /**
  * @extends {Reshow}
  */
 declare class ClientRoute extends Reshow {
+    /**
+     * @type {any}
+     */
+    props: any;
     static defaultProps: {
         ajax: boolean;
         goAnchorDelay: number;
         fallback: string;
         onHashChange: typeof handleAnchor;
     };
-    /**
-     * @type {any}
-     */
-    props: any;
     getPath(): any;
     /**
      * @param {string} url
-     * @returns {Object}
+     * @returns {UrlChangeState}
      */
-    getUrlChangeState(url: string): any;
+    getUrlChangeState(url: string): UrlChangeState;
+    componentDidMount(): void;
 }
-import Reshow from "reshow";
-import handleAnchor from "anchor-lib";
+export default ClientRoute;

@@ -1,16 +1,26 @@
-export function useSwipe({ thresholdTime, thresholdDistance, callback, }: UseSwipeProps): {
-    /**
-     * @type {React.TouchEventHandler}
-     */
-    onTouchStart: React.TouchEventHandler;
-    /**
-     * @type {React.TouchEventHandler}
-     */
-    onTouchEnd: React.TouchEventHandler;
-    /**
-     * @type {React.TouchEventHandler}
-     */
-    onTouchMove: React.TouchEventHandler;
+import * as React from "react";
+export type UnifyTouchEvent = React.TouchEvent | React.MouseEvent;
+export type DirectionType = "up" | "right" | "down" | "left";
+export type UseSwipeProps = {
+    thresholdTime?: number | undefined;
+    thresholdDistance?: number | undefined;
+    callback?: (direction: DirectionType) => void;
+};
+export type UseSwipeState = {
+    thresholdTime: number;
+    thresholdDistance: number;
+    callback: (direction: DirectionType) => void;
+    startTime: number;
+    bTracking: boolean;
+    startPosX: number | null;
+    startPosY: number | null;
+    endPosX: number | null;
+    endPosY: number | null;
+};
+/**
+ * @param {UseSwipeProps} props
+ */
+export declare const useSwipe: ({ thresholdTime, thresholdDistance, callback, }: UseSwipeProps) => {
     /**
      * @type {React.MouseEventHandler}
      */
@@ -23,28 +33,16 @@ export function useSwipe({ thresholdTime, thresholdDistance, callback, }: UseSwi
      * @type {React.MouseEventHandler}
      */
     onMouseMove: React.MouseEventHandler;
-};
-export type UnifyTouchEvent = React.TouchEvent | React.MouseEvent;
-export type DirectionType = "up" | "right" | "down" | "left";
-export type UseSwipeProps = {
-    thresholdTime?: number | undefined;
-    thresholdDistance?: number | undefined;
     /**
-     * =defaultCallback
+     * @type {React.TouchEventHandler}
      */
-    callback: (arg0: DirectionType) => void;
-};
-export type UseSwipeState = {
-    thresholdTime: number;
-    thresholdDistance: number;
+    onTouchStart: React.TouchEventHandler;
     /**
-     * =defaultCallback
+     * @type {React.TouchEventHandler}
      */
-    callback: (arg0: DirectionType) => void;
-    startTime: number;
-    bTracking: boolean;
-    startPosX: number | null;
-    startPosY: number | null;
-    endPosX: number | null;
-    endPosY: number | null;
+    onTouchEnd: React.TouchEventHandler;
+    /**
+     * @type {React.TouchEventHandler}
+     */
+    onTouchMove: React.TouchEventHandler;
 };

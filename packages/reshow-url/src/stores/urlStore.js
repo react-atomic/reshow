@@ -22,6 +22,7 @@ const updateUrl = (url) =>
 const urlChange = "urlChange";
 
 export class MyURL {
+  /** @type {Record<string, any>} */
   loc = {};
   /**
    * @param {Location=} loc
@@ -83,7 +84,7 @@ const registerEvent = (oWin) => {
 };
 
 /**
- * @param {any[]} params
+ * @param {any} params
  */
 const getInputAnchor = (params) => {
   let anchor;
@@ -96,6 +97,9 @@ const getInputAnchor = (params) => {
 };
 
 const handleUrl = () => {
+  /**
+   * @type {{name?: string|null, urlKeys?: string[]|null}}
+   */
   const Group = {};
 
   const getInitialState = () => {
@@ -116,6 +120,7 @@ const handleUrl = () => {
     if (!oDoc.URL) {
       return state;
     }
+    /** @type {string} */
     let url;
     let urlV;
     const { type, group, ...otherParams } = action || {};
@@ -150,7 +155,7 @@ const handleUrl = () => {
         if (group) {
           Group.urlKeys =
             Group.name === group
-              ? arrayDedup(Group.urlKeys.concat(urlKeys))
+              ? arrayDedup((Group.urlKeys || []).concat(urlKeys))
               : urlKeys;
         }
         Group.name = group;
@@ -186,8 +191,7 @@ const myStore = {
  */
 
 /**
- * @typedef {import("reshow-flux-base").StoreObject<any, any>&object} StoreObject
- * @property {Function} registerEvent
+ * @typedef {import("reshow-flux-base").StoreObject<any, any>&{registerEvent: Function}} StoreObject
  */
 
 /**
@@ -200,13 +204,14 @@ const myStore = {
  * @returns {UrlReducer}
  */
 export default function getUrlReducer() {
-  if (null == myStore.current) {
+  let current = myStore.current;
+  if (null == current) {
     const oUrl = handleUrl();
     const [store, dispatch] = createReducer(oUrl.reducer, oUrl.getInitialState);
-    myStore.current = {
+    current = myStore.current = {
       store: { ...store, registerEvent },
       dispatch,
     };
   }
-  return myStore.current;
+  return current;
 }

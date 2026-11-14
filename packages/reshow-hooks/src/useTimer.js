@@ -33,13 +33,17 @@ const useTimer = (interval) => {
 
   useEffect(() => () => stop(), []);
 
-  /**
-   * @type RunType
-   */
-  const run = useCallback((func, delay) => {
-    stop();
-    timer.current = callfunc(act.run, [func, delay]);
-  }, []);
+  const run = useCallback(
+    /**
+     * @param {function} func
+     * @param {number} [delay]
+     */
+    (func, delay) => {
+      stop();
+      timer.current = callfunc(act.run, [func, delay]);
+    },
+    [],
+  );
 
   return [run, stop];
 };

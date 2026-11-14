@@ -12,7 +12,7 @@ import callfunc from "call-func";
  * @param {any} setTo
  * @param {any} [initVal]
  * @param {function} [onChange]
- * @returns {reducer}
+ * @returns {[any, function]}
  */
 const useEnable = (setTo = true, initVal, onChange) => {
   const reducer = useReducer(

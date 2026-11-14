@@ -14,8 +14,13 @@ describe("test useLongPress", () => {
       handles.onMouseDown();
       return <div />;
     };
-    render(<Dom />);
-    clock.tick(501);
+    try {
+      render(<Dom />);
+      clock.tick(501);
+    } finally {
+      // waitFor relies on real timers, restore before awaiting it
+      clock.restore();
+    }
     await waitFor(() => {
       expect(thisCallback.called).to.be.true;
     });

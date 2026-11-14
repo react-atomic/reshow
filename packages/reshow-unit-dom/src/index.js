@@ -4,20 +4,25 @@ import sinon from "sinon";
 import { FUNCTION } from "reshow-constant";
 
 /**
+ * @template T
  * @typedef {object} CallableWrapper
- * @param {Function} [current]
+ * @property {T|null} [current]
  */
 
 /**
- * @type CallableWrapper
+ * @type {CallableWrapper<() => void>}
  */
 const jsdomWrapper = { current: null };
 /**
- * @type CallableWrapper
+ * @type {CallableWrapper<typeof console.error>}
  */
-const consoleWrapper = { current: null };
+const consoleErrorWrapper = { current: null };
 /**
- * @type CallableWrapper
+ * @type {CallableWrapper<typeof console.error>}
+ */
+const consoleWarnWrapper = { current: null };
+/**
+ * @type {CallableWrapper<SinonSandbox>}
  */
 const sinonWrapper = { current: null };
 
@@ -37,8 +42,25 @@ const jsdom = (html, options) => {
  * @param {boolean|Function} [toThrow]
  */
 const hideConsoleError = (toThrow) => {
-  if (!consoleWrapper.current) {
-    consoleWrapper.current = console.error;
+  if (!consoleErrorWrapper.current) {
+    consoleErrorWrapper.current = console.error;
+    console.error = () => {};
+  }
+  if (true === toThrow) {
+    console.error = (/** @type any*/ p) => {
+      throw p;
+    };
+  } else if (FUNCTION === typeof toThrow) {
+    console.error = /** @type any*/ (toThrow);
+  }
+};
+
+/**
+ * @param {boolean|Function} [toThrow]
+ */
+const hideConsoleWarn = (toThrow) => {
+  if (!consoleWarnWrapper.current) {
+    consoleWarnWrapper.current = console.error;
     console.error = () => {};
   }
   if (true === toThrow) {
@@ -65,7 +87,7 @@ const getSinon = (options) => {
     sinonWrapper.current = null;
   }
   sinonWrapper.current = sinon.createSandbox(options);
-  return /**@type SinonSandbox*/ (sinonWrapper.current);
+  return /**@type {SinonSandbox}*/ (sinonWrapper.current);
 };
 
 /**
@@ -78,10 +100,10 @@ const getSinon = (options) => {
  */
 const cleanIt = (props) => {
   const { debug } = props || {};
-  if (consoleWrapper.current) {
+  if (consoleErrorWrapper.current) {
     // Need locate before jsdom
-    console.error = consoleWrapper.current;
-    consoleWrapper.current = null;
+    console.error = consoleErrorWrapper.current;
+    consoleErrorWrapper.current = null;
   }
   if (jsdomWrapper.current) {
     jsdomWrapper.current();
@@ -109,4 +131,4 @@ const sleep = (cb, delay) =>
     }, delay);
   });
 
-export { cleanIt, jsdom, hideConsoleError, getSinon, sleep };
+export { cleanIt, jsdom, hideConsoleError, hideConsoleWarn, getSinon, sleep };

@@ -1,6 +1,6 @@
-export default useLoaded;
 /**
  * @param {function} [onChange]
  * @returns {boolean}
  */
-declare function useLoaded(onChange?: Function): boolean;
+declare const useLoaded: (onChange?: Function) => boolean;
+export default useLoaded;

@@ -16,7 +16,7 @@ import get from "get-object-value";
 const unifyTouch = (e) => get(e, ["changedTouches", 0], e);
 
 /**
- * @typedef {UP|RIGHT|DOWN|LEFT} DirectionType
+ * @typedef {"up"|"right"|"down"|"left"} DirectionType
  */
 const UP = "up";
 const RIGHT = "right";
@@ -41,14 +41,14 @@ const defaultCallback = (/**@type DirectionType*/ _bDirection) => {};
  * @typedef {object} UseSwipeProps
  * @property {number=} thresholdTime
  * @property {number=} thresholdDistance
- * @property {function(DirectionType):void} callback=defaultCallback
+ * @property {(direction: DirectionType) => void} [callback]
  */
 
 /**
  * @typedef {object} UseSwipeState
  * @property {number} thresholdTime
  * @property {number} thresholdDistance
- * @property {function(DirectionType):void} callback=defaultCallback
+ * @property {(direction: DirectionType) => void} callback
  * @property {number} startTime
  * @property {boolean} bTracking
  * @property {number?} startPosX
@@ -75,7 +75,7 @@ export const useSwipe = ({
   callback = defaultCallback,
 }) => {
   /**
-   * @type {React.RefObject<UseSwipeState>}
+   * @type {React.MutableRefObject<UseSwipeState>}
    */
   const lastState = useRef({
     thresholdDistance,

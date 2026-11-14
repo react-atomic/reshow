@@ -6,6 +6,7 @@ import {
   jsdom,
   cleanIt as domCleanIt,
   hideConsoleError,
+  hideConsoleWarn,
   getSinon,
   sleep,
 } from "reshow-unit-dom";
@@ -22,6 +23,7 @@ import {
 } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
+// @ts-expect-error -- the `process` polyfill ships without type declarations
 import { env } from "process";
 import build from "reshow-build";
 import { StrictMode, act as rtlAct } from "react";
@@ -43,7 +45,7 @@ if (STRICT_MODE) {
  * @see https://github.com/testing-library/react-testing-library/issues/1025
  * @see https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html
  */
-globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+/** @type {any} */ (globalThis).IS_REACT_ACT_ENVIRONMENT = true;
 
 // https://testing-library.com/docs/queries/about/#screen
 const screen = () => getQueriesForElement(doc()?.body, queries);
@@ -55,7 +57,7 @@ const screen = () => getQueriesForElement(doc()?.body, queries);
 const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
 
 /**
- * @param {Object} [props]
+ * @param {{withoutJsdom?: boolean, debug?: any}} [props]
  */
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
@@ -70,6 +72,7 @@ const cleanIt = (props) => {
  */
 const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
   const start = getTimestamp();
+  /** @type {ReturnType<typeof setTimeout>} */
   let timer;
   await rtlAct(
     () =>
@@ -89,7 +92,7 @@ const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
           }
         };
         wait(resolve);
-      }),
+      })
   );
 };
 
@@ -100,15 +103,22 @@ const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
  */
 
 /**
+ * @typedef {import("@testing-library/react").RenderOptions & {
+ *   instance?: boolean|((el: React.ReactElement) => void),
+ * }} CustomRenderOptions
+ */
+
+/**
  * rtl-render: https://github.com/testing-library/react-testing-library/blob/main/src/pure.js
  *
  * @param {React.ReactElement} OrigDom
- * @param {object} options
+ * @param {CustomRenderOptions} [options]
  * @returns {import("@testing-library/react").RenderResult & RenderResult}
  */
 const render = (OrigDom, options = {}) => {
   let instance = options?.instance;
   let Dom = OrigDom;
+  /** @type {any} */
   let uInstance;
   if (instance) {
     if (true === instance) {
@@ -151,4 +161,5 @@ export {
   cleanIt,
   jsdom,
   hideConsoleError,
+  hideConsoleWarn,
 };

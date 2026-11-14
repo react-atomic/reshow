@@ -1,4 +1,3 @@
-export default useTimer;
 export type RunType = (func: Function, delay?: number) => any;
 /**
  * @callback RunType
@@ -9,4 +8,5 @@ export type RunType = (func: Function, delay?: number) => any;
  * @param {boolean} [interval]
  * @returns {[RunType, function]}
  */
-declare function useTimer(interval?: boolean): [RunType, Function];
+declare const useTimer: (interval?: boolean) => [RunType, Function];
+export default useTimer;

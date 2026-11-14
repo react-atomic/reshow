@@ -1,2 +1,2 @@
+declare const useMounted: () => () => undefined;
 export default useMounted;
-declare function useMounted(): () => any;

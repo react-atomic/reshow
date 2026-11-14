@@ -7,12 +7,14 @@ import useSyncChange from "./useSyncChange";
 
 /**
  * @template ValueType
- * @param {ValueType|function():ValueType} [value]
- * @param {function(ValueType):ValueType} [cookCb]
+ * @param {ValueType|(() => ValueType)} [value]
+ * @param {(v: ValueType) => ValueType} [cookCb]
  * @return {React.MutableRefObject<ValueType>}
  */
 const useRefUpdate = (value, cookCb = (v) => v) => {
-  const lastCook = /** @type any*/ (useRef(null));
+  const lastCook = /** @type {React.MutableRefObject<ValueType>} */ (
+    useRef(null)
+  );
   useSyncChange(value, (/**@type any*/ nextValue) => {
     lastCook.current = callFunc(cookCb, [nextValue]);
   });

@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-reshow-transform-runtime",
-  "version": "0.17.4",
-  "description": "Custom path for babel7 transform-runtime",
+  "version": "0.19.0",
+  "description": "Custom path for babel transform-runtime (Babel 7 & 8)",
   "repository": "react-atomic/reshow",
   "keywords": [
     "react",
@@ -10,11 +10,14 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
+    "reshow-runtime": "*",
     "resolve": "1.19.0",
     "semver": "5.7.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.x",
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.9",
+    "@babel/preset-env": "^8.0.7",
     "reshow-unit-dom": "*"
   },
   "main": "./build/cjs/index.js",
@@ -24,7 +27,7 @@
     "build": "npm run clean && npm run build:cjs",
     "mochaFor": "mocha -r global-jsdom/register",
     "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
-    "test": "exit 0",
+    "test": "bun test",
     "prepublishOnly": "npm run build"
   },
   "files": [
