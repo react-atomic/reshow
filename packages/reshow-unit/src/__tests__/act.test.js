@@ -1,8 +1,12 @@
+import { describe, it, beforeEach, afterEach } from "bun:test";
+
 import { useState } from "react";
 import { expect } from "chai";
-import { render, screen, act, waitFor } from "../index";
+import { render, screen, act, waitFor, jsdom, cleanIt } from "../index";
 
 describe("Test Act", () => {
+  beforeEach(() => { jsdom(); });
+  afterEach(() => { cleanIt(); });
   it("basic test", async () => {
     let change;
     const Foo = (props) => {

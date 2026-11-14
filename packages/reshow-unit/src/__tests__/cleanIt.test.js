@@ -1,3 +1,5 @@
+import { describe, it, beforeEach, afterEach } from "bun:test";
+
 import { expect } from "chai";
 import { render, screen, cleanIt, jsdom } from "../index";
 

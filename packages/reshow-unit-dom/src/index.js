@@ -1,113 +1,139 @@
-// @ts-check
-import jsdomGlobal from "global-jsdom";
+// @ts-nocheck
+import { GlobalWindow } from "happy-dom";
+import * as PropertySymbol from "happy-dom/lib/PropertySymbol.js";
 import sinon from "sinon";
 import { FUNCTION } from "reshow-constant";
 
-/**
- * @template T
- * @typedef {object} CallableWrapper
- * @property {T|null} [current]
- */
-
-/**
- * @type {CallableWrapper<() => void>}
- */
 const jsdomWrapper = { current: null };
-/**
- * @type {CallableWrapper<typeof console.error>}
- */
 const consoleErrorWrapper = { current: null };
-/**
- * @type {CallableWrapper<typeof console.error>}
- */
 const consoleWarnWrapper = { current: null };
-/**
- * @type {CallableWrapper<SinonSandbox>}
- */
 const sinonWrapper = { current: null };
 
-/**
- * @param {string=} html
- * @param {any} [options]
- */
+const IGNORE_LIST = ["constructor", "undefined", "NaN", "global", "globalThis"];
+
 const jsdom = (html, options) => {
-  if (jsdomWrapper.current) {
-    jsdomWrapper.current();
+  const cleanup = () => {
+    const registered = cleanup.registered;
+    const window = cleanup.window;
+    if (registered) {
+      for (const key of Object.keys(registered)) {
+        if (registered[key] !== null) {
+          Object.defineProperty(globalThis, key, registered[key]);
+        } else {
+          delete globalThis[key];
+        }
+      }
+    }
+    try {
+      window?.happyDOM?.close();
+    } catch (e) {
+      /* ignore */
+    }
+  };
+
+  const window = new GlobalWindow({ ...options, console: globalThis.console });
+  if (html) {
+    window.document.write(html);
+    window.document.close();
   }
-  jsdomWrapper.current = jsdomGlobal(html, options);
-  return jsdomWrapper.current;
+
+  const registered = {};
+  const propertyDescriptors = Object.getOwnPropertyDescriptors(window);
+  for (const key of Object.keys(propertyDescriptors)) {
+    if (!IGNORE_LIST.includes(key)) {
+      const windowPropertyDescriptor = propertyDescriptors[key];
+      const globalPropertyDescriptor = Object.getOwnPropertyDescriptor(globalThis, key);
+      if (
+        globalPropertyDescriptor?.value === undefined ||
+        globalPropertyDescriptor?.value !== windowPropertyDescriptor.value
+      ) {
+        registered[key] = globalPropertyDescriptor || null;
+        if (windowPropertyDescriptor.value === window) {
+          window[key] = globalThis;
+          windowPropertyDescriptor.value = globalThis;
+        }
+        Object.defineProperty(globalThis, key, {
+          ...windowPropertyDescriptor,
+          configurable: true,
+        });
+      }
+    }
+  }
+  const propertySymbols = Object.getOwnPropertySymbols(window);
+  for (const key of propertySymbols) {
+    const propertyDescriptor = Object.getOwnPropertyDescriptor(window, key);
+    registered[key] = null;
+    if (propertyDescriptor.value === window) {
+      window[key] = globalThis;
+      propertyDescriptor.value = globalThis;
+    }
+    Object.defineProperty(globalThis, key, {
+      ...propertyDescriptor,
+      configurable: true,
+    });
+  }
+  try {
+    globalThis.document[PropertySymbol.defaultView] = globalThis;
+  } catch (e) {
+    /* ignore */
+  }
+
+  cleanup.window = window;
+  cleanup.registered = registered;
+  jsdomWrapper.current = cleanup;
+  return cleanup;
 };
 
-/**
- * @param {boolean|Function} [toThrow]
- */
 const hideConsoleError = (toThrow) => {
   if (!consoleErrorWrapper.current) {
     consoleErrorWrapper.current = console.error;
     console.error = () => {};
   }
   if (true === toThrow) {
-    console.error = (/** @type any*/ p) => {
+    console.error = (p) => {
       throw p;
     };
   } else if (FUNCTION === typeof toThrow) {
-    console.error = /** @type any*/ (toThrow);
+    console.error = toThrow;
   }
 };
 
-/**
- * @param {boolean|Function} [toThrow]
- */
 const hideConsoleWarn = (toThrow) => {
   if (!consoleWarnWrapper.current) {
-    consoleWarnWrapper.current = console.error;
-    console.error = () => {};
+    consoleWarnWrapper.current = console.warn;
+    console.warn = () => {};
   }
   if (true === toThrow) {
-    console.error = (/** @type any*/ p) => {
+    console.warn = (p) => {
       throw p;
     };
   } else if (FUNCTION === typeof toThrow) {
-    console.error = /** @type any*/ (toThrow);
+    console.warn = toThrow;
   }
 };
 
-/**
- * @typedef {import("sinon").SinonSandbox} SinonSandbox
- */
-
-/**
- * @see https://sinonjs.org/releases/latest/sandbox/
- * @param {any} [options]
- * @returns {SinonSandbox}
- */
 const getSinon = (options) => {
   if (sinonWrapper.current) {
     sinonWrapper.current.restore();
     sinonWrapper.current = null;
   }
   sinonWrapper.current = sinon.createSandbox(options);
-  return /**@type {SinonSandbox}*/ (sinonWrapper.current);
+  return sinonWrapper.current;
 };
 
-/**
- * @typedef {object} CleanItProps
- * @property {any} [debug]
- */
-
-/**
- * @param {CleanItProps} [props]
- */
 const cleanIt = (props) => {
   const { debug } = props || {};
   if (consoleErrorWrapper.current) {
-    // Need locate before jsdom
     console.error = consoleErrorWrapper.current;
     consoleErrorWrapper.current = null;
   }
+  if (consoleWarnWrapper.current) {
+    console.warn = consoleWarnWrapper.current;
+    consoleWarnWrapper.current = null;
+  }
   if (jsdomWrapper.current) {
     jsdomWrapper.current();
-    jsdomWrapper.current = jsdomGlobal();
+    jsdomWrapper.current = jsdom();
   }
   if (sinonWrapper.current) {
     sinonWrapper.current.restore();
@@ -118,11 +144,6 @@ const cleanIt = (props) => {
   }
 };
 
-/**
- * @param {function} cb
- * @param {number} delay
- * @returns {Promise<null>}
- */
 const sleep = (cb, delay) =>
   new Promise((resolve) => {
     setTimeout(() => {

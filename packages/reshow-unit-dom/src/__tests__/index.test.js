@@ -1,3 +1,4 @@
+import { describe, it, beforeEach, afterEach } from "bun:test";
 import { expect } from "chai";
 import { cleanIt, jsdom, hideConsoleError, getSinon as sinon } from "../index";
 

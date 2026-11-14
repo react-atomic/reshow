@@ -1,5 +1,5 @@
 {
-  "version": "0.19.3",
+  "version": "0.19.4",
   "name": "reshow-unit",
   "repository": {
     "type": "git",
@@ -14,22 +14,24 @@
   "author": "Hill <hill@kimo.com>",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^8.0.6",
-    "@babel/core": "^8.0.9",
+    "@babel/cli": "^8.1.0",
+    "@babel/core": "^8.1.2",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.8",
+    "@testing-library/user-event": "^14.6.10",
     "get-object-value": "^0.8.1",
     "get-random-id": "^0.5.0",
     "process": "0.11.10",
     "reshow-build": "^1.19.2",
     "reshow-runtime": "^0.17.15",
-    "reshow-unit-dom": "^0.19.1",
+    "reshow-unit-dom": "^0.19.2",
     "win-doc": "^0.4.0"
   },
   "devDependencies": {
+    "@types/chai": "^5.2.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "chai": "^6.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
@@ -47,10 +49,7 @@
     "build:es": "BABEL_ENV=es babel src -d build/es --out-file-extension .mjs --root-mode upward",
     "build:type": "npx -p typescript tsc src/*.js --jsx react-jsx --target es6 --declaration --allowJs --emitDeclarationOnly --skipLibCheck --declarationDir types",
     "build": "npm run clean && npm run build:cjs && npm run build:es && npm run build:type",
-    "mochaFor": "STRICT_MODE=on mocha -r global-jsdom/register",
-    "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
-    "test:report": "npm run build && npm run mochaFor -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test_output/mocha.xml 'build/es/**/__tests__/*.mjs'",
-    "test": "npm run build && npm run mocha",
+    "test": "STRICT_MODE=on bun test",
     "prepublishOnly": "npm run test"
   },
   "types": "./types/index.d.ts",

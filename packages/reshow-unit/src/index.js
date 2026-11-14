@@ -61,10 +61,10 @@ const getRoleHtml = (role) => screen().getByRole(role).outerHTML;
  */
 const cleanIt = (props) => {
   const { withoutJsdom } = props || {};
+  cleanup();
   if (!withoutJsdom) {
     domCleanIt(props);
   }
-  cleanup();
 };
 
 /**

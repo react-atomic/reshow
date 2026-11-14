@@ -1,8 +1,12 @@
+import { describe, it, beforeEach, afterEach } from "bun:test";
+
 import { PureComponent } from "react";
 import { expect } from "chai";
-import { render, getRoleHtml } from "../index";
+import { render, getRoleHtml, jsdom, cleanIt } from "../index";
 
 describe("Test Render", () => {
+  beforeEach(() => { jsdom(); });
+  afterEach(() => { cleanIt(); });
   it("basic test", () => {
     const Foo = (props) => <div>bar</div>;
     const wrap = render(<Foo />);
