@@ -68,32 +68,58 @@ const cleanIt = (props) => {
 };
 
 /**
- * @param {function} cb
+ * Wrap state updates in `act(...)` so React flushes them before assertions.
+ *
+ * Supports sync and async callbacks, optional delay to let timers/microtasks
+ * settle, and the no-argument form (`act()`). The callback may also be passed
+ * as the only argument; `milliseconds`/`debug` may be given positionally or
+ * via an options object as the second argument.
+ *
+ * @param {function} [cb]
+ * @param {number|{milliseconds?: number, ms?: number, debug?: boolean}} [milliseconds]
+ * @param {boolean} [debug]
  */
 const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
+  // Allow `act(cb, { ms, debug })` form.
+  if (milliseconds && typeof milliseconds === "object") {
+    const opts = /** @type {any} */ (milliseconds);
+    milliseconds = opts.milliseconds ?? opts.ms ?? 1;
+    debug = opts.debug ?? debug;
+  }
+  if (typeof cb !== "function") {
+    cb = () => {};
+  }
+  const ms = Number.isFinite(milliseconds) ? milliseconds : 1;
   const start = getTimestamp();
-  /** @type {ReturnType<typeof setTimeout>} */
-  let timer;
-  await rtlAct(
-    () =>
-      new Promise((resolve) => {
-        cb();
-        /**
-         * @param {function} resolve
-         */
-        const wait = (resolve) => {
+  await rtlAct(async () => {
+    const result = cb();
+    if (result && typeof result.then === "function") {
+      await result;
+    }
+    if (ms > 0) {
+      await new Promise((resolve) => {
+        const tick = () => {
           const now = getTimestamp();
-          debug && console.log({ during: now - start, debug, start, now });
-          if (milliseconds + start > now) {
-            clearTimeout(timer);
-            timer = setTimeout(() => wait(resolve), 1);
-          } else {
+          if (debug) {
+            console.log({ during: now - start, debug, start, now });
+          }
+          if (start + ms <= now) {
             resolve();
+          } else {
+            setTimeout(tick, 1);
           }
         };
-        wait(resolve);
-      })
-  );
+        tick();
+      });
+    } else {
+      // Flush at least one microtask so pending state updates settle.
+      await Promise.resolve();
+      await Promise.resolve();
+    }
+    // Let any remaining microtasks (state updates) flush before act resolves.
+    await Promise.resolve();
+    await Promise.resolve();
+  });
 };
 
 /**
