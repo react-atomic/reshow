@@ -8,9 +8,22 @@ export type CustomRenderOptions = import("@testing-library/react").RenderOptions
 import { waitFor } from "@testing-library/dom";
 import { waitForElementToBeRemoved } from "@testing-library/dom";
 /**
- * @param {function} cb
+ * Wrap state updates in `act(...)` so React flushes them before assertions.
+ *
+ * Supports sync and async callbacks, optional delay to let timers/microtasks
+ * settle, and the no-argument form (`act()`). The callback may also be passed
+ * as the only argument; `milliseconds`/`debug` may be given positionally or
+ * via an options object as the second argument.
+ *
+ * @param {() => (void | PromiseLike<void>)} [cb]
+ * @param {number | {milliseconds?: number, ms?: number, debug?: boolean}} [milliseconds]
+ * @param {boolean} [debug]
  */
-export function act(cb?: Function, milliseconds?: number, debug?: boolean): Promise<void>;
+export function act(cb?: () => (void | PromiseLike<void>), milliseconds?: number | {
+    milliseconds?: number;
+    ms?: number;
+    debug?: boolean;
+}, debug?: boolean): Promise<void>;
 /**
  * @typedef {Object} RenderResult
  * @property {function} html

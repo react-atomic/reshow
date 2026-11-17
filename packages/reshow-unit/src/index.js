@@ -23,12 +23,10 @@ import {
 } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
-// @ts-expect-error -- the `process` polyfill ships without type declarations
-import { env } from "process";
 import build from "reshow-build";
 import { StrictMode, act as rtlAct } from "react";
 
-const envStrictMode = /** @type string*/ (env.STRICT_MODE);
+const envStrictMode = /** @type string*/ (process.env.STRICT_MODE);
 const STRICT_MODE =
   -1 !== "|true|false|null|0|".indexOf(envStrictMode)
     ? JSON.parse(envStrictMode)
@@ -75,49 +73,75 @@ const cleanIt = (props) => {
  * as the only argument; `milliseconds`/`debug` may be given positionally or
  * via an options object as the second argument.
  *
- * @param {function} [cb]
- * @param {number|{milliseconds?: number, ms?: number, debug?: boolean}} [milliseconds]
+ * @param {() => (void | PromiseLike<void>)} [cb]
+ * @param {number | {milliseconds?: number, ms?: number, debug?: boolean}} [milliseconds]
  * @param {boolean} [debug]
  */
-const act = async (cb = () => {}, milliseconds = 1, debug = false) => {
-  // Allow `act(cb, { ms, debug })` form.
-  if (milliseconds && typeof milliseconds === "object") {
-    const opts = /** @type {any} */ (milliseconds);
-    milliseconds = opts.milliseconds ?? opts.ms ?? 1;
-    debug = opts.debug ?? debug;
+const act = async (cb = () => {}, milliseconds, debug = false) => {
+  const msExplicitArg = milliseconds !== undefined;
+  const rawMs = milliseconds;
+
+  // milliseconds is "explicit" when the caller passed something for it
+  // (detected via the undefined check below, not arguments.length): a
+  // positional number or an options object carrying ms/milliseconds, as
+  // opposed to relying on the default.
+  let msExplicit = msExplicitArg;
+  /** @type {number | undefined} */
+  let msValue;
+  if (rawMs && typeof rawMs === "object") {
+    const opts = /** @type {{milliseconds?: number, ms?: number, debug?: boolean}} */ (rawMs);
+    if (Object.prototype.hasOwnProperty.call(opts, "milliseconds") || Object.prototype.hasOwnProperty.call(opts, "ms")) {
+      msExplicit = true;
+      msValue = opts.milliseconds ?? opts.ms;
+    }
+    debug = typeof opts.debug === "boolean" ? opts.debug : debug;
+  } else if (msExplicitArg) {
+    msExplicit = true;
+    msValue = typeof rawMs === "number" ? rawMs : undefined;
   }
+
   if (typeof cb !== "function") {
     cb = () => {};
   }
-  const ms = Number.isFinite(milliseconds) ? milliseconds : 1;
+
   const start = getTimestamp();
   await rtlAct(async () => {
-    const result = cb();
-    if (result && typeof result.then === "function") {
-      await result;
+    const result = /** @type {() => (void | PromiseLike<void>)} */ (cb)();
+    const isThenable =
+      !!result &&
+      (typeof result === "object" || typeof result === "function") &&
+      typeof /** @type {{then?: () => void}} */ (result).then === "function";
+    let ms;
+    if (msExplicit) {
+      // Explicit ms is a min-wait measured from act() start (before cb runs);
+      // it does not extend past the callback's promise.
+      ms =
+        typeof msValue === "number" && Number.isFinite(msValue) ? msValue : 1;
+    } else {
+      // Defaults: async callback flushes microtasks only (0); sync callback
+      // keeps the fixed-milliseconds wait (1).
+      ms = isThenable ? 0 : 1;
+    }
+    if (isThenable) {
+      // React act semantics: fully await the callback's promise.
+      await /** @type {PromiseLike<void>} */ (result);
     }
     if (ms > 0) {
-      await new Promise((resolve) => {
-        const tick = () => {
-          const now = getTimestamp();
+      // Sleep only the remaining wall-clock time since act() started, so a
+      // callback that already took longer than ms does not wait twice.
+      const remaining = ms - (getTimestamp() - start);
+      if (remaining > 0) {
+        await sleep(() => {
           if (debug) {
+            const now = getTimestamp();
             console.log({ during: now - start, debug, start, now });
           }
-          if (start + ms <= now) {
-            resolve();
-          } else {
-            setTimeout(tick, 1);
-          }
-        };
-        tick();
-      });
+        }, remaining);
+      }
     } else {
-      // Flush at least one microtask so pending state updates settle.
-      await Promise.resolve();
       await Promise.resolve();
     }
     // Let any remaining microtasks (state updates) flush before act resolves.
-    await Promise.resolve();
     await Promise.resolve();
   });
 };
