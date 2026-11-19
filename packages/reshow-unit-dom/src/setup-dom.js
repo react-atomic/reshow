@@ -19,7 +19,47 @@ export const jsdomWrapper = { current: null };
 
 const IGNORE_LIST = ["constructor", "undefined", "NaN", "global", "globalThis"];
 
-export const jsdom = (html, options) => {
+/**
+ * @typedef {Object} JsdomBrowserSettings
+ * @property {boolean} [disableJavaScriptEvaluation]
+ * @property {boolean} [enableJavaScriptEvaluation]
+ * @property {boolean} [disableJavaScriptFileLoading]
+ * @property {boolean} [disableCSSFileLoading]
+ * @property {boolean} [enableCSSFileLoading]
+ * @property {boolean} [enableImageFileLoading]
+ * @property {boolean} [disableIframePageLoading]
+ * @property {boolean} [enableIframePageLoading]
+ * @property {boolean} [disableComputedStyleRendering]
+ * @property {boolean} [handleDisabledFileLoadingAsSuccess]
+ * @property {boolean} [disableErrorCapturing]
+ * @property {string} [errorCapture]
+ * @property {boolean} [enableFileSystemHttpRequests]
+ * @property {boolean} [suppressCodeGenerationFromStringsWarning]
+ * @property {boolean} [suppressInsecureJavaScriptEnvironmentWarning]
+ * @property {{ maxTimeout?: number; maxIntervalTime?: number; maxIntervalIterations?: number; preventTimerLoops?: boolean }} [timer]
+ * @property {{ disableSameOriginPolicy?: boolean; disableStrictSSL?: boolean; interceptor?: ((...args: unknown[]) => unknown) | null; requestHeaders?: Record<string, string> | null; virtualServers?: unknown }} [fetch]
+ * @property {{ resolveNodeModules?: unknown; urlResolver?: unknown; disableCache?: boolean }} [module]
+ * @property {{ disableMainFrameNavigation?: boolean; disableChildFrameNavigation?: boolean; disableChildPageNavigation?: boolean; disableFallbackToSetURL?: boolean; crossOriginPolicy?: string; beforeContentCallback?: ((...args: unknown[]) => unknown) | null }} [navigation]
+ * @property {{ userAgent?: string; maxTouchPoints?: number }} [navigator]
+ * @property {{ prefersColorScheme?: string; prefersReducedMotion?: string; mediaType?: string; forcedColors?: string }} [device]
+ * @property {{ traceWaitUntilComplete?: number }} [debug]
+ * @property {{ width?: number; height?: number; devicePixelRatio?: number }} [viewport]
+ * @property {unknown} [canvasAdapter]
+ *
+ * @typedef {Object} JsdomOptions
+ * @property {number} [width]
+ * @property {number} [height]
+ * @property {number} [innerWidth]
+ * @property {number} [innerHeight]
+ * @property {string} [url]
+ * @property {Console} [console]
+ * @property {JsdomBrowserSettings} [settings]
+ *
+ * @param {string | null} [html]
+ * @param {JsdomOptions} [options]
+ * @returns {(() => void) & { window: any; registered: Record<string | symbol, PropertyDescriptor | null> }}
+ */
+export const jsdom = (html = null, options = {}) => {
   const cleanup = () => {
     const registered = cleanup.registered;
     const window = cleanup.window;
