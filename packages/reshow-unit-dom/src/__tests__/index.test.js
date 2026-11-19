@@ -10,7 +10,7 @@ describe("Test reshow-unit-dom", () => {
     cleanIt();
   });
 
-  it("basic testt", () => {
+  it("basic test", () => {
     /*your test code*/
     cleanIt();
     expect(document.body.innerHTML).to.equal("");

@@ -56,7 +56,7 @@ const cleanIt = (props) => {
   }
   if (jsdomWrapper.current) {
     jsdomWrapper.current();
-    jsdomWrapper.current = jsdom();
+    jsdomWrapper.current = null;
   }
   if (sinonWrapper.current) {
     sinonWrapper.current.restore();
